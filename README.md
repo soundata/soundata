@@ -1,5 +1,5 @@
 # soundata
-Common loaders for sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). Inspired by and based on [mir_data].(https://github.com/soundata/soundata)
+Common loaders for sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). Inspired by and based on [mir_data](https://github.com/mir-dataset-loaders/mirdata).(https://github.com/soundata/soundata)
 
 [![CircleCI](https://circleci.com/gh/soundata/soundata.svg?style=svg)](https://circleci.com/gh/soundata/soundata)
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
@@ -47,16 +47,7 @@ For the **complete list** of supported datasets, see the [documentation](https:/
 
 ### Citing
 
-
-There are two ways of citing soundata:
-
-If you are using the library for your work, please cite the version you used as indexed at Zenodo:
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4355859.svg)](https://doi.org/10.5281/zenodo.4355859)
-
-If you refer to soundata's design principles, motivation etc., please cite the following [paper]():
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3527750.svg)](https://doi.org/10.5281/zenodo.3527750)
+TODO
 
 ```
 paper
