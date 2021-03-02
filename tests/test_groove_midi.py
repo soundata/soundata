@@ -2,8 +2,8 @@ import os
 import pretty_midi
 import shutil
 
-from mirdata.datasets import groove_midi
-from mirdata import annotations, download_utils
+from soundata.datasets import groove_midi
+from soundata import annotations, download_utils
 from tests.test_utils import run_track_tests
 
 

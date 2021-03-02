@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 import jams
 
-from mirdata import jams_utils, annotations
+from soundata import jams_utils, annotations
 
 
 def get_jam_data(jam, namespace, annot_numb):

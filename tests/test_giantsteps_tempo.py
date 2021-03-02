@@ -1,7 +1,7 @@
 import numpy as np
 
-from mirdata.datasets import giantsteps_tempo
-from mirdata import annotations
+from soundata.datasets import giantsteps_tempo
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 

@@ -2,7 +2,7 @@ import os
 
 from tests.test_utils import run_track_tests
 
-from mirdata.datasets import mridangam_stroke
+from soundata.datasets import mridangam_stroke
 
 
 def test_track():

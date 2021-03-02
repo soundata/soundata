@@ -1,7 +1,7 @@
 import pytest
 
-from mirdata import core
-from mirdata import initialize, list_datasets
+from soundata import core
+from soundata import initialize, list_datasets
 
 
 def test_list_datasets():

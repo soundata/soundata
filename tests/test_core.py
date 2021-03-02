@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
 
-import mirdata
-from mirdata import core
+import soundata
+from soundata import core
 
 
 def test_track():
@@ -151,16 +151,16 @@ def test_multitrack_repr():
 
 
 def test_dataset():
-    dataset = mirdata.initialize("guitarset")
+    dataset = soundata.initialize("guitarset")
     assert isinstance(dataset, core.Dataset)
 
-    dataset = mirdata.initialize("rwc_jazz")
+    dataset = soundata.initialize("rwc_jazz")
     assert isinstance(dataset, core.Dataset)
 
-    dataset = mirdata.initialize("ikala")
+    dataset = soundata.initialize("ikala")
     assert isinstance(dataset, core.Dataset)
 
-    dataset = mirdata.initialize("phenicx_anechoic")
+    dataset = soundata.initialize("phenicx_anechoic")
     assert isinstance(dataset, core.Dataset)
 
     print(dataset)  # test that repr doesn't fail
@@ -168,9 +168,9 @@ def test_dataset():
 
 def test_dataset_errors():
     with pytest.raises(ValueError):
-        mirdata.initialize("not_a_dataset")
+        soundata.initialize("not_a_dataset")
 
-    d = mirdata.initialize("orchset")
+    d = soundata.initialize("orchset")
     d._track_class = None
     with pytest.raises(AttributeError):
         d.track("asdf")
@@ -190,11 +190,11 @@ def test_dataset_errors():
     with pytest.raises(AttributeError):
         d.choice_multitrack()
 
-    d = mirdata.initialize("acousticbrainz_genre")
+    d = soundata.initialize("acousticbrainz_genre")
     with pytest.raises(FileNotFoundError):
         d._index
 
-    d = mirdata.initialize("phenicx_anechoic")
+    d = soundata.initialize("phenicx_anechoic")
     with pytest.raises(ValueError):
         d._multitrack("a")
 

@@ -1,8 +1,8 @@
 import os
 import shutil
 
-from mirdata import download_utils
-from mirdata.datasets import acousticbrainz_genre
+from soundata import download_utils
+from soundata.datasets import acousticbrainz_genre
 from tests.test_utils import run_track_tests
 
 

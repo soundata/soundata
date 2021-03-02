@@ -1,7 +1,7 @@
 import numpy as np
 
-from mirdata.datasets import beatles
-from mirdata import annotations
+from soundata.datasets import beatles
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 

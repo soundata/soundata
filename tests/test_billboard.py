@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
-from mirdata.datasets import billboard
-from mirdata import annotations
+from soundata.datasets import billboard
+from soundata import annotations
 
 
 def test_track():

@@ -1,8 +1,8 @@
 import numpy as np
 import jams
 
-from mirdata.datasets import guitarset
-from mirdata import annotations
+from soundata.datasets import guitarset
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 TEST_DATA_HOME = "tests/resources/mir_datasets/guitarset"

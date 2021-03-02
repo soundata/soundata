@@ -3,7 +3,7 @@ import sys
 import librosa
 import numpy as np
 
-from mirdata.datasets import tonality_classicaldb
+from soundata.datasets import tonality_classicaldb
 from tests.test_utils import run_track_tests
 
 

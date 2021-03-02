@@ -1,7 +1,7 @@
 import os
 
 from tests.test_utils import run_track_tests
-from mirdata.datasets import irmas
+from soundata.datasets import irmas
 
 
 def test_track():

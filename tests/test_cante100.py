@@ -3,8 +3,8 @@ import numpy as np
 
 from tests.test_utils import run_track_tests
 
-from mirdata import annotations
-from mirdata.datasets import cante100
+from soundata import annotations
+from soundata.datasets import cante100
 from tests.test_utils import DEFAULT_DATA_HOME
 
 TEST_DATA_HOME = "tests/resources/mir_datasets/cante100"

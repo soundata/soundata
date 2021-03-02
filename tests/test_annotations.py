@@ -2,8 +2,8 @@ import sys
 import pytest
 import numpy as np
 
-import mirdata
-from mirdata import annotations
+import soundata
+from soundata import annotations
 
 
 def test_repr():

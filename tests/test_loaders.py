@@ -8,11 +8,11 @@ import pytest
 import requests
 
 
-import mirdata
-from mirdata import core, download_utils
+import soundata
+from soundata import core, download_utils
 from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 
-DATASETS = mirdata.DATASETS
+DATASETS = soundata.DATASETS
 CUSTOM_TEST_TRACKS = {
     "beatles": "0111",
     "cante100": "008",
@@ -48,7 +48,7 @@ TEST_DATA_HOME = "tests/resources/mir_datasets"
 
 def test_dataset_attributes():
     for dataset_name in DATASETS:
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         assert (
@@ -79,7 +79,7 @@ def test_dataset_attributes():
 
 def test_cite_and_license():
     for dataset_name in DATASETS:
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         text_trap = io.StringIO()
@@ -100,7 +100,7 @@ DOWNLOAD_EXCEPTIONS = ["maestro"]
 def test_download(mocker):
     for dataset_name in DATASETS:
         print(dataset_name)
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         # test parameters & defaults
@@ -166,7 +166,7 @@ def test_validate(skip_local):
     for dataset_name in DATASETS:
         data_home = os.path.join("tests/resources/mir_datasets", dataset_name)
 
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         try:
@@ -183,7 +183,7 @@ def test_validate(skip_local):
 def test_load_and_trackids():
     for dataset_name in DATASETS:
         data_home = os.path.join("tests/resources/mir_datasets", dataset_name)
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         try:
@@ -228,7 +228,7 @@ def test_track():
     for dataset_name in DATASETS:
         data_home = os.path.join(data_home_dir, dataset_name)
 
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         # if the dataset doesn't have a track object, make sure it raises a value error
@@ -302,7 +302,7 @@ def test_track_placeholder_case():
     for dataset_name in DATASETS:
         data_home = os.path.join(data_home_dir, dataset_name)
 
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(data_home, dataset_name))
 
         if dataset._track_class is None or dataset.remote_index:
@@ -363,7 +363,7 @@ SKIP = {
 
 def test_load_methods():
     for dataset_name in DATASETS:
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         all_methods = dir(dataset)
@@ -383,7 +383,7 @@ def test_load_methods():
 
             if load_method.__doc__ is None:
                 raise ValueError(
-                    "mirdata.datasets.{}.Dataset.{} has no documentation".format(
+                    "soundata.datasets.{}.Dataset.{} has no documentation".format(
                         dataset_name, method_name
                     )
                 )
@@ -413,7 +413,7 @@ def test_multitracks():
 
     for dataset_name in DATASETS:
 
-        module = importlib.import_module("mirdata.datasets.{}".format(dataset_name))
+        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         # TODO this is currently an opt-in test. Make it an opt out test
@@ -431,7 +431,7 @@ def test_multitracks():
 
         # test data home specified
         data_home = os.path.join(data_home_dir, dataset_name)
-        dataset_specific = mirdata.initialize(dataset_name, data_home=data_home)
+        dataset_specific = soundata.initialize(dataset_name, data_home=data_home)
         try:
             mtrack_test = dataset_specific.MultiTrack(mtrack_id, data_home=data_home)
         except:

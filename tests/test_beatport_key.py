@@ -1,6 +1,6 @@
 import numpy as np
 
-from mirdata.datasets import beatport_key
+from soundata.datasets import beatport_key
 from tests.test_utils import run_track_tests
 
 

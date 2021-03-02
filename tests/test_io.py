@@ -3,7 +3,7 @@ from io import BufferedReader, BytesIO, StringIO, TextIOWrapper
 
 import pytest
 
-from mirdata import io
+from soundata import io
 
 
 def test_coerce_to_string_with_none():

@@ -2,7 +2,7 @@ import os
 
 from tests.test_utils import run_track_tests
 
-from mirdata.datasets import gtzan_genre
+from soundata.datasets import gtzan_genre
 
 TEST_DATA_HOME = "tests/resources/mir_datasets/gtzan_genre"
 
@@ -40,5 +40,5 @@ def test_to_jams():
     # Validate GTZAN schema
     assert jam.validate()
 
-    # Test the that the genre parser of mirdata is correct
+    # Test the that the genre parser of soundata is correct
     assert jam.annotations["tag_gtzan"][0].data[0].value == "country"

@@ -2,8 +2,8 @@ import os
 import shutil
 import numpy as np
 
-from mirdata.datasets import orchset
-from mirdata import annotations, download_utils
+from soundata.datasets import orchset
+from soundata import annotations, download_utils
 from tests.test_utils import run_track_tests
 
 

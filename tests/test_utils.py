@@ -3,8 +3,8 @@ import json
 import os
 import types
 
-import mirdata
-from mirdata import validate
+import soundata
+from soundata import validate
 
 
 import pytest
@@ -51,7 +51,7 @@ def get_attributes_and_properties(class_instance):
             continue
 
         attr = getattr(class_instance.__class__, val)
-        if isinstance(attr, mirdata.core.cached_property):
+        if isinstance(attr, soundata.core.cached_property):
             cached_properties.append(val)
         elif isinstance(attr, property):
             properties.append(val)

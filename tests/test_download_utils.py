@@ -4,7 +4,7 @@ import shutil
 import zipfile
 import re
 
-from mirdata import download_utils
+from soundata import download_utils
 
 import pytest
 

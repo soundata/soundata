@@ -1,7 +1,7 @@
 import DALI
 
-from mirdata.datasets import dali
-from mirdata import annotations
+from soundata.datasets import dali
+from soundata import annotations
 from tests.test_utils import run_track_tests
 import numpy as np
 
@@ -44,7 +44,7 @@ def test_track():
 
     run_track_tests(track, expected_attributes, expected_property_types)
 
-    path_save = "/home/mfuentes/astre/code/repositories/mirdata/tests/resources/mir_datasets/dali/annotations"
+    path_save = "/home/mfuentes/astre/code/repositories/soundata/tests/resources/mir_datasets/dali/annotations"
     name = "test"
     track.annotation_object.write_json(path_save, name)
 

@@ -1,6 +1,6 @@
 import numpy as np
-from mirdata.datasets import salami
-from mirdata import annotations
+from soundata.datasets import salami
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 

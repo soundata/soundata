@@ -3,8 +3,8 @@ import shutil
 import pretty_midi
 import numpy as np
 
-from mirdata.datasets import maestro
-from mirdata import annotations, download_utils
+from soundata.datasets import maestro
+from soundata import annotations, download_utils
 from tests.test_utils import run_track_tests
 
 

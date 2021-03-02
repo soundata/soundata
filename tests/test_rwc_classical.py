@@ -1,7 +1,7 @@
 import numpy as np
 
-from mirdata.datasets import rwc_classical
-from mirdata import annotations
+from soundata.datasets import rwc_classical
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 

@@ -1,6 +1,6 @@
 import numpy as np
-from mirdata import annotations
-from mirdata.datasets import saraga_carnatic
+from soundata import annotations
+from soundata.datasets import saraga_carnatic
 from tests.test_utils import run_track_tests
 
 

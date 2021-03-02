@@ -1,7 +1,7 @@
 import numpy as np
 
-from mirdata.datasets import ikala
-from mirdata import annotations
+from soundata.datasets import ikala
+from soundata import annotations
 from tests.test_utils import run_track_tests
 
 

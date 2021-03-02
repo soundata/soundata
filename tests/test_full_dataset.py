@@ -7,17 +7,17 @@ import pytest
 import tqdm
 
 from tests.test_utils import get_attributes_and_properties
-import mirdata
+import soundata
 
 
 @pytest.fixture()
 def dataset(test_dataset):
     if test_dataset == "":
         return None
-    elif test_dataset not in mirdata.DATASETS:
-        raise ValueError("{} is not a dataset in mirdata".format(test_dataset))
+    elif test_dataset not in soundata.DATASETS:
+        raise ValueError("{} is not a dataset in soundata".format(test_dataset))
     data_home = os.path.join("tests/resources/mir_datasets_full", test_dataset)
-    return mirdata.initialize(test_dataset, data_home)
+    return soundata.initialize(test_dataset, data_home)
 
 
 # This is magically skipped by the the remote fixture `skip_remote` in conftest.py
