@@ -17,19 +17,19 @@ sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
 
-project = "mirdata"
-copyright = "2019-2020, mirdata development team."
-author = "The mirdata development team"
+project = "soundata"
+copyright = "2021, soundata development team."
+author = "The soundata development team"
 
 
 import importlib
 
-mirdata_version = importlib.import_module("mirdata.version")
+soundata_version = importlib.import_module("soundata.version")
 
 # The short X.Y version.
-version = mirdata_version.short_version
+version = soundata_version.short_version
 # The full version, including alpha/beta/rc tags.
-release = mirdata_version.version
+release = soundata_version.version
 # Show only copyright
 show_authors = False
 
@@ -124,4 +124,4 @@ html_css_files = [
     "css/custom.css",
 ]
 
-html_logo = "img/mirdata.png"
+html_logo = "img/soundata.png"
