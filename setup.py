@@ -2,7 +2,7 @@
 from importlib.machinery import SourceFileLoader
 from setuptools import setup, find_packages
 
-version_sfl = SourceFileLoader("mirdata.version", "mirdata/version.py")
+version_sfl = SourceFileLoader("soundata.version", "soundata/version.py")
 version_module = version_sfl.load_module()
 
 with open("README.md", "r") as fdesc:
@@ -10,13 +10,13 @@ with open("README.md", "r") as fdesc:
 
 if __name__ == "__main__":
     setup(
-        name="mirdata",
+        name="soundata",
         version=version_module.version,
         description="Common loaders for MIR datasets.",
-        url="https://github.com/mir-dataset-loaders/mirdata",
+        url="https://github.com/soundata/soundata",
         packages=find_packages(exclude=["test", "*.test", "*.test.*"]),
-        download_url="http://github.com/mir-dataset-loaders/mirdata/releases",
-        package_data={"mirdata": ["datasets/indexes/*"]},
+        download_url="http://github.com/soundata/soundata/releases",
+        package_data={"soundata": ["datasets/indexes/*"]},
         long_description=long_description,
         long_description_content_type="text/markdown",
         classifiers=[
@@ -28,7 +28,7 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.6",
             "Programming Language :: Python :: 3.7",
         ],
-        keywords="mir dataset loader audio",
+        keywords="sound dataset loader audio",
         license="BSD-3-Clause",
         install_requires=[
             "tqdm",
