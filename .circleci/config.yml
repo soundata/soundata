@@ -43,7 +43,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: apt-get update && apt-get install -y wget libsndfile-dev libsox-fmt-mp3 ffmpeg
+          command: apt-get update && apt-get install -y wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
       - run:
           name: Install tox
           command: pip install tox
