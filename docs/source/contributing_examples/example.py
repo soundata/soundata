@@ -23,9 +23,9 @@ import numpy as np
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core, annotations
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core, annotations
 
 # -- Add any relevant citations here
 BIBTEX = """

@@ -22,11 +22,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import annotations
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
+from soundata import io
 
 BIBTEX = """@article{bosch2016evaluation,
     title={Evaluation and combination of pitch estimation methods for melody extraction in symphonic classical music},

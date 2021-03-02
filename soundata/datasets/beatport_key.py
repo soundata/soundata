@@ -29,9 +29,9 @@ import fnmatch
 import json
 import librosa
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
 
 BIBTEX = """@phdthesis {3897,
     title = {Tonality Estimation in Electronic Dance Music: A Computational and Musically Informed Examination},

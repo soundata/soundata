@@ -5,7 +5,7 @@ import json
 import os
 
 
-GUITARSET_INDEX_PATH = '../mirdata/indexes/guitarset_index.json'
+GUITARSET_INDEX_PATH = '../soundata/indexes/guitarset_index.json'
 
 
 def md5(file_path):

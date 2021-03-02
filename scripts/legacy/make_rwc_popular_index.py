@@ -5,7 +5,7 @@ import os
 import csv
 
 
-RWC_POPULAR_INDEX_PATH = "../mirdata/indexes/rwc_popular_index.json"
+RWC_POPULAR_INDEX_PATH = "../soundata/indexes/rwc_popular_index.json"
 
 
 def md5(file_path):

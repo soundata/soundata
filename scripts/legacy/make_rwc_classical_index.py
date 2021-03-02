@@ -4,7 +4,7 @@ import json
 import os
 import csv
 
-RWC_CLASSICAL_INDEX_PATH = "../mirdata/datasets/indexes/rwc_classical_index.json"
+RWC_CLASSICAL_INDEX_PATH = "../soundata/datasets/indexes/rwc_classical_index.json"
 
 
 def md5(file_path):

@@ -5,7 +5,7 @@ import csv
 import os
 
 
-GROOVE_MIDI_INDEX_PATH = '../mirdata/indexes/groove_midi_index.json'
+GROOVE_MIDI_INDEX_PATH = '../soundata/indexes/groove_midi_index.json'
 
 
 def md5(file_path):

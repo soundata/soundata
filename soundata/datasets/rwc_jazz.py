@@ -48,14 +48,14 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import annotations
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import annotations
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 # these functions are identical for all rwc datasets
-from mirdata.datasets.rwc_classical import (
+from soundata.datasets.rwc_classical import (
     load_beats,
     load_sections,
     load_audio,

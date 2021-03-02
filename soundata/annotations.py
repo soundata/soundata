@@ -1,4 +1,4 @@
-"""mirdata annotation data types
+"""soundata annotation data types
 """
 import numpy as np
 

@@ -5,7 +5,7 @@ import json
 import os
 
 
-IRMAS_INDEX_PATH = '../mirdata/indexes/irmas_index.json'
+IRMAS_INDEX_PATH = '../soundata/indexes/irmas_index.json'
 
 
 def md5(file_path):

@@ -4,7 +4,7 @@ import json
 import os
 
 
-MEDLEYDB_MELODY_INDEX_PATH = '../mirdata/indexes/medleydb_melody_index.json'
+MEDLEYDB_MELODY_INDEX_PATH = '../soundata/indexes/medleydb_melody_index.json'
 
 
 def md5(file_path):

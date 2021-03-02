@@ -34,10 +34,10 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 BIBTEX = """@inproceedings{lostanlen2019ismir,
     title={Deep Convolutional Networks in the Pitch Spiral for Musical Instrument Recognition},

@@ -5,7 +5,7 @@ import json
 import os
 
 
-MRIDANGAM_INDEX_PATH = '../mirdata/indexes/mridangam_stroke_index.json'
+MRIDANGAM_INDEX_PATH = '../soundata/indexes/mridangam_stroke_index.json'
 
 
 def md5(file_path):

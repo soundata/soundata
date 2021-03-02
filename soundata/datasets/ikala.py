@@ -21,11 +21,11 @@ import logging
 import numpy as np
 from typing import BinaryIO, Optional, TextIO, Tuple
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import annotations
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
+from soundata import io
 
 
 BIBTEX = """@inproceedings{chan2015vocal,

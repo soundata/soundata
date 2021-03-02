@@ -7,7 +7,7 @@
     Information: the public portion contains over 2200 annotations of over 1300
     unique tracks.
 
-    NB: mirdata relies on the **corrected** version of the 2.0 annotations:
+    NB: soundata relies on the **corrected** version of the 2.0 annotations:
     Details can be found at https://github.com/bmcfee/salami-data-public/tree/hierarchy-corrections and
     https://github.com/DDMAL/salami-data-public/pull/15.
 
@@ -22,11 +22,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import annotations
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
+from soundata import io
 
 BIBTEX = """@inproceedings{smith2011salami,
     title={Design and creation of a large-scale database of structural annotations.},

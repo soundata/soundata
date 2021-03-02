@@ -1,4 +1,4 @@
-# This script modifies indexes from mirdata <= 0.3.0b0 to support versions, and to check integrity of
+# This script modifies indexes from soundata <= 0.3.0b0 to support versions, and to check integrity of
 # tracks, multitracks, metadata and tables. The structure of indexes will now be:
 #
 # index = {
@@ -20,11 +20,11 @@
 
 import os
 import json
-import mirdata
+import soundata
 from tqdm import tqdm
-from mirdata.validate import md5
+from soundata.validate import md5
 
-INDEXES_PATH = "../../mirdata/datasets/indexes/"
+INDEXES_PATH = "../../soundata/datasets/indexes/"
 ALL_INDEXES = os.listdir(INDEXES_PATH)
 DATASETS = [
     "beatles",
@@ -114,7 +114,7 @@ def get_dataset_version(module):
 
     Returns
     -------
-    version (str): dataset version in mirdata
+    version (str): dataset version in soundata
     """
 
     # All this websites linked to currently supported versions were accessed on 11/02/20
@@ -159,13 +159,13 @@ def update_index(all_indexes):
         module = index_name.replace("_index.json", "")
 
         # load old index
-        old_index = mirdata.initialize(module)._index
+        old_index = soundata.initialize(module)._index
 
         # avoid modifying when running multiple times
         if "tracks" in old_index.keys():
             old_index = old_index["tracks"]
 
-        data_home = mirdata.initialize(module).data_home
+        data_home = soundata.initialize(module).data_home
 
         # get metadata checksum
         metadata_files = get_metadata_paths(module)
@@ -205,7 +205,7 @@ def test_index(dataset_names):
 
     mandatory_keys = ["version"]
     for module in dataset_names:
-        index = mirdata.initialize(module)._index
+        index = soundata.initialize(module)._index
         assert type(index["tracks"]) == dict
         assert set(mandatory_keys) <= set([*index.keys()])
 
@@ -218,7 +218,7 @@ def test_track_load(dataset_names):
 
     """
     for module in dataset_names:
-        dataset = mirdata.initialize(module)
+        dataset = soundata.initialize(module)
         dataset.load_tracks()
 
 
@@ -228,7 +228,7 @@ def main():
     # Download metadata from all datasets for computing metadata checksums
     for module in DATASETS:
         if module not in ["dali", "beatles", "groove_midi"]:
-            dataset = mirdata.initialize(module)
+            dataset = soundata.initialize(module)
             if dataset.remotes is not None:
                 dataset.download(
                     partial_download=[

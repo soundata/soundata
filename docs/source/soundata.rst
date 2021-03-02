@@ -4,9 +4,9 @@
 Initializing
 ------------
 
-.. autofunction:: mirdata.initialize
+.. autofunction:: soundata.initialize
 
-.. autofunction:: mirdata.list_datasets
+.. autofunction:: soundata.list_datasets
 
 .. _Datasets API:
 
@@ -16,14 +16,14 @@ Dataset Loaders
 acousticbrainz_genre
 ^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.acousticbrainz_genre
+.. automodule:: soundata.datasets.acousticbrainz_genre
    :members:
    :inherited-members:
 
 beatles
 ^^^^^^^
 
-.. automodule:: mirdata.datasets.beatles
+.. automodule:: soundata.datasets.beatles
    :members:
    :inherited-members:
 
@@ -31,14 +31,14 @@ beatles
 beatport_key
 ^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.beatport_key
+.. automodule:: soundata.datasets.beatport_key
    :members:
    :inherited-members:
 
 billboard
 ^^^^^^^^^
 
-.. automodule:: mirdata.datasets.billboard
+.. automodule:: soundata.datasets.billboard
    :members:
    :inherited-members:
 
@@ -46,7 +46,7 @@ billboard
 cante100
 ^^^^^^^^
 
-.. automodule:: mirdata.datasets.cante100
+.. automodule:: soundata.datasets.cante100
    :members:
    :inherited-members:
 
@@ -54,7 +54,7 @@ cante100
 compmusic_otmm_makam
 ^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.compmusic_otmm_makam
+.. automodule:: soundata.datasets.compmusic_otmm_makam
    :members:
    :inherited-members:
 
@@ -62,7 +62,7 @@ compmusic_otmm_makam
 dali
 ^^^^
 
-.. automodule:: mirdata.datasets.dali
+.. automodule:: soundata.datasets.dali
    :members:
    :inherited-members:
 
@@ -70,7 +70,7 @@ dali
 giantsteps_key
 ^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.giantsteps_key
+.. automodule:: soundata.datasets.giantsteps_key
    :members:
    :inherited-members:
 
@@ -78,7 +78,7 @@ giantsteps_key
 giantsteps_tempo
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.giantsteps_tempo
+.. automodule:: soundata.datasets.giantsteps_tempo
    :members:
    :inherited-members:
 
@@ -86,7 +86,7 @@ giantsteps_tempo
 groove_midi
 ^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.groove_midi
+.. automodule:: soundata.datasets.groove_midi
    :members:
    :inherited-members:
 
@@ -94,7 +94,7 @@ groove_midi
 gtzan_genre
 ^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.gtzan_genre
+.. automodule:: soundata.datasets.gtzan_genre
    :members:
    :inherited-members:
 
@@ -102,7 +102,7 @@ gtzan_genre
 guitarset
 ^^^^^^^^^
 
-.. automodule:: mirdata.datasets.guitarset
+.. automodule:: soundata.datasets.guitarset
    :members:
    :inherited-members:
 
@@ -110,7 +110,7 @@ guitarset
 ikala
 ^^^^^
 
-.. automodule:: mirdata.datasets.ikala
+.. automodule:: soundata.datasets.ikala
    :members:
    :inherited-members:
 
@@ -118,7 +118,7 @@ ikala
 irmas
 ^^^^^
 
-.. automodule:: mirdata.datasets.irmas
+.. automodule:: soundata.datasets.irmas
    :members:
    :inherited-members:
 
@@ -126,7 +126,7 @@ irmas
 maestro
 ^^^^^^^
 
-.. automodule:: mirdata.datasets.maestro
+.. automodule:: soundata.datasets.maestro
    :members:
    :inherited-members:
 
@@ -134,7 +134,7 @@ maestro
 medley_solos_db
 ^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.medley_solos_db
+.. automodule:: soundata.datasets.medley_solos_db
    :members:
    :inherited-members:
 
@@ -142,7 +142,7 @@ medley_solos_db
 medleydb\_melody
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.medleydb_melody
+.. automodule:: soundata.datasets.medleydb_melody
    :members:
    :inherited-members:
 
@@ -150,7 +150,7 @@ medleydb\_melody
 medleydb\_pitch
 ^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.medleydb_pitch
+.. automodule:: soundata.datasets.medleydb_pitch
    :members:
    :inherited-members:
 
@@ -158,7 +158,7 @@ medleydb\_pitch
 mridangam_stroke
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.mridangam_stroke
+.. automodule:: soundata.datasets.mridangam_stroke
    :members:
    :inherited-members:
 
@@ -166,7 +166,7 @@ mridangam_stroke
 orchset
 ^^^^^^^
 
-.. automodule:: mirdata.datasets.orchset
+.. automodule:: soundata.datasets.orchset
    :members:
    :inherited-members:
 
@@ -174,7 +174,7 @@ orchset
 phenicx_anechoic
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.phenicx_anechoic
+.. automodule:: soundata.datasets.phenicx_anechoic
    :members:
    :inherited-members:
 
@@ -182,7 +182,7 @@ phenicx_anechoic
 rwc_classical
 ^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.rwc_classical
+.. automodule:: soundata.datasets.rwc_classical
    :members:
    :inherited-members:
 
@@ -190,7 +190,7 @@ rwc_classical
 rwc_jazz
 ^^^^^^^^
 
-.. automodule:: mirdata.datasets.rwc_jazz
+.. automodule:: soundata.datasets.rwc_jazz
    :members:
    :inherited-members:
 
@@ -198,7 +198,7 @@ rwc_jazz
 rwc_popular
 ^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.rwc_popular
+.. automodule:: soundata.datasets.rwc_popular
    :members:
    :inherited-members:
 
@@ -206,7 +206,7 @@ rwc_popular
 salami
 ^^^^^^
 
-.. automodule:: mirdata.datasets.salami
+.. automodule:: soundata.datasets.salami
    :members:
    :inherited-members:
 
@@ -214,7 +214,7 @@ salami
 saraga_carnatic
 ^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.saraga_carnatic
+.. automodule:: soundata.datasets.saraga_carnatic
    :members:
    :inherited-members:
 
@@ -222,7 +222,7 @@ saraga_carnatic
 saraga_hindustani
 ^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.saraga_hindustani
+.. automodule:: soundata.datasets.saraga_hindustani
    :members:
    :inherited-members:
 
@@ -230,7 +230,7 @@ saraga_hindustani
 tinysol
 ^^^^^^^
 
-.. automodule:: mirdata.datasets.tinysol
+.. automodule:: soundata.datasets.tinysol
    :members:
    :inherited-members:
 
@@ -238,7 +238,7 @@ tinysol
 tonality_classicaldb
 ^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.datasets.tonality_classicaldb
+.. automodule:: soundata.datasets.tonality_classicaldb
    :members:
    :inherited-members:
 
@@ -246,7 +246,7 @@ tonality_classicaldb
 Core
 ----
 
-.. automodule:: mirdata.core
+.. automodule:: soundata.core
    :members:
 
 .. _annotations:
@@ -254,31 +254,31 @@ Core
 Annotations
 -----------
 
-.. automodule:: mirdata.annotations
+.. automodule:: soundata.annotations
    :members:
 
 
 Advanced
 --------
 
-mirdata.validate
+soundata.validate
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.validate
+.. automodule:: soundata.validate
    :members:
 
 
-mirdata.download_utils
+soundata.download_utils
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.download_utils
+.. automodule:: soundata.download_utils
    :members:
 
 
-mirdata.jams_utils
+soundata.jams_utils
 ^^^^^^^^^^^^^^^^^^
 
-.. automodule:: mirdata.jams_utils
+.. automodule:: soundata.jams_utils
    :members:
 
 

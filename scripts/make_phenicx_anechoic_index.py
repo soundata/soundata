@@ -5,7 +5,7 @@ import json
 import os
 import string
 
-DATASET_INDEX_PATH = '../mirdata/datasets/indexes/phenicx_anechoic_index.json'
+DATASET_INDEX_PATH = '../soundata/datasets/indexes/phenicx_anechoic_index.json'
 
 
 def md5(file_path):

@@ -4,7 +4,7 @@ import json
 import os
 
 
-classicalDB_INDEX_PATH = '../mirdata/datasets/indexes/tonality_classicaldb_index.json'
+classicalDB_INDEX_PATH = '../soundata/datasets/indexes/tonality_classicaldb_index.json'
 CLASSICALDB_ANNOTATION_SCHEMA = ['JAMS']
 
 

@@ -4,7 +4,7 @@ import json
 import os
 
 
-OTMM_MAKAM_INDEX_PATH = '../mirdata/datasets/indexes/otmm_makam_index.json'
+OTMM_MAKAM_INDEX_PATH = '../soundata/datasets/indexes/otmm_makam_index.json'
 
 
 def md5(file_path):

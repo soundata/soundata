@@ -22,10 +22,10 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 
 BIBTEX = """@article{tzanetakis2002gtzan,

@@ -4,7 +4,7 @@ import json
 import os
 
 
-beatport_key_INDEX_PATH = '../mirdata/datasets/indexes/beatport_key_index.json'
+beatport_key_INDEX_PATH = '../soundata/datasets/indexes/beatport_key_index.json'
 
 
 def md5(file_path):

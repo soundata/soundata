@@ -41,8 +41,8 @@
 
 import json
 
-from mirdata import download_utils, core, io
-from mirdata import jams_utils
+from soundata import download_utils, core, io
+from soundata import jams_utils
 
 
 NAME = "acousticbrainz_genre"

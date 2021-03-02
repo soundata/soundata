@@ -6,7 +6,7 @@ import json
 import os
 
 
-TINYSOL_INDEX_PATH = '../mirdata/datasets/indexes/tinysol_index.json'
+TINYSOL_INDEX_PATH = '../soundata/datasets/indexes/tinysol_index.json'
 
 
 def md5(file_path):

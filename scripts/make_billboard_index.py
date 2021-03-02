@@ -4,7 +4,7 @@ import json
 import os
 import csv
 
-INDEX_PATH = "../mirdata/datasets/indexes/billboard_index.json"
+INDEX_PATH = "../soundata/datasets/indexes/billboard_index.json"
 
 
 def md5(file_path):

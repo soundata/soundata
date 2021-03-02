@@ -1,4 +1,4 @@
-"""Core mirdata classes
+"""Core soundata classes
 """
 import json
 import os
@@ -8,16 +8,16 @@ from typing import Any
 
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import validate
+from soundata import download_utils
+from soundata import validate
 
 MAX_STR_LEN = 100
-DOCS_URL = "https://mirdata.readthedocs.io/en/stable/source/mirdata.html"
+DOCS_URL = "https://soundata.readthedocs.io/en/stable/source/soundata.html"
 DISCLAIMER = """
 ******************************************************************************************
-DISCLAIMER: mirdata is a software package with its own license which is independent from
+DISCLAIMER: soundata is a software package with its own license which is independent from
 this dataset's license. We don not take responsibility for possible inaccuracies in the
-license information provided in mirdata. It is the user's responsibility to be informed
+license information provided in soundata. It is the user's responsibility to be informed
 and respect the dataset's license.
 ******************************************************************************************
 """
@@ -82,16 +82,16 @@ def copy_docs(original):
 
 
 class Dataset(object):
-    """mirdata Dataset class
+    """soundata Dataset class
 
     Attributes:
-        data_home (str): path where mirdata will look for the dataset
+        data_home (str): path where soundata will look for the dataset
         name (str): the identifier of the dataset
         bibtex (str or None): dataset citation/s in bibtex format
         remotes (dict or None): data to be downloaded
         readme (str): information about the dataset
-        track (function): a function mapping a track_id to a mirdata.core.Track
-        multitrack (function): a function mapping a mtrack_id to a mirdata.core.Multitrack
+        track (function): a function mapping a track_id to a soundata.core.Track
+        multitrack (function): a function mapping a mtrack_id to a soundata.core.Multitrack
 
     """
 
@@ -110,10 +110,10 @@ class Dataset(object):
         """Dataset init method
 
         Args:
-            data_home (str or None): path where mirdata will look for the dataset
+            data_home (str or None): path where soundata will look for the dataset
             name (str or None): the identifier of the dataset
-            track_class (mirdata.core.Track or None): a Track class
-            multitrack_class (mirdata.core.Multitrack or None): a Multitrack class
+            track_class (soundata.core.Track or None): a Track class
+            multitrack_class (soundata.core.Multitrack or None): a Multitrack class
             bibtex (str or None): dataset citation/s in bibtex format
             remotes (dict or None): data to be downloaded
             download_info (str or None): download instructions or caveats
@@ -139,7 +139,7 @@ class Dataset(object):
         self.remotes = remotes
         self._download_info = download_info
         self._license_info = license_info
-        self.readme = "{}#module-mirdata.datasets.{}".format(DOCS_URL, self.name)
+        self.readme = "{}#module-soundata.datasets.{}".format(DOCS_URL, self.name)
 
         # this is a hack to be able to have dataset-specific docstrings
         self.track = lambda track_id: self._track(track_id)
@@ -388,7 +388,7 @@ class Track(object):
 
         Args:
             track_id (str): track id
-            data_home (str): path where mirdata will look for the dataset
+            data_home (str): path where soundata will look for the dataset
             dataset_name (str): the identifier of the dataset
             index (dict): the dataset's file index
             metadata (function or None): a function returning a dictionary of metadata or None
@@ -496,7 +496,7 @@ class MultiTrack(Track):
 
         Args:
             mtrack_id (str): multitrack id
-            data_home (str): path where mirdata will look for the dataset
+            data_home (str): path where soundata will look for the dataset
             dataset_name (str): the identifier of the dataset
             index (dict): the dataset's file index
             metadata (function or None): a function returning a dictionary of metadata or None

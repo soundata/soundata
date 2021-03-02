@@ -2,9 +2,9 @@ import argparse
 import glob
 import json
 import os
-from mirdata.validate import md5
+from soundata.validate import md5
 
-DATASET_INDEX_PATH = "../mirdata/datasets/indexes/dataset_index.json"
+DATASET_INDEX_PATH = "../soundata/datasets/indexes/dataset_index.json"
 
 
 def make_dataset_index(dataset_data_path):

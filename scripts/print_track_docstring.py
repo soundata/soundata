@@ -3,7 +3,7 @@ import importlib
 import itertools
 import types
 
-import mirdata
+import soundata
 
 
 TEST_TRACKIDS = {
@@ -35,7 +35,7 @@ def get_attributes_and_properties(class_instance):
             continue
 
         attr = getattr(class_instance.__class__, val)
-        if isinstance(attr, mirdata.core.cached_property):
+        if isinstance(attr, soundata.core.cached_property):
             cached_properties.append(val)
         elif isinstance(attr, property):
             properties.append(val)
@@ -64,7 +64,7 @@ def main(args):
     data_home = "tests/resources/mir_datasets/{}".format(dataset.name)
     print(data_home)
 
-    dataset = mirdata.initialize(args.dataset, data_home=data_home)
+    dataset = soundata.initialize(args.dataset, data_home=data_home)
 
     if args.dataset in TEST_TRACKIDS.keys():
         track_id = TEST_TRACKIDS[args.dataset]

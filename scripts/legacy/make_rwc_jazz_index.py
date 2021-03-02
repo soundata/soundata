@@ -4,7 +4,7 @@ import json
 import os
 import csv
 
-RWC_JAZZ_INDEX_PATH = "../mirdata/indexes/rwc_jazz_index.json"
+RWC_JAZZ_INDEX_PATH = "../soundata/indexes/rwc_jazz_index.json"
 
 
 def md5(file_path):

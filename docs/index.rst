@@ -1,4 +1,4 @@
-mirdata
+soundata
 =======
 
 .. toctree::
@@ -7,7 +7,7 @@ mirdata
 
 
 
-``mirdata`` is an open-source Python library that provides tools for working with common Music Information Retrieval (MIR) datasets, including tools for:
+``soundata`` is an open-source Python library that provides tools for working with common Music Information Retrieval (MIR) datasets, including tools for:
 
  * downloading datasets to a common location and format
  * validating that the files for a dataset are all present
@@ -17,13 +17,13 @@ mirdata
 
 .. code-block::
 
-    pip install mirdata
+    pip install soundata
 
 
 For more details on how to use the library see the :ref:`tutorial`.
 
 
-Citing mirdata
+Citing soundata
 --------------
 
 If you are using the library for your work, please cite the version you used as indexed at Zenodo:
@@ -31,28 +31,28 @@ If you are using the library for your work, please cite the version you used as 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4355859.svg
    :target: https://doi.org/10.5281/zenodo.4355859
 
-If you refer to mirdata's design principles, motivation etc., please cite the following
-`paper <https://magdalenafuentes.github.io/publications/2019_ISMIR_mirdata.pdf>`_  [#]_:
+If you refer to soundata's design principles, motivation etc., please cite the following
+`paper <https://magdalenafuentes.github.io/publications/2019_ISMIR_soundata.pdf>`_  [#]_:
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3527750.svg
    :target: https://doi.org/10.5281/zenodo.3527750
 
 .. [#] Rachel M. Bittner, Magdalena Fuentes, David Rubinstein, Andreas Jansson, Keunwoo Choi, and Thor Kell.
-    "mirdata: Software for Reproducible Usage of Datasets."
+    "soundata: Software for Reproducible Usage of Datasets."
     In Proceedings of the 20th International Society for Music Information Retrieval (ISMIR) Conference, 2019.:
 
-When working with datasets, please cite the version of ``mirdata`` that you are using (given by the ``DOI`` above)
+When working with datasets, please cite the version of ``soundata`` that you are using (given by the ``DOI`` above)
 **AND** include the reference of the dataset, which can be found in the respective dataset loader using the ``cite()`` method.
 
 
-Contributing to mirdata
+Contributing to soundata
 -----------------------
 
 We welcome contributions to this library, especially new datasets.
 Please see :ref:`contributing` for guidelines.
 
-- `Issue Tracker <https://github.com/mir-dataset-loaders/mirdata/issues>`_
-- `Source Code <https://github.com/mir-dataset-loaders/mirdata>`_
+- `Issue Tracker <https://github.com/mir-dataset-loaders/soundata/issues>`_
+- `Source Code <https://github.com/mir-dataset-loaders/soundata>`_
 
 
 .. toctree::
@@ -68,7 +68,7 @@ Please see :ref:`contributing` for guidelines.
    :caption: API documentation
    :maxdepth: 1
 
-   source/mirdata
+   source/soundata
 
 .. toctree::
    :caption: Further Information

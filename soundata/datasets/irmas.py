@@ -96,10 +96,10 @@ from typing import BinaryIO, List, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 BIBTEX = """
 @dataset{juan_j_bosch_2014_1290750,

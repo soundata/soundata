@@ -1,4 +1,4 @@
-"""Utilities for converting mirdata Annotation classes to jams format.
+"""Utilities for converting soundata Annotation classes to jams format.
 """
 import logging
 import os
@@ -6,7 +6,7 @@ import os
 import jams
 import librosa
 
-from mirdata import annotations
+from soundata import annotations
 
 
 def jams_converter(
@@ -286,7 +286,7 @@ def beats_to_jams(beat_data, description=None):
 
     """
     jannot_beat = jams.Annotation(namespace="beat")
-    jannot_beat.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_beat.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if beat_data is not None:
         if not isinstance(beat_data, annotations.BeatData):
@@ -310,7 +310,7 @@ def sections_to_jams(section_data, description=None):
 
     """
     jannot_seg = jams.Annotation(namespace="segment_open")
-    jannot_seg.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_seg.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if section_data is not None:
         if not isinstance(section_data, annotations.SectionData):
@@ -334,7 +334,7 @@ def chords_to_jams(chord_data, description=None):
 
     """
     jannot_chord = jams.Annotation(namespace="chord")
-    jannot_chord.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_chord.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if chord_data is not None:
         if not isinstance(chord_data, annotations.ChordData):
@@ -360,7 +360,7 @@ def notes_to_jams(note_data, description):
 
     """
     jannot_note = jams.Annotation(namespace="note_hz")
-    jannot_note.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_note.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if note_data is not None:
         if not isinstance(note_data, annotations.NoteData):
@@ -386,7 +386,7 @@ def keys_to_jams(key_data, description):
 
     """
     jannot_key = jams.Annotation(namespace="key_mode")
-    jannot_key.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_key.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if key_data is not None:
         if not isinstance(key_data, annotations.KeyData):
@@ -413,7 +413,7 @@ def multi_sections_to_jams(multisection_data, description):
     """
     # sections with multiple annotators and multiple level annotations
     jannot_multi = jams.Annotation(namespace="multi_segment")
-    jannot_multi.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_multi.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
     jannot_multi.annotation_metadata = jams.AnnotationMetadata(
         annotator={"name": description}
     )
@@ -442,7 +442,7 @@ def tempos_to_jams(tempo_data, description=None):
 
     """
     jannot_tempo = jams.Annotation(namespace="tempo")
-    jannot_tempo.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_tempo.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
     if tempo_data is not None:
         if not isinstance(tempo_data, float) and not isinstance(tempo_data, int):
             raise TypeError("Type should be float or int.")
@@ -464,7 +464,7 @@ def events_to_jams(event_data, description=None):
 
     """
     jannot_events = jams.Annotation(namespace="tag_open")
-    jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if event_data is not None:
         if not isinstance(event_data, annotations.EventData):
@@ -490,7 +490,7 @@ def f0s_to_jams(f0_data, description=None):
 
     """
     jannot_f0 = jams.Annotation(namespace="pitch_contour")
-    jannot_f0.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_f0.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if f0_data is not None:
         if not isinstance(f0_data, annotations.F0Data):
@@ -519,7 +519,7 @@ def lyrics_to_jams(lyric_data, description=None):
 
     """
     jannot_lyric = jams.Annotation(namespace="lyrics")
-    jannot_lyric.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_lyric.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
     if lyric_data is not None:
         if not isinstance(lyric_data, annotations.LyricData):
@@ -546,7 +546,7 @@ def tag_to_jams(tag_data, namespace="tag_open", description=None):
 
     """
     jannot_tag = jams.Annotation(namespace=namespace)
-    jannot_tag.annotation_metadata = jams.AnnotationMetadata(data_source="mirdata")
+    jannot_tag.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
     if tag_data is not None:
         if not isinstance(tag_data, str):
             raise TypeError("Type should be str.")

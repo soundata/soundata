@@ -39,10 +39,10 @@ from typing import BinaryIO, Dict, List, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 BIBTEX = """@inproceedings{knees2015two,
   title={Two data sets for tempo estimation and key detection in electronic dance music annotated from user corrections},

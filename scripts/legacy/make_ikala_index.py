@@ -2,9 +2,9 @@ import argparse
 import glob
 import json
 import os
-from mirdata.utils import md5
+from soundata.utils import md5
 
-IKALA_INDEX_PATH = "../mirdata/datasets/indexes/ikala_index.json"
+IKALA_INDEX_PATH = "../soundata/datasets/indexes/ikala_index.json"
 
 
 def make_ikala_index(ikala_data_path):

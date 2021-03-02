@@ -7,20 +7,20 @@ Tutorial
 Installation
 ------------
 
-To install ``mirdata``:
+To install ``soundata``:
 
     .. code-block:: console
 
-        pip install mirdata
+        pip install soundata
 
 Usage
 -----
 
-``mirdata`` is easily imported into your Python code by:
+``soundata`` is easily imported into your Python code by:
 
 .. code-block:: python
 
-    import mirdata
+    import soundata
 
 
 Initializing a dataset
@@ -30,22 +30,22 @@ Print a list of all available dataset loaders by calling:
 
 .. code-block:: python
 
-    import mirdata
-    print(mirdata.list_datasets())
+    import soundata
+    print(soundata.list_datasets())
 
 To use a loader, (for example, 'orchset') you need to initialize it by calling:
 
 .. code-block:: python
 
-    import mirdata
-    orchset = mirdata.initialize('orchset')
+    import soundata
+    orchset = soundata.initialize('orchset')
 
 Now ``orchset`` is a ``Dataset`` object containing common methods, described below.
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
 
-All dataset loaders in ``mirdata`` have a ``download()`` function that allows the user to download the canonical
+All dataset loaders in ``soundata`` have a ``download()`` function that allows the user to download the canonical
 version of the dataset (when available). When initializing a dataset it is important to set up correctly the directory
 where the dataset is going to be stored and retrieved.
 
@@ -55,8 +55,8 @@ Downloading a dataset into the default folder:
 
     .. code-block:: python
 
-        import mirdata
-        orchset = mirdata.initialize('orchset')
+        import soundata
+        orchset = soundata.initialize('orchset')
         orchset.download()  # Dataset is downloaded at user root folder
 
 Downloading a dataset into a specified folder:
@@ -64,7 +64,7 @@ Downloading a dataset into a specified folder:
 
     .. code-block:: python
 
-        orchset = mirdata.initialize('orchset', data_home='Users/johnsmith/Desktop')
+        orchset = soundata.initialize('orchset', data_home='Users/johnsmith/Desktop')
         orchset.download()  # Dataset is downloaded at John Smith's desktop
 
 Partially downloading a dataset
@@ -126,7 +126,7 @@ Validating a dataset
 Using the method ``validate()`` we can check if the files in the local version are the same than the available canical version,
 and the files were downloaded correctly (none of them are corrupted).
 
-For big datasets: In future ``mirdata`` versions, a random validation will be included. This improvement will reduce validation time for very big datasets.
+For big datasets: In future ``soundata`` versions, a random validation will be included. This improvement will reduce validation time for very big datasets.
 
 Accessing annotations
 ^^^^^^^^^^^^^^^^^^^^^
@@ -236,7 +236,7 @@ see an example.
 Annotation classes
 ^^^^^^^^^^^^^^^^^^
 
-``mirdata`` defines annotation-specific data classes. These data classes are meant to standarize the format for
+``soundata`` defines annotation-specific data classes. These data classes are meant to standarize the format for
 all loaders, and are compatibly with `JAMS <https://jams.readthedocs.io/en/stable/>`_ and `mir_eval <https://craffel.github.io/mir_eval/>`_.
 
 The list and descriptions of available annotation classes can be found in :ref:`annotations`.
@@ -252,7 +252,7 @@ track objects (which include their respective audio and annotations, which are l
 
 .. code-block:: python
 
-    orchset = mirdata.initialize('orchset')
+    orchset = soundata.initialize('orchset')
     for key, track in orchset.load_tracks().items():
         print(key, track.audio_path)
 
@@ -261,26 +261,26 @@ Alternatively, we can loop over the ``track_ids`` list to directly access each t
 
 .. code-block:: python
 
-    orchset = mirdata.initialize('orchset')
+    orchset = soundata.initialize('orchset')
     for track_id in orchset.track_ids:
 
         print(track_id, orchset.track(track_id).audio_path)
 
 
-Basic example: including mirdata in your pipeline
+Basic example: including soundata in your pipeline
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If we wanted to use ``orchset`` to evaluate the performance of a melody extraction algorithm
 (in our case, ``very_bad_melody_extractor``), and then split the scores based on the
 metadata, we could do the following:
 
-.. admonition:: mirdata usage example
+.. admonition:: soundata usage example
     :class: dropdown
 
     .. code-block:: python
 
         import mir_eval
-        import mirdata
+        import soundata
         import numpy as np
         import sox
 
@@ -291,7 +291,7 @@ metadata, we could do the following:
             return time_stamps, melody_f0
 
         # Evaluate on the full dataset
-        orchset = mirdata.initialize("orchset")
+        orchset = soundata.initialize("orchset")
         orchset_scores = {}
         orchset_data = orchset.load_tracks()
         for track_id, track_data in orchset_data.items():
@@ -350,25 +350,25 @@ This is the result of the example above.
 
 You can see that ``very_bad_melody_extractor`` performs very badly!
 
-.. _Using mirdata with tensorflow:
+.. _Using soundata with tensorflow:
 
-Using mirdata with tensorflow
+Using soundata with tensorflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following is a simple example of a generator that can be used to create a tensorflow Dataset.
 
-.. admonition:: mirdata with tf.data.Dataset example
+.. admonition:: soundata with tf.data.Dataset example
     :class: dropdown
 
     .. code-block:: python
 
-        import mirdata
+        import soundata
         import numpy as np
         import tensorflow as tf
 
         def orchset_generator():
             # using the default data_home
-            orchset = mirdata.initialize("orchset")
+            orchset = soundata.initialize("orchset")
             track_ids = orchset.track_ids()
             for track_id in track_ids:
                 track = orchset.track(track_id)
@@ -393,4 +393,4 @@ The following is a simple example of a generator that can be used to create a te
             }
         )
 
-In future ``mirdata`` versions, generators for Tensorflow and Pytorch will be included.
+In future ``soundata`` versions, generators for Tensorflow and Pytorch will be included.

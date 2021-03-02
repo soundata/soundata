@@ -5,7 +5,7 @@ import csv
 import os
 
 
-MAESTRO_INDEX_PATH = '../mirdata/indexes/maestro_index.json'
+MAESTRO_INDEX_PATH = '../soundata/indexes/maestro_index.json'
 
 
 def md5(file_path):

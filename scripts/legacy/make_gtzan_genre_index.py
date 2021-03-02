@@ -6,11 +6,11 @@ import argparse
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 GTZAN_GENRE_INDEX_PATH = os.path.join(
-    SCRIPT_DIR, "../mirdata/indexes/gtzan_genre_index.json"
+    SCRIPT_DIR, "../soundata/indexes/gtzan_genre_index.json"
 )
 
-sys.path.append(os.path.join(SCRIPT_DIR, "mirdata"))
-from mirdata.utils import md5
+sys.path.append(os.path.join(SCRIPT_DIR, "soundata"))
+from soundata.utils import md5
 
 
 def make_gtzan_genre_index(data_path):

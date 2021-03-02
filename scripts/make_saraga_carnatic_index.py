@@ -4,7 +4,7 @@ import json
 import os
 
 
-SARAGA_CARNATIC_INDEX_PATH = '../mirdata/datasets/indexes/saraga_carnatic_index.json'
+SARAGA_CARNATIC_INDEX_PATH = '../soundata/datasets/indexes/saraga_carnatic_index.json'
 
 
 def md5(file_path):

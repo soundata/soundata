@@ -1,4 +1,4 @@
-"""Utility functions for mirdata"""
+"""Utility functions for soundata"""
 
 import hashlib
 import logging

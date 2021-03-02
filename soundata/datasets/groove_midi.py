@@ -56,11 +56,11 @@ import librosa
 import numpy as np
 import pretty_midi
 
-from mirdata import annotations
-from mirdata import core
-from mirdata import download_utils
-from mirdata import io
-from mirdata import jams_utils
+from soundata import annotations
+from soundata import core
+from soundata import download_utils
+from soundata import io
+from soundata import jams_utils
 
 
 BIBTEX = """@inproceedings{groove2019,

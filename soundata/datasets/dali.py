@@ -24,11 +24,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import annotations
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
+from soundata import io
 
 # this is the package, needed to load the annotations.
 # DALI-dataset is only installed if the user explicitly declares
@@ -38,7 +38,7 @@ try:
 except ImportError as E:
     logging.error(
         "In order to use dali you must have dali-dataset installed. "
-        "Please reinstall mirdata using `pip install 'mirdata[dali]'"
+        "Please reinstall soundata using `pip install 'soundata[dali]'"
     )
     raise
 

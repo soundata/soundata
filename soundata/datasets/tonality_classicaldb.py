@@ -19,17 +19,17 @@
     because most of the recordings are well known. To this end, we provide musicbrainz metadata. Moreover, we have added the spectrum and
     HPCP chromagram of each audio.
 
-    This dataset can be used with mirdata library:
-    https://github.com/mir-dataset-loaders/mirdata
+    This dataset can be used with soundata library:
+    https://github.com/mir-dataset-loaders/soundata
 
     Spectrum features have been computed as is shown here:
-    https://github.com/mir-dataset-loaders/mirdata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_spectrum_features.ipynb
+    https://github.com/mir-dataset-loaders/soundata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_spectrum_features.ipynb
 
     HPCP chromagram has been computed as is shown here:
-    https://github.com/mir-dataset-loaders/mirdata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_HPCP_features.ipynb
+    https://github.com/mir-dataset-loaders/soundata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_HPCP_features.ipynb
 
     Musicbrainz metadata has been computed as is shown here:
-    https://github.com/mir-dataset-loaders/mirdata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_musicbrainz_metadata.ipynb
+    https://github.com/mir-dataset-loaders/soundata-notebooks/blob/master/Tonality_classicalDB/ClassicalDB_musicbrainz_metadata.ipynb
 
 """
 
@@ -41,10 +41,10 @@ from typing import Any, BinaryIO, Dict, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 
-from mirdata import core
-from mirdata import download_utils
-from mirdata import io
-from mirdata import jams_utils
+from soundata import core
+from soundata import download_utils
+from soundata import io
+from soundata import jams_utils
 
 
 BIBTEX = """@article{gomez2006tonal,

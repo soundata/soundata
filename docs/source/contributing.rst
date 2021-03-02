@@ -4,24 +4,24 @@
 Contributing
 ############
 
-We encourage contributions to mirdata, especially new dataset loaders. To contribute a new loader, follow the
+We encourage contributions to soundata, especially new dataset loaders. To contribute a new loader, follow the
 steps indicated below and create a Pull Request (PR) to the github repository. For any doubt or comment about
 your contribution, you can always submit an issue or open a discussion in the repository.
 
-- `Issue Tracker <https://github.com/mir-dataset-loaders/mirdata/issues>`_
-- `Source Code <https://github.com/mir-dataset-loaders/mirdata>`_
+- `Issue Tracker <https://github.com/mir-dataset-loaders/soundata/issues>`_
+- `Source Code <https://github.com/mir-dataset-loaders/soundata>`_
 
 
-Installing mirdata for development purposes
+Installing soundata for development purposes
 ###########################################
 
-To install ``mirdata`` for development purposes:
+To install ``soundata`` for development purposes:
 
     - First run:
 
     .. code-block:: console
 
-        git clone https://github.com/mir-dataset-loaders/mirdata.git
+        git clone https://github.com/mir-dataset-loaders/soundata.git
 
     - Then, after opening source data library you have to install the dependencies for updating the documentation
       and running tests:
@@ -35,7 +35,7 @@ To install ``mirdata`` for development purposes:
 
 
 We recommend to install `pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
-and install all ``mirdata`` requirements. You will want to install the latest versions of Python 3.6 and 3.7.
+and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6 and 3.7.
 Once ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you installed all the pytest
 plugins to automatically test your code successfully. Finally, run:
 
@@ -51,7 +51,7 @@ Writing a new dataset loader
 #############################
 
 
-The steps to add a new dataset loader to ``mirdata`` are:
+The steps to add a new dataset loader to ``soundata`` are:
 
 1. `Create an index <create_index_>`_
 2. `Create a module <create_module_>`_
@@ -61,7 +61,7 @@ The steps to add a new dataset loader to ``mirdata`` are:
 **Before starting**, if your dataset **is not fully downloadable** you should:
 
 
-1. Contact the mirdata team by opening an issue or PR so we can discuss how to proceed with the closed dataset.
+1. Contact the soundata team by opening an issue or PR so we can discuss how to proceed with the closed dataset.
 2. Show that the version used to create the checksum is the "canonical" one, either by getting the version from the 
    dataset creator, or by verifying equivalence with several other copies of the dataset.
 
@@ -73,12 +73,12 @@ the ``please-do-not-edit`` flag is used.
 1. Create an index
 ------------------
 
-``mirdata``'s structure relies on `indexes`. Indexes are dictionaries contain information about the structure of the
-dataset which is necessary for the loading and validating functionalities of ``mirdata``. In particular, indexes contain
+``soundata``'s structure relies on `indexes`. Indexes are dictionaries contain information about the structure of the
+dataset which is necessary for the loading and validating functionalities of ``soundata``. In particular, indexes contain
 information about the files included in the dataset, their location and checksums. The necessary steps are:
 
 1. To create an index, first cereate a script in ``scripts/``, as ``make_dataset_index.py``, which generates an index file.
-2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``mirdata/datasets/indexes/`` as ``dataset_index.json``.
+2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``dataset_index.json``.
 
 
 .. _index example:
@@ -91,7 +91,7 @@ Here there is an example of an index to use as guideline:
     .. literalinclude:: contributing_examples/make_example_index.py
         :language: python
 
-More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/mir-dataset-loaders/mirdata/tree/master/scripts>`_ folder.
+More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/mir-dataset-loaders/soundata/tree/master/scripts>`_ folder.
 
 tracks
 ^^^^^^
@@ -254,7 +254,7 @@ records
 Once the index is created you can create the loader. For that, we suggest you use the following template and adjust it for your dataset.
 To quickstart a new module:
 
-1. Copy the example below and save it to ``mirdata/datasets/<your_dataset_name>.py``
+1. Copy the example below and save it to ``soundata/datasets/<your_dataset_name>.py``
 2. Find & Replace ``Example`` with the <your_dataset_name>.
 3. Remove any lines beginning with `# --` which are there as guidelines. 
 
@@ -266,15 +266,15 @@ To quickstart a new module:
 
 You may find these examples useful as references:
 
-* `A simple, fully downloadable dataset <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/tinysol.py>`_
-* `A dataset which is partially downloadable <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/beatles.py>`_
-* `A dataset with restricted access data <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/medleydb_melody.py#L33>`_
-* `A dataset which uses dataset-level metadata <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/tinysol.py#L114>`_
-* `A dataset which does not use dataset-level metadata <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/gtzan_genre.py#L36>`_
-* `A dataset with a custom download function <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/maestro.py#L257>`_
-* `A dataset with a remote index <https://github.com/mir-dataset-loaders/mirdata/blob/master/mirdata/datasets/acousticbrainz_genre.py>`_
+* `A simple, fully downloadable dataset <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/tinysol.py>`_
+* `A dataset which is partially downloadable <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/beatles.py>`_
+* `A dataset with restricted access data <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/medleydb_melody.py#L33>`_
+* `A dataset which uses dataset-level metadata <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/tinysol.py#L114>`_
+* `A dataset which does not use dataset-level metadata <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/gtzan_genre.py#L36>`_
+* `A dataset with a custom download function <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/maestro.py#L257>`_
+* `A dataset with a remote index <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/acousticbrainz_genre.py>`_
 
-For many more examples, see the `datasets folder <https://github.com/mir-dataset-loaders/mirdata/tree/master/mirdata/datasets>`_.
+For many more examples, see the `datasets folder <https://github.com/mir-dataset-loaders/soundata/tree/master/soundata/datasets>`_.
 
 
 .. _add_tests:
@@ -292,9 +292,9 @@ To finish your contribution, include tests that check the integrity of your load
     * If the dataset has a metadata file, reduce the length to a few lines.
 
 2. Test all of the dataset specific code, e.g. the public attributes of the Track class, the load functions and any other 
-   custom functions you wrote. See the `tests folder <https://github.com/mir-dataset-loaders/mirdata/tree/master/tests>`_ for reference.
+   custom functions you wrote. See the `tests folder <https://github.com/mir-dataset-loaders/soundata/tree/master/tests>`_ for reference.
    If your loader has a custom download function, add tests similar to 
-   `this loader <https://github.com/mir-dataset-loaders/mirdata/blob/master/tests/test_groove_midi.py#L96>`_.
+   `this loader <https://github.com/mir-dataset-loaders/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
 3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
    sure everything is working.
 
@@ -399,7 +399,7 @@ csv files).
 
 Before you submit your loader make sure to:
 
-1. Add your module to ``docs/source/mirdata.rst`` following an alphabetical order
+1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order
 2. Add your module to ``docs/source/table.rst`` following an alphabetical order as follows:
 
 .. code-block:: rst
@@ -429,12 +429,12 @@ badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a
 Pull Request template
 ^^^^^^^^^^^^^^^^^^^^^
 
-When starting your PR please use the `new_loader.md template <https://github.com/mir-dataset-loaders/mirdata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
+When starting your PR please use the `new_loader.md template <https://github.com/mir-dataset-loaders/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
 it will simplify the reviewing process and also help you make a complete PR. You can do that by adding
 ``&template=new_loader.md`` at the end of the url when you are creating the PR :
 
-``...mir-dataset-loaders/mirdata/compare?expand=1`` will become
-``...mir-dataset-loaders/mirdata/compare?expand=1&template=new_loader.md``.
+``...mir-dataset-loaders/soundata/compare?expand=1`` will become
+``...mir-dataset-loaders/soundata/compare?expand=1&template=new_loader.md``.
 
 Docs
 ^^^^
@@ -454,7 +454,7 @@ If github shows a red ``X`` next to your latest commit, it means one of our chec
 
 ::
 
-    black --target-version py38 mirdata/ tests/
+    black --target-version py38 soundata/ tests/
 
 2. the test coverage is too low -- this means that there are too many new lines of code introduced that are not tested.
 
@@ -475,7 +475,7 @@ documentation from the code's docstrings. We use the `napoleon <https://www.sphi
 for building docs in Google docstring style. See the next section for docstring conventions.
 
 
-mirdata uses `Google's Docstring formatting style <https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings>`_.
+soundata uses `Google's Docstring formatting style <https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings>`_.
 Here are some common examples.
 
 .. note::
@@ -558,7 +558,7 @@ Objects
         barfoo (bool): Second track attribute
 
     Cached Properties:
-        foofoo (list): Cached properties are special mirdata attributes
+        foofoo (list): Cached properties are special soundata attributes
         barbar (None): They are lazy loaded properties.
         barf (bool): Document them with this special header.
 

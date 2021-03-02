@@ -36,10 +36,10 @@ import json
 import librosa
 import csv
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import annotations
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
 
 BIBTEX = """
 @dataset{bozkurt_b_2018_4301737,

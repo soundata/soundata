@@ -11,7 +11,7 @@ import zipfile
 
 from tqdm import tqdm
 
-from mirdata.validate import md5
+from soundata.validate import md5
 
 logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
 
@@ -188,10 +188,10 @@ def download_from_remote(remote, save_dir, force_overwrite):
                 )
             except Exception as exc:
                 error_msg = """
-                            mirdata failed to download the dataset from {}!
+                            soundata failed to download the dataset from {}!
                             Please try again in a few minutes.
                             If this error persists, please raise an issue at
-                            https://github.com/mir-dataset-loaders/mirdata,
+                            https://github.com/mir-dataset-loaders/soundata,
                             and tag it with 'broken-link'.
                             """.format(
                     remote.url

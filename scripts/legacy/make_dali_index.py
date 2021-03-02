@@ -3,7 +3,7 @@ import hashlib
 import json
 import os
 
-DALI_INDEX_PATH = '../mirdata/indexes/dali_index.json'
+DALI_INDEX_PATH = '../soundata/indexes/dali_index.json'
 
 
 def md5(file_path):

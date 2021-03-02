@@ -36,7 +36,7 @@ import os
 from typing import TextIO
 
 import numpy as np
-from mirdata import annotations, core, download_utils, io, jams_utils
+from soundata import annotations, core, download_utils, io, jams_utils
 
 BIBTEX = """
 @software{sertan_senturk_2016_58413,

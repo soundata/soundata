@@ -4,7 +4,7 @@ import json
 import os
 
 
-giantsteps_tempo_INDEX_PATH = '../mirdata/indexes/giantsteps_tempo_index.json'
+giantsteps_tempo_INDEX_PATH = '../soundata/indexes/giantsteps_tempo_index.json'
 BEATLES_ANNOTATION_SCHEMA = ['JAMS']
 
 

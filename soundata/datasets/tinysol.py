@@ -51,10 +51,10 @@ from typing import BinaryIO, Optional, Tuple
 import librosa
 import numpy as np
 
-from mirdata import download_utils
-from mirdata import jams_utils
-from mirdata import core
-from mirdata import io
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import io
 
 BIBTEX = """@inproceedings{cella2020preprint,
   author={Cella, Carmine Emanuele and Ghisi, Daniele and Lostanlen, Vincent and
