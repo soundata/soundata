@@ -158,16 +158,16 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """IRMAS track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored.
             If `None`, looks for the data in the default directory, `~/mir_datasets/Mridangam-Stroke`
 
     Attributes:
-        track_id (str): track id
+        clip_id (str): track id
         predominant_instrument (list): Training tracks predominant instrument
         train (bool): flag to identify if the track is from the training of the testing dataset
         genre (str): string containing the namecode of the genre of the track.
@@ -180,14 +180,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -204,10 +204,10 @@ class Track(core.Track):
         self.drum = None
         self.train = True
 
-        self._audio_filename = self._track_paths["audio"][0]
+        self._audio_filename = self._clip_paths["audio"][0]
 
         # TRAINING TRACKS
-        if "__" in track_id:
+        if "__" in clip_id:
             self.predominant_instrument = os.path.basename(
                 os.path.dirname(self.audio_path)
             )
@@ -324,7 +324,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="irmas",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

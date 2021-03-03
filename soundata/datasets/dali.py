@@ -79,11 +79,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """DALI melody Track class
+class Clip(core.Clip):
+    """DALI melody Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         album (str): the track's album
@@ -98,7 +98,7 @@ class Track(core.Track):
         scores_manual (int): manual score annotations
         scores_ncc (float): ncc score annotations
         title (str): the track's title
-        track_id (str): the unique track id
+        clip_id (str): the unique track id
         url_working (bool): True if the youtube url was valid
 
     Cached Properties:
@@ -112,14 +112,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -132,51 +132,51 @@ class Track(core.Track):
 
     @property
     def audio_url(self):
-        return self._track_metadata.get("audio", {}).get("url")
+        return self._clip_metadata.get("audio", {}).get("url")
 
     @property
     def url_working(self):
-        return self._track_metadata.get("audio", {}).get("working")
+        return self._clip_metadata.get("audio", {}).get("working")
 
     @property
     def ground_truth(self):
-        return self._track_metadata.get("ground-truth")
+        return self._clip_metadata.get("ground-truth")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def dataset_version(self):
-        return self._track_metadata.get("dataset_version")
+        return self._clip_metadata.get("dataset_version")
 
     @property
     def scores_ncc(self):
-        return self._track_metadata.get("scores", {}).get("NCC")
+        return self._clip_metadata.get("scores", {}).get("NCC")
 
     @property
     def scores_manual(self):
-        return self._track_metadata.get("scores", {}).get("manual")
+        return self._clip_metadata.get("scores", {}).get("manual")
 
     @property
     def album(self):
-        return self._track_metadata.get("metadata", {}).get("album")
+        return self._clip_metadata.get("metadata", {}).get("album")
 
     @property
     def release_date(self):
-        return self._track_metadata.get("metadata", {}).get("release_date")
+        return self._clip_metadata.get("metadata", {}).get("release_date")
 
     @property
     def genres(self):
-        return self._track_metadata.get("metadata", {}).get("genres")
+        return self._clip_metadata.get("metadata", {}).get("genres")
 
     @property
     def language(self):
-        return self._track_metadata.get("metadata", {}).get("language")
+        return self._clip_metadata.get("metadata", {}).get("language")
 
     @core.cached_property
     def notes(self) -> annotations.NoteData:
@@ -224,7 +224,7 @@ class Track(core.Track):
                 (self.paragraphs, "paragraph-aligned lyrics"),
             ],
             note_data=[(self.notes, "annotated vocal notes")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -311,7 +311,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="dali",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

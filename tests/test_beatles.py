@@ -9,7 +9,7 @@ def test_track():
     default_trackid = "0111"
     data_home = "tests/resources/mir_datasets/beatles"
     dataset = beatles.Dataset(data_home)
-    track = dataset.track(default_trackid)
+    track = dataset.clip(default_trackid)
 
     expected_attributes = {
         "audio_path": "tests/resources/mir_datasets/beatles/"
@@ -23,7 +23,7 @@ def test_track():
         "sections_path": "tests/resources/mir_datasets/beatles/"
         + "annotations/seglab/The Beatles/01_-_Please_Please_Me/11_-_Do_You_Want_To_Know_A_Secret.lab",
         "title": "11_-_Do_You_Want_To_Know_A_Secret",
-        "track_id": "0111",
+        "clip_id": "0111",
     }
 
     expected_property_types = {
@@ -42,7 +42,7 @@ def test_track():
         audio.shape
     )
 
-    track = dataset.track("10212")
+    track = dataset.clip("10212")
     assert track.beats is None, "expected track.beats to be None, got {}".format(
         track.beats
     )
@@ -53,7 +53,7 @@ def test_to_jams():
 
     data_home = "tests/resources/mir_datasets/beatles"
     dataset = beatles.Dataset(data_home)
-    track = dataset.track("0111")
+    track = dataset.clip("0111")
     jam = track.to_jams()
 
     beats = jam.search(namespace="beat")[0]["data"]

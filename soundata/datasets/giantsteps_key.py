@@ -75,18 +75,18 @@ REMOTES = {
 LICENSE_INFO = "Creative Commons Attribution Share Alike 4.0 International."
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """giantsteps_key track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): track audio path
         keys_path (str): key annotation path
         metadata_path (str): sections annotation path
         title (str): title of the track
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         key (str): musical key annotation
@@ -98,14 +98,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -252,7 +252,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="giantsteps_key",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

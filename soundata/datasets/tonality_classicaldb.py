@@ -97,17 +97,17 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """tonality_classicaldb track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): track audio path
         key_path (str): key annotation path
         title (str): title of the track
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         key (str): key annotation
@@ -119,14 +119,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -275,7 +275,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="tonality_classicaldb",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

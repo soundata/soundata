@@ -191,16 +191,16 @@ DRUM_MAPPING = {
 }
 
 
-class Track(core.Track):
-    """Groove MIDI Track class
+class Clip(core.Clip):
+    """Groove MIDI Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         drummer (str): Drummer id of the track (ex. 'drummer1')
         session (str): Type of session  (ex. 'session1', 'eval_session')
-        track_id (str): track id of the track (ex. 'drummer1/eval_session/1')
+        clip_id (str): track id of the track (ex. 'drummer1/eval_session/1')
         style (str): Style (genre, groove type) of the track (ex. 'funk/groove1')
         tempo (int): track tempo in beats per minute (ex. 138)
         beat_type (str): Whether the track is a beat or a fill (ex. 'beat')
@@ -220,14 +220,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -240,43 +240,43 @@ class Track(core.Track):
 
     @property
     def drummer(self):
-        return self._track_metadata.get("drummer")
+        return self._clip_metadata.get("drummer")
 
     @property
     def session(self):
-        return self._track_metadata.get("session")
+        return self._clip_metadata.get("session")
 
     @property
     def style(self):
-        return self._track_metadata.get("style")
+        return self._clip_metadata.get("style")
 
     @property
     def tempo(self):
-        return self._track_metadata.get("tempo")
+        return self._clip_metadata.get("tempo")
 
     @property
     def beat_type(self):
-        return self._track_metadata.get("beat_type")
+        return self._clip_metadata.get("beat_type")
 
     @property
     def time_signature(self):
-        return self._track_metadata.get("time_signature")
+        return self._clip_metadata.get("time_signature")
 
     @property
     def duration(self):
-        return self._track_metadata.get("duration")
+        return self._clip_metadata.get("duration")
 
     @property
     def split(self):
-        return self._track_metadata.get("split")
+        return self._clip_metadata.get("split")
 
     @property
     def midi_filename(self):
-        return self._track_metadata.get("midi_filename")
+        return self._clip_metadata.get("midi_filename")
 
     @property
     def audio_filename(self):
-        return self._track_metadata.get("audio_filename")
+        return self._clip_metadata.get("audio_filename")
 
     @property
     def audio(self) -> Tuple[Optional[np.ndarray], Optional[float]]:
@@ -312,7 +312,7 @@ class Track(core.Track):
             beat_data=[(self.beats, "midi beats")],
             tempo_data=[(self.tempo, "midi tempo")],
             event_data=[(self.drum_events, "annotated drum patterns")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -403,7 +403,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="groove_midi",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -440,7 +440,7 @@ class Dataset(core.Dataset):
                 (
                     drummer,
                     session,
-                    track_id,
+                    clip_id,
                     style,
                     bpm,
                     beat_type,
@@ -450,10 +450,10 @@ class Dataset(core.Dataset):
                     duration,
                     split,
                 ) = row
-                metadata_index[str(track_id)] = {
+                metadata_index[str(clip_id)] = {
                     "drummer": str(drummer),
                     "session": str(session),
-                    "track_id": str(track_id),
+                    "clip_id": str(clip_id),
                     "style": str(style),
                     "tempo": int(bpm),
                     "beat_type": str(beat_type),

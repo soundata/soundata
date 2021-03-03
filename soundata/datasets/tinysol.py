@@ -84,11 +84,11 @@ STRING_ROMAN_NUMERALS = {1: "I", 2: "II", 3: "III", 4: "IV"}
 LICENSE_INFO = "Creative Commons Attribution 4.0 International Public License."
 
 
-class Track(core.Track):
-    """tinysol Track class
+class Clip(core.Clip):
+    """tinysol Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): path of the audio file
@@ -105,20 +105,20 @@ class Track(core.Track):
             string is the highest. On wind instruments, this is replaced by `None`.
         technique_abbr (str): playing technique abbreviation
         technique_full (str): playing technique encoded by its English name
-        track_id (str): track id
+        clip_id (str): track id
 
     """
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -129,51 +129,51 @@ class Track(core.Track):
 
     @property
     def family(self):
-        return self._track_metadata.get("Family")
+        return self._clip_metadata.get("Family")
 
     @property
     def instrument_abbr(self):
-        return self._track_metadata.get("Instrument (abbr.)")
+        return self._clip_metadata.get("Instrument (abbr.)")
 
     @property
     def instrument_full(self):
-        return self._track_metadata.get("Instrument (in full)")
+        return self._clip_metadata.get("Instrument (in full)")
 
     @property
     def technique_abbr(self):
-        return self._track_metadata.get("Technique (abbr.)")
+        return self._clip_metadata.get("Technique (abbr.)")
 
     @property
     def technique_full(self):
-        return self._track_metadata.get("Technique (in full)")
+        return self._clip_metadata.get("Technique (in full)")
 
     @property
     def pitch(self):
-        return self._track_metadata.get("Pitch")
+        return self._clip_metadata.get("Pitch")
 
     @property
     def pitch_id(self):
-        return self._track_metadata.get("Pitch ID")
+        return self._clip_metadata.get("Pitch ID")
 
     @property
     def dynamics(self):
-        return self._track_metadata.get("Dynamics")
+        return self._clip_metadata.get("Dynamics")
 
     @property
     def dynamics_id(self):
-        return self._track_metadata.get("Dynamics ID")
+        return self._clip_metadata.get("Dynamics ID")
 
     @property
     def instance_id(self):
-        return self._track_metadata.get("Instance ID")
+        return self._clip_metadata.get("Instance ID")
 
     @property
     def string_id(self):
-        return self._track_metadata.get("String ID")
+        return self._clip_metadata.get("String ID")
 
     @property
     def is_resampled(self):
-        return self._track_metadata.get("Resampled")
+        return self._clip_metadata.get("Resampled")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -194,7 +194,7 @@ class Track(core.Track):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._track_metadata
+            audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
 
@@ -223,7 +223,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="tinysol",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

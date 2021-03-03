@@ -143,16 +143,16 @@ were gathered by the COFLA team. COFLA 2015. All rights reserved.
 """
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """cante100 track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored.
             If `None`, looks for the data in the default directory, `~/mir_datasets/cante100`
 
     Attributes:
-        track_id (str): track id
+        clip_id (str): track id
         identifier (str): musicbrainz id of the track
         artist (str): performing artists
         title (str): title of the track song
@@ -167,14 +167,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -189,23 +189,23 @@ class Track(core.Track):
 
     @property
     def identifier(self):
-        return self._track_metadata.get("musicBrainzID")
+        return self._clip_metadata.get("musicBrainzID")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def release(self):
-        return self._track_metadata.get("release")
+        return self._clip_metadata.get("release")
 
     @property
     def duration(self):
-        return self._track_metadata.get("duration")
+        return self._clip_metadata.get("duration")
 
     @property
     def audio(self) -> Tuple[np.ndarray, float]:
@@ -247,7 +247,7 @@ class Track(core.Track):
             spectrogram_path=self.spectrogram_path,
             f0_data=[(self.melody, "pitch_contour")],
             note_data=[(self.notes, "note_hz")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -345,7 +345,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="cante100",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

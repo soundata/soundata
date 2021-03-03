@@ -76,14 +76,14 @@ http://creativecommons.org/publicdomain/zero/1.0/legalcode.
 """
 
 
-class Track(core.Track):
-    """McGill Billboard Dataset Track class
+class Clip(core.Clip):
+    """McGill Billboard Dataset Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
-        track_id (str): the index for the sample entry
+        clip_id (str): the index for the sample entry
         audio_path (str): audio path of the track
         chart date (str): the date of the chart for the entry
         target rank (int): the desired rank on that chart
@@ -108,14 +108,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -134,31 +134,31 @@ class Track(core.Track):
 
     @property
     def chart_date(self):
-        return self._track_metadata.get("chart_date")
+        return self._clip_metadata.get("chart_date")
 
     @property
     def target_rank(self):
-        return self._track_metadata.get("target_rank")
+        return self._clip_metadata.get("target_rank")
 
     @property
     def actual_rank(self):
-        return self._track_metadata.get("actual_rank")
+        return self._clip_metadata.get("actual_rank")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def peak_rank(self):
-        return self._track_metadata.get("peak_rank")
+        return self._clip_metadata.get("peak_rank")
 
     @property
     def weeks_on_chart(self):
-        return self._track_metadata.get("weeks_on_chart")
+        return self._clip_metadata.get("weeks_on_chart")
 
     @core.cached_property
     def chords_full(self):
@@ -204,19 +204,19 @@ class Track(core.Track):
     @core.cached_property
     def sections(self):
         return load_sections(
-            os.path.join(self._data_home, self._track_paths["salami"][0])
+            os.path.join(self._data_home, self._clip_paths["salami"][0])
         )
 
     @core.cached_property
     def named_sections(self):
         return load_named_sections(
-            os.path.join(self._data_home, self._track_paths["salami"][0])
+            os.path.join(self._data_home, self._clip_paths["salami"][0])
         )
 
     @core.cached_property
     def salami_metadata(self):
         return _parse_salami_metadata(
-            os.path.join(self._data_home, self._track_paths["salami"][0])
+            os.path.join(self._data_home, self._clip_paths["salami"][0])
         )
 
     @property
@@ -250,7 +250,7 @@ class Track(core.Track):
                 (self.sections, "Sections annotated using section letters"),
                 (self.named_sections, "Sections annotated using section names"),
             ],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -475,7 +475,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="billboard",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -498,8 +498,8 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-            track_id = line[0]
-            metadata_index[track_id] = {
+            clip_id = line[0]
+            metadata_index[clip_id] = {
                 "chart_date": line[1],
                 "target_rank": int(line[2]) if line[2] else None,
                 "actual_rank": int(line[3]) if line[3] else None,

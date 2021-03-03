@@ -115,11 +115,11 @@ _GUITAR_STRINGS = ["E", "A", "D", "G", "B", "e"]
 LICENSE_INFO = "MIT License."
 
 
-class Track(core.Track):
-    """guitarset Track class
+class Clip(core.Clip):
+    """guitarset Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_hex_cln_path (str): path to the debleeded hex wave file
@@ -134,7 +134,7 @@ class Track(core.Track):
             one of ['00', '01', ... , '05']
         style (str): one of ['Jazz', 'Bossa Nova', 'Rock', 'Singer-Songwriter', 'Funk']
         tempo (float): BPM of the track
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         beats (BeatData): beat positions
@@ -162,14 +162,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -182,7 +182,7 @@ class Track(core.Track):
         self.audio_mix_path = self.get_path("audio_mix")
         self.jams_path = self.get_path("jams")
 
-        title_list = track_id.split("_")  # [PID, S-T-K, mode, rec_mode]
+        title_list = clip_id.split("_")  # [PID, S-T-K, mode, rec_mode]
         style, tempo, _ = title_list[1].split("-")  # [style, tempo, key]
         self.player_id = title_list[0]
         self.mode = title_list[2]
@@ -429,7 +429,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="guitarset",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

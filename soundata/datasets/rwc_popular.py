@@ -102,11 +102,11 @@ DOWNLOAD_INFO = """
 """
 
 
-class Track(core.Track):
-    """rwc_popular Track class
+class Clip(core.Clip):
+    """rwc_popular Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         artist (str): artist
@@ -123,7 +123,7 @@ class Track(core.Track):
         suffix (str): M01-M04
         tempo (str): Tempo of the track in BPM
         title (str): title
-        track_id (str): track id
+        clip_id (str): track id
         track_number (str): CD track number
         voca_inst_path (str): path of the vocal/instrumental annotation file
 
@@ -137,14 +137,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -160,43 +160,43 @@ class Track(core.Track):
 
     @property
     def piece_number(self):
-        return self._track_metadata.get("piece_number")
+        return self._clip_metadata.get("piece_number")
 
     @property
     def suffix(self):
-        return self._track_metadata.get("suffix")
+        return self._clip_metadata.get("suffix")
 
     @property
     def track_number(self):
-        return self._track_metadata.get("track_number")
+        return self._clip_metadata.get("track_number")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def singer_information(self):
-        return self._track_metadata.get("singer_information")
+        return self._clip_metadata.get("singer_information")
 
     @property
     def duration(self):
-        return self._track_metadata.get("duration")
+        return self._clip_metadata.get("duration")
 
     @property
     def tempo(self):
-        return self._track_metadata.get("tempo")
+        return self._clip_metadata.get("tempo")
 
     @property
     def instruments(self):
-        return self._track_metadata.get("instruments")
+        return self._clip_metadata.get("instruments")
 
     @property
     def drum_information(self):
-        return self._track_metadata.get("drum_information")
+        return self._clip_metadata.get("drum_information")
 
     @core.cached_property
     def sections(self) -> Optional[annotations.SectionData]:
@@ -237,7 +237,7 @@ class Track(core.Track):
             beat_data=[(self.beats, None)],
             section_data=[(self.sections, None)],
             chord_data=[(self.chords, None)],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -306,7 +306,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="rwc_popular",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
@@ -335,9 +335,9 @@ class Dataset(core.Dataset):
             if line[0] == "Piece No.":
                 continue
             p = "00" + line[0].split(".")[1][1:]
-            track_id = "RM-P{}".format(p[len(p) - 3 :])
+            clip_id = "RM-P{}".format(p[len(p) - 3 :])
 
-            metadata_index[track_id] = {
+            metadata_index[clip_id] = {
                 "piece_number": line[0],
                 "suffix": line[1],
                 "track_number": line[2],

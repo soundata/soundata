@@ -114,16 +114,16 @@ DOWNLOAD_INFO = """
 LICENSE_INFO = "Creative Commons Attribution Share Alike 4.0 International."
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """giantsteps_tempo track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): track audio path
         title (str): title of the track
-        track_id (str): track id
+        clip_id (str): track id
         annotation_v1_path (str): track annotation v1 path
         annotation_v2_path (str): track annotation v2 path
 
@@ -136,14 +136,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -259,7 +259,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="giantsteps_tempo",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

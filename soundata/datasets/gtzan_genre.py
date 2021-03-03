@@ -46,36 +46,36 @@ REMOTES = {
 LICENSE_INFO = "Unfortunately we couldn't find the license information for the GTZAN_genre dataset."
 
 
-class Track(core.Track):
-    """gtzan_genre Track class
+class Clip(core.Clip):
+    """gtzan_genre Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): path to the audio file
         genre (str): annotated genre
-        track_id (str): track id
+        clip_id (str): track id
 
     """
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
             metadata,
         )
 
-        self.genre = track_id.split(".")[0]
+        self.genre = clip_id.split(".")[0]
         if self.genre == "hiphop":
             self.genre = "hip-hop"
 
@@ -137,7 +137,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="gtzan_genre",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

@@ -83,11 +83,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """MAESTRO Track class
+class Clip(core.Clip):
+    """MAESTRO Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): Path to the track's audio file
@@ -98,7 +98,7 @@ class Track(core.Track):
         duration (float): Duration in seconds, based on the MIDI file.
         midi_path (str): Path to the track's MIDI file
         split (str): Suggested train/validation/test split.
-        track_id (str): track id
+        clip_id (str): track id
         year (int): Year of performance.
 
     Cached Property:
@@ -109,14 +109,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -129,23 +129,23 @@ class Track(core.Track):
 
     @property
     def canonical_composer(self):
-        return self._track_metadata.get("canonical_composer")
+        return self._clip_metadata.get("canonical_composer")
 
     @property
     def canonical_title(self):
-        return self._track_metadata.get("canonical_title")
+        return self._clip_metadata.get("canonical_title")
 
     @property
     def split(self):
-        return self._track_metadata.get("split")
+        return self._clip_metadata.get("split")
 
     @property
     def year(self):
-        return self._track_metadata.get("year")
+        return self._clip_metadata.get("year")
 
     @property
     def duration(self):
-        return self._track_metadata.get("duration")
+        return self._clip_metadata.get("duration")
 
     @core.cached_property
     def midi(self) -> Optional[pretty_midi.PrettyMIDI]:
@@ -176,7 +176,7 @@ class Track(core.Track):
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             note_data=[(self.notes, None)],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -246,7 +246,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="maestro",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -264,8 +264,8 @@ class Dataset(core.Dataset):
 
         metadata = {}
         for mdata in raw_metadata:
-            track_id = mdata["midi_filename"].split(".")[0]
-            metadata[track_id] = mdata
+            clip_id = mdata["midi_filename"].split(".")[0]
+            metadata[clip_id] = mdata
 
         return metadata
 

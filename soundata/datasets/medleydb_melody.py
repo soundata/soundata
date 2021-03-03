@@ -53,11 +53,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """medleydb_melody Track class
+class Clip(core.Clip):
+    """medleydb_melody Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         artist (str): artist
@@ -70,7 +70,7 @@ class Track(core.Track):
         melody3_path (str): path to the melody3 annotation file
         n_sources (int): Number of instruments in the track
         title (str): title
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         melody1 (F0Data): the pitch of the single most predominant source (often the voice)
@@ -81,14 +81,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -103,27 +103,27 @@ class Track(core.Track):
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def genre(self):
-        return self._track_metadata.get("genre")
+        return self._clip_metadata.get("genre")
 
     @property
     def is_excerpt(self):
-        return self._track_metadata.get("is_excerpt")
+        return self._clip_metadata.get("is_excerpt")
 
     @property
     def is_instrumental(self):
-        return self._track_metadata.get("is_instrumental")
+        return self._clip_metadata.get("is_instrumental")
 
     @property
     def n_sources(self):
-        return self._track_metadata.get("n_sources")
+        return self._clip_metadata.get("n_sources")
 
     @core.cached_property
     def melody1(self) -> Optional[annotations.F0Data]:
@@ -159,7 +159,7 @@ class Track(core.Track):
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             f0_data=[(self.melody1, "melody1"), (self.melody2, "melody2")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -243,7 +243,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="medleydb_melody",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,

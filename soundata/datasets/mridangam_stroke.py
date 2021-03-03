@@ -32,7 +32,7 @@
 
     .. code-block:: bash
 
-        <TrackID>__<AuthorName>__<StrokeName>-<Tonic>-<InstanceNum>.wav
+        <ClipID>__<AuthorName>__<StrokeName>-<Tonic>-<InstanceNum>.wav
 
     The dataset is made available by CompMusic under a Creative Commons
     Attribution 3.0 Unported (CC BY 3.0) License.
@@ -93,31 +93,31 @@ TONIC_DICT = {"B", "C", "C#", "D", "D#", "E"}
 LICENSE_INFO = "Creative Commons Attribution 3.0 Unported (CC BY 3.0) License."
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """Mridangam Stroke track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored.
 
     Attributes:
-        track_id (str): track id
+        clip_id (str): track id
         audio_path (str): audio path
-        stroke_name (str): name of the Mridangam stroke present in Track
-        tonic (str): tonic of the stroke in the Track
+        stroke_name (str): name of the Mridangam stroke present in Clip
+        tonic (str): tonic of the stroke in the Clip
 
     """
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -187,7 +187,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="mridangam_stroke",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

@@ -54,11 +54,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """medleydb_pitch Track class
+class Clip(core.Clip):
+    """medleydb_pitch Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         artist (str): artist
@@ -67,7 +67,7 @@ class Track(core.Track):
         instrument (str): instrument of the track
         pitch_path (str): path to the pitch annotation file
         title (str): title
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         pitch (F0Data): human annotated pitch
@@ -76,14 +76,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -96,19 +96,19 @@ class Track(core.Track):
 
     @property
     def instrument(self):
-        return self._track_metadata.get("instrument")
+        return self._clip_metadata.get("instrument")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def genre(self):
-        return self._track_metadata.get("genre")
+        return self._clip_metadata.get("genre")
 
     @core.cached_property
     def pitch(self) -> Optional[annotations.F0Data]:
@@ -135,7 +135,7 @@ class Track(core.Track):
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             f0_data=[(self.pitch, "annotated pitch")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -193,7 +193,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="medleydb_pitch",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,
