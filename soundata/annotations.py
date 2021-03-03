@@ -27,6 +27,7 @@ class Tags(Annotation):
         self.labels = labels
         self.confidence = confidence
 
+
 class Events(Annotation):
     """Events class
 
@@ -38,6 +39,7 @@ class Events(Annotation):
         confidence (np.ndarray or None): array of float confidence values
             in the range [0, 1]
     """
+
     def __init__(self, intervals, labels, confidence=None) -> None:
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
