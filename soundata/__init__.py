@@ -28,12 +28,12 @@ def initialize(dataset_name, data_home=None):
     Example:
         .. code-block:: python
 
-            orchset = soundata.initialize('orchset')  # get the orchset dataset
-            orchset.download()  # download orchset
-            orchset.validate()  # validate orchset
-            track = orchset.choice_track()  # load a random track
-            print(track)  # see what data a track contains
-            orchset.track_ids()  # load all track ids
+            urbansound8k = soundata.initialize('urbansound8k')  # get the urbansound8k dataset
+            urbansound8k.download()  # download orchset
+            urbansound8k.validate()  # validate orchset
+            clip = urbansound8k.choice_clip()  # load a random clip
+            print(clip)  # see what data a clip contains
+            urbansound8k.clip_ids()  # load all clip ids
 
     Args:
         dataset_name (str): the dataset's name
