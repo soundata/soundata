@@ -28,14 +28,17 @@ class Tags(Annotation):
 class Events(Annotation):
     """Events class
 
-    Parameters
-    ----------
-    Annotation : [type]
-        [description]
+    Attributes:
+        intervals (np.ndarray): (n x 2) array of intervals
+            (as floats) in seconds in the form [start_time, end_time]
+            with positive time stamps and end_time >= start_time.
+        labels (list): list of event labels (as strings)
+        confidence (np.ndarray or None): array of float confidence values
+            in the range [0, 1]
     """
     def __init__(self, intervals, labels, confidence=None) -> None:
         validate_array_like(intervals, np.ndarray, float)
-        validate_array_like(labels, np.ndarray, str)
+        validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         validate_lengths_equal([intervals, labels, confidence])
         validate_intervals(intervals)
