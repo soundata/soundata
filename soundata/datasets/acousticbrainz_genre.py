@@ -145,16 +145,16 @@ about which license correspond to each subdataset can be found in the following 
  """
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """AcousticBrainz Genre Dataset track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored.
             If `None`, looks for the data in the default directory, `~/mir_datasets`
 
     Attributes:
-        track_id (str): track id
+        clip_id (str): track id
         genre (list): human-labeled genre and subgenres list
         mbid (str): musicbrainz id
         mbid_group (str): musicbrainz id group
@@ -175,14 +175,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -190,10 +190,10 @@ class Track(core.Track):
         )
 
         self.path = self.get_path("data")
-        self.genre = [genre for genre in self.track_id.split("#")[4:] if genre != ""]
-        self.mbid = self.track_id.split("#")[2]
-        self.mbid_group = self.track_id.split("#")[3]
-        self.split = self.track_id.split("#")[1]
+        self.genre = [genre for genre in self.clip_id.split("#")[4:] if genre != ""]
+        self.mbid = self.clip_id.split("#")[2]
+        self.mbid_group = self.clip_id.split("#")[3]
+        self.split = self.clip_id.split("#")[1]
 
     # Metadata
     @property
@@ -331,7 +331,7 @@ class Track(core.Track):
              dict:
              .. toggle::
 
-                - 'beats_position': time positions [sec] of detected beats using beat tracking algorithm by Degara et al., 2012. Algorithms: RhythmExtractor2013, BeatTrackerDegara
+                - 'beats_position': time positions [sec] of detected beats using beat tracking algorithm by Degara et al., 2012. Algorithms: RhythmExtractor2013, BeatCliperDegara
                 - 'beats_count': number of detected beats
                 - 'bpm': BPM value according to detected beats
                 - 'bpm_histogram_first_peak_bpm', 'bpm_histogram_first_peak_spread', 'bpm_histogram_first_peak_weight',
@@ -392,7 +392,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name=NAME,
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -410,7 +410,7 @@ class Dataset(core.Dataset):
             search_key (str): regex to match with folds, mbid or genres
 
         Returns:
-             dict: {`track_id`: track data}
+             dict: {`clip_id`: track data}
 
         """
 
@@ -423,7 +423,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for training across the four different datasets.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("#train#")
@@ -432,7 +432,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validating across the four different datasets.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("#validation#")
@@ -441,7 +441,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validating in tagtraum dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("tagtraum#validation#")
@@ -450,7 +450,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for training in tagtraum dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("tagtraum#train#")
@@ -459,7 +459,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validation in allmusic dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("allmusic#train#")
@@ -468,7 +468,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validation in allmusic dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("allmusic#validation#")
@@ -477,7 +477,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for training in lastfm dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("lastfm#train#")
@@ -486,7 +486,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validation in lastfm dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("lastfm#validation#")
@@ -495,7 +495,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for training in discogs dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("allmusic#train#")
@@ -504,7 +504,7 @@ class Dataset(core.Dataset):
         """Load from AcousticBrainz genre dataset the tracks that are used for validation in tagtraum dataset.
 
         Returns:
-            dict: {`track_id`: track data}
+            dict: {`clip_id`: track data}
 
         """
         return self.filter_index("allmusic#validation#")

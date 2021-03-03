@@ -61,11 +61,11 @@ http://creativecommons.org/publicdomain/zero/1.0/legalcode.
 """
 
 
-class Track(core.Track):
-    """salami Track class
+class Clip(core.Clip):
+    """salami Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         annotator_1_id (str): number that identifies annotator 1
@@ -93,14 +93,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -116,43 +116,43 @@ class Track(core.Track):
 
     @property
     def source(self):
-        return self._track_metadata.get("source")
+        return self._clip_metadata.get("source")
 
     @property
     def annotator_1_id(self):
-        return self._track_metadata.get("annotator_1_id")
+        return self._clip_metadata.get("annotator_1_id")
 
     @property
     def annotator_2_id(self):
-        return self._track_metadata.get("annotator_2_id")
+        return self._clip_metadata.get("annotator_2_id")
 
     @property
     def duration(self):
-        return self._track_metadata.get("duration")
+        return self._clip_metadata.get("duration")
 
     @property
     def title(self):
-        return self._track_metadata.get("title")
+        return self._clip_metadata.get("title")
 
     @property
     def artist(self):
-        return self._track_metadata.get("artist")
+        return self._clip_metadata.get("artist")
 
     @property
     def annotator_1_time(self):
-        return self._track_metadata.get("annotator_1_time")
+        return self._clip_metadata.get("annotator_1_time")
 
     @property
     def annotator_2_time(self):
-        return self._track_metadata.get("annotator_2_time")
+        return self._clip_metadata.get("annotator_2_time")
 
     @property
     def broad_genre(self):
-        return self._track_metadata.get("class")
+        return self._clip_metadata.get("class")
 
     @property
     def genre(self):
-        return self._track_metadata.get("genre")
+        return self._clip_metadata.get("genre")
 
     @core.cached_property
     def sections_annotator_1_uppercase(self) -> Optional[annotations.SectionData]:
@@ -206,7 +206,7 @@ class Track(core.Track):
                     "annotator_2",
                 ),
             ],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -262,7 +262,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="salami",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
@@ -292,11 +292,11 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-            track_id = line[0]
+            clip_id = line[0]
             duration = None
             if line[5] != "":
                 duration = float(line[5])
-            metadata_index[track_id] = {
+            metadata_index[clip_id] = {
                 "source": line[1],
                 "annotator_1_id": line[2],
                 "annotator_2_id": line[3],

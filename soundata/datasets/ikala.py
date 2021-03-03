@@ -62,11 +62,11 @@ Visit http://mac.citi.sinica.edu.tw/ikala/ for more details.
 """
 
 
-class Track(core.Track):
-    """ikala Track class
+class Clip(core.Clip):
+    """ikala Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): path to the track's audio file
@@ -75,7 +75,7 @@ class Track(core.Track):
         section (str): section. Either 'verse' or 'chorus'
         singer_id (str): singer id
         song_id (str): song id of the track
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         f0 (F0Data): human-annotated singing voice pitch
@@ -85,14 +85,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -104,12 +104,12 @@ class Track(core.Track):
 
         self.audio_path = self.get_path("audio")
 
-        self.song_id = track_id.split("_")[0]
-        self.section = track_id.split("_")[1]
+        self.song_id = clip_id.split("_")[0]
+        self.section = clip_id.split("_")[1]
 
     @property
     def singer_id(self):
-        return self._track_metadata.get(self.song_id)
+        return self._clip_metadata.get(self.song_id)
 
     @core.cached_property
     def f0(self) -> Optional[annotations.F0Data]:
@@ -166,7 +166,7 @@ class Track(core.Track):
             metadata={
                 "section": self.section,
                 "singer_id": self.singer_id,
-                "track_id": self.track_id,
+                "clip_id": self.clip_id,
                 "song_id": self.song_id,
             },
         )
@@ -294,7 +294,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="ikala",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

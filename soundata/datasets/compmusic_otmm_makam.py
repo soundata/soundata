@@ -66,11 +66,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """OTMM Makam Track class
+class Clip(core.Clip):
+    """OTMM Makam Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored. default=None
             If `None`, looks for the data in the default directory, `~/mir_datasets`
 
@@ -91,14 +91,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -111,15 +111,15 @@ class Track(core.Track):
 
     @property
     def tonic(self):
-        return self._track_metadata.get("tonic")
+        return self._clip_metadata.get("tonic")
 
     @property
     def makam(self):
-        return self._track_metadata.get("makam")
+        return self._clip_metadata.get("makam")
 
     @property
     def mbid(self):
-        return self._track_metadata.get("mbid")
+        return self._clip_metadata.get("mbid")
 
     @core.cached_property
     def pitch(self):
@@ -194,7 +194,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="compmusic_otmm_makam",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

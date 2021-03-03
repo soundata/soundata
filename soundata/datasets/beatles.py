@@ -55,11 +55,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
+class Clip(core.Clip):
     """Beatles track class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): path where the data lives
 
     Attributes:
@@ -69,7 +69,7 @@ class Track(core.Track):
         keys_path (str): key annotation path
         sections_path (str): sections annotation path
         title (str): title of the track
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         beats (BeatData): human-labeled beat annotations
@@ -81,14 +81,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -102,7 +102,7 @@ class Track(core.Track):
 
         self.audio_path = self.get_path("audio")
 
-        self.title = os.path.basename(self._track_paths["sections"][0]).split(".")[0]
+        self.title = os.path.basename(self._clip_paths["sections"][0]).split(".")[0]
 
     @core.cached_property
     def beats(self) -> Optional[annotations.BeatData]:
@@ -285,7 +285,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="beatles",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,

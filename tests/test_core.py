@@ -5,7 +5,7 @@ import soundata
 from soundata import core
 
 
-def test_track():
+def test_clip():
     index = {
         "tracks": {
             "a": {
@@ -14,57 +14,57 @@ def test_track():
             }
         }
     }
-    track_id = "a"
+    clip_id = "a"
     dataset_name = "test"
     data_home = "tests/resources/mir_datasets"
-    track = core.Track(track_id, data_home, dataset_name, index, lambda: None)
+    clip = core.Clip(clip_id, data_home, dataset_name, index, lambda: None)
 
-    assert track.track_id == track_id
-    assert track._dataset_name == dataset_name
-    assert track._data_home == data_home
-    assert track._track_paths == {
+    assert clip.clip_id == clip_id
+    assert clip._dataset_name == dataset_name
+    assert clip._data_home == data_home
+    assert clip._clip_paths == {
         "audio": (None, None),
         "annotation": ("asdf/asdd", "asdfasdfasdfasdf"),
     }
-    assert track._metadata() is None
+    assert clip._metadata() is None
     with pytest.raises(AttributeError):
-        track._track_metadata
+        clip._clip_metadata
 
     with pytest.raises(NotImplementedError):
-        track.to_jams()
+        clip.to_jams()
 
-    path_good = track.get_path("annotation")
+    path_good = clip.get_path("annotation")
     assert path_good == "tests/resources/mir_datasets/asdf/asdd"
-    path_none = track.get_path("audio")
+    path_none = clip.get_path("audio")
     assert path_none is None
 
-    # tracks with metadata
-    metadata_track_index = lambda: {"a": {"x": 1, "y": 2, "z": 3}}
+    # clip with metadata
+    metadata_clip_index = lambda: {"a": {"x": 1, "y": 2, "z": 3}}
     metadata_global = lambda: {"asdf": [1, 2, 3], "asdd": [4, 5, 6]}
     metadata_none = lambda: None
 
-    track_metadata_tidx = core.Track(
-        track_id, data_home, dataset_name, index, metadata_track_index
+    clip_metadata_cidx = core.Clip(
+        clip_id, data_home, dataset_name, index, metadata_clip_index
     )
-    assert track_metadata_tidx._track_metadata == {"x": 1, "y": 2, "z": 3}
+    assert clip_metadata_cidx._clip_metadata == {"x": 1, "y": 2, "z": 3}
 
-    track_metadata_global = core.Track(
-        track_id, data_home, dataset_name, index, metadata_global
+    clip_metadata_global = core.Clip(
+        clip_id, data_home, dataset_name, index, metadata_global
     )
-    assert track_metadata_global._track_metadata == {
+    assert clip_metadata_global._clip_metadata == {
         "asdf": [1, 2, 3],
         "asdd": [4, 5, 6],
     }
 
-    track_metadata_none = core.Track(
-        track_id, data_home, dataset_name, index, metadata_none
+    clip_metadata_none = core.Clip(
+        clip_id, data_home, dataset_name, index, metadata_none
     )
     with pytest.raises(AttributeError):
-        track_metadata_none._track_metadata
+        clip_metadata_none._clip_metadata
 
 
-def test_track_repr():
-    class TestTrack(core.Track):
+def test_clip_repr():
+    class TestClip(core.Clip):
         def __init__(self):
             self.a = "asdf"
             self.b = 1.2345678
@@ -86,21 +86,21 @@ def test_track_repr():
         def h(self):
             return "I'm a function!"
 
-    expected1 = """Track(\n  a="asdf",\n  b=1.2345678,\n  """
+    expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: 'a', 'b': 2},\n  e=None,\n  """
     expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
     expected4 = """f: ThisObjectType,\n  g: I have an improper docstring,\n)"""
 
-    test_track = TestTrack()
-    actual = test_track.__repr__()
+    test_clip = TestClip()
+    actual = test_clip.__repr__()
     assert actual == expected1 + expected2 + expected3 + expected4
 
     with pytest.raises(NotImplementedError):
-        test_track.to_jams()
+        test_clip.to_jams()
 
 
 def test_multitrack_repr():
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(self):
             self.a = "asdf"
 
@@ -133,7 +133,7 @@ def test_multitrack_repr():
         def h(self):
             return "I'm a function!"
 
-    expected1 = """Track(\n  a="asdf",\n  b=1.2345678,\n  """
+    expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: \'a\', \'b\': 2},\n  e=None,\n  """
     expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
     expected4 = """mtrack_id="test",\n  track_ids=[\'a\', \'b\', \'c\'],\n  """
@@ -228,7 +228,7 @@ def test_multitrack():
     dataset_name = "test"
     data_home = "tests/resources/mir_datasets"
     mtrack = core.MultiTrack(
-        mtrack_id, data_home, dataset_name, index, core.Track, lambda: None
+        mtrack_id, data_home, dataset_name, index, core.Clip, lambda: None
     )
 
     path_good = mtrack.get_path("audio_master")
@@ -266,12 +266,12 @@ def test_multitrack():
     metadata_none = lambda: None
 
     mtrack_metadata_tidx = core.MultiTrack(
-        mtrack_id, data_home, dataset_name, index, core.Track, metadata_mtrack_index
+        mtrack_id, data_home, dataset_name, index, core.Clip, metadata_mtrack_index
     )
     assert mtrack_metadata_tidx._multitrack_metadata == {"x": 1, "y": 2, "z": 3}
 
     mtrack_metadata_global = core.MultiTrack(
-        mtrack_id, data_home, dataset_name, index, core.Track, metadata_global
+        mtrack_id, data_home, dataset_name, index, core.Clip, metadata_global
     )
     assert mtrack_metadata_global._multitrack_metadata == {
         "asdf": [1, 2, 3],
@@ -279,12 +279,12 @@ def test_multitrack():
     }
 
     mtrack_metadata_none = core.MultiTrack(
-        mtrack_id, data_home, dataset_name, index, core.Track, metadata_none
+        mtrack_id, data_home, dataset_name, index, core.Clip, metadata_none
     )
     with pytest.raises(AttributeError):
         mtrack_metadata_none._multitrack_metadata
 
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -330,7 +330,7 @@ def test_multitrack():
 
 
 def test_multitrack_mixing():
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -433,7 +433,7 @@ def test_multitrack_mixing():
 
 
 def test_multitrack_unequal_len():
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -493,7 +493,7 @@ def test_multitrack_unequal_len():
 
 
 def test_multitrack_unequal_sr():
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -548,7 +548,7 @@ def test_multitrack_unequal_sr():
 
 def test_multitrack_mono():
     ### no first channel - audio shapes (100,)
-    class TestTrack(core.Track):
+    class TestTrack(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -601,7 +601,7 @@ def test_multitrack_mono():
     assert np.max(np.abs(target1)) <= 2
 
     ### one channel mono shape (1, 100)
-    class TestTrack1(core.Track):
+    class TestTrack1(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):

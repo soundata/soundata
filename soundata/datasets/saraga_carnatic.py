@@ -70,11 +70,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """Saraga Track Carnatic class
+class Clip(core.Clip):
+    """Saraga Clip Carnatic class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored. default=None
             If `None`, looks for the data in the default directory, `~/mir_datasets`
 
@@ -119,14 +119,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -492,7 +492,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="saraga_carnatic",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,

@@ -63,11 +63,11 @@ REMOTES = {
 LICENSE_INFO = "Creative Commons Attribution 4.0 International."
 
 
-class Track(core.Track):
-    """medley_solos_db Track class
+class Clip(core.Clip):
+    """medley_solos_db Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (str): path to the track's audio file
@@ -75,20 +75,20 @@ class Track(core.Track):
         instrument_id (int): instrument encoded as an integer
         song_id (int): song encoded as an integer
         subset (str): either equal to 'train', 'validation', or 'test'
-        track_id (str): track id
+        clip_id (str): track id
 
     """
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -99,19 +99,19 @@ class Track(core.Track):
 
     @property
     def instrument(self):
-        return self._track_metadata.get("instrument")
+        return self._clip_metadata.get("instrument")
 
     @property
     def instrument_id(self):
-        return self._track_metadata.get("instrument_id")
+        return self._clip_metadata.get("instrument_id")
 
     @property
     def song_id(self):
-        return self._track_metadata.get("song_id")
+        return self._clip_metadata.get("song_id")
 
     @property
     def subset(self):
-        return self._track_metadata.get("subset")
+        return self._clip_metadata.get("subset")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -132,7 +132,7 @@ class Track(core.Track):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._track_metadata
+            audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
 
@@ -161,7 +161,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="medley_solos_db",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -181,8 +181,8 @@ class Dataset(core.Dataset):
             csv_reader = csv.reader(fhandle, delimiter=",")
             next(csv_reader)
             for row in csv_reader:
-                subset, instrument_str, instrument_id, song_id, track_id = row
-                metadata_index[str(track_id)] = {
+                subset, instrument_str, instrument_id, song_id, clip_id = row
+                metadata_index[str(clip_id)] = {
                     "subset": str(subset),
                     "instrument": str(instrument_str),
                     "instrument_id": int(instrument_id),

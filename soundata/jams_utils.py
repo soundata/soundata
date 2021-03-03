@@ -26,7 +26,7 @@ def jams_converter(
     tags_open_data=None,
     metadata=None,
 ):
-    """Convert annotations from a track to JAMS format.
+    """Convert annotations from a clip to JAMS format.
 
     Args:
         audio_path (str or None):
@@ -68,7 +68,7 @@ def jams_converter(
             A list of tuples of (str, str), where the first srt is the tag and the second
             is a descriptor of the annotation.
         metadata (dict or None):
-            A dictionary containing the track metadata.
+            A dictionary containing the clip metadata.
 
     Returns:
         jams.JAMS: A JAMS object containing the annotations.
@@ -85,7 +85,7 @@ def jams_converter(
         else:
             raise OSError(
                 "jams conversion failed because the audio file "
-                + "for this track cannot be found, and it is required "
+                + "for this clip cannot be found, and it is required "
                 + "to compute duration."
             )
     if spectrogram_path is not None:

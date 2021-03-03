@@ -90,7 +90,7 @@ class Dataset(object):
         bibtex (str or None): dataset citation/s in bibtex format
         remotes (dict or None): data to be downloaded
         readme (str): information about the dataset
-        track (function): a function mapping a track_id to a soundata.core.Track
+        clip (function): a function mapping a clip_id to a soundata.core.Clip
         multitrack (function): a function mapping a mtrack_id to a soundata.core.Multitrack
 
     """
@@ -99,7 +99,7 @@ class Dataset(object):
         self,
         data_home=None,
         name=None,
-        track_class=None,
+        clip_class=None,
         multitrack_class=None,
         bibtex=None,
         remotes=None,
@@ -112,7 +112,7 @@ class Dataset(object):
         Args:
             data_home (str or None): path where soundata will look for the dataset
             name (str or None): the identifier of the dataset
-            track_class (soundata.core.Track or None): a Track class
+            clip_class (soundata.core.Clip or None): a Clip class
             multitrack_class (soundata.core.Multitrack or None): a Multitrack class
             bibtex (str or None): dataset citation/s in bibtex format
             remotes (dict or None): data to be downloaded
@@ -133,7 +133,7 @@ class Dataset(object):
                 "{}_index.json".format(self.name),
             )
             self.remote_index = False
-        self._track_class = track_class
+        self._track_class = clip_class
         self._multitrack_class = multitrack_class
         self.bibtex = bibtex
         self.remotes = remotes
@@ -142,8 +142,8 @@ class Dataset(object):
         self.readme = "{}#module-soundata.datasets.{}".format(DOCS_URL, self.name)
 
         # this is a hack to be able to have dataset-specific docstrings
-        self.track = lambda track_id: self._track(track_id)
-        self.track.__doc__ = self._track_class.__doc__  # set the docstring
+        self.clip = lambda clip_id: self._track(clip_id)
+        self.clip.__doc__ = self._track_class.__doc__  # set the docstring
         self.multitrack = lambda mtrack_id: self._multitrack(mtrack_id)
         self.multitrack.__doc__ = self._multitrack_class.__doc__  # set the docstring
 
@@ -155,7 +155,7 @@ class Dataset(object):
         repr_string += "-" * MAX_STR_LEN
         repr_string += "\n\n\n"
         if self._track_class is not None:
-            repr_string += self.track.__doc__
+            repr_string += self.clip.__doc__
             repr_string += "-" * MAX_STR_LEN
             repr_string += "\n"
         if self._multitrack_class is not None:
@@ -190,23 +190,23 @@ class Dataset(object):
         mir_datasets_dir = os.path.join(os.getenv("HOME", "/tmp"), "mir_datasets")
         return os.path.join(mir_datasets_dir, self.name)
 
-    def _track(self, track_id):
-        """Load a track by track_id.
+    def _track(self, clip_id):
+        """Load a clip by clip_id.
 
         Hidden helper function that gets called as a lambda.
 
         Args:
-            track_id (str): track id of the track
+            clip_id (str): clip id of the clip
 
         Returns:
-           Track: a Track object
+           Clip: a Clip object
 
         """
         if self._track_class is None:
             raise AttributeError("This dataset does not have tracks")
         else:
             return self._track_class(
-                track_id,
+                clip_id,
                 self.data_home,
                 self.name,
                 self._index,
@@ -242,13 +242,13 @@ class Dataset(object):
 
         Returns:
             dict:
-                {`track_id`: track data}
+                {`clip_id`: clip data}
 
         Raises:
             NotImplementedError: If the dataset does not support Tracks
 
         """
-        return {track_id: self.track(track_id) for track_id in self.track_ids}
+        return {clip_id: self.clip(clip_id) for clip_id in self.clip_ids}
 
     def load_multitracks(self):
         """Load all multitracks in the dataset
@@ -264,13 +264,13 @@ class Dataset(object):
         return {mtrack_id: self.multitrack(mtrack_id) for mtrack_id in self.mtrack_ids}
 
     def choice_track(self):
-        """Choose a random track
+        """Choose a random clip
 
         Returns:
-            Track: a Track object instantiated by a random track_id
+            Clip: a Clip object instantiated by a random clip_id
 
         """
-        return self.track(random.choice(self.track_ids))
+        return self.clip(random.choice(self.clip_ids))
 
     def choice_multitrack(self):
         """Choose a random multitrack
@@ -323,11 +323,11 @@ class Dataset(object):
         )
 
     @cached_property
-    def track_ids(self):
-        """Return track ids
+    def clip_ids(self):
+        """Return clip ids
 
         Returns:
-            list: A list of track ids
+            list: A list of clip ids
 
         """
         if "tracks" not in self._index:
@@ -336,10 +336,10 @@ class Dataset(object):
 
     @cached_property
     def mtrack_ids(self):
-        """Return track ids
+        """Return clip ids
 
         Returns:
-            list: A list of track ids
+            list: A list of clip ids
 
         """
         if "multitracks" not in self._index:
@@ -363,57 +363,57 @@ class Dataset(object):
         return missing_files, invalid_checksums
 
 
-class Track(object):
-    """Track base class
+class Clip(object):
+    """Clip base class
 
-    See the docs for each dataset loader's Track class for details
+    See the docs for each dataset loader's Clip class for details
 
     """
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
-        """Track init method. Sets boilerplate attributes, including:
+        """Clip init method. Sets boilerplate attributes, including:
 
-        - ``track_id``
+        - ``clip_id``
         - ``_dataset_name``
         - ``_data_home``
-        - ``_track_paths``
-        - ``_track_metadata``
+        - ``_clip_paths``
+        - ``_clip_metadata``
 
         Args:
-            track_id (str): track id
+            clip_id (str): clip id
             data_home (str): path where soundata will look for the dataset
             dataset_name (str): the identifier of the dataset
             index (dict): the dataset's file index
             metadata (function or None): a function returning a dictionary of metadata or None
 
         """
-        if track_id not in index["tracks"]:
+        if clip_id not in index["tracks"]:
             raise ValueError(
-                "{} is not a valid track_id in {}".format(track_id, dataset_name)
+                "{} is not a valid clip_id in {}".format(clip_id, dataset_name)
             )
 
-        self.track_id = track_id
+        self.clip_id = clip_id
         self._dataset_name = dataset_name
 
         self._data_home = data_home
-        self._track_paths = index["tracks"][track_id]
+        self._clip_paths = index["tracks"][clip_id]
         self._metadata = metadata
 
     @property
-    def _track_metadata(self):
+    def _clip_metadata(self):
         metadata = self._metadata()
-        if metadata and self.track_id in metadata:
-            return metadata[self.track_id]
+        if metadata and self.clip_id in metadata:
+            return metadata[self.clip_id]
         elif metadata:
             return metadata
-        raise AttributeError("This Track does not have metadata.")
+        raise AttributeError("This Clip does not have metadata.")
 
     def __repr__(self):
         properties = [v for v in dir(self.__class__) if not v.startswith("_")]
@@ -421,7 +421,7 @@ class Track(object):
             v for v in dir(self) if not v.startswith("_") and v not in properties
         ]
 
-        repr_str = "Track(\n"
+        repr_str = "Clip(\n"
 
         for attr in attributes:
             val = getattr(self, attr)
@@ -451,7 +451,7 @@ class Track(object):
         raise NotImplementedError
 
     def get_path(self, key):
-        """Get absolute path to track audio and annotations. Returns None if
+        """Get absolute path to clip audio and annotations. Returns None if
         the path in the index is None
 
         Args:
@@ -461,18 +461,18 @@ class Track(object):
             str or None: joined path string or None
 
         """
-        if self._track_paths[key][0] is None:
+        if self._clip_paths[key][0] is None:
             return None
         else:
-            return os.path.join(self._data_home, self._track_paths[key][0])
+            return os.path.join(self._data_home, self._clip_paths[key][0])
 
 
-class MultiTrack(Track):
+class MultiTrack(Clip):
     """MultiTrack class.
 
-    A multitrack class is a collection of track objects and their associated audio
+    A multitrack class is a collection of clip objects and their associated audio
     that can be mixed together.
-    A multitrack is itself a Track, and can have its own associated audio (such as
+    A multitrack is itself a Clip, and can have its own associated audio (such as
     a mastered mix), its own metadata and its own annotations.
 
     """
@@ -483,7 +483,7 @@ class MultiTrack(Track):
         data_home,
         dataset_name,
         index,
-        track_class,
+        clip_class,
         metadata,
     ):
         """Multitrack init method. Sets boilerplate attributes, including:
@@ -513,10 +513,10 @@ class MultiTrack(Track):
         self._data_home = data_home
         self._multitrack_paths = index["multitracks"][self.mtrack_id]
         self._metadata = metadata
-        self._track_class = track_class
+        self._track_class = clip_class
 
         self._index = index
-        self.track_ids = self._index["multitracks"][self.mtrack_id]["tracks"]
+        self.clip_ids = self._index["multitracks"][self.mtrack_id]["tracks"]
 
     @property
     def tracks(self):
@@ -524,7 +524,7 @@ class MultiTrack(Track):
             t: self._track_class(
                 t, self._data_home, self._dataset_name, self._index, self._metadata
             )
-            for t in self.track_ids
+            for t in self.clip_ids
         }
 
     @property
@@ -560,13 +560,13 @@ class MultiTrack(Track):
         """Get target which is a linear mixture of tracks
 
         Args:
-            track_keys (list): list of track keys to mix together
+            track_keys (list): list of clip keys to mix together
             weights (list or None): list of positive scalars to be used in the average
             average (bool): if True, computes a weighted average of the tracks
                 if False, computes a weighted sum of the tracks
             enforce_length (bool): If True, raises ValueError if the tracks are
                 not the same length. If False, pads audio with zeros to match the length
-                of the longest track
+                of the longest clip
 
         Returns:
             np.ndarray: target audio with shape (n_channels, n_samples)
@@ -600,7 +600,7 @@ class MultiTrack(Track):
         if any([l != max_length for l in lengths]):
             if enforce_length:
                 raise ValueError(
-                    "Track's {} audio are not the same length {}. Use enforce_length=False to pad with zeros.".format(
+                    "Clip's {} audio are not the same length {}. Use enforce_length=False to pad with zeros.".format(
                         track_keys, lengths
                     )
                 )
@@ -647,7 +647,7 @@ class MultiTrack(Track):
         """Create a linear mixture given a subset of tracks.
 
         Args:
-            track_keys (list): list of track keys to mix together
+            track_keys (list): list of clip keys to mix together
 
         Returns:
             np.ndarray: mixture audio with shape (n_samples, n_channels)

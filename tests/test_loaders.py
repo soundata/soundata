@@ -70,7 +70,7 @@ def test_dataset_attributes():
             isinstance(dataset._download_info, str) or dataset._download_info is None
         ), "{}.DOWNLOAD_INFO must be a string".format(dataset_name)
         assert type(dataset._track_class) == type(
-            core.Track
+            core.Clip
         ), "{}.Track must be an instance of core.Track".format(dataset_name)
         assert callable(dataset.download), "{}.download is not a function".format(
             dataset_name
@@ -187,13 +187,13 @@ def test_load_and_trackids():
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         try:
-            track_ids = dataset.track_ids
+            clip_ids = dataset.clip_ids
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
-        assert type(track_ids) is list, "{}.track_ids() should return a list".format(
+        assert type(clip_ids) is list, "{}.clip_ids() should return a list".format(
             dataset_name
         )
-        trackid_len = len(track_ids)
+        trackid_len = len(clip_ids)
         # if the dataset has tracks, test the loaders
         if dataset._track_class is not None:
 
@@ -202,7 +202,7 @@ def test_load_and_trackids():
             except:
                 assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
             assert isinstance(
-                choice_track, core.Track
+                choice_track, core.Clip
             ), "{}.choice_track must return an instance of type core.Track".format(
                 dataset_name
             )
@@ -217,7 +217,7 @@ def test_load_and_trackids():
             ), "{}.load should return a dictionary".format(dataset_name)
             assert (
                 len(dataset_data.keys()) == trackid_len
-            ), "the dictionary returned {}.load() does not have the same number of elements as {}.track_ids()".format(
+            ), "the dictionary returned {}.load() does not have the same number of elements as {}.clip_ids()".format(
                 dataset_name, dataset_name
             )
 
@@ -235,22 +235,22 @@ def test_track():
         # and move on to the next dataset
         if dataset._track_class is None:
             with pytest.raises(NotImplementedError):
-                dataset.track("~faketrackid~?!")
+                dataset.clip("~faketrackid~?!")
             continue
 
         if dataset_name in CUSTOM_TEST_TRACKS:
-            trackid = CUSTOM_TEST_TRACKS[dataset_name]
+            clipid = CUSTOM_TEST_TRACKS[dataset_name]
         else:
-            trackid = dataset.track_ids[0]
+            clipid = dataset.clip_ids[0]
 
         # test data home specified
         try:
-            track_test = dataset.track(trackid)
+            track_test = dataset.clip(clipid)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         assert isinstance(
-            track_test, core.Track
+            track_test, core.Clip
         ), "{}.track must be an instance of type core.Track".format(dataset_name)
 
         assert hasattr(
@@ -276,7 +276,7 @@ def test_track():
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         assert jam.validate(), "Jams validation failed for {}.track({})".format(
-            dataset_name, trackid
+            dataset_name, clipid
         )
 
         # will fail if something goes wrong with __repr__
@@ -289,7 +289,7 @@ def test_track():
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         with pytest.raises(ValueError):
-            dataset.track("~faketrackid~?!")
+            dataset.clip("~faketrackid~?!")
 
 
 # This tests the case where there is no data in data_home.
@@ -309,12 +309,12 @@ def test_track_placeholder_case():
             continue
 
         if dataset_name in CUSTOM_TEST_TRACKS:
-            trackid = CUSTOM_TEST_TRACKS[dataset_name]
+            clipid = CUSTOM_TEST_TRACKS[dataset_name]
         else:
-            trackid = dataset.track_ids[0]
+            clipid = dataset.clip_ids[0]
 
         try:
-            track_test = dataset.track(trackid)
+            track_test = dataset.clip(clipid)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 

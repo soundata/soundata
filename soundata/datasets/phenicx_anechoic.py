@@ -106,11 +106,11 @@ DATASET_SECTIONS = {
 }
 
 
-class Track(core.Track):
-    """Phenicx-Anechoic Track class
+class Clip(core.Clip):
+    """Phenicx-Anechoic Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         audio_path (list): path to the audio files
@@ -119,7 +119,7 @@ class Track(core.Track):
         instrument (str): the name of the instrument
         piece (str): the name of the piece
         n_voices (int): the number of voices in this instrument
-        track_id (str): track id
+        clip_id (str): track id
 
     Cached Properties:
         melody (F0Data): melody annotation
@@ -128,25 +128,25 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
             metadata,
         )
 
-        self.instrument = self.track_id.split("-")[1]
-        self.piece = self.track_id.split("-")[0]
+        self.instrument = self.clip_id.split("-")[1]
+        self.piece = self.clip_id.split("-")[0]
 
         self.audio_paths = [
-            self.get_path(key) for key in self._track_paths if "audio_" in key
+            self.get_path(key) for key in self._clip_paths if "audio_" in key
         ]
 
         self.n_voices = len(self.audio_paths)
@@ -224,15 +224,15 @@ class MultiTrack(core.MultiTrack):
     """Phenicx-Anechoic MultiTrack class
 
     Args:
-        mtrack_id (str): track id of the track
+        mclip_id (str): track id of the track
         data_home (str): Local path where the dataset is stored.
             If `None`, looks for the data in the default directory, `~/mir_datasets/Phenicx-Anechoic`
 
     Attributes:
         track_audio_property (str): the attribute of track which is used for mixing
-        mtrack_id (str): multitrack id
+        mclip_id (str): multitrack id
         piece (str): the classical music piece associated with this multitrack
-        tracks (dict): dict of track ids and the corresponding Tracks
+        tracks (dict): dict of track ids and the corresponding Clips
         instruments (dict): dict of instruments and the corresponding track
         sections (dict): dict of sections and the corresponding list of tracks for each section
 
@@ -240,36 +240,35 @@ class MultiTrack(core.MultiTrack):
 
     def __init__(
         self,
-        mtrack_id,
+        mclip_id,
         data_home,
         dataset_name,
         index,
-        track_class,
+        clip_class,
         metadata,
     ):
         super().__init__(
-            mtrack_id,
+            mclip_id,
             data_home,
             dataset_name,
             index,
-            Track,
+            Clip,
             metadata,
         )
 
         #### parse the keys for the dictionary of instruments and strings
         self.instruments = {
-            source.replace(self.mtrack_id + "-", ""): source
-            for source in self.track_ids
+            source.replace(self.mclip_id + "-", ""): source for source in self.clip_ids
         }
         self.sections = {"brass": [], "strings": [], "woodwinds": []}
-        for instrument, track_id in self.instruments.items():
-            self.sections[DATASET_SECTIONS[instrument]].append(track_id)
+        for instrument, clip_id in self.instruments.items():
+            self.sections[DATASET_SECTIONS[instrument]].append(clip_id)
 
-        self.piece = self.mtrack_id
+        self.piece = self.mclip_id
 
     @property
     def track_audio_property(self):
-        #### the attribute of Track which returns the relevant audio file for mixing
+        #### the attribute of Clip which returns the relevant audio file for mixing
         return "audio"
 
     def get_audio_for_instrument(self, instrument):
@@ -418,7 +417,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="phenicx_anechoic",
-            track_class=Track,
+            clip_class=Clip,
             multitrack_class=MultiTrack,
             bibtex=BIBTEX,
             remotes=REMOTES,

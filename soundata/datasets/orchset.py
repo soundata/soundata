@@ -52,11 +52,11 @@ LICENSE_INFO = (
 )
 
 
-class Track(core.Track):
-    """orchset Track class
+class Clip(core.Clip):
+    """orchset Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): track id of the track
 
     Attributes:
         alternating_melody (bool): True if the melody alternates between instruments
@@ -72,7 +72,7 @@ class Track(core.Track):
         only_strings (bool): True if the track contains string instruments only
         only_winds (bool): True if the track contains wind instruments only
         predominant_melodic_instruments (list): List of instruments which play the melody
-        track_id (str): track id
+        clip_id (str): track id
         work (str): The musical work
 
     Cached Properties:
@@ -82,14 +82,14 @@ class Track(core.Track):
 
     def __init__(
         self,
-        track_id,
+        clip_id,
         data_home,
         dataset_name,
         index,
         metadata,
     ):
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name,
             index,
@@ -103,47 +103,47 @@ class Track(core.Track):
 
     @property
     def composer(self):
-        return self._track_metadata.get("composer")
+        return self._clip_metadata.get("composer")
 
     @property
     def work(self):
-        return self._track_metadata.get("work")
+        return self._clip_metadata.get("work")
 
     @property
     def excerpt(self):
-        return self._track_metadata.get("excerpt")
+        return self._clip_metadata.get("excerpt")
 
     @property
     def predominant_melodic_instruments(self):
-        return self._track_metadata.get("predominant_melodic_instruments-normalized")
+        return self._clip_metadata.get("predominant_melodic_instruments-normalized")
 
     @property
     def alternating_melody(self):
-        return self._track_metadata.get("alternating_melody")
+        return self._clip_metadata.get("alternating_melody")
 
     @property
     def contains_winds(self):
-        return self._track_metadata.get("contains_winds")
+        return self._clip_metadata.get("contains_winds")
 
     @property
     def contains_strings(self):
-        return self._track_metadata.get("contains_strings")
+        return self._clip_metadata.get("contains_strings")
 
     @property
     def contains_brass(self):
-        return self._track_metadata.get("contains_brass")
+        return self._clip_metadata.get("contains_brass")
 
     @property
     def only_strings(self):
-        return self._track_metadata.get("only_strings")
+        return self._clip_metadata.get("only_strings")
 
     @property
     def only_winds(self):
-        return self._track_metadata.get("only_winds")
+        return self._clip_metadata.get("only_winds")
 
     @property
     def only_brass(self):
-        return self._track_metadata.get("only_brass")
+        return self._clip_metadata.get("only_brass")
 
     @core.cached_property
     def melody(self) -> Optional[annotations.F0Data]:
@@ -181,7 +181,7 @@ class Track(core.Track):
         return jams_utils.jams_converter(
             audio_path=self.audio_path_mono,
             f0_data=[(self.melody, "annotated melody")],
-            metadata=self._track_metadata,
+            metadata=self._clip_metadata,
         )
 
 
@@ -254,7 +254,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             name="orchset",
-            track_class=Track,
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
@@ -282,9 +282,9 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-            track_id = line[0].split(".")[0]
+            clip_id = line[0].split(".")[0]
 
-            id_split = track_id.split(".")[0].split("-")
+            id_split = clip_id.split(".")[0].split("-")
             if id_split[0] == "Musorgski" or id_split[0] == "Rimski":
                 id_split[0] = "-".join(id_split[:2])
                 id_split.pop(1)
@@ -300,7 +300,7 @@ class Dataset(core.Dataset):
                     melodic_instruments[i] = "winds"
             melodic_instruments = sorted(list(set(melodic_instruments)))
 
-            metadata_index[track_id] = {
+            metadata_index[clip_id] = {
                 "predominant_melodic_instruments-raw": line[1],
                 "predominant_melodic_instruments-normalized": melodic_instruments,
                 "alternating_melody": tf_dict[line[2]],
