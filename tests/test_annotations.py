@@ -20,6 +20,27 @@ def test_repr():
     assert beat_data.__repr__() == "BeatData(positions, times)"
 
 
+def test_events():
+    # test good data
+    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
+    labels = ["Siren", "Laughter", "Engine"]
+    confidence = np.array([1, 0.5, 0.2])
+    events = annotations.Events(intervals, labels, confidence)
+    assert np.allclose(events.intervals, intervals)
+    assert events.labels == labels
+    assert np.allclose(events.confidence, confidence)
+
+    # test bad data
+    bad_intervals = np.array([[1.0, 0.0], [1.5, 3.0], [2.0, 3.0]])
+    pytest.raises(ValueError, annotations.Events, bad_intervals, labels, confidence)
+
+    bad_labels = ["Siren", "Laughter", 5]
+    pytest.raises(TypeError, annotations.Events, intervals, bad_labels, confidence)
+
+    bad_confidence = np.array([1, 0.5, -0.2])
+    pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
+
+
 def test_beat_data():
     times = np.array([1.0, 2.0])
     positions = np.array([3, 4])
