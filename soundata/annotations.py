@@ -12,6 +12,40 @@ class Annotation(object):
         return repr_str
 
 
+class Tags(Annotation):
+    """Tags class
+
+    Attributes:
+        tags (list): list of tags (strings)
+    """
+
+    def __init__(self, tags, confidence=None) -> None:
+        validate_array_like(tags, list, str)
+        validate_array_like(confidence, np.ndarray, float, none_allowed=True)
+        self.tags = tags
+        self.confidence = confidence
+
+class Events(Annotation):
+    """Events class
+
+    Parameters
+    ----------
+    Annotation : [type]
+        [description]
+    """
+    def __init__(self, intervals, labels, confidence=None) -> None:
+        validate_array_like(intervals, np.ndarray, float)
+        validate_array_like(labels, np.ndarray, str)
+        validate_array_like(confidence, np.ndarray, float, none_allowed=True)
+        validate_lengths_equal([intervals, labels, confidence])
+        validate_intervals(intervals)
+        validate_confidence(confidence)
+
+        self.intervals = intervals
+        self.labels = labels
+        self.confidence = confidence
+
+
 class BeatData(Annotation):
     """BeatData class
 
