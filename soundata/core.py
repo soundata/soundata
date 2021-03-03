@@ -91,7 +91,7 @@ class Dataset(object):
         remotes (dict or None): data to be downloaded
         readme (str): information about the dataset
         clip (function): a function mapping a clip_id to a soundata.core.Clip
-        multitrack (function): a function mapping a mtrack_id to a soundata.core.Multitrack
+        clipgroup (function): a function mapping a clipgroup_id to a soundata.core.Clipgroup
 
     """
 
@@ -100,7 +100,7 @@ class Dataset(object):
         data_home=None,
         name=None,
         clip_class=None,
-        multitrack_class=None,
+        clipgroup_class=None,
         bibtex=None,
         remotes=None,
         download_info=None,
@@ -113,7 +113,7 @@ class Dataset(object):
             data_home (str or None): path where soundata will look for the dataset
             name (str or None): the identifier of the dataset
             clip_class (soundata.core.Clip or None): a Clip class
-            multitrack_class (soundata.core.Multitrack or None): a Multitrack class
+            clipgroup_class (soundata.core.Clipgroup or None): a Clipgroup class
             bibtex (str or None): dataset citation/s in bibtex format
             remotes (dict or None): data to be downloaded
             download_info (str or None): download instructions or caveats
@@ -133,8 +133,8 @@ class Dataset(object):
                 "{}_index.json".format(self.name),
             )
             self.remote_index = False
-        self._track_class = clip_class
-        self._multitrack_class = multitrack_class
+        self._clip_class = clip_class
+        self._clipgroup_class = clipgroup_class
         self.bibtex = bibtex
         self.remotes = remotes
         self._download_info = download_info
@@ -142,10 +142,10 @@ class Dataset(object):
         self.readme = "{}#module-soundata.datasets.{}".format(DOCS_URL, self.name)
 
         # this is a hack to be able to have dataset-specific docstrings
-        self.clip = lambda clip_id: self._track(clip_id)
-        self.clip.__doc__ = self._track_class.__doc__  # set the docstring
-        self.multitrack = lambda mtrack_id: self._multitrack(mtrack_id)
-        self.multitrack.__doc__ = self._multitrack_class.__doc__  # set the docstring
+        self.clip = lambda clip_id: self._clip(clip_id)
+        self.clip.__doc__ = self._clip_class.__doc__  # set the docstring
+        self.clipgroup = lambda clipgroup_id: self._clipgroup(clipgroup_id)
+        self.clipgroup.__doc__ = self._clipgroup_class.__doc__  # set the docstring
 
     def __repr__(self):
         repr_string = "The {} dataset\n".format(self.name)
@@ -154,12 +154,12 @@ class Dataset(object):
         repr_string += "Call the .cite method for bibtex citations.\n"
         repr_string += "-" * MAX_STR_LEN
         repr_string += "\n\n\n"
-        if self._track_class is not None:
+        if self._clip_class is not None:
             repr_string += self.clip.__doc__
             repr_string += "-" * MAX_STR_LEN
             repr_string += "\n"
-        if self._multitrack_class is not None:
-            repr_string += self.multitrack.__doc__
+        if self._clipgroup_class is not None:
+            repr_string += self.clipgroup.__doc__
             repr_string += "-" * MAX_STR_LEN
             repr_string += "\n"
 
@@ -190,7 +190,7 @@ class Dataset(object):
         mir_datasets_dir = os.path.join(os.getenv("HOME", "/tmp"), "mir_datasets")
         return os.path.join(mir_datasets_dir, self.name)
 
-    def _track(self, clip_id):
+    def _clip(self, clip_id):
         """Load a clip by clip_id.
 
         Hidden helper function that gets called as a lambda.
@@ -202,10 +202,10 @@ class Dataset(object):
            Clip: a Clip object
 
         """
-        if self._track_class is None:
-            raise AttributeError("This dataset does not have tracks")
+        if self._clip_class is None:
+            raise AttributeError("This dataset does not have clips")
         else:
-            return self._track_class(
+            return self._clip_class(
                 clip_id,
                 self.data_home,
                 self.name,
@@ -213,57 +213,57 @@ class Dataset(object):
                 lambda: self._metadata,
             )
 
-    def _multitrack(self, mtrack_id):
-        """Load a multitrack by mtrack_id.
+    def _clipgroup(self, clipgroup_id):
+        """Load a clipgroup by clipgroup_id.
 
         Hidden helper function that gets called as a lambda.
 
         Args:
-            mtrack_id (str): mtrack id of the multitrack
+            clipgroup_id (str): clipgroup id of the clipgroup
 
         Returns:
-            MultiTrack: an instance of this dataset's MultiTrack object
+            ClipGroup: an instance of this dataset's ClipGroup object
 
         """
-        if self._multitrack_class is None:
-            raise AttributeError("This dataset does not have multitracks")
+        if self._clipgroup_class is None:
+            raise AttributeError("This dataset does not have clipgroups")
         else:
-            return self._multitrack_class(
-                mtrack_id,
+            return self._clipgroup_class(
+                clipgroup_id,
                 self.data_home,
                 self.name,
                 self._index,
-                self._track_class,
+                self._clip_class,
                 lambda: self._metadata,
             )
 
-    def load_tracks(self):
-        """Load all tracks in the dataset
+    def load_clips(self):
+        """Load all clips in the dataset
 
         Returns:
             dict:
                 {`clip_id`: clip data}
 
         Raises:
-            NotImplementedError: If the dataset does not support Tracks
+            NotImplementedError: If the dataset does not support Clips
 
         """
         return {clip_id: self.clip(clip_id) for clip_id in self.clip_ids}
 
-    def load_multitracks(self):
-        """Load all multitracks in the dataset
+    def load_clipgroups(self):
+        """Load all clipgroups in the dataset
 
         Returns:
             dict:
-                {`mtrack_id`: multitrack data}
+                {`clipgroup_id`: clipgroup data}
 
         Raises:
-            NotImplementedError: If the dataset does not support Multitracks
+            NotImplementedError: If the dataset does not support Clipgroups
 
         """
-        return {mtrack_id: self.multitrack(mtrack_id) for mtrack_id in self.mtrack_ids}
+        return {clipgroup_id: self.clipgroup(clipgroup_id) for clipgroup_id in self.clipgroup_ids}
 
-    def choice_track(self):
+    def choice_clip(self):
         """Choose a random clip
 
         Returns:
@@ -272,14 +272,14 @@ class Dataset(object):
         """
         return self.clip(random.choice(self.clip_ids))
 
-    def choice_multitrack(self):
-        """Choose a random multitrack
+    def choice_clipgroup(self):
+        """Choose a random clipgroup
 
         Returns:
-            Multitrack: a Multitrack object instantiated by a random mtrack_id
+            Clipgroup: a Clipgroup object instantiated by a random clipgroup_id
 
         """
-        return self.multitrack(random.choice(self.mtrack_ids))
+        return self.clipgroup(random.choice(self.clipgroup_ids))
 
     def cite(self):
         """
@@ -330,21 +330,21 @@ class Dataset(object):
             list: A list of clip ids
 
         """
-        if "tracks" not in self._index:
-            raise AttributeError("This dataset does not have tracks")
-        return list(self._index["tracks"].keys())
+        if "clips" not in self._index:
+            raise AttributeError("This dataset does not have clips")
+        return list(self._index["clips"].keys())
 
     @cached_property
-    def mtrack_ids(self):
+    def clipgroup_ids(self):
         """Return clip ids
 
         Returns:
             list: A list of clip ids
 
         """
-        if "multitracks" not in self._index:
-            raise AttributeError("This dataset does not have multitracks")
-        return list(self._index["multitracks"].keys())
+        if "clipgroups" not in self._index:
+            raise AttributeError("This dataset does not have clipgroups")
+        return list(self._index["clipgroups"].keys())
 
     def validate(self, verbose=True):
         """Validate if the stored dataset is a valid version
@@ -394,7 +394,7 @@ class Clip(object):
             metadata (function or None): a function returning a dictionary of metadata or None
 
         """
-        if clip_id not in index["tracks"]:
+        if clip_id not in index["clips"]:
             raise ValueError(
                 "{} is not a valid clip_id in {}".format(clip_id, dataset_name)
             )
@@ -403,7 +403,7 @@ class Clip(object):
         self._dataset_name = dataset_name
 
         self._data_home = data_home
-        self._clip_paths = index["tracks"][clip_id]
+        self._clip_paths = index["clips"][clip_id]
         self._metadata = metadata
 
     @property
@@ -467,81 +467,81 @@ class Clip(object):
             return os.path.join(self._data_home, self._clip_paths[key][0])
 
 
-class MultiTrack(Clip):
-    """MultiTrack class.
+class ClipGroup(Clip):
+    """ClipGroup class.
 
-    A multitrack class is a collection of clip objects and their associated audio
+    A clipgroup class is a collection of clip objects and their associated audio
     that can be mixed together.
-    A multitrack is itself a Clip, and can have its own associated audio (such as
+    A clipgroup is itself a Clip, and can have its own associated audio (such as
     a mastered mix), its own metadata and its own annotations.
 
     """
 
     def __init__(
         self,
-        mtrack_id,
+        clipgroup_id,
         data_home,
         dataset_name,
         index,
         clip_class,
         metadata,
     ):
-        """Multitrack init method. Sets boilerplate attributes, including:
+        """Clipgroup init method. Sets boilerplate attributes, including:
 
-        - ``mtrack_id``
+        - ``clipgroup_id``
         - ``_dataset_name``
         - ``_data_home``
-        - ``_multitrack_paths``
-        - ``_multitrack_metadata``
+        - ``_clipgroup_paths``
+        - ``_clipgroup_metadata``
 
         Args:
-            mtrack_id (str): multitrack id
+            clipgroup_id (str): clipgroup id
             data_home (str): path where soundata will look for the dataset
             dataset_name (str): the identifier of the dataset
             index (dict): the dataset's file index
             metadata (function or None): a function returning a dictionary of metadata or None
 
         """
-        if mtrack_id not in index["multitracks"]:
+        if clipgroup_id not in index["clipgroups"]:
             raise ValueError(
-                "{} is not a valid mtrack_id in {}".format(mtrack_id, dataset_name)
+                "{} is not a valid clipgroup_id in {}".format(clipgroup_id, dataset_name)
             )
 
-        self.mtrack_id = mtrack_id
+        self.clipgroup_id = clipgroup_id
         self._dataset_name = dataset_name
 
         self._data_home = data_home
-        self._multitrack_paths = index["multitracks"][self.mtrack_id]
+        self._clipgroup_paths = index["clipgroups"][self.clipgroup_id]
         self._metadata = metadata
-        self._track_class = clip_class
+        self._clip_class = clip_class
 
         self._index = index
-        self.clip_ids = self._index["multitracks"][self.mtrack_id]["tracks"]
+        self.clip_ids = self._index["clipgroups"][self.clipgroup_id]["clips"]
 
     @property
-    def tracks(self):
+    def clips(self):
         return {
-            t: self._track_class(
+            t: self._clip_class(
                 t, self._data_home, self._dataset_name, self._index, self._metadata
             )
             for t in self.clip_ids
         }
 
     @property
-    def track_audio_property(self):
+    def clip_audio_property(self):
         raise NotImplementedError("Mixing is not supported for this dataset")
 
     @property
-    def _multitrack_metadata(self):
+    def _clipgroup_metadata(self):
         metadata = self._metadata()
-        if metadata and self.mtrack_id in metadata:
-            return metadata[self.mtrack_id]
+        if metadata and self.clipgroup_id in metadata:
+            return metadata[self.clipgroup_id]
         elif metadata:
             return metadata
-        raise AttributeError("This MultiTrack does not have metadata")
+        raise AttributeError("This ClipGroup does not have metadata")
 
     def get_path(self, key):
-        """Get absolute path to multitrack audio and annotations. Returns None if
+        """Get absolute path to clipgroup audio and annotations. Returns None if
         the path in the index is None
 
         Args:
@@ -551,20 +551,20 @@ class MultiTrack(Clip):
             str or None: joined path string or None
 
         """
-        if self._multitrack_paths[key][0] is None:
+        if self._clipgroup_paths[key][0] is None:
             return None
         else:
-            return os.path.join(self._data_home, self._multitrack_paths[key][0])
+            return os.path.join(self._data_home, self._clipgroup_paths[key][0])
 
-    def get_target(self, track_keys, weights=None, average=True, enforce_length=True):
-        """Get target which is a linear mixture of tracks
+    def get_target(self, clip_keys, weights=None, average=True, enforce_length=True):
+        """Get target which is a linear mixture of clips
 
         Args:
-            track_keys (list): list of clip keys to mix together
+            clip_keys (list): list of clip keys to mix together
             weights (list or None): list of positive scalars to be used in the average
-            average (bool): if True, computes a weighted average of the tracks
-                if False, computes a weighted sum of the tracks
-            enforce_length (bool): If True, raises ValueError if the tracks are
+            average (bool): if True, computes a weighted average of the clips
+                if False, computes a weighted sum of the clips
+            enforce_length (bool): If True, raises ValueError if the clips are
                 not the same length. If False, pads audio with zeros to match the length
                 of the longest clip
 
@@ -573,15 +573,15 @@ class MultiTrack(Clip):
 
         Raises:
             ValueError:
-                if sample rates of the tracks are not equal
+                if sample rates of the clips are not equal
                 if enforce_length=True and lengths are not equal
 
         """
         signals = []
         lengths = []
         sample_rates = []
-        for k in track_keys:
-            audio, sample_rate = getattr(self.tracks[k], self.track_audio_property)
+        for k in clip_keys:
+            audio, sample_rate = getattr(self.clips[k], self.clip_audio_property)
             # ensure all signals are shape (n_channels, n_samples)
             if len(audio.shape) == 1:
                 audio = audio[np.newaxis, :]
@@ -591,8 +591,8 @@ class MultiTrack(Clip):
 
         if len(set(sample_rates)) > 1:
             raise ValueError(
-                "Sample rates for tracks {} are not equal: {}".format(
-                    track_keys, sample_rates
+                "Sample rates for clips {} are not equal: {}".format(
+                    clip_keys, sample_rates
                 )
             )
 
@@ -601,7 +601,7 @@ class MultiTrack(Clip):
             if enforce_length:
                 raise ValueError(
                     "Clip's {} audio are not the same length {}. Use enforce_length=False to pad with zeros.".format(
-                        track_keys, lengths
+                        clip_keys, lengths
                     )
                 )
             else:
@@ -612,7 +612,7 @@ class MultiTrack(Clip):
                 ]
 
         if weights is None:
-            weights = np.ones((len(track_keys),))
+            weights = np.ones((len(clip_keys),))
 
         target = np.average(signals, axis=0, weights=weights)
         if not average:
@@ -620,39 +620,39 @@ class MultiTrack(Clip):
 
         return target
 
-    def get_random_target(self, n_tracks=None, min_weight=0.3, max_weight=1.0):
-        """Get a random target by combining a random selection of tracks with random weights
+    def get_random_target(self, n_clips=None, min_weight=0.3, max_weight=1.0):
+        """Get a random target by combining a random selection of clips with random weights
 
         Args:
-            n_tracks (int or None): number of tracks to randomly mix. If None, uses all tracks
+            n_clips (int or None): number of clips to randomly mix. If None, uses all clips
             min_weight (float): minimum possible weight when mixing
             max_weight (float): maximum possible weight when mixing
 
         Returns:
             * np.ndarray - mixture audio with shape (n_samples, n_channels)
-            * list - list of keys of included tracks
-            * list - list of weights used to mix tracks
+            * list - list of keys of included clips
+            * list - list of weights used to mix clips
 
         """
-        tracks = list(self.tracks.keys())
-        assert len(tracks) > 0
-        if n_tracks is not None and n_tracks < len(tracks):
-            tracks = np.random.choice(tracks, n_tracks, replace=False)
+        clips = list(self.clips.keys())
+        assert len(clips) > 0
+        if n_clips is not None and n_clips < len(clips):
+            clips = np.random.choice(clips, n_clips, replace=False)
 
-        weights = np.random.uniform(low=min_weight, high=max_weight, size=len(tracks))
-        target = self.get_target(tracks, weights=weights)
-        return target, tracks, weights
+        weights = np.random.uniform(low=min_weight, high=max_weight, size=len(clips))
+        target = self.get_target(clips, weights=weights)
+        return target, clips, weights
 
     def get_mix(self):
-        """Create a linear mixture given a subset of tracks.
+        """Create a linear mixture given a subset of clips.
 
         Args:
-            track_keys (list): list of clip keys to mix together
+            clip_keys (list): list of clip keys to mix together
 
         Returns:
             np.ndarray: mixture audio with shape (n_samples, n_channels)
 
         """
-        tracks = list(self.tracks.keys())
-        assert len(tracks) > 0
-        return self.get_target(tracks)
+        clips = list(self.clips.keys())
+        assert len(clips) > 0
+        return self.get_target(clips)
