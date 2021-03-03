@@ -16,13 +16,13 @@ class Tags(Annotation):
     """Tags class
 
     Attributes:
-        tags (list): list of tags (strings)
+        labels (list): list of string tags
     """
 
-    def __init__(self, tags, confidence=None) -> None:
-        validate_array_like(tags, list, str)
+    def __init__(self, labels, confidence=None) -> None:
+        validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
-        self.tags = tags
+        self.labels = labels
         self.confidence = confidence
 
 class Events(Annotation):
