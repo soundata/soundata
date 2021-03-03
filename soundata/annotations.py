@@ -22,6 +22,8 @@ class Tags(Annotation):
     def __init__(self, labels, confidence=None) -> None:
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
+        validate_confidence(confidence)
+        validate_lengths_equal([labels, confidence])
         self.labels = labels
         self.confidence = confidence
 
