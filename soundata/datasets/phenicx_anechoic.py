@@ -258,8 +258,7 @@ class MultiTrack(core.MultiTrack):
 
         #### parse the keys for the dictionary of instruments and strings
         self.instruments = {
-            source.replace(self.mclip_id + "-", ""): source
-            for source in self.clip_ids
+            source.replace(self.mclip_id + "-", ""): source for source in self.clip_ids
         }
         self.sections = {"brass": [], "strings": [], "woodwinds": []}
         for instrument, clip_id in self.instruments.items():
