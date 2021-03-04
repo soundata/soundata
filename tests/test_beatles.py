@@ -2,14 +2,14 @@ import numpy as np
 
 from soundata.datasets import beatles
 from soundata import annotations
-from tests.test_utils import run_track_tests
+from tests.test_utils import run_clip_tests
 
 
-def test_track():
-    default_trackid = "0111"
+def test_clip():
+    default_clipid = "0111"
     data_home = "tests/resources/mir_datasets/beatles"
     dataset = beatles.Dataset(data_home)
-    track = dataset.clip(default_trackid)
+    clip = dataset.clip(default_clipid)
 
     expected_attributes = {
         "audio_path": "tests/resources/mir_datasets/beatles/"
@@ -34,27 +34,27 @@ def test_track():
         "audio": tuple,
     }
 
-    run_track_tests(track, expected_attributes, expected_property_types)
+    run_clip_tests(clip, expected_attributes, expected_property_types)
 
-    audio, sr = track.audio
+    audio, sr = clip.audio
     assert sr == 44100, "sample rate {} is not 44100".format(sr)
     assert audio.shape == (44100 * 2,), "audio shape {} was not (88200,)".format(
         audio.shape
     )
 
-    track = dataset.clip("10212")
-    assert track.beats is None, "expected track.beats to be None, got {}".format(
-        track.beats
+    clip = dataset.clip("10212")
+    assert clip.beats is None, "expected clip.beats to be None, got {}".format(
+        clip.beats
     )
-    assert track.key is None, "expected track.key to be None, got {}".format(track.key)
+    assert clip.key is None, "expected clip.key to be None, got {}".format(clip.key)
 
 
 def test_to_jams():
 
     data_home = "tests/resources/mir_datasets/beatles"
     dataset = beatles.Dataset(data_home)
-    track = dataset.clip("0111")
-    jam = track.to_jams()
+    clip = dataset.clip("0111")
+    jam = clip.to_jams()
 
     beats = jam.search(namespace="beat")[0]["data"]
     assert [beat.time for beat in beats] == [

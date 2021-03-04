@@ -69,9 +69,9 @@ def test_dataset_attributes():
         assert (
             isinstance(dataset._download_info, str) or dataset._download_info is None
         ), "{}.DOWNLOAD_INFO must be a string".format(dataset_name)
-        assert type(dataset._track_class) == type(
+        assert type(dataset._clip_class) == type(
             core.Clip
-        ), "{}.Track must be an instance of core.Track".format(dataset_name)
+        ), "{}.Track must be an instance of core.Clip".format(dataset_name)
         assert callable(dataset.download), "{}.download is not a function".format(
             dataset_name
         )
@@ -180,7 +180,7 @@ def test_validate(skip_local):
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
 
-def test_load_and_trackids():
+def test_load_and_clipids():
     for dataset_name in DATASETS:
         data_home = os.path.join("tests/resources/mir_datasets", dataset_name)
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
@@ -193,22 +193,22 @@ def test_load_and_trackids():
         assert type(clip_ids) is list, "{}.clip_ids() should return a list".format(
             dataset_name
         )
-        trackid_len = len(clip_ids)
-        # if the dataset has tracks, test the loaders
-        if dataset._track_class is not None:
+        clipid_len = len(clip_ids)
+        # if the dataset has clips, test the loaders
+        if dataset._clip_class is not None:
 
             try:
-                choice_track = dataset.choice_track()
+                choice_clip = dataset.choice_clip()
             except:
                 assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
             assert isinstance(
-                choice_track, core.Clip
-            ), "{}.choice_track must return an instance of type core.Track".format(
+                choice_clip, core.Clip
+            ), "{}.choice_clip must return an instance of type core.Clip".format(
                 dataset_name
             )
 
             try:
-                dataset_data = dataset.load_tracks()
+                dataset_data = dataset.load_clips()
             except:
                 assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
@@ -216,13 +216,13 @@ def test_load_and_trackids():
                 dataset_data, dict
             ), "{}.load should return a dictionary".format(dataset_name)
             assert (
-                len(dataset_data.keys()) == trackid_len
+                len(dataset_data.keys()) == clipid_len
             ), "the dictionary returned {}.load() does not have the same number of elements as {}.clip_ids()".format(
                 dataset_name, dataset_name
             )
 
 
-def test_track():
+def test_clip():
     data_home_dir = "tests/resources/mir_datasets"
 
     for dataset_name in DATASETS:
@@ -231,11 +231,11 @@ def test_track():
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
-        # if the dataset doesn't have a track object, make sure it raises a value error
+        # if the dataset doesn't have a clip object, make sure it raises a value error
         # and move on to the next dataset
-        if dataset._track_class is None:
+        if dataset._clip_class is None:
             with pytest.raises(NotImplementedError):
-                dataset.clip("~faketrackid~?!")
+                dataset.clip("~fakeclipid~?!")
             continue
 
         if dataset_name in CUSTOM_TEST_TRACKS:
@@ -245,37 +245,37 @@ def test_track():
 
         # test data home specified
         try:
-            track_test = dataset.clip(clipid)
+            clip_test = dataset.clip(clipid)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         assert isinstance(
-            track_test, core.Clip
-        ), "{}.track must be an instance of type core.Track".format(dataset_name)
+            clip_test, core.Clip
+        ), "{}.clip must be an instance of type core.Clip".format(dataset_name)
 
         assert hasattr(
-            track_test, "to_jams"
-        ), "{}.track must have a to_jams method".format(dataset_name)
+            clip_test, "to_jams"
+        ), "{}.clip must have a to_jams method".format(dataset_name)
 
         # test calling all attributes, properties and cached properties
-        track_data = get_attributes_and_properties(track_test)
+        clip_data = get_attributes_and_properties(clip_test)
 
-        for attr in track_data["attributes"]:
-            ret = getattr(track_test, attr)
+        for attr in clip_data["attributes"]:
+            ret = getattr(clip_test, attr)
 
-        for prop in track_data["properties"]:
-            ret = getattr(track_test, prop)
+        for prop in clip_data["properties"]:
+            ret = getattr(clip_test, prop)
 
-        for cprop in track_data["cached_properties"]:
-            ret = getattr(track_test, cprop)
+        for cprop in clip_data["cached_properties"]:
+            ret = getattr(clip_test, cprop)
 
         # Validate JSON schema
         try:
-            jam = track_test.to_jams()
+            jam = clip_test.to_jams()
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
-        assert jam.validate(), "Jams validation failed for {}.track({})".format(
+        assert jam.validate(), "Jams validation failed for {}.clip({})".format(
             dataset_name, clipid
         )
 
@@ -283,20 +283,20 @@ def test_track():
         try:
             text_trap = io.StringIO()
             sys.stdout = text_trap
-            print(track_test)
+            print(clip_test)
             sys.stdout = sys.__stdout__
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         with pytest.raises(ValueError):
-            dataset.clip("~faketrackid~?!")
+            dataset.clip("~fakeclipid~?!")
 
 
 # This tests the case where there is no data in data_home.
-# It makes sure that the track can be initialized and the
+# It makes sure that the clip can be initialized and the
 # attributes accessed, but that anything requiring data
 # files errors (all properties and cached properties).
-def test_track_placeholder_case():
+def test_clip_placeholder_case():
     data_home_dir = "not/a/real/path"
 
     for dataset_name in DATASETS:
@@ -305,7 +305,7 @@ def test_track_placeholder_case():
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(data_home, dataset_name))
 
-        if dataset._track_class is None or dataset.remote_index:
+        if dataset._clip_class is None or dataset.remote_index:
             continue
 
         if dataset_name in CUSTOM_TEST_TRACKS:
@@ -314,22 +314,22 @@ def test_track_placeholder_case():
             clipid = dataset.clip_ids[0]
 
         try:
-            track_test = dataset.clip(clipid)
+            clip_test = dataset.clip(clipid)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
-        track_data = get_attributes_and_properties(track_test)
+        clip_data = get_attributes_and_properties(clip_test)
 
-        for attr in track_data["attributes"]:
-            ret = getattr(track_test, attr)
+        for attr in clip_data["attributes"]:
+            ret = getattr(clip_test, attr)
 
-        for prop in track_data["properties"]:
+        for prop in clip_data["properties"]:
             with pytest.raises(Exception):
-                ret = getattr(track_test, prop)
+                ret = getattr(clip_test, prop)
 
-        for cprop in track_data["cached_properties"]:
+        for cprop in clip_data["cached_properties"]:
             with pytest.raises(Exception):
-                ret = getattr(track_test, cprop)
+                ret = getattr(clip_test, cprop)
 
 
 # for load_* functions which require more than one argument
@@ -374,7 +374,7 @@ def test_load_methods():
             method_name = load_method.__name__
 
             # skip default methods
-            if method_name == "load_tracks" or method_name == "load_multitracks":
+            if method_name == "load_clips" or method_name == "load_clipgroups":
                 continue
 
             # skip overrides, add to the SKIP dictionary to skip a specific load method
@@ -408,7 +408,7 @@ def test_load_methods():
 CUSTOM_TEST_MTRACKS = {}
 
 
-def test_multitracks():
+def test_clipgroups():
     data_home_dir = "tests/resources/mir_datasets"
 
     for dataset_name in DATASETS:
@@ -419,13 +419,13 @@ def test_multitracks():
         # TODO this is currently an opt-in test. Make it an opt out test
         # once #265 is addressed
         if dataset_name in CUSTOM_TEST_MTRACKS:
-            mtrack_id = CUSTOM_TEST_MTRACKS[dataset_name]
+            clipgroup_id = CUSTOM_TEST_MTRACKS[dataset_name]
         else:
-            # there are no multitracks
+            # there are no clipgroups
             continue
 
         try:
-            mtrack_default = dataset.MultiTrack(mtrack_id)
+            clipgroup_default = dataset.ClipGroup(clipgroup_id)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
@@ -433,26 +433,26 @@ def test_multitracks():
         data_home = os.path.join(data_home_dir, dataset_name)
         dataset_specific = soundata.initialize(dataset_name, data_home=data_home)
         try:
-            mtrack_test = dataset_specific.MultiTrack(mtrack_id, data_home=data_home)
+            clipgroup_test = dataset_specific.ClipGroup(clipgroup_id, data_home=data_home)
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
         assert isinstance(
-            mtrack_test, core.MultiTrack
-        ), "{}.MultiTrack must be an instance of type core.MultiTrack".format(
+            clipgroup_test, core.ClipGroup
+        ), "{}.ClipGroup must be an instance of type core.ClipGroup".format(
             dataset_name
         )
 
         assert hasattr(
-            mtrack_test, "to_jams"
-        ), "{}.MultiTrack must have a to_jams method".format(dataset_name)
+            clipgroup_test, "to_jams"
+        ), "{}.ClipGroup must have a to_jams method".format(dataset_name)
 
         # Validate JSON schema
         try:
-            jam = mtrack_test.to_jams()
+            jam = clipgroup_test.to_jams()
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 
-        assert jam.validate(), "Jams validation failed for {}.MultiTrack({})".format(
-            dataset_name, mtrack_id
+        assert jam.validate(), "Jams validation failed for {}.ClipGroup({})".format(
+            dataset_name, clipgroup_id
         )
