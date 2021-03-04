@@ -76,14 +76,14 @@ def validate_files(file_dict, data_home, verbose):
     missing = {}
     invalid = {}
     for file_id, file in tqdm.tqdm(file_dict.items(), disable=not verbose):
-        for tracks in file.keys():
-            # multitrack case
-            if tracks == "tracks":
+        for clips in file.keys():
+            # clipgroup case
+            if clips == "clips":
                 continue
-            # tracks
+            # clips
             else:
-                filepath = file[tracks][0]
-                checksum = file[tracks][1]
+                filepath = file[clips][0]
+                checksum = file[clips][1]
                 if filepath is not None:
                     local_path = os.path.join(data_home, filepath)
                     exists, valid = validate(local_path, checksum)
@@ -158,23 +158,23 @@ def validate_index(dataset_index, data_home, verbose=True):
         missing_files["metadata"] = missing_metadata
         invalid_checksums["metadata"] = invalid_metadata
 
-    if "tracks" in dataset_index and dataset_index["tracks"] is not None:
-        missing_tracks, invalid_tracks = validate_files(
-            dataset_index["tracks"],
+    if "clips" in dataset_index and dataset_index["clips"] is not None:
+        missing_clips, invalid_clips = validate_files(
+            dataset_index["clips"],
             data_home,
             verbose,
         )
-        missing_files["tracks"] = missing_tracks
-        invalid_checksums["tracks"] = invalid_tracks
+        missing_files["clips"] = missing_clips
+        invalid_checksums["clips"] = invalid_clips
 
-    if "multitracks" in dataset_index and dataset_index["multitracks"] is not None:
-        missing_multitracks, invalid_multitracks = validate_files(
-            dataset_index["multitracks"],
+    if "clipgroups" in dataset_index and dataset_index["clipgroups"] is not None:
+        missing_clipgroups, invalid_clipgroups = validate_files(
+            dataset_index["clipgroups"],
             data_home,
             verbose,
         )
-        missing_files["multitracks"] = missing_multitracks
-        invalid_checksums["multitracks"] = invalid_multitracks
+        missing_files["clipgroups"] = missing_clipgroups
+        invalid_checksums["clipgroups"] = invalid_clipgroups
 
     return missing_files, invalid_checksums
 

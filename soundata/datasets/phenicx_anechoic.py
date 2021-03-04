@@ -220,8 +220,8 @@ class Clip(core.Clip):
         )
 
 
-class MultiTrack(core.MultiTrack):
-    """Phenicx-Anechoic MultiTrack class
+class ClipGroup(core.ClipGroup):
+    """Phenicx-Anechoic ClipGroup class
 
     Args:
         mclip_id (str): track id of the track
@@ -418,7 +418,7 @@ class Dataset(core.Dataset):
             data_home,
             name="phenicx_anechoic",
             clip_class=Clip,
-            multitrack_class=MultiTrack,
+            clipgroup_class=ClipGroup,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
