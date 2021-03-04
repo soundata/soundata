@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "tracks": {
+  "clips": {
     "0001__1": {
       "audio": [
         "IRMAS-TrainingData/cel/[cel][cla]0001__1.wav",
