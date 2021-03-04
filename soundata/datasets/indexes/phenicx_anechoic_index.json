@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "tracks": {
+  "clips": {
     "beethoven-horn": {
       "audio_horn1": [
         "audio/beethoven/horn1.wav",
@@ -778,9 +778,9 @@
       ]
     }
   },
-  "multitracks": {
+  "clipgroups": {
     "beethoven": {
-      "tracks": [
+      "clips": [
         "beethoven-horn",
         "beethoven-doublebass",
         "beethoven-violin",
@@ -794,7 +794,7 @@
       ]
     },
     "bruckner": {
-      "tracks": [
+      "clips": [
         "bruckner-horn",
         "bruckner-doublebass",
         "bruckner-violin",
@@ -808,7 +808,7 @@
       ]
     },
     "mahler": {
-      "tracks": [
+      "clips": [
         "mahler-horn",
         "mahler-doublebass",
         "mahler-violin",
@@ -822,7 +822,7 @@
       ]
     },
     "mozart": {
-      "tracks": [
+      "clips": [
         "mozart-horn",
         "mozart-doublebass",
         "mozart-violin",

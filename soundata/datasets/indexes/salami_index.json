@@ -1,6 +1,6 @@
 {
   "version": "2.0-corrected",
-  "tracks": {
+  "clips": {
     "602": {
       "annotator_1_lowercase": [
         "salami-data-public-hierarchy-corrections/annotations/602/parsed/textfile1_lowercase.txt",

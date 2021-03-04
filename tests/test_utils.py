@@ -12,33 +12,33 @@ import pytest
 DEFAULT_DATA_HOME = os.path.join(os.getenv("HOME", "/tmp"), "mir_datasets")
 
 
-def run_track_tests(track, expected_attributes, expected_property_types):
-    track_attr = get_attributes_and_properties(track)
+def run_clip_tests(clip, expected_attributes, expected_property_types):
+    clip_attr = get_attributes_and_properties(clip)
 
-    # test track attributes
-    for attr in track_attr["attributes"]:
-        print("{}: {}".format(attr, getattr(track, attr)))
-        assert expected_attributes[attr] == getattr(track, attr)
+    # test clip attributes
+    for attr in clip_attr["attributes"]:
+        print("{}: {}".format(attr, getattr(clip, attr)))
+        assert expected_attributes[attr] == getattr(clip, attr)
 
-    # test track property types
-    for prop in track_attr["cached_properties"] + track_attr["properties"]:
-        print("{}: {}".format(prop, type(getattr(track, prop))))
+    # test clip property types
+    for prop in clip_attr["cached_properties"] + clip_attr["properties"]:
+        print("{}: {}".format(prop, type(getattr(clip, prop))))
         if prop in expected_property_types:
-            assert isinstance(getattr(track, prop), expected_property_types[prop])
+            assert isinstance(getattr(clip, prop), expected_property_types[prop])
         elif prop in expected_attributes:
-            assert expected_attributes[prop] == getattr(track, prop)
+            assert expected_attributes[prop] == getattr(clip, prop)
         else:
             assert (
                 False
             ), "{} not in expected_property_types or expected_attributes".format(prop)
 
 
-def run_multitrack_tests(mtrack):
-    tracks = getattr(mtrack, "tracks")
-    track_ids = getattr(mtrack, "track_ids")
-    assert list(tracks.keys()) == track_ids
-    for k, track in tracks.items():
-        assert getattr(track, "track_id") in track_ids
+def run_clipgroup_tests(clipgroup):
+    clips = getattr(clipgroup, "clips")
+    clip_ids = getattr(clipgroup, "clip_ids")
+    assert list(clips.keys()) == clip_ids
+    for k, clip in clips.items():
+        assert getattr(clip, "clip_id") in clip_ids
 
 
 def get_attributes_and_properties(class_instance):
@@ -105,16 +105,16 @@ def test_md5(mocker):
 @pytest.mark.parametrize(
     "test_index,expected_missing,expected_inv_checksum",
     [
-        ("test_index_valid.json", {"tracks": {}}, {"tracks": {}}),
+        ("test_index_valid.json", {"clips": {}}, {"clips": {}}),
         (
             "test_index_missing_file.json",
-            {"tracks": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
-            {"tracks": {}},
+            {"clips": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
+            {"clips": {}},
         ),
         (
             "test_index_invalid_checksum.json",
-            {"tracks": {}},
-            {"tracks": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
+            {"clips": {}},
+            {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
         ),
     ],
 )
@@ -135,14 +135,14 @@ def test_validate_index(test_index, expected_missing, expected_inv_checksum):
     "missing_files,invalid_checksums",
     [
         (
-            {"tracks": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
-            {"tracks": {}},
+            {"clips": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
+            {"clips": {}},
         ),
         (
-            {"tracks": {}},
-            {"tracks": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
+            {"clips": {}},
+            {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
         ),
-        ({"tracks": {}}, {"tracks": {}}),
+        ({"clips": {}}, {"clips": {}}),
     ],
 )
 def test_validator(mocker, mock_validate_index, missing_files, invalid_checksums):

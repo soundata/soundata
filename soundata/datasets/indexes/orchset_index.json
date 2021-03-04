@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "tracks": {
+  "clips": {
     "Beethoven-S3-I-ex1": {
       "audio_stereo": [
         "audio/stereo/Beethoven-S3-I-ex1.wav",

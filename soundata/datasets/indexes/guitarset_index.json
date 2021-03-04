@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "tracks": {
+  "clips": {
     "00_BN1-129-Eb_comp": {
       "audio_hex_cln": [
         "audio_hex-pickup_debleeded/00_BN1-129-Eb_comp_hex_cln.wav",
