@@ -10,7 +10,7 @@ Universitat Pompeu Fabra
 
 
 ===== INTRODUCTION ======
-The cante100 dataset contains 100 track taken from corpusCofla. Manual annotations include style family (10 different style families with 10 tracks each) and vocal sections. cante100 is a representative subsample of the full research corpus. All manual and automatic annotations as well as meta-information are publicly available for download. The full audio files are available on request for research purposes only. 
+The cante100 dataset contains 100 track taken from corpusCofla. Manual annotations include style family (10 different style families with 10 clips each) and vocal sections. cante100 is a representative subsample of the full research corpus. All manual and automatic annotations as well as meta-information are publicly available for download. The full audio files are available on request for research purposes only. 
 
 
 ===== CONTACT ======
@@ -74,7 +74,7 @@ dbanez@us.es
 
 
 ===== META-DATA ANNOTATIONS =====
-- XML file containing entries for all tracks
+- XML file containing entries for all clips
 - source: anthology name, CD no. and track no. 
 - editorial meta data: artist, title, style, duration min. and duration sec. 
 - MusicBrainzID (see www.musicbrainz.org)
