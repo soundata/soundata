@@ -433,7 +433,9 @@ def test_clipgroups():
         data_home = os.path.join(data_home_dir, dataset_name)
         dataset_specific = soundata.initialize(dataset_name, data_home=data_home)
         try:
-            clipgroup_test = dataset_specific.ClipGroup(clipgroup_id, data_home=data_home)
+            clipgroup_test = dataset_specific.ClipGroup(
+                clipgroup_id, data_home=data_home
+            )
         except:
             assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
 

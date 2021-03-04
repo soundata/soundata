@@ -261,7 +261,10 @@ class Dataset(object):
             NotImplementedError: If the dataset does not support Clipgroups
 
         """
-        return {clipgroup_id: self.clipgroup(clipgroup_id) for clipgroup_id in self.clipgroup_ids}
+        return {
+            clipgroup_id: self.clipgroup(clipgroup_id)
+            for clipgroup_id in self.clipgroup_ids
+        }
 
     def choice_clip(self):
         """Choose a random clip
@@ -504,7 +507,9 @@ class ClipGroup(Clip):
         """
         if clipgroup_id not in index["clipgroups"]:
             raise ValueError(
-                "{} is not a valid clipgroup_id in {}".format(clipgroup_id, dataset_name)
+                "{} is not a valid clipgroup_id in {}".format(
+                    clipgroup_id, dataset_name
+                )
             )
 
         self.clipgroup_id = clipgroup_id

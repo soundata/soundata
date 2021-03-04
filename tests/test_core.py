@@ -143,7 +143,7 @@ def test_clipgroup_repr():
     expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: \'a\', \'b\': 2},\n  clip_ids=[\'a\', \'b\', \'c\'],\n  """
     expected3 = """clipgroup_id="test",\n  e=None,\n  """
-    expected4 = """long="...{}",\n  """.format("b"*50 + "c" * 50)
+    expected4 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
     expected5 = """clip_audio_property: ,\n  clips: ,\n  f: ThisObjectType,\n  """
     expected6 = """g: I have an improper docstring,\n)"""
 
@@ -273,7 +273,12 @@ def test_clipgroup():
     metadata_none = lambda: None
 
     clipgroup_metadata_cidx = core.ClipGroup(
-        clipgroup_id, data_home, dataset_name, index, core.Clip, metadata_clipgroup_index
+        clipgroup_id,
+        data_home,
+        dataset_name,
+        index,
+        core.Clip,
+        metadata_clipgroup_index,
     )
     assert clipgroup_metadata_cidx._clipgroup_metadata == {"x": 1, "y": 2, "z": 3}
 
