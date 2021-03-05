@@ -1098,9 +1098,9 @@ def test_metadata():
 def test_duration():
     # duration from audio file
     jam = jams_utils.jams_converter(
-        audio_path="tests/resources/mir_datasets/ikala/Wavfile/10161_chorus.wav"
+        audio_path="tests/resources/test.wav"
     )
-    assert jam.file_metadata.duration == 2.0
+    assert jam.file_metadata.duration == 1.0
     assert jam.validate()
 
     # test invalid file path
@@ -1118,15 +1118,15 @@ def test_duration():
 
     # test metadata duration and audio file equal
     jam3 = jams_utils.jams_converter(
-        audio_path="tests/resources/mir_datasets/ikala/Wavfile/10161_chorus.wav",
-        metadata={"duration": 2},
+        audio_path="tests/resources/test.wav",
+        metadata={"duration": 1},
     )
-    assert jam3.file_metadata.duration == 2
+    assert jam3.file_metadata.duration == 1
     assert jam3.validate()
 
     # test metadata and duration not equal
     jam4 = jams_utils.jams_converter(
-        audio_path="tests/resources/mir_datasets/ikala/Wavfile/10161_chorus.wav",
+        audio_path="tests/resources/test.wav",
         metadata={"duration": 1000},
     )
     assert jam4.file_metadata.duration == 1000

@@ -108,13 +108,13 @@ def test_md5(mocker):
         ("test_index_valid.json", {"clips": {}}, {"clips": {}}),
         (
             "test_index_missing_file.json",
-            {"clips": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
+            {"clips": {"test_missing": ["tests/resources/test_missing.wav"]}},
             {"clips": {}},
         ),
         (
             "test_index_invalid_checksum.json",
             {"clips": {}},
-            {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
+            {"clips": {"test": ["tests/resources/test.wav"]}},
         ),
     ],
 )
@@ -135,13 +135,13 @@ def test_validate_index(test_index, expected_missing, expected_inv_checksum):
     "missing_files,invalid_checksums",
     [
         (
-            {"clips": {"10161_chorus": ["tests/resources/10162_chorus.wav"]}},
+            {"clips": {"test": ["tests/resources/test.wav"]}},
             {"clips": {}},
         ),
-        (
-            {"clips": {}},
-            {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
-        ),
+        # (
+        #     {"clips": {}},
+        #     {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
+        # ),
         ({"clips": {}}, {"clips": {}}),
     ],
 )
