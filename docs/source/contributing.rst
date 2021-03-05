@@ -284,7 +284,7 @@ For many more examples, see the `datasets folder <https://github.com/soundata/so
 
 To finish your contribution, include tests that check the integrity of your loader. For this, follow these steps:
 
-1. Make a toy version of the dataset in the tests folder ``tests/resources/mir_datasets/my_dataset/``,
+1. Make a toy version of the dataset in the tests folder ``tests/resources/sound_datasets/my_dataset/``,
    so you can test against little data. For example:
 
     * Include all audio and annotation files for one track of the dataset

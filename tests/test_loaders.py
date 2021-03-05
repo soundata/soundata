@@ -43,7 +43,7 @@ REMOTE_DATASETS = {
         "remote_checksum": "c5fbdd4f8b7de383796a34143cb44c4f",
     }
 }
-TEST_DATA_HOME = "tests/resources/mir_datasets"
+TEST_DATA_HOME = "tests/resources/sound_datasets"
 
 
 def test_dataset_attributes():
@@ -164,7 +164,7 @@ def test_download(mocker):
 # when tests are run with the --local flag
 def test_validate(skip_local):
     for dataset_name in DATASETS:
-        data_home = os.path.join("tests/resources/mir_datasets", dataset_name)
+        data_home = os.path.join("tests/resources/sound_datasets", dataset_name)
 
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
@@ -182,7 +182,7 @@ def test_validate(skip_local):
 
 def test_load_and_clipids():
     for dataset_name in DATASETS:
-        data_home = os.path.join("tests/resources/mir_datasets", dataset_name)
+        data_home = os.path.join("tests/resources/sound_datasets", dataset_name)
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
@@ -223,7 +223,7 @@ def test_load_and_clipids():
 
 
 def test_clip():
-    data_home_dir = "tests/resources/mir_datasets"
+    data_home_dir = "tests/resources/sound_datasets"
 
     for dataset_name in DATASETS:
         data_home = os.path.join(data_home_dir, dataset_name)
@@ -409,7 +409,7 @@ CUSTOM_TEST_MTRACKS = {}
 
 
 def test_clipgroups():
-    data_home_dir = "tests/resources/mir_datasets"
+    data_home_dir = "tests/resources/sound_datasets"
 
     for dataset_name in DATASETS:
 

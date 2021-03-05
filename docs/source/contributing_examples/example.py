@@ -137,7 +137,7 @@ class MultiTrack(core.MultiTrack):
     Args:
         mtrack_id (str): multitrack id
         data_home (str): Local path where the dataset is stored.
-            If `None`, looks for the data in the default directory, `~/mir_datasets/Example`
+            If `None`, looks for the data in the default directory, `~/sound_datasets/Example`
 
     Attributes:
         mtrack_id (str): track id

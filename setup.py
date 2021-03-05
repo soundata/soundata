@@ -1,4 +1,4 @@
-""" Setup script for mir_datasets. """
+""" Setup script for sound_datasets. """
 from importlib.machinery import SourceFileLoader
 from setuptools import setup, find_packages
 

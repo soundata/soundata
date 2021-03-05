@@ -7,15 +7,15 @@ from tests.test_utils import run_track_tests
 
 def test_track():
     default_trackid = "some_id"
-    data_home = "tests/resources/mir_datasets/dataset"
+    data_home = "tests/resources/sound_datasets/dataset"
     dataset = example.Dataset(data_home)
     track = dataset.track(default_trackid)
 
     expected_attributes = {
         "track_id": "some_id",
-        "audio_path": "tests/resources/mir_datasets/example/" + "Wavfile/some_id.wav",
+        "audio_path": "tests/resources/sound_datasets/example/" + "Wavfile/some_id.wav",
         "song_id": "some_id",
-        "annotation_path": "tests/resources/mir_datasets/example/annotation/some_id.pv",
+        "annotation_path": "tests/resources/sound_datasets/example/annotation/some_id.pv",
     }
 
     expected_property_types = {"annotation": annotations.XData}
@@ -36,7 +36,7 @@ def test_track():
 def test_to_jams():
 
     default_trackid = "some_id"
-    data_home = "tests/resources/mir_datasets/dataset"
+    data_home = "tests/resources/sound_datasets/dataset"
     dataset = example.Dataset(data_home)
     track = dataset.track(default_trackid)
     jam = track.to_jams()
@@ -52,7 +52,7 @@ def test_to_jams():
 
 def test_load_annotation():
     # load a file which exists
-    annotation_path = "tests/resources/mir_datasets/dataset/Annotation/some_id.pv"
+    annotation_path = "tests/resources/sound_datasets/dataset/Annotation/some_id.pv"
     annotation_data = example.load_annotation(annotation_path)
 
     # check types
@@ -66,7 +66,7 @@ def test_load_annotation():
 
 
 def test_metadata():
-    data_home = "tests/resources/mir_datasets/dataset"
+    data_home = "tests/resources/sound_datasets/dataset"
     dataset = example.Dataset(data_home)
     metadata = dataset._metadata
     assert metadata["some_id"] == "something"

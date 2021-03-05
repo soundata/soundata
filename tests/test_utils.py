@@ -9,7 +9,7 @@ from soundata import validate
 
 import pytest
 
-DEFAULT_DATA_HOME = os.path.join(os.getenv("HOME", "/tmp"), "mir_datasets")
+DEFAULT_DATA_HOME = os.path.join(os.getenv("HOME", "/tmp"), "sound_datasets")
 
 
 def run_clip_tests(clip, expected_attributes, expected_property_types):
