@@ -1,15 +1,15 @@
 { "version": null,
   "clips": {
-    "10161_chorus": {
+    "test_missing": {
       "audio": [
-        "10162_chorus.wav",
+        "test_missing.wav",
         "3f77d0d69dc41b3696f074ad6bf2852f"
       ]
     },
-    "10161_verse": {
+    "test": {
       "audio": [
-        "10161_verse.wav",
-        "3f77d0d69dc41b3696f074ad6bf2852f"
+        "test.wav",
+        "623560248732df138674f7afe337cd84"
       ]
     }
   },
