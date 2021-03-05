@@ -51,8 +51,8 @@ Contributing to soundata
 We welcome contributions to this library, especially new datasets.
 Please see :ref:`contributing` for guidelines.
 
-- `Issue Tracker <https://github.com/mir-dataset-loaders/soundata/issues>`_
-- `Source Code <https://github.com/mir-dataset-loaders/soundata>`_
+- `Issue Tracker <https://github.com/soundata/soundata/issues>`_
+- `Source Code <https://github.com/soundata/soundata>`_
 
 
 .. toctree::

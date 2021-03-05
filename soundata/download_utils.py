@@ -191,7 +191,7 @@ def download_from_remote(remote, save_dir, force_overwrite):
                             soundata failed to download the dataset from {}!
                             Please try again in a few minutes.
                             If this error persists, please raise an issue at
-                            https://github.com/mir-dataset-loaders/soundata,
+                            https://github.com/soundata/soundata,
                             and tag it with 'broken-link'.
                             """.format(
                     remote.url

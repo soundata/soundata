@@ -8,8 +8,8 @@ We encourage contributions to soundata, especially new dataset loaders. To contr
 steps indicated below and create a Pull Request (PR) to the github repository. For any doubt or comment about
 your contribution, you can always submit an issue or open a discussion in the repository.
 
-- `Issue Tracker <https://github.com/mir-dataset-loaders/soundata/issues>`_
-- `Source Code <https://github.com/mir-dataset-loaders/soundata>`_
+- `Issue Tracker <https://github.com/soundata/soundata/issues>`_
+- `Source Code <https://github.com/soundata/soundata>`_
 
 
 Installing soundata for development purposes
@@ -21,7 +21,7 @@ To install ``soundata`` for development purposes:
 
     .. code-block:: console
 
-        git clone https://github.com/mir-dataset-loaders/soundata.git
+        git clone https://github.com/soundata/soundata.git
 
     - Then, after opening source data library you have to install the dependencies for updating the documentation
       and running tests:
@@ -91,7 +91,7 @@ Here there is an example of an index to use as guideline:
     .. literalinclude:: contributing_examples/make_example_index.py
         :language: python
 
-More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/mir-dataset-loaders/soundata/tree/master/scripts>`_ folder.
+More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
 tracks
 ^^^^^^
@@ -266,15 +266,15 @@ To quickstart a new module:
 
 You may find these examples useful as references:
 
-* `A simple, fully downloadable dataset <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/tinysol.py>`_
-* `A dataset which is partially downloadable <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/beatles.py>`_
-* `A dataset with restricted access data <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/medleydb_melody.py#L33>`_
-* `A dataset which uses dataset-level metadata <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/tinysol.py#L114>`_
-* `A dataset which does not use dataset-level metadata <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/gtzan_genre.py#L36>`_
-* `A dataset with a custom download function <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/maestro.py#L257>`_
-* `A dataset with a remote index <https://github.com/mir-dataset-loaders/soundata/blob/master/soundata/datasets/acousticbrainz_genre.py>`_
+* `A simple, fully downloadable dataset <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py>`_
+* `A dataset which is partially downloadable <https://github.com/soundata/soundata/blob/master/soundata/datasets/beatles.py>`_
+* `A dataset with restricted access data <https://github.com/soundata/soundata/blob/master/soundata/datasets/medleydb_melody.py#L33>`_
+* `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py#L114>`_
+* `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/gtzan_genre.py#L36>`_
+* `A dataset with a custom download function <https://github.com/soundata/soundata/blob/master/soundata/datasets/maestro.py#L257>`_
+* `A dataset with a remote index <https://github.com/soundata/soundata/blob/master/soundata/datasets/acousticbrainz_genre.py>`_
 
-For many more examples, see the `datasets folder <https://github.com/mir-dataset-loaders/soundata/tree/master/soundata/datasets>`_.
+For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
 
 
 .. _add_tests:
@@ -292,9 +292,9 @@ To finish your contribution, include tests that check the integrity of your load
     * If the dataset has a metadata file, reduce the length to a few lines.
 
 2. Test all of the dataset specific code, e.g. the public attributes of the Track class, the load functions and any other 
-   custom functions you wrote. See the `tests folder <https://github.com/mir-dataset-loaders/soundata/tree/master/tests>`_ for reference.
+   custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
    If your loader has a custom download function, add tests similar to 
-   `this loader <https://github.com/mir-dataset-loaders/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
+   `this loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
 3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
    sure everything is working.
 
@@ -429,12 +429,12 @@ badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a
 Pull Request template
 ^^^^^^^^^^^^^^^^^^^^^
 
-When starting your PR please use the `new_loader.md template <https://github.com/mir-dataset-loaders/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
+When starting your PR please use the `new_loader.md template <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
 it will simplify the reviewing process and also help you make a complete PR. You can do that by adding
 ``&template=new_loader.md`` at the end of the url when you are creating the PR :
 
-``...mir-dataset-loaders/soundata/compare?expand=1`` will become
-``...mir-dataset-loaders/soundata/compare?expand=1&template=new_loader.md``.
+``...soundata/soundata/compare?expand=1`` will become
+``...soundata/soundata/compare?expand=1&template=new_loader.md``.
 
 Docs
 ^^^^
