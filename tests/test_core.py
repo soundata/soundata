@@ -308,21 +308,10 @@ def test_clipgroup():
 
     class TestMultiTrack1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
@@ -354,21 +343,10 @@ def test_multitrack_mixing():
 
     class TestMultiTrack1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
@@ -457,21 +435,10 @@ def test_multitrack_unequal_len():
 
     class TestMultiTrack1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
@@ -517,21 +484,10 @@ def test_multitrack_unequal_sr():
 
     class TestMultiTrack1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
@@ -572,21 +528,10 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
@@ -625,21 +570,10 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata,
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, track_class, metadata,
             )
 
         def to_jams(self):
