@@ -70,4 +70,3 @@ def test_metadata():
     dataset = example.Dataset(data_home)
     metadata = dataset._metadata
     assert metadata["some_id"] == "something"
-
