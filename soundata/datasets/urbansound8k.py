@@ -174,8 +174,8 @@ class Clip(core.Clip):
         slice_file_name (str): The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav.
             Please see the Dataset Info in the soundata documentation for further details.
         freesound_id (str): ID of the freesound.org recording from which this clip was taken.
-        start_time (float): start time in seconds of the clip in the original freesound recording.
-        end_time (float): end time in seconds of the clip in the original freesound recording.
+        freesound_start_time (float): start time in seconds of the clip in the original freesound recording.
+        freesound_end_time (float): end time in seconds of the clip in the original freesound recording.
         salience (int): annotator estimate of class sailence in the clip: 1 = foreground, 2 = background.
         fold (int): fold number (1-10) to which this clip is allocated. Use these folds for cross validation.
         class_id (int): integer representation of the class label (0-9). See Dataset Info in the documentation for mapping.
@@ -201,6 +201,16 @@ class Clip(core.Clip):
         )
 
         self.audio_path = self.get_path("audio")
+        self.tags = annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
+
+        self.slice_file_name = self._clip_metadata.get("slice_file_name")
+        self.freesound_id = self._clip_metadata.get("freesound_id")
+        self.freesound_start_time = self._clip_metadata.get("freesound_start_time")
+        self.freesound_end_time = self._clip_metadata.get("freesound_end_time")
+        self.salience = self._clip_metadata.get("salience")
+        self.fold = self._clip_metadata.get("fold")
+        self.class_id = self._clip_metadata.get("class_id")
+        self.class_label = self._clip_metadata.get("class_label")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -213,41 +223,41 @@ class Clip(core.Clip):
         """
         return load_audio(self.audio_path)
 
-    @property
-    def slice_file_name(self):
-        return self._clip_metadata.get("slice_file_name")
+    # @property
+    # def slice_file_name(self):
+    #     return self._clip_metadata.get("slice_file_name")
 
-    @property
-    def freesound_id(self):
-        return self._clip_metadata.get("freesound_id")
+    # @property
+    # def freesound_id(self):
+    #     return self._clip_metadata.get("freesound_id")
 
-    @property
-    def start_time(self):
-        return self._clip_metadata.get("start_time")
+    # @property
+    # def freesound_start_time(self):
+    #     return self._clip_metadata.get("freesound_start_time")
 
-    @property
-    def end_time(self):
-        return self._clip_metadata.get("end_time")
+    # @property
+    # def freesound_end_time(self):
+    #     return self._clip_metadata.get("freesound_end_time")
 
-    @property
-    def salience(self):
-        return self._clip_metadata.get("salience")
+    # @property
+    # def salience(self):
+    #     return self._clip_metadata.get("salience")
 
-    @property
-    def fold(self):
-        return self._clip_metadata.get("fold")
+    # @property
+    # def fold(self):
+    #     return self._clip_metadata.get("fold")
 
-    @property
-    def class_id(self):
-        return self._clip_metadata.get("class_id")
+    # @property
+    # def class_id(self):
+    #     return self._clip_metadata.get("class_id")
 
-    @property
-    def class_label(self):
-        return self._clip_metadata.get("class_label")
+    # @property
+    # def class_label(self):
+    #     return self._clip_metadata.get("class_label")
 
-    @property
-    def tags(self):
-        return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
+    # @property
+    # def tags(self):
+    #     return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -332,8 +342,8 @@ class Dataset(core.Dataset):
             metadata_index[clip_id] = {
                 "slice_file_name": line[0],
                 "freesound_id": line[1],
-                "start_time": float(line[2]),
-                "end_time": float(line[3]),
+                "freesound_start_time": float(line[2]),
+                "freesound_end_time": float(line[3]),
                 "salience": int(line[4]),
                 "fold": int(line[5]),
                 "class_id": int(line[6]),
