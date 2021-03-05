@@ -155,7 +155,7 @@ REMOTES = {
         filename="UrbanSound8K.tar.gz",
         url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz",
         checksum="9aa69802bbf37fb986f71ec1483a196e",
-        destination_dir="urbansound8k",
+        unpack_directories=["UrbanSound8K"]
     )
 }
 
