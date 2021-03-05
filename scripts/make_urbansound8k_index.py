@@ -29,10 +29,12 @@ def md5(file_path):
 
 def make_index(data_path):
     
+    metadata_rel_path = os.path.join("metadata", "UrbanSound8K.csv")
+
     index = {
         "version": "1.0",
         "clips": {},
-        "metadata": os.path.join("metadata", "UrbanSound8K.csv")
+        "metadata": {"UrbanSound8K.csv": [metadata_rel_path, md5(os.path.join(data_path, metadata_rel_path))]}
     }
 
     for i in range(1, 11):
