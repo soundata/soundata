@@ -247,7 +247,7 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
-        return annotations.Tags([self._clip_metadata.get("class_label")], [1.0])
+        return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
 
     def to_jams(self):
         """Get the clip's data in jams format
