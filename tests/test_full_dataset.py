@@ -16,7 +16,7 @@ def dataset(test_dataset):
         return None
     elif test_dataset not in soundata.DATASETS:
         raise ValueError("{} is not a dataset in soundata".format(test_dataset))
-    data_home = os.path.join("tests/resources/mir_datasets_full", test_dataset)
+    data_home = os.path.join("tests/resources/sound_datasets_full", test_dataset)
     return soundata.initialize(test_dataset, data_home)
 
 
