@@ -25,7 +25,7 @@ def jams_converter(
     tags_gtzan_data=None,
     tags_open_data=None,
     metadata=None,
-    tags=None
+    tags=None,
 ):
     """Convert annotations from a clip to JAMS format.
 

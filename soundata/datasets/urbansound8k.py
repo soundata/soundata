@@ -155,7 +155,7 @@ REMOTES = {
         filename="UrbanSound8K.tar.gz",
         url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz",
         checksum="9aa69802bbf37fb986f71ec1483a196e",
-        unpack_directories=["UrbanSound8K"]
+        unpack_directories=["UrbanSound8K"],
     )
 }
 
@@ -257,7 +257,9 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
-        return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
+        return annotations.Tags(
+            [self._clip_metadata.get("class_label")], np.array([1.0])
+        )
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -267,10 +269,9 @@ class Clip(core.Clip):
 
         """
         return jams_utils.jams_converter(
-            audio_path = self.audio_path,
-            tags = self.tags,
-            metadata=self._clip_metadata
+            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
         )
+
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
@@ -278,9 +279,9 @@ def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
-        sr (int or None): sample rate for loaded audio, 44100 Hz by default. 
-            If different from file's sample rate it will be resampled on load. 
-            Use None to load the file using its original sample rate (sample rate 
+        sr (int or None): sample rate for loaded audio, 44100 Hz by default.
+            If different from file's sample rate it will be resampled on load.
+            Use None to load the file using its original sample rate (sample rate
             varies from file to file).
 
     Returns:
