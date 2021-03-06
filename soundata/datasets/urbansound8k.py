@@ -201,16 +201,16 @@ class Clip(core.Clip):
         )
 
         self.audio_path = self.get_path("audio")
-        self.tags = annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
+        # self.tags = annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
 
-        self.slice_file_name = self._clip_metadata.get("slice_file_name")
-        self.freesound_id = self._clip_metadata.get("freesound_id")
-        self.freesound_start_time = self._clip_metadata.get("freesound_start_time")
-        self.freesound_end_time = self._clip_metadata.get("freesound_end_time")
-        self.salience = self._clip_metadata.get("salience")
-        self.fold = self._clip_metadata.get("fold")
-        self.class_id = self._clip_metadata.get("class_id")
-        self.class_label = self._clip_metadata.get("class_label")
+        # self.slice_file_name = self._clip_metadata.get("slice_file_name")
+        # self.freesound_id = self._clip_metadata.get("freesound_id")
+        # self.freesound_start_time = self._clip_metadata.get("freesound_start_time")
+        # self.freesound_end_time = self._clip_metadata.get("freesound_end_time")
+        # self.salience = self._clip_metadata.get("salience")
+        # self.fold = self._clip_metadata.get("fold")
+        # self.class_id = self._clip_metadata.get("class_id")
+        # self.class_label = self._clip_metadata.get("class_label")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -223,41 +223,41 @@ class Clip(core.Clip):
         """
         return load_audio(self.audio_path)
 
-    # @property
-    # def slice_file_name(self):
-    #     return self._clip_metadata.get("slice_file_name")
+    @property
+    def slice_file_name(self):
+        return self._clip_metadata.get("slice_file_name")
 
-    # @property
-    # def freesound_id(self):
-    #     return self._clip_metadata.get("freesound_id")
+    @property
+    def freesound_id(self):
+        return self._clip_metadata.get("freesound_id")
 
-    # @property
-    # def freesound_start_time(self):
-    #     return self._clip_metadata.get("freesound_start_time")
+    @property
+    def freesound_start_time(self):
+        return self._clip_metadata.get("freesound_start_time")
 
-    # @property
-    # def freesound_end_time(self):
-    #     return self._clip_metadata.get("freesound_end_time")
+    @property
+    def freesound_end_time(self):
+        return self._clip_metadata.get("freesound_end_time")
 
-    # @property
-    # def salience(self):
-    #     return self._clip_metadata.get("salience")
+    @property
+    def salience(self):
+        return self._clip_metadata.get("salience")
 
-    # @property
-    # def fold(self):
-    #     return self._clip_metadata.get("fold")
+    @property
+    def fold(self):
+        return self._clip_metadata.get("fold")
 
-    # @property
-    # def class_id(self):
-    #     return self._clip_metadata.get("class_id")
+    @property
+    def class_id(self):
+        return self._clip_metadata.get("class_id")
 
-    # @property
-    # def class_label(self):
-    #     return self._clip_metadata.get("class_label")
+    @property
+    def class_label(self):
+        return self._clip_metadata.get("class_label")
 
-    # @property
-    # def tags(self):
-    #     return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
+    @property
+    def tags(self):
+        return annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -266,18 +266,11 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        # return jams_utils.jams_converter(
-        #     tags_gtzan_data=[(self.genre, "gtzan-genre")],
-        #     metadata={
-        #         "title": "Unknown track",
-        #         "artist": "Unknown artist",
-        #         "release": "Unknown album",
-        #         "duration": 30.0,
-        #         "curator": "George Tzanetakis",
-        #     },
-        # )
-        raise NotImplementedError
-
+        return jams_utils.jams_converter(
+            audio_path = self.audio_path,
+            tags = self.tags,
+            metadata=self._clip_metadata
+        )
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
