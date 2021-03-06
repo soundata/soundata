@@ -201,16 +201,6 @@ class Clip(core.Clip):
         )
 
         self.audio_path = self.get_path("audio")
-        # self.tags = annotations.Tags([self._clip_metadata.get("class_label")], np.array([1.0]))
-
-        # self.slice_file_name = self._clip_metadata.get("slice_file_name")
-        # self.freesound_id = self._clip_metadata.get("freesound_id")
-        # self.freesound_start_time = self._clip_metadata.get("freesound_start_time")
-        # self.freesound_end_time = self._clip_metadata.get("freesound_end_time")
-        # self.salience = self._clip_metadata.get("salience")
-        # self.fold = self._clip_metadata.get("fold")
-        # self.class_id = self._clip_metadata.get("class_id")
-        # self.class_label = self._clip_metadata.get("class_label")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
