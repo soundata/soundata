@@ -25,6 +25,7 @@ def jams_converter(
     tags_gtzan_data=None,
     tags_open_data=None,
     metadata=None,
+    tags=None
 ):
     """Convert annotations from a clip to JAMS format.
 
@@ -69,6 +70,8 @@ def jams_converter(
             is a descriptor of the annotation.
         metadata (dict or None):
             A dictionary containing the clip metadata.
+        tags (list or None):
+            A list of tuples of (annotations.Tags, str), where the str describes the annotation.
 
     Returns:
         jams.JAMS: A JAMS object containing the annotations.
@@ -270,6 +273,12 @@ def jams_converter(
                     + "but contains a {} element".format(type(tag))
                 )
             jam.annotations.append(tag_to_jams(tag[0], "tag_open", tag[1]))
+
+    # soundata tags
+    if tags is not None:
+        if not isinstance(tags, annotations.Tags):
+            raise TypeError("tags should be of type annotations.Tags")
+        jam.annotations.append(tags_to_jams(tags, duration=jam.file_metadata.duration))
 
     return jam
 
@@ -554,3 +563,24 @@ def tag_to_jams(tag_data, namespace="tag_open", description=None):
     if description is not None:
         jannot_tag.sandbox = jams.Sandbox(name=description)
     return jannot_tag
+
+
+def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
+    """Convert tags annotations into jams format.
+
+    Args:
+        tags (annotations.Tags): tags annotation object
+        namespace (str): the jams-compatible tag namespace
+        description (str): annotation description
+
+    Returns:
+        jams.Annotation: jams annotation object.
+
+    """
+    ann = jams.Annotation(namespace=namespace)
+    ann.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+    for t, c in zip(tags.labels, tags.confidence):
+        ann.append(time=0.0, duration=duration, value=t, confidence=c)
+    if description is not None:
+        ann.sandbox = jams.Sandbox(name=description)
+    return ann
