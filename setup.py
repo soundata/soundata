@@ -12,7 +12,7 @@ if __name__ == "__main__":
     setup(
         name="soundata",
         version=version_module.version,
-        description="Common loaders for MIR datasets.",
+        description="Python library for loading and working with sound datasets.",
         url="https://github.com/soundata/soundata",
         packages=find_packages(exclude=["test", "*.test", "*.test.*"]),
         download_url="http://github.com/soundata/soundata/releases",
@@ -27,6 +27,7 @@ if __name__ == "__main__":
             "Topic :: Multimedia :: Sound/Audio :: Analysis",
             "Programming Language :: Python :: 3.6",
             "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8"
         ],
         keywords="sound dataset loader audio",
         license="BSD-3-Clause",
