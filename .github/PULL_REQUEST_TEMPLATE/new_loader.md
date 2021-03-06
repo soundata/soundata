@@ -7,7 +7,7 @@
 Please include the following information at the top level docstring for the dataset's module mydataset.py:
 
 - [ ] Describe annotations included in the dataset
-- [ ] Indicate the size of the datasets (e.g. number files and duration, hours)
+- [ ] Indicate the size of the datasets (i.e. xhours)
 - [ ] Mention the origin of the dataset (e.g. creator, institution)
 - [ ] Describe the type of music included in the dataset
 - [ ] Indicate any relevant papers related to the dataset
