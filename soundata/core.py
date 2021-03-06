@@ -187,8 +187,8 @@ class Dataset(object):
             str: Local path to the dataset
 
         """
-        mir_datasets_dir = os.path.join(os.getenv("HOME", "/tmp"), "mir_datasets")
-        return os.path.join(mir_datasets_dir, self.name)
+        sound_datasets_dir = os.path.join(os.getenv("HOME", "/tmp"), "sound_datasets")
+        return os.path.join(sound_datasets_dir, self.name)
 
     def _clip(self, clip_id):
         """Load a clip by clip_id.

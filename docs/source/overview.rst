@@ -52,7 +52,7 @@ Ease of use and contribution
 We designed ``soundata`` to be easy to use and easy to contribute to. ``soundata`` simplifies the research pipeline considerably,
 facilitating research in a wider diversity of tasks and musical datasets. We provide detailed examples on how to interact with 
 the library in the :ref:`tutorial`, as well as detail explanation on how to contribute in :ref:`contributing`. Additionally, 
-we have a `repository of Jupyter notebooks <https://github.com/mir-dataset-loaders/soundata-notebooks>`_ with usage
+we have a `repository of Jupyter notebooks <https://github.com/soundata/soundata-notebooks>`_ with usage
 examples of the different datasets.
 
 
@@ -71,7 +71,7 @@ The ``dataset loaders`` in ``soundata`` are written for what we call the ``canon
 this should be the official release of the dataset as published by the dataset creator/s. When this is not possible, (e.g. for 
 data that is no longer available), the procedure we follow is to find as many copies of the data as possible from different researchers 
 (at least 4), and use the most common one. To make this process transparent, when there are doubts about the data consistency we open an 
-`issue <https://github.com/mir-dataset-loaders/soundata/issues>`_ and leave it to the community to discuss what to use.
+`issue <https://github.com/soundata/soundata/issues>`_ and leave it to the community to discuss what to use.
 
 
 Standardization

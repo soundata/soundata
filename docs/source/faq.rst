@@ -21,7 +21,7 @@ How do I request a new dataset?
 -------------------------------
 Open an issue_ and tag it with the "New Loader" label.
 
-.. _issue: https://github.com/mir-dataset-loaders/soundata/issues
+.. _issue: https://github.com/soundata/soundata/issues
 
 
 What do I do if my data fails validation?
@@ -46,7 +46,7 @@ A download link is broken for a loader's :code:`.download()` function. What do I
 ------------------------------------------------------------------------------------
 Please open an issue_ and tag it with the "broken link" label.
 
-.. _issue: https://github.com/mir-dataset-loaders/soundata/issues
+.. _issue: https://github.com/soundata/soundata/issues
 
 
 Why the name, soundata?

@@ -50,7 +50,7 @@ version of the dataset (when available). When initializing a dataset it is impor
 where the dataset is going to be stored and retrieved.
 
 Downloading a dataset into the default folder:
-    In this first example, ``data_home`` is not specified. Thus, ORCHSET will be downloaded and retrieved from ``mir_datasets``
+    In this first example, ``data_home`` is not specified. Thus, ORCHSET will be downloaded and retrieved from ``sound_datasets``
     folder created at user root folder:
 
     .. code-block:: python
@@ -142,14 +142,14 @@ We can choose a random track from a dataset with the ``choice_track()`` method.
         print(random_track)
         >>> Track(
                alternating_melody=True,
-               audio_path_mono="user/mir_datasets/orchset/audio/mono/Beethoven-S3-I-ex1.wav",
-               audio_path_stereo="user/mir_datasets/orchset/audio/stereo/Beethoven-S3-I-ex1.wav",
+               audio_path_mono="user/sound_datasets/orchset/audio/mono/Beethoven-S3-I-ex1.wav",
+               audio_path_stereo="user/sound_datasets/orchset/audio/stereo/Beethoven-S3-I-ex1.wav",
                composer="Beethoven",
                contains_brass=False,
                contains_strings=True,
                contains_winds=True,
                excerpt="1",
-               melody_path="user/mir_datasets/orchset/GT/Beethoven-S3-I-ex1.mel",
+               melody_path="user/sound_datasets/orchset/GT/Beethoven-S3-I-ex1.mel",
                only_brass=False,
                only_strings=False,
                only_winds=False,

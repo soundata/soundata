@@ -1,4 +1,4 @@
-tests/resources/mir_datasets_full
+tests/resources/sound_datasets_full
 tests/data/output.wav
 soundata/datasets/indexes/__MACOSX
 *.DS_Store

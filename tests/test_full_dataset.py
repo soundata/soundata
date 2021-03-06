@@ -16,7 +16,7 @@ def dataset(test_dataset):
         return None
     elif test_dataset not in soundata.DATASETS:
         raise ValueError("{} is not a dataset in soundata".format(test_dataset))
-    data_home = os.path.join("tests/resources/mir_datasets_full", test_dataset)
+    data_home = os.path.join("tests/resources/sound_datasets_full", test_dataset)
     return soundata.initialize(test_dataset, data_home)
 
 
@@ -57,28 +57,28 @@ def test_load(skip_remote, dataset):
         pytest.skip()
 
     # run load
-    all_data = dataset.load_tracks()
+    all_data = dataset.load_clips()
 
     assert isinstance(all_data, dict)
 
-    track_ids = dataset.track_ids
-    assert set(track_ids) == set(all_data.keys())
+    clip_ids = dataset.clip_ids
+    assert set(clip_ids) == set(all_data.keys())
 
     # test that all attributes and properties can be called
-    for track_id in tqdm.tqdm(track_ids):
-        track = all_data[track_id]
-        track_data = get_attributes_and_properties(track)
+    for clip_id in tqdm.tqdm(clip_ids):
+        clip = all_data[clip_id]
+        clip_data = get_attributes_and_properties(clip)
 
-        for attr in track_data["attributes"]:
-            ret = getattr(track, attr)
+        for attr in clip_data["attributes"]:
+            ret = getattr(clip, attr)
 
-        for prop in track_data["properties"]:
-            ret = getattr(track, prop)
+        for prop in clip_data["properties"]:
+            ret = getattr(clip, prop)
 
-        for cprop in track_data["cached_properties"]:
-            ret = getattr(track, cprop)
+        for cprop in clip_data["cached_properties"]:
+            ret = getattr(clip, cprop)
 
-        jam = track.to_jams()
+        jam = clip.to_jams()
         assert jam.validate()
 
 
@@ -86,7 +86,7 @@ def test_index(skip_remote, dataset):
     if dataset is None:
         pytest.skip()
 
-    okeys = ["tracks", "multitracks", "records"]
+    okeys = ["clips", "clipgroups", "records"]
 
     if "version" not in dataset._index.keys():
         raise NotImplementedError("The top-level key 'version' is missing in the index")

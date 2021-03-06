@@ -16,7 +16,7 @@ def test_clip():
     }
     clip_id = "a"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clip = core.Clip(clip_id, data_home, dataset_name, index, lambda: None)
 
     assert clip.clip_id == clip_id
@@ -34,7 +34,7 @@ def test_clip():
         clip.to_jams()
 
     path_good = clip.get_path("annotation")
-    assert path_good == "tests/resources/mir_datasets/asdf/asdd"
+    assert path_good == "tests/resources/sound_datasets/asdf/asdd"
     path_none = clip.get_path("audio")
     assert path_none is None
 
@@ -233,13 +233,13 @@ def test_clipgroup():
     index.update(index_clipgroups)
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = core.ClipGroup(
         clipgroup_id, data_home, dataset_name, index, core.Clip, lambda: None
     )
 
     path_good = clipgroup.get_path("audio_master")
-    assert path_good == "tests/resources/mir_datasets/foo/bar"
+    assert path_good == "tests/resources/sound_datasets/foo/bar"
     path_none = clipgroup.get_path("score")
     assert path_none is None
 
@@ -381,7 +381,7 @@ def test_multitrack_mixing():
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = TestMultiTrack1(
         clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
     )
@@ -484,7 +484,7 @@ def test_multitrack_unequal_len():
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = TestMultiTrack1(
         clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
     )
@@ -544,7 +544,7 @@ def test_multitrack_unequal_sr():
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = TestMultiTrack1(
         clipgroup_id,
         data_home,
@@ -599,7 +599,7 @@ def test_multitrack_mono():
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
         clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
     )
@@ -652,7 +652,7 @@ def test_multitrack_mono():
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/mir_datasets"
+    data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
         clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
     )
