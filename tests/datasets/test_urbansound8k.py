@@ -35,3 +35,14 @@ def test_clip():
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
+
+
+def test_load_audio():
+    dataset = urbansound8k.Dataset(TEST_DATA_HOME)
+    clip = dataset.clip("135776-2-0-49")
+    audio_path = clip.audio_path
+    audio, sr = urbansound8k.load_audio(audio_path)
+    assert sr == 44100
+    assert type(audio) is np.ndarray
+    assert len(audio.shape) == 1  # check audio is loaded as mono
+    assert audio.shape[0] == 176400  # Check audio duration in sampels is as expected
