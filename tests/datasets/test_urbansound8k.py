@@ -31,7 +31,7 @@ def test_clip():
         "class_id": int,
         "class_label": str,
         "audio": tuple,
-        "tags": annotations.Tags
+        "tags": annotations.Tags,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
