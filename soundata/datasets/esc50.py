@@ -6,6 +6,7 @@
     ESC-50: Dataset for Environmental Sound Classification
 
     The ESC-50 dataset is a labeled collection of 2000 environmental audio recordings suitable for benchmarking methods of environmental sound classification.
+    The total duration of the dataset is 2.8 hours (2000 x 5 seconds).
 
     The dataset consists of 5-second-long recordings organized into 50 semantical classes (with 40 examples per class) loosely arranged into 5 major categories:
 
