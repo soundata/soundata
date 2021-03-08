@@ -175,9 +175,7 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
-        return annotations.Tags(
-            [self._clip_metadata.get("category")], np.array([1.0])
-        )
+        return annotations.Tags([self._clip_metadata.get("category")], np.array([1.0]))
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -254,9 +252,9 @@ class Dataset(core.Dataset):
                 "fold": int(line[1]),
                 "target": int(line[2]),
                 "category": line[3],
-                "esc10": True if line[4]=="True" else False,
+                "esc10": True if line[4] == "True" else False,
                 "src_file": line[5],
-                "take": line[6]
+                "take": line[6],
             }
 
         return metadata_index
