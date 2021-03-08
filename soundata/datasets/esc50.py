@@ -176,7 +176,7 @@ class Clip(core.Clip):
     @property
     def tags(self):
         return annotations.Tags(
-            [self._clip_metadata.get("class_label")], np.array([1.0])
+            [self._clip_metadata.get("category")], np.array([1.0])
         )
 
     def to_jams(self):
