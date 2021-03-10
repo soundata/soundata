@@ -21,11 +21,11 @@ into a standard format to be used for experimenting or evaluating. ``soundata`` 
 
     print(soundata.list_datasets())
 
-    urbansound8k = soundata.initialize('urbansound8k')
-    urbansound8k.download()
+    dataset = soundata.initialize('urbansound8k')
+    dataset.download()
 
     # get annotations and audio for a random clip
-    example_clip = urbansound8k.choice_clip()
+    example_clip = dataset.choice_clip()
     tags = example_clip.tags
     y, sr = example_clip.audio
 

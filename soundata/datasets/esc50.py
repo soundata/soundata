@@ -58,17 +58,13 @@
 """
 
 import os
-from typing import BinaryIO, Optional, TextIO, Tuple
+from typing import BinaryIO, Optional, Tuple
 
 import librosa
 import numpy as np
 import csv
 
-from soundata import download_utils
-from soundata import jams_utils
-from soundata import core
-from soundata import annotations
-from soundata import io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 
 BIBTEX = """
