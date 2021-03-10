@@ -21,14 +21,13 @@ into a standard format to be used for experimenting or evaluating. ``soundata`` 
 
     print(soundata.list_datasets())
 
-    tinysol = soundata.initialize('tinysol')
-    tinysol.download()
+    dataset = soundata.initialize('urbansound8k')
+    dataset.download()
 
-    # get annotations and audio for a random track
-    example_track = tinysol.choice_track()
-    instrument = example_track.instrument_full
-    pitch = example_track.pitch
-    y, sr = example_track.audio
+    # get annotations and audio for a random clip
+    example_clip = dataset.choice_clip()
+    tags = example_clip.tags
+    y, sr = example_clip.audio
 
 ``soundata`` loaders contain methods to:
 
@@ -37,7 +36,7 @@ into a standard format to be used for experimenting or evaluating. ``soundata`` 
   which are compatible with ``mir_eval`` and ``jams``.
 - ``validate()``: validate that a dataset is complete and correct
 - ``cite()``: quickly print a dataset's relevant citation
-- access ``track`` and ``multitrack`` objects for grouping multiple annotations for a particular track/multitrack
+- access ``clip`` and ``clipgroup`` objects for grouping multiple annotations for a particular clip/clipgroup
 - and more
 
 See the :ref:`tutorial` for a detailed explanation of how to get started using this library.
@@ -78,9 +77,9 @@ Standardization
 ---------------
 
 Different datasets have different annotations, metadata, etc. We try to respect the idiosyncracies of each dataset as much as we can. For this
-reason, ``tracks`` in each ``Dataset`` in ``soundata`` have different attributes, e.g. some may have ``artist`` information and some may not.
+reason, ``clips`` in each ``Dataset`` in ``soundata`` have different attributes, e.g. some may have ``fold`` information and some may not.
 However there are some elements that are common in most datasets, and in these cases we standarize them to increase the usability of the library.
-Some examples of this are the annotations in ``soundata``, e.g. ``BeatData``.
+Some examples of this are the annotations in ``soundata``, e.g., ``Tags`` and ``Events``.
 
 
 .. _indexes:
@@ -90,7 +89,7 @@ indexes
 
 Indexes in `soundata` are manifests of the files in a dataset and their corresponding md5 checksums.
 Specifically, an index is a json file with the mandatory top-level key ``version`` and at least one of the optional
-top-level keys ``metadata``, ``tracks``, ``multitracks`` or ``records``. An index might look like:
+top-level keys ``metadata``, ``clips``, ``clipgroups`` or ``records``. An index might look like:
 
 
 .. admonition:: Example Index
@@ -113,26 +112,26 @@ top-level keys ``metadata``, ``tracks``, ``multitracks`` or ``records``. An inde
                         "6cce186ce77a06541cdb9f0a671afb46"
                     ]
                 }
-            "tracks": {
-                "track1": {
-                    'audio': ["audio_files/track1.wav", "6c77777ce77a06541cdb9f0a671afb46"],
-                    'beats': ["annotations/track1.beats.csv", "ab8b0ca866fc2423edde01325d6e34f7"],
-                    'sections': ["annotations/track1.sections.txt", "05abeca866fc2423edde01325d6e34f7"],
+            "clips": {
+                "clip1": {
+                    'audio': ["audio_files/clip1.wav", "6c77777ce77a06541cdb9f0a671afb46"],
+                    'tags': ["annotations/clip1.tags.csv", "ab8b0ca866fc2423edde01325d6e34f7"],
+                    'events': ["annotations/clip1.events.txt", "05abeca866fc2423edde01325d6e34f7"],
                 }
-                "track2": {
-                    'audio': ["audio_files/track2.wav", "6c77777ce77a06542cdb9f0a672afb46"],
-                    'beats': ["annotations/track2.beats.csv", "ab8b0ca866fc2423edde02325d6e34f7"],
-                    'sections': ["annotations/track2.sections.txt", "05abeca866fc2423edde02325d6e34f7"],
+                "clip2": {
+                    'audio': ["audio_files/clip2.wav", "6c77777ce77a06542cdb9f0a672afb46"],
+                    'tags': ["annotations/clip2.tags.csv", "ab8b0ca866fc2423edde02325d6e34f7"],
+                    'events': ["annotations/clip2.events.txt", "05abeca866fc2423edde02325d6e34f7"],
                 }
                 ...
                 }
         }
 
 
-The optional top-level keys (`tracks`, `multitracks` and `records`) relate to different organizations of music datasets.
-`tracks` are used when a dataset is organized as a collection of individual tracks, namely mono or multi-channel audio, 
-spectrograms only, and their respective annotations. `multitracks` are used in when a dataset comprises of
-multitracks - different groups of tracks which are directly related to each other. Finally, `records` are used when a dataset 
+The optional top-level keys (`clips`, `clipgroups` and `records`) relate to different organizations of sound datasets.
+`clips` are used when a dataset is organized as a collection of individual clips, namely mono or multi-channel audio, 
+spectrograms only, and their respective annotations. `clipgroups` are used when a dataset comprises of
+clipgroups - different groups of clips which are directly related to each other. Finally, `records` are used when a dataset 
 consits of groups of tables (e.g. relational databases), as many recommendation datasets do.
 
 See the contributing docs :ref:`create_index` for more information about soundata indexes.
@@ -143,12 +142,11 @@ annotations
 ###########
 
 soundata provdes ``Annotation`` classes of various kinds which provide a standard interface to different
-annotation formats. These classes are compatible with the ``mir_eval`` library's expected format, as well
-as with the jams format. The format can be easily extended to other formats, if requested.
+annotation formats such as tags and sound events.
 
 
 metadata
 ########
 
-When available, we provide extensive and easy-to-access ``metadata`` to facilitate track metadata-specific analysis. 
-``metadata`` is available as attroibutes at the ``track`` level, e.g. ``track.artist``.
+When available, we provide extensive and easy-to-access ``metadata`` to facilitate clip metadata-specific analysis. 
+``metadata`` is available as attroibutes at the ``clip`` level, e.g. ``clip.fold``.

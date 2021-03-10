@@ -7,12 +7,12 @@ soundata
 
 
 
-``soundata`` is an open-source Python library that provides tools for working with common Music Information Retrieval (MIR) datasets, including tools for:
+``soundata`` is an open-source Python library that provides tools for working with common sound datasets, including tools for:
 
  * downloading datasets to a common location and format
  * validating that the files for a dataset are all present
- * loading annotation files to a common format, consistent with ``mir_eval``
- * parsing track level metadata for detailed evaluations.
+ * loading annotation files to a common format
+ * parsing clip level metadata for detailed evaluations.
 
 
 .. code-block::
@@ -32,14 +32,12 @@ If you are using the library for your work, please cite the version you used as 
    :target: https://doi.org/10.5281/zenodo.4355859
 
 If you refer to soundata's design principles, motivation etc., please cite the following
-`paper <https://magdalenafuentes.github.io/publications/2019_ISMIR_soundata.pdf>`_  [#]_:
+`paper <https://soundata.pdf>`_  [#]_:
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3527750.svg
    :target: https://doi.org/10.5281/zenodo.3527750
 
-.. [#] Rachel M. Bittner, Magdalena Fuentes, David Rubinstein, Andreas Jansson, Keunwoo Choi, and Thor Kell.
-    "soundata: Software for Reproducible Usage of Datasets."
-    In Proceedings of the 20th International Society for Music Information Retrieval (ISMIR) Conference, 2019.:
+.. [#] soundata paper reference (TBA):
 
 When working with datasets, please cite the version of ``soundata`` that you are using (given by the ``DOI`` above)
 **AND** include the reference of the dataset, which can be found in the respective dataset loader using the ``cite()`` method.
