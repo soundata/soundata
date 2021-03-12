@@ -41,11 +41,12 @@ See the [documentation](https://soundata.readthedocs.io/) for more examples and 
 
 ### Currently supported datasets
 
-* UrbanSound8K
 * ESC-50
+* URBAN-SED
+* UrbanSound8K
 * More added soon!
 
-For the **complete list** of supported datasets, see the [documentation](https://soundata.readthedocs.io/en/stable/source/quick_reference.html)
+For the **complete list** of supported datasets, see the [documentation](https://soundata.readthedocs.io/en/latest/source/quick_reference.html)
 
 
 ### Citing
