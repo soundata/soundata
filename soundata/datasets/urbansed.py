@@ -165,7 +165,7 @@ BIBTEX = """
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="URBAN-SED_v2.0.0.tar.gz",
-        url="https://zenodo.org/record/1002874/files/URBAN-SED.tar.gz?download=1",
+        url="https://zenodo.org/record/1324404/files/URBAN-SED_v2.0.0.tar.gz?download=1",
         checksum="a2d24a2148ece7c021fcc079ee87c2dc",
         unpack_directories=["URBAN-SED_v2.0.0"],
     )
