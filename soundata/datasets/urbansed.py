@@ -34,7 +34,9 @@
 
     A detailed description of the dataset is provided in the following article:
 
-    J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
+    .. code-block:: latex
+        J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
+        In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
     A summary is provided here:
 
@@ -103,7 +105,9 @@
     When URBAN-SED is used for academic research, we would highly appreciate it if scientific publications of works 
     partly based on the URBAN-SED dataset cite the following publication:
 
-    J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
+    .. code-block:: latex
+        J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
+        In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
     The creation of this dataset was supported by NSF award 1544753.
 
@@ -171,7 +175,7 @@ LICENSE_INFO = "Creative Commons Attribution 4.0 International"
 
 
 class Clip(core.Clip):
-    """urbansed Clip class
+    """URBAN-SED Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -258,7 +262,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
-    The urbansed dataset
+    The URBAN-SED dataset
     """
 
     def __init__(self, data_home=None):
