@@ -13,26 +13,10 @@ from soundata import core, download_utils
 from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
-CUSTOM_TEST_TRACKS = {
-    "beatles": "0111",
-    "cante100": "008",
-    "compmusic_otmm_makam": "cafcdeaf-e966-4ff0-84fb-f660d2b68365",
-    "giantsteps_key": "3",
-    "dali": "4b196e6c99574dd49ad00d56e132712b",
-    "giantsteps_tempo": "113",
-    "gtzan_genre": "country.00000",
-    "guitarset": "03_BN3-119-G_solo",
-    "irmas": "1",
-    "medley_solos_db": "d07b1fc0-567d-52c2-fef4-239f31c9d40e",
-    "medleydb_melody": "MusicDelta_Beethoven",
-    "mridangam_stroke": "224030",
-    "rwc_classical": "RM-C003",
-    "rwc_jazz": "RM-J004",
-    "rwc_popular": "RM-P001",
-    "salami": "2",
-    "saraga_carnatic": "116_Bhuvini_Dasudane",
-    "saraga_hindustani": "59_Bairagi",
-    "tinysol": "Fl-ord-C4-mf-N-T14d",
+CUSTOM_TEST_CLIPS = {
+    "esc50": "1-104089-A-22",
+    "urbansed": "soundscape_train_uniform1736",
+    "urbansound8k": "135776-2-0-49",
 }
 
 REMOTE_DATASETS = {
@@ -238,8 +222,8 @@ def test_clip():
                 dataset.clip("~fakeclipid~?!")
             continue
 
-        if dataset_name in CUSTOM_TEST_TRACKS:
-            clipid = CUSTOM_TEST_TRACKS[dataset_name]
+        if dataset_name in CUSTOM_TEST_CLIPS:
+            clipid = CUSTOM_TEST_CLIPS[dataset_name]
         else:
             clipid = dataset.clip_ids[0]
 
@@ -308,8 +292,8 @@ def test_clip_placeholder_case():
         if dataset._clip_class is None or dataset.remote_index:
             continue
 
-        if dataset_name in CUSTOM_TEST_TRACKS:
-            clipid = CUSTOM_TEST_TRACKS[dataset_name]
+        if dataset_name in CUSTOM_TEST_CLIPS:
+            clipid = CUSTOM_TEST_CLIPS[dataset_name]
         else:
             clipid = dataset.clip_ids[0]
 
