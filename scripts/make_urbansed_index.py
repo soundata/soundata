@@ -1,42 +1,43 @@
 import argparse
-import hashlib
+from natsort import natsorted, ns
 import json
 import os
 import glob
 from soundata.validate import md5
 
-INDEX_PATH = "../soundata/datasets/indexes/urbansound8k_index.json"
+INDEX_PATH = "../soundata/datasets/indexes/urbansed_index.json"
 
 
 def make_index(data_path):
 
-    metadata_rel_path = os.path.join("metadata", "UrbanSound8K.csv")
-
     index = {
-        "version": "1.0",
-        "clips": {},
-        "metadata": {
-            "UrbanSound8K.csv": [
-                metadata_rel_path,
-                md5(os.path.join(data_path, metadata_rel_path)),
-            ]
-        },
+        "version": "2.0.0",
+        "clips": {}
     }
 
-    for i in range(1, 11):
+    for split in ["train", "validate", "test"]:
 
-        fold_dir = os.path.join(data_path, "audio", "fold{}".format(i))
+        audio_split_dir = os.path.join(data_path, "audio", split)
+        annotations_split_dir = os.path.join(data_path, "annotations", split)
 
-        wavfiles = glob.glob(os.path.join(fold_dir, "*.wav"))
+        wavfiles = natsorted(glob.glob(os.path.join(audio_split_dir, "*.wav")), alg=ns.IGNORECASE)
 
         for wf in wavfiles:
+
+            jamsfile = os.path.join(annotations_split_dir, os.path.basename(wf).replace(".wav", ".jams"))
+            txtfile = os.path.join(annotations_split_dir, os.path.basename(wf).replace(".wav", ".txt"))
+
+            assert os.path.isfile(jamsfile)
+            assert os.path.isfile(txtfile)
 
             clip_id = os.path.basename(wf).replace(".wav", "")
             index["clips"][clip_id] = {
                 "audio": [
-                    os.path.join("audio", "fold{}".format(i), os.path.basename(wf)),
+                    os.path.join("audio", split, os.path.basename(wf)),
                     md5(wf),
-                ]
+                ],
+                "jams": [os.path.join("annotations", split, os.path.basename(jamsfile)), md5(jamsfile)],
+                "txt": [os.path.join("annotations", split, os.path.basename(txtfile)), md5(txtfile)]
             }
 
     with open(INDEX_PATH, "w") as fhandle:
@@ -48,7 +49,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Generate urbansound8k index file.")
-    PARSER.add_argument("data_path", type=str, help="Path to urbansound8k data folder.")
+    PARSER = argparse.ArgumentParser(description="Generate URBAN-SED index file.")
+    PARSER.add_argument("data_path", type=str, help="Path to urbansed data folder.")
 
     main(PARSER.parse_args())
