@@ -9,19 +9,19 @@
      - Duration (hours)
      - License
 
-  * - ESC-50
+   * - ESC-50
      - - audio: ✅
        - annotations: ✅
-     - - :ref:`tags`
+     - :ref:`tags`
      - 2000
      - 2.8
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-  * - URBAN-SED
+   * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
-     - - :ref:`tags`
+     - :ref:`tags`
      - 10000
      - 27.8
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
