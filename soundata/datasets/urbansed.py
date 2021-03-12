@@ -205,6 +205,8 @@ class Clip(core.Clip):
         )
 
         self.audio_path = self.get_path("audio")
+        self.jams_path = self.get_path("jams")
+        self.txt_path = self.get_path("txt")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -221,12 +223,9 @@ class Clip(core.Clip):
     def split(self):
         return self._clip_metadata.get("split")
 
-    @property
-    def events(self):
-        intervals = 1# TODO
-        labels = 1# TODO
-        confidence = 1#TODO
-        return annotations.Events(intervals, labels, confidence)
+    @core.cached_property
+    def events(self) -> Optional[annotations.Events]:
+        return load_events(self.txt_path)
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -235,10 +234,9 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        # return jams_utils.jams_converter(
-        #     audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        # )
-        return jams.load(self.index["clips"][self.class_id]["jams"])
+        jam = jams.load(self.jams_path)
+        jam.annotations[0].annotation_metadata.data_source = "soundata"
+        return jam
 
 
 @io.coerce_to_bytes_io
@@ -257,6 +255,30 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """
     audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
+
+
+@io.coerce_to_string_io
+def load_events(fhandle: TextIO) -> annotations.Events:
+    """Load an URBAN-SED sound events annotation file
+    Args:
+        fhandle (str or file-like): File-like object or path to the sound events annotation file
+    Raises:
+        IOError: if txt_path doesn't exist
+    Returns:
+        Events: sound events annotation data
+    """
+
+    times = []
+    labels = []
+    confidence = []
+    reader = csv.reader(fhandle, delimiter="\t")
+    for line in reader:
+        times.append([float(line[0]), float(line[1])])
+        labels.append(line[2])
+        confidence.append(1.0)
+
+    events_data = annotations.Events(np.array(times), labels, np.array(confidence))
+    return events_data
 
 
 @core.docstring_inherit(core.Dataset)
@@ -299,10 +321,9 @@ class Dataset(core.Dataset):
         metadata_index = {}
 
         for split, es in zip(splits, expected_sizes):
-        
-            annotation_folder = os.path.join(self.data_home, self.name, "annotations", split)
+
+            annotation_folder = os.path.join(self.data_home, "annotations", split)
             txtfiles = sorted(glob.glob(os.path.join(annotation_folder, "*.txt")))
-            assert len(txtfiles) == es
 
             for tf in txtfiles:
                 clip_id = os.path.basename(tf).replace(".txt", "")
