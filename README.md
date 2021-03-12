@@ -1,4 +1,7 @@
 # soundata
+
+<img src="docs/img/soundata.png" height="100px">
+
 Common loaders for sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
 
 [![CircleCI](https://circleci.com/gh/soundata/soundata.svg?style=svg)](https://circleci.com/gh/soundata/soundata)
