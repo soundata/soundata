@@ -13,15 +13,21 @@ Initializing
 Dataset Loaders
 ---------------
 
-esc50
-^^^^^
+ESC-50
+^^^^^^
 
 .. automodule:: soundata.datasets.urbansound8k
    :members:
    :inherited-members:
 
+URBAN-SED
+^^^^^^^^^
 
-urbansound8k
+.. automodule:: soundata.datasets.urbansed
+   :members:
+   :inherited-members:
+
+UrbanSound8K
 ^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.urbansound8k
