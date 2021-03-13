@@ -33,155 +33,152 @@ Print a list of all available dataset loaders by calling:
     import soundata
     print(soundata.list_datasets())
 
-To use a loader, (for example, 'orchset') you need to initialize it by calling:
+To use a loader, (for example, 'urbansound8k') you need to initialize it by calling:
 
 .. code-block:: python
 
     import soundata
-    orchset = soundata.initialize('orchset')
+    us8k = soundata.initialize('urbansound8k')
 
-Now ``orchset`` is a ``Dataset`` object containing common methods, described below.
+Now ``us8k`` is a ``Dataset`` object containing common methods, described below.
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
 
 All dataset loaders in ``soundata`` have a ``download()`` function that allows the user to download the canonical
-version of the dataset (when available). When initializing a dataset it is important to set up correctly the directory
+version of the dataset (when available). When initializing a dataset it is important to correctly set up the directory
 where the dataset is going to be stored and retrieved.
 
 Downloading a dataset into the default folder:
-    In this first example, ``data_home`` is not specified. Thus, ORCHSET will be downloaded and retrieved from ``sound_datasets``
-    folder created at user root folder:
+    In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
+    the default folder, ``sound_datasets``, created in the user's root folder:
 
     .. code-block:: python
 
         import soundata
-        orchset = soundata.initialize('orchset')
-        orchset.download()  # Dataset is downloaded at user root folder
+        us8k = soundata.initialize('urbansound8k')
+        us8k.download()  # Dataset is downloaded into "sound_datasets" folder inside user's root folder
 
 Downloading a dataset into a specified folder:
-    Now ``data_home`` is specified and so ORCHSET will be downloaded and retrieved from it:
+    In the next example ``data_home`` is specified, so UrbanSound8K will be downloaded and retrieved from the specified location:
 
     .. code-block:: python
 
-        orchset = soundata.initialize('orchset', data_home='Users/johnsmith/Desktop')
-        orchset.download()  # Dataset is downloaded at John Smith's desktop
+        us8k = soundata.initialize('urbansound8k', data_home='Users/johnsmith/Desktop')
+        us8k.download()  # Dataset is downloaded to John Smith's desktop
 
-Partially downloading a dataset
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..
+    Partially downloading a dataset
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``download()`` functions allows to partially download a dataset. In other words, if applicable, the user can
-select which elements of the dataset they want to download. Each dataset has a ``REMOTES`` dictionary were all
-the available elements are listed.
+    The ``download()`` function allows to partially download a dataset. In other words, if applicable, the user can
+    select which elements of the dataset they want to download. Each dataset has a ``REMOTES`` dictionary were all
+    the available downloadable elements are listed.
 
-``cante100`` has different elements as seen in the ``REMOTES`` dictionary. Thus, we can specify which of these elements are
-downloaded, by passing to the ``download()`` function the list of keys in ``REMOTES`` that we are interested in. This
-list is passed to the ``download()`` function through the ``partial_download`` variable.
+    ``cante100`` has different elements as seen in the ``REMOTES`` dictionary. We can specify a subset of these elements to
+    download by passing the ``download()`` function a list of the ``REMOTES`` keys that we are interested in via the 
+    ``partial_download`` variable.
 
-.. admonition:: Example REMOTES
-    :class: dropdown
+    .. admonition:: Example REMOTES
+        :class: dropdown
+
+        .. code-block:: python
+
+            REMOTES = {
+                "spectrogram": download_utils.RemoteFileMetadata(
+                    filename="cante100_spectrum.zip",
+                    url="https://zenodo.org/record/1322542/files/cante100_spectrum.zip?download=1",
+                    checksum="0b81fe0fd7ab2c1adc1ad789edb12981",  # the md5 checksum
+                    destination_dir="cante100_spectrum",  # relative path for where to unzip the data, or None
+                ),
+                "melody": download_utils.RemoteFileMetadata(
+                    filename="cante100midi_f0.zip",
+                    url="https://zenodo.org/record/1322542/files/cante100midi_f0.zip?download=1",
+                    checksum="cce543b5125eda5a984347b55fdcd5e8",  # the md5 checksum
+                    destination_dir="cante100midi_f0",  # relative path for where to unzip the data, or None
+                ),
+                "notes": download_utils.RemoteFileMetadata(
+                    filename="cante100_automaticTranscription.zip",
+                    url="https://zenodo.org/record/1322542/files/cante100_automaticTranscription.zip?download=1",
+                    checksum="47fea64c744f9fe678ae5642a8f0ee8e",  # the md5 checksum
+                    destination_dir="cante100_automaticTranscription",  # relative path for where to unzip the data, or None
+                ),
+                "metadata": download_utils.RemoteFileMetadata(
+                    filename="cante100Meta.xml",
+                    url="https://zenodo.org/record/1322542/files/cante100Meta.xml?download=1",
+                    checksum="6cce186ce77a06541cdb9f0a671afb46",  # the md5 checksum
+                ),
+                "README": download_utils.RemoteFileMetadata(
+                    filename="cante100_README.txt",
+                    url="https://zenodo.org/record/1322542/files/cante100_README.txt?download=1",
+                    checksum="184209b7e7d816fa603f0c7f481c0aae",  # the md5 checksum
+                ),
+            }
+
+    An partial download example for ``cante100`` dataset could be:
 
     .. code-block:: python
 
-        REMOTES = {
-            "spectrogram": download_utils.RemoteFileMetadata(
-                filename="cante100_spectrum.zip",
-                url="https://zenodo.org/record/1322542/files/cante100_spectrum.zip?download=1",
-                checksum="0b81fe0fd7ab2c1adc1ad789edb12981",  # the md5 checksum
-                destination_dir="cante100_spectrum",  # relative path for where to unzip the data, or None
-            ),
-            "melody": download_utils.RemoteFileMetadata(
-                filename="cante100midi_f0.zip",
-                url="https://zenodo.org/record/1322542/files/cante100midi_f0.zip?download=1",
-                checksum="cce543b5125eda5a984347b55fdcd5e8",  # the md5 checksum
-                destination_dir="cante100midi_f0",  # relative path for where to unzip the data, or None
-            ),
-            "notes": download_utils.RemoteFileMetadata(
-                filename="cante100_automaticTranscription.zip",
-                url="https://zenodo.org/record/1322542/files/cante100_automaticTranscription.zip?download=1",
-                checksum="47fea64c744f9fe678ae5642a8f0ee8e",  # the md5 checksum
-                destination_dir="cante100_automaticTranscription",  # relative path for where to unzip the data, or None
-            ),
-            "metadata": download_utils.RemoteFileMetadata(
-                filename="cante100Meta.xml",
-                url="https://zenodo.org/record/1322542/files/cante100Meta.xml?download=1",
-                checksum="6cce186ce77a06541cdb9f0a671afb46",  # the md5 checksum
-            ),
-            "README": download_utils.RemoteFileMetadata(
-                filename="cante100_README.txt",
-                url="https://zenodo.org/record/1322542/files/cante100_README.txt?download=1",
-                checksum="184209b7e7d816fa603f0c7f481c0aae",  # the md5 checksum
-            ),
-        }
-
-An partial download example for ``cante100`` dataset could be:
-
-.. code-block:: python
-
-    cante100.download(partial_download=['spectrogram', 'melody', 'metadata'])
+        cante100.download(partial_download=['spectrogram', 'melody', 'metadata'])
 
 Validating a dataset
 ^^^^^^^^^^^^^^^^^^^^
 
-Using the method ``validate()`` we can check if the files in the local version are the same than the available canical version,
-and the files were downloaded correctly (none of them are corrupted).
+Using the ``validate()`` method we can ensure that the files in our local copy of a dataset are identical to the canonical version
+of the dataset. The function computes the md5 checksum of every downloaded file to ensure it was downloaded correctly and isn't corrupted.
 
 For big datasets: In future ``soundata`` versions, a random validation will be included. This improvement will reduce validation time for very big datasets.
 
 Accessing annotations
 ^^^^^^^^^^^^^^^^^^^^^
 
-We can choose a random track from a dataset with the ``choice_track()`` method.
+We can choose a random clip from a dataset with the ``choice_clip()`` method.
 
 .. admonition:: Example Index
     :class: dropdown
 
     .. code-block:: python
 
-        random_track = orchset.choice_track()
-        print(random_track)
-        >>> Track(
-               alternating_melody=True,
-               audio_path_mono="user/sound_datasets/orchset/audio/mono/Beethoven-S3-I-ex1.wav",
-               audio_path_stereo="user/sound_datasets/orchset/audio/stereo/Beethoven-S3-I-ex1.wav",
-               composer="Beethoven",
-               contains_brass=False,
-               contains_strings=True,
-               contains_winds=True,
-               excerpt="1",
-               melody_path="user/sound_datasets/orchset/GT/Beethoven-S3-I-ex1.mel",
-               only_brass=False,
-               only_strings=False,
-               only_winds=False,
-               predominant_melodic_instruments=['strings', 'winds'],
-               track_id="Beethoven-S3-I-ex1",
-               work="S3-I",
-               audio_mono: (np.ndarray, float),
-               audio_stereo: (np.ndarray, float),
-               melody: F0Data,
+        random_clip = us8k.choice_clip()
+        print(random_clip)
+        >>> Clip(
+                audio_path="/Users/theuser/sound_datasets/urbansound8k/audio/fold4/176638-5-0-1.wav",
+                clip_id="176638-5-0-1",
+                audio: The clip's audio
+
+                        Returns,
+                class_id: ,
+                class_label: ,
+                fold: ,
+                freesound_end_time: ,
+                freesound_id: ,
+                freesound_start_time: ,
+                salience: ,
+                slice_file_name: ,
+                tags: ,
             )
 
 
-We can also access specific tracks by id. 
-The available track ids can be acessed via the `.track_ids` attribute.
-In the next example we take the first track id, and then we retrieve the melody
+We can also access specific clips by id. 
+The available clip ids can be acessed via the `.clip_ids` attribute.
+In the next example we take the first clip id, and then we retrieve the tags
 annotation.
 
 .. code-block:: python
 
-    orchset_ids = orchset.track_ids  # the list of orchset's track ids
-    orchset_data = orchset.load_tracks()  # Load all tracks in the dataset
-    example_track = orchset_data[orchset_ids[0]]  # Get the first track
+    us8k_ids = us8k.clip_ids  # the list of urbansound8k's clip ids
+    us8k_data = us8k.load_clips()  # Load all clips in the dataset
+    example_clip = us8k_data[us8k_ids[0]]  # Get the first clip
 
-    # Accessing the track's melody annotation
-    example_melody = example_track.melody
+    # Accessing the clip's tags annotation
+    example_tags = example_clip.tags
 
 
-Alternatively, we don't need to load the whole dataset to get a single track.
+Alternatively, we don't need to load the whole dataset to get a single clip.
 
 .. code-block:: python
 
-    orchset_ids = orchset.track_ids  # the list of orchset's track ids
+    us8k_ids = us8k.clip_ids  # the list of orchset's track ids
     example_track = orchset.track(orchset_ids[0])  # load this particular track
     example_melody = example_track.melody  # Get the melody from first track
 
