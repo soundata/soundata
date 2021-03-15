@@ -29,10 +29,8 @@ def make_index(data_path):
 
     audio_dir = os.path.join(data_path, "audio")
     wavfiles = glob.glob(os.path.join(audio_dir, "*.wav"))
-    assert len(wavfiles) == 2000
 
     for wf in wavfiles:
-
         clip_id = os.path.basename(wf).replace(".wav", "")
         index["clips"][clip_id] = {
             "audio": [
