@@ -442,7 +442,7 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
 
-        metadata_path = os.path.join(self.data_home, "metadata", "UrbanSound8K.csv")
+        metadata_path = os.path.join(self.data_home, "annotations.csv")
 
         if not os.path.exists(metadata_path):
             raise FileNotFoundError("Metadata not found. Did you run .download()?")
@@ -451,23 +451,32 @@ class Dataset(core.Dataset):
             reader = csv.reader(fhandle, delimiter=",")
             raw_data = []
             for line in reader:
-                if line[0] != "slice_file_name":
+                if line[0] != "split":
                     raw_data.append(line)
+                else:
+                    metadata_keys = line
 
         metadata_index = {}
-        for line in raw_data:
+        for line, clip_id in zip(raw_data, range():
 
             clip_id = line[0].replace(".wav", "")
 
             metadata_index[clip_id] = {
-                "slice_file_name": line[0],
-                "freesound_id": line[1],
-                "freesound_start_time": float(line[2]),
-                "freesound_end_time": float(line[3]),
-                "salience": int(line[4]),
-                "fold": int(line[5]),
-                "class_id": int(line[6]),
-                "class_label": line[7],
+                k:line[c] for k,c in zip(metadata_keys, range(len(line)))
+                # "split": line[0],
+                # "sensor_id": line[1],
+                # "audio_filename": line[2],
+                # "annotator_id": line[3],
+                # "year": int(line[4]),
+                # "week": int(line[5]),
+                # "day": int(line[6]),
+                # "hour": int(line[7]),
+                # "borough": int(line[8]),
+                # "block": int(line[9]),
+                # "latitude": float(line[10]),
+                # "longitude": float(line[11]),
             }
+
+            # open yaml and iterate in
 
         return metadata_index
