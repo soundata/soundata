@@ -1,4 +1,4 @@
-"""SONYC-UST 2.1 Dataset Loader
+"""SONYC-UST 2.3 Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
@@ -17,7 +17,7 @@
     (5) Adobe Research
     (6) Department of Technology Management and Innovation, New York University
 
-    Version 2.1, March 2020
+    Version 2.3, September 2020
 
     Publication
     -----------
@@ -170,14 +170,122 @@ REMOTES = {
     "annotations": download_utils.RemoteFileMetadata(
         filename="annotations.csv",
         url="https://zenodo.org/record/3693077/files/annotations.csv?download=1",
-        checksum="7b162f81a084b13d3b2fdad5d8536cc3",
+        checksum="70b507b15bb4cfcce4870925302f276b",
         unpack_directories=["SONYC_UST"]
     ),
-    "audio": download_utils.RemoteFileMetadata(
-        filename="audio.tar.gz",
-        url="https://zenodo.org/record/3693077/files/audio.tar.gz?download=1",
-        checksum="e709fbbeade2e45d1fbc755fda688a04",
-        unpack_directories=["SONYC_UST"]
+    "audio_0": download_utils.RemoteFileMetadata(
+        filename="audio-0.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-0.tar.gz?download=1",
+        checksum="bbb4dbae7d2e58e18d24878b9ee1eb51",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_1": download_utils.RemoteFileMetadata(
+        filename="audio-1.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-1.tar.gz?download=1",
+        checksum="7c369ff37ac6a1fdd8493fdffe62e0a1",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_2": download_utils.RemoteFileMetadata(
+        filename="audio-2.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-2.tar.gz?download=1",
+        checksum="412241c063d7f196953d3dd1c44aeb5e",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_3": download_utils.RemoteFileMetadata(
+            filename="audio-3.tar.gz",
+            url="https://zenodo.org/record/3966543/files/audio-3.tar.gz?download=1",
+            checksum="d2a872392d95993a2c238d305b940812",
+            unpack_directories=["SONYC_UST", "audio"]
+        ),
+    "audio_4": download_utils.RemoteFileMetadata(
+            filename="audio-4.tar.gz",
+            url="https://zenodo.org/record/3966543/files/audio-4.tar.gz?download=1",
+            checksum="b15b0e0cb3f8584259ef0d24293a9be3",
+            unpack_directories=["SONYC_UST", "audio"]
+        ),
+    "audio_5": download_utils.RemoteFileMetadata(
+            filename="audio-5.tar.gz",
+            url="https://zenodo.org/record/3966543/files/audio-5.tar.gz?download=1",
+            checksum="de745f887067433757a2f2c8f99f99bb",
+            unpack_directories=["SONYC_UST", "audio"]
+        ),
+    "audio_6": download_utils.RemoteFileMetadata(
+        filename="audio-6.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-6.tar.gz?download=1",
+        checksum="b0286c67468369d66336f6f5ddede31f",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_7": download_utils.RemoteFileMetadata(
+        filename="audio-7.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-7.tar.gz?download=1",
+        checksum="ff300183ab7a9d3f2f74c3b730ffeb52",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_8": download_utils.RemoteFileMetadata(
+        filename="audio-8.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-8.tar.gz?download=1",
+        checksum="7be76b821fa6dbe20f6b50ca440e1024",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_9": download_utils.RemoteFileMetadata(
+        filename="audio-9.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-9.tar.gz?download=1",
+        checksum="959f7edfbb26eadad9865069f38aa9dd",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_10": download_utils.RemoteFileMetadata(
+        filename="audio-10.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-10.tar.gz?download=1",
+        checksum="84e94de273666c537a3e6b709ee88d9b",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_11": download_utils.RemoteFileMetadata(
+        filename="audio-11.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-11.tar.gz?download=1",
+        checksum="44fe1f43121a7d1178aa0cdf7477793b",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_12": download_utils.RemoteFileMetadata(
+        filename="audio-12.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-12.tar.gz?download=1",
+        checksum="a7eb21011f460b5ac289f8e285e875ab",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_13": download_utils.RemoteFileMetadata(
+        filename="audio-13.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-13.tar.gz?download=1",
+        checksum="27945a8b1008eec787f97213164951e6",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_14": download_utils.RemoteFileMetadata(
+        filename="audio-14.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-14.tar.gz?download=1",
+        checksum="fb8c7d81c3bde3a0c86c1e55e6a85a24",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_15": download_utils.RemoteFileMetadata(
+        filename="audio-15.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-15.tar.gz?download=1",
+        checksum="f6af9b65d876ef96d199b9e5f0473cb9",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_16": download_utils.RemoteFileMetadata(
+        filename="audio-16.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-16.tar.gz?download=1",
+        checksum="e8337c61a90c30989d500f950fbe443a",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_17": download_utils.RemoteFileMetadata(
+        filename="audio-17.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-17.tar.gz?download=1",
+        checksum="3e47e85eb4564a30fe7f442ee97ec7b9",
+        unpack_directories=["SONYC_UST", "audio"]
+    ),
+    "audio_18": download_utils.RemoteFileMetadata(
+        filename="audio-18.tar.gz",
+        url="https://zenodo.org/record/3966543/files/audio-18.tar.gz?download=1",
+        checksum="c6b2ef4d0d5b7269d465c469cdbbdc4b",
+        unpack_directories=["SONYC_UST", "audio"]
     ),
     "taxonomy": download_utils.RemoteFileMetadata(
         filename="dcase-ust-taxonomy.yaml",
@@ -320,7 +428,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="urbansound8k",
+            name="sonyc_ust",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
