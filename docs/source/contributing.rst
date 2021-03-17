@@ -35,7 +35,7 @@ To install ``soundata`` for development purposes:
 
 
 We recommend to install `pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
-and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6 and 3.7.
+and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6, 3.7 and 3.8.
 Once ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you installed all the pytest
 plugins to automatically test your code successfully. Finally, run:
 
