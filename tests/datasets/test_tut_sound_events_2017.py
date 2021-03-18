@@ -17,13 +17,16 @@ def test_clip():
     expected_attributes = {
         "audio_path": (
             "tests/resources/sound_datasets/tut_sound_events_2017/TUT-sound-"
-            "events-2017-development/audio/street/a001.wav"),
+            "events-2017-development/audio/street/a001.wav"
+        ),
         "annotations_path": (
             "tests/resources/sound_datasets/tut_sound_events_2017/TUT-sound-"
-            "events-2017-development/meta/street/a001.ann"),
+            "events-2017-development/meta/street/a001.ann"
+        ),
         "non_verified_annotations_path": (
             "tests/resources/sound_datasets/tut_sound_events_2017/TUT-sound-"
-            "events-2017-development/non_verified/meta/street/a001.ann"),
+            "events-2017-development/non_verified/meta/street/a001.ann"
+        ),
         "clip_id": "a001",
     }
 
@@ -31,7 +34,7 @@ def test_clip():
         "split": str,
         "audio": tuple,
         "events": annotations.Events,
-        "non_verified_events": annotations.Events
+        "non_verified_events": annotations.Events,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
@@ -54,18 +57,15 @@ def test_load_events():
     annotations_path = clip.annotations_path
     annotations = tut_sound_events_2017.load_events(annotations_path)
 
-    confidence = [1.0]*3
-    intervals = [
-        [1.58921, 2.38382],
-        [3.500767, 4.156693],
-        [4.156693, 14.00307]
-    ]
+    confidence = [1.0] * 3
+    intervals = [[1.58921, 2.38382], [3.500767, 4.156693], [4.156693, 14.00307]]
     labels = ["people walking", "people walking", "car"]
     assert np.allclose(confidence, annotations.confidence)
     assert np.allclose(intervals, annotations.intervals)
 
     for j in range(3):
         assert labels[j] == annotations.labels[j]
+
 
 # def test_to_jams():
 
@@ -78,4 +78,4 @@ def test_load_events():
 #     # Validate urbansound8k jam schema
 #     assert jam.validate()
 
-    # # Validate Events
+# # Validate Events
