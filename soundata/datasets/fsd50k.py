@@ -265,7 +265,9 @@ class Clip(core.Clip):
         )
 
         self.audio_path = self.get_path("audio")
-        self.sub_set = self.audio_path.split("/")[-2].replace("FSD50K.", "").replace("_audio", "")
+        self.sub_set = (
+            self.audio_path.split("/")[-2].replace("FSD50K.", "").replace("_audio", "")
+        )
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -281,23 +283,25 @@ class Clip(core.Clip):
     @property
     def labels(self):
         return annotations.Tags(
-            self._metadata()['ground_truth_dev'][self.clip_id]['tags'],
-            np.array([1.0] * len(self._metadata()['ground_truth_dev'][self.clip_id]['tags']))
+            self._metadata()["ground_truth_dev"][self.clip_id]["tags"],
+            np.array(
+                [1.0] * len(self._metadata()["ground_truth_dev"][self.clip_id]["tags"])
+            ),
         )
 
     @property
     def split(self):
-        if self.sub_set == 'dev':
-            return self._metadata()['ground_truth_dev'][self.clip_id]['split']
+        if self.sub_set == "dev":
+            return self._metadata()["ground_truth_dev"][self.clip_id]["split"]
         else:
-            return self._metadata()['ground_truth_eval'][self.clip_id]['split']
+            return self._metadata()["ground_truth_eval"][self.clip_id]["split"]
 
     @property
     def description(self):
-        if self.sub_set == 'dev':
-            return self._metadata()['clips_info_dev'][self.clip_id]['description']
+        if self.sub_set == "dev":
+            return self._metadata()["clips_info_dev"][self.clip_id]["description"]
         else:
-            return self._metadata()['clips_info_eval'][self.clip_id]['description']
+            return self._metadata()["clips_info_eval"][self.clip_id]["description"]
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -306,21 +310,23 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        gt_key = 'ground_truth_dev' if self.sub_set == 'dev' else 'ground_truth_eval'
-        meta_key = 'clips_info_dev' if self.sub_set == 'dev' else 'clips_info_eval'
+        gt_key = "ground_truth_dev" if self.sub_set == "dev" else "ground_truth_eval"
+        meta_key = "clips_info_dev" if self.sub_set == "dev" else "clips_info_eval"
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             tags=self.labels,
             metadata={
-                'mids': self._clip_metadata[gt_key][self.clip_id].get('mids'),
-                'split': self._clip_metadata[gt_key][self.clip_id].get('split'),
-                'title': self._clip_metadata[meta_key][self.clip_id].get('title'),
-                'description': self._clip_metadata[meta_key][self.clip_id].get('description'),
-                'tags': self._clip_metadata[meta_key][self.clip_id].get('tags'),
-                'license': self._clip_metadata[meta_key][self.clip_id].get('license'),
-                'uploader': self._clip_metadata[meta_key][self.clip_id].get('uploader'),
-                'pp_pnp_ratings': self._clip_metadata['pp_pnp_ratings'][self.clip_id],
-            }
+                "mids": self._clip_metadata[gt_key][self.clip_id].get("mids"),
+                "split": self._clip_metadata[gt_key][self.clip_id].get("split"),
+                "title": self._clip_metadata[meta_key][self.clip_id].get("title"),
+                "description": self._clip_metadata[meta_key][self.clip_id].get(
+                    "description"
+                ),
+                "tags": self._clip_metadata[meta_key][self.clip_id].get("tags"),
+                "license": self._clip_metadata[meta_key][self.clip_id].get("license"),
+                "uploader": self._clip_metadata[meta_key][self.clip_id].get("uploader"),
+                "pp_pnp_ratings": self._clip_metadata["pp_pnp_ratings"][self.clip_id],
+            },
         )
 
 
@@ -358,16 +364,16 @@ def load_ground_truth(data_path):
         for line in reader:
             if len(line) == 3:
                 ground_truth_dict[line[0]] = {
-                    'tags': list(line[1].split(',')) if ',' in line[1] else line[1],
-                    'mids': list(line[2].split(',')) if ',' in line[2] else line[2],
-                    'split': None,
+                    "tags": list(line[1].split(",")) if "," in line[1] else line[1],
+                    "mids": list(line[2].split(",")) if "," in line[2] else line[2],
+                    "split": None,
                 }
             if len(line) == 4:
-                if ',' in line[2]:
+                if "," in line[2]:
                     ground_truth_dict[line[0]] = {
-                        'tags': list(line[1].split(',')) if ',' in line[1] else line[1],
-                        'mids': list(line[2].split(',')) if ',' in line[2] else line[2],
-                        'split': line[3],
+                        "tags": list(line[1].split(",")) if "," in line[1] else line[1],
+                        "mids": list(line[2].split(",")) if "," in line[2] else line[2],
+                        "split": line[3],
                     }
 
     return ground_truth_dict
@@ -378,7 +384,9 @@ def load_fsd50k_vocabulary(data_path):
     TODO
     """
     if not os.path.exists(data_path):
-        raise FileNotFoundError("FSD50K vocabulary file not found. Did you run .download()?")
+        raise FileNotFoundError(
+            "FSD50K vocabulary file not found. Did you run .download()?"
+        )
 
     fsd50k_to_audioset = {}
     audioset_to_fsd50k = {}
@@ -421,47 +429,60 @@ class Dataset(core.Dataset):
 
     @property
     def fsd50k_to_audioset(self):
-        data_path = os.path.join(self.data_home, "FSD50K.ground_truth", "vocabulary.csv")
+        data_path = os.path.join(
+            self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
+        )
         return load_fsd50k_vocabulary(data_path)[0]
 
     @property
     def audioset_to_fsd50k(self):
-        data_path = os.path.join(self.data_home, "FSD50K.ground_truth", "vocabulary.csv")
+        data_path = os.path.join(
+            self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
+        )
         return load_fsd50k_vocabulary(data_path)[1]
 
     @property
     def class_info(self):
-        data_path = os.path.join(self.data_home, "FSD50K.metadata", "class_info_FSD50K.json")
-        return json.load(open(data_path, 'r')) if os.path.exists(data_path) else None
+        data_path = os.path.join(
+            self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
+        )
+        return json.load(open(data_path, "r")) if os.path.exists(data_path) else None
 
     @core.cached_property
     def _metadata(self):
         # Ground_truth path
-        ground_truth_dev_path = os.path.join(self.data_home, "FSD50K.ground_truth", "dev.csv")
-        ground_truth_eval_path = os.path.join(self.data_home, "FSD50K.ground_truth", "eval.csv")
+        ground_truth_dev_path = os.path.join(
+            self.data_home, "FSD50K.ground_truth", "dev.csv"
+        )
+        ground_truth_eval_path = os.path.join(
+            self.data_home, "FSD50K.ground_truth", "eval.csv"
+        )
 
         # Load clip metadata path
-        clips_info_dev_path = os.path.join(self.data_home, "FSD50K.metadata", "dev_clips_info_FSD50K.json")
-        clips_info_eval_path = os.path.join(self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json")
+        clips_info_dev_path = os.path.join(
+            self.data_home, "FSD50K.metadata", "dev_clips_info_FSD50K.json"
+        )
+        clips_info_eval_path = os.path.join(
+            self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json"
+        )
 
         # Load PP/PNP ratings
-        pp_pnp_ratings_path = os.path.join(self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json")
+        pp_pnp_ratings_path = os.path.join(
+            self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json"
+        )
 
         metadata_index = {
-            'ground_truth_dev': load_ground_truth(ground_truth_dev_path),
-            'ground_truth_eval': load_ground_truth(ground_truth_eval_path),
-            'clips_info_dev': json.load(open(clips_info_dev_path, "r")) if os.path.exists(clips_info_dev_path) else None,
-            'clips_info_eval': json.load(open(clips_info_eval_path, "r")) if os.path.exists(clips_info_eval_path) else None,
-            'pp_pnp_ratings': json.load(open(pp_pnp_ratings_path, "r")) if os.path.exists(pp_pnp_ratings_path) else None,
-
+            "ground_truth_dev": load_ground_truth(ground_truth_dev_path),
+            "ground_truth_eval": load_ground_truth(ground_truth_eval_path),
+            "clips_info_dev": json.load(open(clips_info_dev_path, "r"))
+            if os.path.exists(clips_info_dev_path)
+            else None,
+            "clips_info_eval": json.load(open(clips_info_eval_path, "r"))
+            if os.path.exists(clips_info_eval_path)
+            else None,
+            "pp_pnp_ratings": json.load(open(pp_pnp_ratings_path, "r"))
+            if os.path.exists(pp_pnp_ratings_path)
+            else None,
         }
 
         return metadata_index
-
-
-
-
-
-
-
-

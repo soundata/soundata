@@ -34,11 +34,19 @@ def make_index(data_path):
             # Additional metadata
             "dev_clips_info": [
                 os.path.join(metadata_folder, "dev_clips_info_FSD50K.json"),
-                md5(os.path.join(data_path, metadata_folder, "dev_clips_info_FSD50K.json")),
+                md5(
+                    os.path.join(
+                        data_path, metadata_folder, "dev_clips_info_FSD50K.json"
+                    )
+                ),
             ],
             "eval_clips_info": [
                 os.path.join(metadata_folder, "eval_clips_info_FSD50K.json"),
-                md5(os.path.join(data_path, metadata_folder, "eval_clips_info_FSD50K.json")),
+                md5(
+                    os.path.join(
+                        data_path, metadata_folder, "eval_clips_info_FSD50K.json"
+                    )
+                ),
             ],
             # Relevant info about the labels
             "class_info": [
@@ -48,8 +56,12 @@ def make_index(data_path):
             # PP/PNP ratings
             "pp_pnp_ratings": [
                 os.path.join(metadata_folder, "pp_pnp_ratings_FSD50K.json"),
-                md5(os.path.join(data_path, metadata_folder, "pp_pnp_ratings_FSD50K.json")),
-            ]
+                md5(
+                    os.path.join(
+                        data_path, metadata_folder, "pp_pnp_ratings_FSD50K.json"
+                    )
+                ),
+            ],
         },
     }
 
