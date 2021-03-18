@@ -1,0 +1,172 @@
+audio/street/b095.wav	street	0.0	2.462242	car
+audio/street/b095.wav	street	1.720603	4.528943	car
+audio/street/b095.wav	street	4.044405	6.08144	car
+audio/street/b095.wav	street	5.755119	8.039367	car
+audio/street/b095.wav	street	8.504128	12.024441	car
+audio/street/b095.wav	street	11.50035	14.031811	car
+audio/street/b095.wav	street	14.971221	18.046551	car
+audio/street/b095.wav	street	20.251691	22.713932	people walking
+audio/street/b095.wav	street	24.909184	29.517235	car
+audio/street/b095.wav	street	35.608564	41.037362	car
+audio/street/b095.wav	street	40.463827	51.529082	large vehicle
+audio/street/b095.wav	street	50.856663	55.059284	car
+audio/street/b095.wav	street	55.059284	60.517748	car
+audio/street/b095.wav	street	59.30146	66.015765	car
+audio/street/b095.wav	street	66.45086	69.911842	car
+audio/street/b095.wav	street	70.435934	78.059984	car
+audio/street/b095.wav	street	82.104389	96.027426	car
+audio/street/b095.wav	street	98.835766	102.979056	car
+audio/street/b095.wav	street	101.584775	112.472036	car
+audio/street/b095.wav	street	113.154344	120.560846	car
+audio/street/b095.wav	street	123.537291	132.021642	people speaking
+audio/street/b095.wav	street	126.246746	130.676803	car
+audio/street/b095.wav	street	127.116936	135.37385	people walking
+audio/street/b095.wav	street	132.990717	140.070898	car
+audio/street/b095.wav	street	136.11549	144.382293	people walking
+audio/street/b095.wav	street	139.695134	149.010121	car
+audio/street/b095.wav	street	148.149819	154.508138	people walking
+audio/street/b095.wav	street	153.351181	159.027192	car
+audio/street/b095.wav	street	158.334996	164.060449	car
+audio/street/b095.wav	street	163.279256	167.293996	car
+audio/street/b095.wav	street	167.501655	169.993562	car
+audio/street/b095.wav	street	168.955267	173.82042	car
+audio/street/b095.wav	street	173.207331	176.312327	car
+audio/street/b095.wav	street	175.976117	178.517467	car
+audio/street/b095.wav	street	178.448247	182.522318	car
+audio/street/b095.wav	street	181.90923	185.034002	car
+audio/street/b095.wav	street	185.439432	188.030224	car
+audio/street/b095.wav	street	187.446801	190.522131	car
+audio/street/b095.wav	street	190.007928	194.002891	car
+audio/street/b095.wav	street	193.923782	198.55161	car
+audio/street/b095.wav	street	198.55161	214.027145	car
+audio/street/b095.wav	street	218.536311	224.4892	car
+audio/street/b095.wav	street	223.935443	226.793226	car
+audio/street/b095.wav	street	226.021921	229.067586	car
+audio/street/b095.wav	street	233.537197	241.754558	car
+audio/street/a008.wav	street	0.184586	0.469855	people speaking
+audio/street/a008.wav	street	61.735534	64.957394	people walking
+audio/street/a008.wav	street	63.044415	63.514269	people speaking
+audio/street/a008.wav	street	86.201532	109.325089	people speaking
+audio/street/a008.wav	street	148.70897	152.182538	car
+audio/street/a008.wav	street	159.599528	163.22412	car
+audio/street/a127.wav	street	0.0	65.024478	people walking
+audio/street/a127.wav	street	0.295063	51.291761	people speaking
+audio/street/a127.wav	street	7.364277	20.150335	car
+audio/street/a127.wav	street	59.23387	68.688176	large vehicle
+audio/street/a127.wav	street	78.830962	90.363002	people walking
+audio/street/a127.wav	street	84.916633	92.182556	car
+audio/street/a127.wav	street	91.358839	113.045959	people walking
+audio/street/a127.wav	street	92.502207	100.038605	large vehicle
+audio/street/a127.wav	street	98.73541	100.960676	brakes squeaking
+audio/street/a127.wav	street	99.891073	185.434715	large vehicle
+audio/street/a127.wav	street	99.891073	103.554771	people speaking
+audio/street/a127.wav	street	108.460191	121.541311	large vehicle
+audio/street/a127.wav	street	115.553994	137.31488	people walking
+audio/street/a127.wav	street	118.627565	121.369191	people speaking
+audio/street/a127.wav	street	121.897845	126.250022	large vehicle
+audio/street/a127.wav	street	125.635308	130.77432	brakes squeaking
+audio/street/a127.wav	street	131.450505	133.208588	brakes squeaking
+audio/street/a127.wav	street	134.21672	136.11004	brakes squeaking
+audio/street/a127.wav	street	136.675577	143.609554	large vehicle
+audio/street/a127.wav	street	143.400551	166.821166	people walking
+audio/street/a127.wav	street	152.80568	163.292706	car
+audio/street/a127.wav	street	166.907226	175.722229	people walking
+audio/street/a127.wav	street	173.792026	174.578861	people speaking
+audio/street/a127.wav	street	178.513032	180.590766	people walking
+audio/street/a127.wav	street	179.545752	183.049624	children
+audio/street/a127.wav	street	182.779149	192.454752	large vehicle
+audio/street/a127.wav	street	191.803155	207.109541	people walking
+audio/street/a127.wav	street	200.126387	213.883693	large vehicle
+audio/street/a127.wav	street	200.446038	201.773821	people speaking
+audio/street/a127.wav	street	213.883693	248.393753	large vehicle
+audio/street/a127.wav	street	215.678658	300.570703	people walking
+audio/street/a127.wav	street	222.956876	227.35823	people speaking
+audio/street/a127.wav	street	224.997727	240.156582	large vehicle
+audio/street/a127.wav	street	227.653293	227.997533	brakes squeaking
+audio/street/a127.wav	street	248.393753	265.691814	large vehicle
+audio/street/a127.wav	street	267.056479	268.310497	large vehicle
+audio/street/a127.wav	street	270.990651	271.851251	brakes squeaking
+audio/street/a127.wav	street	274.568288	275.551831	brakes squeaking
+audio/street/a127.wav	street	281.51456	282.03092	brakes squeaking
+audio/street/a127.wav	street	284.600425	299.033917	large vehicle
+audio/street/a127.wav	street	297.558603	300.570703	car
+audio/street/a131.wav	street	0.0	25.786823	people walking
+audio/street/a131.wav	street	9.997565	16.498445	people speaking
+audio/street/a131.wav	street	15.966555	17.562225	children
+audio/street/a131.wav	street	17.906969	21.915845	people speaking
+audio/street/a131.wav	street	26.308863	29.7169	people walking
+audio/street/a131.wav	street	30.662483	34.297065	children
+audio/street/a131.wav	street	31.489867	40.571399	people walking
+audio/street/a131.wav	street	38.236993	44.32418	people speaking
+audio/street/a131.wav	street	44.205982	51.780492	large vehicle
+audio/street/a131.wav	street	62.339497	66.663567	car
+audio/street/a131.wav	street	79.281183	81.349645	people walking
+audio/street/a131.wav	street	84.038645	94.361254	people walking
+audio/street/a131.wav	street	87.387583	92.499639	car
+audio/street/a131.wav	street	91.780602	94.361254	people speaking
+audio/street/a131.wav	street	98.626225	102.388856	people speaking
+audio/street/a131.wav	street	98.980819	99.680156	brakes squeaking
+audio/street/a131.wav	street	101.699368	107.983552	people walking
+audio/street/a131.wav	street	108.269197	128.008232	car
+audio/street/a131.wav	street	124.245601	125.811722	brakes squeaking
+audio/street/a131.wav	street	126.057968	127.880184	brakes squeaking
+audio/street/a131.wav	street	129.259159	130.569184	brakes squeaking
+audio/street/a131.wav	street	130.293389	131.761012	people speaking
+audio/street/a131.wav	street	131.534466	135.1001	people walking
+audio/street/a131.wav	street	134.331815	139.030178	people speaking
+audio/street/a131.wav	street	136.76472	140.320504	people walking
+audio/street/a131.wav	street	138.724833	143.2262	people walking
+audio/street/a131.wav	street	140.468251	145.511358	car
+audio/street/a131.wav	street	146.348592	147.698017	people speaking
+audio/street/a131.wav	street	148.269307	172.42106	people walking
+audio/street/a131.wav	street	161.931004	163.21148	children
+audio/street/a131.wav	street	170.076803	188.249717	people speaking
+audio/street/a131.wav	street	172.42106	174.312225	children
+audio/street/a131.wav	street	179.847823	204.038975	people walking
+audio/street/a131.wav	street	193.637567	197.547945	people speaking
+audio/street/a131.wav	street	204.393568	209.022983	people walking
+audio/street/a131.wav	street	213.4751	215.68146	children
+audio/street/a131.wav	street	216.341397	226.289713	children
+audio/street/a131.wav	street	219.897182	231.490417	people walking
+audio/street/a131.wav	street	231.057025	231.569216	brakes squeaking
+audio/street/a131.wav	street	240.187806	240.808345	people speaking
+audio/street/b003.wav	street	0.298388	13.49486	people walking
+audio/street/b003.wav	street	4.822343	18.04769	car
+audio/street/b003.wav	street	18.240199	32.033447	car
+audio/street/b003.wav	street	30.974649	35.498604	large vehicle
+audio/street/b003.wav	street	75.81955	77.013104	people walking
+audio/street/b003.wav	street	78.293287	87.013931	car
+audio/street/b003.wav	street	84.222555	101.509836	people walking
+audio/street/b003.wav	street	84.463191	95.012667	car
+audio/street/b003.wav	street	101.240323	115.524469	car
+audio/street/b003.wav	street	112.309573	146.489492	large vehicle
+audio/street/b003.wav	street	140.194458	155.027253	car
+audio/street/b003.wav	street	149.290494	235.32263	car
+audio/street/b003.wav	street	152.592018	180.005256	car
+audio/street/b003.wav	street	186.560178	201.999375	car
+audio/street/b003.wav	street	202.413269	216.524156	car
+audio/street/b003.wav	street	217.111308	229.489617	car
+audio/street/b003.wav	street	221.80852	225.01379	people walking
+audio/street/b007.wav	street	1.704661	2.255124	people walking
+audio/street/b007.wav	street	2.921007	10.059274	children
+audio/street/b007.wav	street	5.060712	23.01292	car
+audio/street/b007.wav	street	13.894761	36.51703	children
+audio/street/b007.wav	street	14.542887	31.846969	people walking
+audio/street/b007.wav	street	21.254989	30.515203	car
+audio/street/b007.wav	street	28.490919	44.028191	car
+audio/street/b007.wav	street	39.25159	46.549668	children
+audio/street/b007.wav	street	49.470676	51.645894	people walking
+audio/street/b007.wav	street	63.365436	67.520547	car
+audio/street/b007.wav	street	88.083017	89.592352	people walking
+audio/street/b007.wav	street	92.335791	96.996973	people walking
+audio/street/b007.wav	street	97.494165	102.519363	car
+audio/street/b007.wav	street	104.854393	109.266979	people walking
+audio/street/b007.wav	street	112.063688	117.017858	car
+audio/street/b007.wav	street	131.063552	143.528884	car
+audio/street/b007.wav	street	140.492457	160.025028	car
+audio/street/b007.wav	street	160.406801	160.841845	people walking
+audio/street/b007.wav	street	166.941334	167.376378	people walking
+audio/street/b007.wav	street	167.909084	199.001386	car
+audio/street/b007.wav	street	174.132872	174.514645	people walking
+audio/street/b007.wav	street	182.301038	182.718325	people walking
+audio/street/b007.wav	street	202.304166	217.060136	car
