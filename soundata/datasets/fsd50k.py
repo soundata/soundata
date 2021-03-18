@@ -282,26 +282,23 @@ class Clip(core.Clip):
 
     @property
     def labels(self):
+        gt_key = "ground_truth_dev" if self.sub_set == "dev" else "ground_truth_eval"
         return annotations.Tags(
-            self._metadata()["ground_truth_dev"][self.clip_id]["tags"],
+            self._clip_metadata[gt_key][self.clip_id].get("tags"),
             np.array(
-                [1.0] * len(self._metadata()["ground_truth_dev"][self.clip_id]["tags"])
+                [1.0] * len(self._clip_metadata[gt_key][self.clip_id].get("tags"))
             ),
         )
 
     @property
     def split(self):
-        if self.sub_set == "dev":
-            return self._metadata()["ground_truth_dev"][self.clip_id]["split"]
-        else:
-            return self._metadata()["ground_truth_eval"][self.clip_id]["split"]
+        gt_key = "ground_truth_dev" if self.sub_set == "dev" else "ground_truth_eval"
+        return self._clip_metadata[gt_key][self.clip_id].get("split")
 
     @property
     def description(self):
-        if self.sub_set == "dev":
-            return self._metadata()["clips_info_dev"][self.clip_id]["description"]
-        else:
-            return self._metadata()["clips_info_eval"][self.clip_id]["description"]
+        meta_key = "clips_info_dev" if self.sub_set == "dev" else "clips_info_eval"
+        return self._clip_metadata[meta_key][self.clip_id].get("description")
 
     def to_jams(self):
         """Get the clip's data in jams format
