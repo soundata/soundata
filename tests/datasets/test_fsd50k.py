@@ -90,12 +90,12 @@ def test_to_jams():
     assert jam.annotations[0].annotation_metadata.data_source == "soundata"
 
 
-def test_tags():
+def test_labels():
     default_clipid = "64760"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    tags = clip.labels
-    assert tags.labels == [
+    labels = clip.labels
+    assert labels.labels == [
         "Electric_guitar",
         "Guitar",
         "Plucked_string_instrument",

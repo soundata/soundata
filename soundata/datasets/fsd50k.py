@@ -222,16 +222,9 @@ from soundata import io
 BIBTEX = """
 TODO
 """
-REMOTES = {
-    "all": download_utils.RemoteFileMetadata(
-        filename="UrbanSound8K.tar.gz",
-        url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz",
-        checksum="9aa69802bbf37fb986f71ec1483a196e",
-        unpack_directories=["UrbanSound8K"],
-    )
-}
+REMOTES = None
 
-LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
+LICENSE_INFO = "Creative Commons Attribution 4.0 International"
 
 
 class Clip(core.Clip):
