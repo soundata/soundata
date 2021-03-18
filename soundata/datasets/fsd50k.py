@@ -3,105 +3,204 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
+    FSD50K: an Open Dataset of Human-Labeled Sound Events
+    =====================================================
+
     Created By
     ----------
 
-    TODO
-
+    Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
+    Music Technology Group, Universitat Pompeu Fabra (Barcelona).
     Version 1.0
-
 
     Description
     -----------
 
-    TODO
+    FSD50K is an open dataset of human-labeled sound events containing 51,197 Freesound clips unequally distributed
+    in 200 classes drawn from the AudioSet Ontology. FSD50K has been created at the Music Technology Group of
+    Universitat Pompeu Fabra.
 
     Audio Files Included
     --------------------
 
-    TODO
+    * FSD50K contains 51,197 audio clips from Freesound, totalling 108.3 hours of multi-labeled audio.
+    * The audio content is composed mainly of sound events produced by physical sound sources and production mechanisms,
+      including human sounds, sounds of things, animals, natural sounds, musical instruments and more. The vocabulary
+      can be inspected in vocabulary.csv.
+    * Clips are of variable length from 0.3 to 30s, due to the diversity of the sound classes and the preferences of
+      Freesound users when recording sounds.
+    * All clips are provided as uncompressed PCM 16 bit 44.1 kHz mono audio files.
 
-    Meta-data Files Included
-    ------------------------
+    Annotations Included
+    --------------------
 
-    UrbanSound8k.csv
-
-    This file contains meta-data information about every audio file in the dataset. This includes:
-
-    * slice_file_name: 
-    The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav, where:
-    [fsID] = the Freesound ID of the recording from which this excerpt (slice) is taken
-    [classID] = a numeric identifier of the sound class (see description of classID below for further details)
-    [occurrenceID] = a numeric identifier to distinguish different occurrences of the sound within the original recording
-    [sliceID] = a numeric identifier to distinguish different slices taken from the same occurrence
-
-    * fsID:
-    The Freesound ID of the recording from which this excerpt (slice) is taken
-
-    * start
-    The start time of the slice in the original Freesound recording
-
-    * end:
-    The end time of slice in the original Freesound recording
-
-    * salience:
-    A (subjective) salience rating of the sound. 1 = foreground, 2 = background.
-
-    * fold:
-    The fold number (1-10) to which this file has been allocated.
-
-    * classID:
-    A numeric identifier of the sound class:
-    0 = air_conditioner
-    1 = car_horn
-    2 = children_playing
-    3 = dog_bark
-    4 = drilling
-    5 = engine_idling
-    6 = gun_shot
-    7 = jackhammer
-    8 = siren
-    9 = street_music
-
-    * class:
-    The class name: air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling, gun_shot, jackhammer, 
-    siren, street_music.
+    * The dataset encompasses 200 sound classes (144 leaf nodes and 56 intermediate nodes) hierarchically organized
+      with a subset of the AudioSet Ontology. Please refer to the included vocabulary.csv file for a complete list of
+      considered classes.
+    * The acoustic material has been manually labeled by humans following a data labeling
+      process using the Freesound Annotator platform.
+    * Ground truth labels are provided at the clip-level (i.e., weak labels).
+    * Note: All classes in FSD50K are represented in AudioSet, except Crash cymbal, Human group actions, Human voice,
+      Respiratory sounds, and Domestic sounds, home sounds.
+    * Note: We use a slightly different format than AudioSet for the naming of class labels in order to avoid potential
+      problems with spaces, commas, etc. Example: we use Accelerating_and_revving_and_vroom instead of the original
+      Accelerating, revving, vroom. You can go back to the original AudioSet naming using the information provided in
+      vocabulary.csv (class label and mid for the 200 classes of FSD50K) and the AudioSet Ontology specification.
 
 
-    Please Acknowledge UrbanSound8K in Academic Research
+    Organization
+    ------------
+
+    FSD50K is split in two subsets: the developement (dev) and the evaluation (eval) sets. Especifications of both
+    subsets is detailed below:
+
+    Dev set:
+    * 40,966 audio clips totalling 80.4 hours of audio
+    * Avg duration/clip: 7.1s
+    * 114,271 smeared labels (i.e., labels propagated in the upwards direction to the root of the ontology)
+    * Labels are correct but could be occasionally incomplete
+    * A train/validation split is provided. If a different split is used, it should be specified for reproducibility
+      and fair comparability of results
+
+    Eval set:
+    * 10,231 audio clips totalling 27.9 hours of audio
+    * Avg duration/clip: 9.8s
+    * 38,596 smeared labels
+    * Eval set is labeled exhaustively (labels are correct and complete for the considered vocabulary)
+
+    Ground-truth Files Included
+    ---------------------------
+
+    dev.csv
+
+    Each row (i.e. audio clip) of dev.csv contains the following information:
+    * fname:
+    The file name without the .wav extension, e.g., the fname 64760 corresponds to the file 64760.wav in disk. This
+    number is the Freesound id. We always use Freesound ids as filenames.
+
+    * labels:
+    The class labels (i.e., the ground truth). Note these class labels are smeared, i.e., the labels have been
+    propagated in the upwards direction to the root of the ontology. More details about the label smearing process can
+    be found in Appendix D of our paper.
+
+    * mids:
+    The Freebase identifiers corresponding to the class labels, as defined in the AudioSet Ontology specification.
+
+    * split:
+    Whether the clip belongs to train or val (see paper for details on the proposed split)
+
+
+    eval.csv
+
+    Rows in eval.csv follow the same format as dev.csv, except that there is no split column.
+
+    Metadata Files Included
+    -----------------------
+
+    To allow a variety of analysis and approaches with FSD50K, we provide the following metadata:
+
+    class_info_FSD50K.json
+
+    Python dictionary where each entry corresponds to one sound class and  contains: FAQs utilized during the annotation
+    of the class, examples (representative audio clips), and verification_examples (audio clips presented to raters
+    during annotation as a quality control mechanism). Audio clips are described by the Freesound id. Note: It may be
+    that some of these examples are not included in the FSD50K release.
+
+
+    dev_clips_info_FSD50K.json
+
+    Python dictionary where each entry corresponds to one dev clip and contains: title, description, tags, clip license,
+    and the uploader name. All these metadata are provided by the uploader.
+
+
+    eval_clips_info_FSD50K.json
+
+    Same as above, but with eval clips.
+
+
+    pp_pnp_ratings.json
+
+    Python dictionary where each entry corresponds to one clip in the dataset and contains the PP/PNP ratings for the
+    labels associated with the clip. More specifically, these ratings are gathered for the labels validated in the
+    validation task. This file includes 59,485 labels for the 51,197 clips in FSD50K.
+    Out of these labels:
+    * 56,095 labels have inter-annotator agreement (PP twice, or PNP twice). Each of these combinations can be
+      occasionally accompanied by other (non-positive) ratings.
+    * 3390 labels feature other rating configurations such as i) only one PP rating and one PNP rating (and nothing
+      else). This can be considered inter-annotator agreement at the "Present" level; ii) only one PP rating (and
+      nothing else); iii) only one PNP rating (and nothing else).
+    Ratings' legend: PP=1; PNP=0.5; U=0; NP=-1.
+
+    Note: The PP/PNP ratings have been provided in the validation task. Subsequently, a subset of these clips
+    corresponding to the eval set was exhaustively labeled in the refinement task, hence receiving additional labels
+    in many cases. For these eval clips, you might want to check their labels in eval.csv in order to have more info
+    about their audio content.
+
+
+    collection/
+
+    This folder contains metadata for what we call the sound collection format. This format consists of the raw
+    annotations gathered, featuring all generated class labels without any restriction.
+    We provide the collection format to make available some annotations that do not appear in the FSD50K ground truth
+    release. This typically happens in the case of classes for which we gathered human-provided annotations, but that
+    were discarded in the FSD50K release due to data scarcity (more specifically, they were merged with their parents).
+    In other words, the main purpose of the collection format is to make available annotations for tiny classes.
+    The format of these files in analogous to that of the files in FSD50K.ground_truth/. A couple of examples show the
+    differences between collection and ground truth formats:
+
+    clip:  labels_in_collection    --    labels_in_ground_truth
+    51690:  Owl    --    Bird,Wild_Animal,Animal
+    190579:  Toothbrush,Electric_toothbrush    --    Domestic_sounds_and_home_sounds
+
+    In the first example, raters provided the label Owl. However, due to data scarcity, Owl labels were merged into
+    their parent Bird. Then, labels Wild_Animal,Animal were added via label propagation (smearing). The second example
+    shows one of the most extreme cases, where raters provided the labels Electric_toothbrush,Toothbrush, which both
+    had few data. Hence, they were merged into Toothbrush's parent, which unfortunately is Domestic_sounds_and_home_
+    sounds (a rather vague class containing a variety of children sound classes).
+
+    Note: Labels in the collection format are not smeared.
+    Note: While in FSD50K's ground truth the vocabulary encompasses 200 classes (common for dev and eval), since the
+    collection format is composed of raw annotations, the vocabulary here is much larger (over 350 classes), and it is
+    slightly different in dev and eval.
+
+    Please Acknowledge FSD50K in Academic Research
     ----------------------------------------------------
 
-    When UrbanSound8K is used for academic research, we would highly appreciate it if scientific publications of works 
-    partly based on the UrbanSound8K dataset cite the following publication:
+    If you use the FSD50K Dataset please cite the following paper:
 
     .. code-block:: latex
-        J. Salamon, C. Jacoby and J. P. Bello, "A Dataset and Taxonomy for Urban Sound Research", 
-        22nd ACM International Conference on Multimedia, Orlando USA, Nov. 2014.
+        Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of
+        Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
-    The creation of this dataset was supported by a seed grant by NYU's Center for Urban Science and Progress (CUSP).
+    The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
+    Collado, Ceren Can, Rachit Gupta, Javier Arredondo, Gary Avendano and Sara Fernandez for their commitment and
+    perseverance. The authors would also like to thank Daniel P.W. Ellis and Manoj Plakal from Google Research for
+    valuable discussions. This work is partially supported by the European Union’s Horizon 2020 research and innovation
+    programme under grant agreement No 688382 AudioCommons, and two Google Faculty Research Awards 2017 and 2018, and
+    the Maria de Maeztu Units of Excellence Programme (MDM-2015-0502).
 
 
-    Conditions of Use
-    -----------------
+    License
+    -------
 
-    Dataset compiled by Justin Salamon, Christopher Jacoby and Juan Pablo Bello. All files are excerpts of recordings
-    uploaded to www.freesound.org. Please see FREESOUNDCREDITS.txt for an attribution list.
-    
-    The UrbanSound8K dataset is offered free of charge for non-commercial use only under the terms of the Creative Commons
-    Attribution Noncommercial License (by-nc), version 3.0: http://creativecommons.org/licenses/by-nc/3.0/
-    
-    The dataset and its contents are made available on an "as is" basis and without warranties of any kind, including 
-    without limitation satisfactory quality and conformity, merchantability, fitness for a particular purpose, accuracy or 
-    completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, NYU is not 
-    liable for, and expressly excludes, all liability for loss or damage however and whenever caused to anyone by any use of
-    the UrbanSound8K dataset or any part of it.
+    All audio clips in FSD50K are released under Creative Commons (CC) licenses. Each clip has its own license as
+    defined by the clip uploader in Freesound, some of them requiring attribution to their original authors and some
+    forbidding further commercial reuse. For attribution purposes and to facilitate attribution of these files to third
+    parties, we include a mapping from the audio clips to their corresponding licenses. The licenses are specified in
+    the files dev_clips_info_FSD50K.json and eval_clips_info_FSD50K.json. These licenses are CC0, CC-BY, CC-BY-NC and
+    CC Sampling+.
+8
+    In addition, FSD50K as a whole is the result of a curation process and it has an additional license: FSD50K is
+    released under CC-BY. This license is specified in the LICENSE-DATASET file downloaded with the FSD50K.doc zip file.
+
+    Usage of FSD50K for commercial purposes: If you'd like to use FSD50K for commercial purposes, please contact Eduardo
+    Fonseca and Frederic Font at eduardo.fonseca@upf.edu and frederic.font@upf.edu.
 
 
     Feedback
     --------
 
-    Please help us improve UrbanSound8K by sending your feedback to: justin.salamon@nyu.edu
-    In case of a problem report please include as many details as possible.
+    For further questions, please contact eduardo.fonseca@upf.edu, or join the freesound-annotator Google Group.
 
 """
 
@@ -142,9 +241,10 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        labels (soundata.annotation.Tags): tag (label) of the clip + confidence.
         audio_path (str): path to the audio file
         clip_id (str): clip id
+        labels (soundata.annotation.Tags): tag (label) of the clip + confidence
+        sub_set (str): flag to identify if clip belongs to developement or evaluation set
 
     """
 
@@ -187,7 +287,17 @@ class Clip(core.Clip):
 
     @property
     def split(self):
-        return self._metadata()['ground_truth_dev'][self.clip_id]['split']
+        if self.sub_set == 'dev':
+            return self._metadata()['ground_truth_dev'][self.clip_id]['split']
+        else:
+            return self._metadata()['ground_truth_eval'][self.clip_id]['split']
+
+    @property
+    def description(self):
+        if self.sub_set == 'dev':
+            return self._metadata()['clips_info_dev'][self.clip_id]['description']
+        else:
+            return self._metadata()['clips_info_eval'][self.clip_id]['description']
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -196,10 +306,21 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
+        gt_key = 'ground_truth_dev' if self.sub_set == 'dev' else 'ground_truth_eval'
+        meta_key = 'clips_info_dev' if self.sub_set == 'dev' else 'clips_info_eval'
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             tags=self.labels,
-            metadata=self._clip_metadata
+            metadata={
+                'mids': self._clip_metadata[gt_key][self.clip_id].get('mids'),
+                'split': self._clip_metadata[gt_key][self.clip_id].get('split'),
+                'title': self._clip_metadata[meta_key][self.clip_id].get('title'),
+                'description': self._clip_metadata[meta_key][self.clip_id].get('description'),
+                'tags': self._clip_metadata[meta_key][self.clip_id].get('tags'),
+                'license': self._clip_metadata[meta_key][self.clip_id].get('license'),
+                'uploader': self._clip_metadata[meta_key][self.clip_id].get('uploader'),
+                'pp_pnp_ratings': self._clip_metadata['pp_pnp_ratings'][self.clip_id],
+            }
         )
 
 
@@ -239,6 +360,7 @@ def load_ground_truth(data_path):
                 ground_truth_dict[line[0]] = {
                     'tags': list(line[1].split(',')) if ',' in line[1] else line[1],
                     'mids': list(line[2].split(',')) if ',' in line[2] else line[2],
+                    'split': None,
                 }
             if len(line) == 4:
                 if ',' in line[2]:
@@ -322,11 +444,16 @@ class Dataset(core.Dataset):
         clips_info_dev_path = os.path.join(self.data_home, "FSD50K.metadata", "dev_clips_info_FSD50K.json")
         clips_info_eval_path = os.path.join(self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json")
 
+        # Load PP/PNP ratings
+        pp_pnp_ratings_path = os.path.join(self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json")
+
         metadata_index = {
             'ground_truth_dev': load_ground_truth(ground_truth_dev_path),
             'ground_truth_eval': load_ground_truth(ground_truth_eval_path),
             'clips_info_dev': json.load(open(clips_info_dev_path, "r")) if os.path.exists(clips_info_dev_path) else None,
             'clips_info_eval': json.load(open(clips_info_eval_path, "r")) if os.path.exists(clips_info_eval_path) else None,
+            'pp_pnp_ratings': json.load(open(pp_pnp_ratings_path, "r")) if os.path.exists(pp_pnp_ratings_path) else None,
+
         }
 
         return metadata_index
