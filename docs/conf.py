@@ -59,6 +59,7 @@ extlinks = {
     "cante": ("https://zenodo.org/record/1324183#.X_nq7-n7RUI%s", "Custom"),
     "ikala": ("http://mac.citi.sinica.edu.tw/ikala/%s", "Custom"),
     "rwc": ("https://staff.aist.go.jp/m.goto/RWC-MDB/%s", "Custom"),
+    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
 }
 
 
