@@ -48,7 +48,7 @@ def test_load_audio():
     assert sr == 44100
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 2  # check audio is loaded as stereo
-    assert audio.shape[1] == 88200  # Check audio duration is as expected
+    assert audio.shape[1] == 44100  # Check audio duration is as expected
 
 
 def test_load_events():
