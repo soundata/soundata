@@ -383,6 +383,10 @@ class Dataset(core.Dataset):
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
 
+    @core.copy_docs(load_events)
+    def load_events(self, *args, **kwargs):
+        return load_events(*args, **kwargs)
+
     @core.cached_property
     def _metadata(self):
 
