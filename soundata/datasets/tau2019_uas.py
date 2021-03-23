@@ -248,203 +248,203 @@ REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.1.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.1.zip?download=1",
-        checksum="aca4ebfd9ed03d5f747d6ba8c24bc728"
+        checksum="aca4ebfd9ed03d5f747d6ba8c24bc728",
     ),
     "development.audio.2": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.2.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.2.zip?download=1",
-        checksum="c4f170408ce77c8c70c532bf268d7be0"
+        checksum="c4f170408ce77c8c70c532bf268d7be0",
     ),
     "development.audio.3": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.3.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.3.zip?download=1",
-        checksum="c7214a07211f10f3250290d05e72c37e"
+        checksum="c7214a07211f10f3250290d05e72c37e",
     ),
     "development.audio.4": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.4.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.4.zip?download=1",
-        checksum="a6a62110f6699cf4432072acb1dffda6"
+        checksum="a6a62110f6699cf4432072acb1dffda6",
     ),
     "development.audio.5": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.5.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.5.zip?download=1",
-        checksum="091a0b6d3c84b8e60e46940aa7d4a8a0"
+        checksum="091a0b6d3c84b8e60e46940aa7d4a8a0",
     ),
     "development.audio.6": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.6.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.6.zip?download=1",
-        checksum="114f4ca13e074391b98a1cfd8140de65"
+        checksum="114f4ca13e074391b98a1cfd8140de65",
     ),
     "development.audio.7": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.7.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.7.zip?download=1",
-        checksum="5951dd2968f7a514e2afbe279c4f060d"
+        checksum="5951dd2968f7a514e2afbe279c4f060d",
     ),
     "development.audio.8": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.8.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.8.zip?download=1",
-        checksum="b0b63dc95b327e1509857c8d8a663cc3"
+        checksum="b0b63dc95b327e1509857c8d8a663cc3",
     ),
     "development.audio.9": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.9.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.9.zip?download=1",
-        checksum="3c32a693a6b111ffb957be3c1dd22e9b"
+        checksum="3c32a693a6b111ffb957be3c1dd22e9b",
     ),
     "development.audio.10": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.10.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.10.zip?download=1",
-        checksum="0ffbf60006da520cc761fb74c878b98b"
+        checksum="0ffbf60006da520cc761fb74c878b98b",
     ),
     "development.audio.11": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.11.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.11.zip?download=1",
-        checksum="599055d93b4c11057c29be2df54538d4"
+        checksum="599055d93b4c11057c29be2df54538d4",
     ),
     "development.audio.12": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.12.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.12.zip?download=1",
-        checksum="98b8d162ff3665695c4c910e6c372cc8"
+        checksum="98b8d162ff3665695c4c910e6c372cc8",
     ),
     "development.audio.13": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.13.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.13.zip?download=1",
-        checksum="a356c08b1a5a21d433eba37ef87587f4"
+        checksum="a356c08b1a5a21d433eba37ef87587f4",
     ),
     "development.audio.14": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.14.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.14.zip?download=1",
-        checksum="f8969771e7faf7dd471d1cf78b0cf011"
+        checksum="f8969771e7faf7dd471d1cf78b0cf011",
     ),
     "development.audio.15": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.15.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.15.zip?download=1",
-        checksum="4758c4b0fb7484faa632266e78850820"
+        checksum="4758c4b0fb7484faa632266e78850820",
     ),
     "development.audio.16": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.16.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.16.zip?download=1",
-        checksum="a18acad9ede8ea76574216feb887f0bc"
+        checksum="a18acad9ede8ea76574216feb887f0bc",
     ),
     "development.audio.17": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.17.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.17.zip?download=1",
-        checksum="1af7703484632f340da5c33662dc9632"
+        checksum="1af7703484632f340da5c33662dc9632",
     ),
     "development.audio.18": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.18.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.18.zip?download=1",
-        checksum="b67402bf3e08f4da394a7c18756c0fd2"
+        checksum="b67402bf3e08f4da394a7c18756c0fd2",
     ),
     "development.audio.19": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.19.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.19.zip?download=1",
-        checksum="035db315f19106eb848b6f9b32bcc47c"
+        checksum="035db315f19106eb848b6f9b32bcc47c",
     ),
     "development.audio.20": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.20.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.20.zip?download=1",
-        checksum="9cb28c74911bf8a3eadcf53f50a5b5d6"
+        checksum="9cb28c74911bf8a3eadcf53f50a5b5d6",
     ),
     "development.audio.21": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.21.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.21.zip?download=1",
-        checksum="0e44ed85c88ec036a9725b4dd1dfaea0"
+        checksum="0e44ed85c88ec036a9725b4dd1dfaea0",
     ),
     "development.doc": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.doc.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.doc.zip?download=1",
-        checksum="1f6879544e80da70099a191613e7e51f"
+        checksum="1f6879544e80da70099a191613e7e51f",
     ),
     "development.meta": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.meta.zip",
         url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.meta.zip?download=1",
-        checksum="09782f2097e4735687af73c44919329c"
+        checksum="09782f2097e4735687af73c44919329c",
     ),
     "evaluation.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.1.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.1.zip?download=1",
-        checksum="3dfc50f8dc46f4a83a2e9cf2083d1c2a"
+        checksum="3dfc50f8dc46f4a83a2e9cf2083d1c2a",
     ),
     "evaluation.audio.2": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.2.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.2.zip?download=1",
-        checksum="cc3d2a4b8e98ce0122317e401d0c6b7d"
+        checksum="cc3d2a4b8e98ce0122317e401d0c6b7d",
     ),
     "evaluation.audio.3": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.3.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.3.zip?download=1",
-        checksum="a4815bdfd889a59f71c586cc834fc5e8"
+        checksum="a4815bdfd889a59f71c586cc834fc5e8",
     ),
     "evaluation.audio.4": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.4.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.4.zip?download=1",
-        checksum="d85f72ef7ae8a60b297da9e5bf478356"
+        checksum="d85f72ef7ae8a60b297da9e5bf478356",
     ),
     "evaluation.audio.5": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.5.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.5.zip?download=1",
-        checksum="73c84daf879db5cc4811808794e373de"
+        checksum="73c84daf879db5cc4811808794e373de",
     ),
     "evaluation.audio.6": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.6.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.6.zip?download=1",
-        checksum="39d3cda72353ee9da88b78164350ff9f"
+        checksum="39d3cda72353ee9da88b78164350ff9f",
     ),
     "evaluation.audio.7": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.7.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.7.zip?download=1",
-        checksum="bd6fbf0d9324d1faa72968c162b574d7"
+        checksum="bd6fbf0d9324d1faa72968c162b574d7",
     ),
     "evaluation.audio.8": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.8.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.8.zip?download=1",
-        checksum="d7b4b62156f458865e2bd063b3da39e8"
+        checksum="d7b4b62156f458865e2bd063b3da39e8",
     ),
     "evaluation.audio.9": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.9.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.9.zip?download=1",
-        checksum="7dbc037eca8d1234de8cd677853f72e4"
+        checksum="7dbc037eca8d1234de8cd677853f72e4",
     ),
     "evaluation.audio.10": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.10.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.10.zip?download=1",
-        checksum="9a0b1e0d2647f6241d7b7c0649855cc7"
+        checksum="9a0b1e0d2647f6241d7b7c0649855cc7",
     ),
     "evaluation.audio.11": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.audio.11.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.audio.11.zip?download=1",
-        checksum="c2ae0b8d9270d964f8c1d8b5298fea72"
+        checksum="c2ae0b8d9270d964f8c1d8b5298fea72",
     ),
     "evaluation.doc": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.doc.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.doc.zip?download=1",
-        checksum="2fd4dc78299fc0d05212ca43dd89d922"
+        checksum="2fd4dc78299fc0d05212ca43dd89d922",
     ),
     "evaluation.meta": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-evaluation.meta.zip",
         url="https://zenodo.org/record/3063822/files/TAU-urban-acoustic-scenes-2019-evaluation.meta.zip?download=1",
-        checksum="0b42d3c337b29d2efe50edd1e9496d7e"
-    ), 
+        checksum="0b42d3c337b29d2efe50edd1e9496d7e",
+    ),
     "leaderboard.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.audio.1.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.audio.1.zip?download=1",
-        checksum="a5daa0df61c6fbc65b1e70f98d728ea3"
+        checksum="a5daa0df61c6fbc65b1e70f98d728ea3",
     ),
     "leaderboard.audio.2": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.audio.2.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.audio.2.zip?download=1",
-        checksum="c57c37a7ab6a32233583e39ec8cfafd5"
+        checksum="c57c37a7ab6a32233583e39ec8cfafd5",
     ),
     "leaderboard.doc": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.doc.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.doc.zip?download=1",
-        checksum="826ede1a356e40ed6c80d873a0e10a70"
+        checksum="826ede1a356e40ed6c80d873a0e10a70",
     ),
     "leaderboard.meta": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip?download=1",
-        checksum="fa3451868a2adf9d8a91882604a2d9b5"
-    ),   
+        checksum="fa3451868a2adf9d8a91882604a2d9b5",
+    ),
 }
 
 LICENSE_INFO = """
