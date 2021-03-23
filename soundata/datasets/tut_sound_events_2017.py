@@ -165,12 +165,7 @@ import csv
 
 # import jams
 
-from soundata import download_utils
-
-from soundata import jams_utils
-from soundata import core
-from soundata import annotations
-from soundata import io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -245,7 +240,7 @@ REMOTES = {
     ),
 }
 
-LICENSE_INFO = "TUT License."
+LICENSE_INFO = "TUT License <https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf>"
 
 
 class Clip(core.Clip):
