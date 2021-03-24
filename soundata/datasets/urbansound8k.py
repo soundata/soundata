@@ -185,10 +185,19 @@ class Clip(core.Clip):
     """
 
     def __init__(
-        self, clip_id, data_home, dataset_name, index, metadata,
+        self,
+        clip_id,
+        data_home,
+        dataset_name,
+        index,
+        metadata,
     ):
         super().__init__(
-            clip_id, data_home, dataset_name, index, metadata,
+            clip_id,
+            data_home,
+            dataset_name,
+            index,
+            metadata,
         )
 
         self.audio_path = self.get_path("audio")

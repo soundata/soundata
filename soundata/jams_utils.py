@@ -10,7 +10,11 @@ from soundata import annotations
 
 
 def jams_converter(
-    audio_path=None, spectrogram_path=None, metadata=None, tags=None, events=None,
+    audio_path=None,
+    spectrogram_path=None,
+    metadata=None,
+    tags=None,
+    events=None,
 ):
     """Convert annotations from a clip to JAMS format.
 
@@ -126,7 +130,10 @@ def events_to_jams(events, description=None):
 
     for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
         jannot_events.append(
-            time=inter[0], duration=inter[1] - inter[0], value=label, confidence=conf,
+            time=inter[0],
+            duration=inter[1] - inter[0],
+            value=label,
+            confidence=conf,
         )
     if description is not None:
         jannot_events.sandbox = jams.Sandbox(name=description)
