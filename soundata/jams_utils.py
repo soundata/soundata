@@ -26,6 +26,7 @@ def jams_converter(
     tags_open_data=None,
     metadata=None,
     tags=None,
+    events=None,
 ):
     """Convert annotations from a clip to JAMS format.
 
@@ -280,6 +281,12 @@ def jams_converter(
             raise TypeError("tags should be of type annotations.Tags")
         jam.annotations.append(tags_to_jams(tags, duration=jam.file_metadata.duration))
 
+    # soundata events
+    if events is not None:
+        if not isinstance(events, annotations.Events):
+            raise TypeError("events should be of type annotations.Events")
+        jam.annotations.append(events_to_jams(events))
+
     return jam
 
 
@@ -461,30 +468,30 @@ def tempos_to_jams(tempo_data, description=None):
     return jannot_tempo
 
 
-def events_to_jams(event_data, description=None):
-    """Convert events annotations into jams format.
+# def events_to_jams(event_data, description=None):
+#     """Convert events annotations into jams format.
 
-    Args:
-        event_data (annotations.EventData): event data object
-        description (str): annotation description
+#     Args:
+#         event_data (annotations.EventData): event data object
+#         description (str): annotation description
 
-    Returns:
-        jams.Annotation: jams annotation object.
+#     Returns:
+#         jams.Annotation: jams annotation object.
 
-    """
-    jannot_events = jams.Annotation(namespace="tag_open")
-    jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+#     """
+#     jannot_events = jams.Annotation(namespace="tag_open")
+#     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
-    if event_data is not None:
-        if not isinstance(event_data, annotations.EventData):
-            raise TypeError("Type should be EventData.")
-        for beg, end, label in zip(
-            event_data.intervals[:, 0], event_data.intervals[:, 1], event_data.events
-        ):
-            jannot_events.append(time=beg, duration=end - beg, value=label)
-    if description is not None:
-        jannot_events.sandbox = jams.Sandbox(name=description)
-    return jannot_events
+#     if event_data is not None:
+#         if not isinstance(event_data, annotations.EventData):
+#             raise TypeError("Type should be EventData.")
+#         for beg, end, label in zip(
+#             event_data.intervals[:, 0], event_data.intervals[:, 1], event_data.events
+#         ):
+#             jannot_events.append(time=beg, duration=end - beg, value=label)
+#     if description is not None:
+#         jannot_events.sandbox = jams.Sandbox(name=description)
+#     return jannot_events
 
 
 def f0s_to_jams(f0_data, description=None):
@@ -584,3 +591,27 @@ def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
     if description is not None:
         ann.sandbox = jams.Sandbox(name=description)
     return ann
+
+
+def events_to_jams(events, description=None):
+    """Convert events annotations into jams format.
+
+    Args:
+        events (annotations.Events): events data object
+        description (str): annotation description
+
+    Returns:
+        jams.Annotation: jams annotation object.
+
+    """
+    jannot_events = jams.Annotation(namespace="segment_open")
+    jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+
+    if events is not None:
+        if not isinstance(events, annotations.Events):
+            raise TypeError("Type should be Events.")
+        for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
+            jannot_events.append(time=inter[0], duration=inter[1] - inter[0], value=label, confidence=conf)
+    if description is not None:
+        jannot_events.sandbox = jams.Sandbox(name=description)
+    return jannot_events
