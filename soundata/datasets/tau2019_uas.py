@@ -193,7 +193,7 @@
 
 
     **License**
-    
+
     License permits free academic usage. Any commercial use is strictly
     prohibited. For commercial use, contact dataset authors.
 
@@ -550,12 +550,8 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        # raise NotImplementedError
-
-        # TODO: add events
         return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            metadata=self._metadata(),
+            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
         )
 
 
