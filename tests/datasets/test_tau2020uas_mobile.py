@@ -63,15 +63,27 @@ def test_load_metadata():
     assert clip.source_label == "a"
 
 
-# def test_to_jams():
+def test_to_jams():
+    default_clipid = "airport-barcelona-0-0-a"
+    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
+    clip = dataset.clip(default_clipid)
+    jam = clip.to_jams()
 
-#     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
-#     default_clipid = "a001"
-#     dataset = tut_sound_events_2017.Dataset(TEST_DATA_HOME)
-#     clip = dataset.clip(default_clipid)
-#     jam = clip.to_jams()
+    assert jam.validate()
 
-#     # Validate urbansound8k jam schema
-#     assert jam.validate()
+    # Validate Tags
+    tags = jam.search(namespace="tag_open")[0]["data"]
+    assert len(tags) == 1
+    assert tags[0].time == 0
+    assert tags[0].duration == 1.0
+    assert tags[0].value == "airport"
+    assert tags[0].confidence == 1
 
-# # Validate Events
+    # validate metadata
+    assert jam.file_metadata.duration == 1.0
+    assert jam.sandbox.split == "development.train"
+    assert jam.sandbox.source_label == "a"
+    assert jam.sandbox.identifier == "barcelona-0"
+    assert jam.sandbox.city == "barcelona"
+    assert jam.sandbox.scene_label == "airport"
+    assert jam.annotations[0].annotation_metadata.data_source == "soundata"
