@@ -4,7 +4,7 @@ import os
 import glob
 from soundata.validate import md5
 
-INDEX_PATH = "../soundata/datasets/indexes/tut_sound_events_2017_index.json"
+INDEX_PATH = "../soundata/datasets/indexes/tut2017se_index.json"
 
 
 def make_index(data_path):
@@ -71,11 +71,11 @@ def main(args):
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(
-        description="Generate tut_sound_events_2017 index file."
+        description="Generate tut2017se index file."
     )
     PARSER.add_argument(
         "data_path", type=str,
-        help="Path to tut_sound_events_2017 data folder."
+        help="Path to tut2017se data folder."
     )
 
     main(PARSER.parse_args())

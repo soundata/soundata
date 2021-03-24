@@ -372,7 +372,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="tut_sound_events_2017",
+            name="tut2017se",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,

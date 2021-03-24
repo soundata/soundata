@@ -23,7 +23,7 @@ ESC-50
 TUT Sound events 2017
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tut_sound_events_2017
+.. automodule:: soundata.datasets.tut2017se
    :members:
    :inherited-members:
 
