@@ -23,7 +23,7 @@ ESC-50
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tau2019_uas
+.. automodule:: soundata.datasets.tau2019uas
    :members:
    :inherited-members:
 

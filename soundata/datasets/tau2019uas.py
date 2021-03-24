@@ -582,7 +582,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="tau2019_uas",
+            name="tau2019uas",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,

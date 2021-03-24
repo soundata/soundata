@@ -3,20 +3,20 @@ import numpy as np
 from tests.test_utils import run_clip_tests
 
 from soundata import annotations
-from soundata.datasets import tau2019_uas
+from soundata.datasets import tau2019uas
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2019_uas"
+TEST_DATA_HOME = "tests/resources/sound_datasets/tau2019uas"
 
 
 def test_clip():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2019_uas.Dataset(TEST_DATA_HOME)
+    dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
         "audio_path": (
-            "tests/resources/sound_datasets/tau2019_uas/TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav"
+            "tests/resources/sound_datasets/tau2019uas/TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav"
         ),
         "clip_id": "airport-barcelona-0-0-a",
     }
@@ -34,10 +34,10 @@ def test_clip():
 
 def test_load_audio():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2019_uas.Dataset(TEST_DATA_HOME)
+    dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
-    audio, sr = tau2019_uas.load_audio(audio_path)
+    audio, sr = tau2019uas.load_audio(audio_path)
     assert sr == 48000
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 2  # check audio is loaded as stereo
@@ -46,7 +46,7 @@ def test_load_audio():
 
 def test_load_tags():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2019_uas.Dataset(TEST_DATA_HOME)
+    dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     assert len(clip.tags.labels) == 1
     assert clip.tags.labels[0] == "airport"
@@ -55,7 +55,7 @@ def test_load_tags():
 
 def test_load_metadata():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2019_uas.Dataset(TEST_DATA_HOME)
+    dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     assert clip.split == "development.train"
     assert clip.identifier == "barcelona-0"
@@ -64,7 +64,7 @@ def test_load_metadata():
 
 def test_to_jams():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2019_uas.Dataset(TEST_DATA_HOME)
+    dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

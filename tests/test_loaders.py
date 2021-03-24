@@ -15,7 +15,7 @@ from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
     "esc50": "1-104089-A-22",
-    "tau2019_uas": "airport-barcelona-0-0-a",
+    "tau2019uas": "airport-barcelona-0-0-a",
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
 }

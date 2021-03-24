@@ -4,7 +4,7 @@ import os
 import glob
 from soundata.validate import md5
 
-INDEX_PATH = "../soundata/datasets/indexes/tau2019_uas_index.json"
+INDEX_PATH = "../soundata/datasets/indexes/tau2019uas_index.json"
 
 
 def make_index(data_path):
@@ -111,11 +111,11 @@ def main(args):
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(
-        description="Generate tau2019_uas index file."
+        description="Generate tau2019uas index file."
     )
     PARSER.add_argument(
         "data_path", type=str,
-        help="Path to tau2019_uas data folder."
+        help="Path to tau2019uas data folder."
     )
 
     main(PARSER.parse_args())
