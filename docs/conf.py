@@ -55,6 +55,7 @@ extensions = [
 
 # To shorten links of licenses and add to table
 extlinks = {
+    "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
 }
 
 intersphinx_mapping = {

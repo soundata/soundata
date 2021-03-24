@@ -18,6 +18,14 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - TAU Urban Acoustic Scenes 2020 Mobile
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 34915
+     - 97
+     - :tau2020:`\ `
+
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅

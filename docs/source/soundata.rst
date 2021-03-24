@@ -20,6 +20,13 @@ ESC-50
    :members:
    :inherited-members:
 
+TAU Urban Acoustic Scenes 2020 Mobile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2020uas_mobile
+   :members:
+   :inherited-members:
+
 URBAN-SED
 ^^^^^^^^^
 

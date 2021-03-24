@@ -59,20 +59,15 @@
     simultaneously and 6 simulated devices (S1-S6). Each acoustic scene has
     1440 segments (240 minutes of audio) recorded with device A (main device)
     and 108 segments of parallel audio (18 minutes) each recorded with devices
-    B,C, and S1-S6. The dataset contains in total 64 hours of audio.
+    B,C, and S1-S6.
 
     *Development dataset*
 
-    Each acoustic scene has 1440 segments (240 minutes of audio). The dataset
-    contains in total 40 hours of audio.
+    The dataset contains in total 64 hours of audio.
 
     *Evaluation dataset*
 
-    The dataset contains in total 7200 segments (20 hours of audio).
-
-    *Leaderboard dataset*
-
-    The dataset contains in total 1200 segments (200 minutes of audio).
+    The dataset contains in total 33 hours of audio.
 
 
     The dataset was collected by Tampere University of Technology between
