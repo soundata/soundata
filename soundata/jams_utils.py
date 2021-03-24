@@ -607,9 +607,7 @@ def events_to_jams(events, description=None):
     jannot_events = jams.Annotation(namespace="segment_open")
     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
-    for inter, label, conf in zip(
-        events.intervals, events.labels, events.confidence
-    ):
+    for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
         jannot_events.append(
             time=inter[0],
             duration=inter[1] - inter[0],
