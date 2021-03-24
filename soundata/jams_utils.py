@@ -607,18 +607,15 @@ def events_to_jams(events, description=None):
     jannot_events = jams.Annotation(namespace="segment_open")
     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
-    if events is not None:
-        if not isinstance(events, annotations.Events):
-            raise TypeError("Type should be Events.")
-        for inter, label, conf in zip(
-            events.intervals, events.labels, events.confidence
-        ):
-            jannot_events.append(
-                time=inter[0],
-                duration=inter[1] - inter[0],
-                value=label,
-                confidence=conf,
-            )
+    for inter, label, conf in zip(
+        events.intervals, events.labels, events.confidence
+    ):
+        jannot_events.append(
+            time=inter[0],
+            duration=inter[1] - inter[0],
+            value=label,
+            confidence=conf,
+        )
     if description is not None:
         jannot_events.sandbox = jams.Sandbox(name=description)
     return jannot_events
