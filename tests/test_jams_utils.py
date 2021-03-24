@@ -1090,11 +1090,11 @@ def test_events():
     jam3 = jams_utils.jams_converter(events=event_data3, metadata={"duration": 10.0})
 
     with pytest.raises(TypeError):
-        jams_utils.jams_converter(event_data=event_data4)
+        jams_utils.jams_converter(events=event_data4)
     with pytest.raises(TypeError):
-        jams_utils.jams_converter(event_data=event_data5)
+        jams_utils.jams_converter(events=event_data5)
     with pytest.raises(TypeError):
-        jams_utils.jams_converter(event_data=event_data6)
+        jams_utils.jams_converter(events=event_data6)
 
 
 def test_metadata():
