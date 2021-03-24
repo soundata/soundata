@@ -1010,52 +1010,84 @@ def test_tempos():
         jams_utils.jams_converter(tempo_data=tempo_data6)
 
 
+# def test_events():
+#     event_data1 = [
+#         (
+#             annotations.EventData(
+#                 np.array([[0.2, 0.3], [0.3, 0.4]]),
+#                 ["event A", "event B"],
+#             ),
+#             "I am a description",
+#         )
+#     ]
+#     event_data2 = [
+#         (
+#             annotations.EventData(np.array([[0.2, 0.3], [0.3, 0.4]]), ["2", "event B"]),
+#             "events 1",
+#         ),
+#         (
+#             annotations.EventData(
+#                 np.array([[0.2, 0.3], [0.3, 0.4]]),
+#                 ["", "a great label"],
+#             ),
+#             "events 2",
+#         ),
+#     ]
+#     event_data3 = [
+#         (
+#             annotations.EventData(
+#                 np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
+#                 ["", "a great label"],
+#             ),
+#             "asdf",
+#         )
+#     ]
+#     event_data4 = ("jazz", "wrong format")
+#     event_data5 = ["wrong format too"]
+#     event_data6 = [("wrong", "description")]
+#     jam1 = jams_utils.jams_converter(
+#         event_data=event_data1, metadata={"duration": 10.0}
+#     )
+#     assert jam1.validate()
+#     jam2 = jams_utils.jams_converter(
+#         event_data=event_data2, metadata={"duration": 10.0}
+#     )
+
+#     jam3 = jams_utils.jams_converter(
+#         event_data=event_data3, metadata={"duration": 10.0}
+#     )
+
+#     with pytest.raises(TypeError):
+#         jams_utils.jams_converter(event_data=event_data4)
+#     with pytest.raises(TypeError):
+#         jams_utils.jams_converter(event_data=event_data5)
+#     with pytest.raises(TypeError):
+#         jams_utils.jams_converter(event_data=event_data6)
+
+
 def test_events():
-    event_data1 = [
-        (
-            annotations.EventData(
-                np.array([[0.2, 0.3], [0.3, 0.4]]),
-                ["event A", "event B"],
-            ),
-            "I am a description",
-        )
-    ]
-    event_data2 = [
-        (
-            annotations.EventData(np.array([[0.2, 0.3], [0.3, 0.4]]), ["2", "event B"]),
-            "events 1",
-        ),
-        (
-            annotations.EventData(
-                np.array([[0.2, 0.3], [0.3, 0.4]]),
-                ["", "a great label"],
-            ),
-            "events 2",
-        ),
-    ]
-    event_data3 = [
-        (
-            annotations.EventData(
-                np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
-                ["", "a great label"],
-            ),
-            "asdf",
-        )
-    ]
+    event_data1 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 0.4]]), ["event A", "event B"], np.array([1.0, 1.0])
+    )
+
+    event_data2 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 0.4]]), ["", "a great label"], np.array([0.0, 1.0])
+    )
+
+    event_data3 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
+        ["", "a great label"],
+        np.array([0.0, 1.0]),
+    )
+
     event_data4 = ("jazz", "wrong format")
     event_data5 = ["wrong format too"]
     event_data6 = [("wrong", "description")]
-    jam1 = jams_utils.jams_converter(
-        event_data=event_data1, metadata={"duration": 10.0}
-    )
+    jam1 = jams_utils.jams_converter(events=event_data1, metadata={"duration": 10.0})
     assert jam1.validate()
-    jam2 = jams_utils.jams_converter(
-        event_data=event_data2, metadata={"duration": 10.0}
-    )
+    jam2 = jams_utils.jams_converter(events=event_data2, metadata={"duration": 10.0})
 
-    jam3 = jams_utils.jams_converter(
-        event_data=event_data3, metadata={"duration": 10.0}
-    )
+    jam3 = jams_utils.jams_converter(events=event_data3, metadata={"duration": 10.0})
 
     with pytest.raises(TypeError):
         jams_utils.jams_converter(event_data=event_data4)
