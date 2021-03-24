@@ -18,6 +18,14 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - TAU Urban Acoustic Scenes 2019
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 22800
+     - 63.3
+     - :tau2019:`\ `
+
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅

@@ -75,6 +75,7 @@
 
 
     **Preparation of the dataset**
+
     The dataset was recorded in 12 large European cities: Amsterdam, Barcelona,
     Helsinki, Lisbon, London, Lyon, Madrid, Milan, Prague, Paris, Stockholm,
     and Vienna. For all acoustic scenes, audio was captured in multiple
@@ -192,6 +193,7 @@
 
 
     **License**
+    
     License permits free academic usage. Any commercial use is strictly
     prohibited. For commercial use, contact dataset authors.
 

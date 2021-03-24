@@ -20,6 +20,13 @@ ESC-50
    :members:
    :inherited-members:
 
+TAU Urban Acoustic Scenes 2019
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2019_uas
+   :members:
+   :inherited-members:
+
 URBAN-SED
 ^^^^^^^^^
 
