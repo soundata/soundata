@@ -151,27 +151,21 @@ def validate_index(dataset_index, data_home, verbose=True):
     # check index
     if "metadata" in dataset_index and dataset_index["metadata"] is not None:
         missing_metadata, invalid_metadata = validate_metadata(
-            dataset_index["metadata"],
-            data_home,
-            verbose,
+            dataset_index["metadata"], data_home, verbose,
         )
         missing_files["metadata"] = missing_metadata
         invalid_checksums["metadata"] = invalid_metadata
 
     if "clips" in dataset_index and dataset_index["clips"] is not None:
         missing_clips, invalid_clips = validate_files(
-            dataset_index["clips"],
-            data_home,
-            verbose,
+            dataset_index["clips"], data_home, verbose,
         )
         missing_files["clips"] = missing_clips
         invalid_checksums["clips"] = invalid_clips
 
     if "clipgroups" in dataset_index and dataset_index["clipgroups"] is not None:
         missing_clipgroups, invalid_clipgroups = validate_files(
-            dataset_index["clipgroups"],
-            data_home,
-            verbose,
+            dataset_index["clipgroups"], data_home, verbose,
         )
         missing_files["clipgroups"] = missing_clipgroups
         invalid_checksums["clipgroups"] = invalid_clipgroups

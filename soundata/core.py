@@ -206,11 +206,7 @@ class Dataset(object):
             raise AttributeError("This dataset does not have clips")
         else:
             return self._clip_class(
-                clip_id,
-                self.data_home,
-                self.name,
-                self._index,
-                lambda: self._metadata,
+                clip_id, self.data_home, self.name, self._index, lambda: self._metadata,
             )
 
     def _clipgroup(self, clipgroup_id):
@@ -374,12 +370,7 @@ class Clip(object):
     """
 
     def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
+        self, clip_id, data_home, dataset_name, index, metadata,
     ):
         """Clip init method. Sets boilerplate attributes, including:
 
@@ -481,13 +472,7 @@ class ClipGroup(Clip):
     """
 
     def __init__(
-        self,
-        clipgroup_id,
-        data_home,
-        dataset_name,
-        index,
-        clip_class,
-        metadata,
+        self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata,
     ):
         """Clipgroup init method. Sets boilerplate attributes, including:
 
