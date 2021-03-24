@@ -19,31 +19,16 @@ def get_jam_data(jam, namespace, annot_numb):
 
 
 def test_tags():
-    tag_data1 = [("blues", "I am a description")]
-    tag_data2 = [("disco", "tag 1"), ("rock", "tag 2")]
-    tag_data3 = [("invalid", "asdf")]
-    tag_data4 = ("jazz", "wrong format")
-    tag_data5 = ["wrong format too"]
-    tag_data6 = [(123, "asdf")]
-    jam1 = jams_utils.jams_converter(
-        tags_gtzan_data=tag_data1, metadata={"duration": 10.0}
-    )
+    tag_data1 = annotations.Tags(["blues", "I am a description"], np.array([1.0, 1.0]))
+    tag_data3 = ("jazz", "wrong format")
+    tag_data4 = [(123, "asdf")]
+    jam1 = jams_utils.jams_converter(tags=tag_data1, metadata={"duration": 10.0})
     assert jam1.validate()
-    jam2 = jams_utils.jams_converter(
-        tags_gtzan_data=tag_data2, metadata={"duration": 10.0}
-    )
-    assert jam2.validate()
-    jam3 = jams_utils.jams_converter(
-        tags_gtzan_data=tag_data3, metadata={"duration": 10.0}
-    )
-    with pytest.raises(jams.SchemaError):
-        assert jam3.validate()
+
     with pytest.raises(TypeError):
-        jams_utils.jams_converter(tags_gtzan_data=tag_data4)
+        jams_utils.jams_converter(tags=tag_data3)
     with pytest.raises(TypeError):
-        jams_utils.jams_converter(tags_gtzan_data=tag_data5)
-    with pytest.raises(TypeError):
-        jams_utils.jams_converter(tags_gtzan_data=tag_data6)
+        jams_utils.jams_converter(tags=tag_data4)
 
 
 def test_events():
@@ -64,11 +49,15 @@ def test_events():
     event_data4 = ("jazz", "wrong format")
     event_data5 = ["wrong format too"]
     event_data6 = [("wrong", "description")]
+
     jam1 = jams_utils.jams_converter(events=event_data1, metadata={"duration": 10.0})
     assert jam1.validate()
+
     jam2 = jams_utils.jams_converter(events=event_data2, metadata={"duration": 10.0})
+    assert jam2.validate()
 
     jam3 = jams_utils.jams_converter(events=event_data3, metadata={"duration": 10.0})
+    assert jam3.validate()
 
     with pytest.raises(TypeError):
         jams_utils.jams_converter(events=event_data4)
@@ -86,7 +75,7 @@ def test_metadata():
         "favourite_color": "rainbow",
     }
 
-    jam_1 = jams_utils.jams_converter(lyrics_data=[(None, None)], metadata=metadata_1)
+    jam_1 = jams_utils.jams_converter(metadata=metadata_1)
 
     assert jam_1["file_metadata"]["title"] == "Le ciel est blue"
     assert jam_1["file_metadata"]["artist"] == "Meatloaf"
@@ -129,16 +118,14 @@ def test_duration():
 
     # test metadata duration and audio file equal
     jam3 = jams_utils.jams_converter(
-        audio_path="tests/resources/test.wav",
-        metadata={"duration": 1},
+        audio_path="tests/resources/test.wav", metadata={"duration": 1},
     )
     assert jam3.file_metadata.duration == 1
     assert jam3.validate()
 
     # test metadata and duration not equal
     jam4 = jams_utils.jams_converter(
-        audio_path="tests/resources/test.wav",
-        metadata={"duration": 1000},
+        audio_path="tests/resources/test.wav", metadata={"duration": 1000},
     )
     assert jam4.file_metadata.duration == 1000
     assert jam4.validate()
