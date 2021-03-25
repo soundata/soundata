@@ -67,15 +67,35 @@ def test_load_events():
         assert labels[j] == annotations.labels[j]
 
 
-# def test_to_jams():
+def test_to_jams():
 
-#     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
-#     default_clipid = "a001"
-#     dataset = tut2017se.Dataset(TEST_DATA_HOME)
-#     clip = dataset.clip(default_clipid)
-#     jam = clip.to_jams()
+    default_clipid = "a001"
+    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    clip = dataset.clip(default_clipid)
+    jam = clip.to_jams()
 
-#     # Validate urbansound8k jam schema
-#     assert jam.validate()
+    assert jam.validate()
 
-# # Validate Events
+    # Validate Events
+    events = jam.search(namespace="segment_open")[0]["data"]
+    assert len(events) == 3
+
+    assert np.allclose(events[0].time, 1.58921)
+    assert np.allclose(events[0].duration, 2.38382 - 1.58921)
+    assert events[0].value == "people walking"
+    assert events[0].confidence == 1
+
+    assert np.allclose(events[1].time, 3.500767)
+    assert np.allclose(events[1].duration, 4.156693 - 3.500767)
+    assert events[1].value == "people walking"
+    assert events[1].confidence == 1
+
+    assert np.allclose(events[2].time, 4.156693)
+    assert np.allclose(events[2].duration, 14.00307 - 4.156693)
+    assert events[2].value == "car"
+    assert events[2].confidence == 1
+
+    # Validate metadata
+    assert jam.file_metadata.duration == 1.0
+    assert jam.sandbox.split == "development.fold4"
+    assert jam.annotations[0].annotation_metadata.data_source == "soundata"

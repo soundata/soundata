@@ -314,7 +314,8 @@ class Clip(core.Clip):
         # TODO: add events
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
-            metadata=self._metadata(),
+            events=self.events,
+            metadata=self._clip_metadata,
         )
 
 
