@@ -26,10 +26,10 @@ def jams_converter(
             resulting jam object will not validate.
         spectrogram_path (str or None):
             A path to the corresponding spectrum file, or None.
-        tags (list or None):
-            A list of tuples of (annotations.Tags, str), where the str describes the annotation.
-        events (list or None):
-            A list of tuples of (annotations.Events, str), where the str describes the annotation.
+        tags (annotations.Tags or None):
+            An instance of annotations.Tags describing the audio tags.
+        events (annotations.Events or None):
+            An instance of annotations.Events describing the sound events.
     Returns:
         jams.JAMS: A JAMS object containing the annotations.
 
