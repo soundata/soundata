@@ -20,6 +20,13 @@ ESC-50
    :members:
    :inherited-members:
 
+TUT Sound events 2017
+^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tut2017se
+   :members:
+   :inherited-members:
+
 URBAN-SED
 ^^^^^^^^^
 

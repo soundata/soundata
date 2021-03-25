@@ -17,6 +17,7 @@ CUSTOM_TEST_CLIPS = {
     "esc50": "1-104089-A-22",
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
+    "tut2017se": "a001",
 }
 
 REMOTE_DATASETS = {}

@@ -18,6 +18,14 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - TUT Sound events 2017
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - :tut:`\ `
+
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
@@ -34,4 +42,4 @@
      - 8732
      - 8.75
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
-          :target: https://creativecommons.org/licenses/by-nc/4.0
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
