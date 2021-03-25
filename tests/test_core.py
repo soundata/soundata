@@ -133,13 +133,6 @@ def test_clipgroup_repr():
         def h(self):
             return "I'm a function!"
 
-    # expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
-    # expected2 = """c={1: \'a\', \'b\': 2},\n  e=None,\n  """
-    # expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
-    # expected4 = """clipgroup_id="test",\n  clip_ids=[\'a\', \'b\', \'c\'],\n  """
-    # expected5 = """f: ThisObjectType,\n  g: I have an improper docstring,\n  """
-    # expected6 = """clip_audio_property: ,\n  clips: ,\n)"""
-
     expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: \'a\', \'b\': 2},\n  clip_ids=[\'a\', \'b\', \'c\'],\n  """
     expected3 = """clipgroup_id="test",\n  e=None,\n  """
@@ -157,53 +150,52 @@ def test_clipgroup_repr():
         test_clipgroup.to_jams()
 
 
-# def test_dataset():
-#     dataset = soundata.initialize("guitarset")
-#     assert isinstance(dataset, core.Dataset)
-#
-#     dataset = soundata.initialize("rwc_jazz")
-#     assert isinstance(dataset, core.Dataset)
-#
-#     dataset = soundata.initialize("ikala")
-#     assert isinstance(dataset, core.Dataset)
-#
-#     dataset = soundata.initialize("phenicx_anechoic")
-#     assert isinstance(dataset, core.Dataset)
-#
-#     print(dataset)  # test that repr doesn't fail
-#
-#
-# def test_dataset_errors():
-#     with pytest.raises(ValueError):
-#         soundata.initialize("not_a_dataset")
-#
-#     d = soundata.initialize("orchset")
-#     d._clip_class = None
-#     with pytest.raises(AttributeError):
-#         d.clip("asdf")
-#
-#     with pytest.raises(AttributeError):
-#         d.clipgroup("asdf")
-#
-#     with pytest.raises(AttributeError):
-#         d.load_clips()
-#
-#     with pytest.raises(AttributeError):
-#         d.load_clipgroups()
-#
-#     with pytest.raises(AttributeError):
-#         d.choice_clip()
-#
-#     with pytest.raises(AttributeError):
-#         d.choice_clipgroup()
-#
-#     d = soundata.initialize("acousticbrainz_genre")
-#     with pytest.raises(FileNotFoundError):
-#         d._index
-#
-#     d = soundata.initialize("phenicx_anechoic")
-#     with pytest.raises(ValueError):
-#         d._clipgroup("a")
+def test_dataset():
+    dataset = soundata.initialize("esc50")
+    assert isinstance(dataset, core.Dataset)
+
+    dataset = soundata.initialize("urbansound8k")
+    assert isinstance(dataset, core.Dataset)
+
+    dataset = soundata.initialize("urbansed")
+    assert isinstance(dataset, core.Dataset)
+
+    print(dataset)  # test that repr doesn't fail
+
+
+def test_dataset_errors():
+    with pytest.raises(ValueError):
+        soundata.initialize("not_a_dataset")
+
+    d = soundata.initialize("esc50")
+    d._clip_class = None
+    with pytest.raises(AttributeError):
+        d.clip("asdf")
+
+    with pytest.raises(AttributeError):
+        d.clipgroup("asdf")
+
+    with pytest.raises(AttributeError):
+        d.load_clips()
+
+    with pytest.raises(AttributeError):
+        d.load_clipgroups()
+
+    with pytest.raises(AttributeError):
+        d.choice_clip()
+
+    with pytest.raises(AttributeError):
+        d.choice_clipgroup()
+
+    # uncomment this to test \in dataset with remote index
+    # d = soundata.initialize("dataset_with_remote_index")
+    # with pytest.raises(FileNotFoundError):
+    #     d._index
+
+    # uncomment this to test in dataset with clip_group
+    # d = soundata.initialize("dataset_with_clip_group")
+    # with pytest.raises(ValueError):
+    #     d._clipgroup("a")
 
 
 def test_clipgroup():
