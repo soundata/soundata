@@ -252,7 +252,12 @@ class Clip(core.Clip):
     Attributes:
         events (soundata.annotation.Events): sound events with start time,
             end time, label and confidence.
+        non_verified_events (soundata.annotation.Events): non-verified sound
+            events with start time, end time, label and confidence.
         audio_path (str): path to the audio file
+        annotations_path (str): path to the annotations file
+        non_verified_annotations_path (str): path to the non-verified
+            annotations file
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
         clip_id (str): clip id
@@ -326,7 +331,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
             uses the file's original sample rate of 44100 without resampling.
 
     Returns:
-        * np.ndarray - the mono audio signal
+        * np.ndarray - the stereo audio signal
         * float - The sample rate of the audio file
 
     """
