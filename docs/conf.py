@@ -56,6 +56,7 @@ extensions = [
 # To shorten links of licenses and add to table
 extlinks = {
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
+    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
 }
 
 intersphinx_mapping = {

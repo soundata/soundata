@@ -1,0 +1,6 @@
+audio/street/b009.wav	street
+audio/street/a124.wav	street
+audio/street/b091.wav	street
+audio/street/b098.wav	street
+audio/street/a003.wav	street
+audio/street/b093.wav	street
