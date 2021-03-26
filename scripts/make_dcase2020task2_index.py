@@ -9,9 +9,7 @@ INDEX_PATH = "../soundata/datasets/indexes/dcase2020task2_index.json"
 
 def make_index(data_path):
 
-    subsets = [
-        "development", "additional_training", "evaluation"
-    ]
+    subsets = ["development", "additional_training", "evaluation"]
 
     splits = [
         "development.train",
@@ -20,9 +18,7 @@ def make_index(data_path):
         "evaluation.test",
     ]
 
-    machine_types = [
-        "fan", "pump", "slider", "ToyCar", "ToyConveyor", "valve"
-    ]
+    machine_types = ["fan", "pump", "slider", "ToyCar", "ToyConveyor", "valve"]
 
     index = {
         "version": "1.0",
@@ -31,7 +27,7 @@ def make_index(data_path):
 
     for split in splits:
 
-        subset, fold = split.split('.')
+        subset, fold = split.split(".")
 
         for mt in machine_types:
 
@@ -42,10 +38,7 @@ def make_index(data_path):
             for wf in wavfiles:
 
                 clip_id = "{}.{}/{}/{}".format(
-                    subset,
-                    fold,
-                    mt,
-                    os.path.basename(wf).replace(".wav", "")
+                    subset, fold, mt, os.path.basename(wf).replace(".wav", "")
                 )
 
                 index["clips"][clip_id] = {
@@ -64,12 +57,9 @@ def main(args):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(
-        description="Generate dcase2020task2 index file."
-    )
+    PARSER = argparse.ArgumentParser(description="Generate dcase2020task2 index file.")
     PARSER.add_argument(
-        "data_path", type=str,
-        help="Path to dcase2020task2 data folder."
+        "data_path", type=str, help="Path to dcase2020task2 data folder."
     )
 
     main(PARSER.parse_args())

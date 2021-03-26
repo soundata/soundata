@@ -137,6 +137,7 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
+import glob
 
 # import jams
 
@@ -151,109 +152,109 @@ REMOTES = {
         filename="dev_data_fan.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_fan.zip?download=1",
         checksum="649bdfc06263ae7a838963f43b6641e6",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "dev_data_pump": download_utils.RemoteFileMetadata(
         filename="dev_data_pump.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_pump.zip?download=1",
         checksum="90e7091ef722b7238a7f1009365779cd",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "dev_data_slider": download_utils.RemoteFileMetadata(
         filename="dev_data_slider.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_slider.zip?download=1",
         checksum="da24a757719f0d94d5aa2d646bbfdc86",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "dev_data_ToyCar": download_utils.RemoteFileMetadata(
         filename="dev_data_ToyCar.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_ToyCar.zip?download=1",
         checksum="4dec75ca8d9f666aa9e4c1894a740501",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "dev_data_ToyConveyor": download_utils.RemoteFileMetadata(
         filename="dev_data_ToyConveyor.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_ToyConveyor.zip?download=1",
         checksum="03b6aa1bfd09a39d53af0ba39f71fa91",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "dev_data_valve": download_utils.RemoteFileMetadata(
         filename="dev_data_valve.zip",
         url="https://zenodo.org/record/3678171/files/dev_data_valve.zip?download=1",
         checksum="34d2672f55bb041589ef79c10dc89934",
-        destination_dir="./development"
+        destination_dir="./development",
     ),
     "eval_data_train_fan": download_utils.RemoteFileMetadata(
         filename="eval_data_train_fan.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_fan.zip?download=1",
         checksum="567798854130c8019df8b664c095ed1e",
-        destination_dir="./additional_training"
+        destination_dir="./additional_training",
     ),
     "eval_data_train_pump": download_utils.RemoteFileMetadata(
         filename="eval_data_train_pump.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_pump.zip?download=1",
         checksum="4e33ae9c0db5cc88437675f5e317caee",
-        destination_dir="./additional_training"
+        destination_dir="./additional_training",
     ),
     "eval_data_train_slider": download_utils.RemoteFileMetadata(
         filename="eval_data_train_slider.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_slider.zip?download=1",
         checksum="f84f186f4295fc23754abcdd1b0580a7",
-        destination_dir="./additional_training"
+        destination_dir="./additional_training",
     ),
     "eval_data_train_ToyCar": download_utils.RemoteFileMetadata(
         filename="eval_data_train_ToyCar.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_ToyCar.zip?download=1",
         checksum="a5d4ccd498af70b04dd74b644b820006",
-        destination_dir="./additional_training"
+        destination_dir="./additional_training",
     ),
     "eval_data_train_ToyConveyor": download_utils.RemoteFileMetadata(
         filename="eval_data_train_ToyConveyor.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_ToyConveyor.zip?download=1",
         checksum="0e808ac0b761e9fb13d5e0c65caff00d",
-        destination_dir="./additional_training"
+        destination_dir="./additional_training",
     ),
     "eval_data_train_valve": download_utils.RemoteFileMetadata(
         filename="eval_data_train_valve.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_valve.zip?download=1",
         checksum="057cdd560caffb8305449541afd28c6d",
-        destination_dir="./aditional_training"
+        destination_dir="./aditional_training",
     ),
     "eval_data_test_fan": download_utils.RemoteFileMetadata(
         filename="eval_data_test_fan.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_fan.zip?download=1",
         checksum="1eb9356a768cadfd0f2e59a5c57e578b",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
     "eval_data_test_pump": download_utils.RemoteFileMetadata(
         filename="eval_data_test_pump.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_pump.zip?download=1",
         checksum="23a8f8f924be218c69df67fe07360348",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
     "eval_data_test_slider": download_utils.RemoteFileMetadata(
         filename="eval_data_test_slider.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_slider.zip?download=1",
         checksum="0193c769073840332ce3aad84b1ccaa2",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
     "eval_data_test_ToyCar": download_utils.RemoteFileMetadata(
         filename="eval_data_test_ToyCar.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_ToyCar.zip?download=1",
         checksum="bea2bdd612f616be8f2b8eb087b32c7c",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
     "eval_data_test_ToyConveyor": download_utils.RemoteFileMetadata(
         filename="eval_data_test_ToyConveyor.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_ToyConveyor.zip?download=1",
         checksum="ccfcc9847c7d3404d7ee9d6d9e0b2ba2",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
     "eval_data_test_valve": download_utils.RemoteFileMetadata(
         filename="eval_data_test_valve.zip",
         url="https://zenodo.org/record/3841772/files/eval_data_test_valve.zip?download=1",
         checksum="f69c551d2088691050d20cccca9d631c",
-        destination_dir="./evaluation"
+        destination_dir="./evaluation",
     ),
 }
 
@@ -261,7 +262,7 @@ LICENSE_INFO = "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Intern
 
 
 class Clip(core.Clip):
-    """ DCASE 2020 Task 2 Clip class
+    """DCASE 2020 Task 2 Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -269,7 +270,7 @@ class Clip(core.Clip):
     Attributes:
         audio_path (str): path to the audio file
         split (str): subset the clip belongs to (for experiments):
-            development (train, test), additional_training (train) or 
+            development (train, test), additional_training (train) or
             evaluation (test)
         tags (soundata.annotation.Tags): normal or anomaly
         machine_type (str): machine type
@@ -308,19 +309,29 @@ class Clip(core.Clip):
 
     @property
     def split(self):
-        return self.clip_id.split('/')[0]
+        return self._clip_metadata.get("split")
 
     @property
     def tags(self) -> Optional[annotations.Tags]:
-        return load_tags(self.clip_id)
+        if not os.path.isfile(self.audio_path):
+            raise FileNotFoundError(
+                "The audio file of this clip is not available locally. You may need to run .downlad()"
+            )
+
+        tag_name = self.clip_id.split("/")[-1].split("id_")[0]
+
+        if tag_name is "":
+            return None
+        else:
+            return annotations.Tags([tag_name[:-1]], np.array([1.0]))
 
     @property
     def machine_type(self):
-        return self.clip_id.split('/')[1]
+        return self._clip_metadata.get("machine_type")
 
     @property
     def machine_id(self):
-        return self.clip_id.split('/')[-1].split("id_")[-1]
+        return self._clip_metadata.get("machine_id")
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -332,12 +343,9 @@ class Clip(core.Clip):
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             tags=self.tags,
-            metadata={
-                "split": self.split,
-                "machine_type": self.machine_type,
-                "machine_id": self.machine_id
-            },
+            metadata=self._clip_metadata,
         )
+
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
@@ -346,32 +354,15 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     Args:
         fhandle (str or file-like): File-like object or path to audio file
         sr (int or None): sample rate for loaded audio, None by default, which
-            uses the file's original sample rate of 44100 without resampling.
+            uses the file's original sample rate of 16000 without resampling.
 
     Returns:
         * np.ndarray - the mono audio signal
         * float - The sample rate of the audio file
 
     """
-    audio, sr = librosa.load(fhandle, sr=sr, mono=False)
+    audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
-
-
-def load_tags(clip_id) -> annotations.Events:
-    """Load an  DCASE 2020 Task 2 annotation file
-    Args:
-        clip_id (str): clip_id of the sound file
-
-    Returns:
-        Tags: tags annotation data (normal or anomaly)
-    """
-
-    tag_name = clip_id.split('/')[-1].split('id_')[0]
-
-    if tag_name is "":
-        return None
-    else:
-        return annotations.Tags([tag_name[:-1]], np.array([1.0]))
 
 
 @core.docstring_inherit(core.Dataset)
@@ -394,6 +385,44 @@ class Dataset(core.Dataset):
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
 
-    @core.copy_docs(load_audio)
-    def load_tags(self, *args, **kwargs):
-        return load_tags(*args, **kwargs)
+    @core.cached_property
+    def _metadata(self):
+
+        subsets = ["development", "additional_training", "evaluation"]
+
+        splits = [
+            "development.train",
+            "development.test",
+            "additional_training.train",
+            "evaluation.test",
+        ]
+
+        machine_types = ["fan", "pump", "slider", "ToyCar", "ToyConveyor", "valve"]
+
+        metadata_index = {}
+
+        for split in splits:
+
+            subset, fold = split.split(".")
+
+            for mt in machine_types:
+
+                audio_path = os.path.join(self.data_home, subset, mt, fold)
+
+                wavfiles = glob.glob(os.path.join(audio_path, "*.wav"))
+
+                for wf in wavfiles:
+
+                    filename = os.path.basename(wf).replace(".wav", "")
+
+                    clip_id = "{}.{}/{}/{}".format(subset, fold, mt, filename)
+
+                    machine_id = filename.split("id_")[-1]
+
+                    metadata_index[clip_id] = {
+                        "split": split,
+                        "machine_type": mt,
+                        "machine_id": machine_id,
+                    }
+
+        return metadata_index

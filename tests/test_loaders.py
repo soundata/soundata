@@ -18,6 +18,7 @@ CUSTOM_TEST_CLIPS = {
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
     "tut2017se": "a001",
+    "dcase2020task2": "development.train/fan/normal_id_00_00000000",
 }
 
 REMOTE_DATASETS = {}
