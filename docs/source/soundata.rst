@@ -13,6 +13,13 @@ Initializing
 Dataset Loaders
 ---------------
 
+DCASE Challenge 2020 Task 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase2020task2
+   :members:
+   :inherited-members:
+
 ESC-50
 ^^^^^^
 

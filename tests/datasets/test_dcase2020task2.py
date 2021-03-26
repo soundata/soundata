@@ -46,7 +46,7 @@ def test_load_tags():
     dataset = dcase2020task2.Dataset(TEST_DATA_HOME)
     clip = dataset.clip("development.train/fan/normal_id_00_00000000")
 
-    assert clip.tags.labels == ['normal']
+    assert clip.tags.labels == ["normal"]
     assert clip.tags.confidence == 1
 
 
@@ -54,9 +54,10 @@ def test_metadata():
     dataset = dcase2020task2.Dataset(TEST_DATA_HOME)
     clip = dataset.clip("development.train/fan/normal_id_00_00000000")
 
-    assert clip.split == 'development.train'
-    assert clip.machine_type == 'fan'
-    assert clip.machine_id == '00_00000000'
+    assert clip.split == "development.train"
+    assert clip.machine_type == "fan"
+    assert clip.machine_id == "00_00000000"
+
 
 def test_to_jams():
 

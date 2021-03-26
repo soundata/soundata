@@ -10,7 +10,7 @@
 
     This dataset is the *evaluation dataset* for the DCASE 2020 Challenge
     Task 2 `"Unsupervised Detection of Anomalous Sounds for Machine Condition
-    Monitoring"` <http://dcase.community/challenge2020/task-unsupervised-detection-of-anomalous-sounds>`_
+    Monitoring" <http://dcase.community/challenge2020/task-unsupervised-detection-of-anomalous-sounds>`_
 
     In the task, three datasets have been released: "development dataset",
     "additional training dataset", and "evaluation dataset". This evaluation
@@ -54,31 +54,36 @@
     noise, and only noisy recordings are provided as training/test data. The
     environmental noise samples were recorded in several real factory
     environments. For the details of the recording procedure, please refer to
-    the papers of ToyADMOS and MIMII Dataset.
+    the papers of `ToyADMOS <https://ieeexplore.ieee.org/document/8937164>`_ 
+    and `MIMII <http://dcase.community/documents/workshop2019/proceedings/DCASE2019Workshop_Purohit_21.pdf>`_
+    Dataset.
 
 
     **Development and evaluation datasets**
+
     We first define two important terms in this task: Machine Type and Machine
     ID. Machine Type means the kind of machine, which in this task can be one
     of six: toy-car, toy-conveyor, valve, pump, fan, and slide rail. Machine ID
     is the identifier of each individual of the same type of machine, which in
     the training dataset can be of three or four.
 
-    *Development dataset: Each Machine Type has three or four Machine IDs. Each
-    machine ID's dataset consists of (i) around 1,000 samples of normal sounds
-    for training and (ii) 100-200 samples each of normal and anomalous sounds
-    for the test. The normal and anomalous sound samples in (ii) are only for
-    checking performance therefore the sound samples in (ii) shall not be used
-    for training.
-    *Evaluation dataset: This dataset consists of the same Machine Types' test
-    samples as the development dataset. The number of test samples for each
-    Machine ID is around 400, none of which have a condition label (i.e.,
-    normal or anomaly). Note that the Machine IDs of the evaluation dataset are
-    different from those of the development dataset.
-    *Additional training dataset: This dataset includes around 1,000 normal
-    samples for each Machine Type and Machine ID used in the evaluation
-    dataset. The participants can also use this dataset for training. The
-    additional training dataset will be open on April 1st.
+    * **Development dataset**: Each Machine Type has three or four Machine IDs. Each
+      machine ID's dataset consists of (i) around 1,000 samples of normal sounds
+      for training and (ii) 100-200 samples each of normal and anomalous sounds
+      for the test. The normal and anomalous sound samples in (ii) are only for
+      checking performance therefore the sound samples in (ii) shall not be used
+      for training.
+        
+    * **Evaluation dataset**: This dataset consists of the same Machine Types' test
+      samples as the development dataset. The number of test samples for each
+      Machine ID is around 400, none of which have a condition label (i.e.,
+      normal or anomaly). Note that the Machine IDs of the evaluation dataset are
+      different from those of the development dataset.
+    
+    * **Additional training dataset**: This dataset includes around 1,000 normal
+      samples for each Machine Type and Machine ID used in the evaluation
+      dataset. The participants can also use this dataset for training. The
+      additional training dataset will be open on April 1st.
 
 
     **Baseline system**
