@@ -114,13 +114,6 @@ def validate_array_like(
         raise TypeError(f"List elements should all have type {expected_dtype}")
 
     if expected_type == np.ndarray and array_like.dtype != expected_dtype:
-
-        if check_child:
-            if not all(issubclass(expected_dtype, n) for n in array_like):
-                raise TypeError(
-                    f"List elements should all be instances of {expected_dtype} class"
-                )
-
         raise TypeError(
             f"Array should have dtype {expected_dtype} but has {array_like.dtype}"
         )
