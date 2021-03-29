@@ -16,7 +16,9 @@ def test_repr():
     test_track = TestAnnotation()
     assert test_track.__repr__() == """TestAnnotation(a, b)"""
 
-    event_data = annotations.Events(np.array([[1.0, 2.0], [3.0, 4.0]]), ["Siren", "Dog"])
+    event_data = annotations.Events(
+        np.array([[1.0, 2.0], [3.0, 4.0]]), ["Siren", "Dog"]
+    )
     assert event_data.__repr__() == "Events(confidence, intervals, labels)"
 
 
@@ -64,11 +66,11 @@ def test_multi_annotators():
     labels_2 = ["Siren", "Dog"]
     confidence_1 = np.array([1.0, 1.0])
     confidence_2 = np.array([1.0, 1.0])
-    multi_annot = [annotations.Tags(labels_1, confidence_1), annotations.Tags(labels_2, confidence_2)]
-    tags = annotations.Multi_Annotator(
-        annotators,
-        multi_annot
-    )
+    multi_annot = [
+        annotations.Tags(labels_1, confidence_1),
+        annotations.Tags(labels_2, confidence_2),
+    ]
+    tags = annotations.Multi_Annotator(annotators, multi_annot)
 
     assert tags.labels[0].labels == labels_1
     assert tags.annotators[1] == "annotator_2"
@@ -78,7 +80,12 @@ def test_multi_annotators():
     bad_labels = ["Siren", "Laughter", 5]
     pytest.raises(TypeError, annotations.Multi_Annotator, annotators, bad_labels)
     pytest.raises(TypeError, annotations.Multi_Annotator, [0, 1], multi_annot)
-    pytest.raises(TypeError, annotations.Multi_Annotator, annotators, [["bad", "format"], ["indeed"]])
+    pytest.raises(
+        TypeError,
+        annotations.Multi_Annotator,
+        annotators,
+        [["bad", "format"], ["indeed"]],
+    )
 
 
 def test_validate_array_like():

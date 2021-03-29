@@ -71,7 +71,9 @@ class Multi_Annotator(Annotation):
         self.labels = labels
 
 
-def validate_array_like(array_like, expected_type, expected_dtype, check_child=False, none_allowed=False):
+def validate_array_like(
+    array_like, expected_type, expected_dtype, check_child=False, none_allowed=False
+):
     """Validate that array-like object is well formed
     If array_like is None, validation passes automatically.
     Args:
@@ -105,7 +107,9 @@ def validate_array_like(array_like, expected_type, expected_dtype, check_child=F
     ):
         if check_child:
             if not all(issubclass(type(n), expected_dtype) for n in array_like):
-                raise TypeError(f"List elements should all be instances of {expected_dtype} class")
+                raise TypeError(
+                    f"List elements should all be instances of {expected_dtype} class"
+                )
 
         raise TypeError(f"List elements should all have type {expected_dtype}")
 
@@ -113,7 +117,9 @@ def validate_array_like(array_like, expected_type, expected_dtype, check_child=F
 
         if check_child:
             if not all(issubclass(expected_dtype, n) for n in array_like):
-                raise TypeError(f"List elements should all be instances of {expected_dtype} class")
+                raise TypeError(
+                    f"List elements should all be instances of {expected_dtype} class"
+                )
 
         raise TypeError(
             f"Array should have dtype {expected_dtype} but has {array_like.dtype}"
