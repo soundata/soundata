@@ -59,7 +59,7 @@ def test_events():
     pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
 
 
-def test_multi_annotators():
+def test_multiannotators():
     # test good data
     annotators = ["annotator_1", "annotator_2"]
     labels_1 = ["Siren", "Engine"]
@@ -70,7 +70,7 @@ def test_multi_annotators():
         annotations.Tags(labels_1, confidence_1),
         annotations.Tags(labels_2, confidence_2),
     ]
-    tags = annotations.Multi_Annotator(annotators, multi_annot)
+    tags = annotations.MultiAnnotator(annotators, multi_annot)
 
     assert tags.labels[0].labels == labels_1
     assert tags.annotators[1] == "annotator_2"
@@ -78,11 +78,11 @@ def test_multi_annotators():
 
     # test bad data
     bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(TypeError, annotations.Multi_Annotator, annotators, bad_labels)
-    pytest.raises(TypeError, annotations.Multi_Annotator, [0, 1], multi_annot)
+    pytest.raises(TypeError, annotations.MultiAnnotator, annotators, bad_labels)
+    pytest.raises(TypeError, annotations.MultiAnnotator, [0, 1], multi_annot)
     pytest.raises(
         TypeError,
-        annotations.Multi_Annotator,
+        annotations.MultiAnnotator,
         annotators,
         [["bad", "format"], ["indeed"]],
     )

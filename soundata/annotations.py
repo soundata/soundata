@@ -53,7 +53,7 @@ class Events(Annotation):
         self.confidence = confidence
 
 
-class Multi_Annotator(Annotation):
+class MultiAnnotator(Annotation):
     """Multiple annotator class.
     This class should be used for datasets with multiple annotators (e.g. multiple annotators per clip).
 
