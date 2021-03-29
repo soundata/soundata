@@ -53,21 +53,36 @@ class Events(Annotation):
         self.confidence = confidence
 
 
-def validate_array_like(array_like, expected_type, expected_dtype, none_allowed=False):
+class Multi_Annotator(Annotation):
+    """Multiple annotator class.
+    This class should be used for datasets with multiple annotators (e.g. multiple annotators per clip).
+
+    Attributes:
+        annotators (list): list with annotator ids
+        labels (list): list of annotations (e.g. [annotations.Tags, annotations.Tags]
+    """
+
+    def __init__(self, annotators, labels) -> None:
+        validate_array_like(annotators, list, str)
+        validate_array_like(labels, list, Annotation, check_child=True)
+        validate_lengths_equal([annotators, labels])
+
+        self.annotators = annotators
+        self.labels = labels
+
+
+def validate_array_like(array_like, expected_type, expected_dtype, check_child=False, none_allowed=False):
     """Validate that array-like object is well formed
-
     If array_like is None, validation passes automatically.
-
     Args:
         array_like (array-like): object to validate
         expected_type (type): expected type, either list or np.ndarray
         expected_dtype (type): expected dtype
+        check_child (bool): if True, checks if all elements of array are children of expected_dtype
         none_allowed (bool): if True, allows array to be None
-
     Raises:
         TypeError: if type/dtype does not match expected_type/expected_dtype
         ValueError: if array
-
     """
     if array_like is None:
         if none_allowed:
@@ -88,9 +103,18 @@ def validate_array_like(array_like, expected_type, expected_dtype, none_allowed=
     if expected_type == list and not all(
         isinstance(n, expected_dtype) for n in array_like
     ):
+        if check_child:
+            if not all(issubclass(type(n), expected_dtype) for n in array_like):
+                raise TypeError(f"List elements should all be instances of {expected_dtype} class")
+
         raise TypeError(f"List elements should all have type {expected_dtype}")
 
     if expected_type == np.ndarray and array_like.dtype != expected_dtype:
+
+        if check_child:
+            if not all(issubclass(expected_dtype, n) for n in array_like):
+                raise TypeError(f"List elements should all be instances of {expected_dtype} class")
+
         raise TypeError(
             f"Array should have dtype {expected_dtype} but has {array_like.dtype}"
         )
