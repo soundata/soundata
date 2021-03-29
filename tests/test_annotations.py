@@ -59,7 +59,7 @@ def test_events():
     pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
 
 
-def test_multiannotators():
+def test_multiannotator():
     # test good data
     annotators = ["annotator_1", "annotator_2"]
     labels_1 = ["Siren", "Engine"]
