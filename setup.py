@@ -37,7 +37,6 @@ if __name__ == "__main__":
             "numpy>=1.16",
             "jams",
             "requests",
-            "pretty_midi >= 0.2.8",
         ],
         extras_require={
             "tests": [
