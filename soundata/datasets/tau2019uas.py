@@ -615,7 +615,9 @@ class Dataset(core.Dataset):
             next(csv_reader)
             for row in csv_reader:
                 file_name = os.path.basename(row[0])
-                clip_id = os.path.basename(file_name).replace(".wav", "")
+                clip_id = "{}/{}".format(
+                    "development", os.path.basename(file_name).replace(".wav", "")
+                )
                 scene_label = row[1]
                 identifier = row[2]
                 city = identifier.split("-")[0]
@@ -647,7 +649,9 @@ class Dataset(core.Dataset):
                 next(csv_reader)
                 for row in csv_reader:
                     file_name = os.path.basename(row[0])
-                    clip_id = os.path.basename(file_name).replace(".wav", "")
+                    clip_id = "{}/{}".format(
+                        subset, os.path.basename(file_name).replace(".wav", "")
+                    )
 
                     if subset != "development":
                         metadata_index[clip_id] = {

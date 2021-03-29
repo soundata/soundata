@@ -84,7 +84,7 @@ def make_index(data_path):
         }
     }
 
-    for relative_path in rel_paths.values():
+    for subset, relative_path in rel_paths.items():
 
         audio_path = os.path.join(data_path, relative_path, "audio")
 
@@ -92,7 +92,10 @@ def make_index(data_path):
 
         for wf in wavfiles:
 
-            clip_id = os.path.basename(wf).replace(".wav", "")
+            clip_id = "{}/{}".format(
+                subset,
+                os.path.basename(wf).replace(".wav", "")
+            )
 
             index["clips"][clip_id] = {
                 "audio": [

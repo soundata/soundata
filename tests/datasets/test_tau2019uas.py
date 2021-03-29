@@ -10,7 +10,7 @@ TEST_DATA_HOME = "tests/resources/sound_datasets/tau2019uas"
 
 
 def test_clip():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "development/airport-barcelona-0-0-a"
     dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
 
@@ -18,7 +18,7 @@ def test_clip():
         "audio_path": (
             "tests/resources/sound_datasets/tau2019uas/TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav"
         ),
-        "clip_id": "airport-barcelona-0-0-a",
+        "clip_id": "development/airport-barcelona-0-0-a",
     }
 
     expected_property_types = {
@@ -33,7 +33,7 @@ def test_clip():
 
 
 def test_load_audio():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "development/airport-barcelona-0-0-a"
     dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
@@ -45,25 +45,51 @@ def test_load_audio():
 
 
 def test_load_tags():
-    default_clipid = "airport-barcelona-0-0-a"
+    # Development dataset
+    default_clipid = "development/airport-barcelona-0-0-a"
     dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     assert len(clip.tags.labels) == 1
     assert clip.tags.labels[0] == "airport"
     assert np.allclose([1.0], clip.tags.confidence)
 
+    # Evaluation dataset
+    eval_default_clipid = "evaluation/0"
+    eval_clip = dataset.clip(eval_default_clipid)
+    assert eval_clip.tags is None
+
+    # Leadearboard dataset
+    lead_default_clipid = "leaderboard/0"
+    lead_clip = dataset.clip(lead_default_clipid)
+    assert lead_clip.tags is None
+
 
 def test_load_metadata():
-    default_clipid = "airport-barcelona-0-0-a"
+    # Development dataset
+    default_clipid = "development/airport-barcelona-0-0-a"
     dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     assert clip.split == "development.train"
     assert clip.identifier == "barcelona-0"
     assert clip.city == "barcelona"
 
+    # Evaluation dataset
+    eval_default_clipid = "evaluation/0"
+    eval_clip = dataset.clip(eval_default_clipid)
+    assert eval_clip.split == "evaluation"
+    assert eval_clip.identifier is None
+    assert eval_clip.city is None
+
+    # Leaderboard dataset
+    lead_default_clipid = "leaderboard/0"
+    lead_clip = dataset.clip(lead_default_clipid)
+    assert lead_clip.split == "leaderboard"
+    assert lead_clip.identifier is None
+    assert lead_clip.city is None
+
 
 def test_to_jams():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "development/airport-barcelona-0-0-a"
     dataset = tau2019uas.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
