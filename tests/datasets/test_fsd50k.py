@@ -222,4 +222,3 @@ def test_dev_metadata():
     clip_pp_pnp = clip_metadata[default_clipid]["pp_pnp_ratings"]
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/03cczk": [0.5, 0.5]}
-

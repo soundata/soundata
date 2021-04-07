@@ -375,23 +375,15 @@ def load_ground_truth(fhandle: TextIO) -> [dict, list]:
     for line in reader:
         if len(line) == 3:
             ground_truth_dict[line[0]] = {
-                "tags": list(line[1].split(","))
-                if "," in line[1]
-                else list([line[1]]),
-                "mids": list(line[2].split(","))
-                if "," in line[2]
-                else list([line[2]]),
+                "tags": list(line[1].split(",")) if "," in line[1] else list([line[1]]),
+                "mids": list(line[2].split(",")) if "," in line[2] else list([line[2]]),
                 "split": "test",
             }
             clip_ids.append(line[0])
         if len(line) == 4:
             ground_truth_dict[line[0]] = {
-                "tags": list(line[1].split(","))
-                if "," in line[1]
-                else list([line[1]]),
-                "mids": list(line[2].split(","))
-                if "," in line[2]
-                else list([line[2]]),
+                "tags": list(line[1].split(",")) if "," in line[1] else list([line[1]]),
+                "mids": list(line[2].split(",")) if "," in line[2] else list([line[2]]),
                 "split": "train" if line[3] == "train" else "validation",
             }
             clip_ids.append(line[0])
