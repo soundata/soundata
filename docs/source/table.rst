@@ -21,7 +21,7 @@
    * - FSD50K
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags` (referred as labels)
+     - :ref:`tags`
      - 51,197
      - 108.3
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png

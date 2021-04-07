@@ -12,18 +12,20 @@ def test_clip():
     default_clipid = "64760"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-
+    print(clip)
     expected_attributes = {
         "audio_path": "tests/resources/sound_datasets/fsd50k/FSD50K.dev_audio/64760.wav",
         "clip_id": "64760",
-        "sub_set": "dev",
     }
 
     expected_property_types = {
         "audio": tuple,
-        "labels": annotations.Tags,
+        "tags": annotations.Tags,
+        "mids": annotations.Tags,
         "split": str,
+        "title": str,
         "description": str,
+        "pp_pnp_ratings": dict,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
@@ -37,6 +39,7 @@ def test_load_audio():
     assert sr == 44100
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
+    assert len(audio) == 75601
 
 
 def test_to_jams():
@@ -69,6 +72,7 @@ def test_to_jams():
     assert [tag.confidence for tag in tags] == [1.0, 1.0, 1.0, 1.0, 1.0]
 
     # validate metadata
+    print(jam.file_metadata)
     assert jam.file_metadata.duration == 1.7143083900226757
     assert jam.file_metadata.title == "guitarras_63.wav"
     assert jam.sandbox.mids == [
@@ -80,7 +84,7 @@ def test_to_jams():
     ]
     assert jam.sandbox.split == "train"
     assert jam.sandbox.description == "electric guitar"
-    assert jam.sandbox.tags == [
+    assert jam.sandbox.freesound_tags == [
         "electric",
         "guitar",
     ]
@@ -91,17 +95,37 @@ def test_to_jams():
 
 
 def test_labels():
+    # For multiple tags
     default_clipid = "64760"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    labels = clip.labels
-    assert labels.labels == [
+    tags = clip.tags
+    assert tags.labels == [
         "Electric_guitar",
         "Guitar",
         "Plucked_string_instrument",
         "Musical_instrument",
         "Music",
     ]
+    assert np.array_equal(tags.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
+
+    mids = clip.mids
+    assert mids.labels == [
+        "/m/02sgy",
+        "/m/0342h",
+        "/m/0fx80y",
+        "/m/04szw",
+        "/m/04rlf",
+    ]
+    assert np.array_equal(mids.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
+
+    # For a single tag
+    default_clipid = "21914"
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    clip = dataset.clip(default_clipid)
+    tags = clip.tags
+    assert tags.labels == ["Crushing"]
+    assert np.array_equal(tags.confidence, [1.0])
 
 
 def test_dev_metadata():
@@ -110,7 +134,7 @@ def test_dev_metadata():
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()
 
-    clip_ground_truth = clip_metadata["ground_truth_dev"][default_clipid]
+    clip_ground_truth = clip_metadata[default_clipid]["ground_truth"]
     assert clip_ground_truth["tags"] == [
         "Electric_guitar",
         "Guitar",
@@ -127,16 +151,23 @@ def test_dev_metadata():
     ]
     assert clip_ground_truth["split"] == "train"
 
-    clip_info = clip_metadata["clips_info_dev"][default_clipid]
+    clip_info = clip_metadata[default_clipid]["clip_info"]
     assert clip_info["title"] == "guitarras_63.wav"
     assert clip_info["description"] == "electric guitar"
     assert clip_info["tags"] == ["electric", "guitar"]
     assert clip_info["license"] == "http://creativecommons.org/licenses/sampling+/1.0/"
     assert clip_info["uploader"] == "casualsamples"
 
-    clip_pp_pnp = clip_metadata["pp_pnp_ratings"][default_clipid]
+    clip_pp_pnp = clip_metadata[default_clipid]["pp_pnp_ratings"]
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/02sgy": [1.0, 1.0]}
+
+    default_clipid = "21914"
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    clip = dataset.clip(default_clipid)
+    clip_metadata = clip._metadata()
+    clip_ground_truth = clip_metadata[default_clipid]["ground_truth"]
+    assert clip_ground_truth["split"] == "validation"
 
 
 def test_eval_metadata():
@@ -145,7 +176,7 @@ def test_eval_metadata():
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()
 
-    clip_ground_truth = clip_metadata["ground_truth_eval"][default_clipid]
+    clip_ground_truth = clip_metadata[default_clipid]["ground_truth"]
     assert clip_ground_truth["tags"] == [
         "Chatter",
         "Chewing_and_mastication",
@@ -178,9 +209,9 @@ def test_eval_metadata():
         "/m/09x0r",
         "/m/09l8g",
     ]
-    assert clip_ground_truth["split"] is None
+    assert clip_ground_truth["split"] is "test"
 
-    clip_info = clip_metadata["clips_info_eval"][default_clipid]
+    clip_info = clip_metadata[default_clipid]["clip_info"]
     assert type(clip_info) is dict
     assert clip_info["title"] == "manzana_exterior.wav"
     assert clip_info["description"] == "eating apples on a park"
@@ -188,6 +219,6 @@ def test_eval_metadata():
     assert clip_info["license"] == "http://creativecommons.org/licenses/by/3.0/"
     assert clip_info["uploader"] == "plagasul"
 
-    clip_pp_pnp = clip_metadata["pp_pnp_ratings"][default_clipid]
+    clip_pp_pnp = clip_metadata[default_clipid]["pp_pnp_ratings"]
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/03cczk": [0.5, 0.5]}
