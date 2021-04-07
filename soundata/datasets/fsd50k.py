@@ -391,7 +391,7 @@ def load_ground_truth(fhandle: TextIO) -> [dict, list]:
     return ground_truth_dict, clip_ids
 
 
-def load_fsd50k_vocabulary(fhandle: TextIO) -> [dict, list]:
+def load_fsd50k_vocabulary(fhandle: TextIO) -> [dict, dict]:
     """Load vocabulary of FSD50K to relate FSD50K labels with AudioSet onthology
     Args:
         fhandle (str or file-like): File-like object or path to the vocabulary file
