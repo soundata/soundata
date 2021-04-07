@@ -37,7 +37,6 @@ if __name__ == "__main__":
             "numpy>=1.16",
             "jams",
             "requests",
-            "pretty_midi >= 0.2.8",
         ],
         extras_require={
             "tests": [
@@ -57,6 +56,5 @@ if __name__ == "__main__":
                 "sphinxcontrib-napoleon",
                 "sphinx_rtd_theme",
             ],
-            "dali": ["dali-dataset==1.1"],
         },
     )

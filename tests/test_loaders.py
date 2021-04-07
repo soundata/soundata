@@ -15,19 +15,14 @@ from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
     "esc50": "1-104089-A-22",
+    "fsd50k": "64760",
+    "tau2019uas": "development/airport-barcelona-0-0-a",
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
-    "fsd50k": "64760",
+    "tut2017se": "a001",
 }
 
-REMOTE_DATASETS = {
-    "acousticbrainz_genre": {
-        "local_index": "tests/resources/download/acousticbrainz_genre_dataset_little_test.json.zip",
-        "filename": "acousticbrainz_genre_dataset_little_test.json",
-        "remote_filename": "acousticbrainz_genre_dataset_little_test.json.zip",
-        "remote_checksum": "c5fbdd4f8b7de383796a34143cb44c4f",
-    }
-}
+REMOTE_DATASETS = {}
 TEST_DATA_HOME = "tests/resources/sound_datasets"
 
 
@@ -319,31 +314,8 @@ def test_clip_placeholder_case():
 
 # for load_* functions which require more than one argument
 # module_name : {function_name: {parameter2: value, parameter3: value}}
-EXCEPTIONS = {
-    "dali": {"load_annotations_granularity": {"granularity": "notes"}},
-    "guitarset": {
-        "load_pitch_contour": {"string_num": 1},
-        "load_notes": {"string_num": 1},
-    },
-    "saraga": {
-        "load_tempo": {"iam_style": "carnatic"},
-        "load_sections": {"iam_style": "carnatic"},
-    },
-}
-SKIP = {
-    "acousticbrainz_genre": [
-        "load_all_train",
-        "load_all_validation",
-        "load_tagtraum_validation",
-        "load_tagtraum_train",
-        "load_allmusic_train",
-        "load_allmusic_validation",
-        "load_lastfm_train",
-        "load_lastfm_validation",
-        "load_discogs_train",
-        "load_discogs_validation",
-    ]
-}
+EXCEPTIONS = {}
+SKIP = {}
 
 
 def test_load_methods():

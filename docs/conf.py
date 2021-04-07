@@ -35,7 +35,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pretty_midi", "DALI"]
+autodoc_mock_imports = ["librosa", "numpy", "jams"]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -55,18 +55,13 @@ extensions = [
 
 # To shorten links of licenses and add to table
 extlinks = {
-    "acousticbrainz": ("https://zenodo.org/record/2554044#.X_ivJ-n7RUI%s", "Custom"),
-    "cante": ("https://zenodo.org/record/1324183#.X_nq7-n7RUI%s", "Custom"),
-    "ikala": ("http://mac.citi.sinica.edu.tw/ikala/%s", "Custom"),
-    "rwc": ("https://staff.aist.go.jp/m.goto/RWC-MDB/%s", "Custom"),
+    "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
+    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
 }
-
 
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
     "jams": ("https://jams.readthedocs.io/en/stable/", None),
-    "mir_eval": ("https://craffel.github.io/mir_eval/", None),
-    "pretty_midi": ("https://craffel.github.io/pretty-midi/", None),
 }
 
 # Napoleon settings

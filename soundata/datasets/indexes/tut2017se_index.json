@@ -1,0 +1,453 @@
+{
+  "version": "2.0",
+  "clips": {
+    "b093": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b093.wav",
+        "f933d04533df844ac7e681a2ee5a231b"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b093.ann",
+        "6b5c7af217e17c507f03ab1169a5faea"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b093.ann",
+        "f46cb171f08d49da247760dece1256ab"
+      ]
+    },
+    "b003": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b003.wav",
+        "6571e62869c0e85ef56cf7d7b6c90521"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b003.ann",
+        "357acc7751a457d1c2661240501408ce"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b003.ann",
+        "3fef1fedd24edf5f414958b6b33f1134"
+      ]
+    },
+    "b091": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b091.wav",
+        "f81150072f11f22311d3bd90b7b3ba59"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b091.ann",
+        "abb9e017d4f0b15a2ae11d6a3f78e54f"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b091.ann",
+        "98ea019a0526b372204def1995027471"
+      ]
+    },
+    "b005": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b005.wav",
+        "a178240e9ba659bf637aafaeca660596"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b005.ann",
+        "c5a84a84edbccfe16944b25fc0edf0a7"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b005.ann",
+        "d79cea871956266e04c7ce8a58c223fe"
+      ]
+    },
+    "b095": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b095.wav",
+        "a7c7064bc28b5e8b4be3237a8b21a61a"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b095.ann",
+        "ae83963e4e66d6226e71a0fd8407d6cf"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b095.ann",
+        "b4ee64372b59c11e82e2e6671f83461d"
+      ]
+    },
+    "b007": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b007.wav",
+        "a5a2b09564a6da9ba94e4a0a1d512ec8"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b007.ann",
+        "a1dcbb60151c709310f4a2409d5bc20c"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b007.ann",
+        "e0d46af56ac4fbb3d75d4e41165e7921"
+      ]
+    },
+    "b100": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b100.wav",
+        "3e30bd67d90bdfe88c846e262bcd3324"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b100.ann",
+        "a25531b956f5a53805a2fc231614e37c"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b100.ann",
+        "d9c773fe6e6c526e29c52214b07bee65"
+      ]
+    },
+    "a131": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a131.wav",
+        "1e7bb159363d45c8f92af6f31e4f007b"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a131.ann",
+        "38a0f9ed306e27d0743eb73efca3bb47"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a131.ann",
+        "cd017e7e249bec5803bbec5a76f5b759"
+      ]
+    },
+    "b099": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b099.wav",
+        "ff573f10ea540cddb6f595eb3e3216d1"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b099.ann",
+        "8b65264cfe1928d227e75df0f645b10f"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b099.ann",
+        "c3bf89ffa4ec2524552458b7cac38f1c"
+      ]
+    },
+    "b009": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b009.wav",
+        "c8ed0cd64f8fa34ac5764a42d4ba1ca1"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b009.ann",
+        "73325c8d70ac857b3262ce4f63b3813c"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b009.ann",
+        "b1336f7b82e425348b81bf93ef26b3d5"
+      ]
+    },
+    "b006": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b006.wav",
+        "13c5e79e232aec3b4a454382e4135d52"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b006.ann",
+        "473205bd674c97a4ffab4898c5411a2f"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b006.ann",
+        "cf1503bcba38fd9e9d6498b352300a6f"
+      ]
+    },
+    "a001": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a001.wav",
+        "18fac6fb758f02842e7ef9495fbe8ad9"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a001.ann",
+        "9f6dbf3fae6c6e54b83ab934ed814856"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a001.ann",
+        "e5821888d6f3f28880f5276ffbcdf62c"
+      ]
+    },
+    "a013": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a013.wav",
+        "67b2c085f2a7d6f65cbb34eb9764eb74"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a013.ann",
+        "edf0d92ce6c6af3b5959ce61be0c7794"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a013.ann",
+        "8df6db3340c4fd5605e66624c65bc704"
+      ]
+    },
+    "a128": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a128.wav",
+        "35f763b9f143844e00ccd0240fb7ef01"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a128.ann",
+        "eaeabba73c22a93f45f889444a7c0044"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a128.ann",
+        "5e850a15eaf945fc2c87019f1648e22f"
+      ]
+    },
+    "a003": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a003.wav",
+        "f3f91723f585ae80060d11e24f952be0"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a003.ann",
+        "764ca274b9be88e34be76cd26b363f85"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a003.ann",
+        "1517cb3f775f3209b4d8cc9a340aea83"
+      ]
+    },
+    "a129": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a129.wav",
+        "61cc844ca2e45e7ae4cc484bb0b56413"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a129.ann",
+        "3bf14053fda6e8710b14e0a1ed20d75d"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a129.ann",
+        "7ea42788586c71e35fcd0d71b87f5ae1"
+      ]
+    },
+    "a008": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a008.wav",
+        "c17ffb656285e966d175e7b4d0e40dd9"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a008.ann",
+        "75569a56c967919934a1167f4b0cbe3a"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a008.ann",
+        "e2934566131a9266ff0f2ea545c2636f"
+      ]
+    },
+    "a127": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a127.wav",
+        "12a1e35035e9c321b7ebdc06ccca5e51"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a127.ann",
+        "304cdd7100ec317461e4a8858fc9dc12"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a127.ann",
+        "514d0177335c732146fcd86694db3f5c"
+      ]
+    },
+    "b094": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b094.wav",
+        "eb653f450d3b7164baf921b36a07c9ed"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b094.ann",
+        "f590b499be5e945c430a40018fcf28b1"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b094.ann",
+        "786753b31be41264c4b9812427729c5f"
+      ]
+    },
+    "a012": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a012.wav",
+        "7642dcef6d7b8d255b12cda248e164b2"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a012.ann",
+        "928e4593f5453469c7d154b869810d3a"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a012.ann",
+        "27e655c25a9cbec47309659bce91a521"
+      ]
+    },
+    "a124": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a124.wav",
+        "7126994428a8392a5ce7f8eed431525f"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a124.ann",
+        "25e810ba9c44c8866587a315f0429da4"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a124.ann",
+        "0385e93d900bedcb6b6dd45c2ddd8692"
+      ]
+    },
+    "a010": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a010.wav",
+        "68e3aabba713135a5c978f65f6595558"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a010.ann",
+        "d1395d72e535304026fd77f4519fdba7"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a010.ann",
+        "a3fbb1982e9d3c44f188e0504f695552"
+      ]
+    },
+    "b098": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b098.wav",
+        "481cbdff33d8bfd4f8b2c0fbee1e2269"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b098.ann",
+        "3176f2fc4525aae0acfa8907a32b5d5c"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b098.ann",
+        "cce978f405382cee5ab49a061bf74ba1"
+      ]
+    },
+    "b008": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/b008.wav",
+        "c8b8062be4b0da5aa3bf82bd22e52271"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/b008.ann",
+        "51de6ccdaa8dd0fa13640bc110393fdb"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/b008.ann",
+        "6799c99d75a7168532f9b284fe5256ec"
+      ]
+    },
+    "b004": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/b004.wav",
+        "aea69189a2355ed69512a81bfdc02d08"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/b004.ann",
+        "8cd6b9e9baf7b9852828654ad7c3e479"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "a009": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/a009.wav",
+        "058576c034bc98d342b3d31a22005fa5"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/a009.ann",
+        "b59c99c323bdeca1da0fc158bc72a58e"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "a123": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/a123.wav",
+        "4233d66783c7f4003b33fc8de39ba5c9"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/a123.ann",
+        "681eabf003106b042a21a45cf2eecc54"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "b002": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/b002.wav",
+        "7dc6febf78f111825a068a5becde5c48"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/b002.ann",
+        "5c46a9df1ffdbf86a4cff415b21a841d"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "a011": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/a011.wav",
+        "4b8b743b4a1a25c0cc797d7ebe145ba8"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/a011.ann",
+        "f9be1b77864e28648886dafe88665bf5"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "b092": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/b092.wav",
+        "6624b90bfc9d7e93f0f95952d4c7e7f2"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/b092.ann",
+        "a713d7872aab7c51196e380bf2dd5309"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "a005": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/a005.wav",
+        "116d61e131b0a515c2e672ce267acb1f"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/a005.ann",
+        "c98ff2bf3055381a6037192f20357dbc"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    },
+    "a002": {
+      "audio": [
+        "TUT-sound-events-2017-evaluation/audio/street/a002.wav",
+        "fb5f00f9655b0b0764cf4a8a23423624"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-evaluation/meta/street/a002.ann",
+        "54e7fd90edea8788515abd877c986881"
+      ],
+      "non_verified_annotations": [
+        null,
+        null
+      ]
+    }
+  }
+}
