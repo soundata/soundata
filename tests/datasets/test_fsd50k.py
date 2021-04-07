@@ -222,3 +222,18 @@ def test_dev_metadata():
     clip_pp_pnp = clip_metadata[default_clipid]["pp_pnp_ratings"]
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/03cczk": [0.5, 0.5]}
+
+
+def test_load_vocabulary():
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    fsd50k_to_audioset, audioset_to_fsd50k = dataset.load_fsd50k_vocabulary(
+        dataset.vocabulary_path
+    )
+    assert fsd50k_to_audioset == {
+        "Crushing": "/m/07plct2",
+        "Electric_guitar": "/m/02sgy",
+    }
+    assert audioset_to_fsd50k == {
+        "/m/07plct2": "Crushing",
+        "/m/02sgy": "Electric_guitar",
+    }
