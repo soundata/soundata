@@ -358,7 +358,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     return audio, sr
 
 
-def load_ground_truth(fhandle: TextIO) -> [dict, list]:
+def load_ground_truth(fhandle: TextIO) -> Tuple[dict, list]:
     """Load ground truth files of FSD50K
     Args:
         fhandle (str or file-like): File-like object or path to the ground truth file
@@ -391,7 +391,7 @@ def load_ground_truth(fhandle: TextIO) -> [dict, list]:
     return ground_truth_dict, clip_ids
 
 
-def load_fsd50k_vocabulary(fhandle: TextIO) -> [dict, dict]:
+def load_fsd50k_vocabulary(fhandle: TextIO) -> Tuple[dict, dict]:
     """Load vocabulary of FSD50K to relate FSD50K labels with AudioSet onthology
     Args:
         fhandle (str or file-like): File-like object or path to the vocabulary file
