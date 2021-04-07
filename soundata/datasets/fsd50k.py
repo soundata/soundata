@@ -246,9 +246,14 @@ class Clip(core.Clip):
     Attributes:
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence
-        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
 
+    Properties:
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
+        mids (sound.annotations.Tags): tag (labels) encoded in Audioset formatting
+        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
+        title (str): the title of the uploaded file in Freesound
+        description (str): description of the sound provided by the Freesound uploader
+        pp_pnp_ratings (dict): PP/PNP ratings given to the main label of the clip
     """
 
     def __init__(
@@ -353,61 +358,63 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     return audio, sr
 
 
-def load_ground_truth(data_path):
+def load_ground_truth(fhandle: TextIO) -> [dict, list]:
+    """Load ground truth files of FSD50K
+    Args:
+        fhandle (str or file-like): File-like object or path to the ground truth file
+    Raises:
+        IOError: if txt_path doesn't exist
+    Returns:
+        * ground_truth_dict (dict): ground truth dict of the clips in the input split
+        * clip_ids (list): list of clip ids of the input split
     """
-    TODO
-    """
-    if not os.path.exists(data_path):
-        raise FileNotFoundError("Ground truth file not found. Did you run .download()?")
-
     ground_truth_dict = {}
     clip_ids = []
-    with open(data_path, "r") as fhandle:
-        reader = csv.reader(fhandle, delimiter=",")
-        next(reader)
-        for line in reader:
-            if len(line) == 3:
-                ground_truth_dict[line[0]] = {
-                    "tags": list(line[1].split(","))
-                    if "," in line[1]
-                    else list([line[1]]),
-                    "mids": list(line[2].split(","))
-                    if "," in line[2]
-                    else list([line[2]]),
-                    "split": "test",
-                }
-                clip_ids.append(line[0])
-            if len(line) == 4:
-                ground_truth_dict[line[0]] = {
-                    "tags": list(line[1].split(","))
-                    if "," in line[1]
-                    else list([line[1]]),
-                    "mids": list(line[2].split(","))
-                    if "," in line[2]
-                    else list([line[2]]),
-                    "split": "train" if line[3] == "train" else "validation",
-                }
-                clip_ids.append(line[0])
+    reader = csv.reader(fhandle, delimiter=",")
+    next(reader)
+    for line in reader:
+        if len(line) == 3:
+            ground_truth_dict[line[0]] = {
+                "tags": list(line[1].split(","))
+                if "," in line[1]
+                else list([line[1]]),
+                "mids": list(line[2].split(","))
+                if "," in line[2]
+                else list([line[2]]),
+                "split": "test",
+            }
+            clip_ids.append(line[0])
+        if len(line) == 4:
+            ground_truth_dict[line[0]] = {
+                "tags": list(line[1].split(","))
+                if "," in line[1]
+                else list([line[1]]),
+                "mids": list(line[2].split(","))
+                if "," in line[2]
+                else list([line[2]]),
+                "split": "train" if line[3] == "train" else "validation",
+            }
+            clip_ids.append(line[0])
 
     return ground_truth_dict, clip_ids
 
 
-def load_fsd50k_vocabulary(data_path):
+def load_fsd50k_vocabulary(fhandle: TextIO) -> [dict, list]:
+    """Load vocabulary of FSD50K to relate FSD50K labels with AudioSet onthology
+    Args:
+        fhandle (str or file-like): File-like object or path to the vocabulary file
+    Raises:
+        IOError: if txt_path doesn't exist
+    Returns:
+        * fsd50k_to_audioset (dict): vocabulary to convert FSD50K to AudioSet
+        * audioset_to_fsd50k (dict): vocabulary to convert from AudioSet to FSD50K
     """
-    TODO
-    """
-    if not os.path.exists(data_path):
-        raise FileNotFoundError(
-            "FSD50K vocabulary file not found. Did you run .download()?"
-        )
-
     fsd50k_to_audioset = {}
     audioset_to_fsd50k = {}
-    with open(data_path, "r") as fhandle:
-        reader = csv.reader(fhandle, delimiter=",")
-        for line in reader:
-            fsd50k_to_audioset[line[1]] = line[2]
-            audioset_to_fsd50k[line[2]] = line[1]
+    reader = csv.reader(fhandle, delimiter=",")
+    for line in reader:
+        fsd50k_to_audioset[line[1]] = line[2]
+        audioset_to_fsd50k[line[2]] = line[1]
 
     return fsd50k_to_audioset, audioset_to_fsd50k
 

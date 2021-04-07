@@ -129,6 +129,7 @@ def test_labels():
 
 
 def test_dev_metadata():
+    # Testing metadata from a training clip
     default_clipid = "64760"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
@@ -162,6 +163,7 @@ def test_dev_metadata():
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/02sgy": [1.0, 1.0]}
 
+    # Testing metadata from an evaluation clip
     default_clipid = "21914"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
@@ -169,8 +171,6 @@ def test_dev_metadata():
     clip_ground_truth = clip_metadata[default_clipid]["ground_truth"]
     assert clip_ground_truth["split"] == "validation"
 
-
-def test_eval_metadata():
     default_clipid = "99"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
@@ -222,3 +222,4 @@ def test_eval_metadata():
     clip_pp_pnp = clip_metadata[default_clipid]["pp_pnp_ratings"]
     assert type(clip_pp_pnp) is dict
     assert clip_pp_pnp == {"/m/03cczk": [0.5, 0.5]}
+
