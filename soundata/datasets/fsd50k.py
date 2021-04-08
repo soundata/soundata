@@ -471,6 +471,11 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json"
         )
 
+        # --- Class info path --- #
+        self.label_info_path = os.path.join(
+            self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
+        )
+
         # ---  PP/PNP ratings path --- #
         self.pp_pnp_ratings_path = os.path.join(
             self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json"
@@ -481,7 +486,10 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
         )
         self.collection_vocabulary_dev_path = os.path.join(
-            self.data_home, "FSD50K.metadata", "vocabulary_collection_dev.csv"
+            self.data_home,
+            "FSD50K.metadata",
+            "collection",
+            "vocabulary_collection_dev.csv",
         )
         self.collection_vocabulary_eval_path = (
             self.collection_vocabulary_dev_path.replace("_dev", "_eval")
@@ -501,50 +509,33 @@ class Dataset(core.Dataset):
 
     @property
     def fsd50k_to_audioset(self):
-        data_path = os.path.join(
-            self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
-        )
-        return load_fsd50k_vocabulary(data_path)[0]
+        return load_fsd50k_vocabulary(self.vocabulary_path)[0]
 
     @property
     def audioset_to_fsd50k(self):
-        data_path = os.path.join(
-            self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
-        )
-        return load_fsd50k_vocabulary(data_path)[1]
+        return load_fsd50k_vocabulary(self.vocabulary_path)[1]
 
     @property
-    def class_info(self):
-        data_path = os.path.join(
-            self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
+    def label_info(self):
+        return (
+            json.load(open(self.label_info_path, "r"))
+            if os.path.exists(self.label_info_path)
+            else None
         )
-        return json.load(open(data_path, "r")) if os.path.exists(data_path) else None
 
     @property
     def collection_fsd50k_to_audioset(self):
-        data_path = os.path.join(
-            self.data_home,
-            "FSD50K.metadata",
-            "collection",
-            "vocabulary_collection_dev.csv",
-        )
         collection_fsd50k_to_audioset = {
-            "dev": load_fsd50k_vocabulary(data_path)[0],
-            "eval": load_fsd50k_vocabulary(data_path.replace("_dev", "_eval"))[0],
+            "dev": load_fsd50k_vocabulary(self.collection_vocabulary_dev_path)[0],
+            "eval": load_fsd50k_vocabulary(self.collection_vocabulary_eval_path)[0],
         }
         return collection_fsd50k_to_audioset
 
     @property
     def collection_audioset_to_fsd50k(self):
-        data_path = os.path.join(
-            self.data_home,
-            "FSD50K.metadata",
-            "collection",
-            "vocabulary_collection_dev.csv",
-        )
         collection_audioset_to_fsd50k = {
-            "dev": load_fsd50k_vocabulary(data_path)[1],
-            "eval": load_fsd50k_vocabulary(data_path.replace("_dev", "_eval"))[1],
+            "dev": load_fsd50k_vocabulary(self.collection_vocabulary_dev_path)[1],
+            "eval": load_fsd50k_vocabulary(self.collection_vocabulary_eval_path)[1],
         }
         return collection_audioset_to_fsd50k
 

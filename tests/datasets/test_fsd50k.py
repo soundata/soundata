@@ -226,6 +226,8 @@ def test_dev_metadata():
 
 def test_load_vocabulary():
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
+
+    # Testing load vocabulary function
     fsd50k_to_audioset, audioset_to_fsd50k = dataset.load_fsd50k_vocabulary(
         dataset.vocabulary_path
     )
@@ -237,3 +239,79 @@ def test_load_vocabulary():
         "/m/07plct2": "Crushing",
         "/m/02sgy": "Electric_guitar",
     }
+
+    # Testing fsd50k to audioset
+    fsd50k_to_audioset = dataset.fsd50k_to_audioset
+    assert fsd50k_to_audioset["Crushing"] == "/m/07plct2"
+    assert fsd50k_to_audioset["Electric_guitar"] == "/m/02sgy"
+
+    # Testing audioset to fsd50k
+    audioset_to_fsd50k = dataset.audioset_to_fsd50k
+    assert audioset_to_fsd50k["/m/07plct2"] == "Crushing"
+    assert audioset_to_fsd50k["/m/02sgy"] == "Electric_guitar"
+
+
+def test_label_info():
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+
+    # Testing label info property
+    label_info = dataset.label_info
+
+    assert type(label_info["/m/02sgy"]) is dict
+    assert type(label_info["/m/02sgy"]["faq"]) is str
+    assert label_info["/m/02sgy"]["examples"] == [4282, 134012]
+    assert label_info["/m/02sgy"]["verification_examples"] == [
+        63900,
+        74871,
+        40403,
+        97244,
+        40474,
+        97242,
+    ]
+
+
+def test_vocabularies():
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+
+    # Testing load vocabulary function
+    fsd50k_to_audioset, audioset_to_fsd50k = dataset.load_fsd50k_vocabulary(
+        dataset.vocabulary_path
+    )
+    assert fsd50k_to_audioset == {
+        "Crushing": "/m/07plct2",
+        "Electric_guitar": "/m/02sgy",
+    }
+    assert audioset_to_fsd50k == {
+        "/m/07plct2": "Crushing",
+        "/m/02sgy": "Electric_guitar",
+    }
+
+    # Testing fsd50k to audioset
+    fsd50k_to_audioset = dataset.fsd50k_to_audioset
+    assert fsd50k_to_audioset["Crushing"] == "/m/07plct2"
+    assert fsd50k_to_audioset["Electric_guitar"] == "/m/02sgy"
+
+    # Testing audioset to fsd50k
+    audioset_to_fsd50k = dataset.audioset_to_fsd50k
+    assert audioset_to_fsd50k["/m/07plct2"] == "Crushing"
+    assert audioset_to_fsd50k["/m/02sgy"] == "Electric_guitar"
+
+
+def test_collection_vocabulary():
+    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+
+    # Testing collection vocabularies
+    collection_fsd50k_to_audioset = dataset.collection_fsd50k_to_audioset
+    collection_audioset_to_fsd50k = dataset.collection_audioset_to_fsd50k
+
+    assert type(collection_fsd50k_to_audioset) is dict
+    assert type(collection_audioset_to_fsd50k) is dict
+    assert type(collection_fsd50k_to_audioset["dev"]) is dict
+    assert type(collection_fsd50k_to_audioset["eval"]) is dict
+    assert type(collection_audioset_to_fsd50k["dev"]) is dict
+    assert type(collection_audioset_to_fsd50k["eval"]) is dict
+
+    assert collection_fsd50k_to_audioset["dev"]["Electric_guitar"] == "/m/02sgy"
+    assert collection_fsd50k_to_audioset["eval"]["Chatter"] == "/m/07rkbfh"
+    assert collection_audioset_to_fsd50k["dev"]["/m/02sgy"] == "Electric_guitar"
+    assert collection_audioset_to_fsd50k["eval"]["/m/07rkbfh"] == "Chatter"
