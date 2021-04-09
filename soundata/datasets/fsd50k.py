@@ -211,6 +211,7 @@ import librosa
 import numpy as np
 import csv
 import json
+import logging
 
 from soundata import download_utils, jams_utils, core, annotations, io
 
@@ -226,12 +227,65 @@ BIBTEX = """
 }
 """
 REMOTES = {
-    "all": download_utils.RemoteFileMetadata(
-        filename="ESC-50-master.zip",
-        url="https://github.com/karoldvl/ESC-50/archive/master.zip",
-        checksum="70aba3bada37d2674b8f6cd5afd5f065",
-        unpack_directories=["ESC-50-master"],
-    )
+    "development": {
+        "dev_main": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.zip",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.zip?download=1",
+            checksum="c480d119b8f7a7e32fdb58f3ea4d6c5a",
+        ),
+        "dev_part1": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.z01",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z01?download=1",
+            checksum="faa7cf4cc076fc34a44a479a5ed862a3",
+        ),
+        "dev_part2": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.z02",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z02?download=1",
+            checksum="8f9b66153e68571164fb1315d00bc7bc",
+        ),
+        "dev_part3": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.z03",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z03?download=1",
+            checksum="1196ef47d267a993d30fa98af54b7159",
+        ),
+        "dev_part4": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.z04",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z04?download=1",
+            checksum="d088ac4e11ba53daf9f7574c11cccac9",
+        ),
+        "dev_part5": download_utils.RemoteFileMetadata(
+            filename="FSD50K.dev_audio.z05",
+            url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z05?download=1",
+            checksum="81356521aa159accd3c35de22da28c7f",
+        ),
+    },
+    "evaluation": {
+        "eval_main": download_utils.RemoteFileMetadata(
+            filename="FSD50K.eval_audio.zip",
+            url="https://zenodo.org/record/4060432/files/FSD50K.eval_audio.zip?download=1",
+            checksum="6fa47636c3a3ad5c7dfeba99f2637982",
+        ),
+        "eval_part1": download_utils.RemoteFileMetadata(
+            filename="FSD50K.eval_audio.z01",
+            url="https://zenodo.org/record/4060432/files/FSD50K.eval_audio.z01?download=1",
+            checksum="3090670eaeecc013ca1ff84fe4442aeb",
+        ),
+    },
+    "ground_truth": download_utils.RemoteFileMetadata(
+        filename="FSD50K.ground_truth.zip",
+        url="https://zenodo.org/record/4060432/files/FSD50K.ground_truth.zip?download=1",
+        checksum="ca27382c195e37d2269c4c866dd73485",
+    ),
+    "metadata": download_utils.RemoteFileMetadata(
+        filename="FSD50K.metadata.zip",
+        url="https://zenodo.org/record/4060432/files/FSD50K.metadata.zip?download=1",
+        checksum="b9ea0c829a411c1d42adb9da539ed237",
+    ),
+    "documentation": download_utils.RemoteFileMetadata(
+        filename="FSD50K.doc.zip",
+        url="https://zenodo.org/record/4060432/files/FSD50K.doc.zip?download=1",
+        checksum="3516162b82dc2945d3e7feba0904e800",
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
@@ -586,3 +640,135 @@ class Dataset(core.Dataset):
                 }
 
         return metadata_index
+
+    def download(self, partial_download=None, force_overwrite=False, cleanup=False):
+        """Download and properly unzip the dataset
+
+        Args:
+            partial_download (list or None):
+                A list of keys of remotes to partially download.
+                If None, all data is downloaded
+            force_overwrite (bool):
+                If True, existing files are overwritten by the downloaded files.
+            cleanup (bool):
+                Whether to delete any zip/tar files after extracting.
+
+        Raises:
+            ValueError: if invalid keys are passed to partial_download
+            IOError: if a downloaded file's checksum is different from expected
+
+        """
+        if not os.path.exists(self.data_home):
+            os.makedirs(self.data_home)
+
+        if cleanup:
+            logging.warning(
+                "Zip and tar files will be deleted after they are uncompressed. "
+                + "If you download this dataset again, it will overwrite existing files, even if force_overwrite=False"
+            )
+
+        if self.remotes is not None:
+            if partial_download is not None:
+                # check the keys in partial_download are in the download dict
+                if not isinstance(partial_download, list) or any(
+                    [k not in self.remotes for k in partial_download]
+                ):
+                    raise ValueError(
+                        "partial_download must be a list which is a subset of {}, but got {}".format(
+                            list(self.remotes.keys()), partial_download
+                        )
+                    )
+                for k in partial_download:
+                    if "dev_" in k or "eval_" in k:
+                        raise ValueError(
+                            """
+                            FSD50K development and evaluation audio compressed files are divided and all the parts 
+                            must be downloaded together to merge and unzip them properly. Please use the keys
+                            "development" or "evaluation" for partial download.
+                            """
+                        )
+
+                objs_to_download = partial_download
+            else:
+                objs_to_download = list(self.remotes.keys())
+
+            logging.info(
+                "Downloading {} to {}".format(objs_to_download, self.data_home)
+            )
+
+            for k in objs_to_download:
+                if k == "development":
+                    logging.info(
+                        "Downloading, merging and unzipping development split..."
+                    )
+                    for part in self.remotes[k].keys():
+                        download_utils.download_from_remote(
+                            remote=self.remotes[k][part],
+                            save_dir=self.data_home,
+                            force_overwrite=force_overwrite,
+                        )
+
+                    # --- Merge and unzip development split --- #
+                    dev_zip_path = os.path.join(self.data_home, "FSD50K.dev_audio.zip")
+                    dev_output_path = os.path.join(self.data_home, "unsplit_dev.zip")
+                    os.system("zip -s 0 " + dev_zip_path + " --out " + dev_output_path)
+                    download_utils.unzip(dev_output_path, cleanup=cleanup)
+                    # Remove zip files
+                    if cleanup:
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.zip")
+                        )
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z01")
+                        )
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z02")
+                        )
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z03")
+                        )
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z04")
+                        )
+                        os.system(
+                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z05")
+                        )
+
+                if k == "evaluation":
+                    logging.info(
+                        "Downloading, merging and unzipping evaluation split..."
+                    )
+                    for part in self.remotes[k].keys():
+                        download_utils.download_from_remote(
+                            remote=self.remotes[k][part],
+                            save_dir=self.data_home,
+                            force_overwrite=force_overwrite,
+                        )
+
+                    # --- Merge and unzip evaluation split --- #
+                    eval_zip_path = os.path.join(
+                        self.data_home, "FSD50K.eval_audio.zip"
+                    )
+                    eval_output_path = os.path.join(self.data_home, "unsplit_eval.zip")
+                    os.system(
+                        "zip -s 0 " + eval_zip_path + " --out " + eval_output_path
+                    )
+                    download_utils.unzip(eval_output_path, cleanup=cleanup)
+                    # Remove zip files
+                    if cleanup:
+                        os.system(
+                            "rm "
+                            + os.path.join(self.data_home, "FSD50K.eval_audio.zip")
+                        )
+                        os.system(
+                            "rm "
+                            + os.path.join(self.data_home, "FSD50K.eval_audio.z01")
+                        )
+
+                else:
+                    download_utils.download_zip_file(
+                        self.remotes[k],
+                        save_dir=self.data_home,
+                        force_overwrite=force_overwrite,
+                        cleanup=cleanup,
+                    )
