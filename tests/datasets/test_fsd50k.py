@@ -455,6 +455,8 @@ def test_merge_and_unzip_development():
 
     if os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/")):
         shutil.rmtree(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
+    if os.path.exists(os.path.join(test_merging_home, "unsplit_dev.zip")):
+        os.remove(os.path.join(test_merging_home, "unsplit_dev.zip"))
 
 
 def test_merge_and_unzip_evaluation():
@@ -487,22 +489,15 @@ def test_merge_and_unzip_evaluation():
 
     if os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/")):
         shutil.rmtree(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
+    if os.path.exists(os.path.join(test_merging_home, "unsplit_eval.zip")):
+        os.remove(os.path.join(test_merging_home, "unsplit_eval.zip"))
 
 
 def test_merge_unzip_cleanup():
     test_merging_home = "tests/resources/download/fsd50k"
-    test_tmp_home = "tests/resources/download/fsd50k/tmp"
-    if os.path.exists(test_tmp_home):
-        shutil.rmtree(test_tmp_home)
-        os.mkdir(test_tmp_home)
-    else:
-        os.mkdir(test_tmp_home)
+    test_tmp_home = "tests/resources/download/fsd50k_tmp"
 
-    for file in os.listdir(test_merging_home):
-        if "dev_audio" in file or "eval_audio" in file:
-            shutil.copyfile(
-                os.path.join(test_merging_home, file), os.path.join(test_tmp_home, file)
-            )
+    shutil.copytree(test_merging_home, test_tmp_home)
 
     remotes = {
         "development": {
