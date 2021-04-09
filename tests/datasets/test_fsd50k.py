@@ -497,7 +497,8 @@ def test_merge_unzip_cleanup():
     test_merging_home = "tests/resources/download/fsd50k"
     test_tmp_home = "tests/resources/download/fsd50k_tmp"
 
-    shutil.copytree(test_merging_home, test_tmp_home)
+    # shutil.copytree(test_merging_home, test_tmp_home)
+    os.system("cp -a " + test_merging_home + " " + test_tmp_home)
 
     remotes = {
         "development": {
