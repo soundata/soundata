@@ -696,79 +696,76 @@ class Dataset(core.Dataset):
                 "Downloading {} to {}".format(objs_to_download, self.data_home)
             )
 
-            for k in objs_to_download:
-                if k == "development":
-                    logging.info(
-                        "Downloading, merging and unzipping development split..."
-                    )
-                    for part in self.remotes[k].keys():
-                        download_utils.download_from_remote(
-                            remote=self.remotes[k][part],
-                            save_dir=self.data_home,
-                            force_overwrite=force_overwrite,
-                        )
-
-                    # --- Merge and unzip development split --- #
-                    dev_zip_path = os.path.join(self.data_home, "FSD50K.dev_audio.zip")
-                    dev_output_path = os.path.join(self.data_home, "unsplit_dev.zip")
-                    os.system("zip -s 0 " + dev_zip_path + " --out " + dev_output_path)
-                    download_utils.unzip(dev_output_path, cleanup=cleanup)
-                    # Remove zip files
-                    if cleanup:
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.zip")
-                        )
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z01")
-                        )
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z02")
-                        )
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z03")
-                        )
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z04")
-                        )
-                        os.system(
-                            "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z05")
-                        )
-
-                if k == "evaluation":
-                    logging.info(
-                        "Downloading, merging and unzipping evaluation split..."
-                    )
-                    for part in self.remotes[k].keys():
-                        download_utils.download_from_remote(
-                            remote=self.remotes[k][part],
-                            save_dir=self.data_home,
-                            force_overwrite=force_overwrite,
-                        )
-
-                    # --- Merge and unzip evaluation split --- #
-                    eval_zip_path = os.path.join(
-                        self.data_home, "FSD50K.eval_audio.zip"
-                    )
-                    eval_output_path = os.path.join(self.data_home, "unsplit_eval.zip")
-                    os.system(
-                        "zip -s 0 " + eval_zip_path + " --out " + eval_output_path
-                    )
-                    download_utils.unzip(eval_output_path, cleanup=cleanup)
-                    # Remove zip files
-                    if cleanup:
-                        os.system(
-                            "rm "
-                            + os.path.join(self.data_home, "FSD50K.eval_audio.zip")
-                        )
-                        os.system(
-                            "rm "
-                            + os.path.join(self.data_home, "FSD50K.eval_audio.z01")
-                        )
-
-                else:
-                    download_utils.download_zip_file(
-                        self.remotes[k],
+            if "development" in objs_to_download:
+                print("Downloading, merging and unzipping development split...")
+                for part in self.remotes["development"].keys():
+                    download_utils.download_from_remote(
+                        remote=self.remotes["development"][part],
                         save_dir=self.data_home,
                         force_overwrite=force_overwrite,
-                        cleanup=cleanup,
                     )
+
+                # --- Merge and unzip development split --- #
+                dev_zip_path = os.path.join(self.data_home, "FSD50K.dev_audio.zip")
+                dev_output_path = os.path.join(self.data_home, "unsplit_dev.zip")
+                os.system("zip -s 0 " + dev_zip_path + " --out " + dev_output_path)
+                download_utils.unzip(dev_output_path, cleanup=cleanup)
+                # Remove zip files
+                if cleanup:
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.zip")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z01")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z02")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z03")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z04")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z05")
+                    )
+
+                # Remove partial from objects to download
+                objs_to_download.remove("development")
+
+            if "evaluation" in objs_to_download:
+                print("Downloading, merging and unzipping evaluation split...")
+                for part in self.remotes["evaluation"].keys():
+                    print(part)
+                    download_utils.download_from_remote(
+                        remote=self.remotes["evaluation"][part],
+                        save_dir=self.data_home,
+                        force_overwrite=force_overwrite,
+                    )
+
+                # --- Merge and unzip evaluation split --- #
+                eval_zip_path = os.path.join(self.data_home, "FSD50K.eval_audio.zip")
+                eval_output_path = os.path.join(self.data_home, "unsplit_eval.zip")
+                os.system("zip -s 0 " + eval_zip_path + " --out " + eval_output_path)
+                download_utils.unzip(eval_output_path, cleanup=cleanup)
+                # Remove zip files
+                if cleanup:
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.eval_audio.zip")
+                    )
+                    os.system(
+                        "rm " + os.path.join(self.data_home, "FSD50K.eval_audio.z01")
+                    )
+
+                # Remove partial from objects to download
+                objs_to_download.remove("evaluation")
+
+            # Download the rest of objects
+            for k in objs_to_download:
+                download_utils.download_zip_file(
+                    self.remotes[k],
+                    save_dir=self.data_home,
+                    force_overwrite=force_overwrite,
+                    cleanup=cleanup,
+                )
