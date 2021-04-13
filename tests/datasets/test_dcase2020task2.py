@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from tests.test_utils import run_clip_tests
 
@@ -48,6 +49,13 @@ def test_load_tags():
 
     assert clip.tags.labels == ["normal"]
     assert clip.tags.confidence == 1
+
+    clip = dataset.clip("additional_training.train/pump/normal_id_01_00000000")
+    with pytest.raises(FileNotFoundError):
+        clip.tags
+
+    clip_eval = dataset.clip("evaluation.test/fan/id_01_00000000")
+    assert clip_eval.tags == None
 
 
 def test_metadata():

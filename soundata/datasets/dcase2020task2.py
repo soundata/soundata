@@ -223,7 +223,7 @@ REMOTES = {
         filename="eval_data_train_valve.zip",
         url="https://zenodo.org/record/3727685/files/eval_data_train_valve.zip?download=1",
         checksum="057cdd560caffb8305449541afd28c6d",
-        destination_dir="./aditional_training",
+        destination_dir="./additional_training",
     ),
     "eval_data_test_fan": download_utils.RemoteFileMetadata(
         filename="eval_data_test_fan.zip",

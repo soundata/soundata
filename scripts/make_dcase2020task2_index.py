@@ -33,6 +33,8 @@ def make_index(data_path):
 
             audio_path = os.path.join(data_path, subset, mt, fold)
 
+            assert os.path.isdir(audio_path)
+
             wavfiles = glob.glob(os.path.join(audio_path, "*.wav"))
 
             for wf in wavfiles:
