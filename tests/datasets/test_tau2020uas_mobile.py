@@ -52,6 +52,11 @@ def test_load_tags():
     assert clip.tags.labels[0] == "airport"
     assert np.allclose([1.0], clip.tags.confidence)
 
+    # Evaluation dataset
+    eval_default_clipid = "0"
+    eval_clip = dataset.clip(eval_default_clipid)
+    assert eval_clip.tags is None
+
 
 def test_load_metadata():
     default_clipid = "airport-barcelona-0-0-a"
@@ -61,6 +66,14 @@ def test_load_metadata():
     assert clip.identifier == "barcelona-0"
     assert clip.city == "barcelona"
     assert clip.source_label == "a"
+
+    # Evaluation dataset
+    eval_default_clipid = "0"
+    eval_clip = dataset.clip(eval_default_clipid)
+    assert eval_clip.split == "evaluation"
+    assert eval_clip.identifier is None
+    assert eval_clip.city is None
+    assert eval_clip.source_label is None
 
 
 def test_to_jams():

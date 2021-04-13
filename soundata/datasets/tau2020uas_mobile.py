@@ -900,7 +900,6 @@ class Dataset(core.Dataset):
         splits = [
             "development.train",
             "development.evaluate",
-            "development.test",
             "evaluation",
         ]
 
