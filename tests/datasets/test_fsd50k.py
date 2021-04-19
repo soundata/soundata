@@ -414,7 +414,7 @@ def test_merge_and_unzip():
     download_utils.unzip(test_files_path, cleanup=False)
 
     # Test development merge and unzip
-    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
@@ -437,12 +437,12 @@ def test_merge_and_unzip():
     )
     shutil.copy(
         "tests/resources/download/unzip_eval.zip",
-        "tests/resources/download/fsd50k/unzip_dev.zip",
+        "tests/resources/download/fsd50k/unzip_eval.zip",
     )
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=False)
 
-    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
@@ -451,7 +451,7 @@ def test_merge_and_unzip():
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
 
     # Test evaluation merge and unzip
-    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
@@ -483,7 +483,7 @@ def test_merge_unzip_cleanup():
     download_utils.unzip(test_files_path, cleanup=False)
 
     # Test development merge and unzip
-    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
@@ -511,7 +511,7 @@ def test_merge_unzip_cleanup():
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
 
-    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
     assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
     assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
     assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
@@ -520,7 +520,7 @@ def test_merge_unzip_cleanup():
     assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
 
     # Test evaluation merge and unzip
-    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
