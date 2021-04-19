@@ -406,57 +406,15 @@ def test_download_partial(httpserver):
         )
 
 
-def test_merge_and_unzip_development():
+def test_merge_and_unzip():
     test_merging_home = "tests/resources/download/fsd50k"
     test_files_path = "tests/resources/download/fsd50k.zip"
-    download_utils.unzip(test_files_path, cleanup=False)
-
-    remotes = {
-        "development": {
-            "dev_main": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.zip",
-                url="",
-                checksum="4edd9bec496a406d9f1e336d87b5729a",
-                destination_dir=None,
-            ),
-            "dev_part1": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z01",
-                url="",
-                checksum="019577049627a20a3ec7f096d892cc9f",
-                destination_dir=None,
-            ),
-            "dev_part2": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z02",
-                url="",
-                checksum="145802e552da276a209800041170e841",
-                destination_dir=None,
-            ),
-            "dev_part3": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z03",
-                url="",
-                checksum="7cb99b176e17993c9163a8f140db1906",
-                destination_dir=None,
-            ),
-            "dev_part4": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z04",
-                url="",
-                checksum="2aeab4428cd2c1a39ed806de65cba514",
-                destination_dir=None,
-            ),
-            "dev_part5": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z05",
-                url="",
-                checksum="595e830ff68a4d8764afe2862b5f3865",
-                destination_dir=None,
-            ),
-        },
-    }
 
     dataset = fsd50k.Dataset(test_merging_home)
-    dataset.remotes = remotes
-    dataset.download(["development"], False, False)
+    download_utils.unzip(test_files_path, cleanup=False)
 
-    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
+    # Test development merge and unzip
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
@@ -464,51 +422,43 @@ def test_merge_and_unzip_development():
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z04"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
 
-    if os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/")):
-        shutil.rmtree(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
-    if os.path.exists(os.path.join(test_merging_home, "unsplit_dev.zip")):
-        os.remove(os.path.join(test_merging_home, "unsplit_dev.zip"))
+    merging_list_dev = [
+        "FSD50K.dev_audio.zip",
+        "FSD50K.dev_audio.z01",
+        "FSD50K.dev_audio.z02",
+        "FSD50K.dev_audio.z03",
+        "FSD50K.dev_audio.z04",
+        "FSD50K.dev_audio.z05",
+    ]
 
-    if os.path.exists(os.path.join("tests/resources/download", "__MACOSX")):
-        shutil.rmtree(
-            os.path.join("tests/resources/download", "__MACOSX"), ignore_errors=True
-        )
+    dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=False)
 
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z03"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z04"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
 
-def test_merge_and_unzip_evaluation():
-    test_merging_home = "tests/resources/download/fsd50k"
-    test_files_path = "tests/resources/download/fsd50k.zip"
-    download_utils.unzip(test_files_path, cleanup=False)
+    # Test evaluation merge and unzip
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
-    remotes = {
-        "evaluation": {
-            "eval_main": download_utils.RemoteFileMetadata(
-                filename="FSD50K.eval_audio.zip",
-                url="",
-                checksum="39523750302626be0a65ed21b1f06326",
-                destination_dir=None,
-            ),
-            "eval_part1": download_utils.RemoteFileMetadata(
-                filename="FSD50K.eval_audio.z01",
-                url="",
-                checksum="d8f23085b4be01dc79b0ae84124713a8",
-                destination_dir=None,
-            ),
-        },
-    }
+    merging_list_eval = [
+        "FSD50K.eval_audio.zip",
+        "FSD50K.eval_audio.z01",
+    ]
 
-    dataset = fsd50k.Dataset(test_merging_home)
-    dataset.remotes = remotes
-    dataset.download(["evaluation"], False, False)
+    dataset.merge_and_unzip(merging_list=merging_list_eval, cleanup=False)
 
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
-    if os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/")):
-        shutil.rmtree(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
-    if os.path.exists(os.path.join(test_merging_home, "unsplit_eval.zip")):
-        os.remove(os.path.join(test_merging_home, "unsplit_eval.zip"))
+    if os.path.exists(os.path.join(test_merging_home)):
+        shutil.rmtree(test_merging_home, ignore_errors=True)
 
     if os.path.exists(os.path.join("tests/resources/download", "__MACOSX")):
         shutil.rmtree(
@@ -517,82 +467,58 @@ def test_merge_and_unzip_evaluation():
 
 
 def test_merge_unzip_cleanup():
-    test_home = "tests/resources/download/fsd50k"
+    test_merging_home = "tests/resources/download/fsd50k"
     test_files_path = "tests/resources/download/fsd50k.zip"
+
+    dataset = fsd50k.Dataset(test_merging_home)
     download_utils.unzip(test_files_path, cleanup=False)
 
-    remotes = {
-        "development": {
-            "dev_main": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.zip",
-                url="",
-                checksum="4edd9bec496a406d9f1e336d87b5729a",
-                destination_dir=None,
-            ),
-            "dev_part1": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z01",
-                url="",
-                checksum="019577049627a20a3ec7f096d892cc9f",
-                destination_dir=None,
-            ),
-            "dev_part2": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z02",
-                url="",
-                checksum="145802e552da276a209800041170e841",
-                destination_dir=None,
-            ),
-            "dev_part3": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z03",
-                url="",
-                checksum="7cb99b176e17993c9163a8f140db1906",
-                destination_dir=None,
-            ),
-            "dev_part4": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z04",
-                url="",
-                checksum="2aeab4428cd2c1a39ed806de65cba514",
-                destination_dir=None,
-            ),
-            "dev_part5": download_utils.RemoteFileMetadata(
-                filename="FSD50K.dev_audio.z05",
-                url="",
-                checksum="595e830ff68a4d8764afe2862b5f3865",
-                destination_dir=None,
-            ),
-        },
-        "evaluation": {
-            "eval_main": download_utils.RemoteFileMetadata(
-                filename="FSD50K.eval_audio.zip",
-                url="",
-                checksum="39523750302626be0a65ed21b1f06326",
-                destination_dir=None,
-            ),
-            "eval_part1": download_utils.RemoteFileMetadata(
-                filename="FSD50K.eval_audio.z01",
-                url="",
-                checksum="d8f23085b4be01dc79b0ae84124713a8",
-                destination_dir=None,
-            ),
-        },
-    }
+    # Test development merge and unzip
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z03"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z04"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
 
-    dataset = fsd50k.Dataset(test_home)
-    dataset.remotes = remotes
-    dataset.download(["development", "evaluation"], False, True)
+    merging_list_dev = [
+        "FSD50K.dev_audio.zip",
+        "FSD50K.dev_audio.z01",
+        "FSD50K.dev_audio.z02",
+        "FSD50K.dev_audio.z03",
+        "FSD50K.dev_audio.z04",
+        "FSD50K.dev_audio.z05",
+    ]
 
-    assert os.path.exists(os.path.join(test_home, "FSD50K.dev_audio/"))
-    assert os.path.exists(os.path.join(test_home, "FSD50K.eval_audio/"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.zip"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.z01"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.z02"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.z03"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.z04"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.dev_audio.z05"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.eval_audio.zip"))
-    assert not os.path.exists(os.path.join(test_home, "FSD50K.eval_audio.z01"))
+    dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
 
-    if os.path.exists(test_home):
-        shutil.rmtree(test_home, ignore_errors=True)
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.zip"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z01"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z02"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z03"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z04"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio.z05"))
+
+    # Test evaluation merge and unzip
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
+
+    merging_list_eval = [
+        "FSD50K.eval_audio.zip",
+        "FSD50K.eval_audio.z01",
+    ]
+
+    dataset.merge_and_unzip(merging_list=merging_list_eval, cleanup=True)
+
+    assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio/"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
+    assert not os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
+
+    if os.path.exists(os.path.join(test_merging_home)):
+        shutil.rmtree(test_merging_home, ignore_errors=True)
 
     if os.path.exists(os.path.join("tests/resources/download", "__MACOSX")):
         shutil.rmtree(

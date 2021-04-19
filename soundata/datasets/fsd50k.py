@@ -706,30 +706,10 @@ class Dataset(core.Dataset):
                     )
 
                 # --- Merge and unzip development split --- #
-                dev_zip_path = os.path.join(self.data_home, "FSD50K.dev_audio.zip")
-                dev_output_path = os.path.join(self.data_home, "unsplit_dev.zip")
-                os.system("zip -s 0 " + dev_zip_path + " --out " + dev_output_path)
-                download_utils.unzip(dev_output_path, cleanup=cleanup)
-                # Remove zip files
-                if cleanup:
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.zip")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z01")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z02")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z03")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z04")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.dev_audio.z05")
-                    )
+                merging_list_dev = [
+                    x.filename for x in self.remotes["development"].values()
+                ]
+                self.merge_and_unzip(merging_list=merging_list_dev, cleanup=cleanup)
 
                 # Remove partial from objects to download
                 objs_to_download.remove("development")
@@ -745,18 +725,10 @@ class Dataset(core.Dataset):
                     )
 
                 # --- Merge and unzip evaluation split --- #
-                eval_zip_path = os.path.join(self.data_home, "FSD50K.eval_audio.zip")
-                eval_output_path = os.path.join(self.data_home, "unsplit_eval.zip")
-                os.system("zip -s 0 " + eval_zip_path + " --out " + eval_output_path)
-                download_utils.unzip(eval_output_path, cleanup=cleanup)
-                # Remove zip files
-                if cleanup:
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.eval_audio.zip")
-                    )
-                    os.system(
-                        "rm " + os.path.join(self.data_home, "FSD50K.eval_audio.z01")
-                    )
+                merging_list_eval = [
+                    x.filename for x in self.remotes["evaluation"].values()
+                ]
+                self.merge_and_unzip(merging_list=merging_list_eval, cleanup=cleanup)
 
                 # Remove partial from objects to download
                 objs_to_download.remove("evaluation")
@@ -769,3 +741,19 @@ class Dataset(core.Dataset):
                     force_overwrite=force_overwrite,
                     cleanup=cleanup,
                 )
+
+    def merge_and_unzip(self, merging_list, cleanup):
+        zip_file = [x for x in merging_list if ".zip" in x]
+        zip_path = os.path.join(self.data_home, zip_file[0])
+
+        output_path = os.path.join(
+            self.data_home, "unzip_" + zip_file[0].split(".")[1].split("_")[0] + ".zip"
+        )
+
+        os.system("zip -s 0 " + zip_path + " --out " + output_path)
+        download_utils.unzip(output_path, cleanup=cleanup)
+
+        # Remove zip files
+        if cleanup:
+            for item in merging_list:
+                os.system("rm " + os.path.join(self.data_home, item))
