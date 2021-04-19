@@ -432,12 +432,12 @@ def test_merge_and_unzip():
     ]
 
     shutil.copy(
-        "tests/resources/download/unzip_dev.zip",
-        "tests/resources/download/fsd50k/unzip_dev.zip",
+        "tests/resources/download/unsplit_dev.zip",
+        "tests/resources/download/fsd50k/unsplit_dev.zip",
     )
     shutil.copy(
-        "tests/resources/download/unzip_eval.zip",
-        "tests/resources/download/fsd50k/unzip_eval.zip",
+        "tests/resources/download/unsplit_eval.zip",
+        "tests/resources/download/fsd50k/unsplit_eval.zip",
     )
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=False)
@@ -501,12 +501,12 @@ def test_merge_unzip_cleanup():
     ]
 
     shutil.copy(
-        "tests/resources/download/unzip_dev.zip",
-        "tests/resources/download/fsd50k/unzip_dev.zip",
+        "tests/resources/download/unsplit_dev.zip",
+        "tests/resources/download/fsd50k/unsplit_dev.zip",
     )
     shutil.copy(
-        "tests/resources/download/unzip_eval.zip",
-        "tests/resources/download/fsd50k/unzip_eval.zip",
+        "tests/resources/download/unsplit_eval.zip",
+        "tests/resources/download/fsd50k/unsplit_eval.zip",
     )
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
