@@ -748,7 +748,8 @@ class Dataset(core.Dataset):
         zip_path = os.path.join(self.data_home, zip_file[0])
 
         output_path = os.path.join(
-            self.data_home, "unsplit_" + zip_file[0].split(".")[1].split("_")[0] + ".zip"
+            self.data_home,
+            "unsplit_" + zip_file[0].split(".")[1].split("_")[0] + ".zip",
         )
 
         os.system("zip -s 0 " + zip_path + " --out " + output_path)
