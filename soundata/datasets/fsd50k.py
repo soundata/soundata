@@ -758,4 +758,4 @@ class Dataset(core.Dataset):
         # Remove zip files
         if cleanup:
             for item in merging_list:
-                os.system("rm " + os.path.join(self.data_home, item))
+                os.remove(os.path.join(self.data_home, item))
