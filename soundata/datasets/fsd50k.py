@@ -208,10 +208,11 @@ import os
 from typing import BinaryIO, Optional, TextIO, Tuple
 
 import librosa
-import numpy as np
 import csv
 import json
 import logging
+import shutil
+import numpy as np
 
 from soundata import download_utils, jams_utils, core, annotations, io
 
@@ -751,7 +752,7 @@ class Dataset(core.Dataset):
         )
 
         os.system("zip -s 0 " + zip_path + " --out " + output_path)
-        download_utils.unzip(output_path, cleanup=cleanup)
+        download_utils.unzip(output_path, cleanup=True)
 
         # Remove zip files
         if cleanup:
