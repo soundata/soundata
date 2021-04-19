@@ -506,7 +506,7 @@ def test_merge_unzip_cleanup():
     )
     shutil.copy(
         "tests/resources/download/unzip_eval.zip",
-        "tests/resources/download/fsd50k/unzip_dev.zip",
+        "tests/resources/download/fsd50k/unzip_eval.zip",
     )
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
