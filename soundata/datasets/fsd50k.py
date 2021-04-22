@@ -752,10 +752,10 @@ class Dataset(core.Dataset):
             "unsplit_" + zip_file[0].split(".")[1].split("_")[0] + ".zip",
         )
 
-        merge_split = subprocess.Popen(
+        subprocess.run(
             ["zip", "-s", "0", zip_path, "--out", output_path]
         )
-        merge_split.wait()
+
         download_utils.unzip(output_path, cleanup=True)
 
         # Remove zip files
