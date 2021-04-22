@@ -431,6 +431,15 @@ def test_merge_and_unzip():
         "FSD50K.dev_audio.z05",
     ]
 
+    shutil.copy(
+        "tests/resources/download/unsplit_dev.zip",
+        "tests/resources/download/fsd50k/unsplit_dev.zip",
+    )
+    shutil.copy(
+        "tests/resources/download/unsplit_eval.zip",
+        "tests/resources/download/fsd50k/unsplit_eval.zip",
+    )
+
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=False)
 
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.dev_audio/"))
@@ -490,6 +499,15 @@ def test_merge_unzip_cleanup():
         "FSD50K.dev_audio.z04",
         "FSD50K.dev_audio.z05",
     ]
+
+    shutil.copy(
+        "tests/resources/download/unsplit_dev.zip",
+        "tests/resources/download/fsd50k/unsplit_dev.zip",
+    )
+    shutil.copy(
+        "tests/resources/download/unsplit_eval.zip",
+        "tests/resources/download/fsd50k/unsplit_eval.zip",
+    )
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
 
