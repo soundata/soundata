@@ -211,7 +211,7 @@ import librosa
 import csv
 import json
 import logging
-import shutil
+import subprocess
 import numpy as np
 
 from soundata import download_utils, jams_utils, core, annotations, io
@@ -752,7 +752,7 @@ class Dataset(core.Dataset):
             "unsplit_" + zip_file[0].split(".")[1].split("_")[0] + ".zip",
         )
 
-        os.system("zip -s 0 " + zip_path + " --out " + output_path)
+        subprocess.run(["zip", "-s", "0", zip_path, "--out", output_path])
         download_utils.unzip(output_path, cleanup=True)
 
         # Remove zip files
