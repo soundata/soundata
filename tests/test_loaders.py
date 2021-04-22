@@ -16,6 +16,7 @@ DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
     "esc50": "1-104089-A-22",
     "tau2019uas": "development/airport-barcelona-0-0-a",
+    "tau2020uas_mobile": "airport-barcelona-0-0-a",
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
     "tut2017se": "a001",
