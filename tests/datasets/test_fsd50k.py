@@ -431,7 +431,7 @@ def test_merge_and_unzip():
         "FSD50K.dev_audio.z05",
     ]
 
-    '''
+    """
     shutil.copy(
         "tests/resources/download/unsplit_dev.zip",
         "tests/resources/download/fsd50k/unsplit_dev.zip",
@@ -440,7 +440,7 @@ def test_merge_and_unzip():
         "tests/resources/download/unsplit_eval.zip",
         "tests/resources/download/fsd50k/unsplit_eval.zip",
     )
-    '''
+    """
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=False)
 
@@ -502,7 +502,7 @@ def test_merge_unzip_cleanup():
         "FSD50K.dev_audio.z05",
     ]
 
-    '''
+    """
     shutil.copy(
         "tests/resources/download/unsplit_dev.zip",
         "tests/resources/download/fsd50k/unsplit_dev.zip",
@@ -511,7 +511,7 @@ def test_merge_unzip_cleanup():
         "tests/resources/download/unsplit_eval.zip",
         "tests/resources/download/fsd50k/unsplit_eval.zip",
     )
-    '''
+    """
 
     dataset.merge_and_unzip(merging_list=merging_list_dev, cleanup=True)
 
