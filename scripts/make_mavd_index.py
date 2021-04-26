@@ -15,12 +15,17 @@ def make_index(data_path):
         "clips": {}
     }
 
-    for split in ["train", "validate", "test"]:
+    splits = ["train", "validate", "test"]
+    expected_sizes = [24, 7, 16]
+    
+    for split, es in zip(splits, expected_sizes):
 
         audio_split_dir = os.path.join(data_path, "audio_" + split)
         annotations_split_dir = os.path.join(data_path, "annotations_" + split)
 
         audiofiles = natsorted(glob.glob(os.path.join(audio_split_dir, "*.flac")), alg=ns.IGNORECASE)
+
+        assert len(audiofiles) == es
 
         for af in audiofiles:
 

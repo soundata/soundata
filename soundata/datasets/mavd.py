@@ -61,7 +61,7 @@
 
     Annotation Files Included
     -------------------------
-    The annotations list the sound events that occur in every recording and are provided as a text file for each recording (.csv file). 
+    The annotations list the sound events that occur in every recording and are provided as a text file for each recording (.txt file). 
     The annotations are "strong", meaning for every sound event the annotations include the start time, end time, and label of the sound event. 
 
     The sound event annotations follow an ontology for traffic sounds that is the combination of a set of two taxonomies:
@@ -116,11 +116,7 @@ import csv
 import jams
 import glob
 
-from soundata import download_utils
-from soundata import jams_utils
-from soundata import core
-from soundata import annotations
-from soundata import io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -245,8 +241,6 @@ def load_events(fhandle: TextIO) -> annotations.Events:
     """Load an MAVD-traffic sound events annotation file
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
-    Raises:
-        IOError: if txt_path doesn't exist
     Returns:
         Events: sound events annotation data
     """
@@ -288,10 +282,9 @@ class Dataset(core.Dataset):
     def _metadata(self):
 
         splits = ["train", "validate", "test"]
-        expected_sizes = [24, 7, 16]
         metadata_index = {}
 
-        for split, es in zip(splits, expected_sizes):
+        for split in splits:
 
             annotation_folder = os.path.join(self.data_home, "annotations_" + split)
             txtfiles = sorted(glob.glob(os.path.join(annotation_folder, "*.txt")))
