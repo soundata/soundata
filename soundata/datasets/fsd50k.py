@@ -6,12 +6,10 @@
     *FSD50K: an Open Dataset of Human-Labeled Sound Events*
 
     *Created By:*
-
         Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
         Music Technology Group, Universitat Pompeu Fabra (Barcelona). Version 1.0
 
     *Description:*
-
         FSD50K is an open dataset of human-labeled sound events containing 51,197 Freesound clips unequally
         distributed in 200 classes drawn from the AudioSet Ontology. FSD50K has been created at the Music Technology Group
         of Universitat Pompeu Fabra.
@@ -41,7 +39,6 @@
 
 
     *Organization:*
-
         FSD50K is split in two subsets: the developement (dev) and the evaluation (eval) sets.
         Especifications of both subsets is detailed below:
 
@@ -60,8 +57,11 @@
         * Eval set is labeled exhaustively (labels are correct and complete for the considered vocabulary)
 
     *Ground-truth Files Included:*
+        FSD50K ground-truth is represented through the following file structure:
 
-    * dev.csv: Each row (i.e. audio clip) of dev.csv contains the following information:
+    * dev.csv:
+        Each row (i.e. audio clip) of dev.csv contains the following information:
+
         * fname:
             The file name without the .wav extension, e.g., the fname 64760 corresponds to the file 64760.wav
             in disk. This number is the Freesound id. We always use Freesound ids as filenames.
@@ -79,10 +79,10 @@
             Whether the clip belongs to train or val (see paper for details on the proposed split)
 
 
-    * eval.csv: Rows in eval.csv follow the same format as dev.csv, except that there is no split column.
+    * eval.csv:
+        Rows in eval.csv follow the same format as dev.csv, except that there is no split column.
 
     *Metadata Files Included:*
-
         To allow a variety of analysis and approaches with FSD50K, we provide the following metadata:
 
     * class_info_FSD50K.json:
@@ -97,7 +97,8 @@
         description, tags, clip license, and the uploader name. All these metadata are provided by the uploader.
 
 
-    * eval_clips_info_FSD50K.json: Same as above, but with eval clips.
+    * eval_clips_info_FSD50K.json:
+        Same as above, but with eval clips.
 
 
     * pp_pnp_ratings.json:
@@ -121,8 +122,7 @@
         about their audio content.
 
 
-    *collection/:*
-
+    *collection folder:*
         This folder contains metadata for what we call the sound collection format. This format consists of
         the raw annotations gathered, featuring all generated class labels without any restriction.
         We provide the collection format to make available some annotations that do not appear in the FSD50K ground truth
@@ -132,27 +132,28 @@
         The format of these files in analogous to that of the files in FSD50K.ground_truth/. A couple of examples show the
         differences between collection and ground truth formats:
 
-        clip:  labels_in_collection - labels_in_ground_truth
-        51690:  Owl - Bird,Wild_Animal,Animal
-        190579:  Toothbrush,Electric_toothbrush - Domestic_sounds_and_home_sounds
+        * clip:  labels_in_collection - labels_in_ground_truth
+
+            * 51690:  Owl - Bird,Wild_Animal,Animal
+
+            * 190579:  Toothbrush,Electric_toothbrush - Domestic_sounds_and_home_sounds
 
         In the first example, raters provided the label Owl. However, due to data scarcity, Owl labels were merged into
         their parent Bird. Then, labels Wild_Animal,Animal were added via label propagation (smearing). The second example
         shows one of the most extreme cases, where raters provided the labels Electric_toothbrush,Toothbrush, which both
-        had few data. Hence, they were merged into Toothbrush's parent, which unfortunately is Domestic_sounds_and_home_
-        sounds (a rather vague class containing a variety of children sound classes).
+        had few data. Hence, they were merged into Toothbrush's parent, which unfortunately is Domestic_sounds_and_home_sounds
+        (a rather vague class containing a variety of children sound classes).
 
         Note: Labels in the collection format are not smeared.
+
         Note: While in FSD50K's ground truth the vocabulary encompasses 200 classes (common for dev and eval), since the
         collection format is composed of raw annotations, the vocabulary here is much larger (over 350 classes), and it is
         slightly different in dev and eval.
 
     *Please Acknowledge FSD50K in Academic Research:*
-
         If you use the FSD50K Dataset please cite the following paper:
 
-        .. code-block:: latex
-            Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of
+            * Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of
             Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
         The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
@@ -164,7 +165,6 @@
 
 
     *License:*
-
         All audio clips in FSD50K are released under Creative Commons (CC) licenses. Each clip has its own license as
         defined by the clip uploader in Freesound, some of them requiring attribution to their original authors and some
         forbidding further commercial reuse. For attribution purposes and to facilitate attribution of these files to third
@@ -180,7 +180,6 @@
 
 
     *Feedback:*
-
         For further questions, please contact eduardo.fonseca@upf.edu, or join the freesound-annotator Google Group.
 
 """
