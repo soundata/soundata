@@ -153,8 +153,7 @@
     *Please Acknowledge FSD50K in Academic Research:*
         If you use the FSD50K Dataset please cite the following paper:
 
-            * Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of
-            Human-Labeled Sound Events", arXiv:2010.00475, 2020.
+            * Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
         The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
         Collado, Ceren Can, Rachit Gupta, Javier Arredondo, Gary Avendano and Sara Fernandez for their commitment and
