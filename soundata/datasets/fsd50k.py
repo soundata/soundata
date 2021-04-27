@@ -283,7 +283,7 @@ class Clip(core.Clip):
 
     Properties:
         tags (soundata.annotations.Tags): tag (label) of the clip + confidence
-        mids (sound.annotations.Tags): tag (labels) encoded in Audioset formatting
+        mids (soundata.annotations.Tags): tag (labels) encoded in Audioset formatting
         split (str): flag to identify if clip belongs to developement, evaluation or validation splits
         title (str): the title of the uploaded file in Freesound
         description (str): description of the sound provided by the Freesound uploader
