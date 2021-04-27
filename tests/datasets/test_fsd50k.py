@@ -410,9 +410,16 @@ def test_download(httpserver):
     if os.path.exists(test_download_home):
         shutil.rmtree(test_download_home)
 
-    # Test erroneous download keys
+    # Test erroneous dev_ download keys
     with pytest.raises(ValueError):
         dataset.download(["dev_1"], False, False)
+
+    if os.path.exists(test_download_home):
+        shutil.rmtree(test_download_home)
+
+    # Test erroneous eval_ download keys
+    with pytest.raises(ValueError):
+        dataset.download(["eval_1"], False, False)
 
     if os.path.exists(test_download_home):
         shutil.rmtree(test_download_home)

@@ -649,15 +649,7 @@ class Dataset(core.Dataset):
 
         if self.remotes is not None:
             if partial_download is not None:
-                # check the keys in partial_download are in the download dict
-                if not isinstance(partial_download, list) or any(
-                    [k not in self.remotes for k in partial_download]
-                ):
-                    raise ValueError(
-                        "partial_download must be a list which is a subset of {}, but got {}".format(
-                            list(self.remotes.keys()), partial_download
-                        )
-                    )
+                # check the development and evaluation keys are not in wrong order
                 for k in partial_download:
                     if "dev_" in k or "eval_" in k:
                         raise ValueError(
@@ -667,6 +659,16 @@ class Dataset(core.Dataset):
                             "development" or "evaluation" for partial download.
                             """
                         )
+
+                # check the keys in partial_download are in the download dict
+                if not isinstance(partial_download, list) or any(
+                    [k not in self.remotes for k in partial_download]
+                ):
+                    raise ValueError(
+                        "partial_download must be a list which is a subset of {}, but got {}".format(
+                            list(self.remotes.keys()), partial_download
+                        )
+                    )
 
                 objs_to_download = partial_download
             else:
