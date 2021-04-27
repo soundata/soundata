@@ -320,7 +320,7 @@ def test_collection_vocabulary():
     assert collection_audioset_to_fsd50k["eval"]["/m/07rkbfh"] == "Chatter"
 
 
-def test_download_partial(httpserver):
+def test_download(httpserver):
 
     test_download_home = "tests/resources/sound_datasets/fsd50k_download"
     if os.path.exists(test_download_home):
@@ -333,18 +333,27 @@ def test_download_partial(httpserver):
         open("tests/resources/download/fsd50k/FSD50K.ground_truth.zip", "rb").read()
     )
     remotes = {
-        "ground_truth": download_utils.RemoteFileMetadata(
-            filename="1-FSD50K.ground_truth.zip",
-            url=httpserver.url,
-            checksum="246dd703ab54859e6497eee101e311e7",
-        ),
+        "development": {
+            "dev_main": download_utils.RemoteFileMetadata(
+                filename="1-FSD50K.ground_truth.zip",
+                url=httpserver.url,
+                checksum="246dd703ab54859e6497eee101e311e7",
+            ),
+        },
+        "evaluation": {
+            "eval_main": download_utils.RemoteFileMetadata(
+                filename="2-FSD50K.ground_truth.zip",
+                url=httpserver.url,
+                checksum="246dd703ab54859e6497eee101e311e7",
+            ),
+        },
         "metadata": download_utils.RemoteFileMetadata(
-            filename="2-FSD50K.ground_truth.zip",
+            filename="3-FSD50K.ground_truth.zip",
             url=httpserver.url,
             checksum="246dd703ab54859e6497eee101e311e7",
         ),
         "documentation": download_utils.RemoteFileMetadata(
-            filename="3-FSD50K.ground_truth.zip",
+            filename="4-FSD50K.ground_truth.zip",
             url=httpserver.url,
             checksum="246dd703ab54859e6497eee101e311e7",
         ),
@@ -355,16 +364,34 @@ def test_download_partial(httpserver):
     assert os.path.exists(os.path.join(test_download_home, "1-FSD50K.ground_truth.zip"))
     assert os.path.exists(os.path.join(test_download_home, "2-FSD50K.ground_truth.zip"))
     assert os.path.exists(os.path.join(test_download_home, "3-FSD50K.ground_truth.zip"))
+    assert os.path.exists(os.path.join(test_download_home, "4-FSD50K.ground_truth.zip"))
 
     if os.path.exists(test_download_home):
         shutil.rmtree(test_download_home)
-    dataset.download(["ground_truth"], False, False)
+    dataset.download(["development"], False, False)
     assert os.path.exists(os.path.join(test_download_home, "1-FSD50K.ground_truth.zip"))
     assert not os.path.exists(
         os.path.join(test_download_home, "2-FSD50K.ground_truth.zip")
     )
     assert not os.path.exists(
         os.path.join(test_download_home, "3-FSD50K.ground_truth.zip")
+    )
+    assert not os.path.exists(
+        os.path.join(test_download_home, "4-FSD50K.ground_truth.zip")
+    )
+
+    if os.path.exists(test_download_home):
+        shutil.rmtree(test_download_home)
+    dataset.download(["evaluation"], False, False)
+    assert not os.path.exists(
+        os.path.join(test_download_home, "1-FSD50K.ground_truth.zip")
+    )
+    assert os.path.exists(os.path.join(test_download_home, "2-FSD50K.ground_truth.zip"))
+    assert not os.path.exists(
+        os.path.join(test_download_home, "3-FSD50K.ground_truth.zip")
+    )
+    assert not os.path.exists(
+        os.path.join(test_download_home, "4-FSD50K.ground_truth.zip")
     )
 
     if os.path.exists(test_download_home):
@@ -373,8 +400,11 @@ def test_download_partial(httpserver):
     assert not os.path.exists(
         os.path.join(test_download_home, "1-FSD50K.ground_truth.zip")
     )
-    assert os.path.exists(os.path.join(test_download_home, "2-FSD50K.ground_truth.zip"))
+    assert not os.path.exists(
+        os.path.join(test_download_home, "2-FSD50K.ground_truth.zip")
+    )
     assert os.path.exists(os.path.join(test_download_home, "3-FSD50K.ground_truth.zip"))
+    assert os.path.exists(os.path.join(test_download_home, "4-FSD50K.ground_truth.zip"))
 
     if os.path.exists(test_download_home):
         shutil.rmtree(test_download_home)

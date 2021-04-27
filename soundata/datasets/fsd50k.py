@@ -707,10 +707,12 @@ class Dataset(core.Dataset):
                     )
 
                 # --- Merge and unzip development split --- #
-                merging_list_dev = [
-                    x.filename for x in self.remotes["development"].values()
-                ]
-                self.merge_and_unzip(merging_list=merging_list_dev, cleanup=cleanup)
+                self.merge_and_unzip(
+                    merging_list=[
+                        x.filename for x in self.remotes["development"].values()
+                    ],
+                    cleanup=cleanup,
+                )
 
                 # Remove partial from objects to download
                 objs_to_download.remove("development")
@@ -718,7 +720,6 @@ class Dataset(core.Dataset):
             if "evaluation" in objs_to_download:
                 print("Downloading, merging and unzipping evaluation split...")
                 for part in self.remotes["evaluation"].keys():
-                    print(part)
                     download_utils.download_from_remote(
                         remote=self.remotes["evaluation"][part],
                         save_dir=self.data_home,
@@ -726,10 +727,12 @@ class Dataset(core.Dataset):
                     )
 
                 # --- Merge and unzip evaluation split --- #
-                merging_list_eval = [
-                    x.filename for x in self.remotes["evaluation"].values()
-                ]
-                self.merge_and_unzip(merging_list=merging_list_eval, cleanup=cleanup)
+                self.merge_and_unzip(
+                    merging_list=[
+                        x.filename for x in self.remotes["evaluation"].values()
+                    ],
+                    cleanup=cleanup,
+                )
 
                 # Remove partial from objects to download
                 objs_to_download.remove("evaluation")
