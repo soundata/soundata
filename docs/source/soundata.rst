@@ -35,6 +35,13 @@ TAU Urban Acoustic Scenes 2019
    :members:
    :inherited-members:
    
+TAU Urban Acoustic Scenes 2020 Mobile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2020uas_mobile
+   :members:
+   :inherited-members:
+
 TUT Sound events 2017
 ^^^^^^^^^^^^^^^^^^^^^
 

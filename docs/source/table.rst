@@ -35,6 +35,14 @@
      - 63.3
      - :tau2019:`\ `
 
+   * - TAU Urban Acoustic Scenes 2020 Mobile
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 34915
+     - 97
+     - :tau2020:`\ `
+
    * - TUT Sound events 2017
      - - audio: ✅
        - annotations: ✅
