@@ -7,6 +7,7 @@ from soundata.datasets import fsd50k
 
 import os
 import shutil
+import pytest
 
 TEST_DATA_HOME = "tests/resources/sound_datasets/fsd50k"
 
@@ -405,6 +406,20 @@ def test_download(httpserver):
     )
     assert os.path.exists(os.path.join(test_download_home, "3-FSD50K.ground_truth.zip"))
     assert os.path.exists(os.path.join(test_download_home, "4-FSD50K.ground_truth.zip"))
+
+    if os.path.exists(test_download_home):
+        shutil.rmtree(test_download_home)
+
+    # Test erroneous download keys
+    with pytest.raises(ValueError):
+        dataset.download(["dev_1"], False, False)
+
+    if os.path.exists(test_download_home):
+        shutil.rmtree(test_download_home)
+
+    # Test random download keys
+    with pytest.raises(ValueError):
+        dataset.download(["random_key"], False, False)
 
     if os.path.exists(test_download_home):
         shutil.rmtree(test_download_home)
