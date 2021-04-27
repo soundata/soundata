@@ -6,130 +6,97 @@
     FSD50K: an Open Dataset of Human-Labeled Sound Events
     =====================================================
 
-    Created By
-    ----------
+    *Created By:* Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
+      Music Technology Group, Universitat Pompeu Fabra (Barcelona). Version 1.0
 
-    Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
-    Music Technology Group, Universitat Pompeu Fabra (Barcelona).
-    Version 1.0
+    *Description:* FSD50K is an open dataset of human-labeled sound events containing 51,197 Freesound clips unequally
+    distributed in 200 classes drawn from the AudioSet Ontology. FSD50K has been created at the Music Technology Group
+    of Universitat Pompeu Fabra.
 
-    Description
-    -----------
+    *Audio Files Included:*
+        * FSD50K contains 51,197 audio clips from Freesound, totalling 108.3 hours of multi-labeled audio.
+        * The audio content is composed mainly of sound events produced by physical sound sources and production mechanisms,
+          including human sounds, sounds of things, animals, natural sounds, musical instruments and more. The vocabulary
+          can be inspected in vocabulary.csv.
+        * Clips are of variable length from 0.3 to 30s, due to the diversity of the sound classes and the preferences of
+          Freesound users when recording sounds.
+        * All clips are provided as uncompressed PCM 16 bit 44.1 kHz mono audio files.
 
-    FSD50K is an open dataset of human-labeled sound events containing 51,197 Freesound clips unequally distributed
-    in 200 classes drawn from the AudioSet Ontology. FSD50K has been created at the Music Technology Group of
-    Universitat Pompeu Fabra.
-
-    Audio Files Included
-    --------------------
-
-    * FSD50K contains 51,197 audio clips from Freesound, totalling 108.3 hours of multi-labeled audio.
-    * The audio content is composed mainly of sound events produced by physical sound sources and production mechanisms,
-      including human sounds, sounds of things, animals, natural sounds, musical instruments and more. The vocabulary
-      can be inspected in vocabulary.csv.
-    * Clips are of variable length from 0.3 to 30s, due to the diversity of the sound classes and the preferences of
-      Freesound users when recording sounds.
-    * All clips are provided as uncompressed PCM 16 bit 44.1 kHz mono audio files.
-
-    Annotations Included
-    --------------------
-
-    * The dataset encompasses 200 sound classes (144 leaf nodes and 56 intermediate nodes) hierarchically organized
-      with a subset of the AudioSet Ontology. Please refer to the included vocabulary.csv file for a complete list of
-      considered classes.
-    * The acoustic material has been manually labeled by humans following a data labeling
-      process using the Freesound Annotator platform.
-    * Ground truth labels are provided at the clip-level (i.e., weak labels).
-    * Note: All classes in FSD50K are represented in AudioSet, except Crash cymbal, Human group actions, Human voice,
-      Respiratory sounds, and Domestic sounds, home sounds.
-    * Note: We use a slightly different format than AudioSet for the naming of class labels in order to avoid potential
-      problems with spaces, commas, etc. Example: we use Accelerating_and_revving_and_vroom instead of the original
-      Accelerating, revving, vroom. You can go back to the original AudioSet naming using the information provided in
-      vocabulary.csv (class label and mid for the 200 classes of FSD50K) and the AudioSet Ontology specification.
+    *Annotations Included:*
+        * The dataset encompasses 200 sound classes (144 leaf nodes and 56 intermediate nodes) hierarchically organized
+          with a subset of the AudioSet Ontology. Please refer to the included vocabulary.csv file for a complete list of
+          considered classes.
+        * The acoustic material has been manually labeled by humans following a data labeling
+          process using the Freesound Annotator platform.
+        * Ground truth labels are provided at the clip-level (i.e., weak labels).
+        * Note: All classes in FSD50K are represented in AudioSet, except Crash cymbal, Human group actions, Human voice,
+          Respiratory sounds, and Domestic sounds, home sounds.
+        * Note: We use a slightly different format than AudioSet for the naming of class labels in order to avoid potential
+          problems with spaces, commas, etc. Example: we use Accelerating_and_revving_and_vroom instead of the original
+          Accelerating, revving, vroom. You can go back to the original AudioSet naming using the information provided in
+          vocabulary.csv (class label and mid for the 200 classes of FSD50K) and the AudioSet Ontology specification.
 
 
-    Organization
-    ------------
+    *Organization:* FSD50K is split in two subsets: the developement (dev) and the evaluation (eval) sets.
+    Especifications of both subsets is detailed below:
 
-    FSD50K is split in two subsets: the developement (dev) and the evaluation (eval) sets. Especifications of both
-    subsets is detailed below:
+    * Dev set:
+        * 40,966 audio clips totalling 80.4 hours of audio
+        * Avg duration/clip: 7.1s
+        * 114,271 smeared labels (i.e., labels propagated in the upwards direction to the root of the ontology)
+        * Labels are correct but could be occasionally incomplete
+        * A train/validation split is provided. If a different split is used, it should be specified for reproducibility
+          and fair comparability of results
 
-    Dev set:
-    * 40,966 audio clips totalling 80.4 hours of audio
-    * Avg duration/clip: 7.1s
-    * 114,271 smeared labels (i.e., labels propagated in the upwards direction to the root of the ontology)
-    * Labels are correct but could be occasionally incomplete
-    * A train/validation split is provided. If a different split is used, it should be specified for reproducibility
-      and fair comparability of results
+    * Eval set:
+        * 10,231 audio clips totalling 27.9 hours of audio
+        * Avg duration/clip: 9.8s
+        * 38,596 smeared labels
+        * Eval set is labeled exhaustively (labels are correct and complete for the considered vocabulary)
 
-    Eval set:
-    * 10,231 audio clips totalling 27.9 hours of audio
-    * Avg duration/clip: 9.8s
-    * 38,596 smeared labels
-    * Eval set is labeled exhaustively (labels are correct and complete for the considered vocabulary)
+    *Ground-truth Files Included:*
+    * dev.csv: Each row (i.e. audio clip) of dev.csv contains the following information:
+        * fname: The file name without the .wav extension, e.g., the fname 64760 corresponds to the file 64760.wav
+                 in disk. This number is the Freesound id. We always use Freesound ids as filenames.
 
-    Ground-truth Files Included
-    ---------------------------
+        * labels: The class labels (i.e., the ground truth). Note these class labels are smeared, i.e., the labels
+                  have been propagated in the upwards direction to the root of the ontology. More details about the label
+                  smearing process can be found in Appendix D of our paper.
 
-    dev.csv
+        * mids: The Freebase identifiers corresponding to the class labels, as defined in the AudioSet Ontology
+                specification.
 
-    Each row (i.e. audio clip) of dev.csv contains the following information:
-    * fname:
-    The file name without the .wav extension, e.g., the fname 64760 corresponds to the file 64760.wav in disk. This
-    number is the Freesound id. We always use Freesound ids as filenames.
-
-    * labels:
-    The class labels (i.e., the ground truth). Note these class labels are smeared, i.e., the labels have been
-    propagated in the upwards direction to the root of the ontology. More details about the label smearing process can
-    be found in Appendix D of our paper.
-
-    * mids:
-    The Freebase identifiers corresponding to the class labels, as defined in the AudioSet Ontology specification.
-
-    * split:
-    Whether the clip belongs to train or val (see paper for details on the proposed split)
+        * split: Whether the clip belongs to train or val (see paper for details on the proposed split)
 
 
-    eval.csv
+    * eval.csv: Rows in eval.csv follow the same format as dev.csv, except that there is no split column.
 
-    Rows in eval.csv follow the same format as dev.csv, except that there is no split column.
+    *Metadata Files Included*: To allow a variety of analysis and approaches with FSD50K, we provide the following
+    metadata:
 
-    Metadata Files Included
-    -----------------------
-
-    To allow a variety of analysis and approaches with FSD50K, we provide the following metadata:
-
-    class_info_FSD50K.json
-
-    Python dictionary where each entry corresponds to one sound class and  contains: FAQs utilized during the annotation
-    of the class, examples (representative audio clips), and verification_examples (audio clips presented to raters
-    during annotation as a quality control mechanism). Audio clips are described by the Freesound id. Note: It may be
-    that some of these examples are not included in the FSD50K release.
+    * class_info_FSD50K.json: Python dictionary where each entry corresponds to one sound class and  contains: FAQs
+      utilized during the annotation of the class, examples (representative audio clips), and verification_examples
+      (audio clips presented to raters during annotation as a quality control mechanism). Audio clips are described by
+      the Freesound id. Note: It may be that some of these examples are not included in the FSD50K release.
 
 
-    dev_clips_info_FSD50K.json
-
-    Python dictionary where each entry corresponds to one dev clip and contains: title, description, tags, clip license,
-    and the uploader name. All these metadata are provided by the uploader.
+    * dev_clips_info_FSD50K.json: Python dictionary where each entry corresponds to one dev clip and contains: title,
+      description, tags, clip license, and the uploader name. All these metadata are provided by the uploader.
 
 
-    eval_clips_info_FSD50K.json
-
-    Same as above, but with eval clips.
+    * eval_clips_info_FSD50K.json: Same as above, but with eval clips.
 
 
-    pp_pnp_ratings.json
-
-    Python dictionary where each entry corresponds to one clip in the dataset and contains the PP/PNP ratings for the
-    labels associated with the clip. More specifically, these ratings are gathered for the labels validated in the
-    validation task. This file includes 59,485 labels for the 51,197 clips in FSD50K.
-    Out of these labels:
-    * 56,095 labels have inter-annotator agreement (PP twice, or PNP twice). Each of these combinations can be
-      occasionally accompanied by other (non-positive) ratings.
-    * 3390 labels feature other rating configurations such as i) only one PP rating and one PNP rating (and nothing
-      else). This can be considered inter-annotator agreement at the "Present" level; ii) only one PP rating (and
-      nothing else); iii) only one PNP rating (and nothing else).
-    Ratings' legend: PP=1; PNP=0.5; U=0; NP=-1.
+    * pp_pnp_ratings.json: Python dictionary where each entry corresponds to one clip in the dataset and contains
+      the PP/PNP ratings for the labels associated with the clip. More specifically, these ratings are gathered for the
+      labels validated in the validation task. This file includes 59,485 labels for the 51,197 clips in FSD50K.
+      Out of these labels:
+        * 56,095 labels have inter-annotator agreement (PP twice, or PNP twice). Each of these combinations can be
+         occasionally accompanied by other (non-positive) ratings.
+        * 3390 labels feature other rating configurations such as i) only one PP rating and one PNP rating (and nothing
+          else). This can be considered inter-annotator agreement at the "Present" level; ii) only one PP rating (and
+          nothing else); iii) only one PNP rating (and nothing else).
+      Ratings' legend: PP=1; PNP=0.5; U=0; NP=-1.
 
     Note: The PP/PNP ratings have been provided in the validation task. Subsequently, a subset of these clips
     corresponding to the eval set was exhaustively labeled in the refinement task, hence receiving additional labels
@@ -137,34 +104,31 @@
     about their audio content.
 
 
-    collection/
+    *collection/:* This folder contains metadata for what we call the sound collection format. This format consists of
+                   the raw annotations gathered, featuring all generated class labels without any restriction.
+                   We provide the collection format to make available some annotations that do not appear in the FSD50K ground truth
+                   release. This typically happens in the case of classes for which we gathered human-provided annotations, but that
+                   were discarded in the FSD50K release due to data scarcity (more specifically, they were merged with their parents).
+                   In other words, the main purpose of the collection format is to make available annotations for tiny classes.
+                   The format of these files in analogous to that of the files in FSD50K.ground_truth/. A couple of examples show the
+                   differences between collection and ground truth formats:
 
-    This folder contains metadata for what we call the sound collection format. This format consists of the raw
-    annotations gathered, featuring all generated class labels without any restriction.
-    We provide the collection format to make available some annotations that do not appear in the FSD50K ground truth
-    release. This typically happens in the case of classes for which we gathered human-provided annotations, but that
-    were discarded in the FSD50K release due to data scarcity (more specifically, they were merged with their parents).
-    In other words, the main purpose of the collection format is to make available annotations for tiny classes.
-    The format of these files in analogous to that of the files in FSD50K.ground_truth/. A couple of examples show the
-    differences between collection and ground truth formats:
+                   clip:  labels_in_collection - labels_in_ground_truth
+                   51690:  Owl - Bird,Wild_Animal,Animal
+                   190579:  Toothbrush,Electric_toothbrush - Domestic_sounds_and_home_sounds
 
-    clip:  labels_in_collection    --    labels_in_ground_truth
-    51690:  Owl    --    Bird,Wild_Animal,Animal
-    190579:  Toothbrush,Electric_toothbrush    --    Domestic_sounds_and_home_sounds
+                   In the first example, raters provided the label Owl. However, due to data scarcity, Owl labels were merged into
+                   their parent Bird. Then, labels Wild_Animal,Animal were added via label propagation (smearing). The second example
+                   shows one of the most extreme cases, where raters provided the labels Electric_toothbrush,Toothbrush, which both
+                   had few data. Hence, they were merged into Toothbrush's parent, which unfortunately is Domestic_sounds_and_home_
+                   sounds (a rather vague class containing a variety of children sound classes).
 
-    In the first example, raters provided the label Owl. However, due to data scarcity, Owl labels were merged into
-    their parent Bird. Then, labels Wild_Animal,Animal were added via label propagation (smearing). The second example
-    shows one of the most extreme cases, where raters provided the labels Electric_toothbrush,Toothbrush, which both
-    had few data. Hence, they were merged into Toothbrush's parent, which unfortunately is Domestic_sounds_and_home_
-    sounds (a rather vague class containing a variety of children sound classes).
+                   Note: Labels in the collection format are not smeared.
+                   Note: While in FSD50K's ground truth the vocabulary encompasses 200 classes (common for dev and eval), since the
+                   collection format is composed of raw annotations, the vocabulary here is much larger (over 350 classes), and it is
+                   slightly different in dev and eval.
 
-    Note: Labels in the collection format are not smeared.
-    Note: While in FSD50K's ground truth the vocabulary encompasses 200 classes (common for dev and eval), since the
-    collection format is composed of raw annotations, the vocabulary here is much larger (over 350 classes), and it is
-    slightly different in dev and eval.
-
-    Please Acknowledge FSD50K in Academic Research
-    ----------------------------------------------------
+    *Please Acknowledge FSD50K in Academic Research:*
 
     If you use the FSD50K Dataset please cite the following paper:
 
@@ -180,15 +144,12 @@
     the Maria de Maeztu Units of Excellence Programme (MDM-2015-0502).
 
 
-    License
-    -------
-
-    All audio clips in FSD50K are released under Creative Commons (CC) licenses. Each clip has its own license as
-    defined by the clip uploader in Freesound, some of them requiring attribution to their original authors and some
-    forbidding further commercial reuse. For attribution purposes and to facilitate attribution of these files to third
-    parties, we include a mapping from the audio clips to their corresponding licenses. The licenses are specified in
-    the files dev_clips_info_FSD50K.json and eval_clips_info_FSD50K.json. These licenses are CC0, CC-BY, CC-BY-NC and
-    CC Sampling+.
+    *License:* All audio clips in FSD50K are released under Creative Commons (CC) licenses. Each clip has its own license as
+               defined by the clip uploader in Freesound, some of them requiring attribution to their original authors and some
+               forbidding further commercial reuse. For attribution purposes and to facilitate attribution of these files to third
+               parties, we include a mapping from the audio clips to their corresponding licenses. The licenses are specified in
+               the files dev_clips_info_FSD50K.json and eval_clips_info_FSD50K.json. These licenses are CC0, CC-BY, CC-BY-NC and
+               CC Sampling+.
 
     In addition, FSD50K as a whole is the result of a curation process and it has an additional license: FSD50K is
     released under CC-BY. This license is specified in the LICENSE-DATASET file downloaded with the FSD50K.doc zip file.
@@ -197,15 +158,13 @@
     Fonseca and Frederic Font at eduardo.fonseca@upf.edu and frederic.font@upf.edu.
 
 
-    Feedback
-    --------
-
+    *Feedback:*
     For further questions, please contact eduardo.fonseca@upf.edu, or join the freesound-annotator Google Group.
 
 """
 
 import os
-from typing import BinaryIO, Optional, TextIO, Tuple
+from typing import BinaryIO, Optional, Tuple
 
 import librosa
 import csv
