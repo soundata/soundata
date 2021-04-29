@@ -27,7 +27,7 @@ def test_clip():
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
-    
+
     default_clipid_test = "564"
     clip_test = dataset.clip(default_clipid_test)
     expected_attributes_test = {
@@ -40,8 +40,8 @@ def test_clip():
         "tags": annotations.Tags,
         "split": str,
         "aso_id": str,
-        "manually_verified": None.__class__ ,
-        "noisy_small": None.__class__ ,
+        "manually_verified": None.__class__,
+        "noisy_small": None.__class__,
     }
 
     run_clip_tests(clip_test, expected_attributes_test, expected_property_types_test)

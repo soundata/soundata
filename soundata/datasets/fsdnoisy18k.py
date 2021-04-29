@@ -125,9 +125,9 @@ BIBTEX = """
 """
 REMOTES = {
     "audio_train": download_utils.RemoteFileMetadata(
-            filename="FSDnoisy18k.audio_train.zip",
-            url="https://zenodo.org/record/2529934/files/FSDnoisy18k.audio_train.zip?download=1",
-            checksum="34dc1d34ca44622af5bf439ceb6f0d55",
+        filename="FSDnoisy18k.audio_train.zip",
+        url="https://zenodo.org/record/2529934/files/FSDnoisy18k.audio_train.zip?download=1",
+        checksum="34dc1d34ca44622af5bf439ceb6f0d55",
     ),
     "audio_test": download_utils.RemoteFileMetadata(
         filename="FSDnoisy18k.audio_test.zip",
@@ -205,9 +205,7 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
-        return annotations.Tags(
-            [self._clip_metadata.get("tag")], np.array([1.0])
-        )
+        return annotations.Tags([self._clip_metadata.get("tag")], np.array([1.0]))
 
     @property
     def aso_id(self):
@@ -220,7 +218,7 @@ class Clip(core.Clip):
     @property
     def noisy_small(self):
         return self._clip_metadata.get("noisy_small")
-    
+
     @property
     def split(self):
         return self._clip_metadata.get("split")
@@ -233,9 +231,7 @@ class Clip(core.Clip):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            tags=self.tags,
-            metadata=self._clip_metadata
+            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
         )
 
 
@@ -257,6 +253,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """
     audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
+
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
@@ -281,18 +278,24 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
 
-        metadata_train_path = os.path.join(self.data_home, "FSDnoisy18k.meta", "train.csv")
-        metadata_test_path = os.path.join(self.data_home, "FSDnoisy18k.meta", "test.csv")
+        metadata_train_path = os.path.join(
+            self.data_home, "FSDnoisy18k.meta", "train.csv"
+        )
+        metadata_test_path = os.path.join(
+            self.data_home, "FSDnoisy18k.meta", "test.csv"
+        )
 
         if not os.path.exists(metadata_train_path):
-            raise FileNotFoundError("Train metadata not found. Did you run .download()?")
+            raise FileNotFoundError(
+                "Train metadata not found. Did you run .download()?"
+            )
         if not os.path.exists(metadata_test_path):
             raise FileNotFoundError("Test metadata not found. Did you run .download()?")
 
         metadata_index = {}
-        
-        with open(metadata_train_path, 'r') as f:
-            reader = csv.reader(f, delimiter=',')
+
+        with open(metadata_train_path, "r") as f:
+            reader = csv.reader(f, delimiter=",")
             next(reader)
             for row in reader:
                 metadata_index[row[0].replace(".wav", "")] = {
@@ -302,9 +305,9 @@ class Dataset(core.Dataset):
                     "manually_verified": int(row[3]),
                     "noisy_small": int(row[4]),
                 }
-                
-        with open(metadata_test_path, 'r') as f:
-            reader = csv.reader(f, delimiter=',')
+
+        with open(metadata_test_path, "r") as f:
+            reader = csv.reader(f, delimiter=",")
             next(reader)
             for row in reader:
                 metadata_index[row[0].replace(".wav", "")] = {
