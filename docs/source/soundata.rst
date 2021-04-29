@@ -20,6 +20,14 @@ ESC-50
    :members:
    :inherited-members:
 
+FSD50K
+^^^^^^
+
+.. automodule:: soundata.datasets.fsd50k
+   :members:
+   :inherited-members:
+
+
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
