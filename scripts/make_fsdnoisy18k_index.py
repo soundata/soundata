@@ -23,7 +23,7 @@ def make_index(data_path):
                 md5(os.path.join(data_path, metadata_folder, "train.csv")),
             ],
             "test": [
-                os.path.join(metadata_folder, "eval.csv"),
+                os.path.join(metadata_folder, "test.csv"),
                 md5(os.path.join(data_path, metadata_folder, "test.csv")),
             ],
         },
