@@ -9,6 +9,15 @@
      - Duration (hours)
      - License
 
+   * - DCASE Challenge 2020 Task 2
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 54254
+     - 153.7
+     - .. image:: https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc-sa/4.0
+
    * - ESC-50
      - - audio: ✅
        - annotations: ✅
