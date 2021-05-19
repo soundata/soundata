@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from tests.test_utils import run_clip_tests
 
@@ -117,3 +118,9 @@ def test_metadata():
     assert clip_metadata.get("manually_verified") is None
     assert clip_metadata.get("noisy_small") is None
     assert clip_metadata["split"] == "test"
+
+    # Test erroneous dev_ download keys
+    with pytest.raises(FileNotFoundError):
+        dataset = fsdnoisy18k.Dataset("a/fake/path/to/the/dataset")
+        clip = dataset.clip(default_clipid)
+        clip_metadata = clip._metadata()[default_clipid]
