@@ -2,6 +2,21 @@
 """
 import numpy as np
 
+#: Time units
+TIME_UNITS = {
+    "s": "seconds",
+    "ms": "miliseconds",
+}
+
+#: Confidence units
+CONFIDENCE_UNITS = {
+    "likelihood": "score between 0 and 1",
+    "binary": "0 or 1",
+}
+
+#: Label units
+LABEL_UNITS = {"open": "no scrict schema or units"}
+
 
 class Annotation(object):
     """Annotation base class"""
@@ -17,15 +32,28 @@ class Tags(Annotation):
 
     Attributes:
         labels (list): list of string tags
+        confidence (np.ndarray or None): array of confidence values
+        labels_unit (str): labels unit, one of LABELS_UNITS
+        confidence_unit (str): confidence unit, one of CONFIDENCE_UNITS
     """
 
-    def __init__(self, labels, confidence=None) -> None:
+    def __init__(self,
+                 labels,
+                 confidence=None,
+                 labels_unit="open",
+                 confidence_unit="binary") -> None:
+
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
-        validate_confidence(confidence)
+        validate_confidence(confidence, confidence_unit)
         validate_lengths_equal([labels, confidence])
+        validate_unit(labels_unit, LABEL_UNITS)
+        validate_unit(confidence_unit, CONFIDENCE_UNITS)
+
         self.labels = labels
         self.confidence = confidence
+        self.labels_unit = labels_unit
+        self.confidence_unit = confidence_unit
 
 
 class Events(Annotation):
@@ -36,21 +64,38 @@ class Events(Annotation):
             (as floats) in seconds in the form [start_time, end_time]
             with positive time stamps and end_time >= start_time.
         labels (list): list of event labels (as strings)
-        confidence (np.ndarray or None): array of float confidence values
-            in the range [0, 1]
+        confidence (np.ndarray or None): array of confidence values
+        labels_unit (str): labels unit, one of LABELS_UNITS
+        confidence_unit (str): confidence unit, one of CONFIDENCE_UNITS
+        intervals_unit (str): intervals unit, one of TIME_UNITS
+
+
     """
 
-    def __init__(self, intervals, labels, confidence=None) -> None:
+    def __init__(self,
+                 intervals,
+                 labels,
+                 confidence=None,
+                 intervals_unit="s",
+                 labels_unit="open",
+                 confidence_unit="binary") -> None:
+
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         validate_lengths_equal([intervals, labels, confidence])
         validate_intervals(intervals)
-        validate_confidence(confidence)
+        validate_confidence(confidence, confidence_unit)
+        validate_unit(labels_unit, LABEL_UNITS)
+        validate_unit(confidence_unit, CONFIDENCE_UNITS)
+        validate_unit(intervals_unit, TIME_UNITS)
 
         self.intervals = intervals
         self.labels = labels
         self.confidence = confidence
+        self.intervals_unit = intervals_unit
+        self.labels_unit = labels_unit
+        self.confidence_unit = confidence_unit
 
 
 class MultiAnnotator(Annotation):
@@ -62,7 +107,9 @@ class MultiAnnotator(Annotation):
         labels (list): list of annotations (e.g. [annotations.Tags, annotations.Tags]
     """
 
-    def __init__(self, annotators, labels) -> None:
+    def __init__(self,
+                 annotators,
+                 labels) -> None:
         validate_array_like(annotators, list, str)
         validate_array_like(labels, list, Annotation, check_child=True)
         validate_lengths_equal([annotators, labels])
@@ -145,7 +192,7 @@ def validate_lengths_equal(array_list):
             raise ValueError("Arrays have unequal length")
 
 
-def validate_confidence(confidence):
+def validate_confidence(confidence, confidence_unit):
     """Validate if confidence is well-formed.
 
     If confidence is None, validation passes automatically
@@ -166,8 +213,19 @@ def validate_confidence(confidence):
             f"Confidence should be 1d, but array has shape {confidence_shape}"
         )
 
-    if (confidence < 0).any() or (confidence > 1).any():
-        raise ValueError("confidence should be between 0 and 1")
+    if confidence_unit == "likelihood" and (
+        any([c < 0 for c in confidence]) or any([c > 1 for c in confidence])
+    ):
+        raise ValueError(
+            "confidence with unit 'likelihood' should be between 0 and 1. "
+            + "Found values outside [0, 1]."
+        )
+
+    if confidence_unit == "binary" and any([c not in [0, 1] for c in confidence]):
+        raise ValueError(
+            "confidence with unit 'binary' should only have values of 0 or 1. "
+            + "Found non-binary values."
+        )
 
 
 def validate_times(times):
@@ -226,3 +284,19 @@ def validate_intervals(intervals):
     # validate that end times are bigger than start times
     elif (intervals[:, 1] - intervals[:, 0] < 0).any():
         raise ValueError(f"Interval start times must be smaller than end times")
+
+
+def validate_unit(unit, unit_values, allow_none=False):
+    """Validate that the given unit is one of the allowed unit values.
+    Args:
+        unit (str): the unit name
+        unit_values (dict): dictionary of possible unit values
+        allow_none (bool): if true, allows unit=None to pass validation
+    Raises:
+        ValueError: If the given unit is not one of the allowed unit values
+    """
+    if allow_none and not unit:
+        return
+
+    if unit not in unit_values:
+        raise ValueError("unit={} is not one of {}".format(unit, unit_values))
