@@ -149,7 +149,7 @@ def test_validate_confidence():
     with pytest.raises(ValueError):
         annotations.validate_confidence(np.array([[0, 1], [0, 2]]))
     with pytest.raises(ValueError):
-        annotations.validate_confidence(np.array([0, 2]))
+        annotations.validate_confidence(np.array([0, 2]), confidence_unit="likelihood")
 
 
 def test_validate_times():
@@ -173,3 +173,15 @@ def test_validate_intervals():
 
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
+
+
+def test_validate_unit():
+
+    annotations.validate_unit("a", {"a": "asdf", "b": "asdfd"})
+    annotations.validate_unit(None, {"a": "asdf", "b": "asdfd"}, allow_none=True)
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit("c", {"a": "asdf", "b": "asdfd"})
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit(None, {"a": "asdf", "b": "asdfd"})
