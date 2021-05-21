@@ -37,11 +37,9 @@ class Tags(Annotation):
         confidence_unit (str): confidence unit, one of CONFIDENCE_UNITS
     """
 
-    def __init__(self,
-                 labels,
-                 confidence=None,
-                 labels_unit="open",
-                 confidence_unit="binary") -> None:
+    def __init__(
+        self, labels, confidence=None, labels_unit="open", confidence_unit="binary"
+    ) -> None:
 
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
@@ -72,13 +70,15 @@ class Events(Annotation):
 
     """
 
-    def __init__(self,
-                 intervals,
-                 labels,
-                 confidence=None,
-                 intervals_unit="s",
-                 labels_unit="open",
-                 confidence_unit="binary") -> None:
+    def __init__(
+        self,
+        intervals,
+        labels,
+        confidence=None,
+        intervals_unit="s",
+        labels_unit="open",
+        confidence_unit="binary",
+    ) -> None:
 
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
@@ -107,9 +107,7 @@ class MultiAnnotator(Annotation):
         labels (list): list of annotations (e.g. [annotations.Tags, annotations.Tags]
     """
 
-    def __init__(self,
-                 annotators,
-                 labels) -> None:
+    def __init__(self, annotators, labels) -> None:
         validate_array_like(annotators, list, str)
         validate_array_like(labels, list, Annotation, check_child=True)
         validate_lengths_equal([annotators, labels])
@@ -192,7 +190,7 @@ def validate_lengths_equal(array_list):
             raise ValueError("Arrays have unequal length")
 
 
-def validate_confidence(confidence, confidence_unit):
+def validate_confidence(confidence, confidence_unit="binary"):
     """Validate if confidence is well-formed.
 
     If confidence is None, validation passes automatically

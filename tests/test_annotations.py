@@ -19,13 +19,16 @@ def test_repr():
     event_data = annotations.Events(
         np.array([[1.0, 2.0], [3.0, 4.0]]), ["Siren", "Dog"]
     )
-    assert event_data.__repr__() == "Events(confidence, intervals, labels)"
+    assert (
+        event_data.__repr__()
+        == "Events(confidence, confidence_unit, intervals, intervals_unit, labels, labels_unit)"
+    )
 
 
 def test_tags():
     # test good data
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
+    confidence = np.array([1.0, 0.0, 1.0])
     tags = annotations.Tags(labels, confidence)
     assert tags.labels == labels
     assert np.allclose(tags.confidence, confidence)
@@ -37,12 +40,22 @@ def test_tags():
     bad_confidence = np.array([1, 0.5, -0.2])
     pytest.raises(ValueError, annotations.Tags, labels, bad_confidence)
 
+    # test units
+    bad_binary_confidence = np.array([1.0, 0.5, 0.0])
+    pytest.raises(ValueError, annotations.Tags, labels, bad_binary_confidence)
+
+    with pytest.raises(ValueError):
+        annotations.Tags(labels, confidence, labels_unit="bad_unit")
+
+    with pytest.raises(ValueError):
+        annotations.Tags(labels, confidence, confidence_unit="bad_unit")
+
 
 def test_events():
     # test good data
     intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
+    confidence = np.array([1.0, 0.0, 1.0])
     events = annotations.Events(intervals, labels, confidence)
     assert np.allclose(events.intervals, intervals)
     assert events.labels == labels
@@ -57,6 +70,21 @@ def test_events():
 
     bad_confidence = np.array([1, 0.5, -0.2])
     pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
+
+    # test units
+    bad_binary_confidence = np.array([1, 0.5, 0])
+    pytest.raises(
+        ValueError, annotations.Events, intervals, labels, bad_binary_confidence
+    )
+
+    with pytest.raises(ValueError):
+        annotations.Events(intervals, labels, confidence, labels_unit="bad_unit")
+
+    with pytest.raises(ValueError):
+        annotations.Events(intervals, labels, confidence, confidence_unit="bad_unit")
+
+    with pytest.raises(ValueError):
+        annotations.Events(intervals, labels, confidence, intervals_unit="bad_unit")
 
 
 def test_multiannotator():
