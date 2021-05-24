@@ -41,8 +41,8 @@ def test_clip():
         "tags": annotations.Tags,
         "split": str,
         "aso_id": str,
-        "manually_verified": None.__class__,
-        "noisy_small": None.__class__,
+        "manually_verified": type(None),
+        "noisy_small": type(None),
     }
 
     run_clip_tests(clip_test, expected_attributes_test, expected_property_types_test)
