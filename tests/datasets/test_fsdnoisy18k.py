@@ -119,8 +119,14 @@ def test_metadata():
     assert clip_metadata.get("noisy_small") is None
     assert clip_metadata["split"] == "test"
 
-    # Test erroneous dev_ download keys
+    # Test erroneous filepath to train metadata
     with pytest.raises(FileNotFoundError):
         dataset = fsdnoisy18k.Dataset("a/fake/path/to/the/dataset")
+        clip = dataset.clip(default_clipid)
+        clip_metadata = clip._metadata()[default_clipid]
+        
+    # Test erroneous filepath to test metadata
+    with pytest.raises(FileNotFoundError):
+        dataset = fsdnoisy18k.Dataset("tests/resources/download")
         clip = dataset.clip(default_clipid)
         clip_metadata = clip._metadata()[default_clipid]
