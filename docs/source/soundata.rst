@@ -27,6 +27,12 @@ FSD50K
    :members:
    :inherited-members:
 
+FSDnoisy18K
+^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.fsdnoisy18k
+   :members:
+   :inherited-members:
 
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

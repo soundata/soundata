@@ -22,8 +22,17 @@
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
-     - 51,197
+     - 51197
      - 108.3
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - FSDnoisy18K
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 18532
+     - 42.5
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
