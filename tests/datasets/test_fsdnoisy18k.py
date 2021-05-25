@@ -124,7 +124,7 @@ def test_metadata():
         dataset = fsdnoisy18k.Dataset("a/fake/path/to/the/dataset")
         clip = dataset.clip(default_clipid)
         clip_metadata = clip._metadata()[default_clipid]
-        
+
     # Test erroneous filepath to test metadata
     with pytest.raises(FileNotFoundError):
         dataset = fsdnoisy18k.Dataset("tests/resources/download")
