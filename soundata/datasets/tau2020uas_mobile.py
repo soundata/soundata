@@ -822,7 +822,7 @@ class Clip(core.Clip):
         if scene_label is None:
             return None
         else:
-            return annotations.Tags([scene_label], np.array([1.0]))
+            return annotations.Tags([scene_label], "open", np.array([1.0]))
 
     @property
     def city(self):
