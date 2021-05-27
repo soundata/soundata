@@ -17,46 +17,97 @@ def test_repr():
     assert test_track.__repr__() == """TestAnnotation(a, b)"""
 
     event_data = annotations.Events(
-        np.array([[1.0, 2.0], [3.0, 4.0]]), ["Siren", "Dog"]
+        np.array([[1.0, 2.0], [3.0, 4.0]]),
+        "seconds",
+        ["Siren", "Dog"],
+        "open",
     )
-    assert event_data.__repr__() == "Events(confidence, intervals, labels)"
+    assert (
+        event_data.__repr__()
+        == "Events(confidence, intervals, intervals_unit, labels, labels_unit)"
+    )
 
 
 def test_tags():
     # test good data
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
-    tags = annotations.Tags(labels, confidence)
+    confidence = np.array([1.0, 0.0, 1.0])
+    tags = annotations.Tags(labels, "open", confidence)
     assert tags.labels == labels
     assert np.allclose(tags.confidence, confidence)
 
     # test bad data
     bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(TypeError, annotations.Tags, bad_labels, confidence)
+    pytest.raises(TypeError, annotations.Tags, bad_labels, "open", confidence)
 
     bad_confidence = np.array([1, 0.5, -0.2])
-    pytest.raises(ValueError, annotations.Tags, labels, bad_confidence)
+    pytest.raises(ValueError, annotations.Tags, labels, "open", bad_confidence)
+
+    # test units
+    with pytest.raises(ValueError):
+        annotations.Tags(labels, "bad_unit", confidence)
 
 
 def test_events():
     # test good data
     intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
-    events = annotations.Events(intervals, labels, confidence)
+    confidence = np.array([1.0, 0.0, 1.0])
+    events = annotations.Events(intervals, "seconds", labels, "open", confidence)
     assert np.allclose(events.intervals, intervals)
     assert events.labels == labels
     assert np.allclose(events.confidence, confidence)
 
     # test bad data
     bad_intervals = np.array([[1.0, 0.0], [1.5, 3.0], [2.0, 3.0]])
-    pytest.raises(ValueError, annotations.Events, bad_intervals, labels, confidence)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        bad_intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+    )
 
     bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(TypeError, annotations.Events, intervals, bad_labels, confidence)
+    pytest.raises(
+        TypeError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        bad_labels,
+        "open",
+        confidence,
+    )
 
     bad_confidence = np.array([1, 0.5, -0.2])
-    pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        bad_confidence,
+    )
+
+    # test units
+
+    with pytest.raises(ValueError):
+        annotations.Events(intervals, "seconds", labels, "bad_unit", confidence)
+
+    with pytest.raises(ValueError):
+        annotations.Events(intervals, "bad_unit", labels, "open", confidence)
+
+    with pytest.raises(TypeError):
+        annotations.Events(intervals, labels, confidence)
+
+    with pytest.raises(TypeError):
+        annotations.Events(intervals, labels, "open", confidence)
+
+    with pytest.raises(TypeError):
+        annotations.Events(intervals, "seconds", labels, confidence)
 
 
 def test_multiannotator():
@@ -67,14 +118,14 @@ def test_multiannotator():
     confidence_1 = np.array([1.0, 1.0])
     confidence_2 = np.array([1.0, 1.0])
     multi_annot = [
-        annotations.Tags(labels_1, confidence_1),
-        annotations.Tags(labels_2, confidence_2),
+        annotations.Tags(labels_1, "open", confidence_1),
+        annotations.Tags(labels_2, "open", confidence_2),
     ]
     tags = annotations.MultiAnnotator(annotators, multi_annot)
 
-    assert tags.labels[0].labels == labels_1
+    assert tags.annotations[0].labels == labels_1
     assert tags.annotators[1] == "annotator_2"
-    assert np.allclose(tags.labels[1].confidence, confidence_2)
+    assert np.allclose(tags.annotations[1].confidence, confidence_2)
 
     # test bad data
     bad_labels = ["Siren", "Laughter", 5]
@@ -145,3 +196,19 @@ def test_validate_intervals():
 
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
+
+
+def test_validate_unit():
+
+    annotations.validate_unit("unit_1", {"unit_1": "potatoes", "unit_2": "apples"})
+    annotations.validate_unit(
+        None, {"unit_1": "potatoes", "unit_2": "apples"}, allow_none=True
+    )
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit(
+            "wrong_unit", {"unit_1": "potatoes", "unit_2": "apples"}
+        )
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit(None, {"unit_1": "potatoes", "unit_2": "apples"})

@@ -205,7 +205,9 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
-        return annotations.Tags([self._clip_metadata.get("tag")], np.array([1.0]))
+        return annotations.Tags(
+            [self._clip_metadata.get("tag")], "open", np.array([1.0])
+        )
 
     @property
     def aso_id(self):

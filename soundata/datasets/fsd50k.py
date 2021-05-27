@@ -323,6 +323,7 @@ class Clip(core.Clip):
     def tags(self):
         return annotations.Tags(
             self._clip_metadata["ground_truth"].get("tags"),
+            "open",
             np.array([1.0] * len(self._clip_metadata["ground_truth"].get("tags"))),
         )
 
@@ -330,6 +331,7 @@ class Clip(core.Clip):
     def mids(self):
         return annotations.Tags(
             self._clip_metadata["ground_truth"].get("mids"),
+            "open",
             np.array([1.0] * len(self._clip_metadata["ground_truth"].get("tags"))),
         )
 
