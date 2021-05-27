@@ -16,7 +16,6 @@ def test_clip():
     default_clipid = "64760"
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    print(clip)
     expected_attributes = {
         "audio_path": "tests/resources/sound_datasets/fsd50k/FSD50K.dev_audio/64760.wav",
         "clip_id": "64760",
@@ -76,7 +75,6 @@ def test_to_jams():
     assert [tag.confidence for tag in tags] == [1.0, 1.0, 1.0, 1.0, 1.0]
 
     # validate metadata
-    print(jam.file_metadata)
     assert jam.file_metadata.duration == 1.7143083900226757
     assert jam.file_metadata.title == "guitarras_63.wav"
     assert jam.sandbox.mids == [
