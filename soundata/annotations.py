@@ -26,7 +26,7 @@ class Tags(Annotation):
 
     Attributes:
         labels (list): list of string tags
-        confidence (np.ndarray or None): array of confidence values
+        confidence (np.ndarray or None): array of confidence values, float in [0, 1]
         labels_unit (str): labels unit, one of LABELS_UNITS
     """
 
@@ -51,7 +51,7 @@ class Events(Annotation):
             (as floats) in seconds in the form [start_time, end_time]
             with positive time stamps and end_time >= start_time.
         labels (list): list of event labels (as strings)
-        confidence (np.ndarray or None): array of confidence values
+        confidence (np.ndarray or None): array of confidence values, float in [0, 1]
         labels_unit (str): labels unit, one of LABELS_UNITS
         intervals_unit (str): intervals unit, one of TIME_UNITS
 
