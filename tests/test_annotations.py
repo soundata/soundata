@@ -123,9 +123,9 @@ def test_multiannotator():
     ]
     tags = annotations.MultiAnnotator(annotators, multi_annot)
 
-    assert tags.labels[0].labels == labels_1
+    assert tags.annotations[0].labels == labels_1
     assert tags.annotators[1] == "annotator_2"
-    assert np.allclose(tags.labels[1].confidence, confidence_2)
+    assert np.allclose(tags.annotations[1].confidence, confidence_2)
 
     # test bad data
     bad_labels = ["Siren", "Laughter", 5]

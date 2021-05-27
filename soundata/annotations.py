@@ -89,16 +89,16 @@ class MultiAnnotator(Annotation):
 
     Attributes:
         annotators (list): list with annotator ids
-        labels (list): list of annotations (e.g. [annotations.Tags, annotations.Tags]
+        annotations (list): list of annotations (e.g. [annotations.Tags, annotations.Tags]
     """
 
-    def __init__(self, annotators, labels) -> None:
+    def __init__(self, annotators, annotations) -> None:
         validate_array_like(annotators, list, str)
-        validate_array_like(labels, list, Annotation, check_child=True)
-        validate_lengths_equal([annotators, labels])
+        validate_array_like(annotations, list, Annotation, check_child=True)
+        validate_lengths_equal([annotators, annotations])
 
         self.annotators = annotators
-        self.labels = labels
+        self.annotations = annotations
 
 
 def validate_array_like(
