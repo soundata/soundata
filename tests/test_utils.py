@@ -138,10 +138,6 @@ def test_validate_index(test_index, expected_missing, expected_inv_checksum):
             {"clips": {"test": ["tests/resources/test.wav"]}},
             {"clips": {}},
         ),
-        # (
-        #     {"clips": {}},
-        #     {"clips": {"10161_chorus": ["tests/resources/10161_chorus.wav"]}},
-        # ),
         ({"clips": {}}, {"clips": {}}),
     ],
 )

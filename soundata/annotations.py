@@ -4,18 +4,12 @@ import numpy as np
 
 #: Time units
 TIME_UNITS = {
-    "s": "seconds",
-    "ms": "miliseconds",
-}
-
-#: Confidence units
-CONFIDENCE_UNITS = {
-    "likelihood": "score between 0 and 1",
-    "binary": "0 or 1",
+    "seconds": "seconds",
+    "miliseconds": "miliseconds",
 }
 
 #: Label units
-LABEL_UNITS = {"open": "no scrict schema or units"}
+LABEL_UNITS = {"open": "no strict schema or units"}
 
 
 class Annotation(object):
@@ -34,24 +28,19 @@ class Tags(Annotation):
         labels (list): list of string tags
         confidence (np.ndarray or None): array of confidence values
         labels_unit (str): labels unit, one of LABELS_UNITS
-        confidence_unit (str): confidence unit, one of CONFIDENCE_UNITS
     """
 
-    def __init__(
-        self, labels, confidence=None, labels_unit="open", confidence_unit="binary"
-    ) -> None:
+    def __init__(self, labels, labels_unit, confidence=None) -> None:
 
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
-        validate_confidence(confidence, confidence_unit)
+        validate_confidence(confidence)
         validate_lengths_equal([labels, confidence])
         validate_unit(labels_unit, LABEL_UNITS)
-        validate_unit(confidence_unit, CONFIDENCE_UNITS)
 
         self.labels = labels
         self.confidence = confidence
         self.labels_unit = labels_unit
-        self.confidence_unit = confidence_unit
 
 
 class Events(Annotation):
@@ -64,7 +53,6 @@ class Events(Annotation):
         labels (list): list of event labels (as strings)
         confidence (np.ndarray or None): array of confidence values
         labels_unit (str): labels unit, one of LABELS_UNITS
-        confidence_unit (str): confidence unit, one of CONFIDENCE_UNITS
         intervals_unit (str): intervals unit, one of TIME_UNITS
 
 
@@ -73,11 +61,10 @@ class Events(Annotation):
     def __init__(
         self,
         intervals,
+        intervals_unit,
         labels,
+        labels_unit,
         confidence=None,
-        intervals_unit="s",
-        labels_unit="open",
-        confidence_unit="binary",
     ) -> None:
 
         validate_array_like(intervals, np.ndarray, float)
@@ -85,17 +72,15 @@ class Events(Annotation):
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         validate_lengths_equal([intervals, labels, confidence])
         validate_intervals(intervals)
-        validate_confidence(confidence, confidence_unit)
+        validate_confidence(confidence)
         validate_unit(labels_unit, LABEL_UNITS)
-        validate_unit(confidence_unit, CONFIDENCE_UNITS)
         validate_unit(intervals_unit, TIME_UNITS)
 
         self.intervals = intervals
-        self.labels = labels
-        self.confidence = confidence
         self.intervals_unit = intervals_unit
+        self.labels = labels
         self.labels_unit = labels_unit
-        self.confidence_unit = confidence_unit
+        self.confidence = confidence
 
 
 class MultiAnnotator(Annotation):
@@ -190,7 +175,7 @@ def validate_lengths_equal(array_list):
             raise ValueError("Arrays have unequal length")
 
 
-def validate_confidence(confidence, confidence_unit="binary"):
+def validate_confidence(confidence):
     """Validate if confidence is well-formed.
 
     If confidence is None, validation passes automatically
@@ -211,18 +196,10 @@ def validate_confidence(confidence, confidence_unit="binary"):
             f"Confidence should be 1d, but array has shape {confidence_shape}"
         )
 
-    if confidence_unit == "likelihood" and (
-        any([c < 0 for c in confidence]) or any([c > 1 for c in confidence])
-    ):
+    if any([c < 0 for c in confidence]) or any([c > 1 for c in confidence]):
         raise ValueError(
             "confidence with unit 'likelihood' should be between 0 and 1. "
             + "Found values outside [0, 1]."
-        )
-
-    if confidence_unit == "binary" and any([c not in [0, 1] for c in confidence]):
-        raise ValueError(
-            "confidence with unit 'binary' should only have values of 0 or 1. "
-            + "Found non-binary values."
         )
 
 

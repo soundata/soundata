@@ -19,7 +19,9 @@ def get_jam_data(jam, namespace, annot_numb):
 
 
 def test_tags():
-    tag_data1 = annotations.Tags(["blues", "I am a description"], np.array([1.0, 1.0]))
+    tag_data1 = annotations.Tags(
+        ["blues", "I am a description"], "open", np.array([1.0, 1.0])
+    )
     tag_data3 = ("jazz", "wrong format")
     tag_data4 = [(123, "asdf")]
     jam1 = jams_utils.jams_converter(tags=tag_data1, metadata={"duration": 10.0})
@@ -33,16 +35,26 @@ def test_tags():
 
 def test_events():
     event_data1 = annotations.Events(
-        np.array([[0.2, 0.3], [0.3, 0.4]]), ["event A", "event B"], np.array([1.0, 1.0])
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["event A", "event B"],
+        "open",
+        np.array([1.0, 1.0]),
     )
 
     event_data2 = annotations.Events(
-        np.array([[0.2, 0.3], [0.3, 0.4]]), ["", "a great label"], np.array([0.0, 1.0])
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["", "a great label"],
+        "open",
+        np.array([0.0, 1.0]),
     )
 
     event_data3 = annotations.Events(
         np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
+        "seconds",
         ["", "a great label"],
+        "open",
         np.array([0.0, 1.0]),
     )
 
