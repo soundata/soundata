@@ -97,7 +97,9 @@ def downloader(
         logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
+
             if not isinstance(remotes[k], list):
+
                 logging.info("[{}] downloading {}".format(k, remotes[k].filename))
                 extension = os.path.splitext(remotes[k].filename)[-1]
                 if ".zip" in extension:
@@ -128,7 +130,9 @@ def downloader(
                             return
 
                         move_directory_contents(source_dir, destination_dir)
+
             elif isinstance(remotes[k], list):
+
                 for l in range(len(remotes[k])):
                     logging.info("[{}] downloading {}".format(k, remotes[k][l].filename))
                     download_from_remote(remotes[k][l], save_dir, force_overwrite)

@@ -206,6 +206,9 @@ BIBTEX = """
     primaryClass={cs.SD}
 }
 """
+
+# a dictionary key that hasa a list of RemoteFileMetadata implies a multi-part zip
+# and will be processed as such using the zip subprocess (see soundata.download_utils)
 REMOTES = {
     "FSD50K.dev_audio": [
         download_utils.RemoteFileMetadata(
