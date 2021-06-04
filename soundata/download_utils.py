@@ -1,4 +1,4 @@
-"""Utilities for downloading from the web.
+"""utilities for downloading from the web.
 """
 
 import glob
@@ -8,6 +8,7 @@ import shutil
 import tarfile
 import urllib
 import zipfile
+import subprocess
 
 from tqdm import tqdm
 
@@ -54,6 +55,8 @@ def downloader(
             The directory to download the data
         remotes (dict or None):
             A dictionary of RemoteFileMetadata tuples of data in zip format.
+            If a dictionary key has a list of RemoteFileMetadata,
+                it is handled as a multipart zip file
             If None, there is no data to download
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
@@ -94,36 +97,45 @@ def downloader(
         logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
-            logging.info("[{}] downloading {}".format(k, remotes[k].filename))
-            extension = os.path.splitext(remotes[k].filename)[-1]
-            if ".zip" in extension:
-                download_zip_file(remotes[k], save_dir, force_overwrite, cleanup)
-            elif ".gz" in extension or ".tar" in extension or ".bz2" in extension:
-                download_tar_file(remotes[k], save_dir, force_overwrite, cleanup)
-            else:
-                download_from_remote(remotes[k], save_dir, force_overwrite)
+            if not isinstance(remotes[k], list):
+                logging.info("[{}] downloading {}".format(k, remotes[k].filename))
+                extension = os.path.splitext(remotes[k].filename)[-1]
+                if ".zip" in extension:
+                    download_zip_file(remotes[k], save_dir, force_overwrite, cleanup)
+                elif ".gz" in extension or ".tar" in extension or ".bz2" in extension:
+                    download_tar_file(remotes[k], save_dir, force_overwrite, cleanup)
+                else:
+                    download_from_remote(remotes[k], save_dir, force_overwrite)
 
-            if remotes[k].unpack_directories:
-                for src_dir in remotes[k].unpack_directories:
+                if remotes[k].unpack_directories:
+                    for src_dir in remotes[k].unpack_directories:
 
-                    # path to destination directory
-                    destination_dir = (
-                        os.path.join(save_dir, remotes[k].destination_dir)
-                        if remotes[k].destination_dir
-                        else save_dir
-                    )
-                    # path to directory to unpack
-                    source_dir = os.path.join(destination_dir, src_dir)
-
-                    if not os.path.exists(source_dir):
-                        logging.info(
-                            "Data not downloaded, because it probably already exists on your computer. "
-                            + "Run .validate() to check, or rerun with force_overwrite=True to delete any "
-                            + "existing files and download from scratch"
+                        # path to destination directory
+                        destination_dir = (
+                            os.path.join(save_dir, remotes[k].destination_dir)
+                            if remotes[k].destination_dir
+                            else save_dir
                         )
-                        return
+                        # path to directory to unpack
+                        source_dir = os.path.join(destination_dir, src_dir)
 
-                    move_directory_contents(source_dir, destination_dir)
+                        if not os.path.exists(source_dir):
+                            logging.info(
+                                "Data not downloaded, because it probably already exists on your computer. "
+                                + "Run .validate() to check, or rerun with force_overwrite=True to delete any "
+                                + "existing files and download from scratch"
+                            )
+                            return
+
+                        move_directory_contents(source_dir, destination_dir)
+            elif isinstance(remotes[k], list):
+                for l in range(len(remotes[k])):
+                    logging.info("[{}] downloading {}".format(k, remotes[k][l].filename))
+                    download_from_remote(remotes[k][l], save_dir, force_overwrite)
+                zip_path = save_dir+"/"+k+".zip"
+                outpath = save_dir+"/"+k+"_single.zip"
+                subprocess.run(["zip", "-s", "0", zip_path, "--out", outpath])
+                unzip(outpath, cleanup=cleanup)
 
     if info_message is not None:
         logging.info(info_message.format(save_dir))

@@ -207,50 +207,50 @@ BIBTEX = """
 }
 """
 REMOTES = {
-    "development": {
-        "dev_main": download_utils.RemoteFileMetadata(
+    "FSD50K.dev_audio": [
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.zip",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.zip?download=1",
             checksum="c480d119b8f7a7e32fdb58f3ea4d6c5a",
         ),
-        "dev_part1": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.z01",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z01?download=1",
             checksum="faa7cf4cc076fc34a44a479a5ed862a3",
         ),
-        "dev_part2": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.z02",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z02?download=1",
             checksum="8f9b66153e68571164fb1315d00bc7bc",
         ),
-        "dev_part3": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.z03",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z03?download=1",
             checksum="1196ef47d267a993d30fa98af54b7159",
         ),
-        "dev_part4": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.z04",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z04?download=1",
             checksum="d088ac4e11ba53daf9f7574c11cccac9",
         ),
-        "dev_part5": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.dev_audio.z05",
             url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z05?download=1",
             checksum="81356521aa159accd3c35de22da28c7f",
         ),
-    },
-    "evaluation": {
-        "eval_main": download_utils.RemoteFileMetadata(
+    ],
+    "FSD50K.eval_audio": [
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.eval_audio.zip",
             url="https://zenodo.org/record/4060432/files/FSD50K.eval_audio.zip?download=1",
             checksum="6fa47636c3a3ad5c7dfeba99f2637982",
         ),
-        "eval_part1": download_utils.RemoteFileMetadata(
+        download_utils.RemoteFileMetadata(
             filename="FSD50K.eval_audio.z01",
             url="https://zenodo.org/record/4060432/files/FSD50K.eval_audio.z01?download=1",
             checksum="3090670eaeecc013ca1ff84fe4442aeb",
         ),
-    },
+    ],
     "ground_truth": download_utils.RemoteFileMetadata(
         filename="FSD50K.ground_truth.zip",
         url="https://zenodo.org/record/4060432/files/FSD50K.ground_truth.zip?download=1",
@@ -326,6 +326,7 @@ class Clip(core.Clip):
             "open",
             np.array([1.0] * len(self._clip_metadata["ground_truth"].get("tags"))),
         )
+
 
     @property
     def mids(self):
@@ -622,127 +623,3 @@ class Dataset(core.Dataset):
                 }
 
         return metadata_index
-
-    def download(self, partial_download=None, force_overwrite=False, cleanup=False):
-        """Download and properly unzip the dataset
-
-        Args:
-            partial_download (list or None):
-                A list of keys of remotes to partially download.
-                If None, all data is downloaded
-            force_overwrite (bool):
-                If True, existing files are overwritten by the downloaded files.
-            cleanup (bool):
-                Whether to delete any zip/tar files after extracting.
-
-        Raises:
-            ValueError: if invalid keys are passed to partial_download
-            IOError: if a downloaded file's checksum is different from expected
-
-        """
-        if not os.path.exists(self.data_home):
-            os.makedirs(self.data_home)
-
-        if cleanup:
-            logging.warning(
-                "Zip and tar files will be deleted after they are uncompressed. "
-                + "If you download this dataset again, it will overwrite existing files, even if force_overwrite=False"
-            )
-
-        if self.remotes is not None:
-            if partial_download is not None:
-                # check the development and evaluation keys are not in wrong order
-                for k in partial_download:
-                    if "dev_" in k or "eval_" in k:
-                        raise ValueError(
-                            """
-                            FSD50K development and evaluation audio compressed files are divided and all the parts 
-                            must be downloaded together to merge and unzip them properly. Please use the keys
-                            "development" or "evaluation" for partial download.
-                            """
-                        )
-
-                # check the keys in partial_download are in the download dict
-                if not isinstance(partial_download, list) or any(
-                    [k not in self.remotes for k in partial_download]
-                ):
-                    raise ValueError(
-                        "partial_download must be a list which is a subset of {}, but got {}".format(
-                            list(self.remotes.keys()), partial_download
-                        )
-                    )
-
-                objs_to_download = partial_download
-            else:
-                objs_to_download = list(self.remotes.keys())
-
-            logging.info(
-                "Downloading {} to {}".format(objs_to_download, self.data_home)
-            )
-
-            if "development" in objs_to_download:
-                print("Downloading, merging and unzipping development split...")
-                for part in self.remotes["development"].keys():
-                    download_utils.download_from_remote(
-                        remote=self.remotes["development"][part],
-                        save_dir=self.data_home,
-                        force_overwrite=force_overwrite,
-                    )
-
-                # --- Merge and unzip development split --- #
-                self.merge_and_unzip(
-                    merging_list=[
-                        x.filename for x in self.remotes["development"].values()
-                    ],
-                    cleanup=cleanup,
-                )
-
-                # Remove partial from objects to download
-                objs_to_download.remove("development")
-
-            if "evaluation" in objs_to_download:
-                print("Downloading, merging and unzipping evaluation split...")
-                for part in self.remotes["evaluation"].keys():
-                    download_utils.download_from_remote(
-                        remote=self.remotes["evaluation"][part],
-                        save_dir=self.data_home,
-                        force_overwrite=force_overwrite,
-                    )
-
-                # --- Merge and unzip evaluation split --- #
-                self.merge_and_unzip(
-                    merging_list=[
-                        x.filename for x in self.remotes["evaluation"].values()
-                    ],
-                    cleanup=cleanup,
-                )
-
-                # Remove partial from objects to download
-                objs_to_download.remove("evaluation")
-
-            # Download the rest of objects
-            for k in objs_to_download:
-                download_utils.download_zip_file(
-                    self.remotes[k],
-                    save_dir=self.data_home,
-                    force_overwrite=force_overwrite,
-                    cleanup=cleanup,
-                )
-
-    def merge_and_unzip(self, merging_list, cleanup):
-        zip_file = [x for x in merging_list if ".zip" in x]
-        zip_path = os.path.join(self.data_home, zip_file[0])
-
-        output_path = os.path.join(
-            self.data_home,
-            "unsplit_" + zip_file[0].split(".")[1].split("_")[0] + ".zip",
-        )
-
-        subprocess.run(["zip", "-s", "0", zip_path, "--out", output_path])
-
-        download_utils.unzip(output_path, cleanup=True)
-
-        # Remove zip files
-        if cleanup:
-            for item in merging_list:
-                os.remove(os.path.join(self.data_home, item))
