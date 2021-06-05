@@ -40,10 +40,19 @@ def test_downloader(mocker, mock_path):
     mock_download_from_remote = mocker.patch.object(
         download_utils, "download_from_remote"
     )
+    mock_multipart_zip = mocker.patch.object(download_utils, "download_multipart_zip")
 
     zip_remote = download_utils.RemoteFileMetadata(
         filename="remote.zip", url="a", checksum=("1234")
     )
+    multipart_zip_remote = [
+        download_utils.RemoteFileMetadata(
+            filename="remote.zip", url="a", checksum=("1234")
+        ),
+        download_utils.RemoteFileMetadata(
+            filename="remote.z01", url="b", checksum=("2345")
+        ),
+    ]
     tar_remote = download_utils.RemoteFileMetadata(
         filename="remote.tar.gz", url="a", checksum=("1234")
     )
@@ -92,6 +101,11 @@ def test_downloader(mocker, mock_path):
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
+    mocker.resetall()
+
+    # Zip multipart
+    download_utils.downloader("a", remotes={"b": multipart_zip_remote})
+    mock_multipart_zip.assert_called_once_with("b", multipart_zip_remote, "a", False, False)
     mocker.resetall()
 
     # test partial download
