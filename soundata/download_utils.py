@@ -136,8 +136,8 @@ def downloader(
                 for l in range(len(remotes[k])):
                     logging.info("[{}] downloading {}".format(k, remotes[k][l].filename))
                     download_from_remote(remotes[k][l], save_dir, force_overwrite)
-                zip_path = save_dir+"/"+k+".zip"
-                outpath = save_dir+"/"+k+"_single.zip"
+                zip_path = os.path.join(save_dir, k+".zip")
+                outpath = os.path.join(save_dir, k+"_single.zip")
                 subprocess.run(["zip", "-s", "0", zip_path, "--out", outpath])
                 unzip(outpath, cleanup=cleanup)
 
