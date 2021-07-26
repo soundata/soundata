@@ -31,13 +31,13 @@ To install ``soundata`` for development purposes:
         pip install .
         pip install .[tests]
         pip install .[docs]
-        pip install .[dali]
 
 
-We recommend to install `pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
-and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6 and 3.7.
-Once ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you installed all the pytest
-plugins to automatically test your code successfully. Finally, run:
+We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>_ or 
+`pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
+and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6, 3.7 and 3.8.
+Once ``conda`` or ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you've installed all the 
+necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your code successfully. Finally, run:
 
 .. code-block:: bash
 
@@ -73,17 +73,17 @@ the ``please-do-not-edit`` flag is used.
 1. Create an index
 ------------------
 
-``soundata``'s structure relies on `indexes`. Indexes are dictionaries contain information about the structure of the
+``soundata``'s structure relies on `indexes`. Indexes are dictionaries that contain information about the structure of the
 dataset which is necessary for the loading and validating functionalities of ``soundata``. In particular, indexes contain
 information about the files included in the dataset, their location and checksums. The necessary steps are:
 
-1. To create an index, first cereate a script in ``scripts/``, as ``make_dataset_index.py``, which generates an index file.
-2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``dataset_index.json``.
+1. To create an index, first create a script in ``scripts/``, called ``make_<datasetname>_index.py``, which generates an index file.
+2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
 
 
 .. _index example:
 
-Here there is an example of an index to use as guideline:
+Here's an example of an index to use as a guide:
 
 .. admonition:: Example Make Index Script
     :class: dropdown
@@ -93,8 +93,8 @@ Here there is an example of an index to use as guideline:
 
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
-tracks
-^^^^^^
+clips
+^^^^^
 
 Most MIR datasets are organized as a collection of tracks and annotations. In such case, the index should make use of the ``tracks``
 top-level key. A dictionary should be stored under the ``tracks`` top-level key where the keys are the unique track ids of the dataset. 
