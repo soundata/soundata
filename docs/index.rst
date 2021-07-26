@@ -67,6 +67,7 @@ When working with datasets, please cite the version of ``soundata`` that you are
 
 
 .. toctree::
+   :hidden:
    :caption: API documentation
    :maxdepth: 0
 
