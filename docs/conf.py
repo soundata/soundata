@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath("../"))
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
-copyright = "2021, soundata development team."
-author = "The soundata development team"
+copyright = "2021, Soundata development team"
+author = "The Soundata development team"
 
 
 import importlib
