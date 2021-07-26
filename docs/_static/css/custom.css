@@ -19,7 +19,7 @@ span.caption-text {
 }
 
 div.wy-menu .caption-text {
-    color: #2980b9;
+    color: #404040;
     font-weight: bold;
     margin-left:15px;
 }
@@ -27,6 +27,7 @@ div.wy-menu .caption-text {
 div.wy-nav-content {
     border-left: solid;
     border-left-color:#404040;
+    list-style: disc;
 }
 
 div.wy-menu{
@@ -47,5 +48,22 @@ div.wy-menu.wy-menu-vertical p {
 
 
 div.wy-menu-vertical a {
+    color: #2980b9;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:hover {
+    color: rgb(250,250,250);
+    font-weight: bold;
+    background: #404040;
+}
+
+div.wy-menu-vertical a:active {
     color: #404040;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #2980b9;
+    font-weight: bold;
 }
