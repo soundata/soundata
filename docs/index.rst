@@ -1,35 +1,50 @@
-soundata
-=======
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
+About Soundata
+==============
 
 
+Soundata is a Python library for loading and working with audio datasets in a standarized way,
+removing the need for writing custom loaders in every project, and improving reproducibility. It allows you to quickly
+``download`` a dataset, ``load`` it into memory in a ``standarized`` and ``reproducible`` way, ``validate``
+that the dataset is complete and correct, and more.
 
-``soundata`` is an open-source Python library that provides tools for loading and working with sound datasets, including tools for:
+Soundata is based and inspired on `mirdata <https://mirdata.readthedocs.io/en/latest/index.html>`_, and was created
+following these desig principles:
 
- * Downloading datasets to a common location and format
- * Validating that the files for a dataset are all present and valid
- * Loading annotation files to a common format
- * Parsing clip level metadata for detailed evaluations.
-
-
-.. code-block::
-
-    pip install soundata
+- **Easy to use:** Soundata is designed to be easy to use and to simplify the research pipeline considerably. Check out the examples in the :ref:`tutorial` page.
+- **Easy to contribute to:** we welcome and encourage contributions, especially new datasets. You can contribute following the instructions in our :ref:`contributing` page.
+- **Increase reproducibility:** by providing a common framework for researchers to compare and validate their data, when mistakes are found in annotations or audio versions change, using Soundata the audio community can fix mistakes while still being able to compare methods moving forward.
+- **Standarize usage of sound datasets:** we standarize common attributes of sound datasets such as ``audio`` or ``tags`` to simplify audio research pipelines, while preserving each dataset's idiosyncracies: if a dataset has 'non-standard' attributes, we include them as well.
 
 
-For more details on how to use the library see the :ref:`tutorial`.
+------------
+
+
+Installation and compatibility
+""""""""""""""""""""""""""""""
+
+Soundata is compatible with:
+
+- Python 3.5-3.8
+- Ubuntu V???
+- macOS V???
+- Windows ?????????
+
+To install Soundata simply do:
+
+    .. code-block:: console
+
+        pip install soundata
+
+
+------------
 
 
 Citing soundata
---------------
+"""""""""""""""
 
 If you are using the library for your work, please cite the version you used as indexed at Zenodo:
 
-.. image:: https://zenodo.org/badge/343599660.svg
-   :target: https://zenodo.org/badge/latestdoi/343599660
+**TBA**
 
 If you refer to soundata's design principles, motivation etc., please cite the following
 `paper <https://soundata.pdf>`_  [#]_:
@@ -40,37 +55,21 @@ When working with datasets, please cite the version of ``soundata`` that you are
 **AND** include the reference of the dataset, which can be found in the respective dataset loader using the ``cite()`` method.
 
 
-Contributing to soundata
------------------------
-
-We welcome contributions to this library, especially new datasets.
-Please see :ref:`contributing` for guidelines.
-
-- `Issue Tracker <https://github.com/soundata/soundata/issues>`_
-- `Source Code <https://github.com/soundata/soundata>`_
-
-
 .. toctree::
-   :caption: Get Started
-   :maxdepth: 1
+   :hidden:
+   :maxdepth: 0
 
-
-   source/overview
-   source/quick_reference
+   self
    source/tutorial
-
-.. toctree::
-   :caption: API documentation
-   :maxdepth: 1
-
-   source/soundata
-
-.. toctree::
-   :caption: Further Information
-   :maxdepth: 1
-
    source/contributing
+   source/quick_reference
    source/faq
 
 
- 
+.. toctree::
+   :caption: API documentation
+   :maxdepth: 0
+
+   source/soundata
+
+
