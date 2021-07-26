@@ -1,13 +1,13 @@
 .. _tutorial:
 
-########
-Tutorial
-########
+###############
+Getting started
+###############
 
 Installation
 ------------
 
-To install ``soundata``:
+To install Soundata simply do:
 
     .. code-block:: console
 
@@ -33,7 +33,7 @@ Print a list of all available dataset loaders by calling:
     import soundata
     print(soundata.list_datasets())
 
-To use a loader, (for example, 'urbansound8k') you need to initialize it by calling:
+To use a loader, (for example, ``urbansound8k``) you need to initialize it by calling:
 
 .. code-block:: python
 
