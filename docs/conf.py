@@ -51,6 +51,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
+    "sphinx_togglebutton",
 ]
 
 # To shorten links of licenses and add to table
