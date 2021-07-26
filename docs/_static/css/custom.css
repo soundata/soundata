@@ -1,5 +1,11 @@
+nav.wy-nav-side {
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
 div.wy-side-nav-search {
-    background: #FFFFFF;
+    color: #404040;
+    background: rgb(255, 255, 255);
 }
 
 div.wy-side-nav-search .version {
@@ -13,5 +19,33 @@ span.caption-text {
 }
 
 div.wy-menu .caption-text {
-    color: #a054d8;
+    color: #2980b9;
+    font-weight: bold;
+    margin-left:15px;
+}
+
+div.wy-nav-content {
+    border-left: solid;
+    border-left-color:#404040;
+}
+
+div.wy-menu{
+
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
+div.wy-menu.wy-menu-vertical {
+
+    margin-left: 15px;
+    background: rgb(255, 255, 255);
+}
+
+div.wy-menu.wy-menu-vertical p {
+    margin: 0 0 0;
+}
+
+
+div.wy-menu-vertical a {
+    color: #404040;
 }
