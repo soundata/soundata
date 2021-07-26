@@ -50,6 +50,7 @@ if __name__ == "__main__":
                 "coveralls>=1.7.0",
             ],
             "docs": [
+                "docutils==0.16",
                 "numpydoc",
                 "recommonmark",
                 "sphinx>=3.4.0",
