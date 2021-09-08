@@ -111,13 +111,13 @@ Creative Commons Attribution 4.0 International
 
 
 @io.coerce_to_bytes_io
-def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
+def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """Load an EigenScape audio file.
     Args:
-        fhandle (str or file-like): path or file-like object pointing to an audio file
-        sr (int or None): sample rate for loaded audio, 24000 Hz by default.
-        If different from file's sample rate it will be resampled on load.
-        Use None to load the file using its original sample rate (24000)
+        fhandle (str or file-like): file-like object or path to audio file
+        sr (int or None): sample rate for loaded audio, None by default, which
+            uses the file's original sampling rate of 48000 without resampling.
+
     Returns:
         * np.ndarray - the audio signal
         * float - The sample rate of the audio file
@@ -135,7 +135,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name='Eigenscape',
+            name='eigenscape',
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -145,3 +145,36 @@ class Dataset(core.Dataset):
     @core.copy_docs(load_audio)
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
+
+
+    @core.cached_property
+    def _metadata(self):
+
+        metadata_path = os.path.join(
+            self.data_home, "Metadata-EigenScape.csv"
+        )
+
+        metadata_index = {}
+
+        with open(metadata_path) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=",")
+            next(csv_reader)
+            for row in csv_reader:
+                file_name = os.path.basename(row[0])
+                clip_id = os.path.basename(
+                        file_name
+                    ).replace(".wav", "").replace("-0", ".")
+                scene_label = row[1]
+                location = row[2]
+                time = row[3]
+                date = row[4]
+                additional_information = row[5]
+                metadata_index[clip_id] = {
+                    "scene_label": scene_label
+                    "location": location
+                    "time": time
+                    "date": date
+                    "additional information": additional_information
+                }
+
+        return metadata_index
