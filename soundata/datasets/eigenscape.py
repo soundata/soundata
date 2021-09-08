@@ -1,0 +1,147 @@
+"""EigenScape Dataset Loader
+.. admonition:: Dataset Info
+    :class: dropdown
+    *EigenScape: a database of spatial acoustic scene recordings*
+    *Created By:*
+        Marc Ciufo Green, Damian Murphy.
+        Audio Lab, Department of Electronic Engineering, University of York. Version 2.0
+    *Description:*
+        DESCRIPTION:
+        EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike. 
+        All scenes were recorded in 4th-order Ambisonics
+        The database contains recordings of eight different location classes: Beach, Busy Street, Park, Pedestrian Zone, Quiet Street, Shopping Centre, Train Station, Woodland.
+        The recordings were made in May 2017 at sites across the North of England. 
+    *Audio Files Included:*
+	* 8 different examples of each location class were recorded over a duration of 10 minutes 
+        * 64 recordings in total. 
+        * ACN channel ordering with SN3D normalisation at 24-bit / 48 kHz resolution. 
+    *Annotations Included:*
+        * No event labels associated with this dataset
+        * The metadata file gives more tempogeographic detail on each recording
+        * the EigenScape [recording map](http://bit.ly/EigenSMap) shows the locations and classes of all the recordings.
+        * No predefined training, validation, or testing splits. 
+    *Please Acknowledge EigenScape in Academic Research:*
+        * If you use this dataset please cite its original publication:
+            * Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
+    *License:*
+        * Creative Commons Attribution 4.0 International
+"""
+
+import os
+from typing import BinaryIO, Optional, TextIO, Tuple
+
+import librosa
+import numpy as np
+import csv
+import jams
+import glob
+import numbers
+from itertools import cycle
+
+from soundata import download_utils
+from soundata import jams_utils
+from soundata import core
+from soundata import annotations
+from soundata import io
+
+BIBTEX = """
+@article{green2017eigenscape,
+  title={EigenScape: A database of spatial acoustic scene recordings},
+  author={Green, Marc Ciufo and Murphy, Damian},
+  journal={Applied Sciences},
+  volume={7},
+  number={11},
+  pages={1204},
+  year={2017},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+"""
+
+REMOTES = {
+    "Beach": download_utils.RemoteFileMetadata(
+        filename='Beach.zip',
+        url='https://zenodo.org/record/1284156/files/Beach.zip?download=1',
+        checksum='3dd3920c3a5e56f534760fa2dac86359',
+    ),
+    "BusyStreet": download_utils.RemoteFileMetadata(
+        filename='BusyStreet.zip',
+        url='https://zenodo.org/record/1284156/files/BusyStreet.zip?download=1',
+        checksum='532b45f5d941d66506c42321a3e062ab',
+    ),
+    "Park": download_utils.RemoteFileMetadata(
+        filename='Park.zip',
+        url='https://zenodo.org/record/1284156/files/Park.zip?download=1',
+        checksum='1268c7d8057529672d3cc17bec8ae302', 
+    ),
+    "PedestrianZone": download_utils.RemoteFileMetadata(
+        filename='PedestrianZone.zip',
+        url='https://zenodo.org/record/1284156/files/PedestrianZone.zip?download=1',
+        checksum='799eb3fccdc628785b3fb69d01e9a7e4',
+    ),
+    "QuietStreet": download_utils.RemoteFileMetadata(
+        filename='QuietStreet.zip',
+        url='https://zenodo.org/record/1284156/files/QuietStreet.zip?download=1',
+        checksum='f3ead0a54b322886b78ca49c7374a987',
+    ),
+    "ShoppingCentre": download_utils.RemoteFileMetadata(
+        filename='ShoppingCentre.zip',
+        url='https://zenodo.org/record/1284156/files/ShoppingCentre.zip?download=1',
+        checksum='3f7541ab39d8b00a5898dd3a35412531',
+    ),
+    "TrainStation": download_utils.RemoteFileMetadata(
+        filename='TrainStation.zip',
+        url='https://zenodo.org/record/1284156/files/TrainStation.zip?download=1',
+        checksum='63fc5406485d5b876ef3805193d63841',
+    ),
+    "Woodland": download_utils.RemoteFileMetadata(
+        filename='Woodland.zip',
+        url='https://zenodo.org/record/1284156/files/Woodland.zip?download=1',
+        checksum='dadcf83c711ef0cf72f7a4d8585eddad',
+    ),
+    "Metadata-EigenScape": download_utils.RemoteFileMetadata(
+        filename='Metadata-EigenScape.csv',
+        url='https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1',
+        checksum='cbed105fb56604c4b763788690089d55',
+    ),
+}
+
+LICENSE_INFO = """
+Creative Commons Attribution 4.0 International
+"""
+
+
+@io.coerce_to_bytes_io
+def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
+    """Load an EigenScape audio file.
+    Args:
+        fhandle (str or file-like): path or file-like object pointing to an audio file
+        sr (int or None): sample rate for loaded audio, 24000 Hz by default.
+        If different from file's sample rate it will be resampled on load.
+        Use None to load the file using its original sample rate (24000)
+    Returns:
+        * np.ndarray - the audio signal
+        * float - The sample rate of the audio file
+    """
+    audio, sr = librosa.load(fhandle, sr=sr, mono=False)
+    return audio, sr
+
+
+@core.docstring_inherit(core.Dataset)
+class Dataset(core.Dataset):
+    """
+    The EigenScape dataset
+    """
+
+    def __init__(self, data_home=None):
+        super().__init__(
+            data_home,
+            name='Eigenscape',
+            clip_class=Clip,
+            bibtex=BIBTEX,
+            remotes=REMOTES,
+            license_info=LICENSE_INFO,
+        )
+
+    @core.copy_docs(load_audio)
+    def load_audio(self, *args, **kwargs):
+        return load_audio(*args, **kwargs)
