@@ -110,6 +110,86 @@ Creative Commons Attribution 4.0 International
 """
 
 
+class Clip(core.Clip):
+    """Eigenscape Clip class
+
+    Args:
+        clip_id (str): id of the clip
+
+    Attributes:
+        tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
+        audio_path (str): path to the audio file
+        clip_id (str): clip id
+        city (str): city were the audio signal was recorded
+        identifier (str): identifier present in the metadata
+
+    """
+
+    def __init__(
+        self,
+        clip_id,
+        data_home,
+        dataset_name,
+        index,
+        metadata,
+    ):
+        super().__init__(
+            clip_id,
+            data_home,
+            dataset_name,
+            index,
+            metadata,
+        )
+
+        self.audio_path = self.get_path("audio")
+
+    @property
+    def audio(self) -> Optional[Tuple[np.ndarray, float]]:
+        """The clip's audio
+
+        Returns:
+            * np.ndarray - audio signal
+            * float - sample rate
+
+        """
+        return load_audio(self.audio_path)
+
+    @property
+    def tags(self):
+        scene_label = self._clip_metadata.get("scene_label")
+        if scene_label is None:
+            return None
+        else:
+            return annotations.Tags([scene_label], "open", np.array([1.0]))
+
+    @property
+    def location(self):
+        return self._clip_metadata.get("location")
+
+    @property
+    def time(self):
+        return self._clip_metadata.get("time")
+
+    @property
+    def date(self):
+        return self._clip_metadata.get("date")
+
+    @property
+    def additional_information(self):
+        return self._clip_metadata.get("additional information")
+
+    def to_jams(self):
+        """Get the clip's data in jams format
+
+        Returns:
+            jams.JAMS: the clip's data in jams format
+
+        """
+        return jams_utils.jams_converter(
+            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
+        )
+
+
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """Load an EigenScape audio file.
