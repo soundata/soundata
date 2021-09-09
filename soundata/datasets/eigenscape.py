@@ -250,10 +250,10 @@ class Dataset(core.Dataset):
                 date = row[4]
                 additional_information = row[5]
                 metadata_index[clip_id] = {
-                    "scene_label": scene_label
-                    "location": location
-                    "time": time
-                    "date": date
+                    "scene_label": scene_label,
+                    "location": location,
+                    "time": time,
+                    "date": date,
                     "additional information": additional_information
                 }
 
