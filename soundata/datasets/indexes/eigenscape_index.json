@@ -1,12 +1,6 @@
 {
   "version": "2.0",
   "clips": {
-    "Beach.1": {
-      "audio": [
-        "Beach.1.wav",
-        "b199ddd2350c0516c6908e12bea1095b"
-      ]
-    },
     "TrainStation.4": {
       "audio": [
         "TrainStation.4.wav",
@@ -277,6 +271,12 @@
         "df37f4b55601dee50def0e486d38bdb3"
       ]
     },
+    "Beach.1": {
+      "audio": [
+        "Beach.1.wav",
+        "b199ddd2350c0516c6908e12bea1095b"
+      ]
+    },
     "TrainStation.7": {
       "audio": [
         "TrainStation.7.wav",
@@ -386,8 +386,10 @@
       ]
     }
   },
-  "metadata": [
-    "Metadata-EigenScape.csv",
-    "cbed105fb56604c4b763788690089d55"
-  ]
+  "metadata": {
+    "Metadata-EigenScape": [
+      "Metadata-EigenScape.csv",
+      "cbed105fb56604c4b763788690089d55"
+    ]
+  }
 }
