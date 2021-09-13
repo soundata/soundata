@@ -13,10 +13,12 @@ def make_index(data_path):
     index = {
         "version": "2.0",
         "clips": {},
-        "metadata": [
-            "Metadata-EigenScape.csv",
-            md5(os.path.join(data_path, "Metadata-EigenScape.csv")),
-        ],
+        "metadata": {
+            "Metadata-EigenScape" : [
+                "Metadata-EigenScape.csv",
+                md5(os.path.join(data_path, "Metadata-EigenScape.csv")),
+            ]
+        }
     }
 
     # audio folder
