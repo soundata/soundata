@@ -9,7 +9,7 @@ authors:
   - name: Magdalena Fuentes*
     orcid: 0000-0003-4506-6639
     affiliation: 1
-   - name: Justin Salamon*
+  - name: Justin Salamon*
     orcid: 
     affiliation: 2
   - name: Pablo Zinemanas
@@ -45,6 +45,8 @@ bibliography: paper.bib
 # Summary
 
 Based on [@bittner_fuentes_2019_mirdata]
+
+# Statement of need
 
 
 # Acknowledgements
