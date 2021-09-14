@@ -1,6 +1,12 @@
 {
   "version": "2.0",
   "clips": {
+    "Beach.1": {
+      "audio": [
+        "Beach.1.wav",
+        "b199ddd2350c0516c6908e12bea1095b"
+      ]
+    },
     "TrainStation.4": {
       "audio": [
         "TrainStation.4.wav",
@@ -269,12 +275,6 @@
       "audio": [
         "Park.3.wav",
         "df37f4b55601dee50def0e486d38bdb3"
-      ]
-    },
-    "Beach.1": {
-      "audio": [
-        "Beach.1.wav",
-        "b199ddd2350c0516c6908e12bea1095b"
       ]
     },
     "TrainStation.7": {
