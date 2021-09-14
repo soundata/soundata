@@ -28,8 +28,8 @@ def make_index(data_path):
         ],
         'acapella': ["Acappella"],
         'organ': ["Organ"],
-        'piano_solo_1': ["Piano Solo 1"], 
-        'piano_solo_2': ["Piano Solo 2"],
+        'piano_solo_1': ["Piano solo 1"], 
+        'piano_solo_2': ["Piano solo 2"],
         'quartet': ["Quartet"],
         'single_sources': [
             "Single sources at different positions/01_0deg",
