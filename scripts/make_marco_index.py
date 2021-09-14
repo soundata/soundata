@@ -53,7 +53,7 @@ def make_index(data_path):
         for path in paths:
 
             audio_path = os.path.join(data_path, path)
-            wavfiles = glob.glob(os.path.join(audio_path, "*.wav")
+            wavfiles = glob.glob(os.path.join(audio_path, "*.wav"))
 
             for wf in wavfiles:
                 
