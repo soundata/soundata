@@ -59,49 +59,49 @@ BIBTEX = """
 
 REMOTES = {
     "Beach": download_utils.RemoteFileMetadata(
-        filename='Beach.zip',
-        url='https://zenodo.org/record/1284156/files/Beach.zip?download=1',
-        checksum='3dd3920c3a5e56f534760fa2dac86359',
+        filename="Beach.zip",
+        url="https://zenodo.org/record/1284156/files/Beach.zip?download=1",
+        checksum="3dd3920c3a5e56f534760fa2dac86359",
     ),
     "BusyStreet": download_utils.RemoteFileMetadata(
-        filename='BusyStreet.zip',
-        url='https://zenodo.org/record/1284156/files/BusyStreet.zip?download=1',
-        checksum='532b45f5d941d66506c42321a3e062ab',
+        filename="BusyStreet.zip",
+        url="https://zenodo.org/record/1284156/files/BusyStreet.zip?download=1",
+        checksum="532b45f5d941d66506c42321a3e062ab",
     ),
     "Park": download_utils.RemoteFileMetadata(
-        filename='Park.zip',
-        url='https://zenodo.org/record/1284156/files/Park.zip?download=1',
-        checksum='1268c7d8057529672d3cc17bec8ae302', 
+        filename="Park.zip",
+        url="https://zenodo.org/record/1284156/files/Park.zip?download=1",
+        checksum="1268c7d8057529672d3cc17bec8ae302",
     ),
     "PedestrianZone": download_utils.RemoteFileMetadata(
-        filename='PedestrianZone.zip',
-        url='https://zenodo.org/record/1284156/files/PedestrianZone.zip?download=1',
-        checksum='799eb3fccdc628785b3fb69d01e9a7e4',
+        filename="PedestrianZone.zip",
+        url="https://zenodo.org/record/1284156/files/PedestrianZone.zip?download=1",
+        checksum="799eb3fccdc628785b3fb69d01e9a7e4",
     ),
     "QuietStreet": download_utils.RemoteFileMetadata(
-        filename='QuietStreet.zip',
-        url='https://zenodo.org/record/1284156/files/QuietStreet.zip?download=1',
-        checksum='f3ead0a54b322886b78ca49c7374a987',
+        filename="QuietStreet.zip",
+        url="https://zenodo.org/record/1284156/files/QuietStreet.zip?download=1",
+        checksum="f3ead0a54b322886b78ca49c7374a987",
     ),
     "ShoppingCentre": download_utils.RemoteFileMetadata(
-        filename='ShoppingCentre.zip',
-        url='https://zenodo.org/record/1284156/files/ShoppingCentre.zip?download=1',
-        checksum='3f7541ab39d8b00a5898dd3a35412531',
+        filename="ShoppingCentre.zip",
+        url="https://zenodo.org/record/1284156/files/ShoppingCentre.zip?download=1",
+        checksum="3f7541ab39d8b00a5898dd3a35412531",
     ),
     "TrainStation": download_utils.RemoteFileMetadata(
-        filename='TrainStation.zip',
-        url='https://zenodo.org/record/1284156/files/TrainStation.zip?download=1',
-        checksum='63fc5406485d5b876ef3805193d63841',
+        filename="TrainStation.zip",
+        url="https://zenodo.org/record/1284156/files/TrainStation.zip?download=1",
+        checksum="63fc5406485d5b876ef3805193d63841",
     ),
     "Woodland": download_utils.RemoteFileMetadata(
-        filename='Woodland.zip',
-        url='https://zenodo.org/record/1284156/files/Woodland.zip?download=1',
-        checksum='dadcf83c711ef0cf72f7a4d8585eddad',
+        filename="Woodland.zip",
+        url="https://zenodo.org/record/1284156/files/Woodland.zip?download=1",
+        checksum="dadcf83c711ef0cf72f7a4d8585eddad",
     ),
     "Metadata-EigenScape": download_utils.RemoteFileMetadata(
-        filename='Metadata-EigenScape.csv',
-        url='https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1',
-        checksum='cbed105fb56604c4b763788690089d55',
+        filename="Metadata-EigenScape.csv",
+        url="https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1",
+        checksum="cbed105fb56604c4b763788690089d55",
     ),
 }
 
@@ -125,21 +125,8 @@ class Clip(core.Clip):
 
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -215,7 +202,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name='eigenscape',
+            name="eigenscape",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -226,13 +213,10 @@ class Dataset(core.Dataset):
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
 
-
     @core.cached_property
     def _metadata(self):
 
-        metadata_path = os.path.join(
-            self.data_home, "Metadata-EigenScape.csv"
-        )
+        metadata_path = os.path.join(self.data_home, "Metadata-EigenScape.csv")
 
         metadata_index = {}
 
@@ -241,9 +225,9 @@ class Dataset(core.Dataset):
             next(csv_reader)
             for row in csv_reader:
                 file_name = os.path.basename(row[0])
-                clip_id = os.path.basename(
-                        file_name
-                    ).replace(".wav", "").replace("-0", ".")
+                clip_id = (
+                    os.path.basename(file_name).replace(".wav", "").replace("-0", ".")
+                )
                 scene_label = row[1]
                 location = row[2]
                 time = row[3]
@@ -254,7 +238,7 @@ class Dataset(core.Dataset):
                     "location": location,
                     "time": time,
                     "date": date,
-                    "additional information": additional_information
+                    "additional information": additional_information,
                 }
 
         return metadata_index

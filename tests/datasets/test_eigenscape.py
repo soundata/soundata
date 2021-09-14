@@ -15,9 +15,7 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": (
-            "tests/resources/sound_datasets/eigenscape/Beach.1.wav"
-        ),
+        "audio_path": ("tests/resources/sound_datasets/eigenscape/Beach.1.wav"),
         "clip_id": "Beach.1",
     }
 
@@ -41,9 +39,9 @@ def test_load_audio():
     audio, sr = eigenscape.load_audio(audio_path)
     assert sr == 48000
     assert type(audio) is np.ndarray
-    assert len(audio.shape) == 2  # check audio is loaded as stereo  
+    assert len(audio.shape) == 2  # check audio is loaded as stereo
     assert audio.shape[0] == 25  # check audio is 25ch (HOA 4th order)
-    assert audio.shape[1] == 48000*2.5  # Check audio duration is as expected
+    assert audio.shape[1] == 48000 * 2.5  # Check audio duration is as expected
 
 
 def test_load_tags():
@@ -64,7 +62,8 @@ def test_load_metadata():
     assert clip.location == "Bridlington Beach"
     assert clip.time == "10:42"
     assert clip.date == "09/05/2017"
-    assert clip.additional_information == ''
+    assert clip.additional_information == ""
+
 
 def test_to_jams():
     default_clipid = "Beach.1"
