@@ -46,7 +46,6 @@ def make_index(data_path):
     index = {
         "version": "1.0.1",
         "clips": {},
-        }
     }
 
     for source_type, paths in rel_paths.items():
