@@ -7,7 +7,6 @@ from soundata.validate import md5
 
 INDEX_PATH = "../soundata/datasets/indexes/eigenscape_index.json"
 
-
 def make_index(data_path):
 
     index = {
