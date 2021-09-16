@@ -1,3 +1,4 @@
+
 nav.wy-nav-side {
     background: rgb(255, 255, 255);
     color: #404040;
@@ -28,6 +29,7 @@ div.wy-nav-content {
     border-left: solid;
     border-left-color:#404040;
     list-style: disc;
+    max-width: 1200px;
 }
 
 div.wy-menu{
