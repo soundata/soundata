@@ -3,7 +3,8 @@ About Soundata
 
 
 Soundata is a Python library for loading and working with audio datasets in a standarized way,
-removing the need for writing custom loaders in every project, and improving reproducibility. It allows you to quickly
+removing the need for writing custom loaders in every project, and improving reproducibility by providing
+tools validate data against a canonical version. It speeds up research pipelines by allowing you to quickly
 ``download`` a dataset, ``load`` it into memory in a ``standarized`` and ``reproducible`` way, ``validate``
 that the dataset is complete and correct, and more.
 
@@ -19,15 +20,8 @@ following these desig principles:
 ------------
 
 
-Installation and compatibility
-""""""""""""""""""""""""""""""
-
-Soundata is compatible with:
-
-- Python 3.5-3.8
-- Ubuntu V???
-- macOS V???
-- Windows ?????????
+Installation
+""""""""""""
 
 To install Soundata simply do:
 
@@ -35,6 +29,43 @@ To install Soundata simply do:
 
         pip install soundata
 
+
+We recommend to do this inside a conda or virtual environment for reproducibility.
+
+------------
+
+Example Usage
+"""""""""""""
+
+.. code-block:: Python
+
+    import soundata
+
+    # learn wich datasets are available in soundata
+    print(soundata.list_datasets())
+
+    # choose a dataset and download it
+    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
+    dataset.download()
+
+    # get annotations and audio for a random clip
+    example_clip = dataset.choice_clip()
+    tags = example_clip.tags
+    y, sr = example_clip.audio
+
+
+------------
+
+Contributing
+""""""""""""
+
+We welcome and encourage contributions to soundata, especially new dataset loaders. To contribute a new loader,
+please follow the steps indicated in the :ref:`contributing` page and submit a Pull Request (PR) to the github
+repository. For any doubt or comment about your contribution, you can always submit an issue or open a discussion
+in the repository.
+
+- `Issue Tracker <https://github.com/soundata/soundata/issues>`_
+- `Source Code <https://github.com/soundata/soundata>`_
 
 ------------
 
