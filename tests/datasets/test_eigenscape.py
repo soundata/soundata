@@ -39,7 +39,7 @@ def test_load_audio():
     audio, sr = eigenscape.load_audio(audio_path)
     assert sr == 48000
     assert type(audio) is np.ndarray
-    assert len(audio.shape) == 2  # check audio is loaded as stereo
+    assert len(audio.shape) == 2  # check audio is loaded correctly
     assert audio.shape[0] == 25  # check audio is 25ch (HOA 4th order)
     assert audio.shape[1] == 48000 * 2.5  # Check audio duration is as expected
 
