@@ -13,6 +13,13 @@ Initializing
 Dataset Loaders
 ---------------
 
+EigenScape
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape
+   :members:
+   :inherited-members:
+
 ESC-50
 ^^^^^^
 
