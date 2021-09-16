@@ -9,6 +9,15 @@
      - Duration (hours)
      - License
 
+   * - EigenScape
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 64
+     - 10.7
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
    * - ESC-50
      - - audio: ✅
        - annotations: ✅
