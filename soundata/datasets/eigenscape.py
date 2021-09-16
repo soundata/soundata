@@ -10,7 +10,6 @@
         Audio Lab, Department of Electronic Engineering, University of York. Version 2.0
 	
     *Description:*
-        DESCRIPTION:
         EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike. 
         All scenes were recorded in 4th-order Ambisonics
         The database contains recordings of eight different location classes: Beach, Busy Street, Park, Pedestrian Zone, Quiet Street, Shopping Centre, Train Station, Woodland.
@@ -46,11 +45,7 @@ import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils
-from soundata import jams_utils
-from soundata import core
-from soundata import annotations
-from soundata import io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 BIBTEX = """
 @article{green2017eigenscape,
@@ -225,6 +220,9 @@ class Dataset(core.Dataset):
     def _metadata(self):
 
         metadata_path = os.path.join(self.data_home, "Metadata-EigenScape.csv")
+	
+	if not os.path.exists(metadata_path):
+            raise FileNotFoundError("Metadata not found. Did you run .download()?")
 
         metadata_index = {}
 
