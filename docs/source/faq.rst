@@ -1,3 +1,5 @@
+.. _faq:
+
 ###
 FAQ
 ###
@@ -16,6 +18,13 @@ FAQ
     :class: dropdown
 
     Sorry, we do not host or distribute datasets.
+
+
+.. admonition:: What is the canonical version of a loader?
+    :class: dropdown
+
+    The ``canonical`` version of a loader is the source version of a dataset, i.e. the version that you get directly from the creators of the dataset or similar oficial source.
+
 
 .. admonition:: How do I request a new dataset?
     :class: dropdown
