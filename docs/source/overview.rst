@@ -10,7 +10,8 @@ Overview
 
 
 ``soundata`` is a library which aims to standardize how audio datasets are accessed in Python,
-removing the need for writing custom loaders in every project, and improving reproducibility.
+removing the need for writing custom loaders in every project, and improving reproducibility by providing
+tools to contrast data validity to a canonical version.
 Working with datasets usually requires an often cumbersome step of downloading data and writing 
 load functions that load related files (for example, audio and annotations)
 into a standard format to be used for experimenting or evaluating. ``soundata`` does all of this for you:
