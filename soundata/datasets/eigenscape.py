@@ -220,8 +220,8 @@ class Dataset(core.Dataset):
     def _metadata(self):
 
         metadata_path = os.path.join(self.data_home, "Metadata-EigenScape.csv")
-	
-	if not os.path.exists(metadata_path):
+
+        if not os.path.exists(metadata_path):
             raise FileNotFoundError("Metadata not found. Did you run .download()?")
 
         metadata_index = {}
