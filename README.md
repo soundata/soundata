@@ -42,6 +42,11 @@ See the [documentation](https://soundata.readthedocs.io/) for more examples and 
 ### Currently supported datasets
 
 * ESC-50
+* FSD50K
+* FSDnoisy18K  
+* TAU Urban Acoustic Scenes 2019
+* TAU Urban Acoustic Scenes 2020 Mobile
+* TUT Sound events 2017
 * URBAN-SED
 * UrbanSound8K
 * More added soon!

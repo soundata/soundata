@@ -13,10 +13,18 @@ Initializing
 Dataset Loaders
 ---------------
 
+
 DCASE Challenge 2020 Task 2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.dcase2020task2
+   :members:
+   :inherited-members:
+   
+EigenScape
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape
    :members:
    :inherited-members:
 
@@ -24,6 +32,34 @@ ESC-50
 ^^^^^^
 
 .. automodule:: soundata.datasets.urbansound8k
+   :members:
+   :inherited-members:
+
+FSD50K
+^^^^^^
+
+.. automodule:: soundata.datasets.fsd50k
+   :members:
+   :inherited-members:
+
+FSDnoisy18K
+^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.fsdnoisy18k
+   :members:
+   :inherited-members:
+
+TAU Urban Acoustic Scenes 2019
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2019uas
+   :members:
+   :inherited-members:
+   
+TAU Urban Acoustic Scenes 2020 Mobile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2020uas_mobile
    :members:
    :inherited-members:
 

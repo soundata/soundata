@@ -9,6 +9,7 @@
      - Duration (hours)
      - License
 
+
    * - DCASE Challenge 2020 Task 2
      - - audio: ✅
        - annotations: ✅
@@ -18,6 +19,16 @@
      - .. image:: https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc-sa/4.0
 
+   * - EigenScape
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 64
+     - 10.7
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+
    * - ESC-50
      - - audio: ✅
        - annotations: ✅
@@ -26,6 +37,40 @@
      - 2.8
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
+
+   * - FSD50K
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 51197
+     - 108.3
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - FSDnoisy18K
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 18532
+     - 42.5
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - TAU Urban Acoustic Scenes 2019
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 22800
+     - 63.3
+     - :tau2019:`\ `
+
+   * - TAU Urban Acoustic Scenes 2020 Mobile
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 34915
+     - 97
+     - :tau2020:`\ `
 
    * - TUT Sound events 2017
      - - audio: ✅

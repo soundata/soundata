@@ -16,201 +16,127 @@ def test_repr():
     test_track = TestAnnotation()
     assert test_track.__repr__() == """TestAnnotation(a, b)"""
 
-    beat_data = annotations.BeatData(np.array([1.0, 2.0]))
-    assert beat_data.__repr__() == "BeatData(positions, times)"
+    event_data = annotations.Events(
+        np.array([[1.0, 2.0], [3.0, 4.0]]),
+        "seconds",
+        ["Siren", "Dog"],
+        "open",
+    )
+    assert (
+        event_data.__repr__()
+        == "Events(confidence, intervals, intervals_unit, labels, labels_unit)"
+    )
 
 
 def test_tags():
     # test good data
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
-    tags = annotations.Tags(labels, confidence)
+    confidence = np.array([1.0, 0.0, 1.0])
+    tags = annotations.Tags(labels, "open", confidence)
     assert tags.labels == labels
     assert np.allclose(tags.confidence, confidence)
 
     # test bad data
     bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(TypeError, annotations.Tags, bad_labels, confidence)
+    pytest.raises(TypeError, annotations.Tags, bad_labels, "open", confidence)
 
     bad_confidence = np.array([1, 0.5, -0.2])
-    pytest.raises(ValueError, annotations.Tags, labels, bad_confidence)
+    pytest.raises(ValueError, annotations.Tags, labels, "open", bad_confidence)
+
+    # test units
+    with pytest.raises(ValueError):
+        annotations.Tags(labels, "bad_unit", confidence)
 
 
 def test_events():
     # test good data
     intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
     labels = ["Siren", "Laughter", "Engine"]
-    confidence = np.array([1, 0.5, 0.2])
-    events = annotations.Events(intervals, labels, confidence)
+    confidence = np.array([1.0, 0.0, 1.0])
+    events = annotations.Events(intervals, "seconds", labels, "open", confidence)
     assert np.allclose(events.intervals, intervals)
     assert events.labels == labels
     assert np.allclose(events.confidence, confidence)
 
     # test bad data
     bad_intervals = np.array([[1.0, 0.0], [1.5, 3.0], [2.0, 3.0]])
-    pytest.raises(ValueError, annotations.Events, bad_intervals, labels, confidence)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        bad_intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+    )
 
     bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(TypeError, annotations.Events, intervals, bad_labels, confidence)
+    pytest.raises(
+        TypeError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        bad_labels,
+        "open",
+        confidence,
+    )
 
     bad_confidence = np.array([1, 0.5, -0.2])
-    pytest.raises(ValueError, annotations.Events, intervals, labels, bad_confidence)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        bad_confidence,
+    )
 
-
-def test_beat_data():
-    times = np.array([1.0, 2.0])
-    positions = np.array([3, 4])
-    beat_data = annotations.BeatData(times)
-    assert np.allclose(beat_data.times, times)
-    assert beat_data.positions is None
-    beat_data2 = annotations.BeatData(times, positions)
-    assert np.allclose(beat_data2.times, times)
-    assert np.allclose(beat_data2.positions, positions)
-
-    with pytest.raises(ValueError):
-        annotations.BeatData(None, None)
-
-    with pytest.raises(TypeError):
-        annotations.BeatData([1.0, 2.0])
-
-    with pytest.raises(TypeError):
-        annotations.BeatData(times, [3, 4])
-
-    with pytest.raises(TypeError):
-        annotations.BeatData(times.astype(int))
+    # test units
 
     with pytest.raises(ValueError):
-        annotations.BeatData(times, np.array([1]))
-
-
-def test_section_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    labels = ["a", "b", "c"]
-    section_data = annotations.SectionData(intervals)
-    assert np.allclose(section_data.intervals, intervals)
-    assert section_data.labels is None
-    section_data2 = annotations.SectionData(intervals, labels)
-    assert np.allclose(section_data2.intervals, intervals)
-    assert section_data2.labels == labels
+        annotations.Events(intervals, "seconds", labels, "bad_unit", confidence)
 
     with pytest.raises(ValueError):
-        annotations.SectionData(None, None)
+        annotations.Events(intervals, "bad_unit", labels, "open", confidence)
 
     with pytest.raises(TypeError):
-        annotations.SectionData([1.0, 2.0])
+        annotations.Events(intervals, labels, confidence)
 
     with pytest.raises(TypeError):
-        annotations.SectionData(intervals, np.array(labels))
+        annotations.Events(intervals, labels, "open", confidence)
 
     with pytest.raises(TypeError):
-        annotations.SectionData(intervals.astype(int))
-
-    with pytest.raises(ValueError):
-        annotations.SectionData(intervals, ["a"])
-
-    with pytest.raises(ValueError):
-        annotations.SectionData(np.array([1.0, 2.0, 3.0]))
-
-    with pytest.raises(ValueError):
-        annotations.SectionData(np.array([[1.0, 2.0], [2.0, 1.0]]))
+        annotations.Events(intervals, "seconds", labels, confidence)
 
 
-def test_note_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    notes = np.array([100.0, 150.0, 120.0])
-    confidence = np.array([0.1, 0.4, 0.2])
-    note_data = annotations.NoteData(intervals, notes)
-    assert np.allclose(note_data.intervals, intervals)
-    assert np.allclose(note_data.notes, notes)
-    assert note_data.confidence is None
-    note_data2 = annotations.NoteData(intervals, notes, confidence)
-    assert np.allclose(note_data2.intervals, intervals)
-    assert np.allclose(note_data2.notes, notes)
-    assert np.allclose(note_data2.confidence, confidence)
+def test_multiannotator():
+    # test good data
+    annotators = ["annotator_1", "annotator_2"]
+    labels_1 = ["Siren", "Engine"]
+    labels_2 = ["Siren", "Dog"]
+    confidence_1 = np.array([1.0, 1.0])
+    confidence_2 = np.array([1.0, 1.0])
+    multi_annot = [
+        annotations.Tags(labels_1, "open", confidence_1),
+        annotations.Tags(labels_2, "open", confidence_2),
+    ]
+    tags = annotations.MultiAnnotator(annotators, multi_annot)
 
-    with pytest.raises(ValueError):
-        annotations.NoteData(None, notes)
+    assert tags.annotations[0].labels == labels_1
+    assert tags.annotators[1] == "annotator_2"
+    assert np.allclose(tags.annotations[1].confidence, confidence_2)
 
-    with pytest.raises(ValueError):
-        annotations.NoteData(intervals, None)
-
-    with pytest.raises(TypeError):
-        annotations.NoteData([1.0, 2.0], notes)
-
-    with pytest.raises(TypeError):
-        annotations.NoteData(intervals, [3.0, 4.0])
-
-    with pytest.raises(TypeError):
-        annotations.NoteData(intervals.astype(int), notes)
-
-    with pytest.raises(ValueError):
-        annotations.NoteData(intervals, np.array([1.0]))
-
-
-def test_chord_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    labels = ["E:m", "A", "G:7"]
-    confidence = np.array([0.1, 0.4, 0.2])
-    chord_data = annotations.ChordData(intervals, labels, confidence)
-    assert np.allclose(chord_data.intervals, intervals)
-    assert chord_data.labels == labels
-    assert np.allclose(chord_data.confidence, confidence)
-
-
-def test_f0_data():
-    times = np.array([1.0, 2.0, 3.0])
-    frequencies = np.array([100.0, 150.0, 120.0])
-    confidence = np.array([0.1, 0.4, 0.2])
-    f0_data = annotations.F0Data(times, frequencies, confidence)
-    assert np.allclose(f0_data.times, times)
-    assert np.allclose(f0_data.frequencies, frequencies)
-    assert np.allclose(f0_data.confidence, confidence)
-
-
-def test_multif0_data():
-    times = np.array([1.0, 2.0])
-    frequencies = [[100.0], [150.0, 120.0]]
-    confidence = [[0.1], [0.4, 0.2]]
-    f0_data = annotations.MultiF0Data(times, frequencies, confidence)
-    assert np.allclose(f0_data.times, times)
-    assert f0_data.frequency_list is not None
-    assert f0_data.confidence_list is not None
-
-
-def test_key_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    keys = ["Em", "A", "G"]
-    key_data = annotations.KeyData(intervals, keys)
-    assert np.allclose(key_data.intervals, intervals)
-    assert key_data.keys == keys
-
-
-def test_lyric_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    lyrics = ["E:m", "A", "G:7"]
-    pronunciations = ["a", "", "b"]
-    lyric_data = annotations.LyricData(intervals, lyrics, pronunciations)
-    assert np.allclose(lyric_data.intervals, intervals)
-    assert lyric_data.lyrics == lyrics
-    assert lyric_data.pronunciations == pronunciations
-
-
-def test_tempo_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    value = np.array([140.0, 110.0, 111.0])
-    confidence = np.array([0.1, 0.4, 0.2])
-    tempo_data = annotations.TempoData(intervals, value, confidence)
-    assert np.allclose(tempo_data.intervals, intervals)
-    assert np.allclose(tempo_data.value, value)
-    assert np.allclose(tempo_data.confidence, confidence)
-
-
-def test_event_data():
-    intervals = np.array([[1.0, 2.0], [1.5, 3.0], [2.0, 3.0]])
-    events = ["E:m", "A", "G:7"]
-    event_data = annotations.EventData(intervals, events)
-    assert np.allclose(event_data.intervals, intervals)
-    assert event_data.events == events
+    # test bad data
+    bad_labels = ["Siren", "Laughter", 5]
+    pytest.raises(TypeError, annotations.MultiAnnotator, annotators, bad_labels)
+    pytest.raises(TypeError, annotations.MultiAnnotator, [0, 1], multi_annot)
+    pytest.raises(
+        TypeError,
+        annotations.MultiAnnotator,
+        annotators,
+        [["bad", "format"], ["indeed"]],
+    )
 
 
 def test_validate_array_like():
@@ -270,3 +196,19 @@ def test_validate_intervals():
 
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
+
+
+def test_validate_unit():
+
+    annotations.validate_unit("unit_1", {"unit_1": "potatoes", "unit_2": "apples"})
+    annotations.validate_unit(
+        None, {"unit_1": "potatoes", "unit_2": "apples"}, allow_none=True
+    )
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit(
+            "wrong_unit", {"unit_1": "potatoes", "unit_2": "apples"}
+        )
+
+    with pytest.raises(ValueError):
+        annotations.validate_unit(None, {"unit_1": "potatoes", "unit_2": "apples"})

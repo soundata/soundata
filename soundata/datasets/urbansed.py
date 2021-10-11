@@ -277,7 +277,9 @@ def load_events(fhandle: TextIO) -> annotations.Events:
         labels.append(line[2])
         confidence.append(1.0)
 
-    events_data = annotations.Events(np.array(times), labels, np.array(confidence))
+    events_data = annotations.Events(
+        np.array(times), "seconds", labels, "open", np.array(confidence)
+    )
     return events_data
 
 
