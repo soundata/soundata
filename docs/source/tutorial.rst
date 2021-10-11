@@ -12,7 +12,6 @@ To install Soundata simply do:
     .. code-block:: console
 
         pip install soundata
-meeting
 
 Soundata is easily imported into your Python code by:
 
@@ -39,7 +38,7 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
     dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
 
 You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
-object containing common methods, described below.
+object containing common methods, described in the following.
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^

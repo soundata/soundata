@@ -50,22 +50,43 @@ div.wy-menu.wy-menu-vertical p {
 
 
 div.wy-menu-vertical a {
-    color: #2980b9;
+    color: #126782;
     font-weight: bold;
 }
 
 div.wy-menu-vertical a:hover {
-    color: rgb(250,250,250);
+    color: #126782;
     font-weight: bold;
-    background: #404040;
+    background: #ced4da;
 }
 
 div.wy-menu-vertical a:active {
-    color: #404040;
+    color: #126782;
     font-weight: bold;
 }
 
 div.wy-menu-vertical a:visited {
-    color: #2980b9;
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #126782;
+    font-weight: bold;
+}
+
+
+.rst-content .admonition-title, .wy-alert-title {
+    background: #126782;
+}
+
+span.std.std-ref {
+    color: #126782;
+    font-weight: bold;
+
+}
+
+a.reference.external {
+    color: #126782;
     font-weight: bold;
 }
