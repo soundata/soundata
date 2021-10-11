@@ -16,7 +16,7 @@
     Pablo Zinemanas, Pablo Cancela, and Martín Rocamora.
     Facultad de Ingeniería, Universidad de la República, Montevideo, Uruguay.
 
-    Version 0.1.0
+    Version 0.1.1
     -------------
     - NOTE: video files in this release are provided in low resolution (176x144) and are not downloaded by default with this loader.
 
@@ -133,33 +133,38 @@ BIBTEX = """
 REMOTES = {
     "annotations_test": download_utils.RemoteFileMetadata(
         filename="annotations_test.zip",
-        url="https://zenodo.org/record/3338727/files/annotations_test.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/annotations_test.zip?download=1",
         checksum="94e609cad8702f5fb6afe52815547b67"
     ),
     "annotations_train": download_utils.RemoteFileMetadata(
         filename="annotations_train.zip",
-        url="https://zenodo.org/record/3338727/files/annotations_train.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/annotations_train.zip?download=1",
         checksum="ea67a330ab695873a12a07ed494eae42"
     ),
     "annotations_validate": download_utils.RemoteFileMetadata(
         filename="annotations_validate.zip",
-        url="https://zenodo.org/record/3338727/files/annotations_validate.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/annotations_validate.zip?download=1",
         checksum="30edae5c398dffe52a2ee1373e89fd96"
     ),  
     "audio_test": download_utils.RemoteFileMetadata(
         filename="audio_test.zip",
-        url="https://zenodo.org/record/3338727/files/audio_test.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/audio_test.zip?download=1",
         checksum="824b035fa76dc83919e312105db4214f"
     ),
     "audio_train": download_utils.RemoteFileMetadata(
         filename="audio_train.zip",
-        url="https://zenodo.org/record/3338727/files/audio_train.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/audio_train.zip?download=1",
         checksum="c7a897623364f80c8ff3775d8dd601a2"
     ),
     "audio_validate": download_utils.RemoteFileMetadata(
         filename="audio_validate.zip",
-        url="https://zenodo.org/record/3338727/files/audio_validate.zip?download=1",
+        url="https://zenodo.org/record/4741232/files/audio_validate.zip?download=1",
         checksum="d220cef03f99b2d108d708421240f86d"
+    )   
+    "metadata": download_utils.RemoteFileMetadata(
+        filename="metadata.txt",
+        url="https://zenodo.org/record/4741232/files/metadata.txt?download=1",
+        checksum="593cad71171d713775e102bb59d909da"
     )   
 }
 
@@ -216,7 +221,7 @@ class Clip(core.Clip):
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
-        return load_events(self.csv_path)
+        return load_events(self.txt_path)
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
@@ -238,7 +243,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
-    """Load an MAVD-traffic sound events annotation file
+    """Load an MAVD-traffic sound events annotation file.
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
     Returns:
@@ -252,7 +257,7 @@ def load_events(fhandle: TextIO) -> annotations.Events:
     for line in reader:
         times.append([float(line[0]), float(line[1])])
         labels.append(line[2])
-        confidence.append(1.0) # There is no confidence annotation in MAVD-traffic v0.1.0
+        confidence.append(1.0) # There is no confidence annotation in MAVD-traffic v0.1.1
 
     events_data = annotations.Events(np.array(times), labels, np.array(confidence))
     return events_data
@@ -281,8 +286,31 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
 
+        metadata_path = os.path.join(self.data_home, "metadata.txt")
+
         splits = ["train", "validate", "test"]
         metadata_index = {}
+
+        with open(metadata_path) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=",")
+            next(csv_reader)
+            for row in csv_reader:
+                file_name = os.path.basename(row[0])
+                clip_id = os.path.basename(file_name).replace(".wav", "")
+                latitude = row[1]
+                longitude = row[2]
+                year = row[3]
+                month = row[4]
+                day = row[5]
+                hour = row[6]
+                minute = row[7]
+                city = "Montevideo"
+                metadata_index[clip_id] = {
+                    "city": city,
+                    "location": ','.join([latitude, longitude]),
+                    "date": '-'.join([year, month, day]),
+                    "time": ':'.join([hour, minute]),
+                }
 
         for split in splits:
 

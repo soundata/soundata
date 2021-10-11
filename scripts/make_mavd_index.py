@@ -11,7 +11,7 @@ INDEX_PATH = "../soundata/datasets/indexes/mavd_index.json"
 def make_index(data_path):
 
     index = {
-        "version": "0.1.0",
+        "version": "0.1.1",
         "clips": {}
     }
 
