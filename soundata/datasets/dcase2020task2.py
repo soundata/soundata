@@ -326,7 +326,7 @@ class Clip(core.Clip):
         if tag_name is "":
             return None
         else:
-            return annotations.Tags([tag_name[:-1]], np.array([1.0]))
+            return annotations.Tags([tag_name[:-1]], "open", np.array([1.0]))
 
     @property
     def machine_type(self):
