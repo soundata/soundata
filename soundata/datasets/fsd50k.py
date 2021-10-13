@@ -293,21 +293,8 @@ class Clip(core.Clip):
         pp_pnp_ratings (dict): PP/PNP ratings given to the main label of the clip
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -329,7 +316,6 @@ class Clip(core.Clip):
             "open",
             np.array([1.0] * len(self._clip_metadata["ground_truth"].get("tags"))),
         )
-
 
     @property
     def mids(self):
@@ -531,8 +517,8 @@ class Dataset(core.Dataset):
             "collection",
             "vocabulary_collection_dev.csv",
         )
-        self.collection_vocabulary_eval_path = (
-            self.collection_vocabulary_dev_path.replace("_dev", "_eval")
+        self.collection_vocabulary_eval_path = self.collection_vocabulary_dev_path.replace(
+            "_dev", "_eval"
         )
 
     @core.copy_docs(load_audio)

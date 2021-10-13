@@ -105,7 +105,9 @@ def test_downloader(mocker, mock_path):
 
     # Zip multipart
     download_utils.downloader("a", remotes={"b": multipart_zip_remote})
-    mock_multipart_zip.assert_called_once_with("b", multipart_zip_remote, "a", False, False)
+    mock_multipart_zip.assert_called_once_with(
+        "b", multipart_zip_remote, "a", False, False
+    )
     mocker.resetall()
 
     # test partial download
@@ -294,9 +296,7 @@ def test_download_from_remote_raises_IOError(httpserver, tmpdir):
     httpserver.serve_content("File not found!", 404)
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
-        filename="remote.wav",
-        url=httpserver.url,
-        checksum=("1234"),
+        filename="remote.wav", url=httpserver.url, checksum=("1234")
     )
 
     with pytest.raises(IOError):
