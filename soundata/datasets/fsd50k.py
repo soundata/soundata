@@ -514,8 +514,8 @@ class Dataset(core.Dataset):
             "collection",
             "vocabulary_collection_dev.csv",
         )
-        self.collection_vocabulary_eval_path = self.collection_vocabulary_dev_path.replace(
-            "_dev", "_eval"
+        self.collection_vocabulary_eval_path = (
+            self.collection_vocabulary_dev_path.replace("_dev", "_eval")
         )
 
     @core.copy_docs(load_audio)

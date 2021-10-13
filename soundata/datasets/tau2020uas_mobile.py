@@ -905,8 +905,10 @@ class Dataset(core.Dataset):
 
         for split in splits:
             subset = split.split(".")[0]
-            evaluation_setup_path = "TAU-urban-acoustic-scenes-2020-mobile-{}/evaluation_setup".format(
-                subset
+            evaluation_setup_path = (
+                "TAU-urban-acoustic-scenes-2020-mobile-{}/evaluation_setup".format(
+                    subset
+                )
             )
             if subset == "development":
                 fold = split.split(".")[1]

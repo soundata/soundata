@@ -126,7 +126,7 @@ class Clip(core.Clip):
         location (str): city were the audio signal was recorded
         time (str): time when the audio signal was recorded
         date (str): date when the audio signal was recorded
-        additional information (str): notes included by the dataset 
+        additional information (str): notes included by the dataset
             authors with otherdetails relevant to the specific clip
     """
 
