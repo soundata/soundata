@@ -137,7 +137,6 @@ def downloader(
 
                         move_directory_contents(source_dir, destination_dir)
 
-
     if info_message is not None:
         logging.info(info_message.format(save_dir))
 
