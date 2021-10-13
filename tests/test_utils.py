@@ -17,6 +17,7 @@ def run_clip_tests(clip, expected_attributes, expected_property_types):
 
     # test clip attributes
     for attr in clip_attr["attributes"]:
+        print(attr)
         print("{}: {}".format(attr, getattr(clip, attr)))
         assert expected_attributes[attr] == getattr(clip, attr)
 

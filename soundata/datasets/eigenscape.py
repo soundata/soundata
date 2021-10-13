@@ -123,9 +123,11 @@ class Clip(core.Clip):
         tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        city (str): city were the audio signal was recorded
-        identifier (str): identifier present in the metadata
-
+        location (str): city were the audio signal was recorded
+        time (str): time when the audio signal was recorded
+        date (str): date when the audio signal was recorded
+        additional information (str): notes included by the dataset 
+            authors with otherdetails relevant to the specific clip
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
