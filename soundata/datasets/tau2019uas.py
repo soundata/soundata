@@ -494,21 +494,8 @@ class Clip(core.Clip):
 
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -629,15 +616,13 @@ class Dataset(core.Dataset):
 
         for split in splits:
             subset = split.split(".")[0]
-            evaluation_setup_path = (
-                "TAU-urban-acoustic-scenes-2019-{}/evaluation_setup".format(subset)
+            evaluation_setup_path = "TAU-urban-acoustic-scenes-2019-{}/evaluation_setup".format(
+                subset
             )
             if subset == "development":
                 fold = split.split(".")[1]
                 evaluation_setup_file = os.path.join(
-                    self.data_home,
-                    evaluation_setup_path,
-                    "fold1_{}.csv".format(fold),
+                    self.data_home, evaluation_setup_path, "fold1_{}.csv".format(fold)
                 )
             else:
                 evaluation_setup_file = os.path.join(
