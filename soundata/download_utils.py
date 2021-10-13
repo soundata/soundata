@@ -161,7 +161,7 @@ def download_multipart_zip(
         obj_to_download (str):
             The name of the object to download
         zip_remotes (list):
-            A list of RemoteFileMetadata Objects 
+            A list of RemoteFileMetadata Objects
             containing download information
         save_dir (str):
             Path to save downloaded file
