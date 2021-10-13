@@ -98,7 +98,13 @@ def downloader(
 
         for k in objs_to_download:
 
-            if not isinstance(remotes[k], list):
+            if isinstance(remotes[k], list):
+
+                download_multipart_zip(
+                    k, remotes[k], save_dir, force_overwrite, cleanup
+                )
+
+            else:
 
                 logging.info("[{}] downloading {}".format(k, remotes[k].filename))
                 extension = os.path.splitext(remotes[k].filename)[-1]
@@ -131,11 +137,6 @@ def downloader(
 
                         move_directory_contents(source_dir, destination_dir)
 
-            elif isinstance(remotes[k], list):
-
-                download_multipart_zip(
-                    k, remotes[k], save_dir, force_overwrite, cleanup
-                )
 
     if info_message is not None:
         logging.info(info_message.format(save_dir))
