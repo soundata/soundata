@@ -106,7 +106,9 @@ def test_downloader(mocker, mock_path):
 
     # Zip multipart
     download_utils.downloader("a", remotes={"b": multipart_zip_remote})
-    mock_multipart_zip.assert_called_once_with("b", multipart_zip_remote, "a", False, False)
+    mock_multipart_zip.assert_called_once_with(
+        "b", multipart_zip_remote, "a", False, False
+    )
     mocker.resetall()
 
     # test partial download

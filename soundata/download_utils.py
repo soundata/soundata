@@ -133,7 +133,9 @@ def downloader(
 
             elif isinstance(remotes[k], list):
 
-                download_multipart_zip(k, remotes[k], save_dir, force_overwrite, cleanup)
+                download_multipart_zip(
+                    k, remotes[k], save_dir, force_overwrite, cleanup
+                )
 
     if info_message is not None:
         logging.info(info_message.format(save_dir))
@@ -150,7 +152,9 @@ class DownloadProgressBar(tqdm):
         self.update(b * bsize - self.n)
 
 
-def download_multipart_zip(obj_to_download, zip_remotes, save_dir, force_overwrite, cleanup):
+def download_multipart_zip(
+    obj_to_download, zip_remotes, save_dir, force_overwrite, cleanup
+):
     """Download and unzip a multipart zip file.
 
     Args:
@@ -168,10 +172,12 @@ def download_multipart_zip(obj_to_download, zip_remotes, save_dir, force_overwri
 
     """
     for l in range(len(zip_remotes)):
-        logging.info("[{}] downloading {}".format(obj_to_download, zip_remotes[l].filename))
+        logging.info(
+            "[{}] downloading {}".format(obj_to_download, zip_remotes[l].filename)
+        )
         download_from_remote(zip_remotes[l], save_dir, force_overwrite)
-    zip_path = os.path.join(save_dir, obj_to_download+".zip")
-    out_path = os.path.join(save_dir, obj_to_download+"_single.zip")
+    zip_path = os.path.join(save_dir, obj_to_download + ".zip")
+    out_path = os.path.join(save_dir, obj_to_download + "_single.zip")
     subprocess.run(["zip", "-s", "0", zip_path, "--out", outpath])
     if cleanup:
         for l in range(len(zip_remotes)):

@@ -317,7 +317,6 @@ class Clip(core.Clip):
             np.array([1.0] * len(self._clip_metadata["ground_truth"].get("tags"))),
         )
 
-
     @property
     def mids(self):
         return annotations.Tags(
@@ -518,8 +517,8 @@ class Dataset(core.Dataset):
             "collection",
             "vocabulary_collection_dev.csv",
         )
-        self.collection_vocabulary_eval_path = (
-            self.collection_vocabulary_dev_path.replace("_dev", "_eval")
+        self.collection_vocabulary_eval_path = self.collection_vocabulary_dev_path.replace(
+            "_dev", "_eval"
         )
 
     @core.copy_docs(load_audio)
