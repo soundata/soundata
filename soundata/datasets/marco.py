@@ -126,7 +126,7 @@ class Clip(core.Clip):
         clip_id (str): clip id
         microphone_info (list): list of strings with all relevant microphone metadata
     """
-    
+
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
@@ -137,13 +137,13 @@ class Clip(core.Clip):
             self.source_label = None
         else:
             self.source_label = source_label
-        
+
         source_angle = self._clip_metadata.get("source_angle")
         if source_angle is None:
             self.source_angle = None
         else:
             self.source_angle = source_angle
-        
+
         self.microphone_info = self._clip_metadata.get("microphone_info")
 
     @property
@@ -156,7 +156,6 @@ class Clip(core.Clip):
 
         """
         return load_audio(self.audio_path)
-
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -211,7 +210,9 @@ class Dataset(core.Dataset):
     def _metadata(self):
 
         # parsing the data from the filenames due to lack of metadata file
-        json_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "indexes/marco_index.json")
+        json_path = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "indexes/marco_index.json"
+        )
 
         if not os.path.exists(json_path):
             raise FileNotFoundError("Metadata not found")
@@ -220,25 +221,27 @@ class Dataset(core.Dataset):
 
         with open(json_path) as f:
             marco_index = json.load(f)
-            all_paths_filenames = list(marco_index['clips'].keys())
+            all_paths_filenames = list(marco_index["clips"].keys())
 
         for path_filename in all_paths_filenames:
 
             clip_id = path_filename
 
-            path, filename = path_filename.split('/')
+            path, filename = path_filename.split("/")
 
             source_label = path
 
-            clip_metadata = filename.split('_')
+            clip_metadata = filename.split("_")
 
             # remove arbitrary clip numbering used by dataset authors
-            clip_metadata = [data for data in clip_metadata if data!='' and data[0]!= '0']
+            clip_metadata = [
+                data for data in clip_metadata if data != "" and data[0] != "0"
+            ]
 
             microphone_info = clip_metadata[1:]
 
-            if 'deg' in clip_metadata[0]: 
-                source_angle = ''.join(clip_metadata[0].partition('deg')[:2])
+            if "deg" in clip_metadata[0]:
+                source_angle = "".join(clip_metadata[0].partition("deg")[:2])
             else:
                 source_angle = None
 
