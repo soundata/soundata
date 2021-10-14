@@ -442,9 +442,10 @@ class Clip(object):
             if val.__doc__ is None:
                 doc = ""
             else:
-                doc = val.__doc__
+                doc = val.__doc__.split('\n')
 
-            val_type_str = doc.split(":")[0]
+            desc = [f'{st}\n' for st in doc[1:] if '*' in st]
+            val_type_str = f"{doc[0]}\n{''.join(desc)[:-1]}"
             repr_str += "  {}: {},\n".format(prop, val_type_str)
 
         repr_str += ")"
