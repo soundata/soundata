@@ -341,7 +341,6 @@ def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
         ]
     )
     mock_unzip.assert_called_once_with("tests/resources/foo_single.zip", cleanup=True)
-    _clean("a")
 
 
 def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):
