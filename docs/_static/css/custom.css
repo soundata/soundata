@@ -7,6 +7,7 @@ nav.wy-nav-side {
 div.wy-side-nav-search {
     color: #404040;
     background: rgb(255, 255, 255);
+    margin-left: 15px;
 }
 
 div.wy-side-nav-search .version {
