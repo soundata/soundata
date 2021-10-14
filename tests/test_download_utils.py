@@ -327,11 +327,20 @@ def test_download_zip_file(mocker, mock_download_from_remote, mock_unzip):
 
 
 def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
-    download_utils.download_multipart_zip("foo", ["b", "c"], "a", False, False)
-    mock_download_from_remote.assert_has_calls(
-        [mocker.call("b", "a", False), mocker.call("c", "a", False)]
+    mock_download_from_remote.return_value = "tests/resources/b"
+    mock_download_from_remote.return_value = "tests/resources/c"
+    Path("tests/resources/b").touch()
+    Path("tests/resources/c").touch()
+    download_utils.download_multipart_zip(
+        "foo", ["b", "c"], "tests/resources", False, True
     )
-    mock_unzip.assert_called_once_with("a/foo_single.zip", cleanup=False)
+    mock_download_from_remote.assert_has_calls(
+        [
+            mocker.call("b", "tests/resources", False),
+            mocker.call("c", "tests/resources", False),
+        ]
+    )
+    mock_unzip.assert_called_once_with("tests/resources/foo_single.zip", cleanup=True)
     _clean("a")
 
 
