@@ -60,4 +60,3 @@ def test_to_jams():
     # validate metadata
     assert jam.file_metadata.duration == 1.0
     assert jam.sandbox.microphone_info == ["OCT3D", "2", "FR"]
-    print(jam.annotations)

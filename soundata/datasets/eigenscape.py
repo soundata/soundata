@@ -127,7 +127,7 @@ class Clip(core.Clip):
         time (str): time when the audio signal was recorded
         date (str): date when the audio signal was recorded
         additional information (str): notes included by the dataset
-            authors with otherdetails relevant to the specific clip
+            authors with other details relevant to the specific clip
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):

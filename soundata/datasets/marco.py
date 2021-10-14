@@ -133,10 +133,7 @@ class Clip(core.Clip):
         self.audio_path = self.get_path("audio")
 
         source_label = self._clip_metadata.get("source_label")
-        if source_label is None:
-            self.source_label = None
-        else:
-            self.source_label = source_label
+        self.source_label = source_label
 
         source_angle = self._clip_metadata.get("source_angle")
         if source_angle is None:
@@ -214,9 +211,6 @@ class Dataset(core.Dataset):
             os.path.dirname(os.path.realpath(__file__)), "indexes/marco_index.json"
         )
 
-        if not os.path.exists(json_path):
-            raise FileNotFoundError("Metadata not found")
-
         metadata_index = {}
 
         with open(json_path) as f:
@@ -226,25 +220,19 @@ class Dataset(core.Dataset):
         for path_filename in all_paths_filenames:
 
             clip_id = path_filename
-
             path, filename = path_filename.split("/")
-
             source_label = path
-
             clip_metadata = filename.split("_")
 
             # remove arbitrary clip numbering used by dataset authors
             clip_metadata = [
                 data for data in clip_metadata if data != "" and data[0] != "0"
             ]
-
             microphone_info = clip_metadata[1:]
-
             if "deg" in clip_metadata[0]:
                 source_angle = "".join(clip_metadata[0].partition("deg")[:2])
             else:
                 source_angle = None
-
             metadata_index[clip_id] = {
                 "source_label": source_label,
                 "source_angle": source_angle,
