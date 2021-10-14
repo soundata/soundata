@@ -99,7 +99,6 @@ def downloader(
         for k in objs_to_download:
 
             if isinstance(remotes[k], list):
-
                 download_multipart_zip(
                     k, remotes[k], save_dir, force_overwrite, cleanup
                 )
@@ -172,18 +171,15 @@ def download_multipart_zip(
 
     """
     for l in range(len(zip_remotes)):
-        logging.info(
-            "[{}] downloading {}".format(obj_to_download, zip_remotes[l].filename)
-        )
         download_from_remote(zip_remotes[l], save_dir, force_overwrite)
     zip_path = os.path.join(save_dir, obj_to_download + ".zip")
     out_path = os.path.join(save_dir, obj_to_download + "_single.zip")
-    subprocess.run(["zip", "-s", "0", zip_path, "--out", outpath])
+    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
     if cleanup:
         for l in range(len(zip_remotes)):
             zip_path = os.path.join(save_dir, zip_remotes[l])
             os.remove(zip_path)
-    unzip(outpath, cleanup=cleanup)
+    unzip(out_path, cleanup=cleanup)
 
 
 def download_from_remote(remote, save_dir, force_overwrite):
