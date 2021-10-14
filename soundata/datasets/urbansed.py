@@ -221,10 +221,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The data splits (e.g. train)
+
+        Returns
+            * str - split
+
+        """
         return self._clip_metadata.get("split")
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
+        """The audio events
+
+        Returns
+            * annotations.Events - audio event object
+
+        """
         return load_events(self.txt_path)
 
     def to_jams(self):
