@@ -278,15 +278,15 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
-        mids (soundata.annotations.Tags): tag (labels) encoded in Audioset formatting
-        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
-        title (str): the title of the uploaded file in Freesound
         description (str): description of the sound provided by the Freesound uploader
+        mids (soundata.annotations.Tags): tag (labels) encoded in Audioset formatting
         pp_pnp_ratings (dict): PP/PNP ratings given to the main label of the clip
-
+        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
+        title (str): the title of the uploaded file in Freesound
     """
 
     def __init__(

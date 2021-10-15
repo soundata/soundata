@@ -100,17 +100,17 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        category (str): clip class in string format, i.e., label
+        clip_id (str): clip id
+        esc10 (bool): True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
         filename (str): clip filename
         fold (int): index of the cross-validation fold the clip belongs to
-        target (int): clip class in numeric format
-        category (str): clip class in string format, i.e., label
-        esc10 (bool): True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
         src_file (str): freesound ID of the original file from which the clip was taken
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
         take (str): letter disambiguating between different fragments from the same Freesound clip (e.g., "A", "B", etc.)
-        clip_id (str): clip id
-
+        target (int): clip class in numeric format
     """
 
     def __init__(

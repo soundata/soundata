@@ -181,11 +181,11 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotations.Events): sound events with start time, end time, label and confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
-        split (str): subset the clip belongs to (for experiments): train, validate, or test.
         clip_id (str): clip id
-
+        events (soundata.annotations.Events): sound events with start time, end time, label and confidence
+        split (str): subset the clip belongs to (for experiments): train, validate, or test
     """
 
     def __init__(

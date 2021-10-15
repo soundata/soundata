@@ -250,18 +250,18 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotations.Events): sound events with start time,
-            end time, label and confidence.
-        non_verified_events (soundata.annotations.Events): non-verified sound
-            events with start time, end time, label and confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         annotations_path (str): path to the annotations file
+        clip_id (str): clip id
+        events (soundata.annotations.Events): sound events with start time,
+            end time, label and confidence
         non_verified_annotations_path (str): path to the non-verified
             annotations file
+        non_verified_events (soundata.annotations.Events): non-verified sound
+            events with start time, end time, label and confidence
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
-        clip_id (str): clip id
-
     """
 
     def __init__(

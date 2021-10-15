@@ -775,12 +775,12 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotations.Tags): tag (label) of the clip + confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        clip_id (str): clip id
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
-        clip_id (str): clip id
-
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
     """
 
     def __init__(
