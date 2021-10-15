@@ -86,10 +86,7 @@ def test_to_jams():
     ]
     assert jam.sandbox.split == "train"
     assert jam.sandbox.description == "electric guitar"
-    assert jam.sandbox.freesound_tags == [
-        "electric",
-        "guitar",
-    ]
+    assert jam.sandbox.freesound_tags == ["electric", "guitar"]
     assert jam.sandbox.license == "http://creativecommons.org/licenses/sampling+/1.0/"
     assert jam.sandbox.uploader == "casualsamples"
     assert jam.sandbox.pp_pnp_ratings == {"/m/02sgy": [1.0, 1.0]}
@@ -112,13 +109,7 @@ def test_labels():
     assert np.array_equal(tags.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
 
     mids = clip.mids
-    assert mids.labels == [
-        "/m/02sgy",
-        "/m/0342h",
-        "/m/0fx80y",
-        "/m/04szw",
-        "/m/04rlf",
-    ]
+    assert mids.labels == ["/m/02sgy", "/m/0342h", "/m/0fx80y", "/m/04szw", "/m/04rlf"]
     assert np.array_equal(mids.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
 
     # For a single tag
@@ -337,14 +328,14 @@ def test_download(httpserver):
                 filename="1-FSD50K.ground_truth.zip",
                 url=httpserver.url,
                 checksum="246dd703ab54859e6497eee101e311e7",
-            ),
+            )
         },
         "evaluation": {
             "eval_main": download_utils.RemoteFileMetadata(
                 filename="2-FSD50K.ground_truth.zip",
                 url=httpserver.url,
                 checksum="246dd703ab54859e6497eee101e311e7",
-            ),
+            )
         },
         "metadata": download_utils.RemoteFileMetadata(
             filename="3-FSD50K.ground_truth.zip",
@@ -496,10 +487,7 @@ def test_merge_and_unzip():
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
-    merging_list_eval = [
-        "FSD50K.eval_audio.zip",
-        "FSD50K.eval_audio.z01",
-    ]
+    merging_list_eval = ["FSD50K.eval_audio.zip", "FSD50K.eval_audio.z01"]
 
     dataset.merge_and_unzip(merging_list=merging_list_eval, cleanup=False)
 
@@ -556,10 +544,7 @@ def test_merge_unzip_cleanup():
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.zip"))
     assert os.path.exists(os.path.join(test_merging_home, "FSD50K.eval_audio.z01"))
 
-    merging_list_eval = [
-        "FSD50K.eval_audio.zip",
-        "FSD50K.eval_audio.z01",
-    ]
+    merging_list_eval = ["FSD50K.eval_audio.zip", "FSD50K.eval_audio.z01"]
 
     dataset.merge_and_unzip(merging_list=merging_list_eval, cleanup=True)
 

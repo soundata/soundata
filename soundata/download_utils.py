@@ -25,7 +25,7 @@ class RemoteFileMetadata(object):
         checksum (str): the remote file's md5 checksum
         destination_dir (str or None): the relative path for where to save the file
         unpack_directories (list or None): list of relative directories. For each directory
-            the contents will be moved to destination_dir (or data_home if not provieds)
+            the contents will be moved to destination_dir (or data_home if not provided)
 
     """
 

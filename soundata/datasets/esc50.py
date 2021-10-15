@@ -85,7 +85,7 @@ REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="ESC-50-master.zip",
         url="https://github.com/karoldvl/ESC-50/archive/master.zip",
-        checksum="70aba3bada37d2674b8f6cd5afd5f065",
+        checksum="7771e4b9d86d0945acce719c7a59305a",
         unpack_directories=["ESC-50-master"],
     )
 }
@@ -113,21 +113,8 @@ class Clip(core.Clip):
         target (int): clip class in numeric format
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 

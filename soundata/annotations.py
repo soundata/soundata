@@ -3,10 +3,7 @@
 import numpy as np
 
 #: Time units
-TIME_UNITS = {
-    "seconds": "seconds",
-    "miliseconds": "miliseconds",
-}
+TIME_UNITS = {"seconds": "seconds", "miliseconds": "miliseconds"}
 
 #: Label units
 LABEL_UNITS = {"open": "no strict schema or units"}
@@ -59,12 +56,7 @@ class Events(Annotation):
     """
 
     def __init__(
-        self,
-        intervals,
-        intervals_unit,
-        labels,
-        labels_unit,
-        confidence=None,
+        self, intervals, intervals_unit, labels, labels_unit, confidence=None
     ) -> None:
 
         validate_array_like(intervals, np.ndarray, float)
