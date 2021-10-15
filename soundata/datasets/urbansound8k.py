@@ -169,7 +169,7 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence. In UrbanSound8K every clip has one tag.
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In UrbanSound8K every clip has one tag.
         audio_path (str): path to the audio file
         slice_file_name (str): The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav.
             Please see the Dataset Info in the soundata documentation for further details.

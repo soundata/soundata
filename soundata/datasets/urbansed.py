@@ -181,7 +181,7 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotation.Events): sound events with start time, end time, label and confidence.
+        events (soundata.annotations.Events): sound events with start time, end time, label and confidence.
         audio_path (str): path to the audio file
         split (str): subset the clip belongs to (for experiments): train, validate, or test.
         clip_id (str): clip id

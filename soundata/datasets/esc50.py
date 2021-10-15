@@ -100,7 +100,7 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
         audio_path (str): path to the audio file
         filename (str): clip filename
         fold (int): index of the cross-validation fold the clip belongs to
