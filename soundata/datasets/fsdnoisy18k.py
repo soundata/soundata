@@ -165,8 +165,6 @@ class Clip(core.Clip):
     Attributes:
         audio_path (str): path to the audio file
         clip_id (str): clip id
-
-    Properties:
         tag (soundata.annotations.Tags): tag (label) of the clip + confidence
         aso_id (str): the id of the corresponding category as per the AudioSet Ontology
         manually_verified (int): flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
