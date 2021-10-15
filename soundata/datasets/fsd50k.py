@@ -290,21 +290,8 @@ class Clip(core.Clip):
         pp_pnp_ratings (dict): PP/PNP ratings given to the main label of the clip
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
