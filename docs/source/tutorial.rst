@@ -268,70 +268,84 @@ If you wanted to use ``urbansound8k`` to evaluate the performance of an urban so
         import sed_eval
         import soundata
         import numpy as np
+        from dcase_util.containers import MetaDataContainer, ProbabilityContainer
 
-        def random_classifier(audio_path):
-            # do something
-            return np.random.randint(2, size=len(num_classes))
+        def random_classifier(classes):
+            return [np.random.random(1)[0] for c in classes]
 
         # Evaluate on the full dataset
-        dataset = soundata.initialize("urbansound8k")
+        dataset = soundata.initialize('urbansound8k')
         scores = {}
         data = dataset.load_clips()
-        for clip_id, clip_data in data.items():
-            categorical_vector = random_classifier(track_data.audio_path_mono)
 
-            ref_melody_data = track_data.melody
-            ref_times = ref_melody_data.times
-            ref_freqs = ref_melody_data.frequencies
+        classes = np.unique([c for _, clip_data in data.items() for c in clip_data.tags.labels])
+        fold = 2  # Choose a fold to evaluate
 
-            score = mir_eval.melody.evaluate(ref_times, ref_freqs, est_times, est_freqs)
-            orchset_scores[track_id] = score
+        ref_tags, est_tags, est_tag_probs = [], [], []
+        for id, clip in data.items():
+            if clip.fold == 2:
+                ref_tags.append({'filename': id, 'tags': clip.tags.labels[0]})  # Urbansound8k has one label per clip
+                probs = random_classifier(classes)
+                for c, p in zip(classes, probs):
+                    est_tag_probs.append({'filename': id, 'label': c, 'probability': p},)
+                    if p > 0.5:  # Detection threshold of 0.5
+                        est_tags.append({'filename': id, 'tags': [c]})
 
-        # Split the results by composer and by instrumentation
-        composer_scores = {}
-        strings_no_strings_scores = {True: {}, False: {}}
-        for track_id, track_data in orchset_data.items():
-            if track_data.composer not in composer_scores.keys():
-                composer_scores[track_data.composer] = {}
-
-            composer_scores[track_data.composer][track_id] = orchset_scores[track_id]
-            strings_no_strings_scores[track_data.contains_strings][track_id] = \
-                orchset_scores[track_id]
+        tag_evaluator = sed_eval.audio_tag.AudioTaggingMetrics(tags=MetaDataContainer(ref_tags).unique_tags)
+        tag_evaluator.evaluate(
+            reference_tag_list=MetaDataContainer(ref_tags),
+            estimated_tag_list=MetaDataContainer(est_tags),
+            estimated_tag_probabilities=ProbabilityContainer(est_tag_probs))
 
 
-This is the result of the example above.
+This is the result of the example above:
 
 .. admonition:: Example result
     :class: dropdown
 
     .. code-block:: python
 
-        print(strings_no_strings_scores)
-        >>> {True: {
-                'Beethoven-S3-I-ex1':OrderedDict([
-                    ('Voicing Recall', 1.0),
-                    ('Voicing False Alarm', 1.0),
-                    ('Raw Pitch Accuracy', 0.029798422436459245),
-                    ('Raw Chroma Accuracy', 0.08063102541630149),
-                    ('Overall Accuracy', 0.0272654370489174)
-                    ]),
-                'Beethoven-S3-I-ex2': OrderedDict([
-                    ('Voicing Recall', 1.0),
-                    ('Voicing False Alarm', 1.0),
-                    ('Raw Pitch Accuracy', 0.009221311475409836),
-                    ('Raw Chroma Accuracy', 0.07377049180327869),
-                    ('Overall Accuracy', 0.008754863813229572)]),
-                ...
+        print(tag_evaluator)
+        >>> Audio tagging metrics
+        ========================================
+          Tags                              : 10
+          Evaluated units                   : 888
 
-                'Wagner-Tannhauser-Act2-ex2': OrderedDict([
-                    ('Voicing Recall', 1.0),
-                    ('Voicing False Alarm', 1.0),
-                    ('Raw Pitch Accuracy', 0.03685636856368564),
-                    ('Raw Chroma Accuracy', 0.08997289972899729),
-                    ('Overall Accuracy', 0.036657681940700806)])
-                }}
+          Overall metrics (micro-average)
+          ======================================
+          F-measure
+            F-measure (F1)                  : 9.57 %
+            Precision                       : 9.57 %
+            Recall                          : 9.57 %
+          Equal error rate
+            Equal error rate (EER)          : 51.01 %
 
-You can see that ``very_bad_melody_extractor`` performs very badly!
+          Class-wise average metrics (macro-average)
+          ======================================
+          F-measure
+            F-measure (F1)                  : 6.47 %
+            Precision                       : 7.54 %
+            Recall                          : 9.33 %
+          Equal error rate
+            Equal error rate (EER)          : 50.95 %
+
+          Class-wise metrics
+          ======================================
+            Tag               | Nref        Nsys      | F-score     Pre         Rec       | EER
+            ----------------- | ---------   --------- | ---------   ---------   --------- | ---------
+            air_conditioner   | 100         419       | 19.3%       11.9        50.0      | 49.0%
+            car_horn          | 42          227       | 4.5%        2.6         14.3      | 54.8%
+            children_playing  | 100         126       | 9.7%        8.7         11.0      | 54.0%
+            dog_bark          | 100         58        | 13.9%       19.0        11.0      | 47.1%
+            drilling          | 100         31        | 9.2%        19.4        6.0       | 52.4%
+            engine_idling     | 100         16        | 1.7%        6.2         1.0       | 50.0%
+            gun_shot          | 35          7         | 0.0%        0.0         0.0       | 48.1%
+            jackhammer        | 120         1         | 0.0%        0.0         0.0       | 52.5%
+            siren             | 91          3         | 0.0%        0.0         0.0       | 51.6%
+            street_music      | 100         0         | nan%        nan         0.0       | 50.0%
+
+
+
 
 .. _Using soundata with tensorflow:
 
@@ -349,12 +363,12 @@ The following is a simple example of a generator that can be used to create a te
         import numpy as np
         import tensorflow as tf
 
-        def urbansound8k_generator():
+        def data_generator(dataset_name):
             # using the default data_home
-            us8k = soundata.initialize("urbansound8k")
-            clip_ids = us8k.clip_ids()
-            for clip_id in clip_ids:
-                clip = us8k.clip(clip_id)
+            dataset = soundata.initialize(dataset_name)
+            ids = dataset.clip_ids()
+            for clip_id in ids:
+                clip = dataset.clip(clip_id)
                 audio_signal, sample_rate = clip.audio
                 yield {
                     "audio": audio_signal.astype(np.float32),
@@ -364,7 +378,7 @@ The following is a simple example of a generator that can be used to create a te
                 }
 
         dataset = tf.data.Dataset.from_generator(
-            urbansound8k_generator,
+            urbansound8k_generator('urbansound8k'),
             {
                 "audio": tf.float32,
                 "sample_rate": tf.float32,
