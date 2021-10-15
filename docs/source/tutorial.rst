@@ -124,23 +124,21 @@ You can choose a random clip from a dataset with the ``choice_clip()`` method.
 
     .. code-block:: python
 
+        dataset = soundata.initialize('urbansed')
         random_clip = dataset.choice_clip()
         print(random_clip)
         >>> Clip(
-                audio_path="/Users/theuser/sound_datasets/urbansound8k/audio/fold4/176638-5-0-1.wav",
-                clip_id="176638-5-0-1",
-                audio: The clip's audio
-
-                        Returns,
-                class_id: ,
-                class_label: ,
-                fold: ,
-                freesound_end_time: ,
-                freesound_id: ,
-                freesound_start_time: ,
-                salience: ,
-                slice_file_name: ,
-                tags: ,
+              audio_path="/Users/theuser/sound_datasets/urbansed/audio/test/soundscape_test_bimodal73.wav",
+              clip_id="soundscape_test_bimodal73",
+              jams_path="/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.jams",
+              txt_path="/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.txt",
+              audio: The clips audio
+                        * np.ndarray - audio signal
+                        * float - sample rate,
+              events: The audio events
+                        * annotations.Events - audio event object,
+              split: The data splits (e.g. train)
+                        * str - split,
             )
 
 
@@ -152,20 +150,25 @@ annotation.
 .. code-block:: python
 
     dataset = soundata.initialize('urbansound8k')
-    us8k_ids = dataset.clip_ids  # the list of urbansound8k's clip ids
-    us8k_clips = dataset.load_clips()  # Load all clips in the dataset
-    example_clip = us8k_clips[us8k_ids[0]]  # Get the first clip
+    ids = dataset.clip_ids  # the list of urbansound8k's clip ids
+    clips = dataset.load_clips()  # Load all clips in the dataset
+    example_clip = clips[ids[0]]  # Get the first clip
 
     # Accessing the clip's tags annotation
     example_tags = example_clip.tags
+    print(example_tags)
+    >>>> Tags(confidence, labels, labels_unit)
+    print(example_tags.labels)
+    >>>> ['children_playing']
+
 
 
 You can also load a single clip without loading all clips int the dataset:
 
 .. code-block:: python
 
-    us8k_ids = us8k.clip_ids  # the list of urbansound8k's clip ids
-    example_clip = us8k.clip(us8k_ids[0])  # load this particular clip
+    ids = dataset.clip_ids  # the list of urbansound8k's clip ids
+    example_clip = dataset.clip(ids[0])  # load this particular clip
     example_tags = example_clip.tags  # Get the tags for the first clip
 
 
@@ -184,10 +187,10 @@ see an example.
     .. code-block:: python
 
         # Load list of clip ids of the dataset
-        us8k_ids = dataset.clip_ids
+        ids = dataset.clip_ids
 
         # Load a single clip, specifying the remote location
-        example_clip = dataset.clip(us8k_ids[0], data_home='remote/data/path')
+        example_clip = dataset.clip(ids[0], data_home='remote/data/path')
         audio_path = example_clip.audio_path
 
         print(audio_path)
@@ -217,14 +220,14 @@ Annotation classes
 ``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standarize the format for
 all loaders, so you can use the same code with different datasets. The list and descriptions of available annotation classes can be found in :ref:`annotations`.
 
-.. note:: These classes are standarized to the point that the data allows for it. In some cases where the dataset has
-its own idiosincracies, the classes may be extended e.g. adding a customize attribute.
+.. note:: These classes are standarized to the point that the data allow for it. In some cases where the dataset has
+        its own idiosyncrasies, the classes may be extended e.g. adding a customize, uncommon attribute.
 
 Iterating over datasets and annotations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In general, most datasets are a collection of clips, and in most cases each clip has an audio file along with annotations.
 
-With the ``load_clips()`` method, all clips are loaded as a dictionary with the clip ids as keys and 
+With the ``load_clips()`` method, all clips are loaded as a dictionary with the clip id as keys and
 clip objects as values. The clip objects include their respective audio and annotations, which are lazy-loaded on access
 to keep things speedy and memory efficient. 
 
@@ -233,15 +236,19 @@ to keep things speedy and memory efficient.
     dataset = soundata.initialize('urbansound8k')
     for key, clip in dataset.load_clips().items():
         print(key, clip.audio_path)
+    >>>> soundscape_train_bimodal0 /Users/mf3734/sound_datasets/urbansed/audio/train/soundscape_train_bimodal0.wav
+         .....
 
 
 Alternatively, you can loop over the ``clip_ids`` list to directly access each clip in the dataset.
 
 .. code-block:: python
 
-    us8k = soundata.initialize('urbansound8k')
-    for clip_id in orchset.clip_ids:
-        print(clip_id, us8k.clip(clip_id).audio_path)
+    dataset = soundata.initialize('urbansound8k')
+    for clip_id in dataset.clip_ids:
+        print(clip_id, dataset.clip(clip_id).audio_path)
+    >>>> soundscape_train_bimodal0 /Users/mf3734/sound_datasets/urbansed/audio/train/soundscape_train_bimodal0.wav
+         .....
 
 
 
