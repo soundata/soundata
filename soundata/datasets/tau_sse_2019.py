@@ -235,7 +235,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 
 @io.coerce_to_string_io
-def load_spatialevents(fhandle: TextIO) -> annotations.SpatialEvents:
+def load_spatialevents(fhandle: TextIO) -> SpatialEvents:
     """Load an TAU SSE 2019 annotation file
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
