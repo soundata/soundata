@@ -61,7 +61,9 @@ from soundata import core
 from soundata import annotations
 from soundata import io
 
-LOCATIONS_UNITS = {"polardegrees-F2NE": "polardegrees-F2NE"}
+ELEVATIONS_UNITS = {"degrees": "degrees"}
+AZIMUTHS_UNITS = {"degrees": "degrees"}
+DISTANCES_UNITS = {"meters": "meters"}
 
 BIBTEX = """
 @inproceedings{Adavanne2019_DCASE,
@@ -138,21 +140,43 @@ class SpatialEvents(annotations.Events):
         self,
         intervals,
         intervals_unit,
-        locations,
-        locations_unit,
+        elevations,
+        elevations_unit,
+        azimuths,
+        azimuths_unit,
+        distances,
+        distances_unit,
         labels,
         labels_unit,
         confidence=None,
     ):
         super().__init__(intervals, intervals_unit, labels, labels_unit, confidence)
 
-        annotations.validate_array_like(locations, np.ndarray, float)
-        annotations.validate_lengths_equal([intervals, locations, labels, confidence])
-        validate_locations(locations)
-        annotations.validate_unit(locations_unit, LOCATIONS_UNITS)
+        annotations.validate_array_like(elevations, np.ndarray, float)
+        annotations.validate_array_like(azimuths, np.ndarray, float)
+        annotations.validate_array_like(distances, np.ndarray, float)
+        annotations.validate_lengths_equal(
+            [intervals, elevations, azimuths, distances, labels, confidence]
+        )
+        validate_locations(
+            np.concatenate(
+                [
+                    elevations[:, np.newaxis],
+                    azimuths[:, np.newaxis],
+                    distances[:, np.newaxis],
+                ], axis=1
+            )
+        )
+        annotations.validate_unit(elevations_unit, ELEVATIONS_UNITS)
+        annotations.validate_unit(azimuths_unit, AZIMUTHS_UNITS)
+        annotations.validate_unit(distances_unit, DISTANCES_UNITS)
 
-        self.locations = locations
-        self.locations_unit = locations_unit
+        self.elevations = elevations
+        self.azimuths = azimuths
+        self.distances = distances
+        self.elevations_unit = elevations_unit
+        self.azimuths_unit = azimuths_unit
+        self.distances_unit = distances_unit
 
 
 class Clip(core.Clip):
@@ -247,21 +271,29 @@ def load_spatialevents(fhandle: TextIO) -> SpatialEvents:
 
     labels = []
     times = []
-    locations = []
+    elevations = []
+    azimuths = []
+    distances = []
     confidence = []
     reader = csv.reader(fhandle, delimiter=",")
     next(reader, None)  # skip header
     for line in reader:
         labels.append(line[0])
         times.append([float(line[1]), float(line[2])])
-        locations.append([float(line[3]), float(line[4]), float(line[5])])
+        elevations.append(float(line[3]))
+        azimuths.append(float(line[4]))
+        distances.append(float(line[5]))
         confidence.append(1.0)
 
     events_data = SpatialEvents(
         np.array(times),
         "seconds",
-        np.array(locations),
-        "polardegrees-F2NE",
+        np.array(elevations),
+        "degrees",
+        np.array(azimuths),
+        "degrees",
+        np.array(distances),
+        "meters",
         labels,
         "open",
         np.array(confidence),
