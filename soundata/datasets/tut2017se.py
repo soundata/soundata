@@ -264,21 +264,8 @@ class Clip(core.Clip):
 
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
         self.annotations_path = self.get_path("annotations")
@@ -315,9 +302,7 @@ class Clip(core.Clip):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            events=self.events,
-            metadata=self._clip_metadata,
+            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
         )
 
 

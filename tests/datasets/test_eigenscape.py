@@ -41,7 +41,7 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 2  # check audio is loaded correctly
     assert audio.shape[0] == 25  # check audio is 25ch (HOA 4th order)
-    assert audio.shape[1] == 48000 * 2.5  # Check audio duration is as expected
+    assert audio.shape[1] == 48000 * 1.0  # Check audio duration is as expected
 
 
 def test_load_tags():
@@ -77,12 +77,12 @@ def test_to_jams():
     tags = jam.search(namespace="tag_open")[0]["data"]
     assert len(tags) == 1
     assert tags[0].time == 0
-    assert tags[0].duration == 2.5
+    assert tags[0].duration == 1.0
     assert tags[0].value == "Beach"
     assert tags[0].confidence == 1
 
     # validate metadata
-    assert jam.file_metadata.duration == 2.5
+    assert jam.file_metadata.duration == 1.0
     assert jam.sandbox.location == "Bridlington Beach"
     assert jam.sandbox.time == "10:42"
     assert jam.sandbox.date == "09/05/2017"
