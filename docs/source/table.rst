@@ -54,6 +54,14 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
+   * - TAU Spatial Sound Events 2019
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 1000
+     - 8.3
+     - :tau_sse_2019:`\ `
+
    * - TAU Urban Acoustic Scenes 2019
      - - audio: ✅
        - annotations: ✅
