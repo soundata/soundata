@@ -5,6 +5,7 @@ import zipfile
 import re
 
 from soundata import download_utils
+from soundata.datasets import esc50
 
 import pytest
 
@@ -285,6 +286,41 @@ def test_download_from_remote_raises_IOError(httpserver, tmpdir):
 
     with pytest.raises(IOError):
         download_utils.download_from_remote(TEST_REMOTE, str(tmpdir), False)
+
+
+def test_unpackdir(httpserver):
+
+    data_home = "tests/resources/sound_datasets/esc50_download"
+    if os.path.exists(data_home):
+        shutil.rmtree(data_home)
+
+    # download the full dataset
+    httpserver.serve_content(
+        open("tests/resources/download/ESC-50-master.zip", "rb").read()
+    )
+
+    remotes = {
+        "all": download_utils.RemoteFileMetadata(
+            filename="ESC-50-master.zip",
+            url=httpserver.url,
+            checksum=("883ae96b2007435a2664591a81c6e9f4"),
+            unpack_directories=["ESC-50-master"],
+        )
+    }
+    dataset = esc50.Dataset(data_home)
+    dataset.remotes = remotes
+    dataset.download(None, False, False)
+
+    assert os.path.exists(data_home)
+    assert not os.path.exists(os.path.join(data_home, "ESC-50-master"))
+
+    assert os.path.exists(os.path.join(data_home, "esc50", "requirements.txt"))
+    assert os.path.exists(
+        os.path.join(
+            data_home, "esc50",
+            "audio/1-137-A-32.wav",
+        )
+    )
 
 
 def test_unzip():
