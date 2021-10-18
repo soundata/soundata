@@ -65,7 +65,9 @@ def test_load_spatialevents():
     assert events_data.labels[-1] == "phone"
     assert (events_data.intervals[0] == [0.36645229108, 1.33445229108]).all()
     assert (events_data.intervals[-1] == [5.34011283858, 7.12411283858]).all()
-    assert (events_data.locations[0] == [-10, -10, 2]).all()
+    assert events_data.elevations[0] == -10
+    assert events_data.azimuths[0] == -10
+    assert events_data.distances[0] == 2
 
 
 def test_validate_locations():
