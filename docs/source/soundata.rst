@@ -41,6 +41,13 @@ FSDnoisy18K
    :members:
    :inherited-members:
 
+TAU Spatial Sound Events 2019
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau_sse_2019
+   :members:
+   :inherited-members:
+
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
