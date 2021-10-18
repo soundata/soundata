@@ -317,7 +317,7 @@ def test_unpackdir(httpserver):
     assert os.path.exists(os.path.join(data_home, "esc50", "requirements.txt"))
     assert os.path.exists(
         os.path.join(
-            data_home, "esc50",
+            data_home, "esc50", 
             "audio/1-137-A-32.wav",
         )
     )
