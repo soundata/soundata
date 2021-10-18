@@ -86,10 +86,7 @@ def test_to_jams():
     ]
     assert jam.sandbox.split == "train"
     assert jam.sandbox.description == "electric guitar"
-    assert jam.sandbox.freesound_tags == [
-        "electric",
-        "guitar",
-    ]
+    assert jam.sandbox.freesound_tags == ["electric", "guitar"]
     assert jam.sandbox.license == "http://creativecommons.org/licenses/sampling+/1.0/"
     assert jam.sandbox.uploader == "casualsamples"
     assert jam.sandbox.pp_pnp_ratings == {"/m/02sgy": [1.0, 1.0]}
@@ -112,13 +109,7 @@ def test_labels():
     assert np.array_equal(tags.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
 
     mids = clip.mids
-    assert mids.labels == [
-        "/m/02sgy",
-        "/m/0342h",
-        "/m/0fx80y",
-        "/m/04szw",
-        "/m/04rlf",
-    ]
+    assert mids.labels == ["/m/02sgy", "/m/0342h", "/m/0fx80y", "/m/04szw", "/m/04rlf"]
     assert np.array_equal(mids.confidence, [1.0, 1.0, 1.0, 1.0, 1.0])
 
     # For a single tag
