@@ -63,9 +63,9 @@ def test_load_spatialevents():
     events_data = tau_sse_2019.load_spatialevents(csv_path)
     assert events_data.labels[0] == "cough"
     assert events_data.labels[-1] == "phone"
-    assert (events_data.intervals[0] == [0.36645229108,1.33445229108]).all()
-    assert (events_data.intervals[-1] == [5.34011283858,7.12411283858]).all()
-    assert (events_data.locations[0] == [-10,-10,2]).all()
+    assert (events_data.intervals[0] == [0.36645229108, 1.33445229108]).all()
+    assert (events_data.intervals[-1] == [5.34011283858, 7.12411283858]).all()
+    assert (events_data.locations[0] == [-10, -10, 2]).all()
 
 
 def test_validate_locations():
@@ -75,10 +75,10 @@ def test_validate_locations():
         tau_sse_2019.validate_locations(np.array([0, 2, 9]))
 
     with pytest.raises(ValueError):
-        tau_sse_2019.validate_locations(np.array([[91,0,0],[0,0,0]]))
+        tau_sse_2019.validate_locations(np.array([[91, 0, 0], [0, 0, 0]]))
 
     with pytest.raises(ValueError):
-        tau_sse_2019.validate_locations(np.array([[0,-181,0],[0,0,0]]))
+        tau_sse_2019.validate_locations(np.array([[0, -181, 0], [0, 0, 0]]))
 
     with pytest.raises(ValueError):
-        tau_sse_2019.validate_locations(np.array([[0,0,-1],[0,0,0]]))
+        tau_sse_2019.validate_locations(np.array([[0, 0, -1], [0, 0, 0]]))
