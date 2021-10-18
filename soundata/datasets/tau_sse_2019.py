@@ -61,7 +61,7 @@ from soundata import core
 from soundata import annotations
 from soundata import io
 
-LOCATIONS_UNITS = {"polardegrees-F2NE":"polardegrees-F2NE"}
+LOCATIONS_UNITS = {"polardegrees-F2NE": "polardegrees-F2NE"}
 
 BIBTEX = """
 @inproceedings{Adavanne2019_DCASE,
@@ -105,24 +105,24 @@ REMOTES = {
         ),
     ],
     "metadata_dev": download_utils.RemoteFileMetadata(
-            filename="metadata_dev.zip",
-            url="https://zenodo.org/record/2599196/files/metadata_dev.zip?download=1",
-            checksum="c2e5c8b0ab430dfd76c497325171245d",
+        filename="metadata_dev.zip",
+        url="https://zenodo.org/record/2599196/files/metadata_dev.zip?download=1",
+        checksum="c2e5c8b0ab430dfd76c497325171245d",
     ),
     "foa_eval": download_utils.RemoteFileMetadata(
-            filename="foa_eval.zip",
-            url="https://zenodo.org/record/3377088/files/foa_eval.zip?download=1",
-            checksum="4a8ca8bfb69d7c154a56a672e3b635d5",
+        filename="foa_eval.zip",
+        url="https://zenodo.org/record/3377088/files/foa_eval.zip?download=1",
+        checksum="4a8ca8bfb69d7c154a56a672e3b635d5",
     ),
     "mic_eval": download_utils.RemoteFileMetadata(
-            filename="mic_eval.zip",
-            url="https://zenodo.org/record/3377088/files/mic_eval.zip?download=1",
-            checksum="0ec2f743a61213480dae7d0b2f2e6c9d",
+        filename="mic_eval.zip",
+        url="https://zenodo.org/record/3377088/files/mic_eval.zip?download=1",
+        checksum="0ec2f743a61213480dae7d0b2f2e6c9d",
     ),
     "metadata_eval": download_utils.RemoteFileMetadata(
-            filename="metadata_eval.zip",
-            url="https://zenodo.org/record/3377088/files/metadata_eval.zip?download=1",
-            checksum="a0ec7640284ade0744dfe299f7ba107b",
+        filename="metadata_eval.zip",
+        url="https://zenodo.org/record/3377088/files/metadata_eval.zip?download=1",
+        checksum="a0ec7640284ade0744dfe299f7ba107b",
     ),
 }
 
@@ -144,13 +144,7 @@ class SpatialEvents(annotations.Events):
         labels_unit,
         confidence=None,
     ):
-        super().__init__(
-            intervals,
-            intervals_unit,
-            labels,
-            labels_unit,
-            confidence
-        )
+        super().__init__(intervals, intervals_unit, labels, labels_unit, confidence)
 
         annotations.validate_array_like(locations, np.ndarray, float)
         annotations.validate_lengths_equal([intervals, locations, labels, confidence])
@@ -171,7 +165,7 @@ class Clip(core.Clip):
         spatial_events (SpatialEvents): sound events with start time, end time, elevation, azimuth, distance, label and confidence.
         audio_path (str): path to the audio file
         set (str): subset the clip belongs to (development or evaluation)
-	format (str): whether the clip is in foa or mic format
+        format (str): whether the clip is in foa or mic format
         clip_id (str): clip id
 
     """
@@ -219,9 +213,7 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path
-        )
+        return jams_utils.jams_converter(audio_path=self.audio_path)
 
 
 @io.coerce_to_bytes_io
@@ -258,7 +250,7 @@ def load_spatialevents(fhandle: TextIO) -> annotations.Events:
     locations = []
     confidence = []
     reader = csv.reader(fhandle, delimiter=",")
-    next(reader, None) # skip header
+    next(reader, None)  # skip header
     for line in reader:
         labels.append(line[0])
         times.append([float(line[1]), float(line[2])])
@@ -266,7 +258,13 @@ def load_spatialevents(fhandle: TextIO) -> annotations.Events:
         confidence.append(1.0)
 
     events_data = SpatialEvents(
-        np.array(times), "seconds", np.array(locations), "polardegrees-F2NE", labels, "open", np.array(confidence)
+        np.array(times),
+        "seconds",
+        np.array(locations),
+        "polardegrees-F2NE",
+        labels,
+        "open",
+        np.array(confidence),
     )
     return events_data
 
@@ -280,8 +278,8 @@ def validate_locations(locations):
         intervals (np.ndarray): (n x 3) array
 
     Raises:
-        ValueError: if intervals have an invalid shape or 
-		have cartesian coordinate values outside the expected ranges.
+        ValueError: if intervals have an invalid shape or
+                have cartesian coordinate values outside the expected ranges.
     """
     if locations is None:
         return
@@ -294,11 +292,11 @@ def validate_locations(locations):
         )
 
     # validate that values are within expected ranges
-    if (np.abs(locations[:,0]) > 90).any():
+    if (np.abs(locations[:, 0]) > 90).any():
         raise ValueError(f"Elevation values should have magnitude less than 90")
-    if (np.abs(locations[:,1]) > 180).any():
+    if (np.abs(locations[:, 1]) > 180).any():
         raise ValueError(f"Azimuth values should have magnitude less than 180")
-    elif (locations[:,2] < 0).any():
+    elif (locations[:, 2] < 0).any():
         raise ValueError(f"Distance values should be nonnegative numbers")
 
 
@@ -325,9 +323,10 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
 
-	# parsing the data from the filenames due to lack of metadata file
+        # parsing the data from the filenames due to lack of metadata file
         json_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "indexes/tau_sse_2019_index.json"
+            os.path.dirname(os.path.realpath(__file__)),
+            "indexes/tau_sse_2019_index.json",
         )
 
         metadata_index = {}
