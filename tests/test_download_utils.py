@@ -305,7 +305,7 @@ def test_unpackdir(httpserver):
         "all": download_utils.RemoteFileMetadata(
             filename="ESC-50-master.zip",
             url=httpserver.url,
-            checksum=("883ae96b2007435a2664591a81c6e9f4"),
+            checksum=("91281932a1c5ff0473f103c628a53d77"),
             unpack_directories=["ESC-50-master"],
         )
     }
@@ -316,11 +316,10 @@ def test_unpackdir(httpserver):
     assert os.path.exists(data_home)
     assert not os.path.exists(os.path.join(data_home, "ESC-50-master"))
 
-    assert os.path.exists(os.path.join(data_home, "esc50", "requirements.txt"))
+    assert os.path.exists(os.path.join(data_home, "requirements.txt"))
     assert os.path.exists(
         os.path.join(
             data_home,
-            "esc50",
             "audio/1-137-A-32.wav",
         )
     )
