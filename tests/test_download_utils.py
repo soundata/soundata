@@ -135,6 +135,12 @@ def test_downloader(mocker, mock_path):
             remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
             partial_download=["d", "e"],
         )
+    # test only multipart zip supported
+    with pytest.raises(NotImplementedError):
+        download_utils.downloader(
+            "a",
+            remotes={"b": [zip_remote, tar_remote, file_remote]},
+        )
 
     # test info message
     download_utils.downloader("a", info_message="I am a message!")
