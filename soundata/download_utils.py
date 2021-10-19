@@ -101,7 +101,7 @@ def downloader(
             if isinstance(remotes[k], list):
                 if all([remote.filename[-4:-2] == ".z" for remote in remotes[k]]):
                     download_multipart_zip(
-                        k, remotes[k], save_dir, force_overwrite, cleanup
+                        remotes[k], save_dir, force_overwrite, cleanup
                     )
                 else:
                     raise NotImplementedError("Only multipart zip supported.")
@@ -154,14 +154,10 @@ class DownloadProgressBar(tqdm):
         self.update(b * bsize - self.n)
 
 
-def download_multipart_zip(
-    obj_to_download, zip_remotes, save_dir, force_overwrite, cleanup
-):
+def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
     """Download and unzip a multipart zip file.
 
     Args:
-        obj_to_download (str):
-            The name of the object to download
         zip_remotes (list):
             A list of RemoteFileMetadata Objects
             containing download information
@@ -175,12 +171,15 @@ def download_multipart_zip(
     """
     for l in range(len(zip_remotes)):
         download_from_remote(zip_remotes[l], save_dir, force_overwrite)
-    zip_path = os.path.join(save_dir, obj_to_download + ".zip")
-    out_path = os.path.join(save_dir, obj_to_download + "_single.zip")
+    zip_path = os.path.join(
+        save_dir,
+        next((part.filename for part in zip_remotes if ".zip" in part.filename), None),
+    )
+    out_path = zip_path.replace(".zip", "_single.zip")
     subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
     if cleanup:
         for l in range(len(zip_remotes)):
-            zip_path = os.path.join(save_dir, zip_remotes[l])
+            zip_path = os.path.join(save_dir, zip_remotes[l].filename)
             os.remove(zip_path)
     unzip(out_path, cleanup=cleanup)
 

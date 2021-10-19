@@ -207,7 +207,7 @@ BIBTEX = """
 }
 """
 
-# a dictionary key that hasa a list of RemoteFileMetadata implies a multi-part zip
+# a dictionary key that has a list of RemoteFileMetadata implies a multi-part zip
 # and will be processed as such using the zip subprocess (see soundata.download_utils)
 REMOTES = {
     "FSD50K.dev_audio": [

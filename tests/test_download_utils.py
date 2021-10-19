@@ -106,9 +106,7 @@ def test_downloader(mocker, mock_path):
 
     # Zip multipart
     download_utils.downloader("a", remotes={"b": multipart_zip_remote})
-    mock_multipart_zip.assert_called_once_with(
-        "b", multipart_zip_remote, "a", False, False
-    )
+    mock_multipart_zip.assert_called_once_with(multipart_zip_remote, "a", False, False)
     mocker.resetall()
 
     # test partial download
@@ -369,17 +367,25 @@ def test_download_zip_file(mocker, mock_download_from_remote, mock_unzip):
 
 
 def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
-    mock_download_from_remote.return_value = "tests/resources/foo.zip"
-    mock_download_from_remote.return_value = "tests/resources/foo.z01"
     Path("tests/resources/foo.zip").touch()
     Path("tests/resources/foo.z01").touch()
-    download_utils.download_multipart_zip(
-        "foo", ["foo.zip", "foo.z01"], "tests/resources", False, True
+    multipart_zip_remote = {
+        "foo": [
+            download_utils.RemoteFileMetadata(
+                filename="foo.zip", url="a", checksum=("1234")
+            ),
+            download_utils.RemoteFileMetadata(
+                filename="foo.z01", url="b", checksum=("2345")
+            ),
+        ]
+    }
+    download_utils.downloader(
+        "tests/resources", multipart_zip_remote, force_overwrite=False, cleanup=True
     )
     mock_download_from_remote.assert_has_calls(
         [
-            mocker.call("foo.zip", "tests/resources", False),
-            mocker.call("foo.z01", "tests/resources", False),
+            mocker.call(multipart_zip_remote["foo"][0], "tests/resources", False),
+            mocker.call(multipart_zip_remote["foo"][1], "tests/resources", False),
         ]
     )
     mock_unzip.assert_called_once_with("tests/resources/foo_single.zip", cleanup=True)
