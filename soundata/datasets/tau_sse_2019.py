@@ -164,7 +164,8 @@ class SpatialEvents(annotations.Events):
                     elevations[:, np.newaxis],
                     azimuths[:, np.newaxis],
                     distances[:, np.newaxis],
-                ], axis=1
+                ],
+                axis=1,
             )
         )
         annotations.validate_unit(elevations_unit, ELEVATIONS_UNITS)
