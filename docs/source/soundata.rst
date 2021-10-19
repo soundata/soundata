@@ -13,6 +13,20 @@ Initialize a dataset
 Dataset Loaders
 ---------------
 
+3D-MARCo
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.marco
+   :members:
+   :inherited-members:
+
+EigenScape
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape
+   :members:
+   :inherited-members:
+
 ESC-50
 ^^^^^^
 

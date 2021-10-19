@@ -9,6 +9,24 @@
      - Hours
      - License
 
+   * - 3D-MARCo
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 26
+     - 0.3
+     - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/3.0
+
+   * - EigenScape
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 64
+     - 10.7
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
    * - ESC-50
      - - audio: ✅
        - annotations: ✅

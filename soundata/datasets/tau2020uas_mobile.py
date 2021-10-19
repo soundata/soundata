@@ -783,21 +783,8 @@ class Clip(core.Clip):
         tags (soundata.annotations.Tags): tag (label) of the clip + confidence
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -895,11 +882,7 @@ class Dataset(core.Dataset):
             "meta.csv",
         )
 
-        splits = [
-            "development.train",
-            "development.evaluate",
-            "evaluation",
-        ]
+        splits = ["development.train", "development.evaluate", "evaluation"]
 
         metadata_index = {}
 
@@ -930,9 +913,7 @@ class Dataset(core.Dataset):
             if subset == "development":
                 fold = split.split(".")[1]
                 evaluation_setup_file = os.path.join(
-                    self.data_home,
-                    evaluation_setup_path,
-                    "fold1_{}.csv".format(fold),
+                    self.data_home, evaluation_setup_path, "fold1_{}.csv".format(fold)
                 )
             else:
                 evaluation_setup_file = os.path.join(
