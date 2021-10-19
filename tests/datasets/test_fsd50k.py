@@ -308,5 +308,3 @@ def test_collection_vocabulary():
     assert collection_fsd50k_to_audioset["eval"]["Chatter"] == "/m/07rkbfh"
     assert collection_audioset_to_fsd50k["dev"]["/m/02sgy"] == "Electric_guitar"
     assert collection_audioset_to_fsd50k["eval"]["/m/07rkbfh"] == "Chatter"
-
-

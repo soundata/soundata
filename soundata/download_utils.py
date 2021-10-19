@@ -55,7 +55,7 @@ def downloader(
             The directory to download the data
         remotes (dict or None):
             A dictionary of RemoteFileMetadata tuples of data in zip format.
-           If an element of the dictionary is a list of RemoteFileMetadata, 
+           If an element of the dictionary is a list of RemoteFileMetadata,
                 it is handled as a multipart zip file
             If None, there is no data to download
         partial_download (list or None):
@@ -99,7 +99,7 @@ def downloader(
         for k in objs_to_download:
 
             if isinstance(remotes[k], list):
-                if all([remote.filename[-4:-2]==".z" for remote in remotes[k]]):
+                if all([remote.filename[-4:-2] == ".z" for remote in remotes[k]]):
                     download_multipart_zip(
                         k, remotes[k], save_dir, force_overwrite, cleanup
                     )
