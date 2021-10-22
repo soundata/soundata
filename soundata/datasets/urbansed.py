@@ -305,18 +305,6 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
 
-        # metadata_path = os.path.join(self.data_home, "metadata", "UrbanSound8K.csv")
-
-        # if not os.path.exists(metadata_path):
-        #     raise FileNotFoundError("Metadata not found. Did you run .download()?")
-
-        # with open(metadata_path, "r") as fhandle:
-        #     reader = csv.reader(fhandle, delimiter=",")
-        #     raw_data = []
-        #     for line in reader:
-        #         if line[0] != "slice_file_name":
-        #             raw_data.append(line)
-
         splits = ["train", "validate", "test"]
         expected_sizes = [6000, 2000, 2000]
         metadata_index = {}
