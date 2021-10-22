@@ -1,4 +1,4 @@
-"""Utilities for downloading from the web.
+"""utilities for downloading from the web.
 """
 
 import glob
@@ -8,6 +8,7 @@ import shutil
 import tarfile
 import urllib
 import zipfile
+import subprocess
 
 from tqdm import tqdm
 
@@ -54,6 +55,8 @@ def downloader(
             The directory to download the data
         remotes (dict or None):
             A dictionary of RemoteFileMetadata tuples of data in zip format.
+           If an element of the dictionary is a list of RemoteFileMetadata,
+                it is handled as a multipart zip file
             If None, there is no data to download
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
@@ -94,36 +97,47 @@ def downloader(
         logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
-            logging.info("[{}] downloading {}".format(k, remotes[k].filename))
-            extension = os.path.splitext(remotes[k].filename)[-1]
-            if ".zip" in extension:
-                download_zip_file(remotes[k], save_dir, force_overwrite, cleanup)
-            elif ".gz" in extension or ".tar" in extension or ".bz2" in extension:
-                download_tar_file(remotes[k], save_dir, force_overwrite, cleanup)
-            else:
-                download_from_remote(remotes[k], save_dir, force_overwrite)
 
-            if remotes[k].unpack_directories:
-                for src_dir in remotes[k].unpack_directories:
-
-                    # path to destination directory
-                    destination_dir = (
-                        os.path.join(save_dir, remotes[k].destination_dir)
-                        if remotes[k].destination_dir
-                        else save_dir
+            if isinstance(remotes[k], list):
+                if all([remote.filename[-4:-2] == ".z" for remote in remotes[k]]):
+                    download_multipart_zip(
+                        remotes[k], save_dir, force_overwrite, cleanup
                     )
-                    # path to directory to unpack
-                    source_dir = os.path.join(destination_dir, src_dir)
+                else:
+                    raise NotImplementedError("Only multipart zip supported.")
 
-                    if not os.path.exists(source_dir):
-                        logging.info(
-                            "Data not downloaded, because it probably already exists on your computer. "
-                            + "Run .validate() to check, or rerun with force_overwrite=True to delete any "
-                            + "existing files and download from scratch"
+            else:
+
+                logging.info("[{}] downloading {}".format(k, remotes[k].filename))
+                extension = os.path.splitext(remotes[k].filename)[-1]
+                if ".zip" in extension:
+                    download_zip_file(remotes[k], save_dir, force_overwrite, cleanup)
+                elif ".gz" in extension or ".tar" in extension or ".bz2" in extension:
+                    download_tar_file(remotes[k], save_dir, force_overwrite, cleanup)
+                else:
+                    download_from_remote(remotes[k], save_dir, force_overwrite)
+
+                if remotes[k].unpack_directories:
+                    for src_dir in remotes[k].unpack_directories:
+
+                        # path to destination directory
+                        destination_dir = (
+                            os.path.join(save_dir, remotes[k].destination_dir)
+                            if remotes[k].destination_dir
+                            else save_dir
                         )
-                        return
+                        # path to directory to unpack
+                        source_dir = os.path.join(destination_dir, src_dir)
 
-                    move_directory_contents(source_dir, destination_dir)
+                        if not os.path.exists(source_dir):
+                            logging.info(
+                                "Data not downloaded, because it probably already exists on your computer. "
+                                + "Run .validate() to check, or rerun with force_overwrite=True to delete any "
+                                + "existing files and download from scratch"
+                            )
+                            return
+
+                        move_directory_contents(source_dir, destination_dir)
 
     if info_message is not None:
         logging.info(info_message.format(save_dir))
@@ -138,6 +152,36 @@ class DownloadProgressBar(tqdm):
         if tsize is not None:
             self.total = tsize
         self.update(b * bsize - self.n)
+
+
+def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
+    """Download and unzip a multipart zip file.
+
+    Args:
+        zip_remotes (list):
+            A list of RemoteFileMetadata Objects
+            containing download information
+        save_dir (str):
+            Path to save downloaded file
+        force_overwrite (bool):
+            If True, overwrites existing files
+        cleanup (bool):
+            If True, remove zipfile after unziping
+
+    """
+    for l in range(len(zip_remotes)):
+        download_from_remote(zip_remotes[l], save_dir, force_overwrite)
+    zip_path = os.path.join(
+        save_dir,
+        next((part.filename for part in zip_remotes if ".zip" in part.filename), None),
+    )
+    out_path = zip_path.replace(".zip", "_single.zip")
+    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
+    if cleanup:
+        for l in range(len(zip_remotes)):
+            zip_path = os.path.join(save_dir, zip_remotes[l].filename)
+            os.remove(zip_path)
+    unzip(out_path, cleanup=cleanup)
 
 
 def download_from_remote(remote, save_dir, force_overwrite):
