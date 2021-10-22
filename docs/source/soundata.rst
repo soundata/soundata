@@ -48,6 +48,13 @@ FSDnoisy18K
    :members:
    :inherited-members:
 
+TAU NIGENS SSE 2020
+^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau_nigens_sse_2020
+   :members:
+   :inherited-members:
+
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
