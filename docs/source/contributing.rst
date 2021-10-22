@@ -268,13 +268,9 @@ To quickstart a new module:
 
 You may find these examples useful as references:
 
-* `A simple, fully downloadable dataset <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py>`_
-* `A dataset which is partially downloadable <https://github.com/soundata/soundata/blob/master/soundata/datasets/beatles.py>`_
-* `A dataset with restricted access data <https://github.com/soundata/soundata/blob/master/soundata/datasets/medleydb_melody.py#L33>`_
-* `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py#L114>`_
-* `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/gtzan_genre.py#L36>`_
-* `A dataset with a custom download function <https://github.com/soundata/soundata/blob/master/soundata/datasets/maestro.py#L257>`_
-* `A dataset with a remote index <https://github.com/soundata/soundata/blob/master/soundata/datasets/acousticbrainz_genre.py>`_
+* `A simple, fully downloadable dataset <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py>`_
+* `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217>`_
+* `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
 For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
 
@@ -284,7 +280,7 @@ For many more examples, see the `datasets folder <https://github.com/soundata/so
 3. Add tests
 ------------
 
-To finish your contribution, include tests that check the integrity of your loader. For this, follow these steps:
+To finish your contribution, please include tests that check the integrity of your loader. For this, follow these steps:
 
 1. Make a toy version of the dataset in the tests folder ``tests/resources/sound_datasets/my_dataset/``,
    so you can test against little data. For example:
@@ -295,8 +291,8 @@ To finish your contribution, include tests that check the integrity of your load
 
 2. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
    custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
-   If your loader has a custom download function, add tests similar to 
-   `this loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
+   If your loader has a custom download function, add tests similar to
+   `this mirdata loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
 3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
    sure everything is working.
 
@@ -324,13 +320,13 @@ Before creating a PR, you should run all the tests locally like this:
     pytest tests/ --local
 
 
-The `--local` flag skips tests that are built to run only on the remote testing environment.
+The ``--local`` flag skips tests that are built to run only on the remote testing environment.
 
 To run one specific test file:
 
 ::
 
-    pytest tests/test_ikala.py
+    pytest tests/test_urbansed.py
 
 
 Finally, there is one local test you should run, which we can't easily run in our testing environment.
@@ -374,8 +370,8 @@ and will be downloaded with the rest of the dataset. For example:
 .. code-block:: python
 
     "index": download_utils.RemoteFileMetadata(
-        filename="acousticbrainz_genre_index.json.zip",
-        url="https://zenodo.org/record/4298580/files/acousticbrainz_genre_index.json.zip?download=1",
+        filename="remote_index.json.zip",
+        url="https://zenodo.org/record/.../remote_index.json.zip?download=1",
         checksum="810f1c003f53cbe58002ba96e6d4d138",
     )
 
@@ -401,28 +397,30 @@ csv files).
 
 Before you submit your loader make sure to:
 
-1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order
+1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order.
 2. Add your module to ``docs/source/table.rst`` following an alphabetical order as follows:
 
 .. code-block:: rst
 
     * - Dataset
       - Downloadable?
-      - Annotation Types
+      - Annotations
       - Clips
+      - Hours
       - License
 
-An example of this for the ``Beatport EDM key`` dataset:
+An example of this for the ``UrbanSound8k`` dataset:
 
 .. code-block:: rst
 
-   * - Beatport EDM key
+   * - UrbanSound8K
      - - audio: ✅
        - annotations: ✅
-     - - global :ref:`key`
-     - 1486
-     - .. image:: https://licensebuttons.net/l/by-sa/3.0/88x31.png
-          :target: https://creativecommons.org/licenses/by-sa/4.0
+     - :ref:`tags`
+     - 8732
+     - 8.75
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0
 
 
 (you can check that this was done correctly by clicking on the readthedocs check when you open a PR). You can find license
@@ -580,8 +578,6 @@ We use the following libraries for loading data from files:
 +=========================+=============+
 | audio (wav, mp3, ...)   | librosa     |
 +-------------------------+-------------+
-| midi                    | pretty_midi |
-+-------------------------+-------------+
 | json                    | json        |
 +-------------------------+-------------+
 | csv                     | csv         |
@@ -627,7 +623,30 @@ the ``_clip metadata`` for ``clip_id=clip2`` will be:
 
 Load methods vs Clip properties
 --------------------------------
-Clip properties and cached properties should be trivial, and directly call a ``load_*`` method.
+Clip properties and cached properties should be simple, and directly call a ``load_*`` method. Like this example from ``urbansed``:
+
+.. code-block:: python
+
+    @property
+    def split(self):
+        """The data splits (e.g. train)
+
+        Returns
+            * str - split
+
+        """
+        return self._clip_metadata.get("split")
+
+    @core.cached_property
+    def events(self) -> Optional[annotations.Events]:
+        """The audio events
+
+        Returns
+            * annotations.Events - audio event object
+
+        """
+        return load_events(self.txt_path)
+
 There should be no additional logic in a clip property/cached property, and instead all logic
 should be done in the load method. We separate these because the clip properties are only usable
 when data is available locally - when data is remote, the load methods are used instead.
@@ -635,7 +654,18 @@ when data is available locally - when data is remote, the load methods are used 
 Missing Data
 ------------
 If a Clip has a property, for example a type of annotation, that is present for some clips and not others,
-the property should be set to `None` when it isn't available.
+the property should be set to `None` when it isn't available, like this example in the ``tau2019aus`` loader:
+
+.. code-block:: python
+
+    @property
+    def tags(self):
+        scene_label = self._clip_metadata.get("scene_label")
+        if scene_label is None:
+            return None
+        else:
+            return annotations.Tags([scene_label], "open", np.array([1.0]))
+
 
 The index should only contain key-values for files that exist.
 
