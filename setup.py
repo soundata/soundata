@@ -48,6 +48,7 @@ if __name__ == "__main__":
                 "testcontainers>=2.3",
                 "future==0.17.1",
                 "coveralls>=1.7.0",
+                "black>=version 21.9b0"
             ],
             "docs": [
                 "docutils==0.16",
