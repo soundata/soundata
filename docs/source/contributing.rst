@@ -11,6 +11,14 @@ your contribution, you can always submit an issue or open a discussion in the re
 - `Issue Tracker <https://github.com/soundata/soundata/issues>`_
 - `Source Code <https://github.com/soundata/soundata>`_
 
+Quick link to contributing templates
+####################################
+
+If you're familiar with Soundata's API already, you can find the template files for contributing `here <https://github.com/soundata/soundata/tree/master/docs/source/contributing_examples>`_,
+and the loader checklist for submiting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_.
+
+
+
 
 Installing soundata for development purposes
 ############################################
