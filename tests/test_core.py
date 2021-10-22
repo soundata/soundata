@@ -61,7 +61,6 @@ def test_clip():
 
 
 def test_clip_repr():
-
     class TestClip_bad(core.Clip):
         def __init__(self):
             self.a = "asdf"
@@ -89,12 +88,11 @@ def test_clip_repr():
         def f(self):
             """The proper docstring.
 
-             Returns:
-                 * str - yay this is correct
+            Returns:
+                * str - yay this is correct
 
-             """
+            """
             return None
-
 
         def h(self):
             return "I'm a function!"
@@ -102,11 +100,13 @@ def test_clip_repr():
     expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: 'a', 'b': 2},\n  e=None,\n  """
     expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
-    expected4 = """f: The proper docstring.\n                 * str - yay this is correct,\n)"""
+    expected4 = (
+        """f: The proper docstring.\n                 * str - yay this is correct,\n)"""
+    )
 
     test_clip = TestClip()
     actual = test_clip.__repr__()
-    print('aaaaa')
+    print("aaaaa")
     print(expected1 + expected2 + expected3 + expected4)
     assert actual == expected1 + expected2 + expected3 + expected4
 
