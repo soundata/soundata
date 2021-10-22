@@ -431,11 +431,13 @@ class Clip(object):
             if val.__doc__ is None:
                 doc = ""
             else:
-                doc = val.__doc__.split('\n')
+                doc = val.__doc__.split("\n")
 
-            desc = [f'{st}\n' for st in doc[1:] if '*' in st]
+            desc = [f"{st}\n" for st in doc[1:] if "*" in st]
             if not len(desc):
-                raise NotImplementedError (f"This data loader is missing documentation in the {prop} property")
+                raise NotImplementedError(
+                    f"This data loader is missing documentation in the {prop} property"
+                )
             val_type_str = f"{doc[0]}\n{''.join(desc)[:-1]}"
             repr_str += "  {}: {},\n".format(prop, val_type_str)
 
