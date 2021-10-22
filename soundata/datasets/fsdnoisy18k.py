@@ -191,24 +191,54 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence
+
+        """
         return annotations.Tags(
             [self._clip_metadata.get("tag")], "open", np.array([1.0])
         )
 
     @property
     def aso_id(self):
+        """The clip's Audioset ontology ID.
+
+        Returns:
+            * str - the id of the corresponding category as per the AudioSet Ontology
+
+        """
         return self._clip_metadata.get("aso_id")
 
     @property
     def manually_verified(self):
+        """The clip's manually annotated flag.
+
+        Returns:
+            * int - flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
+
+        """
         return self._clip_metadata.get("manually_verified")
 
     @property
     def noisy_small(self):
+        """The clip's noisy flag.
+
+        Returns:
+            * int - flag to indicate whether the clip belongs to the noisy_small portion (1) of the train set
+
+        """
         return self._clip_metadata.get("noisy_small")
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - flag to indicate whether the clip belongs the train or test split
+
+        """
         return self._clip_metadata.get("split")
 
     def to_jams(self):

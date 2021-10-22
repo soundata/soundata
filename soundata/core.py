@@ -522,6 +522,11 @@ class ClipGroup(Clip):
 
     @property
     def clip_audio_property(self):
+        """The clip's audio property.
+
+        Returns:
+
+        """
         raise NotImplementedError("Mixing is not supported for this dataset")
 
     @property

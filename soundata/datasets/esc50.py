@@ -131,34 +131,82 @@ class Clip(core.Clip):
 
     @property
     def filename(self):
+        """The clip's filename
+
+        Returns:
+            * str - clip filename
+        """
         return self._clip_metadata.get("filename")
 
     @property
     def fold(self):
+        """The clip's fold
+
+        Returns:
+            * int - index of the cross-validation fold the clip belongs to
+
+        """
         return self._clip_metadata.get("fold")
 
     @property
     def target(self):
+        """The clip's target.
+
+        Returns:
+            * int - clip class in numeric format
+
+        """
         return self._clip_metadata.get("target")
 
     @property
     def category(self):
+        """The clip's category.
+
+        Returns:
+            * str - clip class in string format, i.e., label
+
+        """
         return self._clip_metadata.get("category")
 
     @property
     def esc10(self):
+        """The clip's esc10.
+
+        Returns:
+            * bool - True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
+
+        """
         return self._clip_metadata.get("esc10")
 
     @property
     def src_file(self):
+        """The clip's source file.
+
+        Returns:
+            * str - freesound ID of the original file from which the clip was taken
+
+        """
         return self._clip_metadata.get("src_file")
 
     @property
     def take(self):
+        """The clip's take
+
+        Returns:
+            * str - letter disambiguating between different fragments from the same Freesound clip (e.g., "A", "B", etc.)
+
+        """
         return self._clip_metadata.get("take")
 
     @property
     def tags(self):
+        """The clip's audio
+
+        Returns:
+            * np.ndarray - audio signal
+            * float - sample rate
+
+        """
         return annotations.Tags(
             [self._clip_metadata.get("category")], "open", np.array([1.0])
         )

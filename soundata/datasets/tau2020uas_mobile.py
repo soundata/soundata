@@ -777,7 +777,10 @@ class Clip(core.Clip):
     Attributes:
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        city (str): city were the audio signal was recorded
         clip_id (str): clip id
+        identifier (str): the clip identifier
+        source_label (str): source label
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
         tags (soundata.annotations.Tags): tag (label) of the clip + confidence
@@ -801,10 +804,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -813,14 +828,32 @@ class Clip(core.Clip):
 
     @property
     def city(self):
+        """The clip's city.
+
+        Returns:
+            * str - city were the audio signal was recorded
+
+        """
         return self._clip_metadata.get("city")
 
     @property
     def source_label(self):
+        """The clip's source label.
+
+        Returns:
+            * str - source label
+
+        """
         return self._clip_metadata.get("source_label")
 
     @property
     def identifier(self):
+        """The clip's identifier.
+
+        Returns:
+            * str - clip identifier
+
+        """
         return self._clip_metadata.get("identifier")
 
     def to_jams(self):

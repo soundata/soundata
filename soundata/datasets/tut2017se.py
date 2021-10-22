@@ -284,14 +284,32 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
+        """The clip's events.
+
+        Returns:
+            * annotations.Events - sound events with start time, end time, label and confidence
+
+        """
         return load_events(self.annotations_path)
 
     @core.cached_property
     def non_verified_events(self) -> Optional[annotations.Events]:
+        """The clip's non verified events path.
+
+        Returns:
+            * str - path to the non-verified annotations file
+
+        """
         return load_events(self.non_verified_annotations_path)
 
     def to_jams(self):
