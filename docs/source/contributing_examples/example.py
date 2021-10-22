@@ -22,7 +22,7 @@ import numpy as np
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
-from soundata import download_utils, jams_utils, core, annotations
+from soundata import download_utils, jams_utils, core, annotations, io
 
 # -- Add any relevant citations here
 BIBTEX = """
@@ -139,7 +139,7 @@ def load_audio(fhandle):
     # -- for example, the code below. This should be dataset specific!
     # -- By default we load to mono
     # -- change this if it doesn't make sense for your dataset.
-    return librosa.load(audio_path, sr=None, mono=True)
+    return librosa.load(fhandle, sr=None, mono=True)
 
 
 # -- Write any necessary loader functions for loading the dataset's data
@@ -163,7 +163,7 @@ def load_annotation(fhandle):
     )
     return annotation_data
 
-# -- use this decorator so the docs are complete
+# -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """The Example dataset
@@ -172,16 +172,16 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name=NAME,
-            track_class=Track,
+            name='dataset_name',
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,
         )
 
-    # -- Copy any loaders you wrote that should be part of the Dataset class
-    # -- use this core.copy_docs decorator to copy the docs from the original
+    # -- Copy any loader functions you wrote that should be part of the Dataset class
+    # -- use this core.copy_docs decorator to copy the docs from the parent class
     # -- load_ function
     @core.copy_docs(load_audio)
     def load_audio(self, *args, **kwargs):
@@ -195,10 +195,9 @@ class Dataset(core.Dataset):
     # -- you do not have to include this function if there is no metadata 
     @core.cached_property
     def _metadata(self):
-        metadata_path = os.path.join(self.data_home, 'example_metadta.csv')
 
         # load metadata however makes sense for your dataset
-        metadata_path = os.path.join(data_home, 'example_metadata.json')
+        metadata_path = os.path.join(self.data_home, 'example_metadata.json')
         with open(metadata_path, 'r') as fhandle:
             metadata = json.load(fhandle)
 
