@@ -512,10 +512,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4), leaderboard or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (scene label) of the clip + confidence.
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -524,10 +536,22 @@ class Clip(core.Clip):
 
     @property
     def city(self):
+        """The clip's city.
+
+        Returns:
+            * str - city were the audio signal was recorded
+
+        """
         return self._clip_metadata.get("city")
 
     @property
     def identifier(self):
+        """The clip's identifier.
+
+        Returns:
+            * str - identifier present in the metadata
+
+        """
         return self._clip_metadata.get("identifier")
 
     def to_jams(self):
