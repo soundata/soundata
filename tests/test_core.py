@@ -101,7 +101,7 @@ def test_clip_repr():
     expected2 = """c={1: 'a', 'b': 2},\n  e=None,\n  """
     expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
     expected4 = (
-        """f: The proper docstring.\n                 * str - yay this is correct,\n)"""
+        """f: The proper docstring.\n                * str - yay this is correct,\n)"""
     )
 
     test_clip = TestClip()
