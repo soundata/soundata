@@ -57,8 +57,8 @@
    * - TAU Spatial Sound Events 2019
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags`
-     - 1000
+     - :ref:`events`
+     - 500
      - 8.3
      - :tau_sse_2019:`\ `
 
