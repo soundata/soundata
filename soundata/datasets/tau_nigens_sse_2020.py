@@ -152,7 +152,7 @@ TIME_UNITS = {
 LABEL_UNITS = {"open": "no strict schema or units"}
 
 
-class SpatialEvents():
+class SpatialEvents:
     """SpatialEvents class
     Attributes:
         intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
@@ -199,8 +199,16 @@ class SpatialEvents():
     ):
         annotations.validate_array_like(intervals, list, list)
         annotations.validate_array_like(labels, list, str)
-        annotations.validate_array_like(confidence, np.ndarray, float, none_allowed=True)
-        [[annotations.validate_intervals(intervals[np.newaxis,:]) for intervals in event_intervals] for event_intervals in intervals]
+        annotations.validate_array_like(
+            confidence, np.ndarray, float, none_allowed=True
+        )
+        [
+            [
+                annotations.validate_intervals(intervals[np.newaxis, :])
+                for intervals in event_intervals
+            ]
+            for event_intervals in intervals
+        ]
         annotations.validate_confidence(confidence)
         annotations.validate_unit(labels_unit, LABEL_UNITS)
         annotations.validate_unit(intervals_unit, TIME_UNITS)
@@ -210,7 +218,6 @@ class SpatialEvents():
         self.labels = labels
         self.labels_unit = labels_unit
         self.confidence = confidence
-
 
         annotations.validate_array_like(track_number_index, list, str)
         annotations.validate_array_like(elevations, list, list)
@@ -230,12 +237,10 @@ class SpatialEvents():
         # validate location information for each event are numpy arrays
         [
             [
-                    [
-        	        annotations.validate_array_like(
-        	            subitem, np.ndarray, int
-        	        )
-        	        for subitem in sitem
-        	    ]
+                [
+                    annotations.validate_array_like(subitem, np.ndarray, int)
+                    for subitem in sitem
+                ]
                 for sitem in item
             ]
             for item in [elevations, azimuths]
@@ -309,12 +314,10 @@ def validate_time_steps(time_step, locations, interval):
         ValueError: if the number of locations does not match
             the number of time_steps that fit in the interval
     """
-    if interval[0]>interval[1]:
-        raise ValueError(
-            "The interval has a start_time greater than the end_time"
-        )
-    elif len(locations) == 1 and interval[1]-interval[0]>0:
-        pass # the event is static
+    if interval[0] > interval[1]:
+        raise ValueError("The interval has a start_time greater than the end_time")
+    elif len(locations) == 1 and interval[1] - interval[0] > 0:
+        pass  # the event is static
     # if the object is static, validation passes
     elif not np.isclose(len(locations) - 1, (interval[1] - interval[0]) / time_step):
         raise ValueError(
@@ -445,7 +448,10 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
 
         # get sets of continuous indices for each unique label+event_num pair
         unique_events_indices_grouped = [
-            np.split(event_indices, np.where(np.diff(np.array(time_frames)[event_indices]) != 1)[0] + 1)
+            np.split(
+                event_indices,
+                np.where(np.diff(np.array(time_frames)[event_indices]) != 1)[0] + 1,
+            )
             for event_indices in unique_events_indices
         ]
 
@@ -535,9 +541,14 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
     raw_events = []
     for line in raw_reader:
         raw_events.append([int(val) for val in line])
-    intervals, labels, track_number_indices, azimuths, elevations, distances = _process_raw_events(
-        raw_events, dt
-    )
+    (
+        intervals,
+        labels,
+        track_number_indices,
+        azimuths,
+        elevations,
+        distances,
+    ) = _process_raw_events(raw_events, dt)
     confidence = np.array([1.0] * len(labels))
 
     events_data = SpatialEvents(

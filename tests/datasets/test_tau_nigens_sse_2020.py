@@ -80,35 +80,40 @@ def test_load_SpatialEvents():
         [[7, 6]],
         [[6]],
         [
-            [1,  2,  2,  2,  2,  2,  2,  2,  3,  3,  2, 2, 2, 2, 2, 4, 4, 5, 5, 5],
-            [5,  4,  4,  4,  4,  4,  4,  4,  4,  4,  5,  5,  5,  4,  4,  4,  5,  5], 
-            [6,  5,  5,  5,  4,  5,  5,  5,  4,  4,   4,   4],
+            [1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 4, 4, 5, 5, 5],
+            [5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 4, 4, 4, 5, 5],
+            [6, 5, 5, 5, 4, 5, 5, 5, 4, 4, 4, 4],
         ],
         [[9]],
     ]
     distances = [
-        [np.array([None]*len(azimuth)) for azimuth in event_azimuths] 
+        [np.array([None] * len(azimuth)) for azimuth in event_azimuths]
         for event_azimuths in azimuths
     ]
 
-    labels = ["1","2","4","4","5", "6"]
-    track_number_indices = ["0","0","0","1","0", "0"]
+    labels = ["1", "2", "4", "4", "5", "6"]
+    track_number_indices = ["0", "0", "0", "1", "0", "0"]
     assert np.allclose(annotations.time_step, 0.1)
     assert np.allclose(confidence, annotations.confidence)
-    for pair in [zip(elevations, annotations.elevations),zip(azimuths, annotations.azimuths)]:
+    for pair in [
+        zip(elevations, annotations.elevations),
+        zip(azimuths, annotations.azimuths),
+    ]:
         for event_test_data, event_data in pair:
             for test_data, data in zip(event_test_data, event_data):
                 assert np.allclose(test_data, data)
     for pair in [zip(distances, annotations.distances)]:
         for event_test_data, event_data in pair:
             for test_data, data in zip(event_test_data, event_data):
-                test_data==data
+                test_data == data
     for test_label, label in zip(labels, annotations.labels):
-        assert test_label==label 
-    for test_track_index, track_index in zip(track_number_indices, annotations.track_number_index):
-        assert test_track_index==track_index
+        assert test_label == label
+    for test_track_index, track_index in zip(
+        track_number_indices, annotations.track_number_index
+    ):
+        assert test_track_index == track_index
     with pytest.raises(ValueError):
-        tau_nigens_sse_2020.validate_time_steps(0.1, [4,5,7],[2,1])
+        tau_nigens_sse_2020.validate_time_steps(0.1, [4, 5, 7], [2, 1])
 
 
 def test_to_jams():
