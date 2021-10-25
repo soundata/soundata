@@ -106,6 +106,54 @@ Partially downloading a dataset
         dataset = soundata.initialize('tau2019uas')
         dataset.download(partial_download=['development.audio.1', 'development.audio.2'])  # download only two remotes
 
+
+Downloading a multipart dataset
+    In some cases, datasets consist of multiple remote files that have to be extracted together locally to correctly recover the data.
+    In those cases, remotes that need to be extracted together should be grouped in a list, so all the necessary files are downloaded at once
+    (even in a partial download). An example of this is the `fsd50k` loader:
+
+    .. admonition:: Example multipart REMOTES
+        :class: dropdown
+
+        .. code-block:: python
+
+            REMOTES = {
+                "FSD50K.dev_audio": [
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.zip",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.zip?download=1",
+                        checksum="c480d119b8f7a7e32fdb58f3ea4d6c5a",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z01",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z01?download=1",
+                        checksum="faa7cf4cc076fc34a44a479a5ed862a3",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z02",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z02?download=1",
+                        checksum="8f9b66153e68571164fb1315d00bc7bc",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z03",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z03?download=1",
+                        checksum="1196ef47d267a993d30fa98af54b7159",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z04",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z04?download=1",
+                        checksum="d088ac4e11ba53daf9f7574c11cccac9",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z05",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z05?download=1",
+                        checksum="81356521aa159accd3c35de22da28c7f",
+                    ),
+                ],
+                ...
+
+
+
 Validating a dataset
 ^^^^^^^^^^^^^^^^^^^^
 
