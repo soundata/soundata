@@ -99,7 +99,7 @@ Partially downloading a dataset
             ),
             ....
 
-    An partial download example for ``tau2019uas`` dataset could be:
+    A partial download example for ``tau2019uas`` dataset could be:
 
     .. code-block:: python
 
@@ -211,7 +211,7 @@ annotation.
 
 
 
-You can also load a single clip without loading all clips int the dataset:
+You can also load a single clip without loading all clips in the dataset:
 
 .. code-block:: python
 

@@ -602,12 +602,12 @@ For example, if ``_metadata`` returns a dictionary of the form:
 
     {
         'clip1': {
-            'artist': 'A',
-            'genre': 'Z'
+            'microphone-type': 'Awesome',
+            'recording-date': '27.10.2021'
         },
         'clip2': {
-            'artist': 'B',
-            'genre': 'Y'
+            'microphone-type': 'Less_awesome',
+            'recording-date': '27.10.2021'
         }
     }
 
@@ -616,8 +616,8 @@ the ``_clip metadata`` for ``clip_id=clip2`` will be:
 .. code-block:: python
 
     {
-        'artist': 'B',
-        'genre': 'Y'
+        'microphone-type': 'Less_awesome',
+        'recording-date': '27.10.2021'
     }
 
 
@@ -653,8 +653,8 @@ when data is available locally - when data is remote, the load methods are used 
 
 Missing Data
 ------------
-If a Clip has a property, for example a type of annotation, that is present for some clips and not others,
-the property should be set to `None` when it isn't available, like this example in the ``tau2019aus`` loader:
+Clip properties that are available for some clips and not for others should be set to ``None`` when whey are not available.
+Like this example in the ``tau2019aus`` loader:
 
 .. code-block:: python
 
