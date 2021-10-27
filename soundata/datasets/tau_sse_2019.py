@@ -229,6 +229,21 @@ class Clip(core.Clip):
 
     @core.cached_property
     def spatial_events(self) -> Optional[SpatialEvents]:
+        """The clip's spatial events
+
+        Returns:
+            * SpatialEvents class with attributes
+                * intervals (np.ndarray): (n x 2) array of intervals
+                    (as floats) in seconds in the form [start_time, end_time]
+                    with positive time stamps and end_time >= start_time.
+                * elevations (np.ndarray): (n,) aarray of elevations
+                * azimuths (np.ndarray): (n,) aarray of azimuths
+                * distances (np.ndarray): (n,) aarray of distances
+                * labels (list): list of event labels (as strings)
+                * confidence (np.ndarray or None): array of confidence values, float in [0, 1]
+                * labels_unit (str): labels unit, one of LABELS_UNITS
+                * intervals_unit (str): intervals unit, one of TIME_UNITS
+        """
         return load_spatialevents(self.csv_path)
 
     def to_jams(self):
