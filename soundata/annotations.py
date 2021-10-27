@@ -168,7 +168,7 @@ def validate_lengths_equal(array_list):
                 raise ValueError("Arrays have unequal length")
 
         # recurse
-        validate_lengths_equal(array_list[:-1])
+        validate_lengths_equal(array_list[1:])
 
 
 def validate_confidence(confidence):
