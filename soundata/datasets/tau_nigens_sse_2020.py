@@ -408,7 +408,7 @@ class Clip(core.Clip):
                 * labels_unit (str): labels unit, one of LABELS_UNITS
                 * track_number_indices (list): list of track number indices (as strings)
                 * confidence (np.ndarray or None): array of confidence values
-            
+
         """
         return load_spatialevents(self.csv_path)
 
