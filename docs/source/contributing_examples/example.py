@@ -10,6 +10,7 @@
     3. Mention the origin of the dataset (e.g. creator, institution)
     4. Indicate any relevant papers related to the dataset
     5. Include a description about how the data can be accessed and the license it uses (if applicable)
+    6. Indicate the dataset version
 
 """
 import os
