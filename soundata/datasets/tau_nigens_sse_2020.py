@@ -388,6 +388,28 @@ class Clip(core.Clip):
 
     @core.cached_property
     def events(self) -> Optional[SpatialEvents]:
+        """The clip's event annotations
+        Returns:
+            * SpatialEvents with atributes:
+                * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
+                    (as floats) in TIME_UNITS in the form [start_time, end_time]
+                * intervals_unit (str): intervals unit, one of TIME_UNITS
+                * time_step (int, float, or None): the time-step between events
+                * elevations (list): list of size n with np.ndarrays with dtype int,
+                    indicating the elevation of the sound event per time_step.
+                * elevations_unit (str): elevations unit, one of ELEVATIONS_UNITS
+                * azimuths (list): list of size n with np.ndarrays with dtype int,
+                    indicating the azimuth of the sound event per time_step if moving
+                * azimuths_unit (str): azimuths unit, one of AZIMUTHS_UNITS
+                * distances (list): list of size n with np.ndarrays with dtype int,
+                    indicating the distance of the sound event per time_step if moving
+                * distances_unit (str): distances unit, one of DISTANCES_UNITS
+                * labels (list): list of event labels (as strings)
+                * labels_unit (str): labels unit, one of LABELS_UNITS
+                * track_number_indices (list): list of track number indices (as strings)
+                * confidence (np.ndarray or None): array of confidence values
+            
+        """
         return load_spatialevents(self.csv_path)
 
     def to_jams(self):
