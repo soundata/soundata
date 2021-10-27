@@ -281,16 +281,15 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         clip_id (str): clip id
-
-    Properties:
-        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
-        mids (soundata.annotations.Tags): tag (labels) encoded in Audioset formatting
-        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
-        title (str): the title of the uploaded file in Freesound
         description (str): description of the sound provided by the Freesound uploader
+        mids (soundata.annotations.Tags): tag (labels) encoded in Audioset formatting
         pp_pnp_ratings (dict): PP/PNP ratings given to the main label of the clip
+        split (str): flag to identify if clip belongs to developement, evaluation or validation splits
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
+        title (str): the title of the uploaded file in Freesound
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -300,7 +299,7 @@ class Clip(core.Clip):
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
-        """The clip's audio
+        """The clip's audio.
 
         Returns:
             * np.ndarray - audio signal
@@ -311,6 +310,12 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence
+
+        """
         return annotations.Tags(
             self._clip_metadata["ground_truth"].get("tags"),
             "open",
@@ -319,6 +324,12 @@ class Clip(core.Clip):
 
     @property
     def mids(self):
+        """The clip's mids.
+
+        Returns:
+            * annotations.Tags - tag (labels) encoded in Audioset formatting
+
+        """
         return annotations.Tags(
             self._clip_metadata["ground_truth"].get("mids"),
             "open",
@@ -327,18 +338,41 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - flag to identify if clip belongs to developement, evaluation or validation splits
+
+        """
         return self._clip_metadata["ground_truth"].get("split")
 
     @property
     def title(self):
+        """The clip's title.
+
+        Returns:
+            * str - the title of the uploaded file in Freesound
+
+        """
         return self._clip_metadata["clip_info"].get("title")
 
     @property
     def description(self):
+        """The clip's description.
+
+        Returns:
+            * str - description of the sound provided by the Freesound uploader
+
+        """
         return self._clip_metadata["clip_info"].get("description")
 
     @property
     def pp_pnp_ratings(self):
+        """The clip's PP/PNP ratings.
+
+        Returns:
+            * dict - PP/PNP ratings given to the main label of the clip
+        """
         return self._clip_metadata.get("pp_pnp_ratings")
 
     def to_jams(self):

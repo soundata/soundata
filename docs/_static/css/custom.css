@@ -1,5 +1,13 @@
+
+nav.wy-nav-side {
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
 div.wy-side-nav-search {
-    background: #FFFFFF;
+    color: #404040;
+    background: rgb(255, 255, 255);
+    margin-left: 15px;
 }
 
 div.wy-side-nav-search .version {
@@ -13,5 +21,73 @@ span.caption-text {
 }
 
 div.wy-menu .caption-text {
-    color: #a054d8;
+    color: #404040;
+    font-weight: bold;
+    margin-left:15px;
+}
+
+div.wy-nav-content {
+    border-left: solid;
+    border-left-color:#404040;
+    list-style: disc;
+    max-width: 1200px;
+}
+
+div.wy-menu{
+
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
+div.wy-menu.wy-menu-vertical {
+
+    margin-left: 15px;
+    background: rgb(255, 255, 255);
+}
+
+div.wy-menu.wy-menu-vertical p {
+    margin: 0 0 0;
+}
+
+
+div.wy-menu-vertical a {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:hover {
+    color: #126782;
+    font-weight: bold;
+    background: #ced4da;
+}
+
+div.wy-menu-vertical a:active {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #126782;
+    font-weight: bold;
+}
+
+
+.rst-content .admonition-title, .wy-alert-title {
+    background: #126782;
+}
+
+span.std.std-ref {
+    color: #126782;
+    font-weight: bold;
+
+}
+
+a.reference.external {
+    color: #126782;
+    font-weight: bold;
 }

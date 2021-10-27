@@ -8,24 +8,22 @@
     1. Describe annotations included in the dataset
     2. Indicate the size of the datasets (e.g. number files and duration, hours)
     3. Mention the origin of the dataset (e.g. creator, institution)
-    4. Describe the type of music included in the dataset
-    5. Indicate any relevant papers related to the dataset
-    6. Include a description about how the data can be accessed and the license it uses (if applicable)
+    4. Indicate any relevant papers related to the dataset
+    5. Include a description about how the data can be accessed and the license it uses (if applicable)
+    6. Indicate the dataset version
 
 """
-import csv
-import logging
-import json
 import os
+import csv
+import json
+
 
 import librosa
 import numpy as np
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
-from soundata import download_utils
-from soundata import jams_utils
-from soundata import core, annotations
+from soundata import download_utils, jams_utils, core, annotations, io
 
 # -- Add any relevant citations here
 BIBTEX = """
@@ -64,30 +62,30 @@ The dataset's license information goes here.
 """
 
 
-class Track(core.Track):
-    """Example track class
+class Clip(core.Clip):
+    """Example clip class
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
-    # -- note that you'll first need to have a test track (see "Adding tests to your dataset" below)
+    # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str): clip id of the clip
 
     Attributes:
-        track_id (str): track id
+        clip_id (str): clip id
         # -- Add any of the dataset specific attributes here
 
     """
-    def __init__(self, track_id, data_home, dataset_name, index, metadata):
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         
         # -- this sets the following attributes:
-        # -- * track_id
+        # -- * clip_id
         # -- * _dataset_name
         # -- * _data_home
         # -- * _track_paths
         # -- * _track_metadata
         super().__init__(
-            track_id,
+            clip_id,
             data_home,
             dataset_name=dataset_name,
             index=index,
@@ -109,16 +107,15 @@ class Track(core.Track):
 
     # -- `audio` will behave like an attribute, but it will only be loaded
     # -- when someone accesses it and it won't be stored. By default, we make
-    # -- any memory heavy information (like audio) properties
+    # -- any memory heavy information (like audio), properties
     @property
     def audio(self):
         """(np.ndarray, float): DESCRIPTION audio signal, sample rate"""
         return load_audio(self.audio_path)
 
     # -- we use the to_jams function to convert all the annotations in the JAMS format.
-    # -- The converter takes as input all the annotations in the proper format (e.g. beats
-    # -- will be fed as beat_data=[(self.beats, None)], see jams_utils), and returns a jams
-    # -- object with the annotations.
+    # -- The converter takes as input all the annotations in the proper format (e.g. tags)
+    # -- and returns a jams object with the annotations.
     def to_jams(self):
         """Jams: the track's data in jams format"""
         return jams_utils.jams_converter(
@@ -127,60 +124,6 @@ class Track(core.Track):
             metadata=self._metadata,
         )
         # -- see the documentation for `jams_utils.jams_converter for all fields
-
-
-# -- if the dataset contains multitracks, you can define a MultiTrack similar to a Track
-# -- you can delete the block of code below if the dataset has no multitracks
-class MultiTrack(core.MultiTrack):
-    """Example multitrack class
-
-    Args:
-        mtrack_id (str): multitrack id
-        data_home (str): Local path where the dataset is stored.
-            If `None`, looks for the data in the default directory, `~/sound_datasets/Example`
-
-    Attributes:
-        mtrack_id (str): track id
-        tracks (dict): {track_id: Track}
-        track_audio_attribute (str): the name of the attribute of Track which
-            returns the audio to be mixed
-        # -- Add any of the dataset specific attributes here
-
-    """
-    def __init__(self, mtrack_id, data_home):
-        self.mtrack_id = mtrack_id
-        self._data_home = data_home
-        # these three attributes below must have exactly these names
-        self.track_ids = [...] # define which track_ids should be part of the multitrack
-        self.tracks = {t: Track(t, self._data_home) for t in self.track_ids}
-        self.track_audio_property = "audio" # the property of Track which returns the relevant audio file for mixing
-
-        # -- optionally add any multitrack specific attributes here
-        self.mix_path = ...  # this can be called whatever makes sense for the datasets
-        self.annotation_path = ...
-
-    # -- multitracks can optionally have mix-level cached properties and properties
-    @core.cached_property
-    def annotation(self):
-        """output type: description of output"""
-        return load_annotation(self.annotation_path)
-
-    @property
-    def audio(self):
-        """(np.ndarray, float): DESCRIPTION audio signal, sample rate"""
-        return load_audio(self.audio_path)
-
-    # -- multitrack classes are themselves Tracks, and also need a to_jams method
-    # -- for any mixture-level annotations
-    def to_jams(self):
-        """Jams: the track's data in jams format"""
-        return jams_utils.jams_converter(
-            audio_path=self.mix_path,
-            annotation_data=[(self.annotation, None)],
-            ...
-        )
-        # -- see the documentation for `jams_utils.jams_converter for all fields
-
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle):
@@ -197,7 +140,7 @@ def load_audio(fhandle):
     # -- for example, the code below. This should be dataset specific!
     # -- By default we load to mono
     # -- change this if it doesn't make sense for your dataset.
-    return librosa.load(audio_path, sr=None, mono=True)
+    return librosa.load(fhandle, sr=None, mono=True)
 
 
 # -- Write any necessary loader functions for loading the dataset's data
@@ -221,7 +164,7 @@ def load_annotation(fhandle):
     )
     return annotation_data
 
-# -- use this decorator so the docs are complete
+# -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """The Example dataset
@@ -230,16 +173,16 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name=NAME,
-            track_class=Track,
+            name='dataset_name',
+            clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,
         )
 
-    # -- Copy any loaders you wrote that should be part of the Dataset class
-    # -- use this core.copy_docs decorator to copy the docs from the original
+    # -- Copy any loader functions you wrote that should be part of the Dataset class
+    # -- use this core.copy_docs decorator to copy the docs from the parent class
     # -- load_ function
     @core.copy_docs(load_audio)
     def load_audio(self, *args, **kwargs):
@@ -253,10 +196,9 @@ class Dataset(core.Dataset):
     # -- you do not have to include this function if there is no metadata 
     @core.cached_property
     def _metadata(self):
-        metadata_path = os.path.join(self.data_home, 'example_metadta.csv')
 
         # load metadata however makes sense for your dataset
-        metadata_path = os.path.join(data_home, 'example_metadata.json')
+        metadata_path = os.path.join(self.data_home, 'example_metadata.json')
         with open(metadata_path, 'r') as fhandle:
             metadata = json.load(fhandle)
 
