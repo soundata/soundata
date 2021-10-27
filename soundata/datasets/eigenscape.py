@@ -148,6 +148,12 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
+        """The clip's tags
+
+        Returns:
+            * annotations.Tags - Tags (scene label) of the clip + confidence.
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -156,18 +162,38 @@ class Clip(core.Clip):
 
     @property
     def location(self):
+        """The clip's location.
+
+        Returns:
+            * str - Tags annotation object
+        """
         return self._clip_metadata.get("location")
 
     @property
     def time(self):
+        """The clip's time.
+
+        Returns:
+            * str - time when the audio signal was recorded
+        """
         return self._clip_metadata.get("time")
 
     @property
     def date(self):
+        """The clip's date.
+
+        Returns:
+            * str - date when the audio signal was recorded
+        """
         return self._clip_metadata.get("date")
 
     @property
     def additional_information(self):
+        """The clip's additional information.
+
+        Returns:
+            * str - notes included by the dataset authors with other details relevant to the specific clip
+        """
         return self._clip_metadata.get("additional information")
 
     def to_jams(self):

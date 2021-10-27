@@ -250,18 +250,18 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotation.Events): sound events with start time,
-            end time, label and confidence.
-        non_verified_events (soundata.annotation.Events): non-verified sound
-            events with start time, end time, label and confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         annotations_path (str): path to the annotations file
+        clip_id (str): clip id
+        events (soundata.annotations.Events): sound events with start time,
+            end time, label and confidence
         non_verified_annotations_path (str): path to the non-verified
             annotations file
+        non_verified_events (soundata.annotations.Events): non-verified sound
+            events with start time, end time, label and confidence
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
-        clip_id (str): clip id
-
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -284,14 +284,32 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
+        """The clip's events.
+
+        Returns:
+            * annotations.Events - sound events with start time, end time, label and confidence
+
+        """
         return load_events(self.annotations_path)
 
     @core.cached_property
     def non_verified_events(self) -> Optional[annotations.Events]:
+        """The clip's non verified events path.
+
+        Returns:
+            * str - path to the non-verified annotations file
+
+        """
         return load_events(self.non_verified_annotations_path)
 
     def to_jams(self):
