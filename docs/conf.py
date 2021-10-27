@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath("../"))
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
-copyright = "2021, soundata development team."
-author = "The soundata development team"
+copyright = "2021, Soundata development team"
+author = "The Soundata development team"
 
 
 import importlib
@@ -51,6 +51,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
+    "sphinx_togglebutton",
 ]
 
 # To shorten links of licenses and add to table

@@ -1,8 +1,8 @@
 .. _api:
 
 
-Initializing
-------------
+Initialize a dataset
+--------------------
 
 .. autofunction:: soundata.initialize
 
@@ -103,21 +103,21 @@ Advanced
 --------
 
 soundata.validate
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.validate
    :members:
 
 
 soundata.download_utils
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.download_utils
    :members:
 
 
 soundata.jams_utils
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.jams_utils
    :members:

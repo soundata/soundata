@@ -431,9 +431,14 @@ class Clip(object):
             if val.__doc__ is None:
                 doc = ""
             else:
-                doc = val.__doc__
+                doc = val.__doc__.split("\n")
 
-            val_type_str = doc.split(":")[0]
+            desc = [f"{st}\n" for st in doc[1:] if "*" in st]
+            if not len(desc):
+                raise NotImplementedError(
+                    f"This data loader is missing documentation in the {prop} property"
+                )
+            val_type_str = f"{doc[0]}\n{''.join(desc)[:-1]}"
             repr_str += "  {}: {},\n".format(prop, val_type_str)
 
         repr_str += ")"
@@ -517,6 +522,11 @@ class ClipGroup(Clip):
 
     @property
     def clip_audio_property(self):
+        """The clip's audio property.
+
+        Returns:
+
+        """
         raise NotImplementedError("Mixing is not supported for this dataset")
 
     @property

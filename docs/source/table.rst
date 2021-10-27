@@ -4,9 +4,9 @@
 
    * - Dataset
      - Downloadable?
-     - Annotation Types
+     - Annotations
      - Clips
-     - Duration (hours)
+     - Hours
      - License
 
    * - 3D-MARCo
@@ -54,7 +54,9 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - TAU Urban Acoustic Scenes 2019
+   * - | TAU Urban
+       | Acoustic Scenes
+       | 2019
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
@@ -62,7 +64,9 @@
      - 63.3
      - :tau2019:`\ `
 
-   * - TAU Urban Acoustic Scenes 2020 Mobile
+   * - | TAU Urban
+       | Acoustic Scenes
+       | 2020 Mobile
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
@@ -70,7 +74,8 @@
      - 97
      - :tau2020:`\ `
 
-   * - TUT Sound events 2017
+   * - | TUT Sound
+       | events 2017
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
@@ -90,7 +95,7 @@
    * - UrbanSound8K
      - - audio: ✅
        - annotations: ✅
-     - - :ref:`tags`
+     - :ref:`tags`
      - 8732
      - 8.75
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
