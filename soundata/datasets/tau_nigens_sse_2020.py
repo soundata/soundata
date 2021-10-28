@@ -334,8 +334,6 @@ def validate_locations(locations):
         ValueError: if intervals have an invalid shape or
                 have cartesian coordinate values outside the expected ranges.
     """
-    if locations is None:
-        return
 
     # validate that locations have the correct shape
     locations_shape = np.shape(locations)

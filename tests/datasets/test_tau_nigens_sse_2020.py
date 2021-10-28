@@ -129,7 +129,7 @@ def test_load_SpatialEvents():
         tau_nigens_sse_2020.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
     with pytest.raises(ValueError):
         # elevation is greater than 181
-        tau_nigens_sse_2020.validate_locations(np.array([[181, 5, None], [2, 3, None]]))
+        tau_nigens_sse_2020.validate_locations(np.array([[90, 181, None], [2, 3, None]]))
 
 
 def test_to_jams():
