@@ -343,7 +343,6 @@ def validate_time_steps(time_step, locations, interval):
         pass  # the event is static
     # if the object is static, validation passes
     elif not np.isclose(len(locations) - 1, (interval[1] - interval[0]) / time_step):
-        print(interval)
         raise ValueError(
             "The number of locations does not fit in the interval, given the time_step"
         )
