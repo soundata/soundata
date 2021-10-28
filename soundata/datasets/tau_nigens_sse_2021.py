@@ -97,56 +97,46 @@ REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
             filename="foa_dev.zip",
-            url="http://zenodo.org/record/4064792/files/foa_dev.zip?download=1",
-            checksum="6aad48e7346884b3929245e7553fd97d",
+            url="http://zenodo.org/record/5476980/files/foa_dev.zip?download=1",
+            checksum="80648b5f64b1b4a824084560f1334f54",
         ),
         download_utils.RemoteFileMetadata(
             filename="foa_dev.z01",
-            url="http://zenodo.org/record/4064792/files/foa_dev.z01?download=1",
-            checksum="86acab46854a57f5ba3e5b80a19c01b5",
-        ),
-        download_utils.RemoteFileMetadata(
-            filename="foa_dev.z02",
-            url="http://zenodo.org/record/4064792/files/foa_dev.z02?download=1",
-            checksum="363c8c159be003271c05a71a57b2ced4",
+            url="http://zenodo.org/record/5476980/files/foa_dev.z01?download=1",
+            checksum="270a94dc5cd183ea6532c5a3f6e9036c",
         ),
     ],
     "mic_dev": [
         download_utils.RemoteFileMetadata(
             filename="mic_dev.zip",
-            url="http://zenodo.org/record/4064792/files/mic_dev.zip?download=1",
-            checksum="9174daca52f393425120308ab5c14477",
+            url="http://zenodo.org/record/5476980/files/mic_dev.zip?download=1",
+            checksum="a5131297547431160b732a3481626c2d",
         ),
         download_utils.RemoteFileMetadata(
             filename="mic_dev.z01",
-            url="http://zenodo.org/record/4064792/files/mic_dev.z01?download=1",
-            checksum="3a2b0986d2a302498cd874d584d17689",
-        ),
-        download_utils.RemoteFileMetadata(
-            filename="mic_dev.z02",
-            url="http://zenodo.org/record/4064792/files/mic_dev.z02?download=1",
-            checksum="92f715cb74406d5556bce0fdf27f54e4",
+            url="http://zenodo.org/record/5476980/files/mic_dev.z01?download=1",
+            checksum="536a5ba37b0c39f54044932b75acb774",
         ),
     ],
     "foa_eval": download_utils.RemoteFileMetadata(
         filename="foa_eval.zip",
-        url="http://zenodo.org/record/4064792/files/foa_eval.zip?download=1",
-        checksum="24c6ce2441df242d4e3b61e9bb27d0d7",
+        url="http://zenodo.org/record/5476980/files/foa_eval.zip?download=1",
+        checksum="591f8d2b500a671ae34822b4ff1e0889",
     ),
     "mic_eval": download_utils.RemoteFileMetadata(
         filename="mic_eval.zip",
-        url="http://zenodo.org/record/4064792/files/mic_eval.zip?download=1",
-        checksum="bca79b5f71b46e4cb191c54a611348a4",
+        url="http://zenodo.org/record/5476980/files/mic_eval.zip?download=1",
+        checksum="3248aef229ab4e0e0603d7c2269f4f97",
     ),
     "metadata_dev": download_utils.RemoteFileMetadata(
         filename="metadata_dev.zip",
-        url="http://zenodo.org/record/4064792/files/metadata_dev.zip?download=1",
-        checksum="979f5551e987ed247404b80a2f1c3db1",
+        url="http://zenodo.org/record/5476980/files/metadata_dev.zip?download=1",
+        checksum="cd8cd8b4dc9a3e3df91ac55c1ccf73b7",
     ),
     "metadata_eval": download_utils.RemoteFileMetadata(
         filename="metadata_eval.zip",
-        url="http://zenodo.org/record/4064792/files/metadata_eval.zip?download=1",
-        checksum="f3584166d9a63b43c1e301b6fb722293",
+        url="http://zenodo.org/record/5476980/files/metadata_eval.zip?download=1",
+        checksum="11c021253c8b55fd74083bd0a35c2ee4",
     ),
 }
 
