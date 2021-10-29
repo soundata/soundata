@@ -55,7 +55,7 @@ import jams
 import glob
 import json
 
-from soundata import download_utilsi, jams_utils, core, annotations, io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 ELEVATIONS_UNITS = {"degrees": "degrees"}
 AZIMUTHS_UNITS = {"degrees": "degrees"}
