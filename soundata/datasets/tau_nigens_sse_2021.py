@@ -342,9 +342,9 @@ def validate_locations(locations):
     """Validate if TAU NIGENS SSE 2021 locations are well-formed.
     If locations is None, validation passes automatically
     Args:
-        intervals (np.ndarray): (n x 3) array
+        locations (np.ndarray): (n x 3) array
     Raises:
-        ValueError: if intervals have an invalid shape or
+        ValueError: if locations have an invalid shape or
                 have cartesian coordinate values outside the expected ranges.
     """
 
@@ -352,7 +352,7 @@ def validate_locations(locations):
     locations_shape = np.shape(locations)
     if len(locations_shape) != 2 or locations_shape[1] != 3:
         raise ValueError(
-            f"Locations should be arrays with three columns, but array has {locations_shape}"
+            f"Locations should be arrays with three columns, but array has shape {locations_shape}"
         )
 
     # validate that values are within expected ranges
@@ -431,7 +431,7 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path,
+            audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
 
