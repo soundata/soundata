@@ -647,10 +647,6 @@ class Dataset(core.Dataset):
             fmt, subset = path.split("_")
             _, split = split.split("-")
 
-            metadata_index[clip_id] = {
-                "format": fmt,
-                "set": subset,
-                "split": split
-            }
+            metadata_index[clip_id] = {"format": fmt, "set": subset, "split": split}
 
         return metadata_index

@@ -114,21 +114,24 @@ def test_load_SpatialEvents():
     ):
         assert test_track_index == track_index
     with pytest.raises(ValueError):
-        tau_nigens_sse_2021.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1,0])
+        tau_nigens_sse_2021.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1, 0])
     with pytest.raises(ValueError):
-        tau_nigens_sse_2021.validate_time_steps(0.1, np.array([[4, 5, 7],[1,2,3]]), [0.0,0.2])
+        tau_nigens_sse_2021.validate_time_steps(
+            0.1, np.array([[4, 5, 7], [1, 2, 3]]), [0.0, 0.2]
+        )
     with pytest.raises(ValueError):
         # locations are not 3D
-        tau_nigens_sse_2021.validate_locations(np.array([[4, 5],[2,3]]))
+        tau_nigens_sse_2021.validate_locations(np.array([[4, 5], [2, 3]]))
     with pytest.raises(ValueError):
         # distance is not None
-        tau_nigens_sse_2021.validate_locations(np.array([[90, 5, None],[2,3,4]]))
+        tau_nigens_sse_2021.validate_locations(np.array([[90, 5, None], [2, 3, 4]]))
     with pytest.raises(ValueError):
-        # elevation is greater than 90 
-        tau_nigens_sse_2021.validate_locations(np.array([[91, 5, None],[2,3,None]]))
+        # elevation is greater than 90
+        tau_nigens_sse_2021.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
     with pytest.raises(ValueError):
-        # elevation is greater than 181 
-        tau_nigens_sse_2021.validate_locations(np.array([[181, 5, None],[2,3,None]]))
+        # elevation is greater than 181
+        tau_nigens_sse_2021.validate_locations(np.array([[181, 5, None], [2, 3, None]]))
+
 
 def test_to_jams():
 
