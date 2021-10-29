@@ -56,6 +56,7 @@ extensions = [
 
 # To shorten links of licenses and add to table
 extlinks = {
+    "tau_sse_2020": ("https://zenodo.org/record/2580091%s", "Custom"),
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
     "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
