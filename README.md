@@ -29,46 +29,36 @@ pip install soundata
 ```python
 import soundata
 
-urbansound8k = soundata.initialize('urbansound8k')
-urbansound8k.download()  # download the dataset
-urbansound8k.validate()  # validate that all the expected files are there
+dataset = soundata.initialize('urbansound8k')
+dataset.download()  # download the dataset
+dataset.validate()  # validate that all the expected files are there
 
-example_clip = urbansound8k.choice_clip()  # choose a random example clip
+example_clip = dataset.choice_clip()  # choose a random example clip
 print(example_clip)  # see the available data
+
 ```
 See the [documentation](https://soundata.readthedocs.io/) for more examples and the API reference.
 
 
-### Currently supported datasets
-
-* ESC-50
-* FSD50K
-* FSDnoisy18K  
-* TAU Urban Acoustic Scenes 2019
-* TAU Urban Acoustic Scenes 2020 Mobile
-* TUT Sound events 2017
-* URBAN-SED
-* UrbanSound8K
-* More added soon!
-
-For the **complete list** of supported datasets, see the [documentation](https://soundata.readthedocs.io/en/latest/source/quick_reference.html)
-
-
 ### Citing
 
-TODO
 
 ```
-paper
+@misc{fuentes_salamon2021soundata,
+      title={Soundata: A Python library for reproducible use of audio datasets}, 
+      author={Magdalena Fuentes and Justin Salamon and Pablo Zinemanas and Martín Rocamora and 
+      Genís Plaja and Irán R. Román and Marius Miron and Xavier Serra and Juan Pablo Bello},
+      year={2021},
+      eprint={2109.12690},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD}
+}
 ```
 
-```
-bibtex
-```
 
-When working with datasets, please cite the version of `soundata` that you are using (given by the `DOI` above) **AND** include the reference of the dataset,
+When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset,
 which can be found in the respective dataset loader using the `cite()` method. 
 
 ### Contributing a new dataset loader
 
-We welcome contributions to this library, especially new datasets. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines.
+We welcome and encourage contributions to this library, especially new datasets. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines.
