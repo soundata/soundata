@@ -10,7 +10,8 @@ Overview
 
 
 ``soundata`` is a library which aims to standardize how audio datasets are accessed in Python,
-removing the need for writing custom loaders in every project, and improving reproducibility.
+removing the need for writing custom loaders in every project, and improving reproducibility by providing
+tools to contrast data validity to a canonical version.
 Working with datasets usually requires an often cumbersome step of downloading data and writing 
 load functions that load related files (for example, audio and annotations)
 into a standard format to be used for experimenting or evaluating. ``soundata`` does all of this for you:
@@ -50,9 +51,7 @@ Ease of use and contribution
 
 We designed ``soundata`` to be easy to use and easy to contribute to. ``soundata`` simplifies the research pipeline considerably,
 facilitating research in a wider diversity of tasks and musical datasets. We provide detailed examples on how to interact with 
-the library in the :ref:`tutorial`, as well as detail explanation on how to contribute in :ref:`contributing`. Additionally, 
-we have a `repository of Jupyter notebooks <https://github.com/soundata/soundata-notebooks>`_ with usage
-examples of the different datasets.
+the library in the :ref:`tutorial`, as well as detail explanation on how to contribute in :ref:`contributing`.
 
 
 Reproducibility
@@ -130,7 +129,7 @@ top-level keys ``metadata``, ``clips``, ``clipgroups`` or ``records``. An index 
 
 The optional top-level keys (`clips`, `clipgroups` and `records`) relate to different organizations of sound datasets.
 `clips` are used when a dataset is organized as a collection of individual clips, namely mono or multi-channel audio, 
-spectrograms only, and their respective annotations. `clipgroups` are used when a dataset comprises of
+spectrograms only, and their respective annotations. `clipgroups` are used when a dataset comprises
 clipgroups - different groups of clips which are directly related to each other. Finally, `records` are used when a dataset 
 consits of groups of tables (e.g. relational databases), as many recommendation datasets do.
 
@@ -141,7 +140,7 @@ See the contributing docs :ref:`create_index` for more information about soundat
 annotations
 ###########
 
-soundata provdes ``Annotation`` classes of various kinds which provide a standard interface to different
+soundata provides ``Annotation`` classes of various kinds which provide a standard interface to different
 annotation formats such as tags and sound events.
 
 
@@ -149,4 +148,4 @@ metadata
 ########
 
 When available, we provide extensive and easy-to-access ``metadata`` to facilitate clip metadata-specific analysis. 
-``metadata`` is available as attroibutes at the ``clip`` level, e.g. ``clip.fold``.
+``metadata`` is available as attributes at the ``clip`` level, e.g. ``clip.fold``.

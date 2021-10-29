@@ -775,29 +775,19 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        city (str): city were the audio signal was recorded
+        clip_id (str): clip id
+        identifier (str): the clip identifier
+        source_label (str): source label
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
-        clip_id (str): clip id
-
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -814,10 +804,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -826,14 +828,32 @@ class Clip(core.Clip):
 
     @property
     def city(self):
+        """The clip's city.
+
+        Returns:
+            * str - city were the audio signal was recorded
+
+        """
         return self._clip_metadata.get("city")
 
     @property
     def source_label(self):
+        """The clip's source label.
+
+        Returns:
+            * str - source label
+
+        """
         return self._clip_metadata.get("source_label")
 
     @property
     def identifier(self):
+        """The clip's identifier.
+
+        Returns:
+            * str - clip identifier
+
+        """
         return self._clip_metadata.get("identifier")
 
     def to_jams(self):
@@ -895,11 +915,7 @@ class Dataset(core.Dataset):
             "meta.csv",
         )
 
-        splits = [
-            "development.train",
-            "development.evaluate",
-            "evaluation",
-        ]
+        splits = ["development.train", "development.evaluate", "evaluation"]
 
         metadata_index = {}
 
@@ -930,9 +946,7 @@ class Dataset(core.Dataset):
             if subset == "development":
                 fold = split.split(".")[1]
                 evaluation_setup_file = os.path.join(
-                    self.data_home,
-                    evaluation_setup_path,
-                    "fold1_{}.csv".format(fold),
+                    self.data_home, evaluation_setup_path, "fold1_{}.csv".format(fold)
                 )
             else:
                 evaluation_setup_file = os.path.join(

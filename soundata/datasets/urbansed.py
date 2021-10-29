@@ -181,28 +181,15 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotation.Events): sound events with start time, end time, label and confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
-        split (str): subset the clip belongs to (for experiments): train, validate, or test.
         clip_id (str): clip id
-
+        events (soundata.annotations.Events): sound events with start time, end time, label and confidence
+        split (str): subset the clip belongs to (for experiments): train, validate, or test
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
         self.jams_path = self.get_path("jams")
@@ -221,10 +208,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The data splits (e.g. train)
+
+        Returns
+            * str - split
+
+        """
         return self._clip_metadata.get("split")
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
+        """The audio events
+
+        Returns
+            * annotations.Events - audio event object
+
+        """
         return load_events(self.txt_path)
 
     def to_jams(self):
@@ -305,18 +304,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
-        # metadata_path = os.path.join(self.data_home, "metadata", "UrbanSound8K.csv")
-
-        # if not os.path.exists(metadata_path):
-        #     raise FileNotFoundError("Metadata not found. Did you run .download()?")
-
-        # with open(metadata_path, "r") as fhandle:
-        #     reader = csv.reader(fhandle, delimiter=",")
-        #     raw_data = []
-        #     for line in reader:
-        #         if line[0] != "slice_file_name":
-        #             raw_data.append(line)
 
         splits = ["train", "validate", "test"]
         expected_sizes = [6000, 2000, 2000]

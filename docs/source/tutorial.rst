@@ -1,22 +1,19 @@
 .. _tutorial:
 
-########
-Tutorial
-########
+###############
+Getting started
+###############
 
 Installation
-------------
+^^^^^^^^^^^^
 
-To install ``soundata``:
+To install Soundata simply do:
 
     .. code-block:: console
 
         pip install soundata
 
-Usage
------
-
-``soundata`` is easily imported into your Python code by:
+Soundata is easily imported into your Python code by:
 
 .. code-block:: python
 
@@ -24,7 +21,7 @@ Usage
 
 
 Initializing a dataset
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Print a list of all available dataset loaders by calling:
 
@@ -33,157 +30,194 @@ Print a list of all available dataset loaders by calling:
     import soundata
     print(soundata.list_datasets())
 
-To use a loader, (for example, 'orchset') you need to initialize it by calling:
+To use a loader, (for example, ``urbansound8k``) you need to initialize it by calling:
 
 .. code-block:: python
 
     import soundata
-    orchset = soundata.initialize('orchset')
+    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
 
-Now ``orchset`` is a ``Dataset`` object containing common methods, described below.
+You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
+object containing common methods, described in the following.
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
 
-All dataset loaders in ``soundata`` have a ``download()`` function that allows the user to download the canonical
-version of the dataset (when available). When initializing a dataset it is important to set up correctly the directory
+All dataset loaders in soundata have a ``download()`` function that allows the user to download the :ref:`canonical <faq>`
+version of the dataset (when available). When initializing a dataset it is important to correctly set up the directory
 where the dataset is going to be stored and retrieved.
 
 Downloading a dataset into the default folder:
-    In this first example, ``data_home`` is not specified. Thus, ORCHSET will be downloaded and retrieved from ``sound_datasets``
-    folder created at user root folder:
+    In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
+    the default folder, ``sound_datasets``, created in the user's root folder:
 
     .. code-block:: python
 
         import soundata
-        orchset = soundata.initialize('orchset')
-        orchset.download()  # Dataset is downloaded at user root folder
+        dataset = soundata.initialize('urbansound8k')
+        dataset.download()  # Dataset is downloaded into "sound_datasets" folder inside user's root folder
 
 Downloading a dataset into a specified folder:
-    Now ``data_home`` is specified and so ORCHSET will be downloaded and retrieved from it:
+    In the next example ``data_home`` is specified, so UrbanSound8K will be downloaded and retrieved from the specified location:
 
     .. code-block:: python
 
-        orchset = soundata.initialize('orchset', data_home='Users/johnsmith/Desktop')
-        orchset.download()  # Dataset is downloaded at John Smith's desktop
+        dataset = soundata.initialize('urbansound8k', data_home='Users/johnsmith/Desktop')
+        dataset.download()  # Dataset is downloaded to John Smith's desktop
+
+
 
 Partially downloading a dataset
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    The ``download()`` function allows to partially download a dataset. In other words, if applicable, the user can
+    select which elements of the dataset they want to download. Each dataset has a ``REMOTES`` dictionary were all
+    the available downloadable elements are listed.
 
-The ``download()`` functions allows to partially download a dataset. In other words, if applicable, the user can
-select which elements of the dataset they want to download. Each dataset has a ``REMOTES`` dictionary were all
-the available elements are listed.
+    ``tau2019uas`` has different elements as seen in the ``REMOTES`` dictionary. You can specify a subset of these elements to
+    download by passing the ``download()`` function a list of the ``REMOTES`` keys that we are interested in via the 
+    ``partial_download`` variable.
 
-``cante100`` has different elements as seen in the ``REMOTES`` dictionary. Thus, we can specify which of these elements are
-downloaded, by passing to the ``download()`` function the list of keys in ``REMOTES`` that we are interested in. This
-list is passed to the ``download()`` function through the ``partial_download`` variable.
+    .. admonition:: Example REMOTES
+        :class: dropdown
 
-.. admonition:: Example REMOTES
-    :class: dropdown
+        .. code-block:: python
+
+            REMOTES = {
+            "development.audio.1": download_utils.RemoteFileMetadata(
+                filename="TAU-urban-acoustic-scenes-2019-development.audio.1.zip",
+                url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.1.zip?download=1",
+                checksum="aca4ebfd9ed03d5f747d6ba8c24bc728",
+            ),
+            "development.audio.2": download_utils.RemoteFileMetadata(
+                filename="TAU-urban-acoustic-scenes-2019-development.audio.2.zip",
+                url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.2.zip?download=1",
+                checksum="c4f170408ce77c8c70c532bf268d7be0",
+            ),
+            "development.audio.3": download_utils.RemoteFileMetadata(
+                filename="TAU-urban-acoustic-scenes-2019-development.audio.3.zip",
+                url="https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.3.zip?download=1",
+                checksum="c7214a07211f10f3250290d05e72c37e",
+            ),
+            ....
+
+    A partial download example for ``tau2019uas`` dataset could be:
 
     .. code-block:: python
 
-        REMOTES = {
-            "spectrogram": download_utils.RemoteFileMetadata(
-                filename="cante100_spectrum.zip",
-                url="https://zenodo.org/record/1322542/files/cante100_spectrum.zip?download=1",
-                checksum="0b81fe0fd7ab2c1adc1ad789edb12981",  # the md5 checksum
-                destination_dir="cante100_spectrum",  # relative path for where to unzip the data, or None
-            ),
-            "melody": download_utils.RemoteFileMetadata(
-                filename="cante100midi_f0.zip",
-                url="https://zenodo.org/record/1322542/files/cante100midi_f0.zip?download=1",
-                checksum="cce543b5125eda5a984347b55fdcd5e8",  # the md5 checksum
-                destination_dir="cante100midi_f0",  # relative path for where to unzip the data, or None
-            ),
-            "notes": download_utils.RemoteFileMetadata(
-                filename="cante100_automaticTranscription.zip",
-                url="https://zenodo.org/record/1322542/files/cante100_automaticTranscription.zip?download=1",
-                checksum="47fea64c744f9fe678ae5642a8f0ee8e",  # the md5 checksum
-                destination_dir="cante100_automaticTranscription",  # relative path for where to unzip the data, or None
-            ),
-            "metadata": download_utils.RemoteFileMetadata(
-                filename="cante100Meta.xml",
-                url="https://zenodo.org/record/1322542/files/cante100Meta.xml?download=1",
-                checksum="6cce186ce77a06541cdb9f0a671afb46",  # the md5 checksum
-            ),
-            "README": download_utils.RemoteFileMetadata(
-                filename="cante100_README.txt",
-                url="https://zenodo.org/record/1322542/files/cante100_README.txt?download=1",
-                checksum="184209b7e7d816fa603f0c7f481c0aae",  # the md5 checksum
-            ),
-        }
+        dataset = soundata.initialize('tau2019uas')
+        dataset.download(partial_download=['development.audio.1', 'development.audio.2'])  # download only two remotes
 
-An partial download example for ``cante100`` dataset could be:
 
-.. code-block:: python
+Downloading a multipart dataset
+    In some cases, datasets consist of multiple remote files that have to be extracted together locally to correctly recover the data.
+    In those cases, remotes that need to be extracted together should be grouped in a list, so all the necessary files are downloaded at once
+    (even in a partial download). An example of this is the `fsd50k` loader:
 
-    cante100.download(partial_download=['spectrogram', 'melody', 'metadata'])
+    .. admonition:: Example multipart REMOTES
+        :class: dropdown
+
+        .. code-block:: python
+
+            REMOTES = {
+                "FSD50K.dev_audio": [
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.zip",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.zip?download=1",
+                        checksum="c480d119b8f7a7e32fdb58f3ea4d6c5a",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z01",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z01?download=1",
+                        checksum="faa7cf4cc076fc34a44a479a5ed862a3",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z02",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z02?download=1",
+                        checksum="8f9b66153e68571164fb1315d00bc7bc",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z03",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z03?download=1",
+                        checksum="1196ef47d267a993d30fa98af54b7159",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z04",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z04?download=1",
+                        checksum="d088ac4e11ba53daf9f7574c11cccac9",
+                    ),
+                    download_utils.RemoteFileMetadata(
+                        filename="FSD50K.dev_audio.z05",
+                        url="https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z05?download=1",
+                        checksum="81356521aa159accd3c35de22da28c7f",
+                    ),
+                ],
+                ...
+
+
 
 Validating a dataset
 ^^^^^^^^^^^^^^^^^^^^
 
-Using the method ``validate()`` we can check if the files in the local version are the same than the available canical version,
-and the files were downloaded correctly (none of them are corrupted).
+Using the ``validate()`` method you can ensure that the files in our local copy of a dataset are identical to the :ref:`canonical <faq>` version
+of the dataset. The function computes the md5 checksum of every downloaded file to ensure it was downloaded correctly and isn't corrupted.
 
 For big datasets: In future ``soundata`` versions, a random validation will be included. This improvement will reduce validation time for very big datasets.
 
 Accessing annotations
 ^^^^^^^^^^^^^^^^^^^^^
 
-We can choose a random track from a dataset with the ``choice_track()`` method.
+You can choose a random clip from a dataset with the ``choice_clip()`` method.
 
 .. admonition:: Example Index
     :class: dropdown
 
     .. code-block:: python
 
-        random_track = orchset.choice_track()
-        print(random_track)
-        >>> Track(
-               alternating_melody=True,
-               audio_path_mono="user/sound_datasets/orchset/audio/mono/Beethoven-S3-I-ex1.wav",
-               audio_path_stereo="user/sound_datasets/orchset/audio/stereo/Beethoven-S3-I-ex1.wav",
-               composer="Beethoven",
-               contains_brass=False,
-               contains_strings=True,
-               contains_winds=True,
-               excerpt="1",
-               melody_path="user/sound_datasets/orchset/GT/Beethoven-S3-I-ex1.mel",
-               only_brass=False,
-               only_strings=False,
-               only_winds=False,
-               predominant_melodic_instruments=['strings', 'winds'],
-               track_id="Beethoven-S3-I-ex1",
-               work="S3-I",
-               audio_mono: (np.ndarray, float),
-               audio_stereo: (np.ndarray, float),
-               melody: F0Data,
+        dataset = soundata.initialize('urbansed')
+        random_clip = dataset.choice_clip()
+        print(random_clip)
+        >>> Clip(
+              audio_path="/Users/theuser/sound_datasets/urbansed/audio/test/soundscape_test_bimodal73.wav",
+              clip_id="soundscape_test_bimodal73",
+              jams_path="/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.jams",
+              txt_path="/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.txt",
+              audio: The clips audio
+                        * np.ndarray - audio signal
+                        * float - sample rate,
+              events: The audio events
+                        * annotations.Events - audio event object,
+              split: The data splits (e.g. train)
+                        * str - split,
             )
 
 
-We can also access specific tracks by id. 
-The available track ids can be acessed via the `.track_ids` attribute.
-In the next example we take the first track id, and then we retrieve the melody
+
+You can also access specific clips by id. The available clip ids can be acessed by doing ``dataset.clip_ids``.
+In the next example we take the first clip id, and then we retrieve its ``tags``
 annotation.
 
 .. code-block:: python
 
-    orchset_ids = orchset.track_ids  # the list of orchset's track ids
-    orchset_data = orchset.load_tracks()  # Load all tracks in the dataset
-    example_track = orchset_data[orchset_ids[0]]  # Get the first track
+    dataset = soundata.initialize('urbansound8k')
+    ids = dataset.clip_ids  # the list of urbansound8k's clip ids
+    clips = dataset.load_clips()  # Load all clips in the dataset
+    example_clip = clips[ids[0]]  # Get the first clip
 
-    # Accessing the track's melody annotation
-    example_melody = example_track.melody
+    # Accessing the clip's tags annotation
+    example_tags = example_clip.tags
+    print(example_tags)
+    >>>> Tags(confidence, labels, labels_unit)
+    print(example_tags.labels)
+    >>>> ['children_playing']
 
 
-Alternatively, we don't need to load the whole dataset to get a single track.
+
+You can also load a single clip without loading all clips in the dataset:
 
 .. code-block:: python
 
-    orchset_ids = orchset.track_ids  # the list of orchset's track ids
-    example_track = orchset.track(orchset_ids[0])  # load this particular track
-    example_melody = example_track.melody  # Get the melody from first track
+    ids = dataset.clip_ids  # the list of urbansound8k's clip ids
+    example_clip = dataset.clip(ids[0])  # load this particular clip
+    example_tags = example_clip.tags  # Get the tags for the first clip
 
 
 .. _Remote Data Example: 
@@ -191,7 +225,7 @@ Alternatively, we don't need to load the whole dataset to get a single track.
 Accessing data remotely
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Annotations can also be accessed through ``load_*()`` methods which may be useful, for instance, when your data isn't available locally. 
+Annotations can also be accessed through ``load_*()`` methods which may be useful, for instance, when your data aren't available locally. 
 If you specify the annotation's path, you can use the module's loading functions directly. Let's
 see an example.
 
@@ -200,160 +234,171 @@ see an example.
 
     .. code-block:: python
 
-        # Load list of track ids of the dataset
-        orchset_ids = orchset.track_ids
+        # Load list of clip ids of the dataset
+        ids = dataset.clip_ids
 
-        # Load a single track, specifying the remote location
-        example_track = orchset.track(orchset_ids[0], data_home='user/my_custom/remote_path')
-        melody_path = example_track.melody_path
+        # Load a single clip, specifying the remote location
+        example_clip = dataset.clip(ids[0], data_home='remote/data/path')
+        audio_path = example_clip.audio_path
 
-        print(melody_path)
-        >>> user/my_custom/remote_path/GT/Beethoven-S3-I-ex1.mel
-        print(os.path.exists(melody_path))
+        print(audio_path)
+        >>> remote/data/path/audio/fold1/135776-2-0-49.wav
+        print(os.path.exists(audio_path))
         >>> False
 
-        # Write code here to locally download your path e.g. to a temporary file.
+        # Write code here to download the remote path, e.g., to a temporary file.
         def my_downloader(remote_path):
-            # the contents of this function will depend on where your data lives, and how permanently you want the files to remain on the machine. We point you to libraries handling common use cases below.
+            # the contents of this function will depend on where your data lives, and how permanently you
+            # want the files to remain on your local machine. We point you to libraries handling common use cases below.
             # for data you would download via scp, you could use the [scp](https://pypi.org/project/scp/) library
             # for data on google drive, use [pydrive](https://pythonhosted.org/PyDrive/)
             # for data on google cloud storage use [google-cloud-storage](https://pypi.org/project/google-cloud-storage/)
             return local_path_to_downloaded_data
 
-        # Get path where youe data lives
-        temp_path = my_downloader(melody_path)
+        # Get path to where your data live
+        temp_path = my_downloader(audio_path)
 
-        # Accessing to track melody annotation
-        example_melody = orchset.load_melody(temp_path)
-
-        print(example_melody.frequencies)
-        >>> array([  0.   ,   0.   ,   0.   , ..., 391.995, 391.995, 391.995])
-        print(example_melody.times)
-        >>> array([0.000e+00, 1.000e-02, 2.000e-02, ..., 1.244e+01, 1.245e+01, 1.246e+01])
-
+        # Accessing the clip audio
+        example_audio = dataset.load_audio(temp_path)
 
 
 Annotation classes
 ^^^^^^^^^^^^^^^^^^
 
-``soundata`` defines annotation-specific data classes. These data classes are meant to standarize the format for
-all loaders, and are compatibly with `JAMS <https://jams.readthedocs.io/en/stable/>`_ and `mir_eval <https://craffel.github.io/mir_eval/>`_.
+``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standarize the format for
+all loaders, so you can use the same code with different datasets. The list and descriptions of available annotation classes can be found in :ref:`annotations`.
 
-The list and descriptions of available annotation classes can be found in :ref:`annotations`.
-
-.. note:: These classes may be extended in the case that a loader requires it.
+.. note:: These classes are standarized to the point that the data allow for it. In some cases where the dataset has
+        its own idiosyncrasies, the classes may be extended e.g. adding a customize, uncommon attribute.
 
 Iterating over datasets and annotations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In general, most datasets are a collection of tracks, and in most cases each track has an audio file along with annotations.
+In general, most datasets are a collection of clips, and in most cases each clip has an audio file along with annotations.
 
-With the ``load_tracks()`` method, all tracks are loaded as a dictionary with the ids as keys and 
-track objects (which include their respective audio and annotations, which are lazy-loaded on access) as values.
-
-.. code-block:: python
-
-    orchset = soundata.initialize('orchset')
-    for key, track in orchset.load_tracks().items():
-        print(key, track.audio_path)
-
-
-Alternatively, we can loop over the ``track_ids`` list to directly access each track in the dataset.
+With the ``load_clips()`` method, all clips are loaded as a dictionary with the clip id as keys and
+clip objects as values. The clip objects include their respective audio and annotations, which are lazy-loaded on access
+to keep things speedy and memory efficient. 
 
 .. code-block:: python
 
-    orchset = soundata.initialize('orchset')
-    for track_id in orchset.track_ids:
+    dataset = soundata.initialize('urbansound8k')
+    for key, clip in dataset.load_clips().items():
+        print(key, clip.audio_path)
+    >>>> soundscape_train_bimodal0 /Users/mf3734/sound_datasets/urbansed/audio/train/soundscape_train_bimodal0.wav
+         .....
 
-        print(track_id, orchset.track(track_id).audio_path)
+
+Alternatively, you can loop over the ``clip_ids`` list to directly access each clip in the dataset.
+
+.. code-block:: python
+
+    dataset = soundata.initialize('urbansound8k')
+    for clip_id in dataset.clip_ids:
+        print(clip_id, dataset.clip(clip_id).audio_path)
+    >>>> soundscape_train_bimodal0 /Users/mf3734/sound_datasets/urbansed/audio/train/soundscape_train_bimodal0.wav
+         .....
 
 
-Basic example: including soundata in your pipeline
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If we wanted to use ``orchset`` to evaluate the performance of a melody extraction algorithm
-(in our case, ``very_bad_melody_extractor``), and then split the scores based on the
-metadata, we could do the following:
+.. _Including soundata in your pipeline:
+
+Including soundata in your pipeline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you wanted to use ``urbansound8k`` to evaluate the performance of an urban sound classifier,
+(in our case, ``random_classifier``), and then split the scores based on the metadata, you could do the following:
 
 .. admonition:: soundata usage example
     :class: dropdown
 
     .. code-block:: python
 
-        import mir_eval
+        import sed_eval
         import soundata
         import numpy as np
-        import sox
+        from dcase_util.containers import MetaDataContainer, ProbabilityContainer
 
-        def very_bad_melody_extractor(audio_path):
-            duration = sox.file_info.duration(audio_path)
-            time_stamps = np.arange(0, duration, 0.01)
-            melody_f0 = np.random.uniform(low=80.0, high=800.0, size=time_stamps.shape)
-            return time_stamps, melody_f0
+        def random_classifier(classes):
+            return [np.random.random(1)[0] for c in classes]
 
         # Evaluate on the full dataset
-        orchset = soundata.initialize("orchset")
-        orchset_scores = {}
-        orchset_data = orchset.load_tracks()
-        for track_id, track_data in orchset_data.items():
-            est_times, est_freqs = very_bad_melody_extractor(track_data.audio_path_mono)
+        dataset = soundata.initialize('urbansound8k')
+        scores = {}
+        data = dataset.load_clips()
 
-            ref_melody_data = track_data.melody
-            ref_times = ref_melody_data.times
-            ref_freqs = ref_melody_data.frequencies
+        classes = np.unique([c for _, clip_data in data.items() for c in clip_data.tags.labels])
+        fold = 2  # Choose a fold to evaluate
 
-            score = mir_eval.melody.evaluate(ref_times, ref_freqs, est_times, est_freqs)
-            orchset_scores[track_id] = score
+        ref_tags, est_tags, est_tag_probs = [], [], []
+        for id, clip in data.items():
+            if clip.fold == 2:
+                ref_tags.append({'filename': id, 'tags': clip.tags.labels[0]})  # Urbansound8k has one label per clip
+                probs = random_classifier(classes)
+                for c, p in zip(classes, probs):
+                    est_tag_probs.append({'filename': id, 'label': c, 'probability': p},)
+                    if p > 0.5:  # Detection threshold of 0.5
+                        est_tags.append({'filename': id, 'tags': [c]})
 
-        # Split the results by composer and by instrumentation
-        composer_scores = {}
-        strings_no_strings_scores = {True: {}, False: {}}
-        for track_id, track_data in orchset_data.items():
-            if track_data.composer not in composer_scores.keys():
-                composer_scores[track_data.composer] = {}
-
-            composer_scores[track_data.composer][track_id] = orchset_scores[track_id]
-            strings_no_strings_scores[track_data.contains_strings][track_id] = \
-                orchset_scores[track_id]
+        tag_evaluator = sed_eval.audio_tag.AudioTaggingMetrics(tags=MetaDataContainer(ref_tags).unique_tags)
+        tag_evaluator.evaluate(
+            reference_tag_list=MetaDataContainer(ref_tags),
+            estimated_tag_list=MetaDataContainer(est_tags),
+            estimated_tag_probabilities=ProbabilityContainer(est_tag_probs))
 
 
-This is the result of the example above.
+This is the result of the example above:
 
 .. admonition:: Example result
     :class: dropdown
 
     .. code-block:: python
 
-        print(strings_no_strings_scores)
-        >>> {True: {
-                'Beethoven-S3-I-ex1':OrderedDict([
-                       ('Voicing Recall', 1.0),
-                       ('Voicing False Alarm', 1.0),
-                       ('Raw Pitch Accuracy', 0.029798422436459245),
-                       ('Raw Chroma Accuracy', 0.08063102541630149),
-                       ('Overall Accuracy', 0.0272654370489174)
-                       ]),
-                'Beethoven-S3-I-ex2': OrderedDict([
-                       ('Voicing Recall', 1.0),
-                       ('Voicing False Alarm', 1.0),
-                       ('Raw Pitch Accuracy', 0.009221311475409836),
-                       ('Raw Chroma Accuracy', 0.07377049180327869),
-                       ('Overall Accuracy', 0.008754863813229572)]),
-                ...
+        print(tag_evaluator)
+        >>> Audio tagging metrics
+        ========================================
+          Tags                              : 10
+          Evaluated units                   : 888
 
-                'Wagner-Tannhauser-Act2-ex2': OrderedDict([
-                       ('Voicing Recall', 1.0),
-                       ('Voicing False Alarm', 1.0),
-                       ('Raw Pitch Accuracy', 0.03685636856368564),
-                       ('Raw Chroma Accuracy', 0.08997289972899729),
-                       ('Overall Accuracy', 0.036657681940700806)])
-                }}
+          Overall metrics (micro-average)
+          ======================================
+          F-measure
+            F-measure (F1)                  : 9.57 %
+            Precision                       : 9.57 %
+            Recall                          : 9.57 %
+          Equal error rate
+            Equal error rate (EER)          : 51.01 %
 
-You can see that ``very_bad_melody_extractor`` performs very badly!
+          Class-wise average metrics (macro-average)
+          ======================================
+          F-measure
+            F-measure (F1)                  : 6.47 %
+            Precision                       : 7.54 %
+            Recall                          : 9.33 %
+          Equal error rate
+            Equal error rate (EER)          : 50.95 %
+
+          Class-wise metrics
+          ======================================
+            Tag               | Nref        Nsys      | F-score     Pre         Rec       | EER
+            ----------------- | ---------   --------- | ---------   ---------   --------- | ---------
+            air_conditioner   | 100         419       | 19.3%       11.9        50.0      | 49.0%
+            car_horn          | 42          227       | 4.5%        2.6         14.3      | 54.8%
+            children_playing  | 100         126       | 9.7%        8.7         11.0      | 54.0%
+            dog_bark          | 100         58        | 13.9%       19.0        11.0      | 47.1%
+            drilling          | 100         31        | 9.2%        19.4        6.0       | 52.4%
+            engine_idling     | 100         16        | 1.7%        6.2         1.0       | 50.0%
+            gun_shot          | 35          7         | 0.0%        0.0         0.0       | 48.1%
+            jackhammer        | 120         1         | 0.0%        0.0         0.0       | 52.5%
+            siren             | 91          3         | 0.0%        0.0         0.0       | 51.6%
+            street_music      | 100         0         | nan%        nan         0.0       | 50.0%
+
+
+
 
 .. _Using soundata with tensorflow:
 
 Using soundata with tensorflow
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following is a simple example of a generator that can be used to create a tensorflow Dataset.
 
@@ -366,31 +411,28 @@ The following is a simple example of a generator that can be used to create a te
         import numpy as np
         import tensorflow as tf
 
-        def orchset_generator():
+        def data_generator(dataset_name):
             # using the default data_home
-            orchset = soundata.initialize("orchset")
-            track_ids = orchset.track_ids()
-            for track_id in track_ids:
-                track = orchset.track(track_id)
-                audio_signal, sample_rate = track.audio_mono
+            dataset = soundata.initialize(dataset_name)
+            ids = dataset.clip_ids()
+            for clip_id in ids:
+                clip = dataset.clip(clip_id)
+                audio_signal, sample_rate = clip.audio
                 yield {
                     "audio": audio_signal.astype(np.float32),
                     "sample_rate": sample_rate,
-                    "annotation": {
-                        "times": track.melody.times.astype(np.float32),
-                        "freqs": track.melody.frequencies.astype(np.float32),
-                    },
-                    "metadata": {"track_id": track.track_id}
+                    "label": clip.tags.labels[0],
+                    "metadata": {"clip_id": clip.clip_id, "fold": clip.fold}
                 }
 
         dataset = tf.data.Dataset.from_generator(
-            orchset_generator,
+            urbansound8k_generator('urbansound8k'),
             {
                 "audio": tf.float32,
                 "sample_rate": tf.float32,
-                "annotation": {"times": tf.float32, "freqs": tf.float32},
-                "metadata": {'track_id': tf.string}
+                "label": tf.string,
+                "metadata": {'clip_id': tf.string, 'fold': tf.string}
             }
         )
 
-In future ``soundata`` versions, generators for Tensorflow and Pytorch will be included.
+In future ``soundata`` versions, generators for Tensorflow and PyTorch will be included out-of-the-box.

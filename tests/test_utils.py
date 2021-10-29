@@ -134,10 +134,7 @@ def test_validate_index(test_index, expected_missing, expected_inv_checksum):
 @pytest.mark.parametrize(
     "missing_files,invalid_checksums",
     [
-        (
-            {"clips": {"test": ["tests/resources/test.wav"]}},
-            {"clips": {}},
-        ),
+        ({"clips": {"test": ["tests/resources/test.wav"]}}, {"clips": {}}),
         ({"clips": {}}, {"clips": {}}),
     ],
 )

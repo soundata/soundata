@@ -5,6 +5,7 @@ import zipfile
 import re
 
 from soundata import download_utils
+from soundata.datasets import esc50
 
 import pytest
 
@@ -40,10 +41,19 @@ def test_downloader(mocker, mock_path):
     mock_download_from_remote = mocker.patch.object(
         download_utils, "download_from_remote"
     )
+    mock_multipart_zip = mocker.patch.object(download_utils, "download_multipart_zip")
 
     zip_remote = download_utils.RemoteFileMetadata(
         filename="remote.zip", url="a", checksum=("1234")
     )
+    multipart_zip_remote = [
+        download_utils.RemoteFileMetadata(
+            filename="remote.zip", url="a", checksum=("1234")
+        ),
+        download_utils.RemoteFileMetadata(
+            filename="remote.z01", url="b", checksum=("2345")
+        ),
+    ]
     tar_remote = download_utils.RemoteFileMetadata(
         filename="remote.tar.gz", url="a", checksum=("1234")
     )
@@ -94,6 +104,11 @@ def test_downloader(mocker, mock_path):
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mocker.resetall()
 
+    # Zip multipart
+    download_utils.downloader("a", remotes={"b": multipart_zip_remote})
+    mock_multipart_zip.assert_called_once_with(multipart_zip_remote, "a", False, False)
+    mocker.resetall()
+
     # test partial download
     download_utils.downloader(
         "a",
@@ -117,6 +132,12 @@ def test_downloader(mocker, mock_path):
             "a",
             remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
             partial_download=["d", "e"],
+        )
+    # test only multipart zip supported
+    with pytest.raises(NotImplementedError):
+        download_utils.downloader(
+            "a",
+            remotes={"b": [zip_remote, tar_remote, file_remote]},
         )
 
     # test info message
@@ -280,13 +301,46 @@ def test_download_from_remote_raises_IOError(httpserver, tmpdir):
     httpserver.serve_content("File not found!", 404)
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
-        filename="remote.wav",
-        url=httpserver.url,
-        checksum=("1234"),
+        filename="remote.wav", url=httpserver.url, checksum=("1234")
     )
 
     with pytest.raises(IOError):
         download_utils.download_from_remote(TEST_REMOTE, str(tmpdir), False)
+
+
+def test_unpackdir(httpserver):
+
+    data_home = "tests/resources/sound_datasets/esc50_download"
+    if os.path.exists(data_home):
+        shutil.rmtree(data_home)
+
+    # download the full dataset
+    httpserver.serve_content(
+        open("tests/resources/download/ESC-50-master.zip", "rb").read()
+    )
+
+    remotes = {
+        "all": download_utils.RemoteFileMetadata(
+            filename="ESC-50-master.zip",
+            url=httpserver.url,
+            checksum=("91281932a1c5ff0473f103c628a53d77"),
+            unpack_directories=["ESC-50-master"],
+        )
+    }
+    dataset = esc50.Dataset(data_home)
+    dataset.remotes = remotes
+    dataset.download(None, False, False)
+
+    assert os.path.exists(data_home)
+    assert not os.path.exists(os.path.join(data_home, "ESC-50-master"))
+
+    assert os.path.exists(os.path.join(data_home, "requirements.txt"))
+    assert os.path.exists(
+        os.path.join(
+            data_home,
+            "audio/1-137-A-32.wav",
+        )
+    )
 
 
 def test_unzip():
@@ -310,6 +364,31 @@ def test_download_zip_file(mocker, mock_download_from_remote, mock_unzip):
     mock_download_from_remote.assert_called_once_with("a", "b", False)
     mock_unzip.assert_called_once_with("foo", cleanup=False)
     _clean("a")
+
+
+def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
+    Path("tests/resources/foo.zip").touch()
+    Path("tests/resources/foo.z01").touch()
+    multipart_zip_remote = {
+        "foo": [
+            download_utils.RemoteFileMetadata(
+                filename="foo.zip", url="a", checksum=("1234")
+            ),
+            download_utils.RemoteFileMetadata(
+                filename="foo.z01", url="b", checksum=("2345")
+            ),
+        ]
+    }
+    download_utils.downloader(
+        "tests/resources", multipart_zip_remote, force_overwrite=False, cleanup=True
+    )
+    mock_download_from_remote.assert_has_calls(
+        [
+            mocker.call(multipart_zip_remote["foo"][0], "tests/resources", False),
+            mocker.call(multipart_zip_remote["foo"][1], "tests/resources", False),
+        ]
+    )
+    mock_unzip.assert_called_once_with("tests/resources/foo_single.zip", cleanup=True)
 
 
 def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):

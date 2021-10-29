@@ -169,36 +169,23 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence. In UrbanSound8K every clip has one tag.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
-        slice_file_name (str): The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav.
-            Please see the Dataset Info in the soundata documentation for further details.
-        freesound_id (str): ID of the freesound.org recording from which this clip was taken.
-        freesound_start_time (float): start time in seconds of the clip in the original freesound recording.
-        freesound_end_time (float): end time in seconds of the clip in the original freesound recording.
-        salience (int): annotator estimate of class sailence in the clip: 1 = foreground, 2 = background.
-        fold (int): fold number (1-10) to which this clip is allocated. Use these folds for cross validation.
-        class_id (int): integer representation of the class label (0-9). See Dataset Info in the documentation for mapping.
-        class_label (str): string class name: air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling, gun_shot, jackhammer, siren, street_music.
+        class_id (int): integer representation of the class label (0-9). See Dataset Info in the documentation for mapping
+        class_label (str): string class name: air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling, gun_shot, jackhammer, siren, street_music
         clip_id (str): clip id
-
+        fold (int): fold number (1-10) to which this clip is allocated. Use these folds for cross validation
+        freesound_end_time (float): end time in seconds of the clip in the original freesound recording
+        freesound_id (str): ID of the freesound.org recording from which this clip was taken
+        freesound_start_time (float): start time in seconds of the clip in the original freesound recording
+        salience (int): annotator estimate of class sailence in the clip: 1 = foreground, 2 = background
+        slice_file_name (str): The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav
+            Please see the Dataset Info in the soundata documentation for further details
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In UrbanSound8K every clip has one tag
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -215,38 +202,92 @@ class Clip(core.Clip):
 
     @property
     def slice_file_name(self):
+        """The clip's slice filename.
+
+        Returns:
+            * str - The name of the audio file. The name takes the following format: [fsID]-[classID]-[occurrenceID]-[sliceID].wav
+
+        """
         return self._clip_metadata.get("slice_file_name")
 
     @property
     def freesound_id(self):
+        """The clip's Freesound ID.
+
+        Returns:
+            * str - ID of the freesound.org recording from which this clip was taken
+
+        """
         return self._clip_metadata.get("freesound_id")
 
     @property
     def freesound_start_time(self):
+        """The clip's start time in Freesound.
+
+        Returns:
+            * float - start time in seconds of the clip in the original freesound recording
+
+        """
         return self._clip_metadata.get("freesound_start_time")
 
     @property
     def freesound_end_time(self):
+        """The clip's end time in Freesound.
+
+        Returns:
+            * float - end time in seconds of the clip in the original freesound recording
+
+        """
         return self._clip_metadata.get("freesound_end_time")
 
     @property
     def salience(self):
+        """The clip's salience.
+
+        Returns:
+            * int - annotator estimate of class sailence in the clip: 1 = foreground, 2 = background
+
+        """
         return self._clip_metadata.get("salience")
 
     @property
     def fold(self):
+        """The clip's fold.
+
+        Returns:
+            * int - fold number (1-10) to which this clip is allocated. Use these folds for cross validation
+
+        """
         return self._clip_metadata.get("fold")
 
     @property
     def class_id(self):
+        """The clip's class id.
+
+        Returns:
+            * int - integer representation of the class label (0-9). See Dataset Info in the documentation for mapping
+
+        """
         return self._clip_metadata.get("class_id")
 
     @property
     def class_label(self):
+        """The clip's class label.
+
+        Returns:
+            * str - string class name: air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling, gun_shot, jackhammer, siren, street_music
+
+        """
         return self._clip_metadata.get("class_label")
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence. In UrbanSound8K every clip has one tag
+
+        """
         return annotations.Tags(
             [self._clip_metadata.get("class_label")], "open", np.array([1.0])
         )

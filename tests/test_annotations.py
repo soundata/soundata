@@ -17,10 +17,7 @@ def test_repr():
     assert test_track.__repr__() == """TestAnnotation(a, b)"""
 
     event_data = annotations.Events(
-        np.array([[1.0, 2.0], [3.0, 4.0]]),
-        "seconds",
-        ["Siren", "Dog"],
-        "open",
+        np.array([[1.0, 2.0], [3.0, 4.0]]), "seconds", ["Siren", "Dog"], "open"
     )
     assert (
         event_data.__repr__()

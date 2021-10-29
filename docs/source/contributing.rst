@@ -11,9 +11,17 @@ your contribution, you can always submit an issue or open a discussion in the re
 - `Issue Tracker <https://github.com/soundata/soundata/issues>`_
 - `Source Code <https://github.com/soundata/soundata>`_
 
+Quick link to contributing templates
+####################################
+
+If you're familiar with Soundata's API already, you can find the template files for contributing `here <https://github.com/soundata/soundata/tree/master/docs/source/contributing_examples>`_,
+and the loader checklist for submiting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_.
+
+
+
 
 Installing soundata for development purposes
-###########################################
+############################################
 
 To install ``soundata`` for development purposes:
 
@@ -31,13 +39,13 @@ To install ``soundata`` for development purposes:
         pip install .
         pip install .[tests]
         pip install .[docs]
-        pip install .[dali]
 
 
-We recommend to install `pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
-and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6 and 3.7.
-Once ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you installed all the pytest
-plugins to automatically test your code successfully. Finally, run:
+We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ or
+`pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
+and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6, 3.7 and 3.8.
+Once ``conda`` or ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you've installed all the 
+necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your code successfully. Finally, run:
 
 .. code-block:: bash
 
@@ -48,7 +56,7 @@ All tests should pass!
 
 
 Writing a new dataset loader
-#############################
+############################
 
 
 The steps to add a new dataset loader to ``soundata`` are:
@@ -73,17 +81,18 @@ the ``please-do-not-edit`` flag is used.
 1. Create an index
 ------------------
 
-``soundata``'s structure relies on `indexes`. Indexes are dictionaries contain information about the structure of the
-dataset which is necessary for the loading and validating functionalities of ``soundata``. In particular, indexes contain
-information about the files included in the dataset, their location and checksums. The necessary steps are:
+Soundata's structure relies on ``indexes``. Indexes are dictionaries that contain information about the structure of the
+dataset which is necessary for the loading and validating functionalities of Soundata. In particular, indexes contain
+information about the files included in the dataset, their location and checksums, see some example indexes below.
+To create an index, the necessary steps are:
 
-1. To create an index, first cereate a script in ``scripts/``, as ``make_dataset_index.py``, which generates an index file.
-2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``dataset_index.json``.
+1. Create a script in ``scripts/``, called ``make_<datasetname>_index.py``, which generates an index file.
+2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
 
 
 .. _index example:
 
-Here there is an example of an index to use as guideline:
+Here's an example of an index to use as a guide:
 
 .. admonition:: Example Make Index Script
     :class: dropdown
@@ -93,15 +102,15 @@ Here there is an example of an index to use as guideline:
 
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
-tracks
-^^^^^^
+Example index with clips
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-Most MIR datasets are organized as a collection of tracks and annotations. In such case, the index should make use of the ``tracks``
-top-level key. A dictionary should be stored under the ``tracks`` top-level key where the keys are the unique track ids of the dataset. 
-The values are a dictionary of files associated with a track id, along with their checksums. These files can be for instance audio files 
-or annotations related to the track id. File paths are relative to the top level directory of a dataset.
+Most sound datasets are organized as a collection of clips and annotations. In such case, the index should make use of the ``clips``
+top-level key. Under this ``clips`` top-level key, you should store a dictionary where the keys are the unique clip ids of the dataset, and
+the values are dictionaries of files associated with a clip id, along with their checksums. These files can be for instance audio files
+or annotations related to the clip id. File paths are relative to the top level directory of a dataset.
 
-.. admonition:: Index Examples - Tracks
+.. admonition:: Index Examples - Clips
     :class: dropdown
 
     If the version `1.0` of a given dataset has the structure:
@@ -110,51 +119,51 @@ or annotations related to the track id. File paths are relative to the top level
 
         > Example_Dataset/
             > audio/
-                track1.wav
-                track2.wav
-                track3.wav
+                clip1.wav
+                clip2.wav
+                clip3.wav
             > annotations/
-                track1.csv
-                Track2.csv
-                track3.csv
+                clip1.csv
+                clip2.csv
+                clip3.csv
             > metadata/
                 metadata_file.csv
 
-    The top level directory is ``Example_Dataset`` and the relative path for ``track1.wav``
-    would be ``audio/track1.wav``. Any unavailable fields are indicated with `null`. A possible index file for this example would be:
+    The top level directory is ``Example_Dataset`` and the relative path for ``clip1.wav``
+    would be ``audio/clip1.wav``. Any unavailable fields are indicated with `null`. A possible index file for this example would be:
 
     .. code-block:: javascript
 
 
         {   "version": "1.0",
-            "tracks":
-                "track1": {
+            "clips":
+                "clip1": {
                     "audio": [
-                        "audio/track1.wav",  // the relative path for track1's audio file
-                        "912ec803b2ce49e4a541068d495ab570"  // track1.wav's md5 checksum
+                        "audio/clip1.wav",  // the relative path for clip1's audio file
+                        "912ec803b2ce49e4a541068d495ab570"  // clip1.wav's md5 checksum
                     ],
                     "annotation": [
-                        "annotations/track1.csv",  // the relative path for track1's annotation
-                        "2cf33591c3b28b382668952e236cccd5"  // track1.csv's md5 checksum
+                        "annotations/clip1.csv",  // the relative path for clip1's annotation
+                        "2cf33591c3b28b382668952e236cccd5"  // clip1.csv's md5 checksum
                     ]
                 },
-                "track2": {
+                "clip2": {
                     "audio": [
-                        "audio/track2.wav",
+                        "audio/clip2.wav",
                         "65d671ec9787b32cfb7e33188be32ff7"
                     ],
                     "annotation": [
-                        "annotations/Track2.csv",
+                        "annotations/Clip2.csv",
                         "e1964798cfe86e914af895f8d0291812"
                     ]
                 },
-                "track3": {
+                "clip3": {
                     "audio": [
-                        "audio/track3.wav",
+                        "audio/clip3.wav",
                         "60edeb51dc4041c47c031c4bfb456b76"
                     ],
                     "annotation": [
-                        "annotations/track3.csv",
+                        "annotations/clip3.csv",
                         "06cb006cc7b61de6be6361ff904654b3"
                     ]
                 },
@@ -169,80 +178,73 @@ or annotations related to the track id. File paths are relative to the top level
 
 
     .. note::
-        In this example there is a (purposeful) mismatch between the name of the audio file ``track2.wav`` and its corresponding annotation file, ``Track2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
+        In this example there is a (purposeful) mismatch between the name of the audio file ``clip2.wav`` and its corresponding annotation file, ``Clip2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
 
+..
+    Example index with multiclips
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-multitracks
-^^^^^^^^^^^
+    .. admonition:: Index Examples - Multiclips
+        :class: dropdown, warning
 
-.. admonition:: Index Examples - Multitracks
-    :class: dropdown, warning
-    
- If the version `1.0` of a given multitrack dataset has the structure:
+     If the version `1.0` of a given multiclip dataset has the structure:
+
+        .. code-block:: javascript
+
+            > Example_Dataset/
+                > audio/
+                    multiclip1-voice1.wav
+                    multiclip1-voice2.wav
+                    multiclip1-accompaniment.wav
+                    multiclip1-mix.wav
+                    multiclip2-voice1.wav
+                    multiclip2-voice2.wav
+                    multiclip2-accompaniment.wav
+                    multiclip2-mix.wav
+                > annotations/
+                    multiclip1-voice-f0.csv
+                    multiclip2-voice-f0.csv
+                    multiclip1-f0.csv
+                    multiclip2-f0.csv
+                > metadata/
+                    metadata_file.csv
+
+        The top level directory is ``Example_Dataset`` and the relative path for ``multiclip1-voice1``
+        would be ``audio/multiclip1-voice1.wav``. Any unavailable fields are indicated with `null`. A possible index file for this
+    example would be:
 
     .. code-block:: javascript
 
-        > Example_Dataset/
-            > audio/
-                multitrack1-voice1.wav
-                multitrack1-voice2.wav
-                multitrack1-accompaniment.wav
-                multitrack1-mix.wav
-                multitrack2-voice1.wav
-                multitrack2-voice2.wav
-                multitrack2-accompaniment.wav
-                multitrack2-mix.wav
-            > annotations/
-                multitrack1-voice-f0.csv
-                multitrack2-voice-f0.csv
-                multitrack1-f0.csv
-                multitrack2-f0.csv
-            > metadata/
-                metadata_file.csv
+    { "version": 1,
+      "clips": {
+         "multiclip1-voice": {
+              "audio_voice1": ('audio/multiclip1-voice1.wav', checksum),
+              "audio_voice2": ('audio/multiclip1-voice1.wav', checksum),
+              "voice-f0": ('annotations/multiclip1-voice-f0.csv', checksum)
+         }
+         "multiclip1-accompaniment": {
+              "audio_accompaniment": ('audio/multiclip1-accompaniment.wav', checksum)
+         }
+         "multiclip2-voice" : {...}
+         ...
+      },
+      "multiclips": {
+        "multiclip1": {
+             "clips": ['multiclip1-voice', 'multiclip1-accompaniment'],
+             "audio": ('audio/multiclip1-mix.wav', checksum)
+             "f0": ('annotations/multiclip1-f0.csv', checksum)
+         }
+        "multiclip2": ...
+      },
+      "metadata": {
+        "metadata_file": [
+            "metadata/metadata_file.csv",
+            "7a41b280c7b74e2ddac5184708f9525b"
+            ]
+      }
+    }
 
-    The top level directory is ``Example_Dataset`` and the relative path for ``multitrack1-voice1``
-    would be ``audio/multitrack1-voice1.wav``. Any unavailable fields are indicated with `null`. A possible index file for this example would be:
-    
-.. code-block:: javascript
-
-{ "version": 1,
-  "tracks": {
-     "multitrack1-voice": {
-          "audio_voice1": ('audio/multitrack1-voice1.wav', checksum), 
-          "audio_voice2": ('audio/multitrack1-voice1.wav', checksum),  
-          "voice-f0": ('annotations/multitrack1-voice-f0.csv', checksum)
-     }
-     "multitrack1-accompaniment": {
-          "audio_accompaniment": ('audio/multitrack1-accompaniment.wav', checksum)
-     }
-     "multitrack2-voice" : {...}
-     ...
-  },
-  "multitracks": {
-    "multitrack1": {
-         "tracks": ['multitrack1-voice', 'multitrack1-accompaniment'],    
-         "audio": ('audio/multitrack1-mix.wav', checksum)
-         "f0": ('annotations/multitrack1-f0.csv', checksum)
-     }
-    "multitrack2": ...
-  },
-  "metadata": {
-    "metadata_file": [
-        "metadata/metadata_file.csv",
-        "7a41b280c7b74e2ddac5184708f9525b"
-        ]
-  }
-}
-  
-Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single Track because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multitrack mix and it is stored in the ``multitracks`` group. The multitrack ``multitrack1`` has an additional track ``multitrack1-mix.wav`` which may be the master track, the final mix, the recording of ``multitrack1`` with another microphone. 
-
-records
-^^^^^^^
-
-.. admonition:: Index Examples - Records
-    :class: dropdown, warning
-
-    Coming soon
+    Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single clip because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multiclip mix and it is stored in the ``multiclips`` group. The multiclip ``multiclip1`` has an additional clip ``multiclip1-mix.wav`` which may be the master clip, the final mix, the recording of ``multiclip1`` with another microphone.
 
 
 
@@ -266,13 +268,9 @@ To quickstart a new module:
 
 You may find these examples useful as references:
 
-* `A simple, fully downloadable dataset <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py>`_
-* `A dataset which is partially downloadable <https://github.com/soundata/soundata/blob/master/soundata/datasets/beatles.py>`_
-* `A dataset with restricted access data <https://github.com/soundata/soundata/blob/master/soundata/datasets/medleydb_melody.py#L33>`_
-* `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/tinysol.py#L114>`_
-* `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/gtzan_genre.py#L36>`_
-* `A dataset with a custom download function <https://github.com/soundata/soundata/blob/master/soundata/datasets/maestro.py#L257>`_
-* `A dataset with a remote index <https://github.com/soundata/soundata/blob/master/soundata/datasets/acousticbrainz_genre.py>`_
+* `A simple, fully downloadable dataset <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py>`_
+* `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217>`_
+* `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
 For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
 
@@ -282,25 +280,25 @@ For many more examples, see the `datasets folder <https://github.com/soundata/so
 3. Add tests
 ------------
 
-To finish your contribution, include tests that check the integrity of your loader. For this, follow these steps:
+To finish your contribution, please include tests that check the integrity of your loader. For this, follow these steps:
 
 1. Make a toy version of the dataset in the tests folder ``tests/resources/sound_datasets/my_dataset/``,
    so you can test against little data. For example:
 
-    * Include all audio and annotation files for one track of the dataset
+    * Include all audio and annotation files for one clip of the dataset
     * For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.
     * If the dataset has a metadata file, reduce the length to a few lines.
 
-2. Test all of the dataset specific code, e.g. the public attributes of the Track class, the load functions and any other 
+2. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
    custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
-   If your loader has a custom download function, add tests similar to 
-   `this loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
+   If your loader has a custom download function, add tests similar to
+   `this mirdata loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
 3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
    sure everything is working.
 
 
-.. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``track_ids`` functions, 
-           as well as some basic edge cases of the ``Track`` class, so you don't need to write tests for these!
+.. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions,
+           as well as some basic edge cases of the ``Clip`` class, so you don't need to write tests for these!
 
 
 .. _test_file:
@@ -322,13 +320,13 @@ Before creating a PR, you should run all the tests locally like this:
     pytest tests/ --local
 
 
-The `--local` flag skips tests that are built to run only on the remote testing environment.
+The ``--local`` flag skips tests that are built to run only on the remote testing environment.
 
 To run one specific test file:
 
 ::
 
-    pytest tests/test_ikala.py
+    pytest tests/test_urbansed.py
 
 
 Finally, there is one local test you should run, which we can't easily run in our testing environment.
@@ -341,7 +339,7 @@ Finally, there is one local test you should run, which we can't easily run in ou
 Where ``dataset`` is the name of the module of the dataset you added. The ``-s`` tells pytest not to skip print 
 statments, which is useful here for seeing the download progress bar when testing the download function.
 
-This tests that your dataset downloads, validates, and loads properly for every track. This test takes a long time 
+This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
 for some datasets, but it's important to ensure the integrity of the library.
 
 We've added one extra convenience flag for this test, for getting the tests running when the download is very slow:
@@ -365,15 +363,15 @@ of the dataset loader and pass the tests.
 Working with remote indexes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For the end-user there is no difference between the remote and local indexes. However, indexes can get large when there are a lot of tracks
+For the end-user there is no difference between the remote and local indexes. However, indexes can get large when there are a lot of clips
 in the dataset. In these cases, storing and accessing an index remotely can be convenient. Large indexes can be added to REMOTES, 
 and will be downloaded with the rest of the dataset. For example:
 
 .. code-block:: python
 
     "index": download_utils.RemoteFileMetadata(
-        filename="acousticbrainz_genre_index.json.zip",
-        url="https://zenodo.org/record/4298580/files/acousticbrainz_genre_index.json.zip?download=1",
+        filename="remote_index.json.zip",
+        url="https://zenodo.org/record/.../remote_index.json.zip?download=1",
         checksum="810f1c003f53cbe58002ba96e6d4d138",
     )
 
@@ -388,7 +386,7 @@ Reducing the testing space usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We are trying to keep the test resources folder size as small as possible, because it can get really heavy as new loaders are added. We
-kindly ask the contributors to reduce the size of the testing data if possible (e.g. trimming the audio tracks, keeping just two rows for
+kindly ask the contributors to reduce the size of the testing data if possible (e.g. trimming the audio clips, keeping just two rows for
 csv files).
 
 
@@ -399,28 +397,30 @@ csv files).
 
 Before you submit your loader make sure to:
 
-1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order
+1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order.
 2. Add your module to ``docs/source/table.rst`` following an alphabetical order as follows:
 
 .. code-block:: rst
 
     * - Dataset
       - Downloadable?
-      - Annotation Types
-      - Tracks
+      - Annotations
+      - Clips
+      - Hours
       - License
 
-An example of this for the ``Beatport EDM key`` dataset:
+An example of this for the ``UrbanSound8k`` dataset:
 
 .. code-block:: rst
 
-   * - Beatport EDM key
+   * - UrbanSound8K
      - - audio: ✅
        - annotations: ✅
-     - - global :ref:`key`
-     - 1486
-     - .. image:: https://licensebuttons.net/l/by-sa/3.0/88x31.png
-          :target: https://creativecommons.org/licenses/by-sa/4.0
+     - :ref:`tags`
+     - 8732
+     - 8.75
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0
 
 
 (you can check that this was done correctly by clicking on the readthedocs check when you open a PR). You can find license
@@ -554,8 +554,8 @@ Objects
         bar (int): Second argument to the __init__ method
 
     Attributes:
-        foobar (str): First track attribute
-        barfoo (bool): Second track attribute
+        foobar (str): First clip attribute
+        barfoo (bool): Second clip attribute
 
     Cached Properties:
         foofoo (list): Cached properties are special soundata attributes
@@ -578,8 +578,6 @@ We use the following libraries for loading data from files:
 +=========================+=============+
 | audio (wav, mp3, ...)   | librosa     |
 +-------------------------+-------------+
-| midi                    | pretty_midi |
-+-------------------------+-------------+
 | json                    | json        |
 +-------------------------+-------------+
 | csv                     | csv         |
@@ -587,53 +585,87 @@ We use the following libraries for loading data from files:
 | jams                    | jams        |
 +-------------------------+-------------+
 
-Track Attributes
+Clip Attributes
 ----------------
-Custom track attributes should be global, track-level data.
+Custom clip attributes should be global, clip-level data.
 For some datasets, there is a separate, dataset-level metadata file
-with track-level metadata, e.g. as a csv. When a single file is needed
-for more than one track, we recommend using writing a ``_metadata`` cached property (which
-returns a dictionary, either keyed by track_id or freeform)
+with clip-level metadata, e.g. as a csv. When a single file is needed
+for more than one clip, we recommend using writing a ``_metadata`` cached property (which
+returns a dictionary, either keyed by clip_id or freeform)
 in the Dataset class (see the dataset module example code above). When this is specified,
-it will populate a track's hidden ``_track_metadata`` field, which can be accessed from
-the Track class.
+it will populate a clip's hidden ``_clip_metadata`` field, which can be accessed from
+the clip class.
 
 For example, if ``_metadata`` returns a dictionary of the form:
 
 .. code-block:: python
 
     {
-        'track1': {
-            'artist': 'A',
-            'genre': 'Z'
+        'clip1': {
+            'microphone-type': 'Awesome',
+            'recording-date': '27.10.2021'
         },
-        'track2': {
-            'artist': 'B',
-            'genre': 'Y'
+        'clip2': {
+            'microphone-type': 'Less_awesome',
+            'recording-date': '27.10.2021'
         }
     }
 
-the ``_track metadata`` for ``track_id=track2`` will be:
+the ``_clip metadata`` for ``clip_id=clip2`` will be:
 
 .. code-block:: python
 
     {
-        'artist': 'B',
-        'genre': 'Y'
+        'microphone-type': 'Less_awesome',
+        'recording-date': '27.10.2021'
     }
 
 
-Load methods vs Track properties
+Load methods vs Clip properties
 --------------------------------
-Track properties and cached properties should be trivial, and directly call a ``load_*`` method.
-There should be no additional logic in a track property/cached property, and instead all logic
-should be done in the load method. We separate these because the track properties are only usable
+Clip properties and cached properties should be simple, and directly call a ``load_*`` method. Like this example from ``urbansed``:
+
+.. code-block:: python
+
+    @property
+    def split(self):
+        """The data splits (e.g. train)
+
+        Returns
+            * str - split
+
+        """
+        return self._clip_metadata.get("split")
+
+    @core.cached_property
+    def events(self) -> Optional[annotations.Events]:
+        """The audio events
+
+        Returns
+            * annotations.Events - audio event object
+
+        """
+        return load_events(self.txt_path)
+
+There should be no additional logic in a clip property/cached property, and instead all logic
+should be done in the load method. We separate these because the clip properties are only usable
 when data is available locally - when data is remote, the load methods are used instead.
 
 Missing Data
 ------------
-If a Track has a property, for example a type of annotation, that is present for some tracks and not others,
-the property should be set to `None` when it isn't available.
+Clip properties that are available for some clips and not for others should be set to ``None`` when whey are not available.
+Like this example in the ``tau2019aus`` loader:
+
+.. code-block:: python
+
+    @property
+    def tags(self):
+        scene_label = self._clip_metadata.get("scene_label")
+        if scene_label is None:
+            return None
+        else:
+            return annotations.Tags([scene_label], "open", np.array([1.0]))
+
 
 The index should only contain key-values for files that exist.
 
@@ -642,7 +674,7 @@ Custom Decorators
 
 cached_property
 ---------------
-This is used primarily for Track classes.
+This is used primarily for Clip classes.
 
 This decorator causes an Object's function to behave like
 an attribute (aka, like the ``@property`` decorator), but caches
@@ -663,7 +695,7 @@ and this decorator simply copies the docstring from another function.
 
 coerce_to_bytes_io/coerce_to_string_io
 --------------------------------------
-These are two decorators used to simplify the loading of various `Track` members
+These are two decorators used to simplify the loading of various `Clip` members
 in addition to giving users the ability to use file streams instead of paths in
 case the data is in a remote location e.g. GCS. The decorators modify the function
 to:
