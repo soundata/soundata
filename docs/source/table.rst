@@ -54,7 +54,9 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - TAU Spatial Sound Events 2019
+   * - | TAU Spatial 
+       | Sound Events 
+       | 2019
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
