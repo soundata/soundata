@@ -416,7 +416,7 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadta=self._clip_metadata
+            audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
 
