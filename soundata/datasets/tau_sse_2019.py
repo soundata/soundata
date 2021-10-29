@@ -66,13 +66,12 @@ AZIMUTHS_UNITS = {"degrees": "degrees"}
 DISTANCES_UNITS = {"meters": "meters"}
 
 BIBTEX = """
-@inproceedings{Adavanne2019_DCASE,
-    Author = "Adavanne, Sharath and Politis, Archontis and Virtanen, Tuomas",
-    title = "A Multi-room Reverberant Dataset for Sound Event Localization and Uetection",
-    year = "2019",
-    booktitle = "Submitted to Detection and Classification of Acoustic Scenes and Events 2019 Workshop (DCASE2019)",
-    abstract = "This paper presents the sound event localization and detection (SELD) task setup for the DCASE 2019 challenge. The goal of the SELD task is to detect the temporal activities of a known set of sound event classes, and further localize them in space when active. As part of the challenge, a synthesized dataset with each sound event associated with a spatial coordinate represented using azimuth and elevation angles is provided. These sound events are spatialized using real-life impulse responses collected at multiple spatial coordinates in five different rooms with varying dimensions and material properties. A baseline SELD method employing a convolutional recurrent neural network is used to generate benchmark scores for this reverberant dataset. The benchmark scores are obtained using the recommended cross-validation setup.",
-    url = "https://arxiv.org/abs/1905.08546"
+@inproceedings{adavanne2019multi,
+  title={A Multi-room Reverberant Dataset for Sound Event Localization and Detection},
+  author={Adavanne, Sharath and Politis, Archontis and Virtanen, Tuomas},
+  booktitle={Workshop on Detection and Classification of Acoustic Scenes and Events},
+  pages={10--14},
+  year={2019}
 }
 """
 
@@ -236,9 +235,9 @@ class Clip(core.Clip):
                 * intervals (np.ndarray): (n x 2) array of intervals
                     (as floats) in seconds in the form [start_time, end_time]
                     with positive time stamps and end_time >= start_time.
-                * elevations (np.ndarray): (n,) aarray of elevations
-                * azimuths (np.ndarray): (n,) aarray of azimuths
-                * distances (np.ndarray): (n,) aarray of distances
+                * elevations (np.ndarray): (n,) array of elevations
+                * azimuths (np.ndarray): (n,) array of azimuths
+                * distances (np.ndarray): (n,) array of distances
                 * labels (list): list of event labels (as strings)
                 * confidence (np.ndarray or None): array of confidence values, float in [0, 1]
                 * labels_unit (str): labels unit, one of LABELS_UNITS
@@ -253,7 +252,9 @@ class Clip(core.Clip):
             jams.JAMS: the clip's data in jams format
 
         """
-        return jams_utils.jams_converter(audio_path=self.audio_path)
+        return jams_utils.jams_converter(
+            audio_path=self.audio_path, metadata=self._clip_metadata
+        )
 
 
 @io.coerce_to_bytes_io
@@ -323,10 +324,10 @@ def validate_locations(locations):
     If locations is None, validation passes automatically
 
     Args:
-        intervals (np.ndarray): (n x 3) array
+        locations (np.ndarray): (n x 3) array
 
     Raises:
-        ValueError: if intervals have an invalid shape or
+        ValueError: if locations have an invalid shape or
                 have cartesian coordinate values outside the expected ranges.
     """
     if locations is None:
@@ -336,7 +337,7 @@ def validate_locations(locations):
     locations_shape = np.shape(locations)
     if len(locations_shape) != 2 or locations_shape[1] != 3:
         raise ValueError(
-            f"Locations should be arrays with three columns, but array has {locations_shape}"
+            f"Locations should be arrays with three columns, but array has shape {locations_shape}"
         )
 
     # validate that values are within expected ranges
