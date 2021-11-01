@@ -27,6 +27,13 @@ EigenScape
    :members:
    :inherited-members:
 
+EigenScape Raw
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape_raw
+   :members:
+   :inherited-members:
+
 ESC-50
 ^^^^^^
 
