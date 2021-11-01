@@ -6,7 +6,6 @@
         Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
         Audio Research Group, Tampere University (Finland). Version 1.2.0
     *Description:*
-        DESCRIPTION:
         Spatial sound-scene recordings, consisting of sound events of distinct categories 
         in a variety of acoustical spaces, and from multiple source directions and distances.
         The spatialization of all sound events is based on filtering through real spatial 
@@ -54,11 +53,7 @@ import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils
-from soundata import jams_utils
-from soundata import core
-from soundata import annotations
-from soundata import io
+from soundata import download_utils, jams_utils, core, annotations, io
 
 BIBTEX = """
 @inproceedings{politis2020dataset,

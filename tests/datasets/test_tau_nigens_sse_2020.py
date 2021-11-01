@@ -2,11 +2,10 @@ import os
 import numpy as np
 import pytest
 
-from tests.test_utils import run_clip_tests
+from tests.test_utils import run_clip_tests, DEFAULT_DATA_HOME
 
 from soundata import annotations
 from soundata.datasets import tau_nigens_sse_2020
-from tests.test_utils import DEFAULT_DATA_HOME
 
 
 TEST_DATA_HOME = "tests/resources/sound_datasets/tau_nigens_sse_2020"
