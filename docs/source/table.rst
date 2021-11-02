@@ -66,6 +66,16 @@
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
 
+ * - | TUT Sound
+     | events 2017
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - :tut:`\ `
+
+
    * - | TAU Spatial 
        | Sound Events 
        | 2019
@@ -96,15 +106,6 @@
      - 34915
      - 97
      - :tau2020:`\ `
-
-   * - | TUT Sound
-       | events 2017
-     - - audio: ✅
-       - annotations: ✅
-     - :ref:`events`
-     - 32
-     - 2.02
-     - :tut:`\ `
 
    * - URBAN-SED
      - - audio: ✅
