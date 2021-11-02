@@ -90,7 +90,7 @@ When working with datasets, please cite the version of ``soundata`` that you are
    source/tutorial
    source/contributing
    source/quick_reference
-   source/faq
+
 
 
 .. toctree::
@@ -99,5 +99,14 @@ When working with datasets, please cite the version of ``soundata`` that you are
    :maxdepth: 0
 
    source/soundata
+
+
+.. toctree::
+   :hidden:
+   :caption: Reference
+   :maxdepth: 0
+
+   source/changelog
+   source/faq
 
 
