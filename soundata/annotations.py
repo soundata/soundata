@@ -159,12 +159,16 @@ def validate_lengths_equal(array_list):
     if len(array_list) == 1:
         return
 
-    for att1, att2 in zip(array_list[:1], array_list[1:]):
-        if att1 is None or att2 is None:
-            continue
+    else:
+        for att1, att2 in zip(array_list[:1], array_list[1:]):
+            if att1 is None or att2 is None:
+                continue
 
-        if not len(att1) == len(att2):
-            raise ValueError("Arrays have unequal length")
+            if not len(att1) == len(att2):
+                raise ValueError("Arrays have unequal length")
+
+        # recurse
+        validate_lengths_equal(array_list[1:])
 
 
 def validate_confidence(confidence):

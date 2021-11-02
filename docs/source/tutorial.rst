@@ -426,7 +426,7 @@ The following is a simple example of a generator that can be used to create a te
                 }
 
         dataset = tf.data.Dataset.from_generator(
-            urbansound8k_generator('urbansound8k'),
+            data_generator('urbansound8k'),
             {
                 "audio": tf.float32,
                 "sample_rate": tf.float32,
