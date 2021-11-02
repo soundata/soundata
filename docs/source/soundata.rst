@@ -48,10 +48,27 @@ FSDnoisy18K
    :members:
    :inherited-members:
 
+
 TAU NIGENS SSE 2020
 ^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.tau_nigens_sse_2020
+   :members:
+   :inherited-members:
+   
+
+TAU NIGENS SSE 2021
+^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau_nigens_sse_2021
+   :members:
+   :inherited-members:
+   
+
+TAU Spatial Sound Events 2019
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau_sse_2019
    :members:
    :inherited-members:
 
