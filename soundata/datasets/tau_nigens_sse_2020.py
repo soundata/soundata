@@ -380,7 +380,7 @@ class Clip(core.Clip):
         return load_audio(self.audio_path)
 
     @core.cached_property
-    def events(self) -> Optional[SpatialEvents]:
+    def spatial_events(self) -> Optional[SpatialEvents]:
         """The clip's event annotations
         Returns:
             * SpatialEvents with atributes:

@@ -26,7 +26,7 @@ def test_clip():
 
     expected_property_types = {
         "audio": tuple,
-        "events": tau_nigens_sse_2020.SpatialEvents,
+        "spatial_events": tau_nigens_sse_2020.SpatialEvents,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
