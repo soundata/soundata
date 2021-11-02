@@ -203,7 +203,7 @@ class Clip(core.Clip):
 
     @property
     def time(self):
-        """The clip's time.
+        """The clip's time (00:00-23:59).
 
         Returns:
             * str - time when the audio signal was recorded
