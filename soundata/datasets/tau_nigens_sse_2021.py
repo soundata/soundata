@@ -40,7 +40,7 @@
         * Each row in the csv file has a frame number, active class index, event number index, azimuth, and elevation.
         * Frame, class, and track enumeration begins at 0. 
         * Frames correspond to a temporal resolution of 100msec. 
-        * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`$\phi \in [-180^{\circ}, 180^{\circ}]$`, and elevation :math:`$\theta \in [-90^{\circ}, 90^{\circ}]$`. Note that the azimuth angle is increasing counter-clockwise (:math:`$\phi = 90^{\circ}$` at the left).
+        * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
         * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. The interferers are considered unknown and no activity or direction labels of them are provided with the training datasets.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
 
