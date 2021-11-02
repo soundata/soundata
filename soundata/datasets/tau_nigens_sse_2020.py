@@ -356,9 +356,10 @@ class Clip(core.Clip):
     Args:
         clip_id (str): id of the clip
     Attributes:
-        tags (soundata.annotation.Tags): tag
         audio_path (str): path to the audio file
+        tags (soundata.annotation.Tags): tag
         track_id (str): track id
+        spatial_events (SpatialEvents): sound events with time step, elevation, azimuth, distance, label, track_number and confidence.
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
