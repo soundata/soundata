@@ -6,7 +6,7 @@ import glob
 import csv
 from pathlib import Path
 
-DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau2021sse_nigens_index.json"
+DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau2019sse_index.json"
 
 
 def _get_long_eval_filenames(data_path):

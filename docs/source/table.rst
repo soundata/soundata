@@ -89,7 +89,7 @@
 
 
    * - | TUT Sound
-       | events 2017
+       | Events 2017
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
@@ -98,15 +98,14 @@
      - :tut:`\ `
 
 
-   * - | TAU Spatial 
-       | Sound Events 
+   * - | TAU SSE
        | 2019
      - - audio: ✅
        - annotations: ✅
      - Spatial Events
      - 500
      - 8.3
-     - :tau2021sse_nigens:`\ `
+     - :tau2019sse:`\ `
 
 
    * - | TAU Urban

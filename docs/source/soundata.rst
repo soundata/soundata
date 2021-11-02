@@ -75,7 +75,7 @@ TAU NIGENS SSE 2021
 TAU Spatial Sound Events 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tau2021sse_nigens
+.. automodule:: soundata.datasets.tau2019sse
    :members:
    :inherited-members:
 
