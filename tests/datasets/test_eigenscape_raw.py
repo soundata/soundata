@@ -42,7 +42,7 @@ def test_load_audio():
     assert sr == 48000
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 2  # check audio is loaded correctly
-    assert audio.shape[0] == 32  # check audio is 25ch (HOA 4th order)
+    assert audio.shape[0] == 32  # check audio is 32ch (HOA 4th order)
     assert audio.shape[1] == 48000 * 1.0  # Check audio duration is as expected
 
 
