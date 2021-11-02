@@ -23,7 +23,7 @@
     *Annotations Included:*
         * No event labels associated with this dataset
         * The metadata file gives more tempogeographic detail on each recording
-        * the EigenScape [recording map](http://bit.ly/EigenSMap) shows the locations and classes of all the recordings.
+        * the EigenScape `recording map <http://bit.ly/EigenSMap>`_ shows the locations and classes of all the recordings.
         * No predefined training, validation, or testing splits. 
 	
     *Please Acknowledge EigenScape in Academic Research:*
@@ -150,14 +150,16 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
+
         audio_path (str): path to the audio file
-        clip_id (str): clip id
-        location (str): city were the audio signal was recorded
-        time (str): time when the audio signal was recorded
-        date (str): date when the audio signal was recorded
-        additional information (str): notes included by the dataset
+	additional information (str): notes included by the dataset
             authors with other details relevant to the specific clip
+        clip_id (str): clip id
+	date (str): date when the audio signal was recorded
+        location (str): city were the audio signal was recorded
+	tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
+        time (str): time when the audio signal was recorded
+
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
