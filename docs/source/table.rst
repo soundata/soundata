@@ -70,7 +70,7 @@
        | SSE 2020
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 800
      - 15
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
@@ -81,7 +81,7 @@
        | SSE 2021
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 800
      - 15
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
@@ -103,7 +103,7 @@
        | 2019
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 500
      - 8.3
      - :tau2021sse_nigens:`\ `
