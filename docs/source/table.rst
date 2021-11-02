@@ -96,7 +96,7 @@
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags`
+     - :ref:`events`
      - 10000
      - 27.8
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
