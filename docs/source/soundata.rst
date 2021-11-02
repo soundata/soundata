@@ -59,7 +59,7 @@ FSDnoisy18K
 TAU NIGENS SSE 2020
 ^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tau_nigens_sse_2020
+.. automodule:: soundata.datasets.tau2020sse_nigens
    :members:
    :inherited-members:
    
@@ -67,7 +67,7 @@ TAU NIGENS SSE 2020
 TAU NIGENS SSE 2021
 ^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tau_nigens_sse_2021
+.. automodule:: soundata.datasets.tau2021sse_nigens
    :members:
    :inherited-members:
    
@@ -75,7 +75,7 @@ TAU NIGENS SSE 2021
 TAU Spatial Sound Events 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soundata.datasets.tau_sse_2019
+.. automodule:: soundata.datasets.tau2021sse_nigens
    :members:
    :inherited-members:
 

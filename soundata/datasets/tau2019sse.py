@@ -364,7 +364,7 @@ class Dataset(core.Dataset):
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="tau_sse_2019",
+            name="tau2019sse",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -381,7 +381,7 @@ class Dataset(core.Dataset):
         # parsing the data from the filenames due to lack of metadata file
         json_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
-            "indexes/tau_sse_2019_index.json",
+            "indexes/tau2019sse_index.json",
         )
 
         metadata_index = {}

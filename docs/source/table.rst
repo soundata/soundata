@@ -106,7 +106,7 @@
      - :ref:`events`
      - 500
      - 8.3
-     - :tau_sse_2019:`\ `
+     - :tau2021sse_nigens:`\ `
 
 
    * - | TAU Urban

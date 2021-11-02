@@ -5,38 +5,38 @@ import pytest
 from tests.test_utils import run_clip_tests, DEFAULT_DATA_HOME
 
 from soundata import annotations
-from soundata.datasets import tau_nigens_sse_2020
+from soundata.datasets import tau2020sse_nigens
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau_nigens_sse_2020"
+TEST_DATA_HOME = "tests/resources/sound_datasets/tau2020sse_nigens"
 
 
 def test_clip():
     default_clipid = "foa_dev/fold1_room1_mix001_ov1"
-    dataset = tau_nigens_sse_2020.Dataset(TEST_DATA_HOME)
+    dataset = tau2020sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
         "clip_id": "foa_dev/fold1_room1_mix001_ov1",
-        "audio_path": "tests/resources/sound_datasets/tau_nigens_sse_2020/foa_dev/fold1_room1_mix001_ov1.wav",
-        "csv_path": "tests/resources/sound_datasets/tau_nigens_sse_2020/metadata_dev/fold1_room1_mix001_ov1.csv",
+        "audio_path": "tests/resources/sound_datasets/tau2020sse_nigens/foa_dev/fold1_room1_mix001_ov1.wav",
+        "csv_path": "tests/resources/sound_datasets/tau2020sse_nigens/metadata_dev/fold1_room1_mix001_ov1.csv",
         "format": "foa",
         "set": "dev",
     }
 
     expected_property_types = {
         "audio": tuple,
-        "spatial_events": tau_nigens_sse_2020.SpatialEvents,
+        "spatial_events": tau2020sse_nigens.SpatialEvents,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
 
 
 def test_load_audio():
-    dataset = tau_nigens_sse_2020.Dataset(TEST_DATA_HOME)
+    dataset = tau2020sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip("foa_dev/fold1_room1_mix001_ov1")
     audio_path = clip.audio_path
-    audio, sr = tau_nigens_sse_2020.load_audio(audio_path)
+    audio, sr = tau2020sse_nigens.load_audio(audio_path)
     assert sr == 24000
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 2  # check audio is loaded as 4 channels
@@ -45,10 +45,10 @@ def test_load_audio():
 
 
 def test_load_SpatialEvents():
-    dataset = tau_nigens_sse_2020.Dataset(TEST_DATA_HOME)
+    dataset = tau2020sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip("foa_dev/fold1_room1_mix001_ov1")
     annotations_path = clip.csv_path
-    annotations = tau_nigens_sse_2020.load_spatialevents(annotations_path)
+    annotations = tau2020sse_nigens.load_spatialevents(annotations_path)
 
     confidence = [1.0] * 6
     intervals = [
@@ -112,33 +112,31 @@ def test_load_SpatialEvents():
     ):
         assert test_track_index == track_index
     with pytest.raises(ValueError):
-        tau_nigens_sse_2020.validate_time_steps(0.1, [4, 5, 7], [2, 1])
+        tau2020sse_nigens.validate_time_steps(0.1, [4, 5, 7], [2, 1])
     with pytest.raises(ValueError):
-        tau_nigens_sse_2020.validate_time_steps(
+        tau2020sse_nigens.validate_time_steps(
             0.1, np.array([[4, 5, 7], [1, 2, 3]]), [0.0, 0.2]
         )
     with pytest.raises(ValueError):
         # locations are not 3D
-        tau_nigens_sse_2020.validate_locations(np.array([[4, 5], [2, 3]]))
+        tau2020sse_nigens.validate_locations(np.array([[4, 5], [2, 3]]))
     with pytest.raises(ValueError):
         # distance is not None
-        tau_nigens_sse_2020.validate_locations(np.array([[90, 5, None], [2, 3, 4]]))
+        tau2020sse_nigens.validate_locations(np.array([[90, 5, None], [2, 3, 4]]))
     with pytest.raises(ValueError):
         # elevation is greater than 90
-        tau_nigens_sse_2020.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
+        tau2020sse_nigens.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
     with pytest.raises(ValueError):
         # elevation is greater than 181
-        tau_nigens_sse_2020.validate_locations(
-            np.array([[90, 181, None], [2, 3, None]])
-        )
+        tau2020sse_nigens.validate_locations(np.array([[90, 181, None], [2, 3, None]]))
 
 
 def test_to_jams():
 
     default_clipid = "foa_dev/fold1_room1_mix001_ov1"
-    dataset = tau_nigens_sse_2020.Dataset(TEST_DATA_HOME)
+    dataset = tau2020sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 
-    # Validate tau_nigens_sse_2020 jam schema
+    # Validate tau2020sse_nigens jam schema
     assert jam.validate()

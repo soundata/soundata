@@ -5,7 +5,7 @@ from soundata.validate import md5
 import glob
 import csv
 
-DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau_nigens_sse_2020_index.json"
+DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau2020sse_nigens_index.json"
 
 
 def _get_long_eval_filenames(data_path):
