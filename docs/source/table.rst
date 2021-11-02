@@ -65,6 +65,50 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
+
+   * - | TAU NIGENS 
+       | SSE 2020
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 800
+     - 15
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - | TAU NIGENS 
+       | SSE 2021
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 800
+     - 15
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - | TUT Sound
+       | events 2017
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - :tut:`\ `
+
+
+   * - | TAU Spatial 
+       | Sound Events 
+       | 2019
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 500
+     - 8.3
+     - :tau_sse_2019:`\ `
+
+
    * - | TAU Urban
        | Acoustic Scenes
        | 2019
@@ -85,19 +129,10 @@
      - 97
      - :tau2020:`\ `
 
-   * - | TUT Sound
-       | events 2017
-     - - audio: ✅
-       - annotations: ✅
-     - :ref:`events`
-     - 32
-     - 2.02
-     - :tut:`\ `
-
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags`
+     - :ref:`events`
      - 10000
      - 27.8
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
