@@ -391,7 +391,7 @@ class Clip(core.Clip):
         """The clip's event annotations
 
         Returns:
-            * SpatialEvents with atributes:
+            * SpatialEvents with attributes
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
                     (as floats) in TIME_UNITS in the form [start_time, end_time]
                 * intervals_unit (str): intervals unit, one of TIME_UNITS

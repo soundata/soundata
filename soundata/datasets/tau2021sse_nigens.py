@@ -363,9 +363,10 @@ class Clip(core.Clip):
     Args:
         clip_id (str): id of the clip
     Attributes:
-        tags (soundata.annotation.Tags): tag
         audio_path (str): path to the audio file
+        tags (soundata.annotation.Tags): tag
         track_id (str): track id
+        spatial_events (SpatialEvents): sound events with time step, elevation, azimuth, distance, label, track_number and confidence.
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -397,7 +398,7 @@ class Clip(core.Clip):
     def spatial_events(self) -> Optional[SpatialEvents]:
         """The clip's event annotations
         Returns:
-            * SpatialEvents with atributes:
+            * SpatialEvents with attributes
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
                     (as floats) in TIME_UNITS in the form [start_time, end_time]
                 * intervals_unit (str): intervals unit, one of TIME_UNITS
