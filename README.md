@@ -2,7 +2,8 @@
 
 <img src="docs/img/soundata.png" height="100px">
 
-Common loaders for sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
+Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
+Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
 
 [![CircleCI](https://circleci.com/gh/soundata/soundata.svg?style=svg)](https://circleci.com/gh/soundata/soundata)
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
@@ -16,6 +17,7 @@ This library provides tools for working with common sound datasets, including to
 * Loading annotation files to a common format
 * Parsing clip-level metadata for detailed evaluations
 
+Here's soundata's [list of currently supported datasets](https://soundata.readthedocs.io/en/latest/source/quick_reference.html).
 
 ### Installation
 
