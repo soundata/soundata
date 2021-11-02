@@ -14,7 +14,7 @@
         Up to two temporally overlaping sound events. 
         Recordings of identical scenes are available in both 1st-order ambisonics and corresponding four-channel tetrahedral microphone format.
         Recordings can happen in one of five different rooms.
-        The sound classes are the 11 different ones from the [DCASE 2016 challenge task 2](http://dcase.community/challenge2016/task-sound-event-detection-in-synthetic-audio). Each class has 20 different examples.
+        The sound classes are the 11 different ones from the `DCASE 2016 challenge task 2 <http://dcase.community/challenge2016/task-sound-event-detection-in-synthetic-audio>`_. Each class has 20 different examples.
 
     *Audio Files Included:*
         * 500 one-minute-long recordings (400 development and 100 evaluation; 48kHz sampling rate and 16-bit precision).
@@ -129,6 +129,18 @@ LICENSE_INFO = "Copyright (c) 2019 Tampere University and its licensors All righ
 class SpatialEvents(annotations.Events):
     """
     TAU SSE 2019 Spatial Events
+    
+    Attributes:
+                * intervals (np.ndarray): (n x 2) array of intervals
+                    (as floats) in seconds in the form [start_time, end_time]
+                    with positive time stamps and end_time >= start_time.
+                * elevations (np.ndarray): (n,) array of elevations
+                * azimuths (np.ndarray): (n,) array of azimuths
+                * distances (np.ndarray): (n,) array of distances
+                * labels (list): list of event labels (as strings)
+                * confidence (np.ndarray or None): array of confidence values, float in [0, 1]
+                * labels_unit (str): labels unit, one of LABELS_UNITS
+                * intervals_unit (str): intervals unit, one of TIME_UNITS
     """
 
     def __init__(
