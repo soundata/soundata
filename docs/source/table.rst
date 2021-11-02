@@ -56,6 +56,17 @@
 
 
    * - | TAU NIGENS 
+       | SSE 2020
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 800
+     - 15
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - | TAU NIGENS 
        | SSE 2021
      - - audio: ✅
        - annotations: ✅
