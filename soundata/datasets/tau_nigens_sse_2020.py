@@ -154,7 +154,7 @@ LABEL_UNITS = {"open": "no strict schema or units"}
 
 class SpatialEvents:
     """SpatialEvents class
-    
+
     Attributes:
         intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
             (as floats) in TIME_UNITS in the form [start_time, end_time]
@@ -389,7 +389,7 @@ class Clip(core.Clip):
     @core.cached_property
     def spatial_events(self) -> Optional[SpatialEvents]:
         """The clip's event annotations
-        
+
         Returns:
             * SpatialEvents with atributes:
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
