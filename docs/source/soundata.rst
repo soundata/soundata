@@ -14,7 +14,7 @@ Dataset Loaders
 ---------------
 
 3D-MARCo
-^^^^^^^^^^
+^^^^^^^^
 
 .. automodule:: soundata.datasets.marco
    :members:
@@ -24,6 +24,13 @@ EigenScape
 ^^^^^^^^^^
 
 .. automodule:: soundata.datasets.eigenscape
+   :members:
+   :inherited-members:
+
+EigenScape Raw
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape_raw
    :members:
    :inherited-members:
 
@@ -50,7 +57,7 @@ FSDnoisy18K
 
 
 TAU NIGENS SSE 2020
-^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.tau_nigens_sse_2020
    :members:

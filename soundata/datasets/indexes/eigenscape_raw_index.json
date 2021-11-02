@@ -1,0 +1,395 @@
+{
+  "version": "raw",
+  "clips": {
+    "Beach-01-Raw": {
+      "audio": [
+        "Beach-01-Raw.wav",
+        "5612673e79f8d586ba47d43dc902d5da"
+      ]
+    },
+    "Beach-04-Raw": {
+      "audio": [
+        "Beach-04-Raw.wav",
+        "ecff0a9cd887d2f0f98bcc91da908268"
+      ]
+    },
+    "BusyStreet-04-Raw": {
+      "audio": [
+        "BusyStreet-04-Raw.wav",
+        "e316bf3793ad4af3f77f26e87d4c1925"
+      ]
+    },
+    "QuietStreet-07-Raw": {
+      "audio": [
+        "QuietStreet-07-Raw.wav",
+        "a1026a16ba0f4ebcbae0bff6f78c3c5c"
+      ]
+    },
+    "ShoppingCentre-06-Raw": {
+      "audio": [
+        "ShoppingCentre-06-Raw.wav",
+        "7e402f7412a95d295d40fa05cb6096b6"
+      ]
+    },
+    "ShoppingCentre-05-Raw": {
+      "audio": [
+        "ShoppingCentre-05-Raw.wav",
+        "eaf0b9c5313d5bceb0355ab989d04a03"
+      ]
+    },
+    "Park-05-Raw": {
+      "audio": [
+        "Park-05-Raw.wav",
+        "80e0482b4f05436d6154b8eda1743218"
+      ]
+    },
+    "Woodland-03-Raw": {
+      "audio": [
+        "Woodland-03-Raw.wav",
+        "78c7661bf21225308183c67e903a229f"
+      ]
+    },
+    "PedestrianZone-04-Raw": {
+      "audio": [
+        "PedestrianZone-04-Raw.wav",
+        "0bcbfcf3ff8e539e639636689fb53680"
+      ]
+    },
+    "BusyStreet-06-Raw": {
+      "audio": [
+        "BusyStreet-06-Raw.wav",
+        "7cabf6206d5a576065df03883917ec56"
+      ]
+    },
+    "ShoppingCentre-04-Raw": {
+      "audio": [
+        "ShoppingCentre-04-Raw.wav",
+        "bb040c0dce13eb553458f014644061f4"
+      ]
+    },
+    "TrainStation-04-Raw": {
+      "audio": [
+        "TrainStation-04-Raw.wav",
+        "6326b1ab69a2ff306978741937ce2b7a"
+      ]
+    },
+    "Beach-02-Raw": {
+      "audio": [
+        "Beach-02-Raw.wav",
+        "8e54f09e9c8e1743ae4a621bb9a5bc2c"
+      ]
+    },
+    "QuietStreet-03-Raw": {
+      "audio": [
+        "QuietStreet-03-Raw.wav",
+        "b4f6dc1cb65f9b2051273e496764219d"
+      ]
+    },
+    "Beach-07-Raw": {
+      "audio": [
+        "Beach-07-Raw.wav",
+        "92b8d3fc31f2c4ba9accfc5ed1ace273"
+      ]
+    },
+    "Woodland-05-Raw": {
+      "audio": [
+        "Woodland-05-Raw.wav",
+        "f22e3a06cef4e9dd81b44b2f418b0ef7"
+      ]
+    },
+    "PedestrianZone-06-Raw": {
+      "audio": [
+        "PedestrianZone-06-Raw.wav",
+        "865dab7b6a1bb920e5f85a51f4f8211a"
+      ]
+    },
+    "ShoppingCentre-01-Raw": {
+      "audio": [
+        "ShoppingCentre-01-Raw.wav",
+        "c02ca658b0cf85561f8c5f728db5bee9"
+      ]
+    },
+    "QuietStreet-02-Raw": {
+      "audio": [
+        "QuietStreet-02-Raw.wav",
+        "15b7742bacadb0417b227de9550af725"
+      ]
+    },
+    "TrainStation-08-Raw": {
+      "audio": [
+        "TrainStation-08-Raw.wav",
+        "de418fdd958ed9875630e1fa65417b1e"
+      ]
+    },
+    "Woodland-07-Raw": {
+      "audio": [
+        "Woodland-07-Raw.wav",
+        "eef91d59e41d41a7e0e7c035893dcb55"
+      ]
+    },
+    "PedestrianZone-02-Raw": {
+      "audio": [
+        "PedestrianZone-02-Raw.wav",
+        "067563aead2ebce897fbae33ed84ba00"
+      ]
+    },
+    "Woodland-04-Raw": {
+      "audio": [
+        "Woodland-04-Raw.wav",
+        "91afe627730952d75401277d851a67a3"
+      ]
+    },
+    "Park-07-Raw": {
+      "audio": [
+        "Park-07-Raw.wav",
+        "11309f033438cae1ee28420c321657d9"
+      ]
+    },
+    "Beach-06-Raw": {
+      "audio": [
+        "Beach-06-Raw.wav",
+        "75d09df7b67f0628bec1898d435dfc25"
+      ]
+    },
+    "BusyStreet-07-Raw": {
+      "audio": [
+        "BusyStreet-07-Raw.wav",
+        "4ce81dab9cd8d78a7a19b077e18c7b4a"
+      ]
+    },
+    "Park-04-Raw": {
+      "audio": [
+        "Park-04-Raw.wav",
+        "31b9505132a8650078f9b483e5989370"
+      ]
+    },
+    "Beach-08-Raw": {
+      "audio": [
+        "Beach-08-Raw.wav",
+        "442c75cfa85d53773ff0293e166015ff"
+      ]
+    },
+    "PedestrianZone-08-Raw": {
+      "audio": [
+        "PedestrianZone-08-Raw.wav",
+        "7aae03ad5ee0e0223fa4e96507cca344"
+      ]
+    },
+    "QuietStreet-05-Raw": {
+      "audio": [
+        "QuietStreet-05-Raw.wav",
+        "74fc68ce1d552b3c76162809bf343750"
+      ]
+    },
+    "Beach-03-Raw": {
+      "audio": [
+        "Beach-03-Raw.wav",
+        "da9f99ed0a345fe70585027cf720814b"
+      ]
+    },
+    "Park-08-Raw": {
+      "audio": [
+        "Park-08-Raw.wav",
+        "72e605850ac865f5a6c0991dbac3f3c1"
+      ]
+    },
+    "TrainStation-07-Raw": {
+      "audio": [
+        "TrainStation-07-Raw.wav",
+        "03a56d202ab8a3851799fe616add38b6"
+      ]
+    },
+    "PedestrianZone-01-Raw": {
+      "audio": [
+        "PedestrianZone-01-Raw.wav",
+        "2683416fdf5c3b72484d3cd0bba30265"
+      ]
+    },
+    "TrainStation-05-Raw": {
+      "audio": [
+        "TrainStation-05-Raw.wav",
+        "fe137aefe8d769b084bd0ff1949d0400"
+      ]
+    },
+    "Woodland-02-Raw": {
+      "audio": [
+        "Woodland-02-Raw.wav",
+        "cd7f344fc6085c8385f1323c92049a79"
+      ]
+    },
+    "Woodland-08-Raw": {
+      "audio": [
+        "Woodland-08-Raw.wav",
+        "0541c709206b1cb4971969cb6d8dab0a"
+      ]
+    },
+    "TrainStation-01-Raw": {
+      "audio": [
+        "TrainStation-01-Raw.wav",
+        "b7c9ab43daa0f7ba940c44e0b9591e67"
+      ]
+    },
+    "BusyStreet-01-Raw": {
+      "audio": [
+        "BusyStreet-01-Raw.wav",
+        "688494e8d7e65f68c3a502a562d14606"
+      ]
+    },
+    "ShoppingCentre-03-Raw": {
+      "audio": [
+        "ShoppingCentre-03-Raw.wav",
+        "a3ef52bc54d0c7738be537f3b28be7c6"
+      ]
+    },
+    "QuietStreet-08-Raw": {
+      "audio": [
+        "QuietStreet-08-Raw.wav",
+        "69c5376a43357262c950393a5766698d"
+      ]
+    },
+    "TrainStation-06-Raw": {
+      "audio": [
+        "TrainStation-06-Raw.wav",
+        "60932c5d02c5907550a47924e349f47e"
+      ]
+    },
+    "BusyStreet-03-Raw": {
+      "audio": [
+        "BusyStreet-03-Raw.wav",
+        "c0894c6d1b885c3a16e13ad92246dfb7"
+      ]
+    },
+    "ShoppingCentre-07-Raw": {
+      "audio": [
+        "ShoppingCentre-07-Raw.wav",
+        "0c10d361a1e2b1a150f48d869580cc00"
+      ]
+    },
+    "PedestrianZone-07-Raw": {
+      "audio": [
+        "PedestrianZone-07-Raw.wav",
+        "4a9462df17b549ec9936d7a6228f999d"
+      ]
+    },
+    "Woodland-01-Raw": {
+      "audio": [
+        "Woodland-01-Raw.wav",
+        "b451fd7e167268d7308aeee95e632829"
+      ]
+    },
+    "PedestrianZone-03-Raw": {
+      "audio": [
+        "PedestrianZone-03-Raw.wav",
+        "2900b3a73683998737eaa73eb1e4da29"
+      ]
+    },
+    "BusyStreet-02-Raw": {
+      "audio": [
+        "BusyStreet-02-Raw.wav",
+        "056993f41d7c565dbd8bebed02fd72b5"
+      ]
+    },
+    "TrainStation-02-Raw": {
+      "audio": [
+        "TrainStation-02-Raw.wav",
+        "104723e307c61a501d24033fac0ea205"
+      ]
+    },
+    "Park-01-Raw": {
+      "audio": [
+        "Park-01-Raw.wav",
+        "4e64743fdadcddee3457447a9b27f886"
+      ]
+    },
+    "Park-03-Raw": {
+      "audio": [
+        "Park-03-Raw.wav",
+        "d69cdd43f210744fed62482f49abaff6"
+      ]
+    },
+    "ShoppingCentre-02-Raw": {
+      "audio": [
+        "ShoppingCentre-02-Raw.wav",
+        "951c77f0867a09d18d5d14c52932b5d2"
+      ]
+    },
+    "ShoppingCentre-08-Raw": {
+      "audio": [
+        "ShoppingCentre-08-Raw.wav",
+        "38f58d35833aab2a2bbf62c1388c2fb3"
+      ]
+    },
+    "Woodland-06-Raw": {
+      "audio": [
+        "Woodland-06-Raw.wav",
+        "84dec0b311d153a3757ca7582f9d12fb"
+      ]
+    },
+    "QuietStreet-06-Raw": {
+      "audio": [
+        "QuietStreet-06-Raw.wav",
+        "bb6f09247cf62fecc29349aca10500bd"
+      ]
+    },
+    "Beach-05-Raw": {
+      "audio": [
+        "Beach-05-Raw.wav",
+        "9dc5842335bf29f6535e256f69c13ff7"
+      ]
+    },
+    "BusyStreet-08-Raw": {
+      "audio": [
+        "BusyStreet-08-Raw.wav",
+        "fd4213a44df3bc6efc9cb83c23ff7c9e"
+      ]
+    },
+    "BusyStreet-05-Raw": {
+      "audio": [
+        "BusyStreet-05-Raw.wav",
+        "b91bbea24824335323c95f42d0db7c91"
+      ]
+    },
+    "QuietStreet-04-Raw": {
+      "audio": [
+        "QuietStreet-04-Raw.wav",
+        "7c45aaca071c2b9cee3849f73be97998"
+      ]
+    },
+    "PedestrianZone-05-Raw": {
+      "audio": [
+        "PedestrianZone-05-Raw.wav",
+        "79fc8c8e7bf575f4cea25cb8de7c62a0"
+      ]
+    },
+    "TrainStation-03-Raw": {
+      "audio": [
+        "TrainStation-03-Raw.wav",
+        "651a9c536d5ee12f955998ba9fc0d63c"
+      ]
+    },
+    "QuietStreet-01-Raw": {
+      "audio": [
+        "QuietStreet-01-Raw.wav",
+        "4b92a30ca73edb12f9190fde53cadcba"
+      ]
+    },
+    "Park-02-Raw": {
+      "audio": [
+        "Park-02-Raw.wav",
+        "a6371643246cfa2ccf5382b16c2a3721"
+      ]
+    },
+    "Park-06-Raw": {
+      "audio": [
+        "Park-06-Raw.wav",
+        "7e3af93a62bc5809e6aac3c22a5fe2c8"
+      ]
+    }
+  },
+  "metadata": {
+    "Metadata-EigenScape": [
+      "Metadata-EigenScape.csv",
+      "cbed105fb56604c4b763788690089d55"
+    ]
+  }
+}
