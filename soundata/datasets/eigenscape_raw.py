@@ -152,12 +152,12 @@ class Clip(core.Clip):
     Attributes:
 
         audio_path (str): path to the audio file
-	additional information (str): notes included by the dataset
+        additional information (str): notes included by the dataset
             authors with other details relevant to the specific clip
         clip_id (str): clip id
-	date (str): date when the audio signal was recorded
+        date (str): date when the audio signal was recorded
         location (str): city were the audio signal was recorded
-	tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
+        tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
         time (str): time when the audio signal was recorded
 
     """
