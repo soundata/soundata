@@ -5,7 +5,7 @@ from soundata.validate import md5
 import glob
 import csv
 
-DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau_nigens_sse_2021_index.json"
+DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau2021sse_nigens_index.json"
 
 
 def _index_wav(index, data_path, formt, subset, split):

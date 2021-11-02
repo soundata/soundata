@@ -70,7 +70,7 @@
        | SSE 2020
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 800
      - 15
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
@@ -81,7 +81,7 @@
        | SSE 2021
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 800
      - 15
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
@@ -89,7 +89,7 @@
 
 
    * - | TUT Sound
-       | events 2017
+       | Events 2017
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
@@ -98,15 +98,14 @@
      - :tut:`\ `
 
 
-   * - | TAU Spatial 
-       | Sound Events 
+   * - | TAU SSE
        | 2019
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events`
+     - Spatial Events
      - 500
      - 8.3
-     - :tau_sse_2019:`\ `
+     - :tau2019sse:`\ `
 
 
    * - | TAU Urban

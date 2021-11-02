@@ -1,15 +1,14 @@
-"""TAU NIGENS SSE 2020 Dataset Loader
-
+"""TAU NIGENS SSE 2021 Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
-    
-    
+
     *TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories*
-    
+
     *Created By:*
         Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
         Audio Research Group, Tampere University (Finland). Version 1.2.0
+
     *Description:*
         Spatial sound-scene recordings, consisting of sound events of distinct categories 
         in a variety of acoustical spaces, and from multiple source directions and distances.
@@ -17,31 +16,46 @@
         room impulse responses (RIRs) of diverse acoustic environments. The sound events are 
         spatialized as either stationary sound sources, or moving sound sources, in which case 
         time-variant RIRs are used. 
+
         Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA) 
         format. 
+
     *Audio Files Included:*
-   	* 600 one-minute long sound scene recordings (development dataset).
-   	* 200 one-minute long sound scene recordings (evaluation dataset).
+        * 600 one-minute-long sound scene recordings with annotations (development dataset).
+        * 200 one-minute-long sound scene recordings without annotations (evaluation dataset).
         * Sampling rate is 24 kHz (16-bit signed integer PCM).
-   	* About 700 sound event samples spread over 14 classes (see here for more details).
-   	* 8 provided cross-validation folds of 100 recordings each, with unique sound event samples and rooms in each of them.
-   	* Two 4-channel 3-dimensional recording formats: first-order Ambisonics (FOA) and tetrahedral microphone array.
-   	* Realistic spatialization and reverberation through RIRs collected in 15 different enclosures.
-   	* From about 1500 to 3500 possible RIR positions across the different rooms.
-   	* Both static reverberant and moving reverberant sound events.
-   	* Up to two overlapping sound events allowed, temporally and spatially.
-   	* Realistic spatial ambient noise collected from each room is added to the spatialized sound events, at varying signal-to-noise ratios (SNR) ranging from noiseless (30dB) to noisy (6dB).
+        * About 500 sound event samples distirbuted over 12 target classes.
+        * About 400 sound event samples used as interference events.
+        * 1st order HOA or tetrahedral microphone array formats.
+        * Realistic spatialization and reverberation through multichannel RIRs collected in 13 different enclosures.
+        * From 1184 to 6480 possible RIR positions across the different rooms.
+        * Both static reverberant and moving reverberant sound events.
+        * Three possible angular speeds for moving sources of approximately 10, 20, or 40deg/sec.
+        * Up to three overlapping sound events possible, temporally and spatially.
+        * Simultaneous directional interfering sound events with their own temporal activities, static or moving.
+        * Realistic spatial ambient noise collected from each room is added to the spatialized sound events, at varying signal-to-noise ratios (SNR) ranging from noiseless (30dB) to noisy (6dB) conditions.
+
     *Annotations Included:*
-        * Each recording in the development set has labels of events and Directions of arrival in a plain csv file with the same filename.
-        * Each row in the csv file has a frame number, active class index, track number index, azimuth, and elevation.
+        * Each recording in the development set has labels of events and DoAs in a plain csv file with the same filename.
+        * Each row in the csv file has a frame number, active class index, event number index, azimuth, and elevation.
         * Frame, class, and track enumeration begins at 0. 
         * Frames correspond to a temporal resolution of 100msec. 
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
-        * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. 
+        * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. The interferers are considered unknown and no activity or direction labels of them are provided with the training datasets.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
-    *Please Acknowledge TAU-NIGENS SSE 2020 in Academic Research:*
-        * If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup:
-            * Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
+
+    *Organization*
+        * The development dataset is split in training, validation, and test sets.
+        * The training set consists of 400 recordings.
+        * The validation set consists of 100 recordings.
+        * The test set consists of 100 recordings.
+        * The evalutation dataset constists of 200 recordings.
+
+    *Please Acknowledge TAU-NIGENS SSE 2021 in Academic Research:*
+        * If you use this dataset please cite the report on its creation, and the corresponding DCASE2021 task setup:
+
+            * Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
+
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International
 """
@@ -61,12 +75,15 @@ from itertools import cycle
 from soundata import download_utils, jams_utils, core, annotations, io
 
 BIBTEX = """
-@inproceedings{politis2020dataset,
-    author = "Politis, Archontis and Adavanne, Sharath and Virtanen, Tuomas",
-    title = "A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection",
-    year = "2020",
-    booktitle = "Proceedings of the Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE2020)",
-    month = "November",
+@article{politis2021dataset,
+    author = "Politis, Archontis and Adavanne, Sharath and Krause, Daniel and Deleforge, Antoine and Srivastava, Prerak and Virtanen, Tuomas",
+    title = "A Dataset of Dynamic Reverberant Sound Scenes with Directional Interferers for Sound Event Localization and Detection",
+    year = "2021",
+    journal = "arXiv preprint arXiv:2106.06999",
+    eprint = "2106.06999",
+    archiveprefix = "arXiv",
+    primaryclass = "eess.AS",
+    url = "https://arxiv.org/abs/2106.06999"
 }
 """
 
@@ -74,56 +91,46 @@ REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
             filename="foa_dev.zip",
-            url="http://zenodo.org/record/4064792/files/foa_dev.zip?download=1",
-            checksum="6aad48e7346884b3929245e7553fd97d",
+            url="http://zenodo.org/record/5476980/files/foa_dev.zip?download=1",
+            checksum="80648b5f64b1b4a824084560f1334f54",
         ),
         download_utils.RemoteFileMetadata(
             filename="foa_dev.z01",
-            url="http://zenodo.org/record/4064792/files/foa_dev.z01?download=1",
-            checksum="86acab46854a57f5ba3e5b80a19c01b5",
-        ),
-        download_utils.RemoteFileMetadata(
-            filename="foa_dev.z02",
-            url="http://zenodo.org/record/4064792/files/foa_dev.z02?download=1",
-            checksum="363c8c159be003271c05a71a57b2ced4",
+            url="http://zenodo.org/record/5476980/files/foa_dev.z01?download=1",
+            checksum="270a94dc5cd183ea6532c5a3f6e9036c",
         ),
     ],
     "mic_dev": [
         download_utils.RemoteFileMetadata(
             filename="mic_dev.zip",
-            url="http://zenodo.org/record/4064792/files/mic_dev.zip?download=1",
-            checksum="9174daca52f393425120308ab5c14477",
+            url="http://zenodo.org/record/5476980/files/mic_dev.zip?download=1",
+            checksum="a5131297547431160b732a3481626c2d",
         ),
         download_utils.RemoteFileMetadata(
             filename="mic_dev.z01",
-            url="http://zenodo.org/record/4064792/files/mic_dev.z01?download=1",
-            checksum="3a2b0986d2a302498cd874d584d17689",
-        ),
-        download_utils.RemoteFileMetadata(
-            filename="mic_dev.z02",
-            url="http://zenodo.org/record/4064792/files/mic_dev.z02?download=1",
-            checksum="92f715cb74406d5556bce0fdf27f54e4",
+            url="http://zenodo.org/record/5476980/files/mic_dev.z01?download=1",
+            checksum="536a5ba37b0c39f54044932b75acb774",
         ),
     ],
     "foa_eval": download_utils.RemoteFileMetadata(
         filename="foa_eval.zip",
-        url="http://zenodo.org/record/4064792/files/foa_eval.zip?download=1",
-        checksum="24c6ce2441df242d4e3b61e9bb27d0d7",
+        url="http://zenodo.org/record/5476980/files/foa_eval.zip?download=1",
+        checksum="591f8d2b500a671ae34822b4ff1e0889",
     ),
     "mic_eval": download_utils.RemoteFileMetadata(
         filename="mic_eval.zip",
-        url="http://zenodo.org/record/4064792/files/mic_eval.zip?download=1",
-        checksum="bca79b5f71b46e4cb191c54a611348a4",
+        url="http://zenodo.org/record/5476980/files/mic_eval.zip?download=1",
+        checksum="3248aef229ab4e0e0603d7c2269f4f97",
     ),
     "metadata_dev": download_utils.RemoteFileMetadata(
         filename="metadata_dev.zip",
-        url="http://zenodo.org/record/4064792/files/metadata_dev.zip?download=1",
-        checksum="979f5551e987ed247404b80a2f1c3db1",
+        url="http://zenodo.org/record/5476980/files/metadata_dev.zip?download=1",
+        checksum="cd8cd8b4dc9a3e3df91ac55c1ccf73b7",
     ),
     "metadata_eval": download_utils.RemoteFileMetadata(
         filename="metadata_eval.zip",
-        url="http://zenodo.org/record/4064792/files/metadata_eval.zip?download=1",
-        checksum="f3584166d9a63b43c1e301b6fb722293",
+        url="http://zenodo.org/record/5476980/files/metadata_eval.zip?download=1",
+        checksum="11c021253c8b55fd74083bd0a35c2ee4",
     ),
 }
 
@@ -154,7 +161,6 @@ LABEL_UNITS = {"open": "no strict schema or units"}
 
 class SpatialEvents:
     """SpatialEvents class
-
     Attributes:
         intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
             (as floats) in TIME_UNITS in the form [start_time, end_time]
@@ -304,7 +310,7 @@ class SpatialEvents:
 
 
 def validate_time_steps(time_step, locations, interval):
-    """Validate if TAU NIGENS SSE 2020 timesteps are well-formed.
+    """Validate if TAU NIGENS SSE 2021 timesteps are well-formed.
     If locations is None, validation passes automatically
     Args:
         time_step (float): spacing between location steps
@@ -327,7 +333,7 @@ def validate_time_steps(time_step, locations, interval):
 
 
 def validate_locations(locations):
-    """Validate if TAU NIGENS SSE 2020 locations are well-formed.
+    """Validate if TAU NIGENS SSE 2021 locations are well-formed.
     If locations is None, validation passes automatically
     Args:
         locations (np.ndarray): (n x 3) array
@@ -353,7 +359,7 @@ def validate_locations(locations):
 
 
 class Clip(core.Clip):
-    """TAU NIGENS SSE 2020 Track class
+    """TAU NIGENS SSE 2021 Track class
     Args:
         clip_id (str): id of the clip
     Attributes:
@@ -376,6 +382,8 @@ class Clip(core.Clip):
         self.audio_path = self.get_path("audio")
         self.csv_path = self.get_path("events")
         self.format = self._clip_metadata.get("format")
+        self.set = self._clip_metadata.get("set")
+        self.split = self._clip_metadata.get("split")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -389,9 +397,8 @@ class Clip(core.Clip):
     @core.cached_property
     def spatial_events(self) -> Optional[SpatialEvents]:
         """The clip's event annotations
-
         Returns:
-            * SpatialEvents with atributes:
+            * SpatialEvents with attributes
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
                     (as floats) in TIME_UNITS in the form [start_time, end_time]
                 * intervals_unit (str): intervals unit, one of TIME_UNITS
@@ -425,7 +432,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
-    """Load a TAU NIGENS SSE 2020 audio file.
+    """Load a TAU NIGENS SSE 2021 audio file.
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
         sr (int or None): sample rate for loaded audio, 24000 Hz by default.
@@ -441,7 +448,7 @@ def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
 
 @io.coerce_to_string_io
 def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
-    """Load an TAU NIGENS SSE 2020 annotation file
+    """Load an TAU NIGENS SSE 2021 annotation file
     Args:
         fhandle (str or file-like): File-like object or path to
             the sound events annotation file
@@ -596,13 +603,13 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
-    The TAU NIGENS SSE 2020 dataset
+    The TAU NIGENS SSE 2021 dataset
     """
 
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="tau_nigens_sse_2020",
+            name="tau2021sse_nigens",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -619,24 +626,22 @@ class Dataset(core.Dataset):
         # parsing the data from the filenames due to lack of metadata file
         json_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
-            "indexes/tau_nigens_sse_2020_index.json",
+            "indexes/tau2021sse_nigens_index.json",
         )
 
         metadata_index = {}
 
         with open(json_path) as f:
-            taunigenssse2020_index = json.load(f)
-            all_paths_filenames = list(taunigenssse2020_index["clips"].keys())
+            taunigenssse2021_index = json.load(f)
+            all_paths_filenames = list(taunigenssse2021_index["clips"].keys())
 
         for path_filename in all_paths_filenames:
 
             clip_id = path_filename
-            path, filename = path_filename.split("/")
+            path, split, filename = path_filename.split("/")
             fmt, subset = path.split("_")
+            _, split = split.split("-")
 
-            metadata_index[clip_id] = {
-                "format": fmt,
-                "set": subset,
-            }
+            metadata_index[clip_id] = {"format": fmt, "set": subset, "split": split}
 
         return metadata_index

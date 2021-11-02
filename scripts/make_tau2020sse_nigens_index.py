@@ -4,17 +4,18 @@ import os
 from soundata.validate import md5
 import glob
 import csv
-from pathlib import Path
 
-DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau_sse_2019_index.json"
+DATASET_INDEX_PATH = "../soundata/datasets/indexes/tau2020sse_nigens_index.json"
 
 
 def _get_long_eval_filenames(data_path):
     short2long_eval = {}
-    with open(os.path.join(data_path,'short2longname.txt')) as f:
-        csv_reader = csv.reader(f, delimiter=',')
+    with open(os.path.join(data_path, "metadata_eval_info.txt")) as f:
+        csv_reader = csv.reader(f, delimiter=",")
+        next(csv_reader, None) # skip header
         for row in csv_reader:
-            short2long_eval[row[0][:-4]] = row[1][:-4] 
+            mix_name = "mix"+str(row[0]).zfill(3)
+            short2long_eval[mix_name] = "fold"+str(row[1])+"_"+mix_name+"_ov"+str(row[2])
     return short2long_eval
 
 
@@ -22,18 +23,11 @@ def _index_wav(index, data_path, formt, subset):
 
     eval_long_filenames = _get_long_eval_filenames(data_path)
 
-    if subset == "dev":
-        audio_path = os.path.join(
-                data_path,
-                formt+"_"+subset,
-        )
-    elif subset == "eval":
-        audio_path = os.path.join(
-                data_path,
-                "proj/asignal/DCASE2019/dataset",
-                formt+"_"+subset,
-        )
-    
+    audio_path = os.path.join(
+            data_path,
+            formt+"_"+subset,
+    )
+
     wavfiles = glob.glob(os.path.join(audio_path, "*.wav"))
     wavfiles.sort()
 
@@ -41,12 +35,12 @@ def _index_wav(index, data_path, formt, subset):
 
         clip_id = '{}/{}'.format(
                 formt+"_"+subset,
-                eval_long_filenames[os.path.basename(wf).replace(".wav", "")] if subset=="eval" else os.path.basename(wf).replace(".wav", "")
+                eval_long_filenames[os.path.basename(wf).replace(".wav","")] if subset=="eval" else os.path.basename(wf).replace(".wav","")
         )
-           
+
         index["clips"][clip_id] = {
             "audio": [
-                os.path.join(*Path(wf).parts[5:]),
+                os.path.join(formt+"_"+subset, os.path.basename(wf)),
                 md5(wf),
             ],
         }
@@ -64,14 +58,14 @@ def _index_event(index, data_path, formt, annotation_subset, subset):
 
     annotationfiles = glob.glob(os.path.join(annotation_path, "*.csv"))
     annotationfiles.sort()
-    
+
     for af in annotationfiles:
 
         clip_id = '{}/{}'.format(
                 formt+"_"+subset,
-                eval_long_filenames[os.path.basename(af).replace(".csv", "")] if subset=="eval" else os.path.basename(af).replace(".csv", "")
+                eval_long_filenames[os.path.basename(af).replace(".csv","")] if subset=="eval" else os.path.basename(af).replace(".csv", "")
         )
-            
+
         index["clips"][clip_id]["events"] = [
                 os.path.join(annotation_subset, os.path.basename(af)),
                 md5(af),
@@ -90,14 +84,14 @@ def make_index(data_path):
         "development": "metadata_dev",
         "evaluation": "metadata_eval",
     }
-    
+
     formats = [
         "foa",
         "mic",
     ]
 
     index = {
-        "version": "2",
+        "version": "1.2.0",
         "clips": {},
         "metadata": {},
     }
@@ -110,8 +104,9 @@ def make_index(data_path):
             if subset == "development":
 
                 index = _index_wav(index, data_path, formt, "dev")
+
                 index = _index_event(index, data_path, formt, annotations[subset], "dev")
-    
+
             elif subset == "evaluation":
 
                 index = _index_wav(index, data_path, formt, "eval")
@@ -127,7 +122,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Generate TAU Spatial Sound Events 2019 index file.")
-    PARSER.add_argument("data_path", type=str, help="Path to TAU Spatial Sound Events 2019 data directory.")
+    PARSER = argparse.ArgumentParser(description="Generate TAU-NIGENS Spatial Sound Events 2020 index file.")
+    PARSER.add_argument("data_path", type=str, help="Path to TAU-NIGENS Spatial Sound Events 2020 data directory.")
 
     main(PARSER.parse_args())
