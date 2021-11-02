@@ -128,9 +128,9 @@ LICENSE_INFO = "Copyright (c) 2019 Tampere University and its licensors All righ
 
 class SpatialEvents(annotations.Events):
     """TAU SSE 2019 Spatial Events
-    
+
     Attributes:
-        intervals (np.ndarray): (n x 2) array of intervals (as floats) in seconds in the form [start_time, end_time] 
+        intervals (np.ndarray): (n x 2) array of intervals (as floats) in seconds in the form [start_time, end_time]
                                 with positive time stamps and end_time >= start_time.
         elevations (np.ndarray): (n,) array of elevations
         azimuths (np.ndarray): (n,) array of azimuths
