@@ -121,6 +121,7 @@ def events_to_jams(events, description=None):
         jams.Annotation: jams annotation object.
 
     """
+    
     jannot_events = jams.Annotation(namespace="segment_open")
     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
