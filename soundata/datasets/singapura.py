@@ -73,6 +73,7 @@
 
 """
 import os
+from typing import Dict, List, Union
 
 
 import librosa
@@ -137,7 +138,10 @@ audio_remotes = {
     ]
 }
 
-REMOTES = {**meta_remotes, **audio_remotes}
+REMOTES: Dict[
+    str,
+    Union[List[download_utils.RemoteFileMetadata], download_utils.RemoteFileMetadata],
+] = {**audio_remotes, **meta_remotes}
 
 # -- Include any information that should be printed when downloading
 # -- remove this variable if you don't need to print anything during download
