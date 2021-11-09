@@ -65,7 +65,7 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-    * - SINGA:PURA
+   * - SINGA:PURA
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
