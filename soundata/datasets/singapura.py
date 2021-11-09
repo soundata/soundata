@@ -5,8 +5,9 @@
     
     SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0
     
-    The SINGA:PURA (SINGApore: Polyphonic URban Audio) dataset is a strongly-labelled polyphonic urban sound dataset with spatiotemporal context.
-    The dataset contains 6547 strongly-labelled and 72406 unlabelled recordings from a wireless acoustic sensor network deployed in Singapore to identify and mitigate noise sources in Singapore. The strongly-labelled and unlabelled recordings are disjoint, so there are a total of 78953 unique recordings. The recordings are all 10 seconds in length, and may have 1 or 7 channels, depending on the recording device used to record them.
+    The SINGA:PURA (SINGApore: Polyphonic URban Audio) dataset is a strongly-labelled polyphonic urban sound dataset with spatiotemporal context, created by the Digital Signal Processing Laboratory, School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore.
+    
+    The dataset contains 6547 strongly-labelled and 72406 unlabelled recordings from a wireless acoustic sensor network deployed in Singapore to identify and mitigate noise sources in Singapore. The strongly-labelled and unlabelled recordings are disjoint, so there are a total of 78953 unique recordings. The recordings are all 10 seconds in length, and may have 1 or 7 channels, depending on the recording device used to record them. Total duration for the labelled subset provided here is 18.2 hours.
     
     For full details regarding the sensor units used, the recording conditions, and annotation methodology, please refer to our conference paper below:
     
@@ -63,6 +64,10 @@
                                  └─ 4. Gear*
 
     Classes marked with an asterisk (`*`) are present in the SINGA:PURA taxonomy but not the SONYC taxonomy. The "Ice cream truck" class from the SONYC taxonomy has been excluded from the SINGA:PURA taxonomy because this class does not exist in the local context.
+    
+    This dataset is also accessible via
+    - Zenodo (labelled subset only): https://zenodo.org/record/5645825
+    - DR-NTU (all): https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/Y8UQ6F
     
     This dataset is licensed under the Creative Commons Attribution-ShareAlike 4.0 International license (a human-readable summary is available at https://creativecommons.org/licenses/by-sa/4.0/ and the legal document for the license is available at https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 

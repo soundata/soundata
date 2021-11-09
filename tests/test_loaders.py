@@ -22,7 +22,7 @@ CUSTOM_TEST_CLIPS = {
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
     "tut2017se": "a001",
-    "singapura": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
+    "singapura": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
 }
 
 REMOTE_DATASETS = {}
