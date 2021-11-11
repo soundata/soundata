@@ -1,12 +1,9 @@
+import os
+
 import numpy as np
 from soundata import annotations
-from soundata import datasets
-
-from tests.test_utils import run_clip_tests
-
 from soundata.datasets import singapura
-
-import os
+from tests.test_utils import run_clip_tests
 
 TEST_DATA_HOME = "tests/resources/sound_datasets/singapura"
 
@@ -31,11 +28,22 @@ def test_clip():
             "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.csv",
         ),
         "clip_id": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
+        "sensor_id": "b827ebf3744c",
+        "town": "West 2",
+        "timestamp": np.datetime64("2020-08-20T06:46:04+08:00"),
+        "dotw": 4,
     }
 
     expected_property_types = {
         "audio": np.ndarray,
-        "annotation": annotations.Events,
+        "events": annotations.Events,
+        "audio_path": str,
+        "annotation_path": str,
+        "clip_id": str,
+        "sensor_id": str,
+        "town": str,
+        "timestamp": np.datetime64,
+        "dotw": int,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
@@ -49,7 +57,7 @@ def test_load_audio():
     audio = singapura.load_audio(audio_path)
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded correctly
-    assert audio.shape[0] == 44100 * 10  # Check audio duration is as expected
+    assert audio.shape[0] == 44100  # Check audio duration is as expected
 
 
 def test_to_jams():

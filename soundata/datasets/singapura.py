@@ -32,9 +32,9 @@ SINGA:PURA Dataset Loader
             4. Pile driver
             
         3. Non-machinery impact  
-            1. Glass breaking*
-            2. Car crash*
-            3. Explosion*
+            1. Glass breaking (*)
+            2. Car crash (*)
+            3. Explosion (*)
             
         4. Powered saw  
             1. Chainsaw
@@ -56,67 +56,62 @@ SINGA:PURA Dataset Loader
             2. Shouting
             3. Large crowd
             4. Amplified speech
-            5. Singing*
+            5. Singing (*)
             
-        8. Human movement*  
-            1. Footsteps*
-            2. Clapping*
-            
-        9. Animal*  
+        8. Human movement (*)  
+            1. Footsteps (*)
+            2. Clapping (*)
+        
+        9. Animal (*) 
             1. Dog barking
-            2. Bird chirping*
-            3. Insect chirping*
+            2. Bird chirping (*)
+            3. Insect chirping (*)
             
-        10. Water* 
-         
-            1. Hose pump*
+        #. Water (*)
+            1. Hose pump (*)
             
-        11. Weather*  
-        
-            1. Rain*
-            2. Thunder*
-            3. Wind*
+        #. Weather (*)
+            1. Rain (*)
+            2. Thunder (*)
+            3. Wind (*)
             
-        12. Brake*  
-        
-            1. Friction brake*
-            2. Exhaust brake*
+        #. Brake (*)
+            1. Friction brake (*)
+            2. Exhaust brake (*)
             
-        13. Train*  
-        
-            1. Electric train*
+        #. Train (*)
+            1. Electric train (*)
             
-        X. Others*  
-            1. Screeching*
-            2. Plastic crinkling*
-            3. Cleaning*
-            4. Gear*
+        X. Others (*)
+            1. Screeching (*)
+            2. Plastic crinkling (*)
+            3. Cleaning (*)
+            4. Gear (*)
             
         Classes marked with an asterisk (*) are present in the SINGA:PURA taxonomy but not the SONYC taxonomy. The "Ice cream truck" class from the SONYC taxonomy has been excluded from the SINGA:PURA taxonomy because this class does not exist in the local context.
 
-        In addition, note that the label for the coarse-grained class "Others" in this repository is "0", which is different from the label "X" that is used in the full version of the SINGA:PURA dataset.
+        In addition, note that the label for the coarse-grained class "Others" in the soundata loader is "0", which is different from the label "X" that is used in the full version of the SINGA:PURA dataset.
 
     *This dataset is also accessible via:*
-        *Zenodo (labelled subset only): https://zenodo.org/record/5645825
-        *DR-NTU (all): https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/Y8UQ6F
+        - Zenodo (labelled subset only): https://zenodo.org/record/5645825
+        - DR-NTU (all): https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/Y8UQ6F
         
     *Please Acknowledge SINGA:PURA in Academic Research:*
-        *If you use this dataset please cite its original publication:
-        *K. Ooi, K. N. Watcharasupat, S. Peksi, F. A. Karnapi, Z.-T. Ong, D. Chua, H.-W. Leow, L.-L. Kwok, X.-L. Ng, Z.-A. Loh, W.-S. Gan, "A Strongly-Labelled Polyphonic Dataset of Urban Sounds with Spatiotemporal Context," in Proceedings of the 13th Asia Pacific Signal and Information Processing Association Annual Summit and Conference, 2021.
+        If you use this dataset please cite its original publication:
+        
+        K. Ooi, K. N. Watcharasupat, S. Peksi, F. A. Karnapi, Z.-T. Ong, D. Chua, H.-W. Leow, L.-L. Kwok, X.-L. Ng, Z.-A. Loh, W.-S. Gan, "A Strongly-Labelled Polyphonic Dataset of Urban Sounds with Spatiotemporal Context," in Proceedings of the 13th Asia Pacific Signal and Information Processing Association Annual Summit and Conference, 2021.
         
     *License:*
         Creative Commons Attribution-ShareAlike 4.0 International.
 
 """
 import os
-from typing import Dict, List, Union
-
+from typing import Dict, List, Optional, TextIO, Union
 
 import librosa
 import numpy as np
 import pandas as pd
-
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import annotations, core, download_utils, io, jams_utils
 
 # -- Add any relevant citations here
 BIBTEX = """
@@ -174,10 +169,13 @@ audio_remotes = {
     ]
 }
 
-REMOTES: Dict[
+
+RemoteDictType = Dict[
     str,
     Union[List[download_utils.RemoteFileMetadata], download_utils.RemoteFileMetadata],
-] = {**audio_remotes, **meta_remotes}
+]
+
+REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
 
 # -- Include any information that should be printed when downloading
 # -- remove this variable if you don't need to print anything during download
@@ -198,9 +196,14 @@ class Clip(core.Clip):
 
     Attributes:
         clip_id (str): clip id
-        audio_path (str): path to the audio file
         audio (np.ndarray, float): audio data
-        annotation (annotations.Events): sound events with start time, end time, label and confidence
+        audio_path (str): path to the audio file
+        events (annotations.Events): sound events with start time, end time, label and confidence
+        annotation_path (str): path to the annotation file
+        sensor_id (str): sensor_id of the device used to record the data
+        town (str): town in Singapore where the sensor is located
+        timestamp (np.datetime): timestamp of the recording
+        dotw (int): day of the week when the clip was recorded, starting from 0 for Sunday
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -216,9 +219,10 @@ class Clip(core.Clip):
         self.annotation_path = self.get_path("annotation")
 
     @core.cached_property
-    def annotation(self):
+    def events(self) -> annotations.Events:
         """
         The clip's event annotations
+
         Returns:
             * annotations.Events - sound events with start time, end time, label and confidence
         """
@@ -231,22 +235,70 @@ class Clip(core.Clip):
 
         Returns:
             * np.ndarray - audio signal
-            * float - sample rate
-
         """
         return load_audio(self.audio_path)
+
+    @property
+    def sensor_id(self) -> str:
+        """
+        The clip's sensor ID
+
+        Returns:
+            * str - sensor_id of the device used to record the data
+        """
+        return self._clip_metadata["sensor_id"]
+
+    @property
+    def town(self) -> str:
+        """
+        The clip's location
+
+        Returns:
+            * str - location of the sensor, one of {'East 1', 'East 2', 'West 1', 'West 2'}
+        """
+        return self._clip_metadata["sensor_id"]
+
+    @property
+    def timestamp(self) -> np.datetime64:
+        """
+        The clip's timestamp
+
+        Returns:
+            * np.datetime64 - timestamp of the clip
+        """
+
+        if self._clip_metadata["timezone"] == "SGT":
+            tz = "+08:00"
+        else:
+            # currently all of our data are in GMT+08:00
+            raise NotImplementedError
+
+        return np.datetime64(
+            f"{self._clip_metadata['year']}-{self._clip_metadata['month']:02d}-{self._clip_metadata['date']:02d}"
+            + f"T{self._clip_metadata['hour']:02d}:{self._clip_metadata['minute']:02d}:{self._clip_metadata['second']:02d}{tz}"
+        )
+
+    @property
+    def dotw(self) -> int:
+        """
+        The clip's day of the week
+
+        Returns:
+            * int - day of the week when the clip was recorded, starting from 0 for Sunday
+        """
+        return self._clip_metadata["day"]
 
     def to_jams(self):
         """
         Jams: the track's data in jams format
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, events=self.annotation
+            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
         )
 
 
 @io.coerce_to_string_io
-def load_annotation(fhandle):
+def load_annotation(fhandle: TextIO) -> annotations.Events:
     """
     Load an annotation file.
 
@@ -258,18 +310,18 @@ def load_annotation(fhandle):
     """
 
     df = pd.read_csv(fhandle)
-    intervals = df[["onset", "offset"]].values
-    label = df["event_label"].tolist()
 
-    annotation_data = annotations.Events(
-        intervals=intervals,
-        intervals_unit="seconds",
-        labels=label,
-        labels_unit="open",
-        confidence=np.array([np.nan for _ in label]),
-    )
+    for _, dfa in  df.groupby("annotator"):
+        intervals = dfa[["onset", "offset"]].values
+        label = dfa["event_label"].tolist()
 
-    return annotation_data
+        return annotations.Events(
+            intervals=intervals,
+            intervals_unit="seconds",
+            labels=label,
+            labels_unit="open",
+            confidence=np.ones((len(label),)),
+        )
 
 
 @io.coerce_to_bytes_io
