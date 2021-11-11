@@ -219,7 +219,7 @@ class Clip(core.Clip):
         self.annotation_path = self.get_path("annotation")
 
     @core.cached_property
-    def events(self) -> annotations.Events:
+    def events(self) -> Optional[annotations.Events]:
         """
         The clip's event annotations
 
@@ -298,7 +298,7 @@ class Clip(core.Clip):
 
 
 @io.coerce_to_string_io
-def load_annotation(fhandle: TextIO) -> annotations.Events:
+def load_annotation(fhandle: TextIO) -> Optional[annotations.Events]:
     """
     Load an annotation file.
 
@@ -322,6 +322,8 @@ def load_annotation(fhandle: TextIO) -> annotations.Events:
             labels_unit="open",
             confidence=np.ones((len(label),)),
         )
+
+    return None
 
 
 @io.coerce_to_bytes_io
