@@ -311,7 +311,7 @@ def load_annotation(fhandle: TextIO) -> annotations.Events:
 
     df = pd.read_csv(fhandle)
 
-    for _, dfa in  df.groupby("annotator"):
+    for _, dfa in df.groupby("annotator"):
         intervals = dfa[["onset", "offset"]].values
         label = dfa["event_label"].tolist()
 
