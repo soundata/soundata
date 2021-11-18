@@ -315,7 +315,7 @@ def load_annotation(fhandle: TextIO) -> annotations.MultiAnnotator:
         intervals = dfa[["onset", "offset"]].values
         label = dfa["event_label"].tolist()
 
-        events = annotations.MultiAnnotator(
+        events = annotations.Events(
             intervals=intervals,
             intervals_unit="seconds",
             labels=label,
