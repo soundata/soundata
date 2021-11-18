@@ -109,16 +109,14 @@ def jams_converter(
 
 def multiannotator_to_jams(
     multiannot: annotations.MultiAnnotator,
-    converter: Callable[
-        [annotations.Annotation, str, ParamSpecKwargs], jams.Annotation
-    ],
-    **kwargs
+    converter: Callable,
+    **kwargs,
 ) -> List[jams.Annotation]:
     """Convert tags annotations into jams format.
 
     Args:
         tags (annotations.MultiAnnotator): MultiAnnotator object
-        converter (Callable[[annotations.Annotation, str, ParamSpecKwargs], jams.Annotation): a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object
+        converter (Callable): a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object
 
     Returns:
         List[jams.Annotation]: List of jams annotation objects.
