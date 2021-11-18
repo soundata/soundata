@@ -2,6 +2,8 @@
 """
 import logging
 import os
+from typing import Callable, List
+from typing_extensions import ParamSpecKwargs
 
 import jams
 import librosa
@@ -22,10 +24,10 @@ def jams_converter(
             resulting jam object will not validate.
         spectrogram_path (str or None):
             A path to the corresponding spectrum file, or None.
-        tags (annotations.Tags or None):
-            An instance of annotations.Tags describing the audio tags.
-        events (annotations.Events or None):
-            An instance of annotations.Events describing the sound events.
+        tags (annotations.Tags or annotations.MultiAnnotator or None):
+            An instance of annotations.Tags/annotations.MultiAnnotator describing the audio tags.
+        events (annotations.Events or annotations.MultiAnnotator or None):
+            An instance of annotations.Events/annotations.MultiAnnotator describing the sound events.
     Returns:
         jams.JAMS: A JAMS object containing the annotations.
 
@@ -76,17 +78,57 @@ def jams_converter(
 
     # soundata tags
     if tags is not None:
-        if not isinstance(tags, annotations.Tags):
-            raise TypeError("tags should be of type annotations.Tags")
-        jam.annotations.append(tags_to_jams(tags, duration=jam.file_metadata.duration))
+        if isinstance(tags, annotations.Tags):
+            jam.annotations.append(
+                tags_to_jams(tags, duration=jam.file_metadata.duration)
+            )
+        elif isinstance(tags, annotations.MultiAnnotator):
+            jam.annotations.extend(
+                multiannotator_to_jams(tags, tags_w_annotator_to_jams)
+            )
+        else:
+            raise TypeError(
+                "tags should be of type annotations.Tags or annotations.MultiAnnotator"
+            )
 
     # soundata events
     if events is not None:
-        if not isinstance(events, annotations.Events):
-            raise TypeError("events should be of type annotations.Events")
-        jam.annotations.append(events_to_jams(events))
+        if isinstance(events, annotations.Events):
+            jam.annotations.append(events_to_jams(events))
+        elif isinstance(events, annotations.MultiAnnotator):
+            jam.annotations.extend(
+                multiannotator_to_jams(events, events_w_annotator_to_jams)
+            )
+        else:
+            raise TypeError(
+                "events should be of type annotations.Events or annotations.MultiAnnotator"
+            )
 
     return jam
+
+
+def multiannotator_to_jams(
+    multiannot: annotations.MultiAnnotator,
+    converter: Callable[
+        [annotations.Annotation, str, ParamSpecKwargs], jams.Annotation
+    ],
+    **kwargs
+) -> List[jams.Annotation]:
+    """Convert tags annotations into jams format.
+
+    Args:
+        tags (annotations.MultiAnnotator): MultiAnnotator object
+        converter (Callable[[annotations.Annotation, str, ParamSpecKwargs], jams.Annotation): a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object
+
+    Returns:
+        List[jams.Annotation]: List of jams annotation objects.
+
+    """
+    jams_annot = []
+    for annotator, annotation in zip(multiannot.annotators, multiannot.annotations):
+        jams_annot.append(converter(annotation, annotator, **kwargs))
+
+    return jams_annot
 
 
 def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
@@ -121,6 +163,7 @@ def events_to_jams(events, description=None):
         jams.Annotation: jams annotation object.
 
     """
+
     jannot_events = jams.Annotation(namespace="segment_open")
     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
 
@@ -131,3 +174,56 @@ def events_to_jams(events, description=None):
     if description is not None:
         jannot_events.sandbox = jams.Sandbox(name=description)
     return jannot_events
+
+
+def events_w_annotator_to_jams(events, annotator, description=None):
+    """Convert events annotations with annotator into jams format.
+
+    Args:
+        events (annotations.Events): events data object
+        annotator (str): annotator id
+        description (str): annotation description
+
+    Returns:
+        jams.Annotation: jams annotation object.
+
+    """
+
+    jannot_events = jams.Annotation(namespace="segment_open")
+    jannot_events.annotation_metadata = jams.AnnotationMetadata(
+        data_source="soundata", annotator={"id": annotator}
+    )
+
+    for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
+        jannot_events.append(
+            time=inter[0], duration=inter[1] - inter[0], value=label, confidence=conf
+        )
+    if description is not None:
+        jannot_events.sandbox = jams.Sandbox(name=description)
+    return jannot_events
+
+
+def tags_w_annotator_to_jams(
+    tags, annotator, duration=0, namespace="tag_open", description=None
+):
+    """Convert tags annotations with annotator into jams format.
+
+    Args:
+        tags (annotations.Tags): tags data object
+        annotator (str): annotator id
+        description (str): annotation description
+
+    Returns:
+        jams.Annotation: jams annotation object.
+
+    """
+
+    ann = jams.Annotation(namespace=namespace)
+    ann.annotation_metadata = jams.AnnotationMetadata(
+        data_source="soundata", annotator={"id": annotator}
+    )
+    for t, c in zip(tags.labels, tags.confidence):
+        ann.append(time=0.0, duration=duration, value=t, confidence=c)
+    if description is not None:
+        ann.sandbox = jams.Sandbox(name=description)
+    return ann
