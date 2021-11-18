@@ -36,7 +36,7 @@ def test_clip():
 
     expected_property_types = {
         "audio": np.ndarray,
-        "events": annotations.Events,
+        "events": annotations.MultiAnnotator,
         "audio_path": str,
         "annotation_path": str,
         "clip_id": str,
