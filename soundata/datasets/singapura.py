@@ -198,7 +198,7 @@ class Clip(core.Clip):
         clip_id (str): clip id
         audio (np.ndarray, float): audio data
         audio_path (str): path to the audio file
-        events (annotations.Events): sound events with start time, end time, label and confidence
+        events (annotations.MultiAnnotator): sound events with start time, end time, label and confidence
         annotation_path (str): path to the annotation file
         sensor_id (str): sensor_id of the device used to record the data
         town (str): town in Singapore where the sensor is located
@@ -219,12 +219,12 @@ class Clip(core.Clip):
         self.annotation_path = self.get_path("annotation")
 
     @core.cached_property
-    def events(self) -> Optional[annotations.Events]:
+    def events(self) -> Optional[annotations.MultiAnnotator]:
         """
         The clip's event annotations
 
         Returns:
-            * annotations.Events - sound events with start time, end time, label and confidence
+            * annotations.MultiAnnotator - sound events with start time, end time, label and confidence
         """
         return load_annotation(self.annotation_path)
 
@@ -267,11 +267,8 @@ class Clip(core.Clip):
             * np.datetime64 - timestamp of the clip
         """
 
-        if self._clip_metadata["timezone"] == "SGT":
-            tz = "+08:00"
-        else:
-            # currently all of our data are in GMT+08:00
-            raise NotImplementedError
+        # all of our data are in GMT+08:00 (Singapore Standard Time)
+        tz = "+08:00"
 
         return np.datetime64(
             f"{self._clip_metadata['year']}-{self._clip_metadata['month']:02d}-{self._clip_metadata['date']:02d}"
@@ -298,7 +295,7 @@ class Clip(core.Clip):
 
 
 @io.coerce_to_string_io
-def load_annotation(fhandle: TextIO) -> Optional[annotations.Events]:
+def load_annotation(fhandle: TextIO) -> annotations.MultiAnnotator:
     """
     Load an annotation file.
 
@@ -306,16 +303,19 @@ def load_annotation(fhandle: TextIO) -> Optional[annotations.Events]:
         fhandle (str or file-like): path or file-like object pointing to an annotation file
 
     Returns:
-        * annotations.Events - sound events with start time, end time, label and confidence
+        * annotations.MultiAnnotator - sound events with start time, end time, label and confidence
     """
 
     df = pd.read_csv(fhandle)
 
-    for _, dfa in df.groupby("annotator"):
+    annotators = []
+    annotations_ = []
+
+    for id, dfa in df.groupby("annotator"):
         intervals = dfa[["onset", "offset"]].values
         label = dfa["event_label"].tolist()
 
-        return annotations.Events(
+        events = annotations.MultiAnnotator(
             intervals=intervals,
             intervals_unit="seconds",
             labels=label,
@@ -323,7 +323,10 @@ def load_annotation(fhandle: TextIO) -> Optional[annotations.Events]:
             confidence=np.ones((len(label),)),
         )
 
-    return None
+        annotators.append(f"{id:02d}")
+        annotations_.append(events)
+
+    return annotations.MultiAnnotator(annotators=annotators, annotations=annotations_)
 
 
 @io.coerce_to_bytes_io

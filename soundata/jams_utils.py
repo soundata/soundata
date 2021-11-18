@@ -82,9 +82,15 @@ def jams_converter(
 
     # soundata events
     if events is not None:
-        if not isinstance(events, annotations.Events):
-            raise TypeError("events should be of type annotations.Events")
-        jam.annotations.append(events_to_jams(events))
+        if isinstance(events, annotations.Events):
+            jam.annotations.append(events_to_jams(events))
+        elif isinstance(events, annotations.MultiAnnotator):
+            for annotator, events_ in zip(events.annotators, events.annotations):
+                jam.annotations.append(events_w_annotator_to_jams(events_, annotator))
+        else:
+            raise TypeError(
+                "events should be of type annotations.Events or annotations.MultiAnnotator"
+            )
 
     return jam
 
@@ -124,6 +130,33 @@ def events_to_jams(events, description=None):
 
     jannot_events = jams.Annotation(namespace="segment_open")
     jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+
+    for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
+        jannot_events.append(
+            time=inter[0], duration=inter[1] - inter[0], value=label, confidence=conf
+        )
+    if description is not None:
+        jannot_events.sandbox = jams.Sandbox(name=description)
+    return jannot_events
+
+
+def events_w_annotator_to_jams(events, annotator, description=None):
+    """Convert events annotations with annotator into jams format.
+
+    Args:
+        events (annotations.Events): events data object
+        annotator (str): annotator id
+        description (str): annotation description
+
+    Returns:
+        jams.Annotation: jams annotation object.
+
+    """
+
+    jannot_events = jams.Annotation(namespace="segment_open")
+    jannot_events.annotation_metadata = jams.AnnotationMetadata(
+        data_source="soundata", annotator={"id": annotator}
+    )
 
     for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
         jannot_events.append(
