@@ -188,7 +188,7 @@ def test_validate_times():
 
     with pytest.raises(ValueError):
         annotations.validate_times(np.array([2, 0]))
-        
+
     with pytest.raises(ValueError):
         annotations.validate_times(np.array([-1, 0]))
 
@@ -204,7 +204,7 @@ def test_validate_intervals():
 
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
-        
+
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, -1], [1, 0.5]]))
 
