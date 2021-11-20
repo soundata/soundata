@@ -33,6 +33,29 @@ def test_tags():
         jams_utils.jams_converter(tags=tag_data4)
 
 
+def test_multiannotator_tags():
+    tag_data1 = annotations.Tags(
+        ["blues", "I am a description"], "open", np.array([1.0, 1.0])
+    )
+
+    tag_data2 = annotations.Tags(
+        ["reds", "We are a description"], "open", np.array([1.0, 1.0])
+    )
+
+    tag_data3 = annotations.Tags(
+        ["greens", "They are description"], "open", np.array([1.0, 1.0])
+    )
+
+    multiannotator_data = annotations.MultiAnnotator(
+        ["01", "02", "03"], [tag_data1, tag_data2, tag_data3]
+    )
+
+    jam = jams_utils.jams_converter(
+        tags=multiannotator_data, metadata={"duration": 10.0}
+    )
+    assert jam.validate()
+
+
 def test_events():
     event_data1 = annotations.Events(
         np.array([[0.2, 0.3], [0.3, 0.4]]),

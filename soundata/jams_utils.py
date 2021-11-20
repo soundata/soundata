@@ -2,6 +2,8 @@
 """
 import logging
 import os
+from typing import Callable, List
+from typing_extensions import ParamSpecKwargs
 
 import jams
 import librosa
@@ -22,10 +24,10 @@ def jams_converter(
             resulting jam object will not validate.
         spectrogram_path (str or None):
             A path to the corresponding spectrum file, or None.
-        tags (annotations.Tags or None):
-            An instance of annotations.Tags describing the audio tags.
-        events (annotations.Events or None):
-            An instance of annotations.Events describing the sound events.
+        tags (annotations.Tags or annotations.MultiAnnotator or None):
+            An instance of annotations.Tags/annotations.MultiAnnotator describing the audio tags.
+        events (annotations.Events or annotations.MultiAnnotator or None):
+            An instance of annotations.Events/annotations.MultiAnnotator describing the sound events.
     Returns:
         jams.JAMS: A JAMS object containing the annotations.
 
@@ -76,17 +78,23 @@ def jams_converter(
 
     # soundata tags
     if tags is not None:
-        if not isinstance(tags, annotations.Tags):
-            raise TypeError("tags should be of type annotations.Tags")
-        jam.annotations.append(tags_to_jams(tags, duration=jam.file_metadata.duration))
+        if isinstance(tags, annotations.Tags):
+            jam.annotations.append(
+                tags_to_jams(tags, duration=jam.file_metadata.duration)
+            )
+        elif isinstance(tags, annotations.MultiAnnotator):
+            jam.annotations.extend(multiannotator_to_jams(tags, tags_to_jams))
+        else:
+            raise TypeError(
+                "tags should be of type annotations.Tags or annotations.MultiAnnotator"
+            )
 
     # soundata events
     if events is not None:
         if isinstance(events, annotations.Events):
             jam.annotations.append(events_to_jams(events))
         elif isinstance(events, annotations.MultiAnnotator):
-            for annotator, events_ in zip(events.annotators, events.annotations):
-                jam.annotations.append(events_w_annotator_to_jams(events_, annotator))
+            jam.annotations.extend(multiannotator_to_jams(events, events_to_jams))
         else:
             raise TypeError(
                 "events should be of type annotations.Events or annotations.MultiAnnotator"
@@ -95,11 +103,36 @@ def jams_converter(
     return jam
 
 
-def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
+def multiannotator_to_jams(
+    multiannot: annotations.MultiAnnotator,
+    converter: Callable[..., annotations.Annotation],
+    **kwargs,
+) -> List[jams.Annotation]:
+    """Convert tags annotations into jams format.
+
+    Args:
+        tags (annotations.MultiAnnotator): MultiAnnotator object
+        converter (Callable[..., annotations.Annotation]): a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object
+
+    Returns:
+        List[jams.Annotation]: List of jams annotation objects.
+
+    """
+    jams_annot = []
+    for annotator, annotation in zip(multiannot.annotators, multiannot.annotations):
+        jams_annot.append(converter(annotation, annotator=annotator, **kwargs))
+
+    return jams_annot
+
+
+def tags_to_jams(
+    tags, annotator=None, duration=0, namespace="tag_open", description=None
+):
     """Convert tags annotations into jams format.
 
     Args:
         tags (annotations.Tags): tags annotation object
+        annotator (str): annotator id
         namespace (str): the jams-compatible tag namespace
         description (str): annotation description
 
@@ -108,7 +141,10 @@ def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
 
     """
     ann = jams.Annotation(namespace=namespace)
-    ann.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+    ann.annotation_metadata = jams.AnnotationMetadata(
+        data_source="soundata",
+        annotator={"id": annotator} if annotator is not None else None,
+    )
     for t, c in zip(tags.labels, tags.confidence):
         ann.append(time=0.0, duration=duration, value=t, confidence=c)
     if description is not None:
@@ -116,11 +152,12 @@ def tags_to_jams(tags, duration=0, namespace="tag_open", description=None):
     return ann
 
 
-def events_to_jams(events, description=None):
+def events_to_jams(events, annotator=None, description=None):
     """Convert events annotations into jams format.
 
     Args:
         events (annotations.Events): events data object
+        annotator (str): annotator id
         description (str): annotation description
 
     Returns:
@@ -129,7 +166,10 @@ def events_to_jams(events, description=None):
     """
 
     jannot_events = jams.Annotation(namespace="segment_open")
-    jannot_events.annotation_metadata = jams.AnnotationMetadata(data_source="soundata")
+    jannot_events.annotation_metadata = jams.AnnotationMetadata(
+        data_source="soundata",
+        annotator={"id": annotator} if annotator is not None else None,
+    )
 
     for inter, label, conf in zip(events.intervals, events.labels, events.confidence):
         jannot_events.append(
