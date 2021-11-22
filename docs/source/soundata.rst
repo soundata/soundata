@@ -55,6 +55,13 @@ FSDnoisy18K
    :members:
    :inherited-members:
 
+SINGA:PURA
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.singapura
+   :members:
+   :inherited-members:
+
 
 TAU NIGENS SSE 2020
 ^^^^^^^^^^^^^^^^^^^
