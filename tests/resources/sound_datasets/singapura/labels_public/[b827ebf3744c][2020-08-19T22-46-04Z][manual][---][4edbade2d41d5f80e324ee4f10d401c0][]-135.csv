@@ -1,0 +1,8 @@
+annotator,filename,event_label,proximity,onset,offset,remarks
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,9-2,far,0.0,0.853,
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,9-2,far,2.027,5.32,
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,8-1,far,0.693,3.453,Footsteps
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,7-0,far,2.213,3.973,Cough
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,7-0,far,4.547,4.987,
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,7-0,far,7.133,7.92,
+5,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,8-1,far,5.813,10.0,Footsteps
