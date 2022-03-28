@@ -75,6 +75,50 @@ class Events(Annotation):
         self.confidence = confidence
 
 
+class VideoAnnotations(Annotation):
+    """VideoAnnotations class
+
+    Attributes:
+        positions (np.ndarray): (n x 4) array of intervals
+            (as floats) in pixels in the form [x, y, w, h]
+            with positive values.
+        labels (list): list of bounding box labels (as strings)
+        frames_id (list): list of frame number (as ints)
+        tracks_id (list): list of track id (as ints)
+        visibility (np.ndarray): array of visibility values, float in [0, 1]
+        times (list): list of time stamps (as floats)
+    """
+
+    def __init__(
+        self,
+        positions,
+        labels,
+        frames_id,
+        tracks_id,
+        visibility,
+        times,
+    ) -> None:
+
+        validate_array_like(positions, np.ndarray, float)
+        validate_array_like(labels, list, str)
+        validate_array_like(frames_id, np.ndarray, int)
+        validate_array_like(tracks_id, np.ndarray, int)
+        validate_array_like(visibility, np.ndarray, float, none_allowed=True)
+        validate_array_like(times, np.ndarray, float)
+        validate_lengths_equal(
+            [positions, labels, frames_id, tracks_id, visibility, times]
+        )
+        # TODO: validate_positions(positions)
+        # TODO: add units
+
+        self.positions = positions
+        self.labels = labels
+        self.frames_id = frames_id
+        self.tracks_id = tracks_id
+        self.visibility = visibility
+        self.times = times
+
+
 class MultiAnnotator(Annotation):
     """Multiple annotator class.
     This class should be used for datasets with multiple annotators (e.g. multiple annotators per clip).

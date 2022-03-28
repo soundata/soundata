@@ -1,0 +1,4 @@
+,frame_id,track_id,x,y,w,h,class_id,visibility,label,filename,city,location_id,time,night
+0,1,1,925.58,376.15,73.12,29.53000000000003,1,1.0,car,acevedo0103_00_0,montevideo,acevedo0103,0.0,0
+1,1,2,167.99,385.6,98.61,33.69999999999999,1,1.0,car,acevedo0103_00_0,montevideo,acevedo0103,0.0,0
+2,2,1,903.26,376.52,61.56000000000006,28.02000000000004,1,1.0,car,acevedo0103_00_0,montevideo,acevedo0103,0.5,0
