@@ -176,6 +176,8 @@ def test_validate_confidence():
         annotations.validate_confidence(np.array([[0, 1], [0, 2]]))
     with pytest.raises(ValueError):
         annotations.validate_confidence(np.array([0, 2]))
+    with pytest.raises(ValueError):
+        annotations.validate_confidence(np.array([np.nan, 0.5]))
 
 
 def test_validate_times():
@@ -186,6 +188,9 @@ def test_validate_times():
 
     with pytest.raises(ValueError):
         annotations.validate_times(np.array([2, 0]))
+
+    with pytest.raises(ValueError):
+        annotations.validate_times(np.array([-1, 0]))
 
 
 def test_validate_intervals():
@@ -199,6 +204,9 @@ def test_validate_intervals():
 
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
+
+    with pytest.raises(ValueError):
+        annotations.validate_intervals(np.array([[0, -1], [1, 0.5]]))
 
 
 def test_validate_unit():

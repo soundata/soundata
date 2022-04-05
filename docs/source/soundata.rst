@@ -63,6 +63,14 @@ SINGA:PURA
    :inherited-members:
 
 
+STARSS 2022
+^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.starss2022
+   :members:
+   :inherited-members:
+   
+
 TAU NIGENS SSE 2020
 ^^^^^^^^^^^^^^^^^^^
 

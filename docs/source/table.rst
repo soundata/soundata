@@ -75,6 +75,17 @@
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
 
+   * - | STARSS
+       | 2022
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 121
+     - 5
+     - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
+          :target: https://lbesson.mit-license.org/ 
+
+
    * - | TAU NIGENS 
        | SSE 2020
      - - audio: ✅

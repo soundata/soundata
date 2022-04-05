@@ -192,6 +192,9 @@ def validate_confidence(confidence):
             f"Confidence should be 1d, but array has shape {confidence_shape}"
         )
 
+    if np.any(np.isnan(confidence)):
+        raise ValueError("confidence values cannot be nan")
+
     if any([c < 0 for c in confidence]) or any([c > 1 for c in confidence]):
         raise ValueError(
             "confidence with unit 'likelihood' should be between 0 and 1. "
