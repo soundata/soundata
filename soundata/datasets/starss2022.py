@@ -452,7 +452,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
             the sound events annotation file
         dt (float): time step
     Raises:
-        IOError: if txt_path doesn't exist
+        IOError: if fhandle doesn't exist
     Returns:
         SpatialEvents: sound spatial events annotation data
     """
