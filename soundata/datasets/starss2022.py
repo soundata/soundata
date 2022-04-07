@@ -362,7 +362,10 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
     Attributes:
         audio_path (str): path to the audio file
-        tags (soundata.annotation.Tags): tag
+        csv_path (str): path to the csv file
+        format (str): whether the clip is in FOA or MIC format
+        set (str): the data subset the clip belongs to (development or evaluation)
+        split (str): the set slip the clip belongs to (training or test)
         track_id (str): track id
         spatial_events (SpatialEvents): sound events with time step, elevation, azimuth, distance, label, track_number and confidence.
     """
