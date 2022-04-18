@@ -71,10 +71,15 @@ REMOTES = {
         url="https://webfiles.york.ac.uk/INFODATA/eaeaac50-483e-408f-a391-01b02d4ff9c4/BusyStreet.zip",
         checksum="7561ef835b4f43c5f0fa637a9747bc41",
     ),
-    "Park": download_utils.RemoteFileMetadata(
+    "Park_york": download_utils.RemoteFileMetadata(
         filename="Park.zip",
         url="https://webfiles.york.ac.uk/INFODATA/eaeaac50-483e-408f-a391-01b02d4ff9c4/Park.zip",
         checksum="081417d792a31c7cdada5442227c796c",
+    ),
+    "Park_zenodo": download_utils.RemoteFileMetadata(
+        filename="Park.zip",
+        url="https://zenodo.org/record/1284156/files/Park.zip?download=1",
+        checksum="1268c7d8057529672d3cc17bec8ae302",
     ),
     "PedestrianZone": download_utils.RemoteFileMetadata(
         filename="PedestrianZone.zip",
