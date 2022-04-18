@@ -73,8 +73,8 @@ REMOTES = {
     ),
     "Park": download_utils.RemoteFileMetadata(
         filename="Park.zip",
-        url="https://zenodo.org/record/1284156/files/Park.zip?download=1",
-        checksum="1268c7d8057529672d3cc17bec8ae302",
+        url="https://zenodo.org/record/2628463/files/Park.zip?download=1",
+        checksum="c5d638518b4f7d597dd410ee5bb48b67",
     ),
     "PedestrianZone": download_utils.RemoteFileMetadata(
         filename="PedestrianZone.zip",
