@@ -1,12 +1,6 @@
 {
   "version": "raw",
   "clips": {
-    "Beach-01-Raw": {
-      "audio": [
-        "Beach-01-Raw.wav",
-        "5612673e79f8d586ba47d43dc902d5da"
-      ]
-    },
     "Beach-04-Raw": {
       "audio": [
         "Beach-04-Raw.wav",
@@ -25,10 +19,22 @@
         "a1026a16ba0f4ebcbae0bff6f78c3c5c"
       ]
     },
+    "Park-08-Raw": {
+      "audio": [
+        "Park.8.wav",
+        "b1ea9a539c9be3052f577856ca7928c8"
+      ]
+    },
     "ShoppingCentre-06-Raw": {
       "audio": [
         "ShoppingCentre-06-Raw.wav",
         "7e402f7412a95d295d40fa05cb6096b6"
+      ]
+    },
+    "Beach-01-Raw": {
+      "audio": [
+        "Beach-01-Raw.wav",
+        "5612673e79f8d586ba47d43dc902d5da"
       ]
     },
     "ShoppingCentre-05-Raw": {
@@ -175,6 +181,12 @@
         "7aae03ad5ee0e0223fa4e96507cca344"
       ]
     },
+    "Park-06-Raw": {
+      "audio": [
+        "Park.6.wav",
+        "68754f33ab6602ba2fd5abf80f9729e8"
+      ]
+    },
     "QuietStreet-05-Raw": {
       "audio": [
         "QuietStreet-05-Raw.wav",
@@ -185,12 +197,6 @@
       "audio": [
         "Beach-03-Raw.wav",
         "da9f99ed0a345fe70585027cf720814b"
-      ]
-    },
-    "Park-08-Raw": {
-      "audio": [
-        "Park.8.wav",
-        "72e605850ac865f5a6c0991dbac3f3c1"
       ]
     },
     "TrainStation-07-Raw": {
@@ -377,12 +383,6 @@
       "audio": [
         "Park-02-Raw.wav",
         "a6371643246cfa2ccf5382b16c2a3721"
-      ]
-    },
-    "Park-06-Raw": {
-      "audio": [
-        "Park.6.wav",
-        "7e3af93a62bc5809e6aac3c22a5fe2c8"
       ]
     }
   },
