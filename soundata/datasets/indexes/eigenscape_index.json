@@ -1,6 +1,12 @@
 {
   "version": "2.0",
   "clips": {
+    "Beach.1": {
+      "audio": [
+        "Beach.1.wav",
+        "b199ddd2350c0516c6908e12bea1095b"
+      ]
+    },
     "PedestrianZone.5": {
       "audio": [
         "PedestrianZone.5.wav",
@@ -233,12 +239,6 @@
       "audio": [
         "QuietStreet.7.wav",
         "507f7190175260db5226ca356e8c8582"
-      ]
-    },
-    "Beach.1": {
-      "audio": [
-        "Beach.1.wav",
-        "b199ddd2350c0516c6908e12bea1095b"
       ]
     },
     "TrainStation.7": {
