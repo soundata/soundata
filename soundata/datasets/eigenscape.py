@@ -34,7 +34,7 @@
         * Creative Commons Attribution 4.0 International
 
     *Important:
-        * Use with caution. This loader "Engineers" a solution to obtain the correct files after the Park6 and Park8 files between the `eigenscape` and `eigenscape_raw` got mixed-up at the source on the dataset's official release. See the REMOTES and index if you want to understand how this engineered solution works. Also see the discussion about this engineered solution with the dataset author https://github.com/micarraylib/micarraylib/issues/8#issuecomment-1105357329
+        * Use with caution. This loader "Engineers" a solution to obtain the correct files after Park6 and Park8 got mixed-up at the `eigenscape` and `eigenscape_raw` remotes. See the REMOTES and index if you want to understand how this engineered solution works. Also see the discussion about this engineered solution with the dataset author https://github.com/micarraylib/micarraylib/issues/8#issuecomment-1105357329
 """
 
 import os
