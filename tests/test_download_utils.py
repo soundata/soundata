@@ -341,6 +341,9 @@ def test_unpackdir(httpserver):
             "audio/1-137-A-32.wav",
         )
     )
+    
+    # clean up the directory after test
+    shutil.rmtree(data_home)
 
 
 def test_unzip():

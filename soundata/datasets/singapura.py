@@ -256,7 +256,7 @@ class Clip(core.Clip):
         Returns:
             * str - location of the sensor, one of {'East 1', 'East 2', 'West 1', 'West 2'}
         """
-        return self._clip_metadata["sensor_id"]
+        return self._clip_metadata["town"]
 
     @property
     def timestamp(self) -> np.datetime64:
