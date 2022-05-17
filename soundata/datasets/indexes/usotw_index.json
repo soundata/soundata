@@ -1,0 +1,1281 @@
+{
+  "version": "20220517",
+  "clips": {
+    "R0001": {
+      "audio/binaural": [
+        "audio/binaural/R0001_segment_binaural.wav",
+        "d87b65ce333cea243e15665803e65a70"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0001_segment_ambisonics.wav",
+        "2bf4f0fc43f5273a4e53b6c4bfd2034f"
+      ]
+    },
+    "R0002": {
+      "audio/binaural": [
+        "audio/binaural/R0002_segment_binaural.wav",
+        "1a322efcbeace32f2373fecbaab5e709"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0002_segment_ambisonics.wav",
+        "51ac9330e597cafafdf2e8ea33d3575d"
+      ]
+    },
+    "R0003": {
+      "audio/binaural": [
+        "audio/binaural/R0003_segment_binaural.wav",
+        "b637eb363d5e3078acbaf42a2b7def8c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0003_segment_ambisonics.wav",
+        "4cefd8df90474dd150f8be6424866581"
+      ]
+    },
+    "R0004": {
+      "audio/binaural": [
+        "audio/binaural/R0004_segment_binaural.wav",
+        "8bd14b011520d5c0bf7d147f3ede8c94"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0004_segment_ambisonics.wav",
+        "4ceab13a087d826d58ce6741f0dcbd71"
+      ]
+    },
+    "R0005": {
+      "audio/binaural": [
+        "audio/binaural/R0005_segment_binaural.wav",
+        "ddf48a16c037f6c04cf8b5f1774512db"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0005_segment_ambisonics.wav",
+        "c8d44d2b43390afeb64a90ecc811f488"
+      ]
+    },
+    "R0006": {
+      "audio/binaural": [
+        "audio/binaural/R0006_segment_binaural.wav",
+        "aaeacf0713e9cac2d024c66b46d730ce"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0006_segment_ambisonics.wav",
+        "1384e6b9e823db68a85c59ba91339685"
+      ]
+    },
+    "R0007": {
+      "audio/binaural": [
+        "audio/binaural/R0007_segment_binaural.wav",
+        "07cd220d8532fa0192faa0c76b1d7ef5"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0007_segment_ambisonics.wav",
+        "8ee3e8fa3f752af58e85fa467b5d7662"
+      ]
+    },
+    "R0008": {
+      "audio/binaural": [
+        "audio/binaural/R0008_segment_binaural.wav",
+        "1fc1c8152a56600b3a6dd7b9cb9ce652"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0008_segment_ambisonics.wav",
+        "1e82914da69e9c8d942aa96d70ed7098"
+      ]
+    },
+    "R0009": {
+      "audio/binaural": [
+        "audio/binaural/R0009_segment_binaural.wav",
+        "228611900eb93a00a098cf01977d119e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0009_segment_ambisonics.wav",
+        "ec0398c68789d56fbf77a9230c091225"
+      ]
+    },
+    "R0010": {
+      "audio/binaural": [
+        "audio/binaural/R0010_segment_binaural.wav",
+        "a55b36d4a91f8b01f67309cef09874e2"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0010_segment_ambisonics.wav",
+        "84d785184b7f8cd2c4c6662dd2a09468"
+      ]
+    },
+    "R0011": {
+      "audio/binaural": [
+        "audio/binaural/R0011_segment_binaural.wav",
+        "a9b2c8c51e5706a21fb6f935eebdf3ed"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0011_segment_ambisonics.wav",
+        "a1589cd1af22a9af969b94da0f3b081d"
+      ]
+    },
+    "R0012": {
+      "audio/binaural": [
+        "audio/binaural/R0012_segment_binaural.wav",
+        "7a47043360df09f1aaf2c605cba9806c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0012_segment_ambisonics.wav",
+        "b2f0d14172d4f46be5afdbf735e4d322"
+      ]
+    },
+    "R0013": {
+      "audio/binaural": [
+        "audio/binaural/R0013_segment_binaural.wav",
+        "0013952f09a50a99ecfd7750f2b1f3af"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0013_segment_ambisonics.wav",
+        "ffd3f48590746c288101a2631077deec"
+      ]
+    },
+    "R0014": {
+      "audio/binaural": [
+        "audio/binaural/R0014_segment_binaural.wav",
+        "79a0eb80b902a533f0f42129f64931f7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0014_segment_ambisonics.wav",
+        "5aafbae0b2b79260ee22fb3344341652"
+      ]
+    },
+    "R0015": {
+      "audio/binaural": [
+        "audio/binaural/R0015_segment_binaural.wav",
+        "58f871afc7397084799be2ddf12ab29c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0015_segment_ambisonics.wav",
+        "709cccbf8487648e4a818173e972cb0f"
+      ]
+    },
+    "R0016": {
+      "audio/binaural": [
+        "audio/binaural/R0016_segment_binaural.wav",
+        "8e26848f4a462169cbbdb000ca342909"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0016_segment_ambisonics.wav",
+        "33d064deb8341516b23f8fe1965e2506"
+      ]
+    },
+    "R0017": {
+      "audio/binaural": [
+        "audio/binaural/R0017_segment_binaural.wav",
+        "78cfee7d69cfba093ad546e20007cfc7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0017_segment_ambisonics.wav",
+        "83033b605cba467c4113b55c235c1980"
+      ]
+    },
+    "R0018": {
+      "audio/binaural": [
+        "audio/binaural/R0018_segment_binaural.wav",
+        "ae57cece297714658fa367a75fe43262"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0018_segment_ambisonics.wav",
+        "efd22a59d78b03b6f37547db85e9aed0"
+      ]
+    },
+    "R0019": {
+      "audio/binaural": [
+        "audio/binaural/R0019_segment_binaural.wav",
+        "4d76c22ea8e2bfbe6eaa71852d65ad90"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0019_segment_ambisonics.wav",
+        "f3ae48e282c2279acb8dd48bceac6874"
+      ]
+    },
+    "R0020": {
+      "audio/binaural": [
+        "audio/binaural/R0020_segment_binaural.wav",
+        "1498a3824cceb060a58c8138bbe08813"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0020_segment_ambisonics.wav",
+        "df4d9df644629bdd5a7b17289b26b247"
+      ]
+    },
+    "R0021": {
+      "audio/binaural": [
+        "audio/binaural/R0021_segment_binaural.wav",
+        "6692ae266e624848aa4f3990b98331d9"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0021_segment_ambisonics.wav",
+        "4b5f81371c731fdda37f4e1f7cf28395"
+      ]
+    },
+    "R0023": {
+      "audio/binaural": [
+        "audio/binaural/R0023_segment_binaural.wav",
+        "699e30c6ffeca8e8522e501239bcec1c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0023_segment_ambisonics.wav",
+        "7d134d45ac8de3a307cbba474f55073d"
+      ]
+    },
+    "R0024": {
+      "audio/binaural": [
+        "audio/binaural/R0024_segment_binaural.wav",
+        "fd08f5dcd3ac0827d5621570bdee2419"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0024_segment_ambisonics.wav",
+        "898d670f469158965d9d9866c3699b8a"
+      ]
+    },
+    "R0025": {
+      "audio/binaural": [
+        "audio/binaural/R0025_segment_binaural.wav",
+        "8d2606fae52b4b226850749f30d59e06"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0025_segment_ambisonics.wav",
+        "8008b87f71713e1aaff5e91220e5fced"
+      ]
+    },
+    "R0026": {
+      "audio/binaural": [
+        "audio/binaural/R0026_segment_binaural.wav",
+        "4948cf62dfe37d25bf25564c0adbe2d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0026_segment_ambisonics.wav",
+        "9f483da7e803bc34e2ca32be35f18499"
+      ]
+    },
+    "R0027": {
+      "audio/binaural": [
+        "audio/binaural/R0027_segment_binaural.wav",
+        "f85ec71f054769f37300d2b85e62db6d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0027_segment_ambisonics.wav",
+        "0ef8fc3c7c15458ab8cd6045557e10a1"
+      ]
+    },
+    "R0028": {
+      "audio/binaural": [
+        "audio/binaural/R0028_segment_binaural.wav",
+        "c912f205a54b3f68fa2d4e2404af05ee"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0028_segment_ambisonics.wav",
+        "c19247f0b820aac858c7880535a23ebd"
+      ]
+    },
+    "R0029": {
+      "audio/binaural": [
+        "audio/binaural/R0029_segment_binaural.wav",
+        "590d592a5b078015a405c37b4f8bd3ec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0029_segment_ambisonics.wav",
+        "8b9cbca8a1303ae824267b463e6fae4b"
+      ]
+    },
+    "R0030": {
+      "audio/binaural": [
+        "audio/binaural/R0030_segment_binaural.wav",
+        "0b87fa23693eb8bf7b4d6519558e28d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0030_segment_ambisonics.wav",
+        "758f72a95508683745b69b60c74a48b7"
+      ]
+    },
+    "R0031": {
+      "audio/binaural": [
+        "audio/binaural/R0031_segment_binaural.wav",
+        "248496cfd92bb2ff382fcb730c8e981e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0031_segment_ambisonics.wav",
+        "e3b72c1a0380e300832080738641edae"
+      ]
+    },
+    "R0032": {
+      "audio/binaural": [
+        "audio/binaural/R0032_segment_binaural.wav",
+        "8d5bc1db3b2f8bac87aa117c498c2590"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0032_segment_ambisonics.wav",
+        "27ea2bc5d5c24c8ef1e16dc8fd6fe7ab"
+      ]
+    },
+    "R0033": {
+      "audio/binaural": [
+        "audio/binaural/R0033_segment_binaural.wav",
+        "84e7cce94297bda5919f0b373ae85b7e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0033_segment_ambisonics.wav",
+        "20335b7c169db24bc80a6b13b0ee0e01"
+      ]
+    },
+    "R0034": {
+      "audio/binaural": [
+        "audio/binaural/R0034_segment_binaural.wav",
+        "602c340b80171e21692c7a63ca3666de"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0034_segment_ambisonics.wav",
+        "ce8026381be9a6639cd83f8bce822113"
+      ]
+    },
+    "R0035": {
+      "audio/binaural": [
+        "audio/binaural/R0035_segment_binaural.wav",
+        "5236807b1413a0509d54e30563ff2263"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0035_segment_ambisonics.wav",
+        "b3ed64b74f5b14932760116359b415e0"
+      ]
+    },
+    "R0036": {
+      "audio/binaural": [
+        "audio/binaural/R0036_segment_binaural.wav",
+        "b77b22dee204d1b7f4079a2310e61d96"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0036_segment_ambisonics.wav",
+        "809f36ebc7873842d93e790bbafa3d43"
+      ]
+    },
+    "R0037": {
+      "audio/binaural": [
+        "audio/binaural/R0037_segment_binaural.wav",
+        "84165ecd44bd3360c6f40a6f1f2c4095"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0037_segment_ambisonics.wav",
+        "c2b1eae1dbca4797687e6d37f50bf85e"
+      ]
+    },
+    "R0038": {
+      "audio/binaural": [
+        "audio/binaural/R0038_segment_binaural.wav",
+        "ea88288de7fcb37624889f4d1c2b2562"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0038_segment_ambisonics.wav",
+        "3816e3a3c5cf022d69ccb302f30d7d90"
+      ]
+    },
+    "R0039": {
+      "audio/binaural": [
+        "audio/binaural/R0039_segment_binaural.wav",
+        "52acbb86866e59cd34a0b240ccf1b66e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0039_segment_ambisonics.wav",
+        "22dcd328d7df2cc9e38d0a57d0e0b92a"
+      ]
+    },
+    "R0040": {
+      "audio/binaural": [
+        "audio/binaural/R0040_segment_binaural.wav",
+        "1b7f90d0aebbf0f9f9e6a9e4e4eff320"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0040_segment_ambisonics.wav",
+        "3ba60a34f4e22ce8f8c2b8fb809fb70e"
+      ]
+    },
+    "R0041": {
+      "audio/binaural": [
+        "audio/binaural/R0041_segment_binaural.wav",
+        "273aec0eddde89d0edf894f4d194d4cf"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0041_segment_ambisonics.wav",
+        "7d66be4e2e291d3048621123d7400c40"
+      ]
+    },
+    "R0042": {
+      "audio/binaural": [
+        "audio/binaural/R0042_segment_binaural.wav",
+        "652f383ad8128b86d3ccf544aee6a80b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0042_segment_ambisonics.wav",
+        "812b8606094640c0a84accdc9d4fd9dd"
+      ]
+    },
+    "R0043": {
+      "audio/binaural": [
+        "audio/binaural/R0043_segment_binaural.wav",
+        "8f85111b501b14757d9876e95176f5b1"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0043_segment_ambisonics.wav",
+        "1634310dfb4c27e376a43c8eec2f11f7"
+      ]
+    },
+    "R0044": {
+      "audio/binaural": [
+        "audio/binaural/R0044_segment_binaural.wav",
+        "738d53ce69b1177aa7ee05671fa15269"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0044_segment_ambisonics.wav",
+        "6e0201cba20e0d83e7463fbfbb1dc8e8"
+      ]
+    },
+    "R0045": {
+      "audio/binaural": [
+        "audio/binaural/R0045_segment_binaural.wav",
+        "f05d83aa93a0d6199974791d8a304f65"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0045_segment_ambisonics.wav",
+        "423a279739ca08788b341aeea6c122c9"
+      ]
+    },
+    "R0046": {
+      "audio/binaural": [
+        "audio/binaural/R0046_segment_binaural.wav",
+        "c1d74a7e49efbb659cce261605fbdf18"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0046_segment_ambisonics.wav",
+        "df559885efdbec32522828cce017a960"
+      ]
+    },
+    "R0047": {
+      "audio/binaural": [
+        "audio/binaural/R0047_segment_binaural.wav",
+        "284c494295dd9aaddef6c29563d3047a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0047_segment_ambisonics.wav",
+        "1a07f5ce0c73eb3053d4d0df695627cf"
+      ]
+    },
+    "R0048": {
+      "audio/binaural": [
+        "audio/binaural/R0048_segment_binaural.wav",
+        "90da191dbc061d0257bdeeeb292eebfb"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0048_segment_ambisonics.wav",
+        "e6ba04c8e3d8b70ee0fb8f8bfb8b9642"
+      ]
+    },
+    "R0049": {
+      "audio/binaural": [
+        "audio/binaural/R0049_segment_binaural.wav",
+        "4e2d57265ae3ff6b9223b5e41d876d68"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0049_segment_ambisonics.wav",
+        "6b590c14b7d3b0b4a000a4785dded1b8"
+      ]
+    },
+    "R0050": {
+      "audio/binaural": [
+        "audio/binaural/R0050_segment_binaural.wav",
+        "990dacf04e364305bb20cf45b66c7b53"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0050_segment_ambisonics.wav",
+        "0b461290bf9941188832af4a2ff3fe7f"
+      ]
+    },
+    "R0051": {
+      "audio/binaural": [
+        "audio/binaural/R0051_segment_binaural.wav",
+        "479a7ea019f5f912aadef263ae58c709"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0051_segment_ambisonics.wav",
+        "268bce7b63fec1d70ab13369797c6042"
+      ]
+    },
+    "R0052": {
+      "audio/binaural": [
+        "audio/binaural/R0052_segment_binaural.wav",
+        "47692164f08af3c2954c9fafadb030c7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0052_segment_ambisonics.wav",
+        "6ba708ad557706dc1fcf3429eaf4d091"
+      ]
+    },
+    "R0053": {
+      "audio/binaural": [
+        "audio/binaural/R0053_segment_binaural.wav",
+        "fe8876594d8adacf89cad4283b7fee90"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0053_segment_ambisonics.wav",
+        "74ef1ba1aed3ecb8d85f898271019bb5"
+      ]
+    },
+    "R0054": {
+      "audio/binaural": [
+        "audio/binaural/R0054_segment_binaural.wav",
+        "71ed1d2351976ea3f0633e212717e442"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0054_segment_ambisonics.wav",
+        "fe28836b0411af8ad97c5780a7fa4b91"
+      ]
+    },
+    "R0055": {
+      "audio/binaural": [
+        "audio/binaural/R0055_segment_binaural.wav",
+        "41debe56163d3a9304bb3007f5aa2e86"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0055_segment_ambisonics.wav",
+        "7a676e70448037dde54d9c3d369536fd"
+      ]
+    },
+    "R0056": {
+      "audio/binaural": [
+        "audio/binaural/R0056_segment_binaural.wav",
+        "96a3722bc3d562980f54e575f051b655"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0056_segment_ambisonics.wav",
+        "356e30a14a4b01ac182cd5b584d5144b"
+      ]
+    },
+    "R0057": {
+      "audio/binaural": [
+        "audio/binaural/R0057_segment_binaural.wav",
+        "51a41075e2a58567f2ce08596de328aa"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0057_segment_ambisonics.wav",
+        "f45e3e8071277a89413c4094a47d3ef4"
+      ]
+    },
+    "R0058": {
+      "audio/binaural": [
+        "audio/binaural/R0058_segment_binaural.wav",
+        "161cf895d38b3af51092b5f37e580eab"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0058_segment_ambisonics.wav",
+        "f72c02aa76f66e98d4eb11d874a33bdb"
+      ]
+    },
+    "R0059": {
+      "audio/binaural": [
+        "audio/binaural/R0059_segment_binaural.wav",
+        "4bbfae10dc486fd2d6630a2372f86b0d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0059_segment_ambisonics.wav",
+        "519fb52f9ddc3c6109246768d078f623"
+      ]
+    },
+    "R0060": {
+      "audio/binaural": [
+        "audio/binaural/R0060_segment_binaural.wav",
+        "7c30c3d031b70181466dd5ab361da86b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0060_segment_ambisonics.wav",
+        "a7c319c8acb777b3fbfd90fdaa1c7148"
+      ]
+    },
+    "R0061": {
+      "audio/binaural": [
+        "audio/binaural/R0061_segment_binaural.wav",
+        "be4c05a6aa961029708768eea1cad599"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0061_segment_ambisonics.wav",
+        "203edbd766baf13d0d8e616b60c5e018"
+      ]
+    },
+    "R0062": {
+      "audio/binaural": [
+        "audio/binaural/R0062_segment_binaural.wav",
+        "fce9f769535e600c38e799f23a3f34ac"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0062_segment_ambisonics.wav",
+        "f0871a217380118ac6430c4e42bf556f"
+      ]
+    },
+    "R0063": {
+      "audio/binaural": [
+        "audio/binaural/R0063_segment_binaural.wav",
+        "6b2b4e360e67014fcd6bc9301f1d7da8"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0063_segment_ambisonics.wav",
+        "91e2574a4f47ee1d7cb1be5fac881809"
+      ]
+    },
+    "R0064": {
+      "audio/binaural": [
+        "audio/binaural/R0064_segment_binaural.wav",
+        "85fb635a190a5c7e3e6062ce13147b9f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0064_segment_ambisonics.wav",
+        "e50302cdbf0599614b675898be7009d1"
+      ]
+    },
+    "R0065": {
+      "audio/binaural": [
+        "audio/binaural/R0065_segment_binaural.wav",
+        "cb2208520f9c4eeaad0722fc93956137"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0065_segment_ambisonics.wav",
+        "c746b87b1b359b3ce85e63d664c8fa5b"
+      ]
+    },
+    "R0066": {
+      "audio/binaural": [
+        "audio/binaural/R0066_segment_binaural.wav",
+        "bbee43d2ea147e5cfd7b4f10041ac292"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0066_segment_ambisonics.wav",
+        "f29155f77f5a243cb986ba08c9382dbd"
+      ]
+    },
+    "R0067": {
+      "audio/binaural": [
+        "audio/binaural/R0067_segment_binaural.wav",
+        "990427fc9c0ef33016a7399de15df56d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0067_segment_ambisonics.wav",
+        "c9332fc45706c80f86cb4babcb9b6ef2"
+      ]
+    },
+    "R0068": {
+      "audio/binaural": [
+        "audio/binaural/R0068_segment_binaural.wav",
+        "5a9819d0f387e2d480970aa941b4625b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0068_segment_ambisonics.wav",
+        "465551536e4688a135d312c7b6c7fa36"
+      ]
+    },
+    "R0069": {
+      "audio/binaural": [
+        "audio/binaural/R0069_segment_binaural.wav",
+        "2285c9c452c694043720a3a5483c9bb4"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0069_segment_ambisonics.wav",
+        "8bd4982d476538cd0d8742a84bb516fd"
+      ]
+    },
+    "R0070": {
+      "audio/binaural": [
+        "audio/binaural/R0070_segment_binaural.wav",
+        "e0f659dcfd3c5033cef5b7004797903c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0070_segment_ambisonics.wav",
+        "1cc595abc01295fe336b41a2e542316c"
+      ]
+    },
+    "R0071": {
+      "audio/binaural": [
+        "audio/binaural/R0071_segment_binaural.wav",
+        "54124107b83ccb1d8da86d4aed1d43a9"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0071_segment_ambisonics.wav",
+        "b1019a3506bde88383030de09b05be7b"
+      ]
+    },
+    "R0072": {
+      "audio/binaural": [
+        "audio/binaural/R0072_segment_binaural.wav",
+        "e25b32b36aa75349b3fa1c4ec67bb720"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0072_segment_ambisonics.wav",
+        "798c52f95ab61e97797abbf27d3441c1"
+      ]
+    },
+    "R0073": {
+      "audio/binaural": [
+        "audio/binaural/R0073_segment_binaural.wav",
+        "24b5c4fab416858b7ce11fe3d245b24c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0073_segment_ambisonics.wav",
+        "4a8659fa5bb5efeca2d6be6242c825b3"
+      ]
+    },
+    "R0074": {
+      "audio/binaural": [
+        "audio/binaural/R0074_segment_binaural.wav",
+        "66982f5ebf261912e8216d14fee28331"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0074_segment_ambisonics.wav",
+        "17de81f83ce4623fe1991053603591dc"
+      ]
+    },
+    "R0075": {
+      "audio/binaural": [
+        "audio/binaural/R0075_segment_binaural.wav",
+        "8f9eb969994ca58e79b16b0fa5ff119d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0075_segment_ambisonics.wav",
+        "efdd8a6e9309ee58db9f2761a7af7ca3"
+      ]
+    },
+    "R0076": {
+      "audio/binaural": [
+        "audio/binaural/R0076_segment_binaural.wav",
+        "b8dbef9eb4952fb908acb536932dfd9c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0076_segment_ambisonics.wav",
+        "0827e447d9cb555bbb75a8a0fb0555d3"
+      ]
+    },
+    "R0077": {
+      "audio/binaural": [
+        "audio/binaural/R0077_segment_binaural.wav",
+        "c1bc5323199c9af5a6cce335b3ee3990"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0077_segment_ambisonics.wav",
+        "4b1b0f1cf0fc54707317c20bab037586"
+      ]
+    },
+    "R0079": {
+      "audio/binaural": [
+        "audio/binaural/R0079_segment_binaural.wav",
+        "57b967d84d663b8b2b27ebebaa99fca6"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0079_segment_ambisonics.wav",
+        "a5e12640d4a62f931a6799236e95e57c"
+      ]
+    },
+    "R0080": {
+      "audio/binaural": [
+        "audio/binaural/R0080_segment_binaural.wav",
+        "7dbbfd14a582a1e4960dd619ea044ba2"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0080_segment_ambisonics.wav",
+        "738c438648ad93d025ed5584be5ade84"
+      ]
+    },
+    "R0081": {
+      "audio/binaural": [
+        "audio/binaural/R0081_segment_binaural.wav",
+        "e5f1e58f4181f06870ae5cbe2242d38c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0081_segment_ambisonics.wav",
+        "db85f63d3c1539e9d65c1cb5aa1b4a95"
+      ]
+    },
+    "R0082": {
+      "audio/binaural": [
+        "audio/binaural/R0082_segment_binaural.wav",
+        "222b850f00835a09162afa0fd4fd7fc5"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0082_segment_ambisonics.wav",
+        "6af3a2371b4d5b3322681e0d2ca1e822"
+      ]
+    },
+    "R0083": {
+      "audio/binaural": [
+        "audio/binaural/R0083_segment_binaural.wav",
+        "b08960ab9689ed44e3523804574ee54e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0083_segment_ambisonics.wav",
+        "3f2d1cda7b19479bad90cc2b9afa88b6"
+      ]
+    },
+    "R0084": {
+      "audio/binaural": [
+        "audio/binaural/R0084_segment_binaural.wav",
+        "9c1f6c796a97fd2b1723b951ce0855da"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0084_segment_ambisonics.wav",
+        "7c3b4c0a108bee22d0c57121ae67be91"
+      ]
+    },
+    "R0085": {
+      "audio/binaural": [
+        "audio/binaural/R0085_segment_binaural.wav",
+        "8d9a5e2c65ba5a997c364f9e5e4109f0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0085_segment_ambisonics.wav",
+        "e1c64b6df52755121872e57fa56b07f9"
+      ]
+    },
+    "R0086": {
+      "audio/binaural": [
+        "audio/binaural/R0086_segment_binaural.wav",
+        "a63818cc76a369680c80bf9a64fc5243"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0086_segment_ambisonics.wav",
+        "28c5d7c58a85051e694dab563f2846b0"
+      ]
+    },
+    "R0088": {
+      "audio/binaural": [
+        "audio/binaural/R0088_segment_binaural.wav",
+        "c505fb90b05f02173aeba61283904c1e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0088_segment_ambisonics.wav",
+        "197c931b9602a0c61ffc8b35b1239c01"
+      ]
+    },
+    "R0089": {
+      "audio/binaural": [
+        "audio/binaural/R0089_segment_binaural.wav",
+        "b499d3d077f9df73b73fb6ad91744b6b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0089_segment_ambisonics.wav",
+        "749d51d76cc9e0bfa0e7e2326f39ecdb"
+      ]
+    },
+    "R0090": {
+      "audio/binaural": [
+        "audio/binaural/R0090_segment_binaural.wav",
+        "7f21d568caed5defc9987af1aab10978"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0090_segment_ambisonics.wav",
+        "33d7db0b46ceb0ca304a8ea2effb58c9"
+      ]
+    },
+    "R0091": {
+      "audio/binaural": [
+        "audio/binaural/R0091_segment_binaural.wav",
+        "4d392dfd0f0912d7a70cd2f4c017bf8f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0091_segment_ambisonics.wav",
+        "00eb174f6de919f110a732b9427475f7"
+      ]
+    },
+    "R0092": {
+      "audio/binaural": [
+        "audio/binaural/R0092_segment_binaural.wav",
+        "b0e296caf4e3acddd22d7c354c1bbcd0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0092_segment_ambisonics.wav",
+        "b297f075b7f04d8c166aa0ff9ae4448a"
+      ]
+    },
+    "R0093": {
+      "audio/binaural": [
+        "audio/binaural/R0093_segment_binaural.wav",
+        "e583c94bf31ea86e3768168ee3cafded"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0093_segment_ambisonics.wav",
+        "0268b30cec15932c100fc60da1a65a50"
+      ]
+    },
+    "R0095": {
+      "audio/binaural": [
+        "audio/binaural/R0095_segment_binaural.wav",
+        "18817ae97d0de3759640c50d89c42ae8"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0095_segment_ambisonics.wav",
+        "5c663dfba395ee9ef07267749eab5a70"
+      ]
+    },
+    "R0096": {
+      "audio/binaural": [
+        "audio/binaural/R0096_segment_binaural.wav",
+        "dcc3711d63ead2102aba2907762504a3"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0096_segment_ambisonics.wav",
+        "fa878d69d387f2febeb10a730a71aecf"
+      ]
+    },
+    "R0097": {
+      "audio/binaural": [
+        "audio/binaural/R0097_segment_binaural.wav",
+        "6126e7b09c6074d4d92cbd0843f6c443"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0097_segment_ambisonics.wav",
+        "19c19fb075dfe27729a10bd99339f6b5"
+      ]
+    },
+    "R0098": {
+      "audio/binaural": [
+        "audio/binaural/R0098_segment_binaural.wav",
+        "b97bdd40096cb3805185c403336b561d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0098_segment_ambisonics.wav",
+        "7c667bacce3faadcc3165729e980db7f"
+      ]
+    },
+    "R0099": {
+      "audio/binaural": [
+        "audio/binaural/R0099_segment_binaural.wav",
+        "91d718db869a67bd7946022b99975e20"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0099_segment_ambisonics.wav",
+        "08a0711e558f34e67e7198507b579bb1"
+      ]
+    },
+    "R0100": {
+      "audio/binaural": [
+        "audio/binaural/R0100_segment_binaural.wav",
+        "128dfe2e759e9cd140435b6f759a14ec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0100_segment_ambisonics.wav",
+        "a46c95f0bc9378ccb38c1f567dcc422e"
+      ]
+    },
+    "R0102": {
+      "audio/binaural": [
+        "audio/binaural/R0102_segment_binaural.wav",
+        "f7df94a84674334fc5825af550c46f97"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0102_segment_ambisonics.wav",
+        "985aee136a41dbf5ee9a587d631b915d"
+      ]
+    },
+    "R0104": {
+      "audio/binaural": [
+        "audio/binaural/R0104_segment_binaural.wav",
+        "dadbbe49bc05a269dc4ea07f5195301f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0104_segment_ambisonics.wav",
+        "e065e0cf88d37048ae2b279be37fd7a8"
+      ]
+    },
+    "R0105": {
+      "audio/binaural": [
+        "audio/binaural/R0105_segment_binaural.wav",
+        "c4bdd96a6aed4ddfaf354884b1277e04"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0105_segment_ambisonics.wav",
+        "213002a21014c0bfafe14da569f1fba1"
+      ]
+    },
+    "R0106": {
+      "audio/binaural": [
+        "audio/binaural/R0106_segment_binaural.wav",
+        "293195008cde0df8fc3d2a949a01908e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0106_segment_ambisonics.wav",
+        "82126492efc16fc2a4319ae95c97db42"
+      ]
+    },
+    "R0107": {
+      "audio/binaural": [
+        "audio/binaural/R0107_segment_binaural.wav",
+        "c5272c8004b3beab6fa7179dcb21023c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0107_segment_ambisonics.wav",
+        "6af3ea0131bbe1676e2bfb8e40ae0205"
+      ]
+    },
+    "R0108": {
+      "audio/binaural": [
+        "audio/binaural/R0108_segment_binaural.wav",
+        "d250f81cf28d6b0e246f9c80de495e2a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0108_segment_ambisonics.wav",
+        "29072b471c1efbba6ce7c029a9862fad"
+      ]
+    },
+    "R0109": {
+      "audio/binaural": [
+        "audio/binaural/R0109_segment_binaural.wav",
+        "c93d635a28e1aa6082d15d02b3665742"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0109_segment_ambisonics.wav",
+        "546e346d9704120cb8ab3cbd1cb4d4ec"
+      ]
+    },
+    "R0110": {
+      "audio/binaural": [
+        "audio/binaural/R0110_segment_binaural.wav",
+        "fb7e5fd3f20da1ebcfb7fe062de27433"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0110_segment_ambisonics.wav",
+        "7279386f48b6de172b75af46074d7090"
+      ]
+    },
+    "R0111": {
+      "audio/binaural": [
+        "audio/binaural/R0111_segment_binaural.wav",
+        "464eec039a5d1eb7b89d680ef4c14a27"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0111_segment_ambisonics.wav",
+        "ec922bca328d63be497a2f0cca3c8a52"
+      ]
+    },
+    "R0112": {
+      "audio/binaural": [
+        "audio/binaural/R0112_segment_binaural.wav",
+        "600cc9689fb32684fb08a0e194462962"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0112_segment_ambisonics.wav",
+        "1f0d6d989b0887ca0875d79f0ee08bf6"
+      ]
+    },
+    "R0113": {
+      "audio/binaural": [
+        "audio/binaural/R0113_segment_binaural.wav",
+        "bc99ed8292c324b9393180ce99bc6b7f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0113_segment_ambisonics.wav",
+        "1031e911da421be6f53adb372e260d25"
+      ]
+    },
+    "R0114": {
+      "audio/binaural": [
+        "audio/binaural/R0114_segment_binaural.wav",
+        "f7a461362c134fda66a5c5688ff499cc"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0114_segment_ambisonics.wav",
+        "a0252e7f36b6845a3878885c960a4c45"
+      ]
+    },
+    "R0115": {
+      "audio/binaural": [
+        "audio/binaural/R0115_segment_binaural.wav",
+        "686cad93e6da6aa34687c5a9d5289307"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0115_segment_ambisonics.wav",
+        "e62aeab1ba96a1bfba7812296ee9a928"
+      ]
+    },
+    "R0116": {
+      "audio/binaural": [
+        "audio/binaural/R0116_segment_binaural.wav",
+        "b246a27c9c4074be8d38a293fa13647a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0116_segment_ambisonics.wav",
+        "c19cac3cf09d12041f45bda5fc008033"
+      ]
+    },
+    "R0117": {
+      "audio/binaural": [
+        "audio/binaural/R0117_segment_binaural.wav",
+        "22f45ed2a8c568c8fc94c06fbf189700"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0117_segment_ambisonics.wav",
+        "6db7277fc1fc91e924611200fbfe6d07"
+      ]
+    },
+    "R0118": {
+      "audio/binaural": [
+        "audio/binaural/R0118_segment_binaural.wav",
+        "9397aaa461efe548eb8e540c7a04fba6"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0118_segment_ambisonics.wav",
+        "dba33274ab130ac4be4e2b0ce5abf221"
+      ]
+    },
+    "R0119": {
+      "audio/binaural": [
+        "audio/binaural/R0119_segment_binaural.wav",
+        "50ff0ba6f44ee941f7bb40b0a2af3c70"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0119_segment_ambisonics.wav",
+        "671c9c82bbc29ced8df016c6527dd5db"
+      ]
+    },
+    "R0120": {
+      "audio/binaural": [
+        "audio/binaural/R0120_segment_binaural.wav",
+        "031c1ce6cfb5b7b11720f6119f31303c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0120_segment_ambisonics.wav",
+        "2b3c9ff3b4ae35c8e87ddb142c2b07f3"
+      ]
+    },
+    "R0121": {
+      "audio/binaural": [
+        "audio/binaural/R0121_segment_binaural.wav",
+        "4b8de65a5cce2275ef9a2e9a2ab60224"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0121_segment_ambisonics.wav",
+        "455ed2853b77e9b86ff4ef6f6075efdb"
+      ]
+    },
+    "R0122": {
+      "audio/binaural": [
+        "audio/binaural/R0122_segment_binaural.wav",
+        "eb93ae39faca9a0bf162e74ead512bfe"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0122_segment_ambisonics.wav",
+        "5177aae862fa714965bbb4a5728816c0"
+      ]
+    },
+    "R0123": {
+      "audio/binaural": [
+        "audio/binaural/R0123_segment_binaural.wav",
+        "1bb2cd3a1af7dd03e993a99e05e4be33"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0123_segment_ambisonics.wav",
+        "d6618c4becd323a5d524ae0cb4fc3f7d"
+      ]
+    },
+    "R0124": {
+      "audio/binaural": [
+        "audio/binaural/R0124_segment_binaural.wav",
+        "e23170353054a062b57c3a7e745e439e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0124_segment_ambisonics.wav",
+        "8721777f3dcedfb2a5b7f9c70c0637cc"
+      ]
+    },
+    "R0125": {
+      "audio/binaural": [
+        "audio/binaural/R0125_segment_binaural.wav",
+        "e0c5073f290cc5403fd5cb0b5c792653"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0125_segment_ambisonics.wav",
+        "1ea18bbd5164a4158b16ea241a1a6cba"
+      ]
+    },
+    "R0126": {
+      "audio/binaural": [
+        "audio/binaural/R0126_segment_binaural.wav",
+        "50ebfd6b67c5c122f6ccdd7e4cb6ceec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0126_segment_ambisonics.wav",
+        "400c9cf2de346daaf1ea24b886621210"
+      ]
+    },
+    "R0127": {
+      "audio/binaural": [
+        "audio/binaural/R0127_segment_binaural.wav",
+        "8ca10658a183b08cf075bc965bd74f78"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0127_segment_ambisonics.wav",
+        "58eec6fa453f46f70e564889e49164ad"
+      ]
+    },
+    "R0128": {
+      "audio/binaural": [
+        "audio/binaural/R0128_segment_binaural.wav",
+        "346f34c4ed796cda21bf20ad7fa28178"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0128_segment_ambisonics.wav",
+        "88efaeb6da7d259bbfbd350df5b8d909"
+      ]
+    },
+    "R0129": {
+      "audio/binaural": [
+        "audio/binaural/R0129_segment_binaural.wav",
+        "127f0bae3f67642db60f71f20c0857d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0129_segment_ambisonics.wav",
+        "315b1f18348e7fcc443a55759e834425"
+      ]
+    },
+    "R0130": {
+      "audio/binaural": [
+        "audio/binaural/R0130_segment_binaural.wav",
+        "339caad5ba79c55e2f4fddfe60411b2f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0130_segment_ambisonics.wav",
+        "bf53e536c0da983e2cafbc682d494875"
+      ]
+    },
+    "R0131": {
+      "audio/binaural": [
+        "audio/binaural/R0131_segment_binaural.wav",
+        "c99b9cc83dd467646dc7832b237fe8bc"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0131_segment_ambisonics.wav",
+        "09674a10cc22a1c1f8fe16d9878420dd"
+      ]
+    },
+    "R0132": {
+      "audio/binaural": [
+        "audio/binaural/R0132_segment_binaural.wav",
+        "97552e686ad6ff2a14174acd2d61962a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0132_segment_ambisonics.wav",
+        "52e633c3214c4dcd892a8b612a58be79"
+      ]
+    },
+    "R0133": {
+      "audio/binaural": [
+        "audio/binaural/R0133_segment_binaural.wav",
+        "7634724d6a8a338244d808077f234921"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0133_segment_ambisonics.wav",
+        "fa1551c51c98fbd80b5e2590b5863862"
+      ]
+    }
+  },
+  "metadata": {
+    "spl": [
+      "SotW_LAeq_binaural_average_LR.xlsx",
+      "d001b32ad3ed7c7954f59784690e0875"
+    ]
+  }
+}

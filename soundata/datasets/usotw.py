@@ -63,7 +63,7 @@ VIDEO_FILENAME = "R{:04d}_segment_ambisonics_headphones_highres.360.mono.mov"
 AMBISONICS_FILENAME = "R{:04d}_segment_ambisonics.wav"
 BINAURAL_FILENAME = "R{:04d}_segment_binaural.wav"
 
-LAEQ_METADATA_URL = "http://urban-soundscapes.org/wp-content/uploads/2021/06/SotW_LAeq_binaural_average_LR.xlsx"
+LAEQ_METADATA_URL = "https://urban-soundscapes.org/wp-content/uploads/2021/06/SotW_LAeq_binaural_average_LR.xlsx"
 
 NAME = "usotw"
 
@@ -141,13 +141,17 @@ class Dataset(core.Dataset):
         include_spatiotemporal: bool = False,
         data_home: Optional[str] = None,
     ):
+        if include_video:
+            raise NotImplementedError
+        
+        print(os.path.dirname(os.path.realpath(__file__)))
 
         remotes = self._make_remotes(
             audio_format=audio_format,
             include_video=include_video,
             index_path=os.path.join(
                 os.path.dirname(os.path.realpath(__file__)),
-                "datasets/indexes",
+                "../datasets/indexes",
                 "{}_index.json".format(NAME),
             ),
         )
@@ -187,7 +191,7 @@ class Dataset(core.Dataset):
         track_ids = np.delete(np.arange(1, MAX_INDEX + 1), EXCLUDED_TRACKS)
         
         with open(index_path) as fhandle:
-            checksums = json.load(fhandle)
+            checksums = json.load(fhandle)['clips']
 
         remotes = {}
 
@@ -238,7 +242,7 @@ class Dataset(core.Dataset):
             remotes.update(video_remotes)
 
         remotes["spl"] = download_utils.RemoteFileMetadata(
-            filename=LAEQ_METADATA_URL,
+            filename=LAEQ_METADATA_URL.split('/')[-1],
             url=LAEQ_METADATA_URL,
             checksum="d001b32ad3ed7c7954f59784690e0875",
         )
@@ -259,12 +263,13 @@ class Dataset(core.Dataset):
                     os.path.join(self.data_home, "audio/ambisonics"),
                     exist_ok=force_overwrite,
                 )
+                
             if self.include_video:
                 os.makedirs(
                     os.path.join(self.data_home, "video"), exist_ok=force_overwrite
                 )
         except:
-            logging.info(
+            logging.warn(
                 "Download directories already exist."
                 + "Rerun with force_overwrite=True to delete the files and force the download."
             )
@@ -272,145 +277,10 @@ class Dataset(core.Dataset):
         # download the files as usual
         return super().download(partial_download, force_overwrite, cleanup)
 
-
 if __name__ == "__main__":
-    # TODO: remove
-    """
-    def download_from_remote(remote, save_dir, force_overwrite):
-
-        if remote.destination_dir is None:
-            download_dir = save_dir
-        else:
-            download_dir = os.path.join(save_dir, remote.destination_dir)
-
-        if not os.path.exists(download_dir):
-            os.makedirs(download_dir)
-
-        download_path = os.path.join(download_dir, remote.filename)
-
-        if not os.path.exists(download_path) or force_overwrite:
-            # if we got here, we want to overwrite any existing file
-            if os.path.exists(download_path):
-                os.remove(download_path)
-
-            # If file doesn't exist or we want to overwrite, download it
-            with download_utils.DownloadProgressBar(
-                unit="B", unit_scale=True, unit_divisor=1024, miniters=1
-            ) as t:
-                try:
-                    urllib.request.urlretrieve(
-                        remote.url,
-                        filename=download_path,
-                        reporthook=t.update_to,
-                        data=None,
-                    )
-                except Exception as exc:
-                    raise exc
-        else:
-            logging.info(
-                "{} already exists and will not be downloaded. ".format(download_path)
-                + "Rerun with force_overwrite=True to delete this file and force the download."
-            )
-
-        # checksum = md5(download_path)
-        # if remote.checksum != checksum:
-
-        #     raise IOError(
-        #         "{} has an MD5 checksum ({}) "
-        #         "differing from expected ({}), "
-        #         "file may be corrupted.".format(download_path, checksum, remote.checksum)
-        #     )
-        return download_path
-
-    def downloader(
-        save_dir,
-        remotes=None,
-        partial_download=None,
-        info_message=None,
-        force_overwrite=True,
-        cleanup=False,
-    ):
-
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
-
-        if cleanup:
-            logging.warning(
-                "Zip and tar files will be deleted after they are uncompressed. "
-                + "If you download this dataset again, it will overwrite existing files, even if force_overwrite=False"
-            )
-
-        if remotes is not None:
-            if partial_download is not None:
-                # check the keys in partial_download are in the download dict
-                if not isinstance(partial_download, list) or any(
-                    [k not in remotes for k in partial_download]
-                ):
-                    raise ValueError(
-                        "partial_download must be a list which is a subset of {}, but got {}".format(
-                            list(remotes.keys()), partial_download
-                        )
-                    )
-                objs_to_download = partial_download
-            else:
-                objs_to_download = list(remotes.keys())
-
-            logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
-
-            for k in objs_to_download:
-
-                if isinstance(remotes[k], list):
-                    if all([remote.filename[-4:-2] == ".z" for remote in remotes[k]]):
-                        download_utils.download_multipart_zip(
-                            remotes[k], save_dir, force_overwrite, cleanup
-                        )
-                    else:
-                        raise NotImplementedError("Only multipart zip supported.")
-
-                else:
-
-                    logging.info("[{}] downloading {}".format(k, remotes[k].filename))
-                    extension = os.path.splitext(remotes[k].filename)[-1]
-                    if ".zip" in extension:
-                        download_utils.download_zip_file(
-                            remotes[k], save_dir, force_overwrite, cleanup
-                        )
-                    elif (
-                        ".gz" in extension or ".tar" in extension or ".bz2" in extension
-                    ):
-                        download_utils.download_tar_file(
-                            remotes[k], save_dir, force_overwrite, cleanup
-                        )
-                    else:
-                        download_from_remote(remotes[k], save_dir, force_overwrite)
-
-                    if remotes[k].unpack_directories:
-                        for src_dir in remotes[k].unpack_directories:
-
-                            # path to destination directory
-                            destination_dir = (
-                                os.path.join(save_dir, remotes[k].destination_dir)
-                                if remotes[k].destination_dir
-                                else save_dir
-                            )
-                            # path to directory to unpack
-                            source_dir = os.path.join(destination_dir, src_dir)
-
-                            if not os.path.exists(source_dir):
-                                logging.info(
-                                    "Data not downloaded, because it probably already exists on your computer. "
-                                    + "Run .validate() to check, or rerun with force_overwrite=True to delete any "
-                                    + "existing files and download from scratch"
-                                )
-                                return
-
-                            download_utils.move_directory_contents(
-                                source_dir, destination_dir
-                            )
-
-        if info_message is not None:
-            logging.info(info_message.format(save_dir))
-
-    remotes = Dataset._make_remotes("all", True)
-    downloader("/home/karn/sound_datasets/usotw-tests2", remotes)
-    """
+    ds = Dataset(audio_format="all", data_home="/home/karn/sound_datasets/usotw-tests2")
+    # ds.download(partial_download=['spl'])
+    
+    # print(ds._index)
+    
+    ds.validate(verbose=True)
