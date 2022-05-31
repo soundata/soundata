@@ -148,7 +148,7 @@ class BaseClip(core.Clip, ABC):
         self.video_path = self.get_path("video")
 
     @property
-    def ambisonics_audio(self) -> np.ndarray:
+    def ambisonics_audio(self) -> Optional[np.ndarray]:
         """The clip's ambisonics audio.
 
         Returns:
@@ -160,7 +160,7 @@ class BaseClip(core.Clip, ABC):
             raise FileNotFoundError(AMBISONICS_FILE_NOT_FOUND_ERROR)
 
     @property
-    def binaural_audio(self) -> np.ndarray:
+    def binaural_audio(self) -> Optional[np.ndarray]:
         """The clip's binaural audio.
 
         Returns:
@@ -285,7 +285,7 @@ class BinauralClipWithVideo(BinauralClip):
         self.audio_path = self.audio_path_dict["binaural"]
 
     @property
-    def video(self) -> np.ndarray:
+    def video(self) -> Optional[np.ndarray]:
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
@@ -301,7 +301,7 @@ class AmbisonicsClipWithVideo(AmbisonicsClip):
         self.audio_path = self.audio_path_dict["ambisonics"]
 
     @property
-    def video(self) -> np.ndarray:
+    def video(self) -> Optional[np.ndarray]:
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
@@ -452,7 +452,7 @@ class Dataset(core.Dataset):
         spl_df["spl"] = spl_df.apply(
             lambda r: np.array([r["LAeq_L"], r["LAeq_R"]]), axis=1
         )
-        metadata = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
+        metadata: Dict[str, Any] = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
 
         if self.include_spatiotemporal:
             spatiotemporal = self.scrape_web()
