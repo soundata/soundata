@@ -119,7 +119,7 @@ def load_video(fhandle) -> np.ndarray:
     return data
 
 
-class BaseClip(core.Clip, ABC):
+class BaseClip(core.Clip):
     """Urban Soundscapes of the World Clip class
 
     Args:
@@ -462,15 +462,17 @@ class Dataset(core.Dataset):
         spl_df["spl"] = spl_df.apply(
             lambda r: np.array([r["LAeq_L"], r["LAeq_R"]]), axis=1
         )
-        metadata = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
+        temp_metadata = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
 
         if self.include_spatiotemporal:
             spatiotemporal: Dict[str, Any] = self.scrape_web()
 
             metadata: Dict[str, Any] = {
-                id: {**metadata[id], **spatiotemporal[id]}
+                id: {**temp_metadata[id], **spatiotemporal[id]}
                 for id in (spatiotemporal.keys() & metadata.keys())
             }
+        else:
+            metadata = temp_metadata
 
         return metadata
 

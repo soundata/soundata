@@ -37,6 +37,7 @@ if __name__ == "__main__":
             "numpy>=1.16, <=1.20",
             "jams",
             "requests",
+            "types-requests",
             "pandas",
             "openpyxl", # usotw
             "lxml", # usotw
