@@ -462,9 +462,7 @@ class Dataset(core.Dataset):
         spl_df["spl"] = spl_df.apply(
             lambda r: np.array([r["LAeq_L"], r["LAeq_R"]]), axis=1
         )
-        metadata = spl_df.set_index("Recording")[["spl"]].to_dict(
-            orient="index"
-        )
+        metadata = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
 
         if self.include_spatiotemporal:
             spatiotemporal: Dict[str, Any] = self.scrape_web()
