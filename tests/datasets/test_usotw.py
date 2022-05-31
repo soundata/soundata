@@ -292,7 +292,9 @@ class TestClipProperties:
 
 class TestLoad:
     default_clipid = "R0001"
-    dataset = usotw.Dataset(data_home=TEST_DATA_HOME, include_spatiotemporal=False, include_video=True)
+    dataset = usotw.Dataset(
+        data_home=TEST_DATA_HOME, include_spatiotemporal=False, include_video=True
+    )
     clip = dataset.clip(default_clipid)
 
     def test_load_ambisonics(self):
