@@ -28,7 +28,7 @@ Urban Soundscapes of the World
 import json
 import logging
 import os
-from typing import Optional
+from typing import Any, Dict, Optional, Union
 from abc import ABC
 
 import librosa
@@ -91,7 +91,7 @@ DEFAULT_FORMAT_CONFLICT_WARNING = "Only one audio format is selected but the def
 
 
 @io.coerce_to_bytes_io
-def load_audio(fhandle):
+def load_audio(fhandle) -> np.ndarray:
     """
     Load a Example audio file.
 
@@ -105,7 +105,7 @@ def load_audio(fhandle):
     return data
 
 
-def load_video(fhandle):
+def load_video(fhandle) -> np.ndarray:
     """
     Load a Example video file.
 
@@ -148,7 +148,7 @@ class BaseClip(core.Clip, ABC):
         self.video_path = self.get_path("video")
 
     @property
-    def ambisonics_audio(self):
+    def ambisonics_audio(self) -> np.ndarray:
         """The clip's ambisonics audio.
 
         Returns:
@@ -160,7 +160,7 @@ class BaseClip(core.Clip, ABC):
             raise FileNotFoundError(AMBISONICS_FILE_NOT_FOUND_ERROR)
 
     @property
-    def binaural_audio(self):
+    def binaural_audio(self) -> np.ndarray:
         """The clip's binaural audio.
 
         Returns:
@@ -180,7 +180,7 @@ class BaseClip(core.Clip, ABC):
         """
         return self._clip_metadata["spl"]
 
-    def get_scraped_metadata(self, name):
+    def get_scraped_metadata(self, name) -> Optional[Any]:
         value = self._clip_metadata.get(name, None)
         if value is None:
             logging.warning(
@@ -319,7 +319,7 @@ class Dataset(core.Dataset):
         data_home: Optional[str] = None,
         audio_format: str = "all",
         default_format: str = None,
-        include_video: bool = False,
+        include_video: bool = True,
         include_spatiotemporal: bool = False,
         spatiotemporal_from_archive: bool = True,
     ):
@@ -378,7 +378,7 @@ class Dataset(core.Dataset):
             spatiotemporal_from_archive and include_spatiotemporal
         )
 
-    def scrape_web(self):
+    def scrape_web(self) -> Dict[str, Union[np.ndarray, np.datetime64, int, str]]:
         from bs4 import BeautifulSoup
 
         if self.spatiotemporal_from_archive:
@@ -445,7 +445,7 @@ class Dataset(core.Dataset):
         return metadata
 
     @core.cached_property
-    def _metadata(self):
+    def _metadata(self) -> Dict[str, Union[np.ndarray, np.datetime64, int, str]]:
 
         spl_path = os.path.join(self.data_home, LAEQ_METADATA_URL.split("/")[-1])
         spl_df = pd.read_excel(spl_path)
@@ -469,7 +469,7 @@ class Dataset(core.Dataset):
         index_path: str,
         audio_format: str,
         include_video: bool = False,
-    ):
+    ) -> Dict[str, download_utils.RemoteFileMetadata]:
 
         track_ids = np.delete(np.arange(1, MAX_INDEX + 1), EXCLUDED_TRACKS)
 
@@ -585,15 +585,18 @@ class Dataset(core.Dataset):
 
         if not self.include_video:
             for track in index["clips"]:
-                index["clips"][track].pop("video")
+                if "video" in index["clips"][track]:
+                    index["clips"][track].pop("video")
 
         if self.audio_format == "binaural":
             for track in index["clips"]:
-                index["clips"][track].pop("audio/ambisonics")
+                if "audio/ambisonics" in index["clips"][track]:
+                    index["clips"][track].pop("audio/ambisonics")
 
         if self.audio_format == "ambisonics":
             for track in index["clips"]:
-                index["clips"][track].pop("audio/binaural")
+                if "audio/binaural" in index["clips"][track]:
+                    index["clips"][track].pop("audio/binaural")
 
         missing_files, invalid_checksums = validate.validator(
             index, self.data_home, verbose=verbose
