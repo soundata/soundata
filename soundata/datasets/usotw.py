@@ -466,7 +466,7 @@ class Dataset(core.Dataset):
     def _metadata(self) -> Dict[str, Union[np.ndarray, np.datetime64, int, str]]:
 
         spl_path = os.path.join(self.data_home, LAEQ_METADATA_URL.split("/")[-1])
-        spl_df = pd.read_excel(spl_path)
+        spl_df = pd.read_excel(spl_path, engine="openpyxl")
         spl_df["spl"] = spl_df.apply(
             lambda r: np.array([r["LAeq_L"], r["LAeq_R"]]), axis=1
         )
