@@ -6,21 +6,22 @@ Urban Soundscapes of the World
     
     *Urban Soundscapes of the World*
     
-    *Created by:*
+    *Created by:* 
+        Prof. Bert De Coensel (WAVES Research Group, Department of Information Technology, Ghent University) and others (please see https://urban-soundscapes.org/cities/). 
         
     *Description:*
+        A main goal of the Urban Soundscapes of the World project is to create a reference database of examples of urban acoustic environments, consisting of high-quality immersive audiovisual recordings (360-degree video and spatial audio), in adherence to ISO 12913-2. Ultimately, this database may set the scope for immersive recording and reproducing urban acoustic environments with soundscape in mind.
         
     *This dataset is also accessible via:*
-        - Zenodo (labelled subset only): https://zenodo.org/record/5645825
-        - DR-NTU (all): https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/Y8UQ6F
+        https://urban-soundscapes.org/
         
-    *Please Acknowledge SINGA:PURA in Academic Research:*
-        If you use this dataset please cite its original publication:
+    *Please Acknowledge Urban Soundscapes of the World in Academic Research:*
+        If you use this dataset please cite its original publication below, as well as relevant works listed in https://urban-soundscapes.org/publications/.
         
-        K. Ooi, K. N. Watcharasupat, S. Peksi, F. A. Karnapi, Z.-T. Ong, D. Chua, H.-W. Leow, L.-L. Kwok, X.-L. Ng, Z.-A. Loh, W.-S. Gan, "A Strongly-Labelled Polyphonic Dataset of Urban Sounds with Spatiotemporal Context," in Proceedings of the 13th Asia Pacific Signal and Information Processing Association Annual Summit and Conference, 2021.
+        B. De Coensel, K. Sun and D. Botteldooren. Urban Soundscapes of the World: selection and reproduction of urban acoustic environments with soundscape in mind. In Proceedings of the 46th International Congress and Exposition on Noise Control Engineering (Inter·noise), Hong Kong (2017).
         
     *License:*
-        Creative Commons Attribution-ShareAlike 4.0 International.
+        Not stated by the creators.
 
 """
 
@@ -32,17 +33,25 @@ from typing import Optional
 import librosa
 import numpy as np
 import pandas as pd
-import urllib
 
 import requests
-from soundata import core, download_utils, io, jams_utils
+from soundata import core, download_utils, io, jams_utils, validate
 import skvideo.io
 
 # -- Add any relevant citations here
-BIBTEX = "???"
+BIBTEX = """
+@inproceedings{de2017urban,
+  title={Urban Soundscapes of the World: selection and reproduction of urban acoustic environments with soundscape in mind},
+  author={De Coensel, Bert and Sun, Kang and Botteldooren, Dick},
+  booktitle={Proceedings of the 46th International Congress and Exposition on Noise Control Engineering},
+  pages={5407--5413},
+  year={2017},
+  organization={Institute of Noise Control Engineering}
+}
+"""
 
 # -- Include the dataset's license information
-LICENSE_INFO = "??"
+LICENSE_INFO = "Not Stated by Creators."
 
 MAX_INDEX = 133  # as of 18 May 2022
 EXCLUDED_TRACKS = [
@@ -67,6 +76,11 @@ LAEQ_METADATA_URL = "https://urban-soundscapes.org/wp-content/uploads/2021/06/So
 
 NAME = "usotw"
 
+VIDEO_NOT_FOUND_ERROR = "Video file not found. Make sure that the video has been downloaded, by setting `include_video` to True in the dataset class."
+
+DEFAULT_FORMAT_NOT_SPECIFIED_WARNING = "The audio format is set to `all` but the default format is not specified. The `audio` property of the clip will return the ambisonics format."
+DEFAULT_FORMAT_CONFLICT_WARNING = "Only one audio format is selected but the default format is not the same as audio format. Setting `default_format` to `audio_format`."
+
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle):
@@ -82,7 +96,7 @@ def load_audio(fhandle):
     data, _ = librosa.load(fhandle, sr=48000, mono=False)
     return data
 
-@io.coerce_to_bytes_io
+
 def load_video(fhandle):
     """
     Load a Example video file.
@@ -96,7 +110,8 @@ def load_video(fhandle):
     data = skvideo.io.vread(fhandle)
     return data
 
-class Clip(core.Clip):
+
+class BaseClip(core.Clip):
     """Urban Soundscapes of the World Clip class
 
     Args:
@@ -117,18 +132,40 @@ class Clip(core.Clip):
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
-        self.audio_path = self.get_path("audio")
-        self.jams_path = self.get_path("jams")
-        self.txt_path = self.get_path("txt")
+        self.audio_path_dict = {
+            "ambisonics": self.get_path("audio/ambisonics"),
+            "binaural": self.get_path("audio/binaural"),
+        }
+        self.audio_path = None
+        self.video_path = self.get_path("video")
 
     @property
-    def audio(self) -> np.ndarray:
-        """The clip's audio
+    def ambisonics_audio(self):
+        """The clip's ambisonics audio.
 
         Returns:
             * np.ndarray - audio signal
         """
-        return load_audio(self.audio_path)
+        if os.path.exists(self.audio_path_dict["ambisonics"]):
+            return load_audio(self.audio_path_dict["ambisonics"])
+        else:
+            raise ValueError(
+                "Ambisonics audio file not found. Make sure that the audio has been downloaded."
+            )
+
+    @property
+    def binaural_audio(self):
+        """The clip's binaural audio.
+
+        Returns:
+            * np.ndarray - audio signal
+        """
+        if os.path.exists(self.audio_path_dict["binaural"]):
+            return load_audio(self.audio_path_dict["binaural"])
+        else:
+            raise ValueError(
+                "Binaural audio file not found. Make sure that the audio has been downloaded."
+            )
 
     @property
     def spl(self) -> np.ndarray:
@@ -143,7 +180,7 @@ class Clip(core.Clip):
         value = self._clip_metadata.get(name, None)
         if value is None:
             logging.warning(
-                f"The {name} field was not found for clip {self.clip_id}. "
+                f"The {name} field was not found for clip {self.clip_id}. Returning None."
                 "Please make sure `include_spatiotemporal` is set to True when the dataset was initialized."
             )
 
@@ -151,22 +188,47 @@ class Clip(core.Clip):
 
     @property
     def city(self) -> Optional[str]:
+        """Name of the city where the clip was recorded. Returns None if `include_spatiotemporal` is set to False in the dataset class.
+
+        Returns:
+            * str or None - city name
+        """
         return self.get_scraped_metadata("city")
 
     @property
     def location(self) -> Optional[str]:
+        """Name of the location where the clip was recorded. Returns None if `include_spatiotemporal` is set to False in the dataset class.
+
+        Returns:
+            * str or None - location name
+        """
         return self.get_scraped_metadata("location")
 
     @property
     def date(self) -> Optional[np.datetime64]:
+        """Date when the clip was recorded. Returns None if `include_spatiotemporal` is set to False in the dataset class.
+
+        Returns:
+            * np.datetime64 or None - date of recording
+        """
         return self.get_scraped_metadata("date")
 
     @property
     def dotw(self) -> Optional[int]:
+        """Day of the week when the clip was recorded, starting from 0 for Sunday. Returns None if `include_spatiotemporal` is set to False in the dataset class.
+
+        Returns:
+            * int or None - day of the week
+        """
         return self.get_scraped_metadata("dotw")
 
     @property
     def coordinates(self) -> Optional[np.ndarray]:
+        """Coordinates of the location where the clip was recorded. Returns None if `include_spatiotemporal` is set to False in the dataset class.
+
+        Returns:
+            * np.ndarray or None - location coordinates
+        """
         return self.get_scraped_metadata("coordinates")
 
     def to_jams(self):
@@ -180,6 +242,87 @@ class Clip(core.Clip):
             audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
+    @property
+    def audio(self) -> np.ndarray:
+        """The clip's audio. Loads whichever format of audio file is available. If both ambisonics and binaural files are available, the binaural file is returned.
+
+        Returns:
+            * np.ndarray - audio signal
+        """
+        if self.audio_path is not None:
+            return load_audio(self.audio_path)
+        elif os.path.exists(self.audio_path_dict["binaural"]):
+            return load_audio(self.audio_path_dict["binaural"])
+        elif os.path.exists(self.audio_path_dict["ambisonics"]):
+            return load_audio(self.audio_path_dict["ambisonics"])
+        else:
+            raise ValueError(
+                "Neither ambisonics nor binaural audio file was found. Make sure that the audio has been downloaded."
+            )
+
+
+class BinauralClip(BaseClip):
+
+    __doc__ = BaseClip.__doc__
+
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
+
+        self.audio_path = self.audio_path_dict["binaural"]
+
+    @property
+    def audio(self) -> np.ndarray:
+        """The clip's audio. Loads whichever format of audio file is available. If both ambisonics and binaural files are available, the binaural file is returned.
+
+        Returns:
+            * np.ndarray - audio signal
+        """
+
+        return load_audio(self.audio_path_dict["binaural"])
+
+
+class AmbisonicsClip(BaseClip):
+    __doc__ = BaseClip.__doc__
+
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
+
+        self.audio_path = self.audio_path_dict["ambisonics"]
+
+
+@core.docstring_inherit(BaseClip)
+class BinauralClipWithVideo(BinauralClip):
+    __doc__ = BaseClip.__doc__
+
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
+
+        self.audio_path = self.audio_path_dict["binaural"]
+
+    @property
+    def video(self) -> np.ndarray:
+        if os.path.exists(self.video_path):
+            return load_video(self.video_path)
+        else:
+            raise ValueError(VIDEO_NOT_FOUND_ERROR)
+
+
+class AmbisonicsClipWithVideo(AmbisonicsClip):
+    __doc__ = BaseClip.__doc__
+
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
+
+        self.audio_path = self.audio_path_dict["ambisonics"]
+
+    @property
+    def video(self) -> np.ndarray:
+        if os.path.exists(self.video_path):
+            return load_video(self.video_path)
+        else:
+            raise ValueError(VIDEO_NOT_FOUND_ERROR)
+
+
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
@@ -188,12 +331,21 @@ class Dataset(core.Dataset):
 
     def __init__(
         self,
-        audio_format: str,
+        audio_format: str = "all",
+        default_format: str = None,
         include_video: bool = False,
         include_spatiotemporal: bool = False,
         spatiotemporal_from_archive: bool = True,
         data_home: Optional[str] = None,
     ):
+        audio_format = audio_format.lower()
+        assert audio_format in ["ambisonics", "binaural", "all"]
+
+        default_format = (
+            default_format if default_format is None else default_format.lower()
+        )
+        assert default_format in ["ambisonics", "binaural", None]
+
         remotes = self._make_remotes(
             audio_format=audio_format,
             include_video=include_video,
@@ -204,10 +356,30 @@ class Dataset(core.Dataset):
             ),
         )
 
+        if audio_format == "all":
+            if default_format is None:
+                logging.warning(DEFAULT_FORMAT_NOT_SPECIFIED_WARNING)
+                default_format = "ambisonics"
+        else:
+            if default_format is not None and default_format != audio_format:
+                logging.warning(DEFAULT_FORMAT_CONFLICT_WARNING)
+            default_format = audio_format
+
+        if include_video:
+            clip_class = {
+                "ambisonics": AmbisonicsClipWithVideo,
+                "binaural": BinauralClipWithVideo,
+            }[default_format]
+        else:
+            clip_class = {
+                "ambisonics": AmbisonicsClip,
+                "binaural": BinauralClip,
+            }[default_format]
+
         super().__init__(
             data_home,
             name=NAME,
-            clip_class=Clip,
+            clip_class=clip_class,
             bibtex=BIBTEX,
             remotes=remotes,
             license_info=LICENSE_INFO,
@@ -301,7 +473,8 @@ class Dataset(core.Dataset):
             spatiotemporal = self.scrape_web()
 
             metadata = {
-                id: {**metadata[id], **spatiotemporal[id]} for id in spatiotemporal
+                id: {**metadata[id], **spatiotemporal[id]}
+                for id in (spatiotemporal.keys() & metadata.keys())
             }
 
         return metadata
@@ -312,9 +485,6 @@ class Dataset(core.Dataset):
         audio_format: str,
         include_video: bool = False,
     ):
-
-        audio_format = audio_format.lower()
-        assert audio_format in ["ambisonics", "binaural", "all"]
 
         track_ids = np.delete(np.arange(1, MAX_INDEX + 1), EXCLUDED_TRACKS)
 
@@ -406,91 +576,51 @@ class Dataset(core.Dataset):
         # download the files as usual
         return super().download(partial_download, force_overwrite, cleanup)
 
+    @core.copy_docs(load_audio)
+    def load_audio(self, *args, **kwargs):
+        return load_audio(*args, **kwargs)
+
+    @core.copy_docs(load_video)
+    def load_video(self, *args, **kwargs):
+        return load_video(*args, **kwargs)
+
+    def validate(self, verbose=True):
+        """Validate if the stored dataset is a valid version
+
+        Args:
+            verbose (bool): If False, don't print output
+
+        Returns:
+            * list - files in the index but are missing locally
+            * list - files which have an invalid checksum
+
+        """
+
+        index = self._index
+
+        if not self.include_video:
+            for track in index["clips"]:
+                index["clips"][track].pop("video")
+
+        if self.audio_format == "binaural":
+            for track in index["clips"]:
+                index["clips"][track].pop("audio/ambisonics")
+
+        if self.audio_format == "ambisonics":
+            for track in index["clips"]:
+                index["clips"][track].pop("audio/binaural")
+
+        missing_files, invalid_checksums = validate.validator(
+            index, self.data_home, verbose=verbose
+        )
+        return missing_files, invalid_checksums
+
 
 if __name__ == "__main__":
     ds = Dataset(
-        audio_format="all",
-        include_video=True,
+        audio_format="ambisonics",
+        include_video=False,
         data_home="/home/karn/sound_datasets/usotw-tests2",
     )
 
-    ds._metadata
-
-    def download_from_remote(remote, save_dir, force_overwrite):
-        """Download a remote dataset into path
-        Fetch a dataset pointed by remote's url, save into path using remote's
-        filename and ensure its integrity based on the MD5 Checksum of the
-        downloaded file.
-
-        Adapted from scikit-learn's sklearn.datasets.base._fetch_remote.
-
-        Args:
-            remote (RemoteFileMetadata): Named tuple containing remote dataset
-                meta information: url, filename and checksum
-            save_dir (str): Directory to save the file to. Usually `data_home`
-            force_overwrite  (bool):
-                If True, overwrite existing file with the downloaded file.
-                If False, does not overwrite, but checks that checksum is consistent.
-
-        Returns:
-            str: Full path of the created file.
-
-        """
-        if remote.destination_dir is None:
-            download_dir = save_dir
-        else:
-            download_dir = os.path.join(save_dir, remote.destination_dir)
-
-        if not os.path.exists(download_dir):
-            os.makedirs(download_dir)
-
-        download_path = os.path.join(download_dir, remote.filename)
-
-        if not os.path.exists(download_path) or force_overwrite:
-            # if we got here, we want to overwrite any existing file
-            if os.path.exists(download_path):
-                os.remove(download_path)
-
-            # If file doesn't exist or we want to overwrite, download it
-            with download_utils.DownloadProgressBar(
-                unit="B", unit_scale=True, unit_divisor=1024, miniters=1
-            ) as t:
-                try:
-                    urllib.request.urlretrieve(
-                        remote.url,
-                        filename=download_path,
-                        reporthook=t.update_to,
-                        data=None,
-                    )
-                except Exception as exc:
-                    error_msg = """
-                                soundata failed to download the dataset from {}!
-                                Please try again in a few minutes.
-                                If this error persists, please raise an issue at
-                                https://github.com/soundata/soundata,
-                                and tag it with 'broken-link'.
-                                """.format(
-                        remote.url
-                    )
-                    logging.error(error_msg)
-                    raise exc
-        else:
-            logging.info(
-                "{} already exists and will not be downloaded. ".format(download_path)
-                + "Rerun with force_overwrite=True to delete this file and force the download."
-            )
-
-        # checksum = md5(download_path)
-        # if remote.checksum != checksum:
-
-        #     raise IOError(
-        #         "{} has an MD5 checksum ({}) "
-        #         "differing from expected ({}), "
-        #         "file may be corrupted.".format(download_path, checksum, remote.checksum)
-        #     )
-        return download_path
-
-    # rm = {v: r for v, r in ds.remotes.items() if v.startswith("video")}
-
-    # for r in rm:
-    #     download_from_remote(rm[r], ds.data_home, force_overwrite=True)
+    ds.validate()

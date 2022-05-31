@@ -1,9 +1,9 @@
 import argparse
-import glob
 import json
 import os
 
 import numpy as np
+from tqdm import tqdm
 from soundata.validate import md5
 
 MAX_INDEX = 133  # as of 18 May 2022
@@ -18,15 +18,12 @@ EXCLUDED_TRACKS = [
 
 DATASET_INDEX_PATH = "../soundata/datasets/indexes/usotw_index.json"
 
-INCLUDE_VIDEO = False
-
-
 def make_dataset_index(dataset_data_path):
     track_ids = np.delete(np.arange(1, MAX_INDEX + 1), EXCLUDED_TRACKS)
 
     # top-key level tracks
     index_tracks = {}
-    for track_id in track_ids:
+    for track_id in tqdm(track_ids):
 
         foa_filename = "audio/ambisonics/R{:04d}_segment_ambisonics.wav".format(
             track_id
@@ -42,27 +39,25 @@ def make_dataset_index(dataset_data_path):
             )
         )
 
-        if INCLUDE_VIDEO:
-            video_filename = "video/R{:04d}_segment_ambisonics_headphones_highres.360.mono.mov".format(
-                track_id
+        video_filename = "video/spherical/R{:04d}_segment_ambisonics_headphones_highres.360.mono.mov".format(
+            track_id
+        )
+        video_checksum = md5(
+            os.path.join(
+                dataset_data_path,
+                video_filename,
             )
-            video_checksum = md5(
-                os.path.join(
-                    dataset_data_path,
-                    video_filename,
-                )
-            )
+        )
 
         index_tracks[f"R{track_id:04d}"] = {
             "audio/binaural": (bin_filename, bin_checksum),
             "audio/ambisonics": (foa_filename, foa_checksum),
         }
 
-        if INCLUDE_VIDEO:
-            index_tracks[f"R{track_id:04d}"]["video"] = (
-                video_filename,
-                video_checksum,
-            )
+        index_tracks[f"R{track_id:04d}"]["video"] = (
+            video_filename,
+            video_checksum,
+        )
 
     # top-key level version
     dataset_index = {"version": "20220517"}
