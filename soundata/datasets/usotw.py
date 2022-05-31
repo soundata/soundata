@@ -316,12 +316,12 @@ class Dataset(core.Dataset):
 
     def __init__(
         self,
+        data_home: Optional[str] = None,
         audio_format: str = "all",
         default_format: str = None,
         include_video: bool = False,
         include_spatiotemporal: bool = False,
         spatiotemporal_from_archive: bool = True,
-        data_home: Optional[str] = None,
     ):
         audio_format = audio_format.lower()
         assert audio_format in ["ambisonics", "binaural", "all"]
