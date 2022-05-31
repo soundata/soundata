@@ -182,7 +182,9 @@ class TestClipProperties:
             ["all", "binaural", "binaural", False],
         ],
     )
-    def test_metadata_no_scrape(self, audio_format, default_format, final_audio_format, include_video):
+    def test_metadata_no_scrape(
+        self, audio_format, default_format, final_audio_format, include_video
+    ):
 
         dataset = usotw.Dataset(
             audio_format=audio_format,
@@ -224,9 +226,9 @@ class TestClipProperties:
             "date": type(None),
             "dotw": type(None),
         }
-        
+
         if include_video:
-            expected_property_types['video'] = np.ndarray
+            expected_property_types["video"] = np.ndarray
 
         run_clip_tests(clip, expected_attributes, expected_property_types)
 

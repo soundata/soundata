@@ -247,7 +247,7 @@ class BaseClip(core.Clip, ABC):
         )
 
     @property
-    def audio(self) -> np.ndarray:
+    def audio(self) -> Optional[np.ndarray]:
         """The clip's audio. Loads whichever format of audio file is available. If both ambisonics and binaural files are available, the binaural file is returned.
 
         Returns:
@@ -452,12 +452,14 @@ class Dataset(core.Dataset):
         spl_df["spl"] = spl_df.apply(
             lambda r: np.array([r["LAeq_L"], r["LAeq_R"]]), axis=1
         )
-        metadata: Dict[str, Any] = spl_df.set_index("Recording")[["spl"]].to_dict(orient="index")
+        metadata = spl_df.set_index("Recording")[["spl"]].to_dict(
+            orient="index"
+        )
 
         if self.include_spatiotemporal:
-            spatiotemporal = self.scrape_web()
+            spatiotemporal: Dict[str, Any] = self.scrape_web()
 
-            metadata = {
+            metadata: Dict[str, Any] = {
                 id: {**metadata[id], **spatiotemporal[id]}
                 for id in (spatiotemporal.keys() & metadata.keys())
             }
