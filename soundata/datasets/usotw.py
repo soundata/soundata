@@ -29,6 +29,7 @@ import json
 import logging
 import os
 from typing import Optional
+from abc import ABC
 
 import librosa
 import numpy as np
@@ -77,6 +78,13 @@ LAEQ_METADATA_URL = "https://urban-soundscapes.org/wp-content/uploads/2021/06/So
 NAME = "usotw"
 
 VIDEO_NOT_FOUND_ERROR = "Video file not found. Make sure that the video has been downloaded, by setting `include_video` to True in the dataset class."
+AMBISONICS_FILE_NOT_FOUND_ERROR = (
+    "Ambisonics audio file not found. Make sure that the audio has been downloaded."
+)
+BINAURAL_FILE_NOT_FOUND_ERROR = (
+    "Binaural audio file not found. Make sure that the audio has been downloaded."
+)
+# AUDIO_FILE_NOT_FOUND_ERROR = "Neither ambisonics nor binaural audio file was found. Make sure that the audio has been downloaded."
 
 DEFAULT_FORMAT_NOT_SPECIFIED_WARNING = "The audio format is set to `all` but the default format is not specified. The `audio` property of the clip will return the ambisonics format."
 DEFAULT_FORMAT_CONFLICT_WARNING = "Only one audio format is selected but the default format is not the same as audio format. Setting `default_format` to `audio_format`."
@@ -111,7 +119,7 @@ def load_video(fhandle):
     return data
 
 
-class BaseClip(core.Clip):
+class BaseClip(core.Clip, ABC):
     """Urban Soundscapes of the World Clip class
 
     Args:
@@ -149,9 +157,7 @@ class BaseClip(core.Clip):
         if os.path.exists(self.audio_path_dict["ambisonics"]):
             return load_audio(self.audio_path_dict["ambisonics"])
         else:
-            raise ValueError(
-                "Ambisonics audio file not found. Make sure that the audio has been downloaded."
-            )
+            raise FileNotFoundError(AMBISONICS_FILE_NOT_FOUND_ERROR)
 
     @property
     def binaural_audio(self):
@@ -163,9 +169,7 @@ class BaseClip(core.Clip):
         if os.path.exists(self.audio_path_dict["binaural"]):
             return load_audio(self.audio_path_dict["binaural"])
         else:
-            raise ValueError(
-                "Binaural audio file not found. Make sure that the audio has been downloaded."
-            )
+            raise FileNotFoundError(BINAURAL_FILE_NOT_FOUND_ERROR)
 
     @property
     def spl(self) -> np.ndarray:
@@ -249,16 +253,7 @@ class BaseClip(core.Clip):
         Returns:
             * np.ndarray - audio signal
         """
-        if self.audio_path is not None:
-            return load_audio(self.audio_path)
-        elif os.path.exists(self.audio_path_dict["binaural"]):
-            return load_audio(self.audio_path_dict["binaural"])
-        elif os.path.exists(self.audio_path_dict["ambisonics"]):
-            return load_audio(self.audio_path_dict["ambisonics"])
-        else:
-            raise ValueError(
-                "Neither ambisonics nor binaural audio file was found. Make sure that the audio has been downloaded."
-            )
+        return load_audio(self.audio_path)
 
 
 class BinauralClip(BaseClip):
@@ -269,16 +264,6 @@ class BinauralClip(BaseClip):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.audio_path_dict["binaural"]
-
-    @property
-    def audio(self) -> np.ndarray:
-        """The clip's audio. Loads whichever format of audio file is available. If both ambisonics and binaural files are available, the binaural file is returned.
-
-        Returns:
-            * np.ndarray - audio signal
-        """
-
-        return load_audio(self.audio_path_dict["binaural"])
 
 
 class AmbisonicsClip(BaseClip):
@@ -304,7 +289,7 @@ class BinauralClipWithVideo(BinauralClip):
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
-            raise ValueError(VIDEO_NOT_FOUND_ERROR)
+            raise FileNotFoundError(VIDEO_NOT_FOUND_ERROR)
 
 
 class AmbisonicsClipWithVideo(AmbisonicsClip):
@@ -320,7 +305,7 @@ class AmbisonicsClipWithVideo(AmbisonicsClip):
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
-            raise ValueError(VIDEO_NOT_FOUND_ERROR)
+            raise FileNotFoundError(VIDEO_NOT_FOUND_ERROR)
 
 
 @core.docstring_inherit(core.Dataset)
@@ -411,7 +396,7 @@ class Dataset(core.Dataset):
             "div", class_="row"
         )
 
-        if len(items) != 127:
+        if len(items) != 127:  # pragma: no cover
             logging.warning(
                 "Expected 127 items from the webpage, got {}.".format(len(items))
             )
@@ -614,13 +599,3 @@ class Dataset(core.Dataset):
             index, self.data_home, verbose=verbose
         )
         return missing_files, invalid_checksums
-
-
-if __name__ == "__main__":
-    ds = Dataset(
-        audio_format="ambisonics",
-        include_video=False,
-        data_home="/home/karn/sound_datasets/usotw-tests2",
-    )
-
-    ds.validate()

@@ -292,27 +292,39 @@ class TestClipProperties:
 
 class TestLoad:
     default_clipid = "R0001"
-    dataset = usotw.Dataset(
-        data_home=TEST_DATA_HOME, include_spatiotemporal=False, include_video=True
-    )
-    clip = dataset.clip(default_clipid)
 
     def test_load_ambisonics(self):
-        audio = self.clip.ambisonics_audio
+        dataset = usotw.Dataset(
+            data_home=TEST_DATA_HOME, include_spatiotemporal=False, include_video=True
+        )
+        clip = dataset.clip(self.default_clipid)
+        audio = clip.ambisonics_audio
         trimmed_length = 2
         assert type(audio) == np.ndarray
         assert len(audio.shape) == 2  # check audio is loaded correctly
         assert audio.shape == (4, 48000 * trimmed_length)
 
     def test_load_binaural(self):
-        audio = self.clip.binaural_audio
+        dataset = usotw.Dataset(
+            data_home=TEST_DATA_HOME, include_spatiotemporal=False, include_video=True
+        )
+        clip = dataset.clip(self.default_clipid)
+        audio = clip.binaural_audio
         trimmed_length = 2
         assert type(audio) == np.ndarray
         assert len(audio.shape) == 2  # check audio is loaded correctly
         assert audio.shape == (2, 48000 * trimmed_length)
 
-    def test_load_video(self):
-        video = self.clip.video
+    @pytest.mark.parametrize("audio_format", ["ambisonics", "binaural"])
+    def test_load_video(self, audio_format):
+        dataset = usotw.Dataset(
+            audio_format=audio_format,
+            data_home=TEST_DATA_HOME,
+            include_spatiotemporal=False,
+            include_video=True,
+        )
+        clip = dataset.clip(self.default_clipid)
+        video = clip.video
         trimmed_frames = 3
         assert type(video) == np.ndarray
         assert len(video.shape) == 4
@@ -330,3 +342,51 @@ class TestLoad:
             target = clip.binaural_audio
 
         np.testing.assert_array_equal(clip.audio, target)
+
+
+class TestFileNotFound:
+    default_clipid = "R0002"
+
+    @pytest.mark.parametrize("audio_format", ["ambisonics", "binaural"])
+    def test_ambisonics_not_found(self, audio_format):
+        dataset = usotw.Dataset(
+            audio_format=audio_format,
+            data_home=TEST_DATA_HOME,
+            include_spatiotemporal=False,
+            include_video=False,
+        )
+        clip = dataset.clip(self.default_clipid)
+
+        with pytest.raises(
+            FileNotFoundError, match=usotw.AMBISONICS_FILE_NOT_FOUND_ERROR
+        ):
+            clip.ambisonics_audio
+
+    @pytest.mark.parametrize("audio_format", ["ambisonics", "binaural"])
+    def test_binaural_not_found(self, audio_format):
+
+        dataset = usotw.Dataset(
+            audio_format=audio_format,
+            data_home=TEST_DATA_HOME,
+            include_spatiotemporal=False,
+            include_video=False,
+        )
+        clip = dataset.clip(self.default_clipid)
+
+        with pytest.raises(
+            FileNotFoundError, match=usotw.BINAURAL_FILE_NOT_FOUND_ERROR
+        ):
+            clip.binaural_audio
+
+    @pytest.mark.parametrize("audio_format", ["ambisonics", "binaural"])
+    def test_video_not_found(self, audio_format):
+        dataset = usotw.Dataset(
+            audio_format=audio_format,
+            data_home=TEST_DATA_HOME,
+            include_spatiotemporal=False,
+            include_video=True,
+        )
+        clip = dataset.clip(self.default_clipid)
+
+        with pytest.raises(FileNotFoundError, match=usotw.VIDEO_NOT_FOUND_ERROR):
+            clip.video

@@ -38,6 +38,10 @@ if __name__ == "__main__":
             "jams",
             "requests",
             "pandas",
+            "openpyxl", # usotw
+            "lxml", # usotw
+            "bs4" # usotw
+            "scikit-video" # usotw
         ],
         extras_require={
             "tests": [
