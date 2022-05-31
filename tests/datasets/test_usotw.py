@@ -170,21 +170,26 @@ class TestClipProperties:
     default_clipid = "R0001"
 
     @pytest.mark.parametrize(
-        ["audio_format", "default_format", "final_audio_format"],
+        ["audio_format", "default_format", "final_audio_format", "include_video"],
         [
-            ["binaural", "binaural", "binaural"],
-            ["ambisonics", "ambisonics", "ambisonics"],
-            ["all", "ambisonics", "ambisonics"],
-            ["all", "binaural", "binaural"],
+            ["binaural", "binaural", "binaural", True],
+            ["ambisonics", "ambisonics", "ambisonics", True],
+            ["all", "ambisonics", "ambisonics", True],
+            ["all", "binaural", "binaural", True],
+            ["binaural", "binaural", "binaural", False],
+            ["ambisonics", "ambisonics", "ambisonics", False],
+            ["all", "ambisonics", "ambisonics", False],
+            ["all", "binaural", "binaural", False],
         ],
     )
-    def test_metadata_no_scrape(self, audio_format, default_format, final_audio_format):
+    def test_metadata_no_scrape(self, audio_format, default_format, final_audio_format, include_video):
 
         dataset = usotw.Dataset(
             audio_format=audio_format,
             default_format=default_format,
             data_home=TEST_DATA_HOME,
             include_spatiotemporal=False,
+            include_video=include_video,
         )
         clip = dataset.clip(self.default_clipid)
 
@@ -219,6 +224,9 @@ class TestClipProperties:
             "date": type(None),
             "dotw": type(None),
         }
+        
+        if include_video:
+            expected_property_types['video'] = np.ndarray
 
         run_clip_tests(clip, expected_attributes, expected_property_types)
 
@@ -236,6 +244,7 @@ class TestClipProperties:
             audio_format=audio_format,
             default_format=default_format,
             data_home=TEST_DATA_HOME,
+            include_video=False,
             include_spatiotemporal=True,
             spatiotemporal_from_archive=spatiotemporal_from_archive,
         )
