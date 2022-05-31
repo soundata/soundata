@@ -40,7 +40,7 @@ if __name__ == "__main__":
             "pandas",
             "openpyxl", # usotw
             "lxml", # usotw
-            "bs4" # usotw
+            "bs4", # usotw
             "scikit-video" # usotw
         ],
         extras_require={
@@ -66,7 +66,7 @@ if __name__ == "__main__":
             "ustow": [
                 "openpyxl",
                 "lxml",
-                "bs4"
+                "bs4",
                 "scikit-video"
             ]
         },
