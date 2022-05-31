@@ -12,6 +12,15 @@ Urban Soundscapes of the World
     *Description:*
         A main goal of the Urban Soundscapes of the World project is to create a reference database of examples of urban acoustic environments, consisting of high-quality immersive audiovisual recordings (360-degree video and spatial audio), in adherence to ISO 12913-2. Ultimately, this database may set the scope for immersive recording and reproducing urban acoustic environments with soundscape in mind.
         
+        Each recording in this dataset includes:
+        - First-order ambisonics audio (ACN/SN3D, 48 kHz, 4 channels, 24-bit PCM, 60 seconds)
+        - Binaural audio (48 kHz, 2 channels, 60 seconds)
+        - 360-degree video (4096 x 2048, 60 seconds)
+        - In-situ SPL level
+        - Recording date and location
+        
+        As of 31 May 2022, there are 127 recordings listed in the dataset, totalling 2.12 hours for each format of audio and video.
+        
     *This dataset is also accessible via:*
         https://urban-soundscapes.org/
         
@@ -29,7 +38,6 @@ import json
 import logging
 import os
 from typing import Any, Dict, Optional, Union
-from abc import ABC
 
 import librosa
 import numpy as np
@@ -469,7 +477,7 @@ class Dataset(core.Dataset):
 
             metadata: Dict[str, Any] = {
                 id: {**temp_metadata[id], **spatiotemporal[id]}
-                for id in (spatiotemporal.keys() & metadata.keys())
+                for id in (spatiotemporal.keys() & temp_metadata.keys())
             }
         else:
             metadata = temp_metadata
