@@ -286,6 +286,11 @@ class BinauralClipWithVideo(BinauralClip):
 
     @property
     def video(self) -> Optional[np.ndarray]:
+        """The clip's video
+
+        Returns:
+            * np.ndarray - video data
+        """
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
@@ -302,6 +307,11 @@ class AmbisonicsClipWithVideo(AmbisonicsClip):
 
     @property
     def video(self) -> Optional[np.ndarray]:
+        """The clip's video
+
+        Returns:
+            * np.ndarray - video data
+        """
         if os.path.exists(self.video_path):
             return load_video(self.video_path)
         else:
