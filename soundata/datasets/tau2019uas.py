@@ -606,7 +606,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_path = os.path.join(
             self.data_home, "TAU-urban-acoustic-scenes-2019-development", "meta.csv"
         )

@@ -295,7 +295,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_train_path = os.path.join(
             self.data_home, "FSDnoisy18k.meta", "train.csv"
         )
