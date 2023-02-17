@@ -32,6 +32,9 @@
 	    
     *License:*
         * Creative Commons Attribution 4.0 International
+
+    *Important:
+        * Use with caution. This loader "Engineers" a solution to obtain the correct files after Park6 and Park8 got mixed-up at the `eigenscape` and `eigenscape_raw` remotes. See the REMOTES and index if you want to understand how this engineered solution works. Also see the discussion about this engineered solution with the dataset author https://github.com/micarraylib/micarraylib/issues/8#issuecomment-1105357329
 """
 
 import os
@@ -73,8 +76,8 @@ REMOTES = {
     ),
     "Park": download_utils.RemoteFileMetadata(
         filename="Park.zip",
-        url="https://zenodo.org/record/1284156/files/Park.zip?download=1",
-        checksum="1268c7d8057529672d3cc17bec8ae302",
+        url="https://zenodo.org/record/2628463/files/Park.zip?download=1",
+        checksum="c5d638518b4f7d597dd410ee5bb48b67",
     ),
     "PedestrianZone": download_utils.RemoteFileMetadata(
         filename="PedestrianZone.zip",
