@@ -263,7 +263,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_path = os.path.join(self.data_home, "meta", "esc50.csv")
 
         if not os.path.exists(metadata_path):
@@ -278,7 +277,6 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-
             clip_id = line[0].replace(".wav", "")
 
             metadata_index[clip_id] = {

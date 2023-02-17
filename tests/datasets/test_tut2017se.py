@@ -68,7 +68,6 @@ def test_load_events():
 
 
 def test_to_jams():
-
     default_clipid = "a001"
     dataset = tut2017se.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
