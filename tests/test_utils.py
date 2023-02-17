@@ -23,11 +23,21 @@ def run_clip_tests(clip, expected_attributes, expected_property_types):
     # test clip property types
     for prop in clip_attr["cached_properties"] + clip_attr["properties"]:
         print("{}: {}".format(prop, type(getattr(clip, prop))))
+
+        is_tested = False
+
         if prop in expected_property_types:
             assert isinstance(getattr(clip, prop), expected_property_types[prop])
-        elif prop in expected_attributes:
+            is_tested = True
+
+        # Previously, this is ignored if the property is already in `expected_property_types`
+        # However, this will cause attribute value bugs to silently pass the tests.
+        # This is a workaround to prevent this from happening.
+        if prop in expected_attributes:
             assert expected_attributes[prop] == getattr(clip, prop)
-        else:
+            is_tested = True
+
+        if not is_tested:
             assert (
                 False
             ), "{} not in expected_property_types or expected_attributes".format(prop)
