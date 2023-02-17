@@ -28,7 +28,6 @@ class Tags(Annotation):
     """
 
     def __init__(self, labels, labels_unit, confidence=None) -> None:
-
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         validate_confidence(confidence)
@@ -58,7 +57,6 @@ class Events(Annotation):
     def __init__(
         self, intervals, intervals_unit, labels, labels_unit, confidence=None
     ) -> None:
-
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
