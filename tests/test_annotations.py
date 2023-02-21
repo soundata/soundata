@@ -210,7 +210,6 @@ def test_validate_intervals():
 
 
 def test_validate_unit():
-
     annotations.validate_unit("unit_1", {"unit_1": "potatoes", "unit_2": "apples"})
     annotations.validate_unit(
         None, {"unit_1": "potatoes", "unit_2": "apples"}, allow_none=True

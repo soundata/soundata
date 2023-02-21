@@ -45,7 +45,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file  tsrimmed to 1 sec
     default_clipid = "foa_dev/split1_ir0_ov1_1"
     dataset = tau2019sse.Dataset(TEST_DATA_HOME)

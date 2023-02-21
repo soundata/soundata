@@ -132,7 +132,6 @@ def test_load_SpatialEvents():
 
 
 def test_to_jams():
-
     default_clipid = "foa_dev/dev-train/fold1_room1_mix001"
     dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)

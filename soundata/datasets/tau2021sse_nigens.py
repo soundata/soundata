@@ -370,7 +370,6 @@ class Clip(core.Clip):
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
-
         super().__init__(
             clip_id,
             data_home,
@@ -460,7 +459,6 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
     """
 
     def _process_raw_events(raw_reader, dt):
-
         # unpack columns in csv
         time_frames, labels, event_num, azimuths, elevations = list(
             map(list, zip(*raw_reader))
@@ -622,7 +620,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         # parsing the data from the filenames due to lack of metadata file
         json_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
@@ -636,7 +633,6 @@ class Dataset(core.Dataset):
             all_paths_filenames = list(taunigenssse2021_index["clips"].keys())
 
         for path_filename in all_paths_filenames:
-
             clip_id = path_filename
             path, split, filename = path_filename.split("/")
             fmt, subset = path.split("_")
