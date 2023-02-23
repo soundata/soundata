@@ -1,0 +1,785 @@
+{
+  "version": "3.0.0",
+  "clips": {
+    "2015-09-04_08-04-59_unit03": {
+      "audio": [
+        "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
+        "4a377db6ff54d52c9c54181d598a8865"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+        "db4445a1efaee468ddb03253cab8ed45"
+      ]
+    },
+    "2015-09-25_04-00-00_unit10": {
+      "audio": [
+        "Development_Set/Training_Set/BV/2015-09-25_04-00-00_unit10.wav",
+        "6de2028864ec4a6d4d8a5a28bfb6a9f5"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/BV/2015-09-25_04-00-00_unit10.csv",
+        "4442904abe56dfce75a0f03378071792"
+      ]
+    },
+    "2015-09-11_06-00-00_unit07": {
+      "audio": [
+        "Development_Set/Training_Set/BV/2015-09-11_06-00-00_unit07.wav",
+        "3b8af7541e56264f33f58ee2d65b4662"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/BV/2015-09-11_06-00-00_unit07.csv",
+        "4631fcd96c9f9066b2b2388d8da74545"
+      ]
+    },
+    "2015-10-14_23-59-59_unit05": {
+      "audio": [
+        "Development_Set/Training_Set/BV/2015-10-14_23-59-59_unit05.wav",
+        "932d5057583dd3a38089d3f57ecef1cd"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/BV/2015-10-14_23-59-59_unit05.csv",
+        "a9ca0258e3d7b550ee94a6b16137a731"
+      ]
+    },
+    "2015-09-21_06-00-00_unit05": {
+      "audio": [
+        "Development_Set/Training_Set/BV/2015-09-21_06-00-00_unit05.wav",
+        "d2b2e8cd048727b646b57863f247239b"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/BV/2015-09-21_06-00-00_unit05.csv",
+        "9cdc3120f67a015f0a4c49795b6f032c"
+      ]
+    },
+    "h1": {
+      "audio": [
+        "Development_Set/Training_Set/HT/h1.wav",
+        "3d1d0d51fde0d5b54b4318b2da0f7507"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/HT/h1.csv",
+        "95392b85cb32420c1e6d9a02772da956"
+      ]
+    },
+    "a1": {
+      "audio": [
+        "Development_Set/Training_Set/HT/a1.wav",
+        "88d61ab3531a2113cd28a54f0fe00857"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/HT/a1.csv",
+        "4b7589ab3ad62e8b9ca6f26f1320d1ff"
+      ]
+    },
+    "e1": {
+      "audio": [
+        "Development_Set/Training_Set/HT/e1.wav",
+        "3736f5b5cdc1f58114db1f17d5e91e39"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/HT/e1.csv",
+        "2008ee7b5fc070ea3c5b5b63f4a5ddc0"
+      ]
+    },
+    "n1": {
+      "audio": [
+        "Development_Set/Training_Set/HT/n1.wav",
+        "1910f5c6f0f7c23ae6300d5ccd99a330"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/HT/n1.csv",
+        "8a2591652cbee6e890348185ecb6589c"
+      ]
+    },
+    "y1": {
+      "audio": [
+        "Development_Set/Training_Set/HT/y1.wav",
+        "02e63f40fc6b819f74b321323745027c"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/HT/y1.csv",
+        "17fc4ddd3adf8fa615838ab6e0f5f06e"
+      ]
+    },
+    "sp4f1_2015_04_24-05_00_00_0002": {
+      "audio": [
+        "Development_Set/Training_Set/JD/sp4f1_2015_04_24-05_00_00_0002.wav",
+        "404c0a6e339c4454e5c2a0a474841254"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/JD/sp4f1_2015_04_24-05_00_00_0002.csv",
+        "c0d52ba77c5eb5ddba318c5265353bc6"
+      ]
+    },
+    "dcase_MK2": {
+      "audio": [
+        "Development_Set/Training_Set/MT/dcase_MK2.wav",
+        "f387ebb2f1509e13fa19bc990ffff4d2"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/MT/dcase_MK2.csv",
+        "d94d799b27c6a3e84d9655ba4dc0b304"
+      ]
+    },
+    "dcase_MK1": {
+      "audio": [
+        "Development_Set/Training_Set/MT/dcase_MK1.wav",
+        "0bee91157b2b79ed30f5d5a83a2921e9"
+      ],
+      "csv": [
+        "Development_Set/Training_Set/MT/dcase_MK1.csv",
+        "1738f16833e0cdc371f8a1523848f271"
+      ]
+    },
+    "R4_cleaned recording_TEL_19-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_19-10-17.wav",
+        "f4be3fa854f194e21a24ef220b101918"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_19-10-17.csv",
+        "45d74d4d34d841826bb4ec9e58e45062"
+      ]
+    },
+    "R4_cleaned recording_16-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_16-10-17.wav",
+        "f9f2e4de6973656eb85cf181b3611218"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_16-10-17.csv",
+        "41d2aa3a239c305e4f5af4fac2a1801c"
+      ]
+    },
+    "R4_cleaned recording_17-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_17-10-17.wav",
+        "d8d0b92263d581c211acdaddf04067df"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_17-10-17.csv",
+        "fd0dfdb43b6b05b38b86c90a9d31811b"
+      ]
+    },
+    "R4_cleaned recording_13-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_13-10-17.wav",
+        "5ef33e402c12661e38421231235ce077"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_13-10-17.csv",
+        "fff00b57cef9b95fe3f495ecb111b05e"
+      ]
+    },
+    "R4_cleaned recording_TEL_24-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_24-10-17.wav",
+        "9dff34c978b28f8f3d67fb8782c5dc2d"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_24-10-17.csv",
+        "0c972e7dc8bae3b64b5a5029750f2dbe"
+      ]
+    },
+    "R4_cleaned recording_TEL_25-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_25-10-17.wav",
+        "9bc7ddc5b991f75020ffbbc72f645050"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_25-10-17.csv",
+        "fa615c5c1e5f54980b2b1b9e346c54a4"
+      ]
+    },
+    "file_423_487": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/file_423_487.wav",
+        "22b9b5671a0fd3230217f73fe3024167"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/file_423_487.csv",
+        "3842c6556eb1a10297a27a66137e6aa3"
+      ]
+    },
+    "R4_cleaned recording_TEL_20-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_20-10-17.wav",
+        "82025df99420b2719824899b32c58ec7"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_20-10-17.csv",
+        "a4c2aa28e668b2ca28a6d85b7e7162b1"
+      ]
+    },
+    "file_97_113": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/file_97_113.wav",
+        "c65aa77c731bd2a2cd8107244315436b"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/file_97_113.csv",
+        "2066ac43fbf36f1edf901b0970158e50"
+      ]
+    },
+    "R4_cleaned recording_TEL_23-10-17": {
+      "audio": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_23-10-17.wav",
+        "7387ca411db593740341b5c48d2a7c24"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/HB/R4_cleaned recording_TEL_23-10-17.csv",
+        "433b08dcfb969ded18af4634e2eef5c1"
+      ]
+    },
+    "ME1": {
+      "audio": [
+        "Development_Set/Validation_Set/ME/ME1.wav",
+        "71b8e91419fe66031c8aa7818761c3cc"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/ME/ME1.csv",
+        "04bfc980e7ca2fd3a2271b6796d78d7d"
+      ]
+    },
+    "ME2": {
+      "audio": [
+        "Development_Set/Validation_Set/ME/ME2.wav",
+        "825e9325b63953955a203428211d6ad6"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/ME/ME2.csv",
+        "903f5a00435eddc7d18821f0e6f8b214"
+      ]
+    },
+    "BUK1_20181013_023504": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK1_20181013_023504.wav",
+        "60a08912fe665f7760f5a2708656cd27"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK1_20181013_023504.csv",
+        "7722ac650ba3d4c48e920dad519a1a52"
+      ]
+    },
+    "BUK5_20161101_002104a": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK5_20161101_002104a.wav",
+        "0578613981dfef8b6aacbe0ee8276c04"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK5_20161101_002104a.csv",
+        "7d480855f6b7e237b2494a5759889e0c"
+      ]
+    },
+    "BUK4_20171022_004304a": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK4_20171022_004304a.wav",
+        "5b7726375f90912e731cb8febdae6c4e"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK4_20171022_004304a.csv",
+        "dc8a0bbb3d15dbe51bbcbd5ccb305dfe"
+      ]
+    },
+    "BUK1_20181011_001004": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK1_20181011_001004.wav",
+        "f1073f9de283eec9fe5d77cb6c26238e"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK1_20181011_001004.csv",
+        "d7d18b626f93d8dc54641b2c900ebe44"
+      ]
+    },
+    "BUK4_20161011_000804": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK4_20161011_000804.wav",
+        "4fb09e7b091b99f73f386de6388d714c"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK4_20161011_000804.csv",
+        "c9ba31964df905066748fe94aa66d795"
+      ]
+    },
+    "BUK5_20180921_015906a": {
+      "audio": [
+        "Development_Set/Validation_Set/PB/BUK5_20180921_015906a.wav",
+        "bf431a684ef01b3b89b1fdbf0292b571"
+      ],
+      "csv": [
+        "Development_Set/Validation_Set/PB/BUK5_20180921_015906a.csv",
+        "4cbe227f534c032b6097dc8d78f436ab"
+      ]
+    },
+    "CHE_15": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_15.wav",
+        "4d3d7658763b0e786fc9c2900fc3f740"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_15.csv",
+        "0fd5b5a7843f1b5f8b9cc78dc1cee29d"
+      ]
+    },
+    "CHE_09": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_09.wav",
+        "ad637a56b8a072c3d3620c2c938dda97"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_09.csv",
+        "ce2a8e704a2ba5142f613cabbf3b95cf"
+      ]
+    },
+    "CHE_19": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_19.wav",
+        "6b27158b44eb50105f66578f426cfc50"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_19.csv",
+        "6d4760ad1c6b3a65dcb12b4a36de3a72"
+      ]
+    },
+    "CHE_07": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_07.wav",
+        "12be5de34442913bb61ecfd4bd39946a"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_07.csv",
+        "20a0a7032b1ae5f5f8a4043741040cae"
+      ]
+    },
+    "CHE_10": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_10.wav",
+        "b73b5a0d99378ee163511de8a8c3b4c8"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_10.csv",
+        "520eacacd9cf8eb456eaf3796a71bc00"
+      ]
+    },
+    "CHE_05": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_05.wav",
+        "43259cf8104f7567d21b5aba749b391d"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_05.csv",
+        "552c47ef42c54e6b899ec2b9d3bb7937"
+      ]
+    },
+    "CHE_04": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_04.wav",
+        "52a680e6b63c77f220522eb68d83cf32"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_04.csv",
+        "bbe09af07b46ba0895d46a74de24e682"
+      ]
+    },
+    "CHE_02": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_02.wav",
+        "a4ad7a60dc67cb5aca54374c8cba1f28"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_02.csv",
+        "1009795e3bb69126462640a693afdba4"
+      ]
+    },
+    "CHE_14": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_14.wav",
+        "a64ee3985dd909735238d2273cb883c9"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_14.csv",
+        "206c111182019bd0bb42b04ee10cd61c"
+      ]
+    },
+    "CHE_06": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_06.wav",
+        "94553786dbc6aa2494a56f05b71f09dd"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_06.csv",
+        "ef114cacfdca6b3b9db518750fe96f55"
+      ]
+    },
+    "CHE_17": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_17.wav",
+        "2cc4ccb55d4ad7ea390a8805d8dd527e"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_17.csv",
+        "98649d27e39188814b0eaca484c6f1ad"
+      ]
+    },
+    "CHE_11": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_11.wav",
+        "aad270bfece1c9386d0be4751b53fce4"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_11.csv",
+        "fd8e1ce38984b812fb18cbcff20a5d93"
+      ]
+    },
+    "CHE_13": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_13.wav",
+        "4c5439f093dd45c50c0dba6e163f05bd"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_13.csv",
+        "f66f8097849eff54a6bf44aa46a88126"
+      ]
+    },
+    "CHE_01": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_01.wav",
+        "5d9e328a89c30198d256a0c4e9254a16"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_01.csv",
+        "2b4c274d7c96b6e2f5d55aef5f5d137d"
+      ]
+    },
+    "CHE_12": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_12.wav",
+        "0debe2adb8d6081fa67bf17041568b69"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_12.csv",
+        "b7fe0151aaf5ec256e00a4a3b984fd24"
+      ]
+    },
+    "CHE_16": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_16.wav",
+        "e864383ead479f4985f4a02a9c1405ce"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_16.csv",
+        "e4622cebf4f74aa6fab37f0e82482257"
+      ]
+    },
+    "CHE_03": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_03.wav",
+        "00c7aaf22e606e67ea3c17e9ca8a3930"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_03.csv",
+        "14121dedd51273c4f1007a6fdef92dec"
+      ]
+    },
+    "CHE_18": {
+      "audio": [
+        "Evaluation_set_5shots/CHE/CHE_18.wav",
+        "7813a39199d049197a0192f340d3a1f1"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CHE/CHE_18.csv",
+        "b99e601d9dd9eb078c9f060391aaaed6"
+      ]
+    },
+    "ct2": {
+      "audio": [
+        "Evaluation_set_5shots/CT/ct2.wav",
+        "12ca14b8a8b96213f8e8767d00d73810"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CT/ct2.csv",
+        "ac7671eae5594b51505824e7c9333ed5"
+      ]
+    },
+    "ct3": {
+      "audio": [
+        "Evaluation_set_5shots/CT/ct3.wav",
+        "f66affeb701c122b3e950cd11cd8a5ed"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CT/ct3.csv",
+        "b75c1c176f674a3581290983af370aac"
+      ]
+    },
+    "ct1": {
+      "audio": [
+        "Evaluation_set_5shots/CT/ct1.wav",
+        "f81a279dd291b264ff3fdec4620891ee"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/CT/ct1.csv",
+        "f97e744dcb10ef5bc0d5cb7b47e8cc68"
+      ]
+    },
+    "DC02": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC02.wav",
+        "ded1c3452dd2833012441e1342d90169"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC02.csv",
+        "31f6845e3573545cab5249ec975aaee6"
+      ]
+    },
+    "DC10": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC10.wav",
+        "c08d2251e7c690933f87711a2e0b3312"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC10.csv",
+        "e472a7160c50576d6bf67bb68574b5d5"
+      ]
+    },
+    "DC01": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC01.wav",
+        "b7fc2edc54ab3ce2c42c91f418c18a43"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC01.csv",
+        "959e2f19d4e8b15bbcf5373d82ca8147"
+      ]
+    },
+    "DC12": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC12.wav",
+        "c6be14f78a678687477313d95c946875"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC12.csv",
+        "49841d8b1792340181045567f6236417"
+      ]
+    },
+    "DC05": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC05.wav",
+        "6b7c1f9e74f948bf69ebfe333147baf7"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC05.csv",
+        "b94e59ace095a40d1d6f5195d3d0b633"
+      ]
+    },
+    "DC11": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC11.wav",
+        "71d25fb57f70614f3189da69a47666a1"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC11.csv",
+        "856f4c5d49fac3b2bead7937719a26ad"
+      ]
+    },
+    "DC04": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC04.wav",
+        "606622b20c4fe2c6ca211e08eda5957c"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC04.csv",
+        "152f4126aa51beb35ed51c542e79495a"
+      ]
+    },
+    "DC08": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC08.wav",
+        "11d5aef5ec9290dd46b112173e087e10"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC08.csv",
+        "d67623b8e234cd4b76baef2744ef781e"
+      ]
+    },
+    "DC07": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC07.wav",
+        "86bb36538d6b25225c576b8598b2ffec"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC07.csv",
+        "61ce9a077be5eea15192f5ca17c73bce"
+      ]
+    },
+    "DC06": {
+      "audio": [
+        "Evaluation_set_5shots/DC/DC06.wav",
+        "9ef17833dbd6307c9139f68647bf0676"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/DC/DC06.csv",
+        "e9391234abae8e44dbd8ecf6ffd314ff"
+      ]
+    },
+    "85MGE": {
+      "audio": [
+        "Evaluation_set_5shots/MGE/85MGE.wav",
+        "e1640f1d88629f220049f699857ab7f0"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MGE/85MGE.csv",
+        "aa7fa49af6cbc9c0f99caaa14185ddf6"
+      ]
+    },
+    "89MGE": {
+      "audio": [
+        "Evaluation_set_5shots/MGE/89MGE.wav",
+        "0d9ec538462c0166d9b31771c359c695"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MGE/89MGE.csv",
+        "add2547a65d4a49a79eb96d00b34afb5"
+      ]
+    },
+    "91MGE": {
+      "audio": [
+        "Evaluation_set_5shots/MGE/91MGE.wav",
+        "6e221b06b3859e815e1a673f76083e84"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MGE/91MGE.csv",
+        "944fd5e8b5063ce59ddcaf7db15f8c7f"
+      ]
+    },
+    "E2_208_20190712_0150": {
+      "audio": [
+        "Evaluation_set_5shots/MS/E2_208_20190712_0150.wav",
+        "b2422e21723852e86777a228723bbb50"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MS/E2_208_20190712_0150.csv",
+        "5faa083af30a03c794c0fa8a0d31e4c8"
+      ]
+    },
+    "E4_49_20190804_0150": {
+      "audio": [
+        "Evaluation_set_5shots/MS/E4_49_20190804_0150.wav",
+        "0e767a95e7bcd293d6341eaf8469a851"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MS/E4_49_20190804_0150.csv",
+        "ca1cce6a54125f6aa9305bf8d0949cb5"
+      ]
+    },
+    "E3_49_20190715_0150": {
+      "audio": [
+        "Evaluation_set_5shots/MS/E3_49_20190715_0150.wav",
+        "fbb43dea1a7d87437bf4c6cb6a50ba28"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MS/E3_49_20190715_0150.csv",
+        "948065fa80936b7b7ff2d922dcd61e2e"
+      ]
+    },
+    "E1_208_20190712_0150": {
+      "audio": [
+        "Evaluation_set_5shots/MS/E1_208_20190712_0150.wav",
+        "758ee67efd7a78513d6893a575e4fda6"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/MS/E1_208_20190712_0150.csv",
+        "0773e384aa6af8660ddbd440216779e4"
+      ]
+    },
+    "QU07": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU07.wav",
+        "e75544d6c216d1d00211362c9dddcd8a"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU07.csv",
+        "99230eb710059def451c8d141edc43a8"
+      ]
+    },
+    "QU06": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU06.wav",
+        "c6c706614fe3dfb678f230306fc4f51c"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU06.csv",
+        "f493f4911842450b3039a77b207c79bc"
+      ]
+    },
+    "QU08": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU08.wav",
+        "2e9e1ec9aae354aae0e3932463fa340f"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU08.csv",
+        "173b7763e635415f10d17bc63d081713"
+      ]
+    },
+    "QU04": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU04.wav",
+        "8423795740bd36d41e9e650f9d66886a"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU04.csv",
+        "449bbdbad6de1bfb92254deea25396f0"
+      ]
+    },
+    "QU03": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU03.wav",
+        "b7584f713434b6abc870f12704a2c795"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU03.csv",
+        "eed78bf498b0056f3cff9a343d7d75ac"
+      ]
+    },
+    "QU05": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU05.wav",
+        "3e86b4b055d0189c7f023672961f92a0"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU05.csv",
+        "121ec31c7bac3d52f3cc2a6059ea4d35"
+      ]
+    },
+    "QU01": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU01.wav",
+        "f3016963d0f22c01ecffe9e72ed47efb"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU01.csv",
+        "c974074283ae0cb6bb706cb4d7013de6"
+      ]
+    },
+    "QU02": {
+      "audio": [
+        "Evaluation_set_5shots/QU/QU02.wav",
+        "ee7c23d6c81b0c2bb96ac57faa3a177e"
+      ],
+      "csv": [
+        "Evaluation_set_5shots/QU/QU02.csv",
+        "63ab7d71f4c81dfa6c1c23f0f4e6a690"
+      ]
+    }
+  },
+  "metadata": {
+    "dev_classes": [
+      "DCASE2022_task5_Training_set_classes.csv",
+      "abce1818ba10436971bad0b6a3464aa6"
+    ],
+    "val_classes": [
+      "DCASE2022_task5_Validation_set_classes.csv",
+      "0c05ff0c9e1662ff8958c4c812abffdb"
+    ]
+  }
+}

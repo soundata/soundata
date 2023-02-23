@@ -1,0 +1,19 @@
+dataset,recording,class_code,class_name
+PB,BUK1_20181011_001004,Q,Blackbird call
+PB,BUK1_20181013_023504,Q,Song thrush call
+PB,BUK4_20161011_000804,Q,Song thrush call
+PB,BUK4_20171022_004304a,Q,Blackbird call
+PB,BUK5_20161101_002104a,Q,Blackbird call
+PB,BUK5_20180921_015906a,Q,Song thrush call
+ME,ME1,Q,Meerkat move call
+ME,ME2,Q,Meerkat alarm call
+HB,file_423_487 ,Q,Mosquito
+HB,file_97_113 ,Q,Mosquito
+HB,R4_cleaned recording_13-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_16-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_17-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_TEL_19-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_TEL_20-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_TEL_23-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_TEL_24-10-17 ,Q,Mosquito
+HB,R4_cleaned recording_TEL_25-10-17 ,Q,Mosquito
