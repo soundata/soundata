@@ -328,26 +328,26 @@ REMOTES = {
         filename="Development_Set.zip",
         url="https://zenodo.org/record/6482837/files/Development_Set.zip?download=1",
         checksum="cf4d3540c6c78ac2b3df2026c4f1f7ea",
-        #unpack_directories=["URBAN-SED_v2.0.0"],
+        # unpack_directories=["URBAN-SED_v2.0.0"],
     ),
     "train-classes": download_utils.RemoteFileMetadata(
         filename="DCASE2022_task5_Training_set_classes.csv",
         url="https://zenodo.org/record/6482837/files/DCASE2022_task5_Training_set_classes.csv?download=1",
         checksum="abce1818ba10436971bad0b6a3464aa6",
-        #unpack_directories=["URBAN-SED_v2.0.0"],
+        # unpack_directories=["URBAN-SED_v2.0.0"],
     ),
     "validation-classes": download_utils.RemoteFileMetadata(
         filename="DCASE2022_task5_Validation_set_classes.csv",
         url="https://zenodo.org/record/6482837/files/DCASE2022_task5_Validation_set_classes.csv?download=1",
         checksum="0c05ff0c9e1662ff8958c4c812abffdb",
-        #unpack_directories=["URBAN-SED_v2.0.0"],
+        # unpack_directories=["URBAN-SED_v2.0.0"],
     ),
     "eval": download_utils.RemoteFileMetadata(
         filename="Evaluation_set_5shots.zip",
         url="https://zenodo.org/record/6517414/files/Evaluation_set_5shots.zip?download=1",
         checksum="5212c0e133874bba1ee25c81ced0de99",
-        #unpack_directories=["URBAN-SED_v2.0.0"],
-    )
+        # unpack_directories=["URBAN-SED_v2.0.0"],
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
@@ -396,7 +396,7 @@ class Clip(core.Clip):
 
     @property
     def subdataset(self):
-        """The (sub)dataset 
+        """The (sub)dataset
 
         Returns
             * str -subdataset
@@ -409,7 +409,7 @@ class Clip(core.Clip):
         """The audio events
 
         Returns
-            * list - list of the annotated events 
+            * list - list of the annotated events
 
         """
         return load_events_classes(self.csv_path)
@@ -489,15 +489,18 @@ def load_events(fhandle: TextIO) -> annotations.Events:
     class_ids = headers[3:]
     for line in reader:
         times.append([float(line[1]), float(line[2])])
-        classes = [class_ids[i] for i,l in enumerate(line[3:])]
-        labels.append(','.join(classes))
+        classes = [class_ids[i] for i, l in enumerate(line[3:])]
+        labels.append(",".join(classes))
         confidence.append(1.0)
-    events_data = annotations.Events(intervals=np.array(times), 
-        intervals_unit="seconds", 
-        labels=labels, 
+    events_data = annotations.Events(
+        intervals=np.array(times),
+        intervals_unit="seconds",
+        labels=labels,
         labels_unit="open",
-        confidence=np.array(confidence))
+        confidence=np.array(confidence),
+    )
     return events_data
+
 
 @io.coerce_to_string_io
 def load_POSevents(fhandle: TextIO) -> annotations.Events:
@@ -518,15 +521,18 @@ def load_POSevents(fhandle: TextIO) -> annotations.Events:
     class_ids = headers[3:]
     for line in reader:
         times.append([float(line[1]), float(line[2])])
-        classes = [class_ids[i] for i,l in enumerate(line[3:]) if l=='POS']
-        labels.append(','.join(classes))
+        classes = [class_ids[i] for i, l in enumerate(line[3:]) if l == "POS"]
+        labels.append(",".join(classes))
         confidence.append(1.0)
-    events_data = annotations.Events(intervals=np.array(times), 
-        intervals_unit="seconds", 
-        labels=labels, 
+    events_data = annotations.Events(
+        intervals=np.array(times),
+        intervals_unit="seconds",
+        labels=labels,
         labels_unit="open",
-        confidence=np.array(confidence))
+        confidence=np.array(confidence),
+    )
     return events_data
+
 
 @io.coerce_to_string_io
 def load_events_classes(fhandle: TextIO) -> list:
@@ -547,6 +553,7 @@ def load_events_classes(fhandle: TextIO) -> list:
     headers = next(reader)
     class_ids = headers[3:]
     return class_ids
+
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
@@ -570,37 +577,55 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
+        metadata_index = {
+            clip_id: {
+                "subdataset": v["csv"][0].split(clip_id)[0].split(os.path.sep)[-2],
+                "split": "train"
+                if "Training" in v["csv"][0].split(clip_id)[0]
+                else "validation"
+                if "Validation" in v["csv"][0].split(clip_id)[0]
+                else "evaluation",
+            }
+            for clip_id, v in self._index["clips"].items()
+        }
 
-        metadata_index = {clip_id:{
-            'subdataset':v['csv'][0].split(clip_id)[0].split(os.path.sep)[-2],
-            'split':'train' if 'Training' in v['csv'][0].split(clip_id)[0]
-            else 'validation' if 'Validation' in v['csv'][0].split(clip_id)[0] 
-            else 'evaluation'}
-            for clip_id,v in self._index["clips"].items()}
-        
-        metadata_paths = {'train':os.path.join(self.data_home,"DCASE2022_task5_Training_set_classes.csv"),
-            'validation':os.path.join(self.data_home,"DCASE2022_task5_Validation_set_classes.csv")}
-        
-        metadata_index['class_codes'] = {}
-        metadata_index['subdatasets'] = {}
+        metadata_paths = {
+            "train": os.path.join(
+                self.data_home, "DCASE2022_task5_Training_set_classes.csv"
+            ),
+            "validation": os.path.join(
+                self.data_home, "DCASE2022_task5_Validation_set_classes.csv"
+            ),
+        }
 
-        for split,metadata_path in metadata_paths.items():
+        metadata_index["class_codes"] = {}
+        metadata_index["subdatasets"] = {}
+
+        for split, metadata_path in metadata_paths.items():
             if not os.path.exists(metadata_path):
                 raise FileNotFoundError("Metadata not found. Did you run .download()?")
-            
+
             with open(metadata_path, "r") as fhandle:
                 reader = csv.reader(fhandle, delimiter=",")
 
                 headers = next(reader)
-                class_code_id = headers.index('class_code')
-                class_name_id = headers.index('class_name')
-                dataset_id = headers.index('dataset')
+                class_code_id = headers.index("class_code")
+                class_name_id = headers.index("class_name")
+                dataset_id = headers.index("dataset")
 
                 for line in reader:
-                    metadata_index['class_codes'][line[class_code_id]] = {'subdataset':line[dataset_id],'class_name':line[class_name_id],'split':split}
-                    if line[dataset_id] not in metadata_index['subdatasets']:
-                        metadata_index['subdatasets'][line[dataset_id]] = [line[class_code_id]]
+                    metadata_index["class_codes"][line[class_code_id]] = {
+                        "subdataset": line[dataset_id],
+                        "class_name": line[class_name_id],
+                        "split": split,
+                    }
+                    if line[dataset_id] not in metadata_index["subdatasets"]:
+                        metadata_index["subdatasets"][line[dataset_id]] = [
+                            line[class_code_id]
+                        ]
                     else:
-                        metadata_index['subdatasets'][line[dataset_id]].append(line[class_code_id])
+                        metadata_index["subdatasets"][line[dataset_id]].append(
+                            line[class_code_id]
+                        )
 
         return metadata_index

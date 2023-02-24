@@ -58,12 +58,12 @@ def test_to_jams():
     events = jam.annotations[0].data
     assert len(events) == 5
 
-#     Audiofilename,Starttime,Endtime,AMRE,BBWA,BTBW,COYE,OVEN,RBGR,SWTH
-# 2015-09-04_08-04-59_unit03.wav,0.548,0.698,UNK,UNK,UNK,UNK,UNK,UNK,UNK
-# 2015-09-04_08-04-59_unit03.wav,1.028,1.178,UNK,UNK,UNK,UNK,UNK,UNK,UNK
-# 2015-09-04_08-04-59_unit03.wav,5.998,6.148,UNK,UNK,UNK,UNK,UNK,NEG,NEG
-# 2015-09-04_08-04-59_unit03.wav,8.126,8.276,UNK,UNK,UNK,UNK,UNK,NEG,NEG
-# 2015-09-04_08-04-59_unit03.wav,30.707,30.857,NEG,NEG,NEG,NEG,POS,NEG,NEG
+    #     Audiofilename,Starttime,Endtime,AMRE,BBWA,BTBW,COYE,OVEN,RBGR,SWTH
+    # 2015-09-04_08-04-59_unit03.wav,0.548,0.698,UNK,UNK,UNK,UNK,UNK,UNK,UNK
+    # 2015-09-04_08-04-59_unit03.wav,1.028,1.178,UNK,UNK,UNK,UNK,UNK,UNK,UNK
+    # 2015-09-04_08-04-59_unit03.wav,5.998,6.148,UNK,UNK,UNK,UNK,UNK,NEG,NEG
+    # 2015-09-04_08-04-59_unit03.wav,8.126,8.276,UNK,UNK,UNK,UNK,UNK,NEG,NEG
+    # 2015-09-04_08-04-59_unit03.wav,30.707,30.857,NEG,NEG,NEG,NEG,POS,NEG,NEG
 
     event_onsets = [0.548, 1.028, 5.998, 8.126, 30.707]
     event_offsets = [0.698, 1.178, 6.148, 8.276, 30.857]
@@ -72,14 +72,12 @@ def test_to_jams():
         "UNK,UNK,UNK,UNK,UNK,UNK,UNK",
         "UNK,UNK,UNK,UNK,UNK,NEG,NEG",
         "UNK,UNK,UNK,UNK,UNK,NEG,NEG",
-        "NEG,NEG,NEG,NEG,POS,NEG,NEG"
+        "NEG,NEG,NEG,NEG,POS,NEG,NEG",
     ]
 
-    for e, t, o, l in zip(
-        events, event_onsets, event_offsets, event_labels
-    ):
+    for e, t, o, l in zip(events, event_onsets, event_offsets, event_labels):
         assert np.allclose(e.time, t)
-        assert np.allclose(e.duration, o-t)
+        assert np.allclose(e.duration, o - t)
         assert np.allclose(e.time, t)
 
     # validate metadata
