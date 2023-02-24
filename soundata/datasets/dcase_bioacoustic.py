@@ -4,7 +4,8 @@
     :class: dropdown
 
     DCASE-BIOACOUSTIC
-    =========
+    =================
+    
     #Development set:
 
     The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets. 
@@ -83,47 +84,47 @@
 
     
 
-    ## Dataset statistics
+    *Dataset statistics*
 
     Some statistics on this dataset are as follows, split between training and validation set and their sub-folders:
 
-    -----------------------------------------------------
+    ====================================================
     TRAINING SET
-    -----------------------------------------------------
+    ====================================================
     Number of audio recordings        |    174
     Total duration                    |    21 hours
     Total classes                    |    47
     Total events                    |    14229
-    -----------------------------------------------------
+    ====================================================
     TRAINING SET/BV
-    -----------------------------------------------------
+    ====================================================
     Number of audio recordings        |    5
     Total duration                    |    10 hours
     Total classes                     |    11
     Total events                     |    9026
     Ratio event/duration            |    0.04
     Sampling rate                    |    24000 Hz
-    -----------------------------------------------------
+    ====================================================
     TRAINING SET/HT
-    -----------------------------------------------------
+    ====================================================
     Number of audio recordings        |    5
     Total duration                    |    5 hours
     Total classes                     |    5
     Total events                     |    611
     Ratio event/duration            |    0.05
     Sampling rate                    |    6000 Hz
-    -----------------------------------------------------
+    ====================================================
     TRAINING SET/JD
-    -----------------------------------------------------
+    ====================================================
     Number of audio recordings        |    1
     Total duration                    |    10 mins
     Total classes                    |    1
     Total events                    |    357
     Ratio event/duration            |    0.06
     Sampling rate                    |    22050 Hz
-    -----------------------------------------------------
+    ====================================================
     TRAINING SET/MT
-    -----------------------------------------------------
+    ====================================================
     Number of audio recordings        |    2
     Total duration                    |    1 hour and 10 mins
     Total classes                    |    4
