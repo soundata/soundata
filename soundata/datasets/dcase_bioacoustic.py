@@ -545,10 +545,6 @@ def load_events_classes(fhandle: TextIO) -> list:
     Returns:
         class_ids: list of events classes
     """
-
-    times = []
-    labels = []
-    confidence = []
     reader = csv.reader(fhandle, delimiter=",")
     headers = next(reader)
     class_ids = headers[3:]
