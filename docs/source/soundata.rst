@@ -19,6 +19,12 @@ Dataset Loaders
 .. automodule:: soundata.datasets.marco
    :members:
    :inherited-members:
+DCASE-bioacoustic
+^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase_bioacoustic
+   :members:
+   :inherited-members:
 
 EigenScape
 ^^^^^^^^^^
