@@ -37,8 +37,8 @@ To install ``soundata`` for development purposes:
     .. code-block:: console
 
         pip install .
-        pip install .[tests]
-        pip install .[docs]
+        pip install ."[tests]"
+        pip install ."[docs]"
 
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ or
@@ -53,6 +53,9 @@ necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your c
 
 
 All tests should pass!
+
+.. note::
+        Soundata assumes that your system has the zip library install for unzipping files. 
 
 
 Writing a new dataset loader
