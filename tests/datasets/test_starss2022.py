@@ -120,7 +120,6 @@ def test_load_SpatialEvents():
 
 
 def test_to_jams():
-
     default_clipid = "foa_dev/dev-train-sony/fold3_room21_mix001"
     dataset = starss2022.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)

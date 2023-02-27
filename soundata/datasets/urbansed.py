@@ -304,13 +304,11 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         splits = ["train", "validate", "test"]
         expected_sizes = [6000, 2000, 2000]
         metadata_index = {}
 
         for split, es in zip(splits, expected_sizes):
-
             annotation_folder = os.path.join(self.data_home, "annotations", split)
             txtfiles = sorted(glob.glob(os.path.join(annotation_folder, "*.txt")))
 
