@@ -55,7 +55,7 @@ necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your c
 All tests should pass!
 
 .. note::
-        Soundata assumes that your system has the zip library install for unzipping files. 
+        Soundata assumes that your system has the zip library installed for unzipping files. 
 
 
 Writing a new dataset loader
