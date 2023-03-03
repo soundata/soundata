@@ -13,8 +13,8 @@ def test_repr():
             self.b = np.array([[1, 2], [1, 4]])
             self._c = "hidden"
 
-    test_track = TestAnnotation()
-    assert test_track.__repr__() == """TestAnnotation(a, b)"""
+    test_clip = TestAnnotation()
+    assert test_clip.__repr__() == """TestAnnotation(a, b)"""
 
     event_data = annotations.Events(
         np.array([[1.0, 2.0], [3.0, 4.0]]), "seconds", ["Siren", "Dog"], "open"

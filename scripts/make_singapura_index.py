@@ -14,8 +14,8 @@ def make_dataset_index(dataset_data_path):
 
     label_dir = os.path.join(dataset_data_path, "labels_public")
 
-    track_ids = [os.path.normpath(f).split(os.sep)[-2:] for f in audio_files]
-    label_files = [tid[-1].replace(".flac", ".csv") for tid in track_ids]
+    clip_ids = [os.path.normpath(f).split(os.sep)[-2:] for f in audio_files]
+    label_files = [tid[-1].replace(".flac", ".csv") for tid in clip_ids]
     #will be fixed in the next version
     label_files = [
         "[b827eb7d576e][2020-08-03T23-32-11Z][manual][---][565a40f866f3d2804332ca7896a4c77d][93.csv"
@@ -23,7 +23,7 @@ def make_dataset_index(dataset_data_path):
         else lf
         for lf in label_files
     ]
-    audio_files = [os.sep.join(tid) for tid in track_ids]
+    audio_files = [os.sep.join(tid) for tid in clip_ids]
 
     # top-key level metadata
 
@@ -36,9 +36,9 @@ def make_dataset_index(dataset_data_path):
         }
     }
 
-    # top-key level tracks
-    index_tracks = {}
-    for i, tid in enumerate(tqdm(track_ids)):
+    # top-key level clips
+    index_clips = {}
+    for i, tid in enumerate(tqdm(clip_ids)):
 
         assert os.path.exists(os.path.join(audio_dir, audio_files[i]))
         assert os.path.exists(os.path.join(label_dir, label_files[i]))
@@ -47,7 +47,7 @@ def make_dataset_index(dataset_data_path):
 
         label_checksum = md5(os.path.join(label_dir, label_files[i]))
 
-        index_tracks[tid[-1].replace(".flac", "")] = {
+        index_clips[tid[-1].replace(".flac", "")] = {
             "audio": (f"labelled/{audio_files[i]}", audio_checksum),
             "annotation": (f"labels_public/{label_files[i]}", label_checksum),
         }
@@ -57,7 +57,7 @@ def make_dataset_index(dataset_data_path):
 
     # combine all in dataset index
     dataset_index.update(index_metadata)
-    dataset_index.update({"clips": index_tracks})
+    dataset_index.update({"clips": index_clips})
 
     with open(DATASET_INDEX_PATH, "w") as fhandle:
         json.dump(dataset_index, fhandle, indent=2)
