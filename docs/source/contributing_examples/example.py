@@ -63,7 +63,7 @@ The dataset's license information goes here.
 
 
 class Clip(core.Clip):
-    """Example clip class
+    """Example Clip class
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
     # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)

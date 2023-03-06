@@ -357,7 +357,7 @@ def validate_locations(locations):
 
 
 class Clip(core.Clip):
-    """STARSS 2022 clip class
+    """STARSS 2022 Clip class
     Args:
         clip_id (str): id of the clip
     Attributes:

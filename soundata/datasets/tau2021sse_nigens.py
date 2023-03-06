@@ -359,7 +359,7 @@ def validate_locations(locations):
 
 
 class Clip(core.Clip):
-    """TAU NIGENS SSE 2021 clip class
+    """TAU NIGENS SSE 2021 Clip class
     Args:
         clip_id (str): id of the clip
     Attributes:
