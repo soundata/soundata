@@ -12,13 +12,15 @@
 #
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
-copyright = "2021, Soundata development team"
+year = datetime.datetime.utcnow().year
+copyright = '2021-{}, Soundata development team'.format(year)
 author = "The Soundata development team"
 
 
