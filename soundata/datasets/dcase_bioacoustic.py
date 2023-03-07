@@ -3,9 +3,9 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    DCASE-BIOACOUSTIC
-    =========
-    #Development set:
+    *DCASE-BIOACOUSTIC*
+
+    *Development set:*
 
     The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets. 
 
@@ -14,7 +14,8 @@
     Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest. 
 
     this version (3):
-    * fixes issues with annotations from HB set
+    
+    - fixes issues with annotations from HB set
 
 
     Folder Structure:
@@ -207,7 +208,7 @@
 
     
 
-    #Evaluation set
+    *Evaluation set*
 
     The evaluation set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 46 audio files acquired from different bioacoustic sources. 
 
@@ -363,7 +364,9 @@ class Clip(core.Clip):
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        events (soundata.annotations.Events): sound events with start time, end time, label and confidence
+        events_classes (list): list of classes annotated for the file
+        events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
+        POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
         split (str): subset the clip belongs to (for experiments): train, validate, or test
     """
 
@@ -399,7 +402,7 @@ class Clip(core.Clip):
         """The (sub)dataset
 
         Returns
-            * str -subdataset
+            * str - subdataset
 
         """
         return self._clip_metadata.get("subdataset")
