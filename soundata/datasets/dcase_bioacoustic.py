@@ -14,7 +14,7 @@
     Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest. 
 
     this version (3):
-    
+
     - fixes issues with annotations from HB set
 
 
@@ -84,103 +84,7 @@
 
     
 
-    ## Dataset statistics
-
-    Some statistics on this dataset are as follows, split between training and validation set and their sub-folders:
-
-    -----------------------------------------------------
-    TRAINING SET
-    -----------------------------------------------------
-    Number of audio recordings        |    174
-    Total duration                    |    21 hours
-    Total classes                    |    47
-    Total events                    |    14229
-    -----------------------------------------------------
-    TRAINING SET/BV
-    -----------------------------------------------------
-    Number of audio recordings        |    5
-    Total duration                    |    10 hours
-    Total classes                     |    11
-    Total events                     |    9026
-    Ratio event/duration            |    0.04
-    Sampling rate                    |    24000 Hz
-    -----------------------------------------------------
-    TRAINING SET/HT
-    -----------------------------------------------------
-    Number of audio recordings        |    5
-    Total duration                    |    5 hours
-    Total classes                     |    5
-    Total events                     |    611
-    Ratio event/duration            |    0.05
-    Sampling rate                    |    6000 Hz
-    -----------------------------------------------------
-    TRAINING SET/JD
-    -----------------------------------------------------
-    Number of audio recordings        |    1
-    Total duration                    |    10 mins
-    Total classes                    |    1
-    Total events                    |    357
-    Ratio event/duration            |    0.06
-    Sampling rate                    |    22050 Hz
-    -----------------------------------------------------
-    TRAINING SET/MT
-    -----------------------------------------------------
-    Number of audio recordings        |    2
-    Total duration                    |    1 hour and 10 mins
-    Total classes                    |    4
-    Total events                    |    1294
-    Ratio event/duration            |    0.04
-    Sampling rate                    |    8000 Hz
-    -----------------------------------------------------
-    TRAINING SET/WMW
-    -----------------------------------------------------
-    Number of audio recordings        |    161
-    Total duration                    |    4 hours and 40 mins
-    Total classes                    |    26
-    Total events                    |    2941
-    Ratio event/duration            |    0.24
-    Sampling rate                    |    various sampling rates
-    -----------------------------------------------------
-
-    -----------------------------------------------------
-    VALIDATION SET
-    -----------------------------------------------------
-    Number of audio recordings        |    18
-    Total duration                    |    5 hours and 57 minutes
-    Total classes                    |    5
-    Total events                     |    1077
-    -----------------------------------------------------
-    VALIDATION SET/HB
-    -----------------------------------------------------
-    Number of audio recordings        |    10
-    Total duration                    |    2 hours and 38 minutes
-    Total classes                     |    1
-    Total events                     |    712
-    Ratio event/duration            |    0.7
-    Sampling rate                    |    44100 Hz
-    -----------------------------------------------------
-    VALIDATION SET/PB
-    -----------------------------------------------------
-    Number of audio recordings        |    6
-    Total duration                    |    3 hours
-    Total classes                    |    2
-    Total events                     |    292
-    Ratio event/duration            |    0.003
-    Sampling rate                    |    44100 Hz
-    -----------------------------------------------------
-    VALIDATION SET/ME
-    -----------------------------------------------------
-    Number of audio recordings        |    2
-    Total duration                    |    20 minutes
-    Total classes                    |    2
-    Total events                     |    73
-    Ratio event/duration            |    0.01
-    Sampling rate                    |    44100 Hz
-    -----------------------------------------------------
-
-    
-
-    Annotation structure
+    *Annotation structure*
 
     Each line of the annotation csv represents an event in the audio file. The column descriptions are as follows:
 
@@ -194,7 +98,7 @@
 
     
 
-    Classes
+    *Classes*
 
     DCASE2022_task5_training_set_classes.csv and DCASE2022_task5_validation_set_classes.csv provide a table with class code correspondence to class name for all classes in the Development set.
 
