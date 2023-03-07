@@ -267,12 +267,14 @@ class Clip(core.Clip):
     Attributes:
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        csv_path (str): path to the csv file
         clip_id (str): clip id
         split (str): subset the clip belongs to (for experiments): train, validate, or test
-        Cached properties:
-            * events_classes (list): list of classes annotated for the file
-            * events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
-            * POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
+
+    Cached properties:
+        * events_classes (list): list of classes annotated for the file
+        * events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
+        * POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
 
     """
 
@@ -352,7 +354,7 @@ class Clip(core.Clip):
         """
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
-            events=self.events,
+            events=[(self.events, "events"), (self.events, "POSevents")],
             metadata={
                 "split": self._clip_metadata.get("split"),
                 "subdataset": self._clip_metadata.get("subdataset"),
