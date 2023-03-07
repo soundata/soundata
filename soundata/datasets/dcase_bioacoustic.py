@@ -379,13 +379,17 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
     """Load an DCASE bioacoustic sound events annotation file
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
         positive (bool): False get all labels, True get just POS labels
+
     Raises:
         IOError: if csv_path doesn't exist
+
     Returns:
         Events: sound events annotation data
+
     """
 
     times = []
@@ -412,12 +416,16 @@ def load_events(fhandle: TextIO) -> annotations.Events:
 @io.coerce_to_string_io
 def load_POSevents(fhandle: TextIO) -> annotations.Events:
     """Load an DCASE bioacoustic sound events annotation file, just for POS labels
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
+
     Raises:
         IOError: if csv_path doesn't exist
+
     Returns:
         Events: sound events annotation data
+
     """
 
     times = []
@@ -444,13 +452,17 @@ def load_POSevents(fhandle: TextIO) -> annotations.Events:
 @io.coerce_to_string_io
 def load_events_classes(fhandle: TextIO) -> list:
     """Load an DCASE bioacoustic sound events annotation file
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
         positive (bool): False get all labels, True get just POS labels
+
     Raises:
         IOError: if csv_path doesn't exist
+
     Returns:
         class_ids: list of events classes
+
     """
     reader = csv.reader(fhandle, delimiter=",")
     headers = next(reader)
