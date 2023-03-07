@@ -270,9 +270,9 @@ class Clip(core.Clip):
         clip_id (str): clip id
         split (str): subset the clip belongs to (for experiments): train, validate, or test
         Cached properties:
-            events_classes (list): list of classes annotated for the file
-            events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
-            POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
+            * events_classes (list): list of classes annotated for the file
+            * events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
+            * POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
 
     """
 
