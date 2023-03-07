@@ -268,10 +268,12 @@ class Clip(core.Clip):
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        events_classes (list): list of classes annotated for the file
-        events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
-        POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
         split (str): subset the clip belongs to (for experiments): train, validate, or test
+        Cached properties:
+            events_classes (list): list of classes annotated for the file
+            events (soundata.annotations.Events): sound events with start time, end time, labels (list for all classes) and confidence
+            POSevents (soundata.annotations.Events): sound events for the positive class with start time, end time, label and confidence
+
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
