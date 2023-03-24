@@ -63,7 +63,7 @@ The dataset's license information goes here.
 
 
 class Clip(core.Clip):
-    """Example clip class
+    """Example Clip class
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
     # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)
@@ -82,8 +82,8 @@ class Clip(core.Clip):
         # -- * clip_id
         # -- * _dataset_name
         # -- * _data_home
-        # -- * _track_paths
-        # -- * _track_metadata
+        # -- * _clip_paths
+        # -- * _clip_metadata
         super().__init__(
             clip_id,
             data_home,
@@ -117,7 +117,7 @@ class Clip(core.Clip):
     # -- The converter takes as input all the annotations in the proper format (e.g. tags)
     # -- and returns a jams object with the annotations.
     def to_jams(self):
-        """Jams: the track's data in jams format"""
+        """Jams: the clip's data in jams format"""
         return jams_utils.jams_converter(
             audio_path=self.audio_path,
             annotation_data=[(self.annotation, None)],

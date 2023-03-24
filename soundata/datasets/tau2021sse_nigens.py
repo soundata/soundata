@@ -38,7 +38,7 @@
     *Annotations Included:*
         * Each recording in the development set has labels of events and DoAs in a plain csv file with the same filename.
         * Each row in the csv file has a frame number, active class index, event number index, azimuth, and elevation.
-        * Frame, class, and track enumeration begins at 0. 
+        * Frame, class, and clip enumeration begins at 0. 
         * Frames correspond to a temporal resolution of 100msec. 
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
         * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. The interferers are considered unknown and no activity or direction labels of them are provided with the training datasets.
@@ -152,7 +152,7 @@ DISTANCES_UNITS = {
 #: Time units
 TIME_UNITS = {
     "seconds": "seconds",
-    "miliseconds": "miliseconds",
+    "milliseconds": "milliseconds",
 }
 
 #: Label units
@@ -184,7 +184,7 @@ class SpatialEvents:
         distances_unit (str): distances unit, one of DISTANCES_UNITS
         labels (list): list of event labels (as strings)
         labels_unit (str): labels unit, one of LABELS_UNITS
-        track_number_indices (list): list of track number indices (as strings)
+        clip_number_indices (list): list of clip number indices (as strings)
         confidence (np.ndarray or None): array of confidence values, float in [0, 1]
     """
 
@@ -201,7 +201,7 @@ class SpatialEvents:
         distances_unit,
         labels,
         labels_unit,
-        track_number_index,
+        clip_number_index,
         confidence=None,
     ):
         annotations.validate_array_like(intervals, list, list)
@@ -226,7 +226,7 @@ class SpatialEvents:
         self.labels_unit = labels_unit
         self.confidence = confidence
 
-        annotations.validate_array_like(track_number_index, list, str)
+        annotations.validate_array_like(clip_number_index, list, str)
         annotations.validate_array_like(elevations, list, list)
         annotations.validate_array_like(azimuths, list, list)
         annotations.validate_array_like(distances, list, list)
@@ -237,7 +237,7 @@ class SpatialEvents:
                 azimuths,
                 distances,
                 labels,
-                track_number_index,
+                clip_number_index,
                 confidence,
             ]
         )
@@ -303,7 +303,7 @@ class SpatialEvents:
         self.elevations = elevations
         self.azimuths = azimuths
         self.distances = distances
-        self.track_number_index = track_number_index
+        self.clip_number_index = clip_number_index
         self.elevations_unit = elevations_unit
         self.azimuths_unit = azimuths_unit
         self.distances_unit = distances_unit
@@ -359,14 +359,14 @@ def validate_locations(locations):
 
 
 class Clip(core.Clip):
-    """TAU NIGENS SSE 2021 Track class
+    """TAU NIGENS SSE 2021 Clip class
     Args:
         clip_id (str): id of the clip
     Attributes:
         audio_path (str): path to the audio file
         tags (soundata.annotation.Tags): tag
-        track_id (str): track id
-        spatial_events (SpatialEvents): sound events with time step, elevation, azimuth, distance, label, track_number and confidence.
+        clip_id (str): clip id
+        spatial_events (SpatialEvents): sound events with time step, elevation, azimuth, distance, label, clip_number and confidence.
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -413,7 +413,7 @@ class Clip(core.Clip):
                 * distances_unit (str): distances unit, one of DISTANCES_UNITS
                 * labels (list): list of event labels (as strings)
                 * labels_unit (str): labels unit, one of LABELS_UNITS
-                * track_number_indices (list): list of track number indices (as strings)
+                * clip_number_indices (list): list of clip number indices (as strings)
                 * confidence (np.ndarray or None): array of confidence values
 
         """
@@ -552,10 +552,10 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
             for event_azimuths_elevations in azimuths_elevations
         ]
 
-        # list of labels and track_number_indices in str
-        labels, track_number_indices = list(zip(*unique_events_set))
+        # list of labels and clip_number_indices in str
+        labels, clip_number_indices = list(zip(*unique_events_set))
         labels = [str(l) for l in labels]
-        track_number_indices = [str(l) for l in track_number_indices]
+        clip_number_indices = [str(l) for l in clip_number_indices]
 
         # create dummy distances with None
         distances = [
@@ -563,7 +563,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
             for event_azimuths in azimuths
         ]
 
-        return intervals, labels, track_number_indices, azimuths, elevations, distances
+        return intervals, labels, clip_number_indices, azimuths, elevations, distances
 
     raw_reader = csv.reader(fhandle, delimiter=",")
     raw_events = []
@@ -572,7 +572,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
     (
         intervals,
         labels,
-        track_number_indices,
+        clip_number_indices,
         azimuths,
         elevations,
         distances,
@@ -591,7 +591,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> SpatialEvents:
         "meters",
         labels,
         "open",
-        track_number_indices,
+        clip_number_indices,
         confidence,
     )
 

@@ -287,7 +287,7 @@ class Clip(core.Clip):
 
     def to_jams(self):
         """
-        Jams: the track's data in jams format
+        Jams: the clip's data in jams format
         """
         return jams_utils.jams_converter(
             audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
