@@ -3,7 +3,7 @@
 import numpy as np
 
 #: Time units
-TIME_UNITS = {"seconds": "seconds", "miliseconds": "miliseconds"}
+TIME_UNITS = {"seconds": "seconds", "milliseconds": "milliseconds"}
 
 #: Label units
 LABEL_UNITS = {"open": "no strict schema or units"}
