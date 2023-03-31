@@ -249,7 +249,7 @@ def test_spatial_events():
         "meters",
     )
 
-    bad_cartesian_coord = np.array([[1,1,1]]).astype(float)
+    bad_cartesian_coord = np.array([[1, 1, 1]]).astype(float)
     pytest.raises(
         ValueError,
         annotations.Events,
