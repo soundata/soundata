@@ -72,6 +72,7 @@ class Events(Annotation):
         cartesian_coord (np.ndarray or None):
         cartesian_coord_unit (str): cartesian_coord unit, one of DISTANCE_UNITS
 
+
     """
 
     def __init__(
