@@ -18,7 +18,18 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - EigenScape
+   * - | EigenScape
+       | (HOA 25 ch) 
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 64
+     - 10.7
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - | EigenScape Raw
+       | (32 ch) 
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
@@ -54,6 +65,69 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
+   * - SINGA:PURA
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 6547
+     - 18.2
+     - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-sa/4.0
+
+
+   * - | STARSS
+       | 2022
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 121
+     - 5
+     - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
+          :target: https://lbesson.mit-license.org/ 
+
+
+   * - | TAU NIGENS 
+       | SSE 2020
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 800
+     - 15
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - | TAU NIGENS 
+       | SSE 2021
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 800
+     - 15
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - | TUT Sound
+       | Events 2017
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - :tut:`\ `
+
+
+   * - | TAU SSE
+       | 2019
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 500
+     - 8.3
+     - :tau2019sse:`\ `
+
+
    * - | TAU Urban
        | Acoustic Scenes
        | 2019
@@ -74,19 +148,10 @@
      - 97
      - :tau2020:`\ `
 
-   * - | TUT Sound
-       | events 2017
-     - - audio: ✅
-       - annotations: ✅
-     - :ref:`events`
-     - 32
-     - 2.02
-     - :tut:`\ `
-
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags`
+     - :ref:`events`
      - 10000
      - 27.8
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png

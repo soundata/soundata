@@ -14,7 +14,7 @@ Dataset Loaders
 ---------------
 
 3D-MARCo
-^^^^^^^^^^
+^^^^^^^^
 
 .. automodule:: soundata.datasets.marco
    :members:
@@ -24,6 +24,13 @@ EigenScape
 ^^^^^^^^^^
 
 .. automodule:: soundata.datasets.eigenscape
+   :members:
+   :inherited-members:
+
+EigenScape Raw
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.eigenscape_raw
    :members:
    :inherited-members:
 
@@ -45,6 +52,45 @@ FSDnoisy18K
 ^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.fsdnoisy18k
+   :members:
+   :inherited-members:
+
+SINGA:PURA
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.singapura
+   :members:
+   :inherited-members:
+
+
+STARSS 2022
+^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.starss2022
+   :members:
+   :inherited-members:
+   
+
+TAU NIGENS SSE 2020
+^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2020sse_nigens
+   :members:
+   :inherited-members:
+   
+
+TAU NIGENS SSE 2021
+^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2021sse_nigens
+   :members:
+   :inherited-members:
+   
+
+TAU Spatial Sound Events 2019
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2019sse
    :members:
    :inherited-members:
 

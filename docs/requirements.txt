@@ -2,4 +2,5 @@ sphinx-togglebutton
 jams
 librosa>=0.7.0
 tqdm
-sphinx==3.4.0
+sphinx==4.0.2
+pandas

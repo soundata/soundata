@@ -3,7 +3,7 @@
 import numpy as np
 
 #: Time units
-TIME_UNITS = {"seconds": "seconds", "miliseconds": "miliseconds"}
+TIME_UNITS = {"seconds": "seconds", "milliseconds": "milliseconds"}
 
 #: Label units
 LABEL_UNITS = {"open": "no strict schema or units"}
@@ -41,7 +41,6 @@ class Tags(Annotation):
     """
 
     def __init__(self, labels, labels_unit, confidence=None) -> None:
-
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         validate_confidence(confidence)
@@ -71,7 +70,6 @@ class Events(Annotation):
     def __init__(
         self, intervals, intervals_unit, labels, labels_unit, confidence=None
     ) -> None:
-
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
@@ -248,12 +246,16 @@ def validate_lengths_equal(array_list):
     if len(array_list) == 1:
         return
 
-    for att1, att2 in zip(array_list[:1], array_list[1:]):
-        if att1 is None or att2 is None:
-            continue
+    else:
+        for att1, att2 in zip(array_list[:1], array_list[1:]):
+            if att1 is None or att2 is None:
+                continue
 
-        if not len(att1) == len(att2):
-            raise ValueError("Arrays have unequal length")
+            if not len(att1) == len(att2):
+                raise ValueError("Arrays have unequal length")
+
+        # recurse
+        validate_lengths_equal(array_list[1:])
 
 
 def validate_confidence(confidence):
@@ -276,6 +278,9 @@ def validate_confidence(confidence):
         raise ValueError(
             f"Confidence should be 1d, but array has shape {confidence_shape}"
         )
+
+    if np.any(np.isnan(confidence)):
+        raise ValueError("confidence values cannot be nan")
 
     if any([c < 0 for c in confidence]) or any([c > 1 for c in confidence]):
         raise ValueError(

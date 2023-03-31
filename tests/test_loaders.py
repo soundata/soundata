@@ -22,6 +22,7 @@ CUSTOM_TEST_CLIPS = {
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
     "tut2017se": "a001",
+    "singapura": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
 }
 
 REMOTE_DATASETS = {}
@@ -53,7 +54,7 @@ def test_dataset_attributes():
         ), "{}.DOWNLOAD_INFO must be a string".format(dataset_name)
         assert type(dataset._clip_class) == type(
             core.Clip
-        ), "{}.Track must be an instance of core.Clip".format(dataset_name)
+        ), "{}.Clip must be an instance of core.Clip".format(dataset_name)
         assert callable(dataset.download), "{}.download is not a function".format(
             dataset_name
         )
@@ -178,7 +179,6 @@ def test_load_and_clipids():
         clipid_len = len(clip_ids)
         # if the dataset has clips, test the loaders
         if dataset._clip_class is not None:
-
             try:
                 choice_clip = dataset.choice_clip()
             except:
@@ -364,21 +364,20 @@ def test_load_methods():
                     load_method("a/fake/filepath")
 
 
-CUSTOM_TEST_MTRACKS = {}
+CUSTOM_TEST_MCLIPS = {}
 
 
 def test_clipgroups():
     data_home_dir = "tests/resources/sound_datasets"
 
     for dataset_name in DATASETS:
-
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 
         # TODO this is currently an opt-in test. Make it an opt out test
         # once #265 is addressed
-        if dataset_name in CUSTOM_TEST_MTRACKS:
-            clipgroup_id = CUSTOM_TEST_MTRACKS[dataset_name]
+        if dataset_name in CUSTOM_TEST_MCLIPS:
+            clipgroup_id = CUSTOM_TEST_MCLIPS[dataset_name]
         else:
             # there are no clipgroups
             continue

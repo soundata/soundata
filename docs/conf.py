@@ -12,13 +12,15 @@
 #
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
-copyright = "2021, Soundata development team"
+year = datetime.datetime.utcnow().year
+copyright = '2021-{}, Soundata development team'.format(year)
 author = "The Soundata development team"
 
 
@@ -35,7 +37,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams"]
+autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas"]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -56,6 +58,7 @@ extensions = [
 
 # To shorten links of licenses and add to table
 extlinks = {
+    "tau2019sse": ("https://zenodo.org/record/2580091%s", "Custom"),
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
     "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),

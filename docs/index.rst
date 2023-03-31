@@ -2,10 +2,10 @@ About Soundata
 ==============
 
 
-Soundata is a Python library for loading and working with audio datasets in a standarized way,
+Soundata is a Python library for loading and working with audio datasets in a standardized way,
 removing the need for writing custom loaders in every project, and improving reproducibility by providing
 tools validate data against a canonical version. It speeds up research pipelines by allowing you to quickly
-``download`` a dataset, ``load`` it into memory in a ``standarized`` and ``reproducible`` way, ``validate``
+``download`` a dataset, ``load`` it into memory in a ``standardized`` and ``reproducible`` way, ``validate``
 that the dataset is complete and correct, and more.
 
 Soundata is based and inspired on `mirdata <https://mirdata.readthedocs.io/en/latest/index.html>`_, and was created
@@ -14,7 +14,7 @@ following these desig principles:
 - **Easy to use:** Soundata is designed to be easy to use and to simplify the research pipeline considerably. Check out the examples in the :ref:`tutorial` page.
 - **Easy to contribute to:** we welcome and encourage contributions, especially new datasets. You can contribute following the instructions in our :ref:`contributing` page.
 - **Increase reproducibility:** by providing a common framework for researchers to compare and validate their data, when mistakes are found in annotations or audio versions change, using Soundata the audio community can fix mistakes while still being able to compare methods moving forward.
-- **Standarize usage of sound datasets:** we standarize common attributes of sound datasets such as ``audio`` or ``tags`` to simplify audio research pipelines, while preserving each dataset's idiosyncracies: if a dataset has 'non-standard' attributes, we include them as well.
+- **Standardize usage of sound datasets:** we standardized common attributes of sound datasets such as ``audio`` or ``tags`` to simplify audio research pipelines, while preserving each dataset's idiosyncracies: if a dataset has 'non-standard' attributes, we include them as well.
 
 
 ------------
@@ -73,10 +73,6 @@ in the repository.
 Citing soundata
 """""""""""""""
 
-If you are using the library for your work, please cite the version you used as indexed at Zenodo:
-
-**TBA**
-
 If you refer to soundata's design principles, motivation etc., please cite the following
 `paper <https://arxiv.org/abs/2109.12690>`_  [#]_:
 
@@ -94,7 +90,7 @@ When working with datasets, please cite the version of ``soundata`` that you are
    source/tutorial
    source/contributing
    source/quick_reference
-   source/faq
+
 
 
 .. toctree::
@@ -103,5 +99,14 @@ When working with datasets, please cite the version of ``soundata`` that you are
    :maxdepth: 0
 
    source/soundata
+
+
+.. toctree::
+   :hidden:
+   :caption: Reference
+   :maxdepth: 0
+
+   source/changelog
+   source/faq
 
 

@@ -48,7 +48,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file is 5 sec, but for testing we've trimmed it to 1 sec
     default_clipid = "1-104089-A-22"
     dataset = esc50.Dataset(TEST_DATA_HOME)

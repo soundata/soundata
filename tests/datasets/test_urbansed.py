@@ -43,7 +43,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
     default_clipid = "soundscape_train_uniform1736"
     dataset = urbansed.Dataset(TEST_DATA_HOME)

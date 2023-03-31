@@ -601,7 +601,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_index = {}
 
         ground_truth_dev, clip_ids_dev = load_ground_truth(self.ground_truth_dev_path)

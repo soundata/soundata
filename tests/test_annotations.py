@@ -13,8 +13,8 @@ def test_repr():
             self.b = np.array([[1, 2], [1, 4]])
             self._c = "hidden"
 
-    test_track = TestAnnotation()
-    assert test_track.__repr__() == """TestAnnotation(a, b)"""
+    test_clip = TestAnnotation()
+    assert test_clip.__repr__() == """TestAnnotation(a, b)"""
 
     event_data = annotations.Events(
         np.array([[1.0, 2.0], [3.0, 4.0]]), "seconds", ["Siren", "Dog"], "open"
@@ -261,10 +261,16 @@ def test_validate_array_like():
 
 def test_validate_lengths_equal():
     annotations.validate_lengths_equal([np.array([0, 1])])
+    annotations.validate_lengths_equal(
+        [np.array([0, 1]), np.array([[0, 1, 2], [0, 2, 3]])]
+    )
     annotations.validate_lengths_equal([np.array([]), None])
 
     with pytest.raises(ValueError):
         annotations.validate_lengths_equal([np.array([0, 1]), np.array([0])])
+        annotations.validate_lengths_equal(
+            [np.array([0, 1]), np.array([0, 1]), np.array([0])]
+        )
 
 
 def test_validate_confidence():
@@ -274,6 +280,8 @@ def test_validate_confidence():
         annotations.validate_confidence(np.array([[0, 1], [0, 2]]))
     with pytest.raises(ValueError):
         annotations.validate_confidence(np.array([0, 2]))
+    with pytest.raises(ValueError):
+        annotations.validate_confidence(np.array([np.nan, 0.5]))
 
 
 def test_validate_times():
@@ -284,6 +292,9 @@ def test_validate_times():
 
     with pytest.raises(ValueError):
         annotations.validate_times(np.array([2, 0]))
+
+    with pytest.raises(ValueError):
+        annotations.validate_times(np.array([-1, 0]))
 
 
 def test_validate_intervals():
@@ -298,9 +309,11 @@ def test_validate_intervals():
     with pytest.raises(ValueError):
         annotations.validate_intervals(np.array([[0, 1], [1, 0.5]]))
 
+    with pytest.raises(ValueError):
+        annotations.validate_intervals(np.array([[0, -1], [1, 0.5]]))
+
 
 def test_validate_unit():
-
     annotations.validate_unit("unit_1", {"unit_1": "potatoes", "unit_2": "apples"})
     annotations.validate_unit(
         None, {"unit_1": "potatoes", "unit_2": "apples"}, allow_none=True

@@ -397,7 +397,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         splits = [
             "development.fold1",
             "development.fold2",
@@ -409,7 +408,6 @@ class Dataset(core.Dataset):
         metadata_index = {}
 
         for split in splits:
-
             if split.split(".")[0] == "development":
                 evaluation_setup_path = (
                     "TUT-sound-events-2017-development/evaluation_setup"

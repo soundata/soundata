@@ -1,0 +1,6 @@
+sensor_id,filename,year,month,date,day,hour,minute,second,timezone,town
+b827ebbc6e34,[b827ebbc6e34][2020-08-26T08-47-04Z][manual][---][de313d12d7f31937615be80cc47a1ad9][]-12.flac,2020,8,26,3,16,47,4,SGT,East 2
+b827eb0a63c9,[b827eb0a63c9][2020-08-26T00-38-04Z][manual][---][de313d12d7f31937615be80cc47a1ad9][]-476.flac,2020,8,26,3,8,38,4,SGT,East 2
+b827ebb954cd,[b827ebb954cd][2020-08-26T13-07-04Z][manual][---][de313d12d7f31937615be80cc47a1ad9][]-135.flac,2020,8,26,3,21,7,4,SGT,East 2
+b827ebf3744c,[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac,2020,8,20,4,6,46,4,SGT,West 2
+b827eb0ebf2f,[b827eb0ebf2f][2020-10-29T09-18-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0].flac,2020,10,29,4,17,18,4,SGT,West 1
