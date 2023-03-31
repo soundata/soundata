@@ -330,7 +330,6 @@ def validate_unit(unit, unit_values, allow_none=False):
 
 
 def validate_azimuth(azimuth, azimuth_unit=None, allow_none=False):
-
     if allow_none and not azimuth_unit:
         return
 
