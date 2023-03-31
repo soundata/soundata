@@ -117,7 +117,7 @@ def test_spatial_events():
     elevation_degrees = np.array([0, 90]).astype(float)
     elevation_radians = np.array([0, np.pi / 2])
     cartesian_coord = np.array([[1, 0, 0], [1, 1, 1]]).astype(float)
-    sparial_events_deg = annotations.Events(
+    spatial_events_deg = annotations.Events(
         intervals,
         "seconds",
         labels,
@@ -132,7 +132,7 @@ def test_spatial_events():
         cartesian_coord,
         "meters",
     )
-    sparial_events_rad = annotations.Events(
+    spatial_events_rad = annotations.Events(
         intervals,
         "seconds",
         labels,
@@ -148,15 +148,15 @@ def test_spatial_events():
         "meters",
     )
 
-    assert np.allclose(sparial_events_deg.intervals, intervals)
-    assert sparial_events_deg.labels == labels
-    assert np.allclose(sparial_events_deg.confidence, confidence)
-    assert np.allclose(sparial_events_deg.azimuth, azimuth_degrees)
-    assert np.allclose(sparial_events_deg.elevation, elevation_degrees)
-    assert np.allclose(sparial_events_deg.cartesian_coord, cartesian_coord)
+    assert np.allclose(spatial_events_deg.intervals, intervals)
+    assert spatial_events_deg.labels == labels
+    assert np.allclose(spatial_events_deg.confidence, confidence)
+    assert np.allclose(spatial_events_deg.azimuth, azimuth_degrees)
+    assert np.allclose(spatial_events_deg.elevation, elevation_degrees)
+    assert np.allclose(spatial_events_deg.cartesian_coord, cartesian_coord)
 
-    assert np.allclose(sparial_events_rad.azimuth, azimuth_radians)
-    assert np.allclose(sparial_events_rad.elevation, elevation_radians)
+    assert np.allclose(spatial_events_rad.azimuth, azimuth_radians)
+    assert np.allclose(spatial_events_rad.elevation, elevation_radians)
 
     # test bad data
     bad_intervals = np.array([[1.0, 0.0], [1.5, 3.0], [2.0, 3.0]])
@@ -190,6 +190,82 @@ def test_spatial_events():
         labels,
         "open",
         bad_confidence,
+    )
+
+    azimuth_bad_degrees = np.array([-720, 90]).astype(float)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_bad_degrees,
+        "degrees",
+        elevation_degrees,
+        "degrees",
+        distance,
+        "meters",
+        cartesian_coord,
+        "meters",
+    )
+
+    azimuth_bad_radians = np.array([0, 3 * np.pi])
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_bad_radians,
+        "radians",
+        elevation_radians,
+        "radians",
+        distance,
+        "meters",
+        cartesian_coord,
+        "meters",
+    )
+
+    bad_distance = np.array([-10]).astype(float)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_radians,
+        "radians",
+        elevation_radians,
+        "radians",
+        bad_distance,
+        "meters",
+        cartesian_coord,
+        "meters",
+    )
+
+    bad_cartesian_coord = np.array([[1, 0]]).astype(float)
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_radians,
+        "radians",
+        elevation_radians,
+        "radians",
+        distance,
+        "meters",
+        bad_cartesian_coord,
+        "meters",
     )
 
     # test units
