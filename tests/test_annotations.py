@@ -230,7 +230,6 @@ def test_spatial_events():
         "meters",
     )
 
-    
     # test units
     bad_distance = np.array([-1]).astype(float)
     with pytest.raises(ValueError):
@@ -266,7 +265,7 @@ def test_spatial_events():
             "meters",
             bad_cartesian_coord,
             "meters",
-        )    
+        )
 
     with pytest.raises(ValueError):
         annotations.Events(intervals, "seconds", labels, "bad_unit", confidence)
