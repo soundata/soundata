@@ -103,7 +103,9 @@ class Events(Annotation):
         validate_array_like(elevation, np.ndarray, float, none_allowed=True)
         validate_array_like(distance, np.ndarray, float, none_allowed=True)
         validate_array_like(cartesian_coord, np.ndarray, float, none_allowed=True)
-        validate_lengths_equal([azimuth, elevation, distance, cartesian_coord])
+        validate_lengths_equal(
+            [intervals, azimuth, elevation, distance, cartesian_coord]
+        )
         validate_azimuth(azimuth, azimuth_unit, allow_none=True)
         validate_distance(distance, allow_none=True)
         validate_azimuth(elevation, elevation_unit, allow_none=True)
@@ -354,7 +356,7 @@ def validate_distance(distance, allow_none=False):
     if allow_none:
         return
 
-    if any([d < 0 for d in distance]):
+    if np.any([d < 0 for d in distance]):
         raise ValueError(
             "distance should be bigger or equal than zero. " + "Found negative values."
         )
