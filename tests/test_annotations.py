@@ -232,26 +232,43 @@ def test_spatial_events():
 
     # test units
     bad_distance = np.array([-1, 1]).astype(float)
-    with pytest.raises(ValueError):
-        annotations.Events(
-            intervals,
-            "seconds",
-            labels,
-            "open",
-            bad_distance,
-            "meters",
-        )
+    # distance = bad_distance
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_bad_radians,
+        "radians",
+        elevation_radians,
+        "radians",
+        bad_distance,
+        "meters",
+        cartesian_coord,
+        "meters",
+    )
 
     bad_cartesian_coord = np.array([[1]]).astype(float)
-    with pytest.raises(ValueError):
-        annotations.Events(
-            intervals,
-            "seconds",
-            labels,
-            "open",
-            bad_cartesian_coord,
-            "meters",
-        )
+    pytest.raises(
+        ValueError,
+        annotations.Events,
+        intervals,
+        "seconds",
+        labels,
+        "open",
+        confidence,
+        azimuth_bad_radians,
+        "radians",
+        elevation_radians,
+        "radians",
+        distance,
+        "meters",
+        bad_cartesian_coord,
+        "meters",
+    )
 
     with pytest.raises(ValueError):
         annotations.Events(intervals, "seconds", labels, "bad_unit", confidence)
