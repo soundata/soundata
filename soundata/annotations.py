@@ -18,7 +18,7 @@ AZIMUTH_UNITS = {
 DISTANCE_UNITS = {
     "meters": "meters",
     "centimeters": "centimeters",
-    "milimeters": "milimeters",
+    "millimeters": "millimeters",
 }
 
 
