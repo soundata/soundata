@@ -231,25 +231,24 @@ def test_spatial_events():
     )
 
     # test units
-    bad_distance = np.array([-1, 1]).astype(float)
+    bad_distance = np.array([-1]).astype(float)
     # distance = bad_distance
-    pytest.raises(
-        ValueError,
-        annotations.Events,
-        intervals,
-        "seconds",
-        labels,
-        "open",
-        confidence,
-        azimuth_bad_radians,
-        "radians",
-        elevation_radians,
-        "radians",
-        bad_distance,
-        "meters",
-        cartesian_coord,
-        "meters",
-    )
+    with pytest.raises(ValueError) as context:
+        annotations.Events(
+            intervals,
+            "seconds",
+            labels,
+            "open",
+            confidence,
+            azimuth_radians,
+            "radians",
+            elevation_radians,
+            "radians",
+            bad_distance,
+            "meters",
+            cartesian_coord,
+            "meters",
+        )
 
     bad_cartesian_coord = np.array([[1]]).astype(float)
     pytest.raises(
@@ -260,7 +259,7 @@ def test_spatial_events():
         labels,
         "open",
         confidence,
-        azimuth_bad_radians,
+        azimuth_radians,
         "radians",
         elevation_radians,
         "radians",
@@ -295,7 +294,7 @@ def test_events_invalid_coordinates():
     distance = np.array([1.0, 2.0, 3.0])
 
     bad_cartesian_coord = np.array([[1]]).astype(float)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as context:
         annotations.Events(
             intervals,
             "seconds",
@@ -311,6 +310,10 @@ def test_events_invalid_coordinates():
             bad_cartesian_coord,
             "meters",
         )
+    # assert (
+    #     "cartesian coordinates should have three columns corresponding to x, y and z coordinates."
+    #     in str(context.value)
+    # )
 
 
 def test_multiannotator():
