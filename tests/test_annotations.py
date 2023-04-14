@@ -286,6 +286,33 @@ def test_spatial_events():
         annotations.Events(intervals, "seconds", labels, confidence)
 
 
+def test_events_invalid_coordinates():
+    intervals = np.array([[0, 1], [2, 3], [4, 5]]).astype(float)
+    labels = ["a", "b", "c"]
+    confidence = np.array([0.1, 0.2, 0.3])
+    azimuth_radians = np.array([0.1, 0.2, 0.3]).astype(float)
+    elevation_radians = np.array([0.4, 0.5, 0.6]).astype(float)
+    distance = np.array([1.0, 2.0, 3.0])
+
+    bad_cartesian_coord = np.array([[1]]).astype(float)
+    with pytest.raises(ValueError):
+        annotations.Events(
+            intervals,
+            "seconds",
+            labels,
+            "open",
+            confidence,
+            azimuth_radians,
+            "radians",
+            elevation_radians,
+            "radians",
+            distance,
+            "meters",
+            bad_cartesian_coord,
+            "meters",
+        )
+
+
 def test_multiannotator():
     # test good data
     annotators = ["annotator_1", "annotator_2"]
