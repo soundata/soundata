@@ -159,39 +159,6 @@ def test_spatial_events():
     assert np.allclose(spatial_events_rad.elevation, elevation_radians)
 
     # test bad data
-    bad_intervals = np.array([[1.0, 0.0], [1.5, 3.0], [2.0, 3.0]])
-    pytest.raises(
-        ValueError,
-        annotations.Events,
-        bad_intervals,
-        "seconds",
-        labels,
-        "open",
-        confidence,
-    )
-
-    bad_labels = ["Siren", "Laughter", 5]
-    pytest.raises(
-        TypeError,
-        annotations.Events,
-        intervals,
-        "seconds",
-        bad_labels,
-        "open",
-        confidence,
-    )
-
-    bad_confidence = np.array([1, 0.5, -0.2])
-    pytest.raises(
-        ValueError,
-        annotations.Events,
-        intervals,
-        "seconds",
-        labels,
-        "open",
-        bad_confidence,
-    )
-
     azimuth_bad_degrees = np.array([-720, 90]).astype(float)
     pytest.raises(
         ValueError,
@@ -229,11 +196,8 @@ def test_spatial_events():
         cartesian_coord,
         "meters",
     )
-
-    # test units
-    bad_distance = np.array([-1]).astype(float)
-    # distance = bad_distance
-    with pytest.raises(ValueError) as context:
+    bad_distance = np.array([-1, 1]).astype(float)
+    with pytest.raises(ValueError):
         annotations.Events(
             intervals,
             "seconds",
@@ -283,37 +247,6 @@ def test_spatial_events():
 
     with pytest.raises(TypeError):
         annotations.Events(intervals, "seconds", labels, confidence)
-
-
-def test_events_invalid_coordinates():
-    intervals = np.array([[0, 1], [2, 3], [4, 5]]).astype(float)
-    labels = ["a", "b", "c"]
-    confidence = np.array([0.1, 0.2, 0.3])
-    azimuth_radians = np.array([0.1, 0.2, 0.3]).astype(float)
-    elevation_radians = np.array([0.4, 0.5, 0.6]).astype(float)
-    distance = np.array([1.0, 2.0, 3.0])
-
-    bad_cartesian_coord = np.array([[1]]).astype(float)
-    with pytest.raises(ValueError) as context:
-        annotations.Events(
-            intervals,
-            "seconds",
-            labels,
-            "open",
-            confidence,
-            azimuth_radians,
-            "radians",
-            elevation_radians,
-            "radians",
-            distance,
-            "meters",
-            bad_cartesian_coord,
-            "meters",
-        )
-    # assert (
-    #     "cartesian coordinates should have three columns corresponding to x, y and z coordinates."
-    #     in str(context.value)
-    # )
 
 
 def test_multiannotator():

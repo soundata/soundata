@@ -353,7 +353,7 @@ def validate_azimuth(azimuth, azimuth_unit=None, allow_none=False):
 
 
 def validate_distance(distance, allow_none=False):
-    if allow_none:
+    if allow_none and distance is None:
         return
 
     if np.any([d < 0 for d in distance]):
@@ -363,7 +363,7 @@ def validate_distance(distance, allow_none=False):
 
 
 def validate_cartesian_coord(cartesian_coord, allow_none=False):
-    if allow_none:
+    if allow_none and cartesian_coord is None:
         return
 
     if not np.shape(cartesian_coord)[1] == 3:
