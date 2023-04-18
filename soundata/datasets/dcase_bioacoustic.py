@@ -386,7 +386,6 @@ def load_events(fhandle: TextIO) -> annotations.Events:
 
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
-        positive (bool): False get all labels, True get just POS labels
 
     Raises:
         IOError: if csv_path doesn't exist
