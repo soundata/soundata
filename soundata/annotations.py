@@ -361,8 +361,8 @@ def validate_elevation(elevation, elevation_unit=None, allow_none=False):
         return
 
     if elevation_unit == "radians":
-        if any([a < -2 * np.pi for a in elevation]) or any(
-            [a > 2 * np.pi for a in elevation]
+        if any([a < -np.pi / 2 for a in elevation]) or any(
+            [a > np.pi / 2 for a in elevation]
         ):
             raise ValueError(
                 "elevation with unit 'radians' should be between -np.pi / 2 and np.pi / 2."

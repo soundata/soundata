@@ -216,7 +216,7 @@ def test_spatial_events():
         "meters",
     )
 
-    elevation_bad_radians = np.array([0, 3 * np.pi])
+    elevation_bad_radians = np.array([0, 2 * np.pi])
     pytest.raises(
         ValueError,
         annotations.Events,
