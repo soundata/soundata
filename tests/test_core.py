@@ -3,6 +3,7 @@ import numpy as np
 
 import soundata
 from soundata import core
+import os
 
 
 def test_clip():
@@ -10,13 +11,13 @@ def test_clip():
         "clips": {
             "a": {
                 "audio": (None, None),
-                "annotation": ("asdf/asdd", "asdfasdfasdfasdf"),
+                "annotation": (os.path.normpath("asdf/asdd"), "asdfasdfasdfasdf"),
             }
         }
     }
     clip_id = "a"
     dataset_name = "test"
-    data_home = "tests/resources/sound_datasets"
+    data_home = os.path.normpath("tests/resources/sound_datasets")
     clip = core.Clip(clip_id, data_home, dataset_name, index, lambda: None)
 
     assert clip.clip_id == clip_id
@@ -24,7 +25,7 @@ def test_clip():
     assert clip._data_home == data_home
     assert clip._clip_paths == {
         "audio": (None, None),
-        "annotation": ("asdf/asdd", "asdfasdfasdfasdf"),
+        "annotation": (os.path.normpath("asdf/asdd"), "asdfasdfasdfasdf"),
     }
     assert clip._metadata() is None
     with pytest.raises(AttributeError):
@@ -34,7 +35,7 @@ def test_clip():
         clip.to_jams()
 
     path_good = clip.get_path("annotation")
-    assert path_good == "tests/resources/sound_datasets/asdf/asdd"
+    assert path_good == os.path.normpath("tests/resources/sound_datasets/asdf/asdd")
     path_none = clip.get_path("audio")
     assert path_none is None
 
@@ -243,7 +244,7 @@ def test_clipgroup():
         "clipgroups": {
             "ab": {
                 "clips": ["a", "b"],
-                "audio_master": ("foo/bar", "asdfasdfasdfasdf"),
+                "audio_master": (os.path.normpath("foo/bar"), "asdfasdfasdfasdf"),
                 "score": (None, None),
             }
         }
@@ -253,13 +254,13 @@ def test_clipgroup():
     index.update(index_clipgroups)
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/sound_datasets"
+    data_home = os.path.normpath("tests/resources/sound_datasets")
     clipgroup = core.ClipGroup(
         clipgroup_id, data_home, dataset_name, index, core.Clip, lambda: None
     )
 
     path_good = clipgroup.get_path("audio_master")
-    assert path_good == "tests/resources/sound_datasets/foo/bar"
+    assert path_good == os.path.normpath("tests/resources/sound_datasets/foo/bar")
     path_none = clipgroup.get_path("score")
     assert path_none is None
 
