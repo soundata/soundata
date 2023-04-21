@@ -4,9 +4,9 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import tut2017se
+import os
 
-
-TEST_DATA_HOME = "tests/resources/sound_datasets/tut2017se"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tut2017se")
 
 
 def test_clip():
@@ -16,16 +16,22 @@ def test_clip():
 
     expected_attributes = {
         "audio_path": (
-            "tests/resources/sound_datasets/tut2017se/TUT-sound-"
-            "events-2017-development/audio/street/a001.wav"
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/tut2017se/"),
+                "TUT-sound-events-2017-development/audio/street/a001.wav",
+            )
         ),
         "annotations_path": (
-            "tests/resources/sound_datasets/tut2017se/TUT-sound-"
-            "events-2017-development/meta/street/a001.ann"
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/tut2017se/"),
+                "TUT-sound-events-2017-development/meta/street/a001.ann",
+            )
         ),
         "non_verified_annotations_path": (
-            "tests/resources/sound_datasets/tut2017se/TUT-sound-"
-            "events-2017-development/non_verified/meta/street/a001.ann"
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/tut2017se/"),
+                "TUT-sound-events-2017-development/non_verified/meta/street/a001.ann",
+            )
         ),
         "clip_id": "a001",
     }

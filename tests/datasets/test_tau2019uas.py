@@ -4,9 +4,9 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import tau2019uas
+import os
 
-
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2019uas"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2019uas")
 
 
 def test_clip():
@@ -16,7 +16,10 @@ def test_clip():
 
     expected_attributes = {
         "audio_path": (
-            "tests/resources/sound_datasets/tau2019uas/TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav"
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/tau2019uas/"),
+                "TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav",
+            )
         ),
         "clip_id": "development/airport-barcelona-0-0-a",
     }
