@@ -173,7 +173,7 @@ def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
         next((part.filename for part in zip_remotes if ".zip" in part.filename), None),
     )
     out_path = zip_path.replace(".zip", "_single.zip")
-    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
+    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path], shell=True)
     if cleanup:
         for l in range(len(zip_remotes)):
             zip_path = os.path.join(save_dir, zip_remotes[l].filename)
