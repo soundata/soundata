@@ -8,7 +8,7 @@ from soundata import annotations
 from soundata.datasets import tau2020sse_nigens
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2020sse_nigens"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2020sse_nigens")
 
 
 def test_clip():
@@ -18,8 +18,14 @@ def test_clip():
 
     expected_attributes = {
         "clip_id": "foa_dev/fold1_room1_mix001_ov1",
-        "audio_path": "tests/resources/sound_datasets/tau2020sse_nigens/foa_dev/fold1_room1_mix001_ov1.wav",
-        "csv_path": "tests/resources/sound_datasets/tau2020sse_nigens/metadata_dev/fold1_room1_mix001_ov1.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2020sse_nigens/"),
+            "foa_dev/fold1_room1_mix001_ov1.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2020sse_nigens/"),
+            "metadata_dev/fold1_room1_mix001_ov1.csv",
+        ),
         "format": "foa",
         "set": "dev",
     }
@@ -132,7 +138,6 @@ def test_load_SpatialEvents():
 
 
 def test_to_jams():
-
     default_clipid = "foa_dev/fold1_room1_mix001_ov1"
     dataset = tau2020sse_nigens.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)

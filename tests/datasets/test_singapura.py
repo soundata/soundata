@@ -18,14 +18,14 @@ def test_clip():
         "audio_path": (
             os.path.join(
                 TEST_DATA_HOME,
-                "labelled",
-                "2020-08-19",
+                "labelled/",
+                "2020-08-19/",
                 "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac",
             )
         ),
         "annotation_path": os.path.join(
             TEST_DATA_HOME,
-            "labels_public",
+            "labels_public/",
             "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.csv",
         ),
         "clip_id": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",

@@ -16,7 +16,9 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": os.path.normpath("tests/resources/sound_datasets/eigenscape/Beach.1.wav"),
+        "audio_path": os.path.normpath(
+            "tests/resources/sound_datasets/eigenscape/Beach.1.wav"
+        ),
         "clip_id": "Beach.1",
     }
 

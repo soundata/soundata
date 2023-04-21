@@ -8,7 +8,7 @@ from soundata import annotations
 from soundata.datasets import tau2019sse
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2019sse"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2019sse")
 
 
 def test_clip():
@@ -18,8 +18,14 @@ def test_clip():
 
     expected_attributes = {
         "clip_id": "foa_dev/split1_ir0_ov1_1",
-        "audio_path": "tests/resources/sound_datasets/tau2019sse/foa_dev/split1_ir0_ov1_1.wav",
-        "csv_path": "tests/resources/sound_datasets/tau2019sse/metadata_dev/split1_ir0_ov1_1.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2019sse/"),
+            "foa_dev/split1_ir0_ov1_1.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2019sse/"),
+            "metadata_dev/split1_ir0_ov1_1.csv",
+        ),
         "format": "foa",
         "set": "dev",
     }
@@ -45,7 +51,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file  tsrimmed to 1 sec
     default_clipid = "foa_dev/split1_ir0_ov1_1"
     dataset = tau2019sse.Dataset(TEST_DATA_HOME)

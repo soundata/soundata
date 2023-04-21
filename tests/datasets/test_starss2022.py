@@ -7,7 +7,7 @@ from tests.test_utils import run_clip_tests, DEFAULT_DATA_HOME
 from soundata import annotations
 from soundata.datasets import starss2022
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/starss2022"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/starss2022")
 
 
 def test_clip():
@@ -17,8 +17,14 @@ def test_clip():
 
     expected_attributes = {
         "clip_id": "foa_dev/dev-train-sony/fold3_room21_mix001",
-        "audio_path": "tests/resources/sound_datasets/starss2022/foa_dev/dev-train-sony/fold3_room21_mix001.wav",
-        "csv_path": "tests/resources/sound_datasets/starss2022/metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/starss2022/"),
+            "foa_dev/dev-train-sony/fold3_room21_mix001.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/starss2022/"),
+            "metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        ),
         "format": "foa",
         "set": "dev",
         "split": "train",
@@ -120,7 +126,6 @@ def test_load_SpatialEvents():
 
 
 def test_to_jams():
-
     default_clipid = "foa_dev/dev-train-sony/fold3_room21_mix001"
     dataset = starss2022.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)

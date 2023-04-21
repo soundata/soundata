@@ -97,7 +97,6 @@ def downloader(
         logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
-
             if isinstance(remotes[k], list):
                 if all([remote.filename[-4:-2] == ".z" for remote in remotes[k]]):
                     download_multipart_zip(
@@ -107,7 +106,6 @@ def downloader(
                     raise NotImplementedError("Only multipart zip supported.")
 
             else:
-
                 logging.info("[{}] downloading {}".format(k, remotes[k].filename))
                 extension = os.path.splitext(remotes[k].filename)[-1]
                 if ".zip" in extension:
@@ -119,7 +117,6 @@ def downloader(
 
                 if remotes[k].unpack_directories:
                     for src_dir in remotes[k].unpack_directories:
-
                         # path to destination directory
                         destination_dir = (
                             os.path.join(save_dir, remotes[k].destination_dir)
@@ -250,7 +247,6 @@ def download_from_remote(remote, save_dir, force_overwrite):
 
     checksum = md5(download_path)
     if remote.checksum != checksum:
-
         raise IOError(
             "{} has an MD5 checksum ({}) "
             "differing from expected ({}), "

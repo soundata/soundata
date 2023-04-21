@@ -16,7 +16,10 @@ def test_clip():
 
     expected_attributes = {
         "audio_path": (
-            os.path.join(os.path.normpath("tests/resources/sound_datasets/marco/"),"3D-MARCo Impulse Responses/01_Speaker_+90deg_3m/+90deg_011_OCT3D_2_FR.wav")
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/marco/"),
+                "3D-MARCo Impulse Responses/01_Speaker_+90deg_3m/+90deg_011_OCT3D_2_FR.wav",
+            )
         ),
         "clip_id": "impulse_response/+90deg_011_OCT3D_2_FR",
         "source_label": "impulse_response",

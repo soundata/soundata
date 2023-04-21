@@ -179,7 +179,6 @@ def test_load_and_clipids():
         clipid_len = len(clip_ids)
         # if the dataset has clips, test the loaders
         if dataset._clip_class is not None:
-
             try:
                 choice_clip = dataset.choice_clip()
             except:
@@ -372,7 +371,6 @@ def test_clipgroups():
     data_home_dir = "tests/resources/sound_datasets"
 
     for dataset_name in DATASETS:
-
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
         dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
 

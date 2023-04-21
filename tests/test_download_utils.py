@@ -167,7 +167,6 @@ def _clean(fpath):
 
 
 def test_downloader_with_server_file(httpserver):
-
     httpserver.serve_content(open("tests/resources/remote.wav").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -199,7 +198,6 @@ def test_downloader_with_server_file(httpserver):
 
 
 def test_downloader_with_server_zip(httpserver):
-
     httpserver.serve_content(open("tests/resources/remote.zip", "rb").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -238,7 +236,6 @@ def test_downloader_with_server_zip(httpserver):
 
 
 def test_downloader_with_server_tar(httpserver):
-
     httpserver.serve_content(open("tests/resources/remote.tar.gz", "rb").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -270,7 +267,6 @@ def test_downloader_with_server_tar(httpserver):
 
 
 def test_download_from_remote(httpserver, tmpdir):
-
     httpserver.serve_content(open("tests/resources/remote.wav").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -309,7 +305,6 @@ def test_download_from_remote_raises_IOError(httpserver, tmpdir):
 
 
 def test_unpackdir(httpserver):
-
     data_home = "tests/resources/sound_datasets/esc50_download"
     if os.path.exists(data_home):
         shutil.rmtree(data_home)
@@ -380,15 +375,28 @@ def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
         ]
     }
     download_utils.downloader(
-        os.path.normpath("tests/resources"), multipart_zip_remote, force_overwrite=False, cleanup=True
+        os.path.normpath("tests/resources"),
+        multipart_zip_remote,
+        force_overwrite=False,
+        cleanup=True,
     )
     mock_download_from_remote.assert_has_calls(
         [
-            mocker.call(multipart_zip_remote["foo"][0], os.path.normpath("tests/resources"), False),
-            mocker.call(multipart_zip_remote["foo"][1], os.path.normpath("tests/resources"), False),
+            mocker.call(
+                multipart_zip_remote["foo"][0],
+                os.path.normpath("tests/resources"),
+                False,
+            ),
+            mocker.call(
+                multipart_zip_remote["foo"][1],
+                os.path.normpath("tests/resources"),
+                False,
+            ),
         ]
     )
-    mock_unzip.assert_called_once_with(os.path.normpath("tests/resources/foo_single.zip"), cleanup=True)
+    mock_unzip.assert_called_once_with(
+        os.path.normpath("tests/resources/foo_single.zip"), cleanup=True
+    )
 
 
 def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):

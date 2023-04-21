@@ -377,7 +377,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         # parsing the data from the filenames due to lack of metadata file
         json_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
@@ -391,7 +390,6 @@ class Dataset(core.Dataset):
             all_paths_filenames = list(tausse2019_index["clips"].keys())
 
         for path_filename in all_paths_filenames:
-
             clip_id = path_filename
             path, filename = path_filename.split("/")
             fmt, subset = path.split("_")

@@ -15,7 +15,10 @@ def test_clip():
     dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     expected_attributes = {
-        "audio_path": os.path.join(os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),"FSDnoisy18k.audio_train/17.wav"),
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),
+            "FSDnoisy18k.audio_train/17.wav",
+        ),
         "clip_id": "17",
     }
 
@@ -33,7 +36,10 @@ def test_clip():
     default_clipid_test = "564"
     clip_test = dataset.clip(default_clipid_test)
     expected_attributes_test = {
-        "audio_path": os.path.join(os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),"FSDnoisy18k.audio_test/564.wav"),
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),
+            "FSDnoisy18k.audio_test/564.wav",
+        ),
         "clip_id": "564",
     }
 
