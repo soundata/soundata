@@ -9,7 +9,7 @@ import os
 import shutil
 import pytest
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/fsd50k"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/fsd50k")
 
 
 def test_clip():
@@ -17,7 +17,10 @@ def test_clip():
     dataset = fsd50k.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/fsd50k/FSD50K.dev_audio/64760.wav",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/fsd50k/"),
+            "FSD50K.dev_audio/64760.wav",
+        ),
         "clip_id": "64760",
     }
 

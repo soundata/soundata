@@ -4,9 +4,10 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import eigenscape
+import os
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/eigenscape"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/eigenscape")
 
 
 def test_clip():
@@ -15,7 +16,9 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": ("tests/resources/sound_datasets/eigenscape/Beach.1.wav"),
+        "audio_path": os.path.normpath(
+            "tests/resources/sound_datasets/eigenscape/Beach.1.wav"
+        ),
         "clip_id": "Beach.1",
     }
 
