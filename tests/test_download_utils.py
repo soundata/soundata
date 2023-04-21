@@ -337,6 +337,9 @@ def test_unpackdir(httpserver):
         )
     )
 
+    # clean up the directory after test
+    shutil.rmtree(data_home)
+
 
 def test_unzip():
     download_utils.unzip("tests/resources/file.zip", cleanup=False)

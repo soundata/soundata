@@ -317,7 +317,7 @@ def test_clipgroup():
     with pytest.raises(AttributeError):
         clipgroup_metadata_none._clipgroup_metadata
 
-    class TestTrack(core.Clip):
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -327,12 +327,12 @@ def test_clipgroup():
         def f(self):
             return np.random.uniform(-1, 1, (2, 100)), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id, data_home, dataset_name, index, track_class, metadata
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
         def to_jams(self):
@@ -349,16 +349,16 @@ def test_clipgroup():
             return "f"
 
     # import pdb;pdb.set_trace()
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
     clipgroup.to_jams()
     clipgroup.get_target(["a"])
     clipgroup.get_random_target()
 
 
-def test_multitrack_mixing():
-    class TestTrack(core.Clip):
+def test_multiclip_mixing():
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -368,12 +368,12 @@ def test_multitrack_mixing():
         def f(self):
             return np.random.uniform(-1, 1, (2, 100)), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id, data_home, dataset_name, index, track_class, metadata
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
         def to_jams(self):
@@ -393,8 +393,8 @@ def test_multitrack_mixing():
     clipgroup_id = "ab"
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])
@@ -455,8 +455,8 @@ def test_multitrack_mixing():
     assert mix.shape == (2, 100)
 
 
-def test_multitrack_unequal_len():
-    class TestTrack(core.Clip):
+def test_multiclip_unequal_len():
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -466,12 +466,12 @@ def test_multitrack_unequal_len():
         def f(self):
             return np.random.uniform(-1, 1, (2, np.random.randint(50, 100))), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id, data_home, dataset_name, index, track_class, metadata
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
         def to_jams(self):
@@ -491,8 +491,8 @@ def test_multitrack_unequal_len():
     clipgroup_id = "ab"
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     with pytest.raises(ValueError):
@@ -510,8 +510,8 @@ def test_multitrack_unequal_len():
     assert np.max(np.abs(target2)) <= 3
 
 
-# def test_multitrack_unequal_sr():
-#     class TestTrack(core.Clip):
+# def test_multiclip_unequal_sr():
+#     class TestClip(core.Clip):
 #         def __init__(
 #             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
 #         ):
@@ -521,12 +521,12 @@ def test_multitrack_unequal_len():
 #         def f(self):
 #             return np.random.uniform(-1, 1, (2, 100)), np.random.randint(10, 1000)
 #
-#     class TestMultiTrack1(core.ClipGroup):
+#     class TestMultiClip1(core.ClipGroup):
 #         def __init__(
-#             self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+#             self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
 #         ):
 #             super().__init__(
-#                 clipgroup_id, data_home, dataset_name, index, track_class, metadata
+#                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
 #             )
 #
 #         def to_jams(self):
@@ -546,12 +546,12 @@ def test_multitrack_unequal_len():
 #     clipgroup_id = "ab"
 #     dataset_name = "test"
 #     data_home = "tests/resources/sound_datasets"
-#     clipgroup = TestMultiTrack1(
+#     clipgroup = TestMultiClip1(
 #         clipgroup_id,
 #         data_home,
 #         dataset_name,
 #         index,
-#         TestTrack,
+#         TestClip,
 #         lambda: clip_metadata_none,
 #     )
 #
@@ -559,9 +559,9 @@ def test_multitrack_unequal_len():
 #         clipgroup.get_target(["a", "b", "c"])
 
 
-def test_multitrack_mono():
+def test_multiclip_mono():
     ### no first channel - audio shapes (100,)
-    class TestTrack(core.Clip):
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -573,10 +573,10 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id, data_home, dataset_name, index, track_class, metadata
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
         def to_jams(self):
@@ -597,7 +597,7 @@ def test_multitrack_mono():
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])
@@ -609,7 +609,7 @@ def test_multitrack_mono():
     assert np.max(np.abs(target1)) <= 2
 
     ### one channel mono shape (1, 100)
-    class TestTrack1(core.Clip):
+    class TestClip1(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -621,10 +621,10 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self, clipgroup_id, data_home, dataset_name, index, track_class, metadata
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id, data_home, dataset_name, index, track_class, metadata
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
         def to_jams(self):
@@ -645,7 +645,7 @@ def test_multitrack_mono():
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])

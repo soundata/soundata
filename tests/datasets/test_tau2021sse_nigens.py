@@ -97,7 +97,7 @@ def test_load_SpatialEvents():
     ]
 
     labels = ["1", "2", "4", "4", "5", "6"]
-    track_number_indices = ["0", "0", "0", "1", "0", "0"]
+    clip_number_indices = ["0", "0", "0", "1", "0", "0"]
     assert np.allclose(annotations.time_step, 0.1)
     assert np.allclose(confidence, annotations.confidence)
     for pair in [
@@ -113,10 +113,10 @@ def test_load_SpatialEvents():
                 test_data == data
     for test_label, label in zip(labels, annotations.labels):
         assert test_label == label
-    for test_track_index, track_index in zip(
-        track_number_indices, annotations.track_number_index
+    for test_clip_index, clip_index in zip(
+        clip_number_indices, annotations.clip_number_index
     ):
-        assert test_track_index == track_index
+        assert test_clip_index == clip_index
     with pytest.raises(ValueError):
         tau2021sse_nigens.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1, 0])
     with pytest.raises(ValueError):
