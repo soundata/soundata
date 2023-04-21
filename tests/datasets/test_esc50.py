@@ -6,9 +6,9 @@ from tests.test_utils import run_clip_tests
 from soundata import annotations
 from soundata.datasets import esc50
 from tests.test_utils import DEFAULT_DATA_HOME
+import os
 
-
-TEST_DATA_HOME = "tests/resources/sound_datasets/esc50"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/esc50")
 
 
 def test_clip():
@@ -17,7 +17,7 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/esc50/audio/1-104089-A-22.wav",
+        "audio_path": os.path.join(os.path.normpath("tests/resources/sound_datasets/esc50/"),"audio/1-104089-A-22.wav"),
         "clip_id": "1-104089-A-22",
     }
 

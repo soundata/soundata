@@ -4,9 +4,9 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import marco
+import os
 
-
-TEST_DATA_HOME = "tests/resources/sound_datasets/marco"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/marco")
 
 
 def test_clip():
@@ -16,7 +16,7 @@ def test_clip():
 
     expected_attributes = {
         "audio_path": (
-            "tests/resources/sound_datasets/marco/3D-MARCo Impulse Responses/01_Speaker_+90deg_3m/+90deg_011_OCT3D_2_FR.wav"
+            os.path.join(os.path.normpath("tests/resources/sound_datasets/marco/"),"3D-MARCo Impulse Responses/01_Speaker_+90deg_3m/+90deg_011_OCT3D_2_FR.wav")
         ),
         "clip_id": "impulse_response/+90deg_011_OCT3D_2_FR",
         "source_label": "impulse_response",

@@ -4,8 +4,9 @@ import numpy as np
 from soundata import annotations
 from soundata.datasets import singapura
 from tests.test_utils import run_clip_tests
+import os
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/singapura"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/singapura")
 
 
 def test_clip():
