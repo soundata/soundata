@@ -57,10 +57,6 @@ import json
 
 from soundata import download_utils, jams_utils, core, annotations, io
 
-ELEVATIONS_UNITS = {"degrees": "degrees"}
-AZIMUTHS_UNITS = {"degrees": "degrees"}
-DISTANCES_UNITS = {"meters": "meters"}
-
 BIBTEX = """
 @inproceedings{adavanne2019multi,
   title={A Multi-room Reverberant Dataset for Sound Event Localization and Detection},
@@ -126,65 +122,6 @@ REMOTES = {
 LICENSE_INFO = "Copyright (c) 2019 Tampere University and its licensors All rights reserved. Permission is hereby granted, without written agreement and without license or royalty fees, to use and copy the TAU Spatial Sound Events 2019 - Ambisonic and Microphone Array described in this document and composed of audio and metadata. This grant is only for experimental and non-commercial purposes, provided that the copyright notice in its entirety appear in all copies of this Work, and the original source of this Work, (Audio Research Group at Tampere University), is acknowledged in any publication that reports research using this Work. Any commercial use of the Work or any part thereof is strictly prohibited. Commercial use include, but is not limited to: selling or reproducing the Work, selling or distributing the results or content achieved by use of the Work providing services by using the Work. IN NO EVENT SHALL TAMPERE UNIVERSITY OR ITS LICENSORS BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS WORK AND ITS DOCUMENTATION, EVEN IF TAMPERE UNIVERSITY OR ITS LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. TAMPERE UNIVERSITY AND ALL ITS LICENSORS SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE WORK PROVIDED HEREUNDER IS ON AN AS IS BASIS, AND THE TAMPERE UNIVERSITY HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
 
 
-class SpatialEvents(annotations.Events):
-    """TAU SSE 2019 Spatial Events
-
-    Attributes:
-        intervals (np.ndarray): (n x 2) array of intervals (as floats) in seconds in the form [start_time, end_time]
-                                with positive time stamps and end_time >= start_time.
-        elevations (np.ndarray): (n,) array of elevations
-        azimuths (np.ndarray): (n,) array of azimuths
-        distances (np.ndarray): (n,) array of distances
-        labels (list): list of event labels (as strings)
-        confidence (np.ndarray or None): array of confidence values, float in [0, 1]
-        labels_unit (str): labels unit, one of LABELS_UNITS
-        intervals_unit (str): intervals unit, one of TIME_UNITS
-    """
-
-    def __init__(
-        self,
-        intervals,
-        intervals_unit,
-        elevations,
-        elevations_unit,
-        azimuths,
-        azimuths_unit,
-        distances,
-        distances_unit,
-        labels,
-        labels_unit,
-        confidence=None,
-    ):
-        super().__init__(intervals, intervals_unit, labels, labels_unit, confidence)
-
-        annotations.validate_array_like(elevations, np.ndarray, float)
-        annotations.validate_array_like(azimuths, np.ndarray, float)
-        annotations.validate_array_like(distances, np.ndarray, float)
-        annotations.validate_lengths_equal(
-            [intervals, elevations, azimuths, distances, labels, confidence]
-        )
-        validate_locations(
-            np.concatenate(
-                [
-                    elevations[:, np.newaxis],
-                    azimuths[:, np.newaxis],
-                    distances[:, np.newaxis],
-                ],
-                axis=1,
-            )
-        )
-        annotations.validate_unit(elevations_unit, ELEVATIONS_UNITS)
-        annotations.validate_unit(azimuths_unit, AZIMUTHS_UNITS)
-        annotations.validate_unit(distances_unit, DISTANCES_UNITS)
-
-        self.elevations = elevations
-        self.azimuths = azimuths
-        self.distances = distances
-        self.elevations_unit = elevations_unit
-        self.azimuths_unit = azimuths_unit
-        self.distances_unit = distances_unit
-
-
 class Clip(core.Clip):
     """TAU SSE 2019 Clip class
 
@@ -192,7 +129,7 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        spatial_events (SpatialEvents): sound events with start time, end time, elevation, azimuth, distance, label and confidence.
+        events (Events): sound events with start time, end time, elevation, azimuth, distance, label and confidence.
         audio_path (str): path to the audio file
         set (str): subset the clip belongs to (development or evaluation)
         format (str): whether the clip is in foa or mic format
@@ -233,23 +170,13 @@ class Clip(core.Clip):
         return load_audio(self.audio_path)
 
     @core.cached_property
-    def spatial_events(self) -> Optional[SpatialEvents]:
-        """The clip's spatial events
+    def events(self) -> Optional[annotations.Events]:
+        """The clip's events
 
         Returns:
-            * SpatialEvents class with attributes
-                * intervals (np.ndarray): (n x 2) array of intervals
-                    (as floats) in seconds in the form [start_time, end_time]
-                    with positive time stamps and end_time >= start_time.
-                * elevations (np.ndarray): (n,) array of elevations
-                * azimuths (np.ndarray): (n,) array of azimuths
-                * distances (np.ndarray): (n,) array of distances
-                * labels (list): list of event labels (as strings)
-                * confidence (np.ndarray or None): array of confidence values, float in [0, 1]
-                * labels_unit (str): labels unit, one of LABELS_UNITS
-                * intervals_unit (str): intervals unit, one of TIME_UNITS
+            Events: sound events annotation data
         """
-        return load_spatialevents(self.csv_path)
+        return load_events(self.csv_path)
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -282,7 +209,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 
 @io.coerce_to_string_io
-def load_spatialevents(fhandle: TextIO) -> SpatialEvents:
+def load_events(fhandle: TextIO) -> annotations.Events:
     """Load an TAU SSE 2019 annotation file
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
@@ -308,51 +235,20 @@ def load_spatialevents(fhandle: TextIO) -> SpatialEvents:
         distances.append(float(line[5]))
         confidence.append(1.0)
 
-    events_data = SpatialEvents(
+    events_data = annotations.Events(
         np.array(times),
         "seconds",
-        np.array(elevations),
-        "degrees",
+        list(labels),
+        "open",
+        np.array(confidence),
         np.array(azimuths),
+        "degrees",
+        np.array(elevations),
         "degrees",
         np.array(distances),
         "meters",
-        labels,
-        "open",
-        np.array(confidence),
     )
     return events_data
-
-
-def validate_locations(locations):
-    """Validate if TAU SSE 2019 locations are well-formed.
-
-    If locations is None, validation passes automatically
-
-    Args:
-        locations (np.ndarray): (n x 3) array
-
-    Raises:
-        ValueError: if locations have an invalid shape or
-                have cartesian coordinate values outside the expected ranges.
-    """
-    if locations is None:
-        return
-
-    # validate that locations have the correct shape
-    locations_shape = np.shape(locations)
-    if len(locations_shape) != 2 or locations_shape[1] != 3:
-        raise ValueError(
-            f"Locations should be arrays with three columns, but array has shape {locations_shape}"
-        )
-
-    # validate that values are within expected ranges
-    if (np.abs(locations[:, 0]) > 90).any():
-        raise ValueError(f"Elevation values should have magnitude less than 90")
-    if (np.abs(locations[:, 1]) > 180).any():
-        raise ValueError(f"Azimuth values should have magnitude less than 180")
-    elif (locations[:, 2] < 0).any():
-        raise ValueError(f"Distance values should be nonnegative numbers")
 
 
 @core.docstring_inherit(core.Dataset)

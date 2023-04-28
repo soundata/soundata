@@ -32,7 +32,7 @@ def test_clip():
 
     expected_property_types = {
         "audio": tuple,
-        "spatial_events": tau2019sse.SpatialEvents,
+        "events": annotations.Events,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
@@ -61,31 +61,15 @@ def test_to_jams():
     assert jam.validate()
 
 
-def test_load_spatialevents():
+def test_load_events():
     dataset = tau2019sse.Dataset(TEST_DATA_HOME)
     clip = dataset.clip("foa_dev/split1_ir0_ov1_1")
     csv_path = clip.csv_path
-    events_data = tau2019sse.load_spatialevents(csv_path)
+    events_data = tau2019sse.load_events(csv_path)
     assert events_data.labels[0] == "cough"
     assert events_data.labels[-1] == "phone"
     assert (events_data.intervals[0] == [0.36645229108, 1.33445229108]).all()
     assert (events_data.intervals[-1] == [5.34011283858, 7.12411283858]).all()
-    assert events_data.elevations[0] == -10
-    assert events_data.azimuths[0] == -10
-    assert events_data.distances[0] == 2
-
-
-def test_validate_locations():
-    tau2019sse.validate_locations(None)
-
-    with pytest.raises(ValueError):
-        tau2019sse.validate_locations(np.array([0, 2, 9]))
-
-    with pytest.raises(ValueError):
-        tau2019sse.validate_locations(np.array([[91, 0, 0], [0, 0, 0]]))
-
-    with pytest.raises(ValueError):
-        tau2019sse.validate_locations(np.array([[0, -181, 0], [0, 0, 0]]))
-
-    with pytest.raises(ValueError):
-        tau2019sse.validate_locations(np.array([[0, 0, -1], [0, 0, 0]]))
+    assert events_data.elevation[0] == -10
+    assert events_data.azimuth[0] == -10
+    assert events_data.distance[0] == 2
