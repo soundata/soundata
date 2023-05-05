@@ -173,8 +173,9 @@ class Clip(core.Clip):
     def events(self) -> Optional[annotations.Events]:
         """The clip's events
 
-        Returns:
-            Events: sound events annotation data
+        Returns
+            * annotations.Events - audio event object
+
         """
         return load_events(self.csv_path)
 
