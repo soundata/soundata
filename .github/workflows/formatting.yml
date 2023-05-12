@@ -1,9 +1,9 @@
-name: Lint
+name: Formatting
 
 on: [push, pull_request]
 
 jobs:
-  formatting:
+  black:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

@@ -1,0 +1,27 @@
+name: librosa-dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # required
+  - pip
+  - tqdm
+  - librosa >= 0.8.0
+  - numpy >= 1.16
+  - requests
+  - pandas
+  - wget
+
+  # optional, but required for testing
+  - pytest-pep8 >= 1.0.0
+  - pytest-cov >= 2.6.1
+  - pytest >= 4.4.0
+  - pytest-mock >= 1.10.1
+  - pytest-localserver >= 0.5.0
+
+  - pip:
+    - jams
+    - testcontainers>=2.3
+    - future==0.17.1
+    - coveralls>=1.7.0
+    - black>=21.9b0
