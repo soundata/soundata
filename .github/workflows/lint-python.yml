@@ -58,9 +58,9 @@ jobs:
     #   shell: bash -l {0}
     #   run: python -m velin --check librosa
     
-    # - name: Type check package
-    #   shell: bash -l {0}
-    #   run: python -m mypy --pretty soundata
+    - name: Type check package
+      shell: bash -l {0}
+      run: python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
     
     # - name: Type check tests
     #   shell: bash -l {0}
