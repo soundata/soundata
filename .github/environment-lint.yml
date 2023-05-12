@@ -15,7 +15,6 @@ dependencies:
   - tqdm
   - librosa >= 0.8
   - numpy >= 1.16
-  - jams
   - requests
   - pandas
   # Dependencies for velin
@@ -24,5 +23,6 @@ dependencies:
   # - pygments
   # - black
 
-  # - pip:
+  - pip:
+    - jams
   #   - velin
