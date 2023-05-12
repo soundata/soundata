@@ -10,7 +10,6 @@ dependencies:
   - numpy >= 1.16
   - requests
   - pandas
-  - wget
 
   # optional, but required for testing
   - pytest-pep8 >= 1.0.0
