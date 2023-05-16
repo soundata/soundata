@@ -1,0 +1,30 @@
+name: Docs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  docs:
+    name: Build docs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8' 
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libsndfile1-dev
+        pip install docutils==0.16 numpydoc recommonmark sphinx>=3.4.0  sphinxcontrib-napoleon sphinx_rtd_theme sphinx-togglebutton
+
+    - name: Sphinx build
+      run: |
+        sphinx-build docs _build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_branch: gh-pages
+        github_token: ${{ secrets.PERSONAL_TOKEN }}
+        publish_dir: _build/
+        force_orphan: true

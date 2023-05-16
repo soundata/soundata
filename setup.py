@@ -58,6 +58,7 @@ if __name__ == "__main__":
                 "sphinx>=3.4.0",
                 "sphinxcontrib-napoleon",
                 "sphinx_rtd_theme",
+                "sphinx-togglebutton"
             ],
         },
     )
