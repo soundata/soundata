@@ -17,27 +17,13 @@ def test_clip():
 
     expected_attributes = {
         "audio_path": os.path.join(
-            "tests",
-            "resources",
-            "sound_datasets",
-            "dcase_bioacoustic",
-            "Development_Set",
-        )
-        # "Training_Set",
-        # "BV",
-        # "2015-09-04_08-04-59_unit03.wav"),
-        + "/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
+            os.path.normpath("tests/resources/sound_datasets/dcase_bioacoustic"),
+            "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
+        ),
         "csv_path": os.path.join(
-            "tests",
-            "resources",
-            "sound_datasets",
-            "dcase_bioacoustic",
-            "Development_Set",
-        )
-        # "Training_Set",
-        # "BV",
-        # "2015-09-04_08-04-59_unit03.csv",
-        + "/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+            os.path.normpath("tests/resources/sound_datasets/dcase_bioacoustic"),
+            "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+        ),
         "clip_id": "2015-09-04_08-04-59_unit03",
     }
 
