@@ -43,26 +43,12 @@ jobs:
         conda info -a
         conda list
 
-    # - name: Spell check
-    #   shell: bash -l {0}
-    #   run: codespell --ignore-words-list="ba,trough,ue" --skip="*demo.ipynb,./AUTHORS.md,./docs/changelog.rst"
-
-    # - name: Security check
-    #   shell: bash -l {0}
-    #   run: bandit --recursive --skip B101,B110 .
-
     - name: (flake8) Style check
       shell: bash -l {0}
       run: flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
-    
-    # - name: Docstring check  
-    #   shell: bash -l {0}
-    #   run: python -m velin --check librosa
+      # Info about error codes: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+      # and https://flake8.pycqa.org/en/latest/user/error-codes.html
     
     - name: (mypy) Type check package
       shell: bash -l {0}
       run: python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
-    
-    # - name: Type check tests
-    #   shell: bash -l {0}
-    #   run: python -m mypy --pretty tests

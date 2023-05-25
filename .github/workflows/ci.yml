@@ -91,10 +91,6 @@ jobs:
             conda info -a
             conda list
 
-        # - name: Install librosa
-        #   shell: bash -l {0}
-        #   run: python -m pip install --upgrade-strategy only-if-needed -e .[tests]
-
         - name: Run pytest
           shell: bash -l {0}
           run: pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests

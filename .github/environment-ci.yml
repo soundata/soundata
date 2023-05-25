@@ -1,4 +1,4 @@
-name: librosa-dev
+name: soundata-dev
 channels:
   - conda-forge
   - defaults
