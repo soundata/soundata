@@ -43,13 +43,30 @@ To install ``soundata`` for development purposes:
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ or
 `pyenv <https://github.com/pyenv/pyenv#installation>`_ to manage your Python versions
-and install all ``soundata`` requirements. You will want to install the latest versions of Python 3.6, 3.7 and 3.8.
+and install all ``soundata`` requirements. You will want to install the latest supported Python versions (see README.md).
 Once ``conda`` or ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you've installed all the 
-necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your code successfully. Finally, run:
+necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your code successfully.
+
+Before running the tests, make sure to have formatted ``soundata/`` and ``tests/`` with ``black``.
 
 .. code-block:: bash
 
-    pytest tests/ --local
+    black soundata/ tests/
+
+
+Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.
+
+.. code-block:: bash
+
+    flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+    python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+
+
+Finally, run:
+
+.. code-block:: bash
+
+    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata --black tests/ --local
 
 
 All tests should pass!
@@ -426,7 +443,7 @@ An example of this for the ``UrbanSound8k`` dataset:
           :target: https://creativecommons.org/licenses/by-nc/4.0
 
 
-(you can check that this was done correctly by clicking on the readthedocs check when you open a PR). You can find license
+(you can check that this was done correctly by going to ``soundata.github.io/preview/PR-<ID>`` in which ``<ID>`` is the pull request ID. You can find license
 badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba>`_.
 
 Pull Request template
@@ -457,14 +474,27 @@ If github shows a red ``X`` next to your latest commit, it means one of our chec
 
 ::
 
-    black --target-version py38 soundata/ tests/
+    black soundata/ tests/
 
-2. the test coverage is too low -- this means that there are too many new lines of code introduced that are not tested.
+2. Your code does not pass ``flake8`` test.
 
-3. the docs build has failed -- this means that one of the changes you made to the documentation has caused the build to fail. 
+::
+
+    flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+
+
+3. Your code does not pass ``mypy`` test.
+
+::
+
+    python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+
+4. the test coverage is too low -- this means that there are too many new lines of code introduced that are not tested.
+
+5. the docs build has failed -- this means that one of the changes you made to the documentation has caused the build to fail. 
    Check the formatting in your changes and make sure they are consistent.
 
-4. the tests have failed -- this means at least one of the tests is failing. Run the tests locally to make sure they are passing. 
+6. the tests have failed -- this means at least one of the tests is failing. Run the tests locally to make sure they are passing. 
    If they are passing locally but failing in the check, open an `issue` and we can help debug.
 
 
