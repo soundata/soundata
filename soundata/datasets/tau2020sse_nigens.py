@@ -1,6 +1,5 @@
 """TAU NIGENS SSE 2020 Dataset Loader
 
-
 .. admonition:: Dataset Info
     :class: dropdown
     
