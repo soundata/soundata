@@ -5,16 +5,15 @@ channels:
 dependencies:
   # required
   - pip
-  - flake8
-  - types-decorator
-  - mypy
-  - numpy==1.23.4
-  - pytest
-  - tqdm
-  - librosa >= 0.8
-  - numpy >= 1.16
-  - requests
-  - pandas
+  - flake8==6.0.0
+  - librosa==0.10.0
+  - mypy==1.3.0
+  - numpy==1.23.1
+  - pandas==2.0.2
+  - pytest==7.3.1
+  - requests==2.31.0
+  - tqdm==4.65.0
+  - types-decorator==5.1.8.3
 
   - pip:
-    - jams
+    - jams==0.3.4
