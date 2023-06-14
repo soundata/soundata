@@ -327,17 +327,31 @@ To finish your contribution, please include tests that check the integrity of yo
     :class: dropdown
 
     .. literalinclude:: contributing_examples/test_example.py
-        :language: python
 
 
 Running your tests locally
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before creating a PR, you should run all the tests locally like this:
+Before creating a PR you should run the tests. But before that, make sure to have formatted ``soundata/`` and ``tests/`` with ``black``.
 
-::
+.. code-block:: bash
 
-    pytest tests/ --local
+    black soundata/ tests/
+
+
+Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.
+
+.. code-block:: bash
+
+    flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+    python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+
+
+Finally, run all the tests locally like this:
+
+.. code-block:: bash
+
+    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata --black tests/ --local
 
 
 The ``--local`` flag skips tests that are built to run only on the remote testing environment.
@@ -362,14 +376,8 @@ statments, which is useful here for seeing the download progress bar when testin
 This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
 for some datasets, but it's important to ensure the integrity of the library.
 
-We've added one extra convenience flag for this test, for getting the tests running when the download is very slow:
-
-::
-
-    pytest -s tests/test_full_dataset.py --local --dataset my_dataset --skip-download
-
-
-which will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.
+The ``--skip-download``flag can be added to ``pytest`` command to run the tests skipping the download.
+This will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.
 
 .. _working_big_datasets:
 
