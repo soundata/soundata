@@ -376,7 +376,7 @@ statments, which is useful here for seeing the download progress bar when testin
 This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
 for some datasets, but it's important to ensure the integrity of the library.
 
-The ``--skip-download``flag can be added to ``pytest`` command to run the tests skipping the download.
+The ``--skip-download`` flag can be added to ``pytest`` command to run the tests skipping the download.
 This will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.
 
 .. _working_big_datasets:
@@ -414,7 +414,7 @@ Reducing the testing space usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We are trying to keep the test resources folder size as small as possible, because it can get really heavy as new loaders are added. We
-kindly ask the contributors to reduce the size of the testing data if possible (e.g. trimming the audio clips, keeping just two rows for
+kindly ask the contributors to **reduce the size of the testing data** if possible (e.g. trimming the audio clips, keeping just two rows for
 csv files).
 
 
@@ -451,8 +451,7 @@ An example of this for the ``UrbanSound8k`` dataset:
           :target: https://creativecommons.org/licenses/by-nc/4.0
 
 
-(you can check that this was done correctly by going to ``soundata.github.io/preview/PR-<ID>`` in which ``<ID>`` is the pull request ID. You can find license
-badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba>`_.
+You can find license badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba>`_.
 
 Pull Request template
 ^^^^^^^^^^^^^^^^^^^^^
@@ -467,7 +466,7 @@ it will simplify the reviewing process and also help you make a complete PR. You
 Docs
 ^^^^
 
-Staged docs for every new PR are built, and you can look at them by clicking on the "readthedocs" test in a PR. 
+Staged docs for every new PR are built and accessible at ``soundata.github.io/preview/PR-<#PR_ID>`` in which ``<#PR_ID>`` is the pull request ID. 
 To quickly troubleshoot any issues, you can build the docs locally by nagivating to the ``docs`` folder, and running 
 ``make html`` (note, you must have ``sphinx`` installed). Then open the generated ``_build/source/index.html`` 
 file in your web browser to view.
