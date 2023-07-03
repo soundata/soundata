@@ -64,8 +64,7 @@ See the [documentation](https://soundata.readthedocs.io/) for more examples and 
 ```
 
 
-When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset,
-which can be found in the respective dataset loader using the `cite()` method. 
+When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
 
 ### Contributing a new dataset loader
 
