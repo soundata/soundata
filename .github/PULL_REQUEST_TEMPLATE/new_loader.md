@@ -26,7 +26,7 @@ Please include the following information at the top level docstring for the data
 
 If your dataset **is not fully downloadable** there are two extra steps you should follow:
 - [ ] Contacting the soundata organizers by opening an issue or PR so we can discuss how to proceed with the closed dataset.
-- [ ] Show that the version used to create the checksum is the "canonical" one, either by getting the version from the dataset creator, or by verifying equivalence with several other copies of the dataset.
+- [ ] Show that the version used to create the checksum is the "canonical" one, either by getting the version from the dataset creator, or by verifying equivalence with several other copies of the dataset. 
 - [ ] Make sure someone has run `pytest -s tests/test_full_dataset.py --local --dataset my_dataset` once on your dataset locally and confirmed it passes.
 
 #### Please-do-not-edit flag
