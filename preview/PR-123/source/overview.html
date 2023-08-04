@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            soundata
+              <img src="../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About Soundata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html">Initialize a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#dataset-loaders">Dataset Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#annotations">Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#advanced">Advanced</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="overview">
+<span id="id1"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">soundata</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">soundata</span></code> is a library which aims to standardize how audio datasets are accessed in Python,
+removing the need for writing custom loaders in every project, and improving reproducibility by providing
+tools to contrast data validity to a canonical version.
+Working with datasets usually requires an often cumbersome step of downloading data and writing
+load functions that load related files (for example, audio and annotations)
+into a standard format to be used for experimenting or evaluating. <code class="docutils literal notranslate"><span class="pre">soundata</span></code> does all of this for you:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">soundata</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">())</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+
+<span class="c1"># get annotations and audio for a random clip</span>
+<span class="n">example_clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">choice_clip</span><span class="p">()</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">example_clip</span><span class="o">.</span><span class="n">tags</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">example_clip</span><span class="o">.</span><span class="n">audio</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">soundata</span></code> loaders contain methods to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">download()</span></code>: download (or give instructions to download) a dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load_*()</span></code>: load a dataset’s files (audio, metadata, annotations, etc.) into standard formats, so you don’t have to write them yourself
+which are compatible with <code class="docutils literal notranslate"><span class="pre">mir_eval</span></code> and <code class="docutils literal notranslate"><span class="pre">jams</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate()</span></code>: validate that a dataset is complete and correct</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cite()</span></code>: quickly print a dataset’s relevant citation</p></li>
+<li><p>access <code class="docutils literal notranslate"><span class="pre">clip</span></code> and <code class="docutils literal notranslate"><span class="pre">clipgroup</span></code> objects for grouping multiple annotations for a particular clip/clipgroup</p></li>
+<li><p>and more</p></li>
+</ul>
+<p>See the <a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">Getting started</span></a> for a detailed explanation of how to get started using this library.</p>
+<div class="section" id="soundata-design-principles">
+<h2>soundata design principles<a class="headerlink" href="#soundata-design-principles" title="Permalink to this heading"></a></h2>
+<div class="section" id="ease-of-use-and-contribution">
+<h3>Ease of use and contribution<a class="headerlink" href="#ease-of-use-and-contribution" title="Permalink to this heading"></a></h3>
+<p>We designed <code class="docutils literal notranslate"><span class="pre">soundata</span></code> to be easy to use and easy to contribute to. <code class="docutils literal notranslate"><span class="pre">soundata</span></code> simplifies the research pipeline considerably,
+facilitating research in a wider diversity of tasks and musical datasets. We provide detailed examples on how to interact with
+the library in the <a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">Getting started</span></a>, as well as detail explanation on how to contribute in <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing</span></a>.</p>
+</div>
+<div class="section" id="reproducibility">
+<h3>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this heading"></a></h3>
+<p>We aim for <code class="docutils literal notranslate"><span class="pre">soundata</span></code> to aid in increasing research reproducibility by providing a common framework for MIR researchers to
+compare and validate their data. If mistakes are found in annotations or audio versions change, using <code class="docutils literal notranslate"><span class="pre">soundata</span></code>, the community
+can fix mistakes while still being able to compare methods moving forward.</p>
+<div class="section" id="canonical-versions">
+<span id="canonical-version"></span><h4>canonical versions<a class="headerlink" href="#canonical-versions" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">dataset</span> <span class="pre">loaders</span></code> in <code class="docutils literal notranslate"><span class="pre">soundata</span></code> are written for what we call the <code class="docutils literal notranslate"><span class="pre">canonical</span> <span class="pre">version</span></code> of a dataset. Whenever possible,
+this should be the official release of the dataset as published by the dataset creator/s. When this is not possible, (e.g. for
+data that is no longer available), the procedure we follow is to find as many copies of the data as possible from different researchers
+(at least 4), and use the most common one. To make this process transparent, when there are doubts about the data consistency we open an
+<a class="reference external" href="https://github.com/soundata/soundata/issues">issue</a> and leave it to the community to discuss what to use.</p>
+</div>
+</div>
+<div class="section" id="standardization">
+<h3>Standardization<a class="headerlink" href="#standardization" title="Permalink to this heading"></a></h3>
+<p>Different datasets have different annotations, metadata, etc. We try to respect the idiosyncracies of each dataset as much as we can. For this
+reason, <code class="docutils literal notranslate"><span class="pre">clips</span></code> in each <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> in <code class="docutils literal notranslate"><span class="pre">soundata</span></code> have different attributes, e.g. some may have <code class="docutils literal notranslate"><span class="pre">fold</span></code> information and some may not.
+However there are some elements that are common in most datasets, and in these cases we standarize them to increase the usability of the library.
+Some examples of this are the annotations in <code class="docutils literal notranslate"><span class="pre">soundata</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">Tags</span></code> and <code class="docutils literal notranslate"><span class="pre">Events</span></code>.</p>
+</div>
+</div>
+<div class="section" id="indexes">
+<span id="id2"></span><h2>indexes<a class="headerlink" href="#indexes" title="Permalink to this heading"></a></h2>
+<p>Indexes in <cite>soundata</cite> are manifests of the files in a dataset and their corresponding md5 checksums.
+Specifically, an index is a json file with the mandatory top-level key <code class="docutils literal notranslate"><span class="pre">version</span></code> and at least one of the optional
+top-level keys <code class="docutils literal notranslate"><span class="pre">metadata</span></code>, <code class="docutils literal notranslate"><span class="pre">clips</span></code>, <code class="docutils literal notranslate"><span class="pre">clipgroups</span></code> or <code class="docutils literal notranslate"><span class="pre">records</span></code>. An index might look like:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example Index</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w">   </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;metadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;metadata_file_1&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="c1">// the relative path for metadata_file_1</span>
+<span class="w">                </span><span class="s2">&quot;path_to_metadata/metadata_file_1.csv&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// metadata_file_1 md5 checksum</span>
+<span class="w">                </span><span class="s2">&quot;bb8b0ca866fc2423edde01325d6e34f7&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;metadata_file_2&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="c1">// the relative path for metadata_file_2</span>
+<span class="w">                </span><span class="s2">&quot;path_to_metadata/metadata_file_2.csv&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// metadata_file_2 md5 checksum</span>
+<span class="w">                </span><span class="s2">&quot;6cce186ce77a06541cdb9f0a671afb46&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="s2">&quot;clips&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;clip1&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;audio&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;audio_files/clip1.wav&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;6c77777ce77a06541cdb9f0a671afb46&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="s1">&#39;tags&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;annotations/clip1.tags.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ab8b0ca866fc2423edde01325d6e34f7&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="s1">&#39;events&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;annotations/clip1.events.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;05abeca866fc2423edde01325d6e34f7&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="s2">&quot;clip2&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;audio&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;audio_files/clip2.wav&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;6c77777ce77a06542cdb9f0a672afb46&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="s1">&#39;tags&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;annotations/clip2.tags.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ab8b0ca866fc2423edde02325d6e34f7&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="s1">&#39;events&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;annotations/clip2.events.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;05abeca866fc2423edde02325d6e34f7&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The optional top-level keys (<cite>clips</cite>, <cite>clipgroups</cite> and <cite>records</cite>) relate to different organizations of sound datasets.
+<cite>clips</cite> are used when a dataset is organized as a collection of individual clips, namely mono or multi-channel audio,
+spectrograms only, and their respective annotations. <cite>clipgroups</cite> are used when a dataset comprises
+clipgroups - different groups of clips which are directly related to each other. Finally, <cite>records</cite> are used when a dataset
+consits of groups of tables (e.g. relational databases), as many recommendation datasets do.</p>
+<p>See the contributing docs <a class="reference internal" href="contributing.html#create-index"><span class="std std-ref">1. Create an index</span></a> for more information about soundata indexes.</p>
+</div>
+<div class="section" id="annotations">
+<h2>annotations<a class="headerlink" href="#annotations" title="Permalink to this heading"></a></h2>
+<p>soundata provides <code class="docutils literal notranslate"><span class="pre">Annotation</span></code> classes of various kinds which provide a standard interface to different
+annotation formats such as tags and sound events.</p>
+</div>
+<div class="section" id="metadata">
+<h2>metadata<a class="headerlink" href="#metadata" title="Permalink to this heading"></a></h2>
+<p>When available, we provide extensive and easy-to-access <code class="docutils literal notranslate"><span class="pre">metadata</span></code> to facilitate clip metadata-specific analysis.
+<code class="docutils literal notranslate"><span class="pre">metadata</span></code> is available as attributes at the <code class="docutils literal notranslate"><span class="pre">clip</span></code> level, e.g. <code class="docutils literal notranslate"><span class="pre">clip.fold</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            soundata
+              <img src="../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About Soundata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html">Initialize a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#dataset-loaders">Dataset Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#annotations">Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#advanced">Advanced</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/table.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Downloadable?</p></th>
+<th class="head"><p>Annotations</p></th>
+<th class="head"><p>Clips</p></th>
+<th class="head"><p>Hours</p></th>
+<th class="head"><p>License</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3D-MARCo</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>26</p></td>
+<td><p>0.3</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-nc/3.0"><img alt="https://licensebuttons.net/l/by-nc/3.0/80x15.png" src="https://licensebuttons.net/l/by-nc/3.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><p>DCASE-bioacoustic</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#events"><span class="std std-ref">Events</span></a></p></td>
+<td><p>174</p></td>
+<td><p>21</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">EigenScape</div>
+<div class="line">(HOA 25 ch)</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>64</p></td>
+<td><p>10.7</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">EigenScape Raw</div>
+<div class="line">(32 ch)</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>64</p></td>
+<td><p>10.7</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><p>ESC-50</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>2000</p></td>
+<td><p>2.8</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-nc/3.0"><img alt="https://licensebuttons.net/l/by-nc/3.0/80x15.png" src="https://licensebuttons.net/l/by-nc/3.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><p>FSD50K</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>51197</p></td>
+<td><p>108.3</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><p>FSDnoisy18K</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>18532</p></td>
+<td><p>42.5</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><p>SINGA:PURA</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#events"><span class="std std-ref">Events</span></a></p></td>
+<td><p>6547</p></td>
+<td><p>18.2</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-sa/4.0"><img alt="https://licensebuttons.net/l/by-sa/4.0/80x15.png" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">STARSS</div>
+<div class="line">2022</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p>Spatial Events</p></td>
+<td><p>121</p></td>
+<td><p>5</p></td>
+<td><a class="reference external image-reference" href="https://lbesson.mit-license.org/"><img alt="https://img.shields.io/badge/License-MIT-blue.svg" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">TAU NIGENS</div>
+<div class="line">SSE 2020</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p>Spatial Events</p></td>
+<td><p>800</p></td>
+<td><p>15</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-nc/4.0"><img alt="https://licensebuttons.net/l/by-nc/4.0/80x15.png" src="https://licensebuttons.net/l/by-nc/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">TAU NIGENS</div>
+<div class="line">SSE 2021</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p>Spatial Events</p></td>
+<td><p>800</p></td>
+<td><p>15</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-nc/4.0"><img alt="https://licensebuttons.net/l/by-nc/4.0/80x15.png" src="https://licensebuttons.net/l/by-nc/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">TUT Sound</div>
+<div class="line">Events 2017</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#events"><span class="std std-ref">Events</span></a></p></td>
+<td><p>32</p></td>
+<td><p>2.02</p></td>
+<td><p><a class="reference external" href="https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf">Custom</a></p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">TAU SSE</div>
+<div class="line">2019</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p>Spatial Events</p></td>
+<td><p>500</p></td>
+<td><p>8.3</p></td>
+<td><p><a class="reference external" href="https://zenodo.org/record/2580091">Custom</a></p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">TAU Urban</div>
+<div class="line">Acoustic Scenes</div>
+<div class="line">2019</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>22800</p></td>
+<td><p>63.3</p></td>
+<td><p><a class="reference external" href="https://zenodo.org/record/2589280">Custom</a></p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">TAU Urban</div>
+<div class="line">Acoustic Scenes</div>
+<div class="line">2020 Mobile</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>34915</p></td>
+<td><p>97</p></td>
+<td><p><a class="reference external" href="https://zenodo.org/record/3819968">Custom</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>URBAN-SED</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#events"><span class="std std-ref">Events</span></a></p></td>
+<td><p>10000</p></td>
+<td><p>27.8</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by/4.0"><img alt="https://licensebuttons.net/l/by/4.0/80x15.png" src="https://licensebuttons.net/l/by/4.0/80x15.png" /></a>
+</td>
+</tr>
+<tr class="row-even"><td><p>UrbanSound8K</p></td>
+<td><ul class="simple">
+<li><p>audio: ✅</p></li>
+<li><p>annotations: ✅</p></li>
+</ul>
+</td>
+<td><p><a class="reference internal" href="quick_reference.html#tags"><span class="std std-ref">Tags</span></a></p></td>
+<td><p>8732</p></td>
+<td><p>8.75</p></td>
+<td><a class="reference external image-reference" href="https://creativecommons.org/licenses/by-nc/4.0"><img alt="https://licensebuttons.net/l/by-nc/4.0/80x15.png" src="https://licensebuttons.net/l/by-nc/4.0/80x15.png" /></a>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

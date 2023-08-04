@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Supported Datasets and Annotations" href="quick_reference.html" />
+    <link rel="prev" title="Getting started" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            soundata
+              <img src="../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About Soundata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-link-to-contributing-templates">Quick link to contributing templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-soundata-for-development-purposes">Installing soundata for development purposes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-a-new-dataset-loader">Writing a new dataset loader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-index">1. Create an index</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-index-with-clips">Example index with clips</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-module">2. Create a module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-tests">3. Add tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-your-tests-locally">Running your tests locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-with-big-datasets">Working with big datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-with-remote-indexes">Working with remote indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reducing-the-testing-space-usage">Reducing the testing space usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-your-loader">4. Submit your loader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pull-request-template">Pull Request template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docs">Docs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-from-files">Loading from files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clip-attributes">Clip Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-methods-vs-clip-properties">Load methods vs Clip properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#missing-data">Missing Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-decorators">Custom Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cached-property">cached_property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docstring-inherit">docstring_inherit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-docs">copy_docs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coerce-to-bytes-io-coerce-to-string-io">coerce_to_bytes_io/coerce_to_string_io</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html">Initialize a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#dataset-loaders">Dataset Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#annotations">Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#advanced">Advanced</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="contributing">
+<span id="id1"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h1>
+<p>We encourage contributions to soundata, especially new dataset loaders. To contribute a new loader, follow the
+steps indicated below and create a Pull Request (PR) to the github repository. For any doubt or comment about
+your contribution, you can always submit an issue or open a discussion in the repository.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/soundata/soundata/issues">Issue Tracker</a></p></li>
+<li><p><a class="reference external" href="https://github.com/soundata/soundata">Source Code</a></p></li>
+</ul>
+<div class="section" id="quick-link-to-contributing-templates">
+<h2>Quick link to contributing templates<a class="headerlink" href="#quick-link-to-contributing-templates" title="Permalink to this heading"></a></h2>
+<p>If you’re familiar with Soundata’s API already, you can find the template files for contributing <a class="reference external" href="https://github.com/soundata/soundata/tree/master/docs/source/contributing_examples">here</a>,
+and the loader checklist for submiting your PR <a class="reference external" href="https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md">here</a>.</p>
+</div>
+<div class="section" id="installing-soundata-for-development-purposes">
+<h2>Installing soundata for development purposes<a class="headerlink" href="#installing-soundata-for-development-purposes" title="Permalink to this heading"></a></h2>
+<p>To install <code class="docutils literal notranslate"><span class="pre">soundata</span></code> for development purposes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>First run:</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/soundata/soundata.git</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then, after opening source data library you have to install the dependencies for updating the documentation
+and running tests:</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install .</span>
+<span class="go">pip install .&quot;[tests]&quot;</span>
+<span class="go">pip install .&quot;[docs]&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>We recommend using <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a> or
+<a class="reference external" href="https://github.com/pyenv/pyenv#installation">pyenv</a> to manage your Python versions
+and install all <code class="docutils literal notranslate"><span class="pre">soundata</span></code> requirements. You will want to install the latest supported Python versions (see README.md).
+Once <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">pyenv</span></code> and the Python versions are configured, install <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. Make sure you’ve installed all the
+necessary pytest plugins needed (e.g. <cite>pytest-cov</cite>) to automatically test your code successfully.</p>
+<p>Before running the tests, make sure to have formatted <code class="docutils literal notranslate"><span class="pre">soundata/</span></code> and <code class="docutils literal notranslate"><span class="pre">tests/</span></code> with <code class="docutils literal notranslate"><span class="pre">black</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>soundata/<span class="w"> </span>tests/
+</pre></div>
+</div>
+<p>Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8<span class="w"> </span>soundata<span class="w"> </span>--count<span class="w"> </span>--select<span class="o">=</span>E9,F63,F7,F82<span class="w"> </span>--show-source<span class="w"> </span>--statistics
+python<span class="w"> </span>-m<span class="w"> </span>mypy<span class="w"> </span>soundata<span class="w"> </span>--ignore-missing-imports<span class="w"> </span>--allow-subclassing-any
+</pre></div>
+</div>
+<p>Finally, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-vv<span class="w"> </span>--cov-report<span class="w"> </span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>--cov<span class="o">=</span>soundata<span class="w"> </span>--black<span class="w"> </span>tests/<span class="w"> </span>--local
+</pre></div>
+</div>
+<p>All tests should pass!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Soundata assumes that your system has the zip library installed for unzipping files.</p>
+</div>
+</div>
+<div class="section" id="writing-a-new-dataset-loader">
+<h2>Writing a new dataset loader<a class="headerlink" href="#writing-a-new-dataset-loader" title="Permalink to this heading"></a></h2>
+<p>The steps to add a new dataset loader to <code class="docutils literal notranslate"><span class="pre">soundata</span></code> are:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#create-index">Create an index</a></p></li>
+<li><p><a class="reference internal" href="#create-module">Create a module</a></p></li>
+<li><p><a class="reference internal" href="#add-tests">Add tests</a></p></li>
+<li><p><a class="reference internal" href="#submit-loader">Submit your loader</a></p></li>
+</ol>
+<p><strong>Before starting</strong>, if your dataset <strong>is not fully downloadable</strong> you should:</p>
+<ol class="arabic simple">
+<li><p>Contact the soundata team by opening an issue or PR so we can discuss how to proceed with the closed dataset.</p></li>
+<li><p>Show that the version used to create the checksum is the “canonical” one, either by getting the version from the
+dataset creator, or by verifying equivalence with several other copies of the dataset.</p></li>
+</ol>
+<p>To reduce friction, we will make commits on top of contributors PRs by default unless
+the <code class="docutils literal notranslate"><span class="pre">please-do-not-edit</span></code> flag is used.</p>
+<div class="section" id="create-an-index">
+<span id="create-index"></span><h3>1. Create an index<a class="headerlink" href="#create-an-index" title="Permalink to this heading"></a></h3>
+<p>Soundata’s structure relies on <code class="docutils literal notranslate"><span class="pre">indexes</span></code>. Indexes are dictionaries that contain information about the structure of the
+dataset which is necessary for the loading and validating functionalities of Soundata. In particular, indexes contain
+information about the files included in the dataset, their location and checksums, see some example indexes below.
+To create an index, the necessary steps are:</p>
+<ol class="arabic simple">
+<li><p>Create a script in <code class="docutils literal notranslate"><span class="pre">scripts/</span></code>, called <code class="docutils literal notranslate"><span class="pre">make_&lt;datasetname&gt;_index.py</span></code>, which generates an index file.</p></li>
+<li><p>Then run the script on the <a class="reference internal" href="overview.html#canonical-version"><span class="std std-ref">canonical versions</span></a> of the dataset and save the index in <code class="docutils literal notranslate"><span class="pre">soundata/datasets/indexes/</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;datasetname&gt;_index.json</span></code>.</p></li>
+</ol>
+<p id="index-example">Here’s an example of an index to use as a guide:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example Make Index Script</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">soundata.validate</span> <span class="kn">import</span> <span class="n">md5</span>
+
+<span class="n">DATASET_INDEX_PATH</span> <span class="o">=</span> <span class="s2">&quot;../soundata/datasets/indexes/dataset_index.json&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">make_dataset_index</span><span class="p">(</span><span class="n">dataset_data_path</span><span class="p">):</span>
+    <span class="n">annotation_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_data_path</span><span class="p">,</span> <span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
+    <span class="n">annotation_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">annotation_dir</span><span class="p">,</span> <span class="s2">&quot;*.lab&quot;</span><span class="p">))</span>
+    <span class="n">clip_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">annotation_files</span><span class="p">])</span>
+
+    <span class="c1"># top-key level metadata</span>
+    <span class="n">metadata_checksum</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_data_path</span><span class="p">,</span> <span class="s2">&quot;id_mapping.txt&quot;</span><span class="p">))</span>
+    <span class="n">index_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id_mapping&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;id_mapping.txt&quot;</span><span class="p">,</span> <span class="n">metadata_checksum</span><span class="p">)}}</span>
+
+    <span class="c1"># top-key level clips</span>
+    <span class="n">index_clips</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">clip_id</span> <span class="ow">in</span> <span class="n">clip_ids</span><span class="p">:</span>
+        <span class="n">audio_checksum</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_data_path</span><span class="p">,</span> <span class="s2">&quot;Wavfile/</span><span class="si">{}</span><span class="s2">.wav&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clip_id</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="n">annotation_checksum</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_data_path</span><span class="p">,</span> <span class="s2">&quot;annotation/</span><span class="si">{}</span><span class="s2">.lab&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clip_id</span><span class="p">))</span>
+        <span class="p">)</span>
+
+        <span class="n">index_clips</span><span class="p">[</span><span class="n">clip_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Wavfile/</span><span class="si">{}</span><span class="s2">.wav&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clip_id</span><span class="p">),</span> <span class="n">audio_checksum</span><span class="p">),</span>
+            <span class="s2">&quot;annotation&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;annotation/</span><span class="si">{}</span><span class="s2">.lab&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clip_id</span><span class="p">),</span> <span class="n">annotation_checksum</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="c1"># top-key level version</span>
+    <span class="n">dataset_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+    <span class="c1"># combine all in dataset index</span>
+    <span class="n">dataset_index</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">index_metadata</span><span class="p">)</span>
+    <span class="n">dataset_index</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;clips&quot;</span><span class="p">:</span> <span class="n">index_clips</span><span class="p">})</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATASET_INDEX_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhandle</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dataset_index</span><span class="p">,</span> <span class="n">fhandle</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">make_dataset_index</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dataset_data_path</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">PARSER</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Make dataset index file.&quot;</span><span class="p">)</span>
+    <span class="n">PARSER</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;dataset_data_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to dataset data folder.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">PARSER</span><span class="o">.</span><span class="n">parse_args</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<p>More examples of scripts used to create dataset indexes can be found in the <a class="reference external" href="https://github.com/soundata/soundata/tree/master/scripts">scripts</a> folder.</p>
+<div class="section" id="example-index-with-clips">
+<h4>Example index with clips<a class="headerlink" href="#example-index-with-clips" title="Permalink to this heading"></a></h4>
+<p>Most sound datasets are organized as a collection of clips and annotations. In such case, the index should make use of the <code class="docutils literal notranslate"><span class="pre">clips</span></code>
+top-level key. Under this <code class="docutils literal notranslate"><span class="pre">clips</span></code> top-level key, you should store a dictionary where the keys are the unique clip ids of the dataset, and
+the values are dictionaries of files associated with a clip id, along with their checksums. These files can be for instance audio files
+or annotations related to the clip id. File paths are relative to the top level directory of a dataset.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Index Examples - Clips</p>
+<p>If the version <cite>1.0</cite> of a given dataset has the structure:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="nx">Example_Dataset</span><span class="o">/</span>
+<span class="w">    </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">audio</span><span class="o">/</span>
+<span class="w">        </span><span class="nx">clip1</span><span class="p">.</span><span class="nx">wav</span>
+<span class="w">        </span><span class="nx">clip2</span><span class="p">.</span><span class="nx">wav</span>
+<span class="w">        </span><span class="nx">clip3</span><span class="p">.</span><span class="nx">wav</span>
+<span class="w">    </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">annotations</span><span class="o">/</span>
+<span class="w">        </span><span class="nx">clip1</span><span class="p">.</span><span class="nx">csv</span>
+<span class="w">        </span><span class="nx">clip2</span><span class="p">.</span><span class="nx">csv</span>
+<span class="w">        </span><span class="nx">clip3</span><span class="p">.</span><span class="nx">csv</span>
+<span class="w">    </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">metadata</span><span class="o">/</span>
+<span class="w">        </span><span class="nx">metadata_file</span><span class="p">.</span><span class="nx">csv</span>
+</pre></div>
+</div>
+<p>The top level directory is <code class="docutils literal notranslate"><span class="pre">Example_Dataset</span></code> and the relative path for <code class="docutils literal notranslate"><span class="pre">clip1.wav</span></code>
+would be <code class="docutils literal notranslate"><span class="pre">audio/clip1.wav</span></code>. Any unavailable fields are indicated with <cite>null</cite>. A possible index file for this example would be:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w">   </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;clips&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="s2">&quot;clip1&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;audio&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;audio/clip1.wav&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// the relative path for clip1&#39;s audio file</span>
+<span class="w">                </span><span class="s2">&quot;912ec803b2ce49e4a541068d495ab570&quot;</span><span class="w">  </span><span class="c1">// clip1.wav&#39;s md5 checksum</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;annotation&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;annotations/clip1.csv&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// the relative path for clip1&#39;s annotation</span>
+<span class="w">                </span><span class="s2">&quot;2cf33591c3b28b382668952e236cccd5&quot;</span><span class="w">  </span><span class="c1">// clip1.csv&#39;s md5 checksum</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;clip2&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;audio&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;audio/clip2.wav&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;65d671ec9787b32cfb7e33188be32ff7&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;annotation&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;annotations/Clip2.csv&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;e1964798cfe86e914af895f8d0291812&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;clip3&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;audio&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;audio/clip3.wav&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;60edeb51dc4041c47c031c4bfb456b76&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;annotation&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;annotations/clip3.csv&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;06cb006cc7b61de6be6361ff904654b3&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="s2">&quot;metadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;metadata_file&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;metadata/metadata_file.csv&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;7a41b280c7b74e2ddac5184708f9525b&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example there is a (purposeful) mismatch between the name of the audio file <code class="docutils literal notranslate"><span class="pre">clip2.wav</span></code> and its corresponding annotation file, <code class="docutils literal notranslate"><span class="pre">Clip2.csv</span></code>, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-a-module">
+<span id="create-module"></span><h3>2. Create a module<a class="headerlink" href="#create-a-module" title="Permalink to this heading"></a></h3>
+<p>Once the index is created you can create the loader. For that, we suggest you use the following template and adjust it for your dataset.
+To quickstart a new module:</p>
+<ol class="arabic simple">
+<li><p>Copy the example below and save it to <code class="docutils literal notranslate"><span class="pre">soundata/datasets/&lt;your_dataset_name&gt;.py</span></code></p></li>
+<li><p>Find &amp; Replace <code class="docutils literal notranslate"><span class="pre">Example</span></code> with the &lt;your_dataset_name&gt;.</p></li>
+<li><p>Remove any lines beginning with <cite># –</cite> which are there as guidelines.</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Example Module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Example Dataset Loader</span>
+
+<span class="sd">.. admonition:: Dataset Info</span>
+<span class="sd">    :class: dropdown</span>
+
+<span class="sd">    Please include the following information at the top level docstring for the dataset&#39;s module `dataset.py`:</span>
+
+<span class="sd">    1. Describe annotations included in the dataset</span>
+<span class="sd">    2. Indicate the size of the datasets (e.g. number files and duration, hours)</span>
+<span class="sd">    3. Mention the origin of the dataset (e.g. creator, institution)</span>
+<span class="sd">    4. Indicate any relevant papers related to the dataset</span>
+<span class="sd">    5. Include a description about how the data can be accessed and the license it uses (if applicable)</span>
+<span class="sd">    6. Indicate the dataset version</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># -- import whatever you need here and remove</span>
+<span class="c1"># -- example imports you won&#39;t use</span>
+
+<span class="kn">from</span> <span class="nn">soundata</span> <span class="kn">import</span> <span class="n">download_utils</span><span class="p">,</span> <span class="n">jams_utils</span><span class="p">,</span> <span class="n">core</span><span class="p">,</span> <span class="n">annotations</span><span class="p">,</span> <span class="n">io</span>
+
+<span class="c1"># -- Add any relevant citations here</span>
+<span class="n">BIBTEX</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">@article{article-minimal,</span>
+<span class="s2">  author = &quot;L[eslie] B. Lamport&quot;,</span>
+<span class="s2">  title = &quot;The Gnats and Gnus Document Preparation System&quot;,</span>
+<span class="s2">  journal = &quot;G-Animal&#39;s Journal&quot;,</span>
+<span class="s2">  year = &quot;1986&quot;</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># -- REMOTES is a dictionary containing all files that need to be downloaded.</span>
+<span class="c1"># -- The keys should be descriptive (e.g. &#39;annotations&#39;, &#39;audio&#39;).</span>
+<span class="c1"># -- When having data that can be partially downloaded, remember to set up</span>
+<span class="c1"># -- correctly destination_dir to download the files following the correct structure.</span>
+<span class="n">REMOTES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;remote_data&#39;</span><span class="p">:</span> <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;a_zip_file.zip&#39;</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://website/hosting/the/zipfile.zip&#39;</span><span class="p">,</span>
+        <span class="n">checksum</span><span class="o">=</span><span class="s1">&#39;00000000000000000000000000000000&#39;</span><span class="p">,</span>  <span class="c1"># -- the md5 checksum</span>
+        <span class="n">destination_dir</span><span class="o">=</span><span class="s1">&#39;path/to/unzip&#39;</span> <span class="c1"># -- relative path for where to unzip the data, or None</span>
+    <span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># -- Include any information that should be printed when downloading</span>
+<span class="c1"># -- remove this variable if you don&#39;t need to print anything during download</span>
+<span class="n">DOWNLOAD_INFO</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Include any information you want to be printed when dataset.download() is called.</span>
+<span class="s2">These can be instructions for how to download the dataset (e.g. request access on zenodo),</span>
+<span class="s2">caveats about the download, etc</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># -- Include the dataset&#39;s license information</span>
+<span class="n">LICENSE_INFO</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The dataset&#39;s license information goes here.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Clip</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">Clip</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example Clip class</span>
+<span class="sd">    # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:</span>
+<span class="sd">    # -- `scripts/print_track_docstring.py my_dataset`</span>
+<span class="sd">    # -- note that you&#39;ll first need to have a test clip (see &quot;Adding tests to your dataset&quot; below)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        clip_id (str): clip id of the clip</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        clip_id (str): clip id</span>
+<span class="sd">        # -- Add any of the dataset specific attributes here</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clip_id</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        
+        <span class="c1"># -- this sets the following attributes:</span>
+        <span class="c1"># -- * clip_id</span>
+        <span class="c1"># -- * _dataset_name</span>
+        <span class="c1"># -- * _data_home</span>
+        <span class="c1"># -- * _clip_paths</span>
+        <span class="c1"># -- * _clip_metadata</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">clip_id</span><span class="p">,</span>
+            <span class="n">data_home</span><span class="p">,</span>
+            <span class="n">dataset_name</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># -- add any dataset specific attributes here</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">audio_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annotation_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
+
+    <span class="c1"># -- `annotation` will behave like an attribute, but it will only be loaded</span>
+    <span class="c1"># -- and saved when someone accesses it. Useful when loading slightly</span>
+    <span class="c1"># -- bigger files or for bigger datasets. By default, we make any time</span>
+    <span class="c1"># -- series data loaded from a file a cached property</span>
+    <span class="nd">@core</span><span class="o">.</span><span class="n">cached_property</span>
+    <span class="k">def</span> <span class="nf">annotation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;output type: description of output&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">load_annotation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">annotation_path</span><span class="p">)</span>
+
+    <span class="c1"># -- `audio` will behave like an attribute, but it will only be loaded</span>
+    <span class="c1"># -- when someone accesses it and it won&#39;t be stored. By default, we make</span>
+    <span class="c1"># -- any memory heavy information (like audio), properties</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">audio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;(np.ndarray, float): DESCRIPTION audio signal, sample rate&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">load_audio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">audio_path</span><span class="p">)</span>
+
+    <span class="c1"># -- we use the to_jams function to convert all the annotations in the JAMS format.</span>
+    <span class="c1"># -- The converter takes as input all the annotations in the proper format (e.g. tags)</span>
+    <span class="c1"># -- and returns a jams object with the annotations.</span>
+    <span class="k">def</span> <span class="nf">to_jams</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Jams: the clip&#39;s data in jams format&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">jams_utils</span><span class="o">.</span><span class="n">jams_converter</span><span class="p">(</span>
+            <span class="n">audio_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">audio_path</span><span class="p">,</span>
+            <span class="n">annotation_data</span><span class="o">=</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="kc">None</span><span class="p">)],</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># -- see the documentation for `jams_utils.jams_converter for all fields</span>
+
+<span class="nd">@io</span><span class="o">.</span><span class="n">coerce_to_bytes_io</span>
+<span class="k">def</span> <span class="nf">load_audio</span><span class="p">(</span><span class="n">fhandle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a Example audio file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fhandle (str or file-like): path or file-like object pointing to an audio file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        * np.ndarray - the audio signal</span>
+<span class="sd">        * float - The sample rate of the audio file</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># -- for example, the code below. This should be dataset specific!</span>
+    <span class="c1"># -- By default we load to mono</span>
+    <span class="c1"># -- change this if it doesn&#39;t make sense for your dataset.</span>
+    <span class="k">return</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fhandle</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1"># -- Write any necessary loader functions for loading the dataset&#39;s data</span>
+<span class="nd">@io</span><span class="o">.</span><span class="n">coerce_to_string_io</span>
+<span class="k">def</span> <span class="nf">load_annotation</span><span class="p">(</span><span class="n">fhandle</span><span class="p">):</span>
+
+    <span class="c1"># -- if there are some file paths for this annotation type in this dataset&#39;s</span>
+    <span class="c1"># -- index that are None/null, uncomment the lines below.</span>
+    <span class="c1"># if annotation_path is None:</span>
+    <span class="c1">#     return None</span>
+
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fhandle</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">intervals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">intervals</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">annotation_data</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">EventData</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">intervals</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">annotation_data</span>
+
+<span class="c1"># -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)</span>
+<span class="nd">@core</span><span class="o">.</span><span class="n">docstring_inherit</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Example dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">data_home</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">,</span>
+            <span class="n">clip_class</span><span class="o">=</span><span class="n">Clip</span><span class="p">,</span>
+            <span class="n">bibtex</span><span class="o">=</span><span class="n">BIBTEX</span><span class="p">,</span>
+            <span class="n">remotes</span><span class="o">=</span><span class="n">REMOTES</span><span class="p">,</span>
+            <span class="n">download_info</span><span class="o">=</span><span class="n">DOWNLOAD_INFO</span><span class="p">,</span>
+            <span class="n">license_info</span><span class="o">=</span><span class="n">LICENSE_INFO</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># -- Copy any loader functions you wrote that should be part of the Dataset class</span>
+    <span class="c1"># -- use this core.copy_docs decorator to copy the docs from the parent class</span>
+    <span class="c1"># -- load_ function</span>
+    <span class="nd">@core</span><span class="o">.</span><span class="n">copy_docs</span><span class="p">(</span><span class="n">load_audio</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">load_audio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">load_audio</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@core</span><span class="o">.</span><span class="n">copy_docs</span><span class="p">(</span><span class="n">load_annotation</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">load_annotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">load_annotation</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># -- if your dataset has a top-level metadata file, write a loader for it here</span>
+    <span class="c1"># -- you do not have to include this function if there is no metadata </span>
+    <span class="nd">@core</span><span class="o">.</span><span class="n">cached_property</span>
+    <span class="k">def</span> <span class="nf">_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># load metadata however makes sense for your dataset</span>
+        <span class="n">metadata_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_home</span><span class="p">,</span> <span class="s1">&#39;example_metadata.json&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fhandle</span><span class="p">:</span>
+            <span class="n">metadata</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fhandle</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">metadata</span>
+
+    <span class="c1"># -- if your dataset needs to overwrite the default download logic, do it here.</span>
+    <span class="c1"># -- this function is usually not necessary unless you need very custom download logic</span>
+    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">partial_download</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cleanup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download the dataset</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            partial_download (list or None):</span>
+<span class="sd">                A list of keys of remotes to partially download.</span>
+<span class="sd">                If None, all data is downloaded</span>
+<span class="sd">            force_overwrite (bool):</span>
+<span class="sd">                If True, existing files are overwritten by the downloaded files. </span>
+<span class="sd">            cleanup (bool):</span>
+<span class="sd">                Whether to delete any zip/tar files after extracting.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: if invalid keys are passed to partial_download</span>
+<span class="sd">            IOError: if a downloaded file&#39;s checksum is different from expected</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># see download_utils.downloader for basic usage - if you only need to call downloader</span>
+        <span class="c1"># once, you do not need this function at all.</span>
+        <span class="c1"># only write a custom function if you need it!</span>
+
+</pre></div>
+</div>
+</div>
+<p>You may find these examples useful as references:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py">A simple, fully downloadable dataset</a></p></li>
+<li><p><a class="reference external" href="https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217">A dataset which uses dataset-level metadata</a></p></li>
+<li><p><a class="reference external" href="https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294">A dataset which does not use dataset-level metadata</a></p></li>
+</ul>
+<p>For many more examples, see the <a class="reference external" href="https://github.com/soundata/soundata/tree/master/soundata/datasets">datasets folder</a>.</p>
+</div>
+<div class="section" id="add-tests">
+<span id="id3"></span><h3>3. Add tests<a class="headerlink" href="#add-tests" title="Permalink to this heading"></a></h3>
+<p>To finish your contribution, please include tests that check the integrity of your loader. For this, follow these steps:</p>
+<ol class="arabic">
+<li><p>Make a toy version of the dataset in the tests folder <code class="docutils literal notranslate"><span class="pre">tests/resources/sound_datasets/my_dataset/</span></code>,
+so you can test against little data. For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Include all audio and annotation files for one clip of the dataset</p></li>
+<li><p>For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.</p></li>
+<li><p>If the dataset has a metadata file, reduce the length to a few lines.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
+custom functions you wrote. See the <a class="reference external" href="https://github.com/soundata/soundata/tree/master/tests">tests folder</a> for reference.
+If your loader has a custom download function, add tests similar to
+<a class="reference external" href="https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96">this mirdata loader</a>.</p></li>
+<li><p>Locally run <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-s</span> <span class="pre">tests/test_full_dataset.py</span> <span class="pre">--local</span> <span class="pre">--dataset</span> <span class="pre">my_dataset</span></code> before submitting your loader to make
+sure everything is working.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have written automated tests for all loader’s <code class="docutils literal notranslate"><span class="pre">cite</span></code>, <code class="docutils literal notranslate"><span class="pre">download</span></code>, <code class="docutils literal notranslate"><span class="pre">validate</span></code>, <code class="docutils literal notranslate"><span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">clip_ids</span></code> functions,
+as well as some basic edge cases of the <code class="docutils literal notranslate"><span class="pre">Clip</span></code> class, so you don’t need to write tests for these!</p>
+</div>
+<div class="dropdown admonition" id="test-file">
+<p class="admonition-title">Example Test File</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">soundata</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">soundata.datasets</span> <span class="kn">import</span> <span class="n">example</span>  <span class="c1"># the name of your loader here</span>
+<span class="kn">from</span> <span class="nn">tests.test_utils</span> <span class="kn">import</span> <span class="n">run_clip_tests</span>
+
+<span class="n">TEST_DATA_HOME</span> <span class="o">=</span> <span class="s2">&quot;tests/resources/sound_datasets/example&quot;</span>
+
+<span class="k">def</span> <span class="nf">test_clip</span><span class="p">():</span>
+    <span class="n">default_clipid</span> <span class="o">=</span> <span class="s2">&quot;some_id&quot;</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">TEST_DATA_HOME</span><span class="p">)</span>
+    <span class="n">clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">default_clipid</span><span class="p">)</span>
+
+    <span class="n">expected_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;clip_id&quot;</span><span class="p">:</span> <span class="s2">&quot;some_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;audio_path&quot;</span><span class="p">:</span> <span class="s2">&quot;tests/resources/sound_datasets/example/audio/some_id.wav&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;annotation_path&quot;</span><span class="p">:</span> <span class="s2">&quot;tests/resources/sound_datasets/example/annotation/some_id.pv&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># List here all the properties of your loader</span>
+    <span class="n">expected_property_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Tags</span><span class="p">,</span>
+                               <span class="s2">&quot;some_other_annotation&quot;</span><span class="p">:</span> <span class="s2">&quot;some_annotation_type&quot;</span><span class="p">}</span>
+
+    <span class="n">run_clip_tests</span><span class="p">(</span><span class="n">clip</span><span class="p">,</span> <span class="n">expected_attributes</span><span class="p">,</span> <span class="n">expected_property_types</span><span class="p">)</span>
+
+<span class="c1"># Test all the load functions, for instance, the load audio one</span>
+<span class="k">def</span> <span class="nf">test_load_audio</span><span class="p">():</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">TEST_DATA_HOME</span><span class="p">)</span>
+    <span class="n">clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="s2">&quot;some_id&quot;</span><span class="p">)</span>
+    <span class="n">audio_path</span> <span class="o">=</span> <span class="n">clip</span><span class="o">.</span><span class="n">audio_path</span>
+    <span class="n">audio</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">load_audio</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">sr</span> <span class="o">==</span> <span class="mi">44100</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c1"># check audio is loaded e.g. as mono</span>
+    <span class="k">assert</span> <span class="n">audio</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">44100</span>  <span class="c1"># Check audio duration in samples is as expected</span>
+
+
+<span class="k">def</span> <span class="nf">test_to_jams</span><span class="p">():</span>
+
+    <span class="n">default_clipid</span> <span class="o">=</span> <span class="s2">&quot;some_id&quot;</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="s2">&quot;tests/resources/sound_datasets/dataset&quot;</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+    <span class="n">clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">default_clipid</span><span class="p">)</span>
+    <span class="n">jam</span> <span class="o">=</span> <span class="n">clip</span><span class="o">.</span><span class="n">to_jams</span><span class="p">()</span>
+
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">jam</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;annotation&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">time</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.232</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">duration</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span>
+        <span class="mf">0.20500000000000002</span><span class="p">,</span>
+        <span class="mf">0.736</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="c1"># ... etc</span>
+
+<span class="c1"># Test each of the load functions (e.g. Tags, etc)</span>
+<span class="k">def</span> <span class="nf">test_load_annotation</span><span class="p">():</span>
+    <span class="c1"># load a file which exists</span>
+    <span class="n">annotation_path</span> <span class="o">=</span> <span class="s2">&quot;tests/resources/sound_datasets/dataset/annotation/some_id.pv&quot;</span>
+    <span class="n">annotation_data</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">load_annotation</span><span class="p">(</span><span class="n">annotation_path</span><span class="p">)</span>
+
+    <span class="c1"># check types</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">annotation_data</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;some_annotation_type&quot;</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">annotation_data</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="c1"># ... etc</span>
+
+    <span class="c1"># check values</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">annotation_data</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.016</span><span class="p">,</span> <span class="mf">0.048</span><span class="p">]))</span>
+    <span class="c1"># ... etc</span>
+
+
+<span class="k">def</span> <span class="nf">test_metadata</span><span class="p">():</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="s2">&quot;tests/resources/sound_datasets/dataset&quot;</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_metadata</span>
+    <span class="k">assert</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;some_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;something&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-your-tests-locally">
+<h4>Running your tests locally<a class="headerlink" href="#running-your-tests-locally" title="Permalink to this heading"></a></h4>
+<p>Before creating a PR you should run the tests. But before that, make sure to have formatted <code class="docutils literal notranslate"><span class="pre">soundata/</span></code> and <code class="docutils literal notranslate"><span class="pre">tests/</span></code> with <code class="docutils literal notranslate"><span class="pre">black</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>soundata/<span class="w"> </span>tests/
+</pre></div>
+</div>
+<p>Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8<span class="w"> </span>soundata<span class="w"> </span>--count<span class="w"> </span>--select<span class="o">=</span>E9,F63,F7,F82<span class="w"> </span>--show-source<span class="w"> </span>--statistics
+python<span class="w"> </span>-m<span class="w"> </span>mypy<span class="w"> </span>soundata<span class="w"> </span>--ignore-missing-imports<span class="w"> </span>--allow-subclassing-any
+</pre></div>
+</div>
+<p>Finally, run all the tests locally like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-vv<span class="w"> </span>--cov-report<span class="w"> </span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>--cov<span class="o">=</span>soundata<span class="w"> </span>--black<span class="w"> </span>tests/<span class="w"> </span>--local
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--local</span></code> flag skips tests that are built to run only on the remote testing environment.</p>
+<p>To run one specific test file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="n">tests</span><span class="o">/</span><span class="n">test_urbansed</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Finally, there is one local test you should run, which we can’t easily run in our testing environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">-</span><span class="n">s</span> <span class="n">tests</span><span class="o">/</span><span class="n">test_full_dataset</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">local</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">dataset</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">dataset</span></code> is the name of the module of the dataset you added. The <code class="docutils literal notranslate"><span class="pre">-s</span></code> tells pytest not to skip print
+statments, which is useful here for seeing the download progress bar when testing the download function.</p>
+<p>This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
+for some datasets, but it’s important to ensure the integrity of the library.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--skip-download</span></code> flag can be added to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> command to run the tests skipping the download.
+This will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.</p>
+</div>
+<div class="section" id="working-with-big-datasets">
+<span id="working-big-datasets"></span><h4>Working with big datasets<a class="headerlink" href="#working-with-big-datasets" title="Permalink to this heading"></a></h4>
+<p>In the development of large datasets, it is advisable to create an index as small as possible to optimize the implementation process
+of the dataset loader and pass the tests.</p>
+</div>
+<div class="section" id="working-with-remote-indexes">
+<h4>Working with remote indexes<a class="headerlink" href="#working-with-remote-indexes" title="Permalink to this heading"></a></h4>
+<p>For the end-user there is no difference between the remote and local indexes. However, indexes can get large when there are a lot of clips
+in the dataset. In these cases, storing and accessing an index remotely can be convenient. Large indexes can be added to REMOTES,
+and will be downloaded with the rest of the dataset. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;remote_index.json.zip&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/.../remote_index.json.zip?download=1&quot;</span><span class="p">,</span>
+    <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;810f1c003f53cbe58002ba96e6d4d138&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Unlike local indexes, the remote indexes will live in the <code class="docutils literal notranslate"><span class="pre">data_home</span></code> directory. When creating the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>
+object, specify the <code class="docutils literal notranslate"><span class="pre">custom_index_path</span></code> to where the index will be downloaded (as a relative path to <code class="docutils literal notranslate"><span class="pre">data_home</span></code>).</p>
+</div>
+<div class="section" id="reducing-the-testing-space-usage">
+<span id="reducing-test-space"></span><h4>Reducing the testing space usage<a class="headerlink" href="#reducing-the-testing-space-usage" title="Permalink to this heading"></a></h4>
+<p>We are trying to keep the test resources folder size as small as possible, because it can get really heavy as new loaders are added. We
+kindly ask the contributors to <strong>reduce the size of the testing data</strong> if possible (e.g. trimming the audio clips, keeping just two rows for
+csv files).</p>
+</div>
+</div>
+<div class="section" id="submit-your-loader">
+<span id="submit-loader"></span><h3>4. Submit your loader<a class="headerlink" href="#submit-your-loader" title="Permalink to this heading"></a></h3>
+<p>Before you submit your loader make sure to:</p>
+<ol class="arabic simple">
+<li><p>Add your module to <code class="docutils literal notranslate"><span class="pre">docs/source/soundata.rst</span></code> following an alphabetical order.</p></li>
+<li><p>Add your module to <code class="docutils literal notranslate"><span class="pre">docs/source/table.rst</span></code> following an alphabetical order as follows:</p></li>
+</ol>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">*</span> - Dataset
+  <span class="m">-</span> Downloadable?
+  <span class="m">-</span> Annotations
+  <span class="m">-</span> Clips
+  <span class="m">-</span> Hours
+  <span class="m">-</span> License
+</pre></div>
+</div>
+<p>An example of this for the <code class="docutils literal notranslate"><span class="pre">UrbanSound8k</span></code> dataset:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">*</span> - UrbanSound8K
+  <span class="m">-</span> - audio: ✅
+    <span class="m">-</span> annotations: ✅
+  <span class="m">-</span> <span class="na">:ref:</span><span class="nv">`tags`</span>
+  <span class="m">-</span> 8732
+  <span class="m">-</span> 8.75
+  <span class="m">-</span> .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+       <span class="nc">:target:</span> https://creativecommons.org/licenses/by-nc/4.0
+</pre></div>
+</div>
+<p>You can find license badges images and links <a class="reference external" href="https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba">here</a>.</p>
+<div class="section" id="pull-request-template">
+<h4>Pull Request template<a class="headerlink" href="#pull-request-template" title="Permalink to this heading"></a></h4>
+<p>When starting your PR please use the <a class="reference external" href="https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md">new_loader.md template</a>,
+it will simplify the reviewing process and also help you make a complete PR. You can do that by adding
+<code class="docutils literal notranslate"><span class="pre">&amp;template=new_loader.md</span></code> at the end of the url when you are creating the PR :</p>
+<p><code class="docutils literal notranslate"><span class="pre">...soundata/soundata/compare?expand=1</span></code> will become
+<code class="docutils literal notranslate"><span class="pre">...soundata/soundata/compare?expand=1&amp;template=new_loader.md</span></code>.</p>
+</div>
+<div class="section" id="docs">
+<h4>Docs<a class="headerlink" href="#docs" title="Permalink to this heading"></a></h4>
+<p>Staged docs for every new PR are built and accessible at <code class="docutils literal notranslate"><span class="pre">soundata.github.io/preview/PR-&lt;#PR_ID&gt;</span></code> in which <code class="docutils literal notranslate"><span class="pre">&lt;#PR_ID&gt;</span></code> is the pull request ID.
+To quickly troubleshoot any issues, you can build the docs locally by nagivating to the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder, and running
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> (note, you must have <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> installed). Then open the generated <code class="docutils literal notranslate"><span class="pre">_build/source/index.html</span></code>
+file in your web browser to view.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h4>
+<p>If github shows a red <code class="docutils literal notranslate"><span class="pre">X</span></code> next to your latest commit, it means one of our checks is not passing. This could mean:</p>
+<ol class="arabic simple">
+<li><p>running <code class="docutils literal notranslate"><span class="pre">black</span></code> has failed – this means that your code is not formatted according to <code class="docutils literal notranslate"><span class="pre">black</span></code>’s code-style. To fix this, simply run
+the following from inside the top level folder of the repository:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">black</span> <span class="n">soundata</span><span class="o">/</span> <span class="n">tests</span><span class="o">/</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Your code does not pass <code class="docutils literal notranslate"><span class="pre">flake8</span></code> test.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">soundata</span> <span class="o">--</span><span class="n">count</span> <span class="o">--</span><span class="n">select</span><span class="o">=</span><span class="n">E9</span><span class="p">,</span><span class="n">F63</span><span class="p">,</span><span class="n">F7</span><span class="p">,</span><span class="n">F82</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">source</span> <span class="o">--</span><span class="n">statistics</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Your code does not pass <code class="docutils literal notranslate"><span class="pre">mypy</span></code> test.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">mypy</span> <span class="n">soundata</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="n">imports</span> <span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">subclassing</span><span class="o">-</span><span class="nb">any</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>the test coverage is too low – this means that there are too many new lines of code introduced that are not tested.</p></li>
+<li><p>the docs build has failed – this means that one of the changes you made to the documentation has caused the build to fail.
+Check the formatting in your changes and make sure they are consistent.</p></li>
+<li><p>the tests have failed – this means at least one of the tests is failing. Run the tests locally to make sure they are passing.
+If they are passing locally but failing in the check, open an <cite>issue</cite> and we can help debug.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
+<p>This documentation is in <a class="reference external" href="https://docutils.sourceforge.io/docs/user/rst/quickref.html">rst format</a>.
+It is built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> and hosted on <a class="reference external" href="https://readthedocs.org/">readthedocs</a>.
+The API documentation is built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">autodoc</a>, which autogenerates
+documentation from the code’s docstrings. We use the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">napoleon</a> plugin
+for building docs in Google docstring style. See the next section for docstring conventions.</p>
+<p>soundata uses <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings">Google’s Docstring formatting style</a>.
+Here are some common examples.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The small formatting details in these examples are important. Differences in new lines, indentation, and spacing make
+a difference in how the documentation is rendered. For example writing <code class="docutils literal notranslate"><span class="pre">Returns:</span></code> will render correctly, but <code class="docutils literal notranslate"><span class="pre">Returns</span></code>
+or <code class="docutils literal notranslate"><span class="pre">Returns</span> <span class="pre">:</span></code> will not.</p>
+</div>
+<p>Functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_to_list</span><span class="p">(</span><span class="n">list_of_numbers</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a scalar to every element of a list.</span>
+<span class="sd">    You can write a continuation of the function description here on the next line.</span>
+
+<span class="sd">    You can optionally write more about the function here. If you want to add an example</span>
+<span class="sd">    of how this function can be used, you can do it like below.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">        foo = add_to_list([1, 2, 3], 2)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        list_of_numbers (list): A short description that fits on one line.</span>
+<span class="sd">        scalar (float):</span>
+<span class="sd">            Description of the second parameter. If there is a lot to say you can</span>
+<span class="sd">            overflow to a second line.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: Description of the return. The type here is not in parentheses</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">scalar</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list_of_numbers</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Functions with more than one return value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiple_returns</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function has no arguments, but more than one return value. Autodoc with napoleon doesn&#39;t handle this well,</span>
+<span class="sd">    and we use this formatting as a workaround.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        * int - the first return value</span>
+<span class="sd">        * bool - the second return value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">42</span><span class="p">,</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>One-line docstrings</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    One line docstrings must be on their own separate line, or autodoc does not build them properly</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Objects</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Description of the class</span>
+<span class="sd">overflowing to a second line if it&#39;s long</span>
+
+<span class="sd">Some more details here</span>
+
+<span class="sd">Args:</span>
+<span class="sd">    foo (str): First argument to the __init__ method</span>
+<span class="sd">    bar (int): Second argument to the __init__ method</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    foobar (str): First clip attribute</span>
+<span class="sd">    barfoo (bool): Second clip attribute</span>
+
+<span class="sd">Cached Properties:</span>
+<span class="sd">    foofoo (list): Cached properties are special soundata attributes</span>
+<span class="sd">    barbar (None): They are lazy loaded properties.</span>
+<span class="sd">    barf (bool): Document them with this special header.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this heading"></a></h2>
+<div class="section" id="loading-from-files">
+<h3>Loading from files<a class="headerlink" href="#loading-from-files" title="Permalink to this heading"></a></h3>
+<p>We use the following libraries for loading data from files:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 66%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>library</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>audio (wav, mp3, …)</p></td>
+<td><p>librosa</p></td>
+</tr>
+<tr class="row-odd"><td><p>json</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>csv</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>jams</p></td>
+<td><p>jams</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="clip-attributes">
+<h3>Clip Attributes<a class="headerlink" href="#clip-attributes" title="Permalink to this heading"></a></h3>
+<p>Custom clip attributes should be global, clip-level data.
+For some datasets, there is a separate, dataset-level metadata file
+with clip-level metadata, e.g. as a csv. When a single file is needed
+for more than one clip, we recommend using writing a <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> cached property (which
+returns a dictionary, either keyed by clip_id or freeform)
+in the Dataset class (see the dataset module example code above). When this is specified,
+it will populate a clip’s hidden <code class="docutils literal notranslate"><span class="pre">_clip_metadata</span></code> field, which can be accessed from
+the clip class.</p>
+<p>For example, if <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> returns a dictionary of the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;clip1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;microphone-type&#39;</span><span class="p">:</span> <span class="s1">&#39;Awesome&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;recording-date&#39;</span><span class="p">:</span> <span class="s1">&#39;27.10.2021&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;clip2&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;microphone-type&#39;</span><span class="p">:</span> <span class="s1">&#39;Less_awesome&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;recording-date&#39;</span><span class="p">:</span> <span class="s1">&#39;27.10.2021&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">_clip</span> <span class="pre">metadata</span></code> for <code class="docutils literal notranslate"><span class="pre">clip_id=clip2</span></code> will be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;microphone-type&#39;</span><span class="p">:</span> <span class="s1">&#39;Less_awesome&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;recording-date&#39;</span><span class="p">:</span> <span class="s1">&#39;27.10.2021&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-methods-vs-clip-properties">
+<h3>Load methods vs Clip properties<a class="headerlink" href="#load-methods-vs-clip-properties" title="Permalink to this heading"></a></h3>
+<p>Clip properties and cached properties should be simple, and directly call a <code class="docutils literal notranslate"><span class="pre">load_*</span></code> method. Like this example from <code class="docutils literal notranslate"><span class="pre">urbansed</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The data splits (e.g. train)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        * str - split</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clip_metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">)</span>
+
+<span class="nd">@core</span><span class="o">.</span><span class="n">cached_property</span>
+<span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">annotations</span><span class="o">.</span><span class="n">Events</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The audio events</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        * annotations.Events - audio event object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">load_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">txt_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There should be no additional logic in a clip property/cached property, and instead all logic
+should be done in the load method. We separate these because the clip properties are only usable
+when data is available locally - when data is remote, the load methods are used instead.</p>
+</div>
+<div class="section" id="missing-data">
+<h3>Missing Data<a class="headerlink" href="#missing-data" title="Permalink to this heading"></a></h3>
+<p>Clip properties that are available for some clips and not for others should be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> when whey are not available.
+Like this example in the <code class="docutils literal notranslate"><span class="pre">tau2019aus</span></code> loader:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">scene_label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clip_metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scene_label&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">scene_label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Tags</span><span class="p">([</span><span class="n">scene_label</span><span class="p">],</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>The index should only contain key-values for files that exist.</p>
+</div>
+</div>
+<div class="section" id="custom-decorators">
+<h2>Custom Decorators<a class="headerlink" href="#custom-decorators" title="Permalink to this heading"></a></h2>
+<div class="section" id="cached-property">
+<h3>cached_property<a class="headerlink" href="#cached-property" title="Permalink to this heading"></a></h3>
+<p>This is used primarily for Clip classes.</p>
+<p>This decorator causes an Object’s function to behave like
+an attribute (aka, like the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator), but caches
+the value in memory after it is first accessed. This is used
+for data which is relatively large and loaded from files.</p>
+</div>
+<div class="section" id="docstring-inherit">
+<h3>docstring_inherit<a class="headerlink" href="#docstring-inherit" title="Permalink to this heading"></a></h3>
+<p>This decorator is used for children of the Dataset class, and
+copies the Attributes from the parent class to the docstring of the child.
+This gives us clear and complete docs without a lot of copy-paste.</p>
+</div>
+<div class="section" id="copy-docs">
+<h3>copy_docs<a class="headerlink" href="#copy-docs" title="Permalink to this heading"></a></h3>
+<p>This decorator is used mainly for a dataset’s <code class="docutils literal notranslate"><span class="pre">load_</span></code> functions, which
+are attached to a loader’s Dataset class. The attached function is identical,
+and this decorator simply copies the docstring from another function.</p>
+</div>
+<div class="section" id="coerce-to-bytes-io-coerce-to-string-io">
+<h3>coerce_to_bytes_io/coerce_to_string_io<a class="headerlink" href="#coerce-to-bytes-io-coerce-to-string-io" title="Permalink to this heading"></a></h3>
+<p>These are two decorators used to simplify the loading of various <cite>Clip</cite> members
+in addition to giving users the ability to use file streams instead of paths in
+case the data is in a remote location e.g. GCS. The decorators modify the function
+to:</p>
+<ul class="simple">
+<li><p>Return <cite>None</cite> if <cite>None</cite> if passed in.</p></li>
+<li><p>Open a file if a string path is passed in either <cite>‘w’</cite> mode for <cite>string_io</cite> or <cite>wb</cite> for <cite>bytes_io</cite> and
+pass the file handle to the decorated function.</p></li>
+<li><p>Pass the file handle to the decorated function if a file-like object is passed.</p></li>
+</ul>
+<p>This cannot be used if the function to be decorated takes multiple arguments.
+<cite>coerce_to_bytes_io</cite> should not be used if trying to load an mp3 with librosa as libsndfile does not support
+<cite>mp3</cite> yet and <cite>audioread</cite> expects a path.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quick_reference.html" class="btn btn-neutral float-right" title="Supported Datasets and Annotations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

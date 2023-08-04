@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Initialize a dataset &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Supported Datasets and Annotations" href="quick_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            soundata
+              <img src="../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About Soundata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Initialize a dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.initialize"><code class="docutils literal notranslate"><span class="pre">initialize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.list_datasets"><code class="docutils literal notranslate"><span class="pre">list_datasets()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#dataset-loaders">Dataset Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#d-marco">3D-MARCo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dcase-bioacoustic">DCASE-bioacoustic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eigenscape">EigenScape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eigenscape-raw">EigenScape Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#esc-50">ESC-50</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fsd50k">FSD50K</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fsdnoisy18k">FSDnoisy18K</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#singa-pura">SINGA:PURA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starss-2022">STARSS 2022</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau-nigens-sse-2020">TAU NIGENS SSE 2020</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau-nigens-sse-2021">TAU NIGENS SSE 2021</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau-spatial-sound-events-2019">TAU Spatial Sound Events 2019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau-urban-acoustic-scenes-2019">TAU Urban Acoustic Scenes 2019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau-urban-acoustic-scenes-2020-mobile">TAU Urban Acoustic Scenes 2020 Mobile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tut-sound-events-2017">TUT Sound events 2017</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#urban-sed">URBAN-SED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#urbansound8k">UrbanSound8K</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#annotations">Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.AZIMUTH_UNITS"><code class="docutils literal notranslate"><span class="pre">AZIMUTH_UNITS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.Annotation"><code class="docutils literal notranslate"><span class="pre">Annotation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.DISTANCE_UNITS"><code class="docutils literal notranslate"><span class="pre">DISTANCE_UNITS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.Events"><code class="docutils literal notranslate"><span class="pre">Events</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.LABEL_UNITS"><code class="docutils literal notranslate"><span class="pre">LABEL_UNITS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.MultiAnnotator"><code class="docutils literal notranslate"><span class="pre">MultiAnnotator</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.TIME_UNITS"><code class="docutils literal notranslate"><span class="pre">TIME_UNITS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.Tags"><code class="docutils literal notranslate"><span class="pre">Tags</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_array_like"><code class="docutils literal notranslate"><span class="pre">validate_array_like()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_confidence"><code class="docutils literal notranslate"><span class="pre">validate_confidence()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_intervals"><code class="docutils literal notranslate"><span class="pre">validate_intervals()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_lengths_equal"><code class="docutils literal notranslate"><span class="pre">validate_lengths_equal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_times"><code class="docutils literal notranslate"><span class="pre">validate_times()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata.annotations.validate_unit"><code class="docutils literal notranslate"><span class="pre">validate_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#advanced">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#soundata-validate">soundata.validate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soundata-download-utils">soundata.download_utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-soundata.jams_utils">soundata.jams_utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#soundata.jams_utils.events_to_jams"><code class="docutils literal notranslate"><span class="pre">events_to_jams()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#soundata.jams_utils.jams_converter"><code class="docutils literal notranslate"><span class="pre">jams_converter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#soundata.jams_utils.multiannotator_to_jams"><code class="docutils literal notranslate"><span class="pre">multiannotator_to_jams()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#soundata.jams_utils.tags_to_jams"><code class="docutils literal notranslate"><span class="pre">tags_to_jams()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Initialize a dataset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/soundata.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="initialize-a-dataset">
+<span id="api"></span><h1>Initialize a dataset<a class="headerlink" href="#initialize-a-dataset" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.initialize">
+<span class="sig-prename descclassname"><span class="pre">soundata.</span></span><span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_home</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata.html#initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Load a soundata dataset by name</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">urbansound8k</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>  <span class="c1"># get the urbansound8k dataset</span>
+<span class="n">urbansound8k</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>  <span class="c1"># download orchset</span>
+<span class="n">urbansound8k</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>  <span class="c1"># validate orchset</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">urbansound8k</span><span class="o">.</span><span class="n">choice_clip</span><span class="p">()</span>  <span class="c1"># load a random clip</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clip</span><span class="p">)</span>  <span class="c1"># see what data a clip contains</span>
+<span class="n">urbansound8k</span><span class="o">.</span><span class="n">clip_ids</span><span class="p">()</span>  <span class="c1"># load all clip ids</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_name</strong> (<em>str</em>) – the dataset’s name
+see soundata.DATASETS for a complete list of possibilities</p></li>
+<li><p><strong>data_home</strong> (<em>str or None</em>) – path where the data lives. If None
+uses the default location.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>Dataset</em> – a soundata.core.Dataset object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.list_datasets">
+<span class="sig-prename descclassname"><span class="pre">soundata.</span></span><span class="sig-name descname"><span class="pre">list_datasets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata.html#list_datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.list_datasets" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of all soundata dataset names</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>list</em> – list of dataset names as strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="dataset-loaders">
+<span id="datasets-api"></span><h1>Dataset Loaders<a class="headerlink" href="#dataset-loaders" title="Permalink to this heading"></a></h1>
+<div class="section" id="d-marco">
+<h2>3D-MARCo<a class="headerlink" href="#d-marco" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="dcase-bioacoustic">
+<h2>DCASE-bioacoustic<a class="headerlink" href="#dcase-bioacoustic" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="eigenscape">
+<h2>EigenScape<a class="headerlink" href="#eigenscape" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="eigenscape-raw">
+<h2>EigenScape Raw<a class="headerlink" href="#eigenscape-raw" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="esc-50">
+<h2>ESC-50<a class="headerlink" href="#esc-50" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="fsd50k">
+<h2>FSD50K<a class="headerlink" href="#fsd50k" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="fsdnoisy18k">
+<h2>FSDnoisy18K<a class="headerlink" href="#fsdnoisy18k" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="singa-pura">
+<h2>SINGA:PURA<a class="headerlink" href="#singa-pura" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="starss-2022">
+<h2>STARSS 2022<a class="headerlink" href="#starss-2022" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tau-nigens-sse-2020">
+<h2>TAU NIGENS SSE 2020<a class="headerlink" href="#tau-nigens-sse-2020" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tau-nigens-sse-2021">
+<h2>TAU NIGENS SSE 2021<a class="headerlink" href="#tau-nigens-sse-2021" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tau-spatial-sound-events-2019">
+<h2>TAU Spatial Sound Events 2019<a class="headerlink" href="#tau-spatial-sound-events-2019" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tau-urban-acoustic-scenes-2019">
+<h2>TAU Urban Acoustic Scenes 2019<a class="headerlink" href="#tau-urban-acoustic-scenes-2019" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tau-urban-acoustic-scenes-2020-mobile">
+<h2>TAU Urban Acoustic Scenes 2020 Mobile<a class="headerlink" href="#tau-urban-acoustic-scenes-2020-mobile" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="tut-sound-events-2017">
+<h2>TUT Sound events 2017<a class="headerlink" href="#tut-sound-events-2017" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="urban-sed">
+<h2>URBAN-SED<a class="headerlink" href="#urban-sed" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="urbansound8k">
+<h2>UrbanSound8K<a class="headerlink" href="#urbansound8k" title="Permalink to this heading"></a></h2>
+</div>
+</div>
+<div class="section" id="core">
+<h1>Core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h1>
+</div>
+<div class="section" id="annotations">
+<span id="id1"></span><h1>Annotations<a class="headerlink" href="#annotations" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-soundata.annotations"></span><p>soundata annotation data types</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="soundata.annotations.AZIMUTH_UNITS">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">AZIMUTH_UNITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'degrees':</span> <span class="pre">'values</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">interval</span> <span class="pre">[-360,</span> <span class="pre">360]',</span> <span class="pre">'radians':</span> <span class="pre">'values</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">interval</span> <span class="pre">[-2*pi,</span> <span class="pre">2*pi]'}</span></em><a class="headerlink" href="#soundata.annotations.AZIMUTH_UNITS" title="Permalink to this definition"></a></dt>
+<dd><p>Azimuth units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="soundata.annotations.Annotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">Annotation</span></span><a class="reference internal" href="../_modules/soundata/annotations.html#Annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.Annotation" title="Permalink to this definition"></a></dt>
+<dd><p>Annotation base class</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="soundata.annotations.DISTANCE_UNITS">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">DISTANCE_UNITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'centimeters':</span> <span class="pre">'centimeters',</span> <span class="pre">'meters':</span> <span class="pre">'meters',</span> <span class="pre">'millimeters':</span> <span class="pre">'millimeters'}</span></em><a class="headerlink" href="#soundata.annotations.DISTANCE_UNITS" title="Permalink to this definition"></a></dt>
+<dd><p>Distance units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="soundata.annotations.Events">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">Events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals_unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian_coord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian_coord_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#Events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.Events" title="Permalink to this definition"></a></dt>
+<dd><p>Events class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intervals</strong> (<em>np.ndarray</em>) – (n x 2) array of intervals
+(as floats) in seconds in the form [start_time, end_time]
+with positive time stamps and end_time &gt;= start_time.</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – list of event labels (as strings)</p></li>
+<li><p><strong>confidence</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – array of confidence values, float in [0, 1]</p></li>
+<li><p><strong>labels_unit</strong> (<em>str</em>) – labels unit, one of LABELS_UNITS</p></li>
+<li><p><strong>intervals_unit</strong> (<em>str</em>) – intervals unit, one of TIME_UNITS</p></li>
+<li><p><strong>azimuth</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – list of size n with np.ndarrays with dtype float,
+indicating the azimuth of the sound event. Values between -360 and 360 for degrees
+and between -2*pi, 2*pi for radians or None.</p></li>
+<li><p><strong>azimuth_unit</strong> (<em>str</em>) – azimuth unit, one of AZIMUTH_UNITS</p></li>
+<li><p><strong>elevation</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – list of size n with np.ndarrays with dtype float,
+indicating the elevation of the sound event. Values between -90 and 90 or None.</p></li>
+<li><p><strong>elevation_unit</strong> (<em>str</em>) – elevation unit, one of AZIMUTH_UNITS</p></li>
+<li><p><strong>distance</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – list of size n with np.ndarrays with dtype float,
+indicating the distance of the sound event. Values must be positive or None.</p></li>
+<li><p><strong>distance_unit</strong> (<em>str</em>) – distance unit, one of DISTANCE_UNITS</p></li>
+<li><p><strong>cartesian_coord</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – </p></li>
+<li><p><strong>cartesian_coord_unit</strong> (<em>str</em>) – cartesian_coord unit, one of DISTANCE_UNITS</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="soundata.annotations.LABEL_UNITS">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">LABEL_UNITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'open':</span> <span class="pre">'no</span> <span class="pre">strict</span> <span class="pre">schema</span> <span class="pre">or</span> <span class="pre">units'}</span></em><a class="headerlink" href="#soundata.annotations.LABEL_UNITS" title="Permalink to this definition"></a></dt>
+<dd><p>Label units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="soundata.annotations.MultiAnnotator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">MultiAnnotator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#MultiAnnotator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.MultiAnnotator" title="Permalink to this definition"></a></dt>
+<dd><p>Multiple annotator class.
+This class should be used for datasets with multiple annotators (e.g. multiple annotators per clip).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotators</strong> (<em>list</em>) – list with annotator ids</p></li>
+<li><p><strong>annotations</strong> (<em>list</em>) – list of annotations (e.g. [annotations.Tags, annotations.Tags]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="soundata.annotations.TIME_UNITS">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">TIME_UNITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'milliseconds':</span> <span class="pre">'milliseconds',</span> <span class="pre">'seconds':</span> <span class="pre">'seconds'}</span></em><a class="headerlink" href="#soundata.annotations.TIME_UNITS" title="Permalink to this definition"></a></dt>
+<dd><p>Time units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="soundata.annotations.Tags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">Tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#Tags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.Tags" title="Permalink to this definition"></a></dt>
+<dd><p>Tags class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>list</em>) – list of string tags</p></li>
+<li><p><strong>confidence</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – array of confidence values, float in [0, 1]</p></li>
+<li><p><strong>labels_unit</strong> (<em>str</em>) – labels unit, one of LABELS_UNITS</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_array_like">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_array_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_like</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_dtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">none_allowed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_array_like"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_array_like" title="Permalink to this definition"></a></dt>
+<dd><p>Validate that array-like object is well formed
+If array_like is None, validation passes automatically.
+:Parameters: * <strong>array_like</strong> (<em>array-like</em>) – object to validate</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>expected_type</strong> (<em>type</em>) – expected type, either list or np.ndarray</p></li>
+<li><p><strong>expected_dtype</strong> (<em>type</em>) – expected dtype</p></li>
+<li><p><strong>check_child</strong> (<em>bool</em>) – if True, checks if all elements of array are children of expected_dtype</p></li>
+<li><p><strong>none_allowed</strong> (<em>bool</em>) – if True, allows array to be None</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – if type/dtype does not match expected_type/expected_dtype</p></li>
+<li><p><strong>ValueError</strong> – if array</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_confidence">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_confidence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_confidence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_confidence" title="Permalink to this definition"></a></dt>
+<dd><p>Validate if confidence is well-formed.</p>
+<p>If confidence is None, validation passes automatically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>confidence</strong> (<em>np.ndarray</em>) – an array of confidence values</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if confidence are not between 0 and 1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_intervals">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_intervals" title="Permalink to this definition"></a></dt>
+<dd><p>Validate if intervals are well-formed.</p>
+<p>If intervals is None, validation passes automatically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>intervals</strong> (<em>np.ndarray</em>) – (n x 2) array</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if intervals have an invalid shape, have negative values</p></li>
+<li><p><strong>or if end times are smaller than start times.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_lengths_equal">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_lengths_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_lengths_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_lengths_equal" title="Permalink to this definition"></a></dt>
+<dd><p>Validate that arrays in list are equal in length</p>
+<p>Some arrays may be None, and the validation for these are skipped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>array_list</strong> (<em>list</em>) – list of array-like objects</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if arrays are not equal in length</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_times">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_times" title="Permalink to this definition"></a></dt>
+<dd><p>Validate if times are well-formed.</p>
+<p>If times is None, validation passes automatically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>times</strong> (<em>np.ndarray</em>) – an array of time stamps</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if times have negative values or are non-increasing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.annotations.validate_unit">
+<span class="sig-prename descclassname"><span class="pre">soundata.annotations.</span></span><span class="sig-name descname"><span class="pre">validate_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/annotations.html#validate_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.annotations.validate_unit" title="Permalink to this definition"></a></dt>
+<dd><p>Validate that the given unit is one of the allowed unit values.
+:Parameters: * <strong>unit</strong> (<em>str</em>) – the unit name</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>unit_values</strong> (<em>dict</em>) – dictionary of possible unit values</p></li>
+<li><p><strong>allow_none</strong> (<em>bool</em>) – if true, allows unit=None to pass validation</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the given unit is not one of the allowed unit values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="advanced">
+<h1>Advanced<a class="headerlink" href="#advanced" title="Permalink to this heading"></a></h1>
+<div class="section" id="soundata-validate">
+<h2>soundata.validate<a class="headerlink" href="#soundata-validate" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="soundata-download-utils">
+<h2>soundata.download_utils<a class="headerlink" href="#soundata-download-utils" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="module-soundata.jams_utils">
+<span id="soundata-jams-utils"></span><h2>soundata.jams_utils<a class="headerlink" href="#module-soundata.jams_utils" title="Permalink to this heading"></a></h2>
+<p>Utilities for converting soundata Annotation classes to jams format.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.jams_utils.events_to_jams">
+<span class="sig-prename descclassname"><span class="pre">soundata.jams_utils.</span></span><span class="sig-name descname"><span class="pre">events_to_jams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/jams_utils.html#events_to_jams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.jams_utils.events_to_jams" title="Permalink to this definition"></a></dt>
+<dd><p>Convert events annotations into jams format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>events</strong> (<em>annotations.Events</em>) – events data object</p></li>
+<li><p><strong>annotator</strong> (<em>str</em>) – annotator id</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – annotation description</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>jams.Annotation</em> – jams annotation object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.jams_utils.jams_converter">
+<span class="sig-prename descclassname"><span class="pre">soundata.jams_utils.</span></span><span class="sig-name descname"><span class="pre">jams_converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/jams_utils.html#jams_converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.jams_utils.jams_converter" title="Permalink to this definition"></a></dt>
+<dd><p>Convert annotations from a clip to JAMS format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio_path</strong> (<em>str or None</em>) – A path to the corresponding audio file, or None. If provided,
+the audio file will be read to compute the duration. If None,
+‘duration’ must be a field in the metadata dictionary, or the
+resulting jam object will not validate.</p></li>
+<li><p><strong>spectrogram_path</strong> (<em>str or None</em>) – A path to the corresponding spectrum file, or None.</p></li>
+<li><p><strong>tags</strong> (<em>annotations.Tags or annotations.MultiAnnotator or None</em>) – An instance of annotations.Tags/annotations.MultiAnnotator describing the audio tags.</p></li>
+<li><p><strong>events</strong> (<em>annotations.Events or annotations.MultiAnnotator or None</em>) – An instance of annotations.Events/annotations.MultiAnnotator describing the sound events.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>jams.JAMS</em> – A JAMS object containing the annotations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.jams_utils.multiannotator_to_jams">
+<span class="sig-prename descclassname"><span class="pre">soundata.jams_utils.</span></span><span class="sig-name descname"><span class="pre">multiannotator_to_jams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiannot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#soundata.annotations.MultiAnnotator" title="soundata.annotations.MultiAnnotator"><span class="pre">MultiAnnotator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#soundata.annotations.Annotation" title="soundata.annotations.Annotation"><span class="pre">Annotation</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://jams.readthedocs.io/en/stable/generated/jams.Annotation.html#jams.Annotation" title="(in jams v0.3)"><span class="pre">jams.Annotation</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/soundata/jams_utils.html#multiannotator_to_jams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.jams_utils.multiannotator_to_jams" title="Permalink to this definition"></a></dt>
+<dd><p>Convert tags annotations into jams format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tags</strong> (<em>annotations.MultiAnnotator</em>) – MultiAnnotator object</p></li>
+<li><p><strong>converter</strong> (<em>Callable[…, annotations.Annotation]</em>) – a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>List[jams.Annotation]</em> – List of jams annotation objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="soundata.jams_utils.tags_to_jams">
+<span class="sig-prename descclassname"><span class="pre">soundata.jams_utils.</span></span><span class="sig-name descname"><span class="pre">tags_to_jams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tag_open'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/soundata/jams_utils.html#tags_to_jams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#soundata.jams_utils.tags_to_jams" title="Permalink to this definition"></a></dt>
+<dd><p>Convert tags annotations into jams format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tags</strong> (<em>annotations.Tags</em>) – tags annotation object</p></li>
+<li><p><strong>annotator</strong> (<em>str</em>) – annotator id</p></li>
+<li><p><strong>namespace</strong> (<em>str</em>) – the jams-compatible tag namespace</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – annotation description</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>jams.Annotation</em> – jams annotation object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick_reference.html" class="btn btn-neutral float-left" title="Supported Datasets and Annotations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
