@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>soundata.jams_utils &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            soundata
+              <img src="../../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">About Soundata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/soundata.html">Initialize a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/soundata.html#dataset-loaders">Dataset Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/soundata.html#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/soundata.html#annotations">Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/soundata.html#advanced">Advanced</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../soundata.html">soundata</a></li>
+      <li class="breadcrumb-item active">soundata.jams_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for soundata.jams_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utilities for converting soundata Annotation classes to jams format.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">jams</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+
+<span class="kn">from</span> <span class="nn">soundata</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+
+<div class="viewcode-block" id="jams_converter"><a class="viewcode-back" href="../../source/soundata.html#soundata.jams_utils.jams_converter">[docs]</a><span class="k">def</span> <span class="nf">jams_converter</span><span class="p">(</span>
+    <span class="n">audio_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrogram_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert annotations from a clip to JAMS format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        audio_path (str or None):</span>
+<span class="sd">            A path to the corresponding audio file, or None. If provided,</span>
+<span class="sd">            the audio file will be read to compute the duration. If None,</span>
+<span class="sd">            &#39;duration&#39; must be a field in the metadata dictionary, or the</span>
+<span class="sd">            resulting jam object will not validate.</span>
+<span class="sd">        spectrogram_path (str or None):</span>
+<span class="sd">            A path to the corresponding spectrum file, or None.</span>
+<span class="sd">        tags (annotations.Tags or annotations.MultiAnnotator or None):</span>
+<span class="sd">            An instance of annotations.Tags/annotations.MultiAnnotator describing the audio tags.</span>
+<span class="sd">        events (annotations.Events or annotations.MultiAnnotator or None):</span>
+<span class="sd">            An instance of annotations.Events/annotations.MultiAnnotator describing the sound events.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        jams.JAMS: A JAMS object containing the annotations.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">jam</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">JAMS</span><span class="p">()</span>
+
+    <span class="c1"># duration</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">audio_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">audio_path</span><span class="p">):</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">get_duration</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">audio_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+                <span class="s2">&quot;jams conversion failed because the audio file &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;for this clip cannot be found, and it is required &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;to compute duration.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">spectrogram_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">audio_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span>
+
+    <span class="c1"># metadata</span>
+    <span class="k">if</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;duration&quot;</span>
+                <span class="ow">and</span> <span class="n">duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">duration</span>
+                <span class="ow">and</span> <span class="n">audio_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Duration provided in metadata does not&quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;match the duration computed from the audio file.&quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;Using the duration provided by the metadata.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">jam</span><span class="o">.</span><span class="n">file_metadata</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">jam</span><span class="o">.</span><span class="n">file_metadata</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">jam</span><span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">jam</span><span class="o">.</span><span class="n">file_metadata</span><span class="o">.</span><span class="n">duration</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">jam</span><span class="o">.</span><span class="n">file_metadata</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+
+    <span class="c1"># soundata tags</span>
+    <span class="k">if</span> <span class="n">tags</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Tags</span><span class="p">):</span>
+            <span class="n">jam</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">tags_to_jams</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">jam</span><span class="o">.</span><span class="n">file_metadata</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">MultiAnnotator</span><span class="p">):</span>
+            <span class="n">jam</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">multiannotator_to_jams</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">tags_to_jams</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;tags should be of type annotations.Tags or annotations.MultiAnnotator&quot;</span>
+            <span class="p">)</span>
+
+    <span class="c1"># soundata events</span>
+    <span class="k">if</span> <span class="n">events</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Events</span><span class="p">):</span>
+            <span class="n">jam</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">events_to_jams</span><span class="p">(</span><span class="n">events</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">MultiAnnotator</span><span class="p">):</span>
+            <span class="n">jam</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">multiannotator_to_jams</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">events_to_jams</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;events should be of type annotations.Events or annotations.MultiAnnotator&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">jam</span></div>
+
+
+<div class="viewcode-block" id="multiannotator_to_jams"><a class="viewcode-back" href="../../source/soundata.html#soundata.jams_utils.multiannotator_to_jams">[docs]</a><span class="k">def</span> <span class="nf">multiannotator_to_jams</span><span class="p">(</span>
+    <span class="n">multiannot</span><span class="p">:</span> <span class="n">annotations</span><span class="o">.</span><span class="n">MultiAnnotator</span><span class="p">,</span>
+    <span class="n">converter</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Annotation</span><span class="p">],</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">jams</span><span class="o">.</span><span class="n">Annotation</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert tags annotations into jams format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tags (annotations.MultiAnnotator): MultiAnnotator object</span>
+<span class="sd">        converter (Callable[..., annotations.Annotation]): a function that takes an annotation object, its annotator, (and other optional arguments), and return a jams annotation object</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[jams.Annotation]: List of jams annotation objects.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">jams_annot</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">annotator</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">multiannot</span><span class="o">.</span><span class="n">annotators</span><span class="p">,</span> <span class="n">multiannot</span><span class="o">.</span><span class="n">annotations</span><span class="p">):</span>
+        <span class="n">jams_annot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">converter</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">annotator</span><span class="o">=</span><span class="n">annotator</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">jams_annot</span></div>
+
+
+<div class="viewcode-block" id="tags_to_jams"><a class="viewcode-back" href="../../source/soundata.html#soundata.jams_utils.tags_to_jams">[docs]</a><span class="k">def</span> <span class="nf">tags_to_jams</span><span class="p">(</span>
+    <span class="n">tags</span><span class="p">,</span> <span class="n">annotator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;tag_open&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert tags annotations into jams format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tags (annotations.Tags): tags annotation object</span>
+<span class="sd">        annotator (str): annotator id</span>
+<span class="sd">        namespace (str): the jams-compatible tag namespace</span>
+<span class="sd">        description (str): annotation description</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        jams.Annotation: jams annotation object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">Annotation</span><span class="p">(</span><span class="n">namespace</span><span class="o">=</span><span class="n">namespace</span><span class="p">)</span>
+    <span class="n">ann</span><span class="o">.</span><span class="n">annotation_metadata</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">AnnotationMetadata</span><span class="p">(</span>
+        <span class="n">data_source</span><span class="o">=</span><span class="s2">&quot;soundata&quot;</span><span class="p">,</span>
+        <span class="n">annotator</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">annotator</span><span class="p">}</span> <span class="k">if</span> <span class="n">annotator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tags</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">tags</span><span class="o">.</span><span class="n">confidence</span><span class="p">):</span>
+        <span class="n">ann</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ann</span><span class="o">.</span><span class="n">sandbox</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">Sandbox</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ann</span></div>
+
+
+<div class="viewcode-block" id="events_to_jams"><a class="viewcode-back" href="../../source/soundata.html#soundata.jams_utils.events_to_jams">[docs]</a><span class="k">def</span> <span class="nf">events_to_jams</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">annotator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert events annotations into jams format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        events (annotations.Events): events data object</span>
+<span class="sd">        annotator (str): annotator id</span>
+<span class="sd">        description (str): annotation description</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        jams.Annotation: jams annotation object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">jannot_events</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">Annotation</span><span class="p">(</span><span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;segment_open&quot;</span><span class="p">)</span>
+    <span class="n">jannot_events</span><span class="o">.</span><span class="n">annotation_metadata</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">AnnotationMetadata</span><span class="p">(</span>
+        <span class="n">data_source</span><span class="o">=</span><span class="s2">&quot;soundata&quot;</span><span class="p">,</span>
+        <span class="n">annotator</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">annotator</span><span class="p">}</span> <span class="k">if</span> <span class="n">annotator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">inter</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">conf</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">intervals</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">confidence</span><span class="p">):</span>
+        <span class="n">jannot_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">inter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">duration</span><span class="o">=</span><span class="n">inter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">conf</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">jannot_events</span><span class="o">.</span><span class="n">sandbox</span> <span class="o">=</span> <span class="n">jams</span><span class="o">.</span><span class="n">Sandbox</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jannot_events</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

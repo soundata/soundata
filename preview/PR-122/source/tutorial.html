@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started &mdash; soundata 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="About Soundata" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            soundata
+              <img src="../_static/soundata.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About Soundata</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initializing-a-dataset">Initializing a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-a-dataset">Downloading a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validating-a-dataset">Validating a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-annotations">Accessing annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-data-remotely">Accessing data remotely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotation-classes">Annotation classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iterating-over-datasets-and-annotations">Iterating over datasets and annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#including-soundata-in-your-pipeline">Including soundata in your pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-soundata-with-tensorflow">Using soundata with tensorflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Supported Datasets and Annotations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html">Initialize a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#dataset-loaders">Dataset Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#core">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#annotations">Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soundata.html#advanced">Advanced</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">soundata</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="getting-started">
+<span id="tutorial"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>To install Soundata simply do:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install soundata</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Soundata is easily imported into your Python code by:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initializing-a-dataset">
+<h2>Initializing a dataset<a class="headerlink" href="#initializing-a-dataset" title="Permalink to this heading"></a></h2>
+<p>Print a list of all available dataset loaders by calling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">soundata</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>To use a loader, (for example, <code class="docutils literal notranslate"><span class="pre">urbansound8k</span></code>) you need to initialize it by calling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">,</span> <span class="n">data_home</span><span class="o">=</span><span class="s1">&#39;choose_where_data_live&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can indicate where the data would be stored and access by passing a path to <code class="docutils literal notranslate"><span class="pre">data_home</span></code>, as explained below. Now <code class="docutils literal notranslate"><span class="pre">us8k</span></code> is a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>
+object containing common methods, described in the following.</p>
+</div>
+<div class="section" id="downloading-a-dataset">
+<h2>Downloading a dataset<a class="headerlink" href="#downloading-a-dataset" title="Permalink to this heading"></a></h2>
+<p>All dataset loaders in soundata have a <code class="docutils literal notranslate"><span class="pre">download()</span></code> function that allows the user to download the <a class="reference internal" href="faq.html#faq"><span class="std std-ref">canonical</span></a>
+version of the dataset (when available). When initializing a dataset it is important to correctly set up the directory
+where the dataset is going to be stored and retrieved.</p>
+<dl>
+<dt>Downloading a dataset into the default folder:</dt><dd><p>In this first example, <code class="docutils literal notranslate"><span class="pre">data_home</span></code> is not specified. Thus, UrbanSound8K will be downloaded and retrieved from
+the default folder, <code class="docutils literal notranslate"><span class="pre">sound_datasets</span></code>, created in the user’s root folder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>  <span class="c1"># Dataset is downloaded into &quot;sound_datasets&quot; folder inside user&#39;s root folder</span>
+</pre></div>
+</div>
+</dd>
+<dt>Downloading a dataset into a specified folder:</dt><dd><p>In the next example <code class="docutils literal notranslate"><span class="pre">data_home</span></code> is specified, so UrbanSound8K will be downloaded and retrieved from the specified location:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">,</span> <span class="n">data_home</span><span class="o">=</span><span class="s1">&#39;Users/johnsmith/Desktop&#39;</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>  <span class="c1"># Dataset is downloaded to John Smith&#39;s desktop</span>
+</pre></div>
+</div>
+</dd>
+<dt>Partially downloading a dataset</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">download()</span></code> function allows to partially download a dataset. In other words, if applicable, the user can
+select which elements of the dataset they want to download. Each dataset has a <code class="docutils literal notranslate"><span class="pre">REMOTES</span></code> dictionary were all
+the available downloadable elements are listed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tau2019uas</span></code> has different elements as seen in the <code class="docutils literal notranslate"><span class="pre">REMOTES</span></code> dictionary. You can specify a subset of these elements to
+download by passing the <code class="docutils literal notranslate"><span class="pre">download()</span></code> function a list of the <code class="docutils literal notranslate"><span class="pre">REMOTES</span></code> keys that we are interested in via the
+<code class="docutils literal notranslate"><span class="pre">partial_download</span></code> variable.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example REMOTES</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">REMOTES</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s2">&quot;development.audio.1&quot;</span><span class="p">:</span> <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;TAU-urban-acoustic-scenes-2019-development.audio.1.zip&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.1.zip?download=1&quot;</span><span class="p">,</span>
+    <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;aca4ebfd9ed03d5f747d6ba8c24bc728&quot;</span><span class="p">,</span>
+<span class="p">),</span>
+<span class="s2">&quot;development.audio.2&quot;</span><span class="p">:</span> <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;TAU-urban-acoustic-scenes-2019-development.audio.2.zip&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.2.zip?download=1&quot;</span><span class="p">,</span>
+    <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;c4f170408ce77c8c70c532bf268d7be0&quot;</span><span class="p">,</span>
+<span class="p">),</span>
+<span class="s2">&quot;development.audio.3&quot;</span><span class="p">:</span> <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;TAU-urban-acoustic-scenes-2019-development.audio.3.zip&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.3.zip?download=1&quot;</span><span class="p">,</span>
+    <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;c7214a07211f10f3250290d05e72c37e&quot;</span><span class="p">,</span>
+<span class="p">),</span>
+<span class="o">....</span>
+</pre></div>
+</div>
+</div>
+<p>A partial download example for <code class="docutils literal notranslate"><span class="pre">tau2019uas</span></code> dataset could be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;tau2019uas&#39;</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">partial_download</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;development.audio.1&#39;</span><span class="p">,</span> <span class="s1">&#39;development.audio.2&#39;</span><span class="p">])</span>  <span class="c1"># download only two remotes</span>
+</pre></div>
+</div>
+</dd>
+<dt>Downloading a multipart dataset</dt><dd><p>In some cases, datasets consist of multiple remote files that have to be extracted together locally to correctly recover the data.
+In those cases, remotes that need to be extracted together should be grouped in a list, so all the necessary files are downloaded at once
+(even in a partial download). An example of this is the <cite>fsd50k</cite> loader:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example multipart REMOTES</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">REMOTES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;FSD50K.dev_audio&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.zip&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.zip?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;c480d119b8f7a7e32fdb58f3ea4d6c5a&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.z01&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z01?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;faa7cf4cc076fc34a44a479a5ed862a3&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.z02&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z02?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;8f9b66153e68571164fb1315d00bc7bc&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.z03&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z03?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;1196ef47d267a993d30fa98af54b7159&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.z04&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z04?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;d088ac4e11ba53daf9f7574c11cccac9&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">download_utils</span><span class="o">.</span><span class="n">RemoteFileMetadata</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;FSD50K.dev_audio.z05&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/4060432/files/FSD50K.dev_audio.z05?download=1&quot;</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;81356521aa159accd3c35de22da28c7f&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="validating-a-dataset">
+<h2>Validating a dataset<a class="headerlink" href="#validating-a-dataset" title="Permalink to this heading"></a></h2>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">validate()</span></code> method you can ensure that the files in our local copy of a dataset are identical to the <a class="reference internal" href="faq.html#faq"><span class="std std-ref">canonical</span></a> version
+of the dataset. The function computes the md5 checksum of every downloaded file to ensure it was downloaded correctly and isn’t corrupted.</p>
+<p>For big datasets: In future <code class="docutils literal notranslate"><span class="pre">soundata</span></code> versions, a random validation will be included. This improvement will reduce validation time for very big datasets.</p>
+</div>
+<div class="section" id="accessing-annotations">
+<h2>Accessing annotations<a class="headerlink" href="#accessing-annotations" title="Permalink to this heading"></a></h2>
+<p>You can choose a random clip from a dataset with the <code class="docutils literal notranslate"><span class="pre">choice_clip()</span></code> method.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example Index</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansed&#39;</span><span class="p">)</span>
+<span class="n">random_clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">choice_clip</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random_clip</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Clip</span><span class="p">(</span>
+      <span class="n">audio_path</span><span class="o">=</span><span class="s2">&quot;/Users/theuser/sound_datasets/urbansed/audio/test/soundscape_test_bimodal73.wav&quot;</span><span class="p">,</span>
+      <span class="n">clip_id</span><span class="o">=</span><span class="s2">&quot;soundscape_test_bimodal73&quot;</span><span class="p">,</span>
+      <span class="n">jams_path</span><span class="o">=</span><span class="s2">&quot;/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.jams&quot;</span><span class="p">,</span>
+      <span class="n">txt_path</span><span class="o">=</span><span class="s2">&quot;/Users/mf3734/sound_datasets/urbansed/annotations/test/soundscape_test_bimodal73.txt&quot;</span><span class="p">,</span>
+      <span class="n">audio</span><span class="p">:</span> <span class="n">The</span> <span class="n">clips</span> <span class="n">audio</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">-</span> <span class="n">audio</span> <span class="n">signal</span>
+                <span class="o">*</span> <span class="nb">float</span> <span class="o">-</span> <span class="n">sample</span> <span class="n">rate</span><span class="p">,</span>
+      <span class="n">events</span><span class="p">:</span> <span class="n">The</span> <span class="n">audio</span> <span class="n">events</span>
+                <span class="o">*</span> <span class="n">annotations</span><span class="o">.</span><span class="n">Events</span> <span class="o">-</span> <span class="n">audio</span> <span class="n">event</span> <span class="nb">object</span><span class="p">,</span>
+      <span class="n">split</span><span class="p">:</span> <span class="n">The</span> <span class="n">data</span> <span class="n">splits</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">train</span><span class="p">)</span>
+                <span class="o">*</span> <span class="nb">str</span> <span class="o">-</span> <span class="n">split</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>You can also access specific clips by id. The available clip ids can be acessed by doing <code class="docutils literal notranslate"><span class="pre">dataset.clip_ids</span></code>.
+In the next example we take the first clip id, and then we retrieve its <code class="docutils literal notranslate"><span class="pre">tags</span></code>
+annotation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip_ids</span>  <span class="c1"># the list of urbansound8k&#39;s clip ids</span>
+<span class="n">clips</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_clips</span><span class="p">()</span>  <span class="c1"># Load all clips in the dataset</span>
+<span class="n">example_clip</span> <span class="o">=</span> <span class="n">clips</span><span class="p">[</span><span class="n">ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># Get the first clip</span>
+
+<span class="c1"># Accessing the clip&#39;s tags annotation</span>
+<span class="n">example_tags</span> <span class="o">=</span> <span class="n">example_clip</span><span class="o">.</span><span class="n">tags</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_tags</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;</span> <span class="n">Tags</span><span class="p">(</span><span class="n">confidence</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">labels_unit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_tags</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;children_playing&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also load a single clip without loading all clips in the dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip_ids</span>  <span class="c1"># the list of urbansound8k&#39;s clip ids</span>
+<span class="n">example_clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># load this particular clip</span>
+<span class="n">example_tags</span> <span class="o">=</span> <span class="n">example_clip</span><span class="o">.</span><span class="n">tags</span>  <span class="c1"># Get the tags for the first clip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-data-remotely">
+<span id="remote-data-example"></span><h2>Accessing data remotely<a class="headerlink" href="#accessing-data-remotely" title="Permalink to this heading"></a></h2>
+<p>Annotations can also be accessed through <code class="docutils literal notranslate"><span class="pre">load_*()</span></code> methods which may be useful, for instance, when your data aren’t available locally.
+If you specify the annotation’s path, you can use the module’s loading functions directly. Let’s
+see an example.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Accessing annotations remotely example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load list of clip ids of the dataset</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip_ids</span>
+
+<span class="c1"># Load a single clip, specifying the remote location</span>
+<span class="n">example_clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_home</span><span class="o">=</span><span class="s1">&#39;remote/data/path&#39;</span><span class="p">)</span>
+<span class="n">audio_path</span> <span class="o">=</span> <span class="n">example_clip</span><span class="o">.</span><span class="n">audio_path</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">remote</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">audio</span><span class="o">/</span><span class="n">fold1</span><span class="o">/</span><span class="mi">135776</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mf">49.</span><span class="n">wav</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">audio_path</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kc">False</span>
+
+<span class="c1"># Write code here to download the remote path, e.g., to a temporary file.</span>
+<span class="k">def</span> <span class="nf">my_downloader</span><span class="p">(</span><span class="n">remote_path</span><span class="p">):</span>
+    <span class="c1"># the contents of this function will depend on where your data lives, and how permanently you</span>
+    <span class="c1"># want the files to remain on your local machine. We point you to libraries handling common use cases below.</span>
+    <span class="c1"># for data you would download via scp, you could use the [scp](https://pypi.org/project/scp/) library</span>
+    <span class="c1"># for data on google drive, use [pydrive](https://pythonhosted.org/PyDrive/)</span>
+    <span class="c1"># for data on google cloud storage use [google-cloud-storage](https://pypi.org/project/google-cloud-storage/)</span>
+    <span class="k">return</span> <span class="n">local_path_to_downloaded_data</span>
+
+<span class="c1"># Get path to where your data live</span>
+<span class="n">temp_path</span> <span class="o">=</span> <span class="n">my_downloader</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+
+<span class="c1"># Accessing the clip audio</span>
+<span class="n">example_audio</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_audio</span><span class="p">(</span><span class="n">temp_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="annotation-classes">
+<h2>Annotation classes<a class="headerlink" href="#annotation-classes" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">soundata</span></code> defines annotation-specific data classes such as <cite>Tags</cite> or <cite>Events</cite>. These data classes are meant to standarize the format for
+all loaders, so you can use the same code with different datasets. The list and descriptions of available annotation classes can be found in <a class="reference internal" href="soundata.html#annotations"><span class="std std-ref">Annotations</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These classes are standarized to the point that the data allow for it. In some cases where the dataset has
+its own idiosyncrasies, the classes may be extended e.g. adding a customize, uncommon attribute.</p>
+</div>
+</div>
+<div class="section" id="iterating-over-datasets-and-annotations">
+<h2>Iterating over datasets and annotations<a class="headerlink" href="#iterating-over-datasets-and-annotations" title="Permalink to this heading"></a></h2>
+<p>In general, most datasets are a collection of clips, and in most cases each clip has an audio file along with annotations.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">load_clips()</span></code> method, all clips are loaded as a dictionary with the clip id as keys and
+clip objects as values. The clip objects include their respective audio and annotations, which are lazy-loaded on access
+to keep things speedy and memory efficient.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">clip</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_clips</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">clip</span><span class="o">.</span><span class="n">audio_path</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;</span> <span class="n">soundscape_train_bimodal0</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mf3734</span><span class="o">/</span><span class="n">sound_datasets</span><span class="o">/</span><span class="n">urbansed</span><span class="o">/</span><span class="n">audio</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">soundscape_train_bimodal0</span><span class="o">.</span><span class="n">wav</span>
+     <span class="o">.....</span>
+</pre></div>
+</div>
+<p>Alternatively, you can loop over the <code class="docutils literal notranslate"><span class="pre">clip_ids</span></code> list to directly access each clip in the dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">clip_id</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip_ids</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">clip_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">clip_id</span><span class="p">)</span><span class="o">.</span><span class="n">audio_path</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;</span> <span class="n">soundscape_train_bimodal0</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mf3734</span><span class="o">/</span><span class="n">sound_datasets</span><span class="o">/</span><span class="n">urbansed</span><span class="o">/</span><span class="n">audio</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">soundscape_train_bimodal0</span><span class="o">.</span><span class="n">wav</span>
+     <span class="o">.....</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="including-soundata-in-your-pipeline">
+<span id="id1"></span><h2>Including soundata in your pipeline<a class="headerlink" href="#including-soundata-in-your-pipeline" title="Permalink to this heading"></a></h2>
+<p>If you wanted to use <code class="docutils literal notranslate"><span class="pre">urbansound8k</span></code> to evaluate the performance of an urban sound classifier,
+(in our case, <code class="docutils literal notranslate"><span class="pre">random_classifier</span></code>), and then split the scores based on the metadata, you could do the following:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">soundata usage example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sed_eval</span>
+<span class="kn">import</span> <span class="nn">soundata</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span><span class="p">,</span> <span class="n">ProbabilityContainer</span>
+
+<span class="k">def</span> <span class="nf">random_classifier</span><span class="p">(</span><span class="n">classes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">]</span>
+
+<span class="c1"># Evaluate on the full dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_clips</span><span class="p">()</span>
+
+<span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">clip_data</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clip_data</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">labels</span><span class="p">])</span>
+<span class="n">fold</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Choose a fold to evaluate</span>
+
+<span class="n">ref_tags</span><span class="p">,</span> <span class="n">est_tags</span><span class="p">,</span> <span class="n">est_tag_probs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">clip</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">clip</span><span class="o">.</span><span class="n">fold</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">ref_tags</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="n">clip</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]})</span>  <span class="c1"># Urbansound8k has one label per clip</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">random_classifier</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">probs</span><span class="p">):</span>
+            <span class="n">est_tag_probs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">},)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># Detection threshold of 0.5</span>
+                <span class="n">est_tags</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="p">]})</span>
+
+<span class="n">tag_evaluator</span> <span class="o">=</span> <span class="n">sed_eval</span><span class="o">.</span><span class="n">audio_tag</span><span class="o">.</span><span class="n">AudioTaggingMetrics</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">ref_tags</span><span class="p">)</span><span class="o">.</span><span class="n">unique_tags</span><span class="p">)</span>
+<span class="n">tag_evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">reference_tag_list</span><span class="o">=</span><span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">ref_tags</span><span class="p">),</span>
+    <span class="n">estimated_tag_list</span><span class="o">=</span><span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">est_tags</span><span class="p">),</span>
+    <span class="n">estimated_tag_probabilities</span><span class="o">=</span><span class="n">ProbabilityContainer</span><span class="p">(</span><span class="n">est_tag_probs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>This is the result of the example above:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Example result</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tag_evaluator</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Audio</span> <span class="n">tagging</span> <span class="n">metrics</span>
+<span class="o">========================================</span>
+  <span class="n">Tags</span>                              <span class="p">:</span> <span class="mi">10</span>
+  <span class="n">Evaluated</span> <span class="n">units</span>                   <span class="p">:</span> <span class="mi">888</span>
+
+  <span class="n">Overall</span> <span class="n">metrics</span> <span class="p">(</span><span class="n">micro</span><span class="o">-</span><span class="n">average</span><span class="p">)</span>
+  <span class="o">======================================</span>
+  <span class="n">F</span><span class="o">-</span><span class="n">measure</span>
+    <span class="n">F</span><span class="o">-</span><span class="n">measure</span> <span class="p">(</span><span class="n">F1</span><span class="p">)</span>                  <span class="p">:</span> <span class="mf">9.57</span> <span class="o">%</span>
+    <span class="n">Precision</span>                       <span class="p">:</span> <span class="mf">9.57</span> <span class="o">%</span>
+    <span class="n">Recall</span>                          <span class="p">:</span> <span class="mf">9.57</span> <span class="o">%</span>
+  <span class="n">Equal</span> <span class="n">error</span> <span class="n">rate</span>
+    <span class="n">Equal</span> <span class="n">error</span> <span class="n">rate</span> <span class="p">(</span><span class="n">EER</span><span class="p">)</span>          <span class="p">:</span> <span class="mf">51.01</span> <span class="o">%</span>
+
+  <span class="n">Class</span><span class="o">-</span><span class="n">wise</span> <span class="n">average</span> <span class="n">metrics</span> <span class="p">(</span><span class="n">macro</span><span class="o">-</span><span class="n">average</span><span class="p">)</span>
+  <span class="o">======================================</span>
+  <span class="n">F</span><span class="o">-</span><span class="n">measure</span>
+    <span class="n">F</span><span class="o">-</span><span class="n">measure</span> <span class="p">(</span><span class="n">F1</span><span class="p">)</span>                  <span class="p">:</span> <span class="mf">6.47</span> <span class="o">%</span>
+    <span class="n">Precision</span>                       <span class="p">:</span> <span class="mf">7.54</span> <span class="o">%</span>
+    <span class="n">Recall</span>                          <span class="p">:</span> <span class="mf">9.33</span> <span class="o">%</span>
+  <span class="n">Equal</span> <span class="n">error</span> <span class="n">rate</span>
+    <span class="n">Equal</span> <span class="n">error</span> <span class="n">rate</span> <span class="p">(</span><span class="n">EER</span><span class="p">)</span>          <span class="p">:</span> <span class="mf">50.95</span> <span class="o">%</span>
+
+  <span class="n">Class</span><span class="o">-</span><span class="n">wise</span> <span class="n">metrics</span>
+  <span class="o">======================================</span>
+    <span class="n">Tag</span>               <span class="o">|</span> <span class="n">Nref</span>        <span class="n">Nsys</span>      <span class="o">|</span> <span class="n">F</span><span class="o">-</span><span class="n">score</span>     <span class="n">Pre</span>         <span class="n">Rec</span>       <span class="o">|</span> <span class="n">EER</span>
+    <span class="o">-----------------</span> <span class="o">|</span> <span class="o">---------</span>   <span class="o">---------</span> <span class="o">|</span> <span class="o">---------</span>   <span class="o">---------</span>   <span class="o">---------</span> <span class="o">|</span> <span class="o">---------</span>
+    <span class="n">air_conditioner</span>   <span class="o">|</span> <span class="mi">100</span>         <span class="mi">419</span>       <span class="o">|</span> <span class="mf">19.3</span><span class="o">%</span>       <span class="mf">11.9</span>        <span class="mf">50.0</span>      <span class="o">|</span> <span class="mf">49.0</span><span class="o">%</span>
+    <span class="n">car_horn</span>          <span class="o">|</span> <span class="mi">42</span>          <span class="mi">227</span>       <span class="o">|</span> <span class="mf">4.5</span><span class="o">%</span>        <span class="mf">2.6</span>         <span class="mf">14.3</span>      <span class="o">|</span> <span class="mf">54.8</span><span class="o">%</span>
+    <span class="n">children_playing</span>  <span class="o">|</span> <span class="mi">100</span>         <span class="mi">126</span>       <span class="o">|</span> <span class="mf">9.7</span><span class="o">%</span>        <span class="mf">8.7</span>         <span class="mf">11.0</span>      <span class="o">|</span> <span class="mf">54.0</span><span class="o">%</span>
+    <span class="n">dog_bark</span>          <span class="o">|</span> <span class="mi">100</span>         <span class="mi">58</span>        <span class="o">|</span> <span class="mf">13.9</span><span class="o">%</span>       <span class="mf">19.0</span>        <span class="mf">11.0</span>      <span class="o">|</span> <span class="mf">47.1</span><span class="o">%</span>
+    <span class="n">drilling</span>          <span class="o">|</span> <span class="mi">100</span>         <span class="mi">31</span>        <span class="o">|</span> <span class="mf">9.2</span><span class="o">%</span>        <span class="mf">19.4</span>        <span class="mf">6.0</span>       <span class="o">|</span> <span class="mf">52.4</span><span class="o">%</span>
+    <span class="n">engine_idling</span>     <span class="o">|</span> <span class="mi">100</span>         <span class="mi">16</span>        <span class="o">|</span> <span class="mf">1.7</span><span class="o">%</span>        <span class="mf">6.2</span>         <span class="mf">1.0</span>       <span class="o">|</span> <span class="mf">50.0</span><span class="o">%</span>
+    <span class="n">gun_shot</span>          <span class="o">|</span> <span class="mi">35</span>          <span class="mi">7</span>         <span class="o">|</span> <span class="mf">0.0</span><span class="o">%</span>        <span class="mf">0.0</span>         <span class="mf">0.0</span>       <span class="o">|</span> <span class="mf">48.1</span><span class="o">%</span>
+    <span class="n">jackhammer</span>        <span class="o">|</span> <span class="mi">120</span>         <span class="mi">1</span>         <span class="o">|</span> <span class="mf">0.0</span><span class="o">%</span>        <span class="mf">0.0</span>         <span class="mf">0.0</span>       <span class="o">|</span> <span class="mf">52.5</span><span class="o">%</span>
+    <span class="n">siren</span>             <span class="o">|</span> <span class="mi">91</span>          <span class="mi">3</span>         <span class="o">|</span> <span class="mf">0.0</span><span class="o">%</span>        <span class="mf">0.0</span>         <span class="mf">0.0</span>       <span class="o">|</span> <span class="mf">51.6</span><span class="o">%</span>
+    <span class="n">street_music</span>      <span class="o">|</span> <span class="mi">100</span>         <span class="mi">0</span>         <span class="o">|</span> <span class="n">nan</span><span class="o">%</span>        <span class="n">nan</span>         <span class="mf">0.0</span>       <span class="o">|</span> <span class="mf">50.0</span><span class="o">%</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-soundata-with-tensorflow">
+<span id="id2"></span><h2>Using soundata with tensorflow<a class="headerlink" href="#using-soundata-with-tensorflow" title="Permalink to this heading"></a></h2>
+<p>The following is a simple example of a generator that can be used to create a tensorflow Dataset.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">soundata with tf.data.Dataset example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">soundata</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="k">def</span> <span class="nf">data_generator</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">):</span>
+    <span class="c1"># using the default data_home</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">soundata</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip_ids</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">clip_id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+        <span class="n">clip</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">clip_id</span><span class="p">)</span>
+        <span class="n">audio_signal</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">clip</span><span class="o">.</span><span class="n">audio</span>
+        <span class="k">yield</span> <span class="p">{</span>
+            <span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="n">audio_signal</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+            <span class="s2">&quot;sample_rate&quot;</span><span class="p">:</span> <span class="n">sample_rate</span><span class="p">,</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">clip</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;clip_id&quot;</span><span class="p">:</span> <span class="n">clip</span><span class="o">.</span><span class="n">clip_id</span><span class="p">,</span> <span class="s2">&quot;fold&quot;</span><span class="p">:</span> <span class="n">clip</span><span class="o">.</span><span class="n">fold</span><span class="p">}</span>
+        <span class="p">}</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_generator</span><span class="p">(</span>
+    <span class="n">data_generator</span><span class="p">(</span><span class="s1">&#39;urbansound8k&#39;</span><span class="p">),</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;sample_rate&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;clip_id&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="s1">&#39;fold&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In future <code class="docutils literal notranslate"><span class="pre">soundata</span></code> versions, generators for Tensorflow and PyTorch will be included out-of-the-box.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="About Soundata" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Soundata development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
