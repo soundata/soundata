@@ -30,4 +30,4 @@ If your dataset **is not fully downloadable** there are two extra steps you shou
 - [ ] Make sure someone has run `pytest -s tests/test_full_dataset.py --local --dataset my_dataset` once on your dataset locally and confirmed it passes.
 
 #### Please-do-not-edit flag
-To reduce friction, we will make commits on top of contributor's pull requests by default unless they use the `please-do-not-edit` flag. If you don't want this to happen don't forget to add the flag when you start your pull request. 
+To reduce friction, we will make commits on top of contributor's pull requests by default unless they use the `please-do-not-edit` flag. If you don't want this to happen don't forget to add the flag when you start your pull request.
