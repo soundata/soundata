@@ -2,7 +2,6 @@ name: Docs preview PR
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-permissions: write-all
 jobs:
   docs:
     name: Build docs preview on PR
