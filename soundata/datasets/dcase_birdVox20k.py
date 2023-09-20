@@ -225,7 +225,7 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-        metadata_path = os.path.join(self.data_home, "metadata", "BirdVoxDCASE20k_csvpublic.csv")
+        metadata_path = os.path.join(self.data_home, "BirdVoxDCASE20k_csvpublic.csv")
 
         if not os.path.exists(metadata_path):
             raise FileNotFoundError(f"Metadata file not found at {metadata_path}. Did you run .download()?")

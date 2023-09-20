@@ -14,15 +14,15 @@ def make_index(data_path):
         "version": "1.0",
         "clips": {},
         "metadata": {
-            "Metadata-BirdVox20k" : [
-                "Metadata-BirdVox20k.csv",
-                md5(os.path.join(data_path, "metadata", "BirdVoxDCASE20k_csvpublic.csv")),
+            "BirdVoxDCASE20k_csvpublic" : [
+                "BirdVoxDCASE20k_csvpublic.csv",
+                md5(os.path.join(data_path, "BirdVoxDCASE20k_csvpublic.csv")),
             ]
         }
     }
 
     # audio folder
-    clips = glob.glob(os.path.join(data_path, 'wav', "*.wav"))
+    clips = glob.glob(os.path.join(data_path, "*.wav"))
 
     # store clips with loader
     for clip in tqdm(clips):
