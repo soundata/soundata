@@ -25,9 +25,9 @@ def test_clip():
     }
 
     expected_property_types = {
-        "itemid": str,
-        "datasetid": str,
-        "hasbird": str,
+        "item_id": str,
+        "dataset_id": str,
+        "has_bird": str,
         "audio":tuple,
     }
     run_clip_tests(clip, expected_attributes, expected_property_types)
