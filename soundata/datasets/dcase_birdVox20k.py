@@ -91,11 +91,16 @@ BIBTEX = """
 }
 """
 REMOTES = {
-    "all": download_utils.RemoteFileMetadata(
+    "dataset": download_utils.RemoteFileMetadata(
         filename="BirdVox-DCASE-20k.zip",
         url="https://zenodo.org/record/1208080/files/BirdVox-DCASE-20k.zip?download=1",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
         unpack_directories=["wav"],
+    ),
+    "metadata": download_utils.RemoteFileMetadata(
+        filename="BirdVoxDCASE20k_csvpublic.csv",
+        url="https://ndownloader.figshare.com/files/10853300",
+        checksum="2f4e7e194ccbd3de86e997af8f2a0405",
     )
 }
 
