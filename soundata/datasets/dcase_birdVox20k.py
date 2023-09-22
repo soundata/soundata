@@ -95,7 +95,7 @@ REMOTES = {
         filename="BirdVox-DCASE-20k.zip",
         url="https://zenodo.org/record/1208080/files/BirdVox-DCASE-20k.zip?download=1",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
-        unpack_directories=["BirdVox-DCASE-20k"],
+        unpack_directories=["wav"],
     )
 }
 
