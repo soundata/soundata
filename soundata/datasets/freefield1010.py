@@ -1,4 +1,4 @@
-"""BirdVox20k Dataset Loader
+"""freefield1010 Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
@@ -6,63 +6,47 @@
     Created By
     ----------
 
-    Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#
-    * Cornell Lab of Ornithology (CLO)
-    ^ Center for Urban Science and Progress, New York University
-    # Music and Audio Research Lab, New York University
+   Dan Stowell*, Mark D. Plumbley*
+    * Centre for Digital Music, Queen Mary University of London
 
     Version 1.0
 
     Description
     -----------
 
-    The BirdVox-DCASE-20k dataset contains 20,000 ten-second audio recordings. These recordings come from ROBIN autonomous recording units, placed near Ithaca, NY, USA during the fall 2015. They were captured on the night of September 23rd, 2015, by six different sensors, originally numbered 1, 2, 3, 5, 7, and 10.
-    Out of these 20,000 recording, 10,017 (50.09%) contain at least one bird vocalization (either song, call, or chatter).
-    The dataset is a derivative work of the BirdVox-full-night dataset [1], containing almost as much data but formatted into ten-second excerpts rather than ten-hour full night recordings.
-    In addition, the BirdVox-DCASE-20k dataset is provided as a development set in the context of the "Bird Audio Detection" challenge, organized by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society.
-    The dataset can be used, among other things, for the development and evaluation of bioacoustic classification models.
+    Freefield1010 dataset, a freely accessible collection of 7,690 field recording excerpts from various global locations. These recordings have been standardized for research, and both the audio clips and their metadata are under the Creative Commons license. 
+    The dataset boasts a wide range of environments and locales. For the BAD Challenge, these recordings have been annotated to indicate whether birds are present or absent. 
+    Furthermore, the freefield1010 dataset serves as a development set for the "Bird Audio Detection" challenge, a joint venture by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society. 
+    This dataset is especially valuable for tasks such as creating and testing bioacoustic classification models.
 
     Audio Files Included
     --------------------
 
-    20,000 ten-second audio recordings (see description above) in WAV format. The wav folder contains the recordings as WAV files, sampled at 44,1 kHz, with a single channel (mono). The original sample rate was 24 kHz.
+    The collection contains 7,690 audio clips, sourced from the field-recording tag in the Freesound audio archive (as detailed above). All acquired sounds have been transformed into standard CD-quality mono WAV format. 
+    Inside the 'wav' folder, the recordings are stored as WAV files with a 16-bit 44.1 kHz sampling rate. 
+    Since amplitude levels in the crowdsourced Freesound archive can vary, which might be an issue for listening tests, they decided to normalize the amplitude of each excerpt in our dataset.
 
     Meta-data Files Included
     ------------------------
 
-    A table containing a binary label "hasbird" associated to every recording in BirdVox-DCASE-20k is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
-    These labels were automatically derived from the annotations of avian flight call events in the BirdVox-full-night dataset.
+    A table containing a binary label "hasbird" associated to every recording in freefield1010 is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
+    
 
-    Please Acknowledge BirdVox20k in Academic Research
+    Please Acknowledge freefield1010 in Academic Research
     ----------------------------------------------------
 
-    When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
+    When freefield1010 is used for academic research, we would highly appreciate it if scientific publications of works partly based on this dataset cite the following publication:
 
     .. code-block:: latex
-        V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
-    
-    The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
+        D. Stowell, M. Plumbley. "An open dataset for research on audio field recording archives: Freefield1010.", Proc. Audio Engineering Society 53rd Conference on Semantic Audio (AES53), 2014.
 
     Conditions of Use
     -----------------
 
-    Dataset created by Vincent Lostanlen, Justin Salamon, Andrew Farnsworth, Steve Kelling, and Juan Pablo Bello.
+    Dataset created by Dan Stowell and Mark D. Plumbley
 
-    The BirdVox-DCASE-20k dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
+    The freefield1010 dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
     https://creativecommons.org/licenses/by/4.0/
-
-    The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
-
-    Feedback
-    --------
-
-    Please help us improve BirdVox-DCASE-20k by sending your feedback to:
-    * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-    * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-    * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
-
-    In case of a problem, please include as many details as possible.
-
 """
 
 import os
@@ -80,26 +64,23 @@ from soundata import io
 
 
 BIBTEX = """
-@inproceedings{lostanlen2018icassp,
-  title = {BirdVox-full-night: a dataset and benchmark for avian flight call detection},
-  author = {Lostanlen, Vincent and Salamon, Justin and Farnsworth, Andrew and Kelling, Steve and Bello, Juan Pablo},
-  booktitle = {Proc. IEEE ICASSP},
-  year = {2018},
-  published = {IEEE},
-  venue = {Calgary, Canada},
-  month = {April},
-}
+@inproceedings{Stowell:2014f,
+  title = {freefield1010 - an open dataset for research on audio field recording archives},
+  booktitle={Proceedings of the Audio Engineering Society 53rd Conference on Semantic Audio (AES53)},
+  author={Stowell, D. and Plumbley, M. D.},
+  year={2014},
+  publisher={Audio Engineering Society}}
 """
 REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
-        filename="BirdVox-DCASE-20k.zip",
-        url="https://zenodo.org/record/1208080/files/BirdVox-DCASE-20k.zip?download=1",
+        filename="ff1010bird_wav.zip",
+        url="https://archive.org/download/ff1010bird/ff1010bird_wav.zip",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
         unpack_directories=["wav"],
     ),
     "metadata": download_utils.RemoteFileMetadata(
-        filename="BirdVoxDCASE20k_csvpublic.csv",
-        url="https://ndownloader.figshare.com/files/10853300",
+        filename="ff1010bird_metadata_2018.csv",
+        url="https://ndownloader.figshare.com/files/10853303",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
     )
 }
@@ -108,7 +89,7 @@ LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
 
 
 class Clip(core.Clip):
-    """BirdVox20k Clip class
+    """freefield1010 Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -182,7 +163,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
-    """Load a BirdVox20k audio file.
+    """Load a freefield1010 audio file.
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -203,13 +184,13 @@ def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
-    The BirdVox20k dataset
+    The freefield1010 dataset
     """
 
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="dcase_birdVox20k",
+            name="freefield1010",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -222,7 +203,7 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-        metadata_path = os.path.join(self.data_home, "BirdVoxDCASE20k_csvpublic.csv")
+        metadata_path = os.path.join(self.data_home, "ff1010bird_metadata_2018.csv")
 
         if not os.path.exists(metadata_path):
             raise FileNotFoundError(f"Metadata file not found at {metadata_path}. Did you run .download()?")
