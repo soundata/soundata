@@ -10,8 +10,6 @@ Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdat
 ![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/formatting.yml/badge.svg)
 ![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/lint-python.yml/badge.svg)
 
-
-[![CircleCI](https://circleci.com/gh/soundata/soundata.svg?style=svg)](https://circleci.com/gh/soundata/soundata)
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
 [![Documentation Status](https://readthedocs.org/projects/soundata/badge/?version=latest)](https://soundata.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/soundata/soundata.svg)
