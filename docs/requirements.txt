@@ -4,3 +4,7 @@ librosa>=0.7.0
 tqdm
 sphinx==4.0.2
 pandas
+# read the docs requiremetns
+scipy #==1.11.1
+numpy #==1.25.2
+matplotlib #==3.7.2
