@@ -82,7 +82,7 @@ REMOTES = {
         filename="ff1010bird_metadata_2018.csv",
         url="https://ndownloader.figshare.com/files/10853303",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
@@ -98,7 +98,7 @@ class Clip(core.Clip):
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         itemid (str): clip id
-        datasetid (str): the dataset to which the clip belongs to 
+        datasetid (str): the dataset to which the clip belongs to
         hasbird (str): indication of whether the clips contains bird sounds (0/1)
     """
 
@@ -147,7 +147,6 @@ class Clip(core.Clip):
 
         """
         return self._clip_metadata.get("hasbird")
-
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -206,7 +205,9 @@ class Dataset(core.Dataset):
         metadata_path = os.path.join(self.data_home, "ff1010bird_metadata_2018.csv")
 
         if not os.path.exists(metadata_path):
-            raise FileNotFoundError(f"Metadata file not found at {metadata_path}. Did you run .download()?")
+            raise FileNotFoundError(
+                f"Metadata file not found at {metadata_path}. Did you run .download()?"
+            )
 
         with open(metadata_path, "r") as fhandle:
             reader = csv.reader(fhandle, delimiter=",")

@@ -28,7 +28,7 @@ def test_clip():
         "item_id": str,
         "dataset_id": str,
         "has_bird": str,
-        "audio":tuple,
+        "audio": tuple,
     }
     run_clip_tests(clip, expected_attributes, expected_property_types)
 
@@ -38,11 +38,11 @@ def test_load_audio():
     clip = dataset.clip("00053d90-e4b9-4045-a2f1-f39efc90cfa9")
     audio_path = clip.audio_path
     audio, sr = dcase_birdVox20k.load_audio(audio_path)
-    
+
     assert sr == 44100
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
-    assert audio.shape[0] == 441000 # Check audio duration in samples is as expected
+    assert audio.shape[0] == 441000  # Check audio duration in samples is as expected
 
 
 def test_to_jams():

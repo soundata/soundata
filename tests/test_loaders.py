@@ -14,8 +14,8 @@ from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
-    "freefield1010":"64486",
-    "dcase_birdVox20k":"00053d90-e4b9-4045-a2f1-f39efc90cfa9",
+    "freefield1010": "64486",
+    "dcase_birdVox20k": "00053d90-e4b9-4045-a2f1-f39efc90cfa9",
     "esc50": "1-104089-A-22",
     "fsd50k": "64760",
     "fsdnoisy18k": "17",
