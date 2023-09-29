@@ -44,7 +44,14 @@ EigenScape Raw
 ESC-50
 ^^^^^^
 
-.. automodule:: soundata.datasets.urbansound8k
+.. automodule:: soundata.datasets.esc50
+   :members:
+   :inherited-members:
+
+freefield1010
+^^^^^^
+
+.. automodule:: soundata.datasets.freefield1010
    :members:
    :inherited-members:
 
