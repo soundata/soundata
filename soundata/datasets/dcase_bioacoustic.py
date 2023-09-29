@@ -497,11 +497,13 @@ class Dataset(core.Dataset):
     def _metadata(self):
         metadata_index = {
             clip_id: {
-                "subdataset": v["csv"][0].split(clip_id)[0].split(os.path.sep)[-2],
+                "subdataset": os.path.normpath(v["csv"][0])
+                .split(clip_id)[0]
+                .split(os.path.sep)[-2],
                 "split": "train"
-                if "Training" in v["csv"][0].split(clip_id)[0]
+                if "Training" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
                 else "validation"
-                if "Validation" in v["csv"][0].split(clip_id)[0]
+                if "Validation" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
                 else "evaluation",
             }
             for clip_id, v in self._index["clips"].items()
@@ -520,6 +522,7 @@ class Dataset(core.Dataset):
         metadata_index["subdatasets"] = {}
 
         for split, metadata_path in metadata_paths.items():
+            metadata_path = os.path.normpath(metadata_path)
             if not os.path.exists(metadata_path):
                 raise FileNotFoundError("Metadata not found. Did you run .download()?")
 

@@ -118,23 +118,31 @@ def test_load_SpatialEvents():
     ):
         assert test_clip_index == clip_index
     with pytest.raises(ValueError):
-        tau2021sse_nigens.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1, 0])
+        tau2021sse_nigens.validate_time_steps(
+            0.1, np.array([[4, 5, 7]], dtype=object), [1, 0]
+        )
     with pytest.raises(ValueError):
         tau2021sse_nigens.validate_time_steps(
             0.1, np.array([[4, 5, 7], [1, 2, 3]]), [0.0, 0.2]
         )
     with pytest.raises(ValueError):
         # locations are not 3D
-        tau2021sse_nigens.validate_locations(np.array([[4, 5], [2, 3]]))
+        tau2021sse_nigens.validate_locations(np.array([[4, 5], [2, 3]], dtype=object))
     with pytest.raises(ValueError):
         # distance is not None
-        tau2021sse_nigens.validate_locations(np.array([[90, 5, None], [2, 3, 4]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[90, 5, None], [2, 3, 4]], dtype=object)
+        )
     with pytest.raises(ValueError):
         # elevation is greater than 90
-        tau2021sse_nigens.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[91, 5, None], [2, 3, None]], dtype=object)
+        )
     with pytest.raises(ValueError):
         # elevation is greater than 181
-        tau2021sse_nigens.validate_locations(np.array([[90, 181, None], [2, 3, None]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[90, 181, None], [2, 3, None]], dtype=object)
+        )
 
 
 def test_to_jams():

@@ -7,7 +7,7 @@ from soundata import annotations
 from soundata.datasets import dcase_bioacoustic
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/dcase_bioacoustic"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/dcase_bioacoustic")
 
 
 def test_clip():
@@ -16,8 +16,14 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/dcase_bioacoustic/Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
-        "csv_path": "tests/resources/sound_datasets/dcase_bioacoustic/Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/dcase_bioacoustic"),
+            "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/dcase_bioacoustic"),
+            "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+        ),
         "clip_id": "2015-09-04_08-04-59_unit03",
     }
 

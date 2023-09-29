@@ -1,7 +1,6 @@
 About Soundata
 ==============
 
-
 Soundata is a Python library for loading and working with audio datasets in a standardized way,
 removing the need for writing custom loaders in every project, and improving reproducibility by providing
 tools validate data against a canonical version. It speeds up research pipelines by allowing you to quickly
