@@ -5,7 +5,11 @@
 Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
 Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
 
-[![CircleCI](https://circleci.com/gh/soundata/soundata.svg?style=svg)](https://circleci.com/gh/soundata/soundata)
+![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/ci.yml/badge.svg)
+![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/docs.yml/badge.svg)
+![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/formatting.yml/badge.svg)
+![GitHub CI](https://github.com/guillemcortes/soundata/actions/workflows/lint-python.yml/badge.svg)
+
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
 [![Documentation Status](https://readthedocs.org/projects/soundata/badge/?version=latest)](https://soundata.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/soundata/soundata.svg)
@@ -58,8 +62,7 @@ See the [documentation](https://soundata.readthedocs.io/) for more examples and 
 ```
 
 
-When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset,
-which can be found in the respective dataset loader using the `cite()` method. 
+When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
 
 ### Contributing a new dataset loader
 

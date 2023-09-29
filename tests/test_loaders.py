@@ -14,6 +14,7 @@ from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
+    "dcase_bioacoustic": "2015-09-04_08-04-59_unit03",
     "esc50": "1-104089-A-22",
     "fsd50k": "64760",
     "fsdnoisy18k": "17",
