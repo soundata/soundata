@@ -18,6 +18,15 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - DCASE-bioacoustic
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 174
+     - 21
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
    * - | EigenScape
        | (HOA 25 ch) 
      - - audio: ✅

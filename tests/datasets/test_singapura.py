@@ -4,8 +4,9 @@ import numpy as np
 from soundata import annotations
 from soundata.datasets import singapura
 from tests.test_utils import run_clip_tests
+import os
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/singapura"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/singapura")
 
 
 def test_clip():
@@ -17,20 +18,20 @@ def test_clip():
         "audio_path": (
             os.path.join(
                 TEST_DATA_HOME,
-                "labelled",
-                "2020-08-19",
+                "labelled/",
+                "2020-08-19/",
                 "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac",
             )
         ),
         "annotation_path": os.path.join(
             TEST_DATA_HOME,
-            "labels_public",
+            "labels_public/",
             "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.csv",
         ),
         "clip_id": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
         "sensor_id": "b827ebf3744c",
         "town": "West 2",
-        "timestamp": np.datetime64("2020-08-20T06:46:04+08:00"),
+        "timestamp": np.datetime64("2020-08-20T06:46:04"),
         "dotw": 4,
     }
 

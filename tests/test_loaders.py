@@ -14,6 +14,7 @@ from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
+    "dcase_bioacoustic": "2015-09-04_08-04-59_unit03",
     "esc50": "1-104089-A-22",
     "fsd50k": "64760",
     "fsdnoisy18k": "17",
@@ -54,7 +55,7 @@ def test_dataset_attributes():
         ), "{}.DOWNLOAD_INFO must be a string".format(dataset_name)
         assert type(dataset._clip_class) == type(
             core.Clip
-        ), "{}.Track must be an instance of core.Clip".format(dataset_name)
+        ), "{}.Clip must be an instance of core.Clip".format(dataset_name)
         assert callable(dataset.download), "{}.download is not a function".format(
             dataset_name
         )
@@ -364,7 +365,7 @@ def test_load_methods():
                     load_method("a/fake/filepath")
 
 
-CUSTOM_TEST_MTRACKS = {}
+CUSTOM_TEST_MCLIPS = {}
 
 
 def test_clipgroups():
@@ -376,8 +377,8 @@ def test_clipgroups():
 
         # TODO this is currently an opt-in test. Make it an opt out test
         # once #265 is addressed
-        if dataset_name in CUSTOM_TEST_MTRACKS:
-            clipgroup_id = CUSTOM_TEST_MTRACKS[dataset_name]
+        if dataset_name in CUSTOM_TEST_MCLIPS:
+            clipgroup_id = CUSTOM_TEST_MCLIPS[dataset_name]
         else:
             # there are no clipgroups
             continue

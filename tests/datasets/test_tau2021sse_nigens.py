@@ -7,7 +7,7 @@ from tests.test_utils import run_clip_tests, DEFAULT_DATA_HOME
 from soundata import annotations
 from soundata.datasets import tau2021sse_nigens
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2021sse_nigens"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2021sse_nigens")
 
 
 def test_clip():
@@ -17,8 +17,14 @@ def test_clip():
 
     expected_attributes = {
         "clip_id": "foa_dev/dev-train/fold1_room1_mix001",
-        "audio_path": "tests/resources/sound_datasets/tau2021sse_nigens/foa_dev/dev-train/fold1_room1_mix001.wav",
-        "csv_path": "tests/resources/sound_datasets/tau2021sse_nigens/metadata_dev/dev-train/fold1_room1_mix001.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2021sse_nigens/"),
+            "foa_dev/dev-train/fold1_room1_mix001.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/tau2021sse_nigens/"),
+            "metadata_dev/dev-train/fold1_room1_mix001.csv",
+        ),
         "format": "foa",
         "set": "dev",
         "split": "train",
@@ -91,7 +97,7 @@ def test_load_SpatialEvents():
     ]
 
     labels = ["1", "2", "4", "4", "5", "6"]
-    track_number_indices = ["0", "0", "0", "1", "0", "0"]
+    clip_number_indices = ["0", "0", "0", "1", "0", "0"]
     assert np.allclose(annotations.time_step, 0.1)
     assert np.allclose(confidence, annotations.confidence)
     for pair in [
@@ -107,28 +113,36 @@ def test_load_SpatialEvents():
                 test_data == data
     for test_label, label in zip(labels, annotations.labels):
         assert test_label == label
-    for test_track_index, track_index in zip(
-        track_number_indices, annotations.track_number_index
+    for test_clip_index, clip_index in zip(
+        clip_number_indices, annotations.clip_number_index
     ):
-        assert test_track_index == track_index
+        assert test_clip_index == clip_index
     with pytest.raises(ValueError):
-        tau2021sse_nigens.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1, 0])
+        tau2021sse_nigens.validate_time_steps(
+            0.1, np.array([[4, 5, 7]], dtype=object), [1, 0]
+        )
     with pytest.raises(ValueError):
         tau2021sse_nigens.validate_time_steps(
             0.1, np.array([[4, 5, 7], [1, 2, 3]]), [0.0, 0.2]
         )
     with pytest.raises(ValueError):
         # locations are not 3D
-        tau2021sse_nigens.validate_locations(np.array([[4, 5], [2, 3]]))
+        tau2021sse_nigens.validate_locations(np.array([[4, 5], [2, 3]], dtype=object))
     with pytest.raises(ValueError):
         # distance is not None
-        tau2021sse_nigens.validate_locations(np.array([[90, 5, None], [2, 3, 4]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[90, 5, None], [2, 3, 4]], dtype=object)
+        )
     with pytest.raises(ValueError):
         # elevation is greater than 90
-        tau2021sse_nigens.validate_locations(np.array([[91, 5, None], [2, 3, None]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[91, 5, None], [2, 3, None]], dtype=object)
+        )
     with pytest.raises(ValueError):
         # elevation is greater than 181
-        tau2021sse_nigens.validate_locations(np.array([[90, 181, None], [2, 3, None]]))
+        tau2021sse_nigens.validate_locations(
+            np.array([[90, 181, None], [2, 3, None]], dtype=object)
+        )
 
 
 def test_to_jams():

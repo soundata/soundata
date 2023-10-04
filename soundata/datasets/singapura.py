@@ -267,12 +267,9 @@ class Clip(core.Clip):
             * np.datetime64 - timestamp of the clip
         """
 
-        # all of our data are in GMT+08:00 (Singapore Standard Time)
-        tz = "+08:00"
-
         return np.datetime64(
             f"{self._clip_metadata['year']}-{self._clip_metadata['month']:02d}-{self._clip_metadata['date']:02d}"
-            + f"T{self._clip_metadata['hour']:02d}:{self._clip_metadata['minute']:02d}:{self._clip_metadata['second']:02d}{tz}"
+            + f"T{self._clip_metadata['hour']:02d}:{self._clip_metadata['minute']:02d}:{self._clip_metadata['second']:02d}"
         )
 
     @property
@@ -287,7 +284,7 @@ class Clip(core.Clip):
 
     def to_jams(self):
         """
-        Jams: the track's data in jams format
+        Jams: the clip's data in jams format
         """
         return jams_utils.jams_converter(
             audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata

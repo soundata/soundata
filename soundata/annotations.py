@@ -3,10 +3,23 @@
 import numpy as np
 
 #: Time units
-TIME_UNITS = {"seconds": "seconds", "miliseconds": "miliseconds"}
+TIME_UNITS = {"seconds": "seconds", "milliseconds": "milliseconds"}
 
 #: Label units
 LABEL_UNITS = {"open": "no strict schema or units"}
+
+#: Azimuth units
+AZIMUTH_UNITS = {
+    "radians": "values in the interval [-2*pi, 2*pi]",
+    "degrees": "values in the interval [-360, 360]",
+}
+
+#: Distance units
+DISTANCE_UNITS = {
+    "meters": "meters",
+    "centimeters": "centimeters",
+    "millimeters": "millimeters",
+}
 
 
 class Annotation(object):
@@ -50,12 +63,37 @@ class Events(Annotation):
         confidence (np.ndarray or None): array of confidence values, float in [0, 1]
         labels_unit (str): labels unit, one of LABELS_UNITS
         intervals_unit (str): intervals unit, one of TIME_UNITS
+        azimuth (np.ndarray or None): list of size n with np.ndarrays with dtype float,
+            indicating the azimuth of the sound event. Values between -360 and 360 for degrees
+            and between -2*pi, 2*pi for radians or None.
+        azimuth_unit (str): azimuth unit, one of AZIMUTH_UNITS
+        elevation (np.ndarray or None): list of size n with np.ndarrays with dtype float,
+            indicating the elevation of the sound event. Values between -90 and 90 or None.
+        elevation_unit (str): elevation unit, one of AZIMUTH_UNITS
+        distance (np.ndarray or None):list of size n with np.ndarrays with dtype float,
+            indicating the distance of the sound event. Values must be positive or None.
+        distance_unit (str): distance unit, one of DISTANCE_UNITS
+        cartesian_coord (np.ndarray or None):
+        cartesian_coord_unit (str): cartesian_coord unit, one of DISTANCE_UNITS
 
 
     """
 
     def __init__(
-        self, intervals, intervals_unit, labels, labels_unit, confidence=None
+        self,
+        intervals,
+        intervals_unit,
+        labels,
+        labels_unit,
+        confidence=None,
+        azimuth=None,
+        azimuth_unit=None,
+        elevation=None,
+        elevation_unit=None,
+        distance=None,
+        distance_unit=None,
+        cartesian_coord=None,
+        cartesian_coord_unit=None,
     ) -> None:
         validate_array_like(intervals, np.ndarray, float)
         validate_array_like(labels, list, str)
@@ -65,12 +103,35 @@ class Events(Annotation):
         validate_confidence(confidence)
         validate_unit(labels_unit, LABEL_UNITS)
         validate_unit(intervals_unit, TIME_UNITS)
+        validate_array_like(azimuth, np.ndarray, float, none_allowed=True)
+        validate_array_like(elevation, np.ndarray, float, none_allowed=True)
+        validate_array_like(distance, np.ndarray, float, none_allowed=True)
+        validate_array_like(cartesian_coord, np.ndarray, float, none_allowed=True)
+        validate_lengths_equal(
+            [intervals, azimuth, elevation, distance, cartesian_coord]
+        )
+        validate_azimuth(azimuth, azimuth_unit, allow_none=True)
+        validate_distance(distance, allow_none=True)
+        validate_elevation(elevation, elevation_unit, allow_none=True)
+        validate_cartesian_coord(cartesian_coord, allow_none=True)
+        validate_unit(azimuth_unit, AZIMUTH_UNITS, allow_none=True)
+        validate_unit(distance_unit, DISTANCE_UNITS, allow_none=True)
+        validate_unit(elevation_unit, AZIMUTH_UNITS, allow_none=True)
+        validate_unit(cartesian_coord_unit, DISTANCE_UNITS, allow_none=True)
 
         self.intervals = intervals
         self.intervals_unit = intervals_unit
         self.labels = labels
         self.labels_unit = labels_unit
         self.confidence = confidence
+        self.azimuth = azimuth
+        self.azimuth_unit = azimuth_unit
+        self.elevation = elevation
+        self.elevation_unit = elevation_unit
+        self.distance = distance
+        self.distance_unit = distance_unit
+        self.cartesian_coord = cartesian_coord
+        self.cartesian_coord_unit = cartesian_coord_unit
 
 
 class MultiAnnotator(Annotation):
@@ -138,7 +199,7 @@ def validate_array_like(
             f"Array should have dtype {expected_dtype} but has {array_like.dtype}"
         )
 
-    if np.asarray(array_like).size == 0:
+    if np.asarray(array_like, dtype=object).size == 0:
         raise ValueError("Object should not be empty, use None instead")
 
 
@@ -272,3 +333,67 @@ def validate_unit(unit, unit_values, allow_none=False):
 
     if unit not in unit_values:
         raise ValueError("unit={} is not one of {}".format(unit, unit_values))
+
+
+def validate_azimuth(azimuth, azimuth_unit=None, allow_none=False):
+    if allow_none and not azimuth_unit:
+        return
+
+    if azimuth_unit == "radians":
+        if any([a < -2 * np.pi for a in azimuth]) or any(
+            [a > 2 * np.pi for a in azimuth]
+        ):
+            raise ValueError(
+                "azimuth with unit 'radians' should be between -2*np.pi and 2*np.pi. "
+                + "Found values outside that interval."
+            )
+
+    if azimuth_unit == "degrees":
+        if any([a < -360 for a in azimuth]) or any([a > 360 for a in azimuth]):
+            raise ValueError(
+                "azimuth with unit 'degrees' should be between -360 and 360. "
+                + "Found values outside that interval."
+            )
+
+
+def validate_elevation(elevation, elevation_unit=None, allow_none=False):
+    if allow_none and not elevation_unit:
+        return
+
+    if elevation_unit == "radians":
+        if any([a < -np.pi / 2 for a in elevation]) or any(
+            [a > np.pi / 2 for a in elevation]
+        ):
+            raise ValueError(
+                "elevation with unit 'radians' should be between -np.pi / 2 and np.pi / 2."
+                + "Found values outside that interval."
+            )
+
+    if elevation_unit == "degrees":
+        if any([a < -90 for a in elevation]) or any([a > 90 for a in elevation]):
+            raise ValueError(
+                "elevation with unit 'degrees' should be between -90 and 90."
+                + "Found values outside that interval."
+            )
+
+
+def validate_distance(distance, allow_none=False):
+    if allow_none and distance is None:
+        return
+
+    if np.any([d < 0 for d in distance]):
+        raise ValueError(
+            "distance should be bigger or equal than zero. " + "Found negative values."
+        )
+
+
+def validate_cartesian_coord(cartesian_coord, allow_none=False):
+    # print(np.shape(cartesian_coord))
+    if allow_none and cartesian_coord is None:
+        return
+
+    if not np.shape(cartesian_coord)[1] == 3:
+        raise ValueError(
+            f"cartesian coordinates should have three columns corresponding to x, y and z coordinates. "
+            f"Found {len(cartesian_coord)} columns instead."
+        )

@@ -378,15 +378,28 @@ def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
         ]
     }
     download_utils.downloader(
-        "tests/resources", multipart_zip_remote, force_overwrite=False, cleanup=True
+        os.path.normpath("tests/resources"),
+        multipart_zip_remote,
+        force_overwrite=False,
+        cleanup=True,
     )
     mock_download_from_remote.assert_has_calls(
         [
-            mocker.call(multipart_zip_remote["foo"][0], "tests/resources", False),
-            mocker.call(multipart_zip_remote["foo"][1], "tests/resources", False),
+            mocker.call(
+                multipart_zip_remote["foo"][0],
+                os.path.normpath("tests/resources"),
+                False,
+            ),
+            mocker.call(
+                multipart_zip_remote["foo"][1],
+                os.path.normpath("tests/resources"),
+                False,
+            ),
         ]
     )
-    mock_unzip.assert_called_once_with("tests/resources/foo_single.zip", cleanup=True)
+    mock_unzip.assert_called_once_with(
+        os.path.normpath("tests/resources/foo_single.zip"), cleanup=True
+    )
 
 
 def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):

@@ -7,7 +7,7 @@ from tests.test_utils import run_clip_tests, DEFAULT_DATA_HOME
 from soundata import annotations
 from soundata.datasets import starss2022
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/starss2022"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/starss2022")
 
 
 def test_clip():
@@ -17,8 +17,14 @@ def test_clip():
 
     expected_attributes = {
         "clip_id": "foa_dev/dev-train-sony/fold3_room21_mix001",
-        "audio_path": "tests/resources/sound_datasets/starss2022/foa_dev/dev-train-sony/fold3_room21_mix001.wav",
-        "csv_path": "tests/resources/sound_datasets/starss2022/metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/starss2022/"),
+            "foa_dev/dev-train-sony/fold3_room21_mix001.wav",
+        ),
+        "csv_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/starss2022/"),
+            "metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        ),
         "format": "foa",
         "set": "dev",
         "split": "train",
@@ -79,7 +85,7 @@ def test_load_SpatialEvents():
     ]
 
     labels = ["1", "1", "4", "4"]
-    track_number_indices = ["1", "2", "2", "1"]
+    clip_number_indices = ["1", "2", "2", "1"]
     assert np.allclose(annotations.time_step, 0.1)
     assert np.allclose(confidence, annotations.confidence)
     for pair in [
@@ -95,10 +101,10 @@ def test_load_SpatialEvents():
                 test_data == data
     for test_label, label in zip(labels, annotations.labels):
         assert test_label == label
-    for test_track_index, track_index in zip(
-        track_number_indices, annotations.track_number_index
+    for test_clip_index, clip_index in zip(
+        clip_number_indices, annotations.clip_number_index
     ):
-        assert test_track_index == track_index
+        assert test_clip_index == clip_index
     with pytest.raises(ValueError):
         starss2022.validate_time_steps(0.1, np.array([[4, 5, 7]]), [1, 0])
     with pytest.raises(ValueError):
