@@ -157,6 +157,16 @@
      - 97
      - :tau2020:`\ `
 
+   * - | TAU Urban
+       | Acoustic Scenes
+       | 2022 Mobile
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 34915
+     - 97
+     - :tau2022:`\ `
+
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
