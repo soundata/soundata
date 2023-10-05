@@ -10,7 +10,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2022uas_mob
 
 
 def test_clip():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "airport-lisbon-1000-40000-0-a"
     dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
 
@@ -18,10 +18,10 @@ def test_clip():
         "audio_path": (
             os.path.join(
                 os.path.normpath("tests/resources/sound_datasets/tau2022uas_mobile/"),
-                "TAU-urban-acoustic-scenes-2022-mobile-development/audio/airport-barcelona-0-0-a.wav",
+                "TAU-urban-acoustic-scenes-2022-mobile-development/audio/airport-lisbon-1000-40000-0-a.wav",
             )
         ),
-        "clip_id": "airport-barcelona-0-0-a",
+        "clip_id": "airport-lisbon-1000-40000-0-a",
     }
 
     expected_property_types = {
@@ -37,7 +37,7 @@ def test_clip():
 
 
 def test_load_audio():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "airport-lisbon-1000-40000-0-a"
     dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
@@ -48,7 +48,7 @@ def test_load_audio():
 
 
 def test_load_tags():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "airport-lisbon-1000-40000-0-a"
     dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     assert len(clip.tags.labels) == 1
@@ -62,25 +62,25 @@ def test_load_tags():
 
 
 def test_load_metadata():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "airport-lisbon-1000-40000-0-a"
     dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    assert clip.split == "development.train"
-    assert clip.identifier == "barcelona-0"
-    assert clip.city == "barcelona"
+    assert clip.split == "2022.development.train"
+    assert clip.identifier == "lisbon-1000"
+    assert clip.city == "lisbon"
     assert clip.source_label == "a"
 
     # Evaluation dataset
     eval_default_clipid = "0"
     eval_clip = dataset.clip(eval_default_clipid)
-    assert eval_clip.split == "evaluation"
+    assert eval_clip.split == "2023.evaluation"
     assert eval_clip.identifier is None
     assert eval_clip.city is None
     assert eval_clip.source_label is None
 
 
 def test_to_jams():
-    default_clipid = "airport-barcelona-0-0-a"
+    default_clipid = "airport-lisbon-1000-40000-0-a"
     dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()

@@ -916,9 +916,10 @@ class Dataset(core.Dataset):
             "meta.csv",
         )
 
-        splits = ["development.train", "development.evaluate", "evaluation"]
+        splits = ["2022.development.train", "2022.development.evaluate", "2023.evaluation"]
 
         metadata_index = {}
+        
 
         with open(metadata_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter="\t")
@@ -938,14 +939,15 @@ class Dataset(core.Dataset):
                 }
 
         for split in splits:
-            subset = split.split(".")[0]
+            subset = split.split(".")[1]
+            year = split.split(".")[0]
             evaluation_setup_path = (
-                "TAU-urban-acoustic-scenes-2022-mobile-{}/evaluation_setup".format(
-                    subset
+                "TAU-urban-acoustic-scenes-{}-mobile-{}/evaluation_setup".format(
+                    year, subset
                 )
             )
             if subset == "development":
-                fold = split.split(".")[1]
+                fold = split.split(".")[2]
                 evaluation_setup_file = os.path.join(
                     self.data_home, evaluation_setup_path, "fold1_{}.csv".format(fold)
                 )
@@ -958,6 +960,7 @@ class Dataset(core.Dataset):
                 csv_reader = csv.reader(csv_file, delimiter="\t")
                 next(csv_reader)
                 for row in csv_reader:
+                    print(row)
                     file_name = os.path.basename(row[0])
                     clip_id = os.path.basename(file_name).replace(".wav", "")
 
@@ -968,7 +971,8 @@ class Dataset(core.Dataset):
                             "identifier": None,
                             "source_label": None,
                         }
-
+                    print(metadata_index)
+                    print(clip_id)
                     metadata_index[clip_id]["split"] = split
 
         return metadata_index
