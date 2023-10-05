@@ -916,10 +916,13 @@ class Dataset(core.Dataset):
             "meta.csv",
         )
 
-        splits = ["2022.development.train", "2022.development.evaluate", "2023.evaluation"]
+        splits = [
+            "2022.development.train",
+            "2022.development.evaluate",
+            "2023.evaluation",
+        ]
 
         metadata_index = {}
-        
 
         with open(metadata_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter="\t")
