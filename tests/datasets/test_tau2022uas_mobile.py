@@ -97,9 +97,9 @@ def test_to_jams():
 
     # validate metadata
     assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.split == "development.train"
+    assert jam.sandbox.split == "2022.development.train"
     assert jam.sandbox.source_label == "a"
-    assert jam.sandbox.identifier == "barcelona-0"
-    assert jam.sandbox.city == "barcelona"
+    assert jam.sandbox.identifier == "lisbon-1000"
+    assert jam.sandbox.city == "lisbon"
     assert jam.sandbox.scene_label == "airport"
     assert jam.annotations[0].annotation_metadata.data_source == "soundata"
