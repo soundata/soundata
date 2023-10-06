@@ -1,13 +1,14 @@
-"""BirdVox20k Dataset Loader
+"""
+BirdVox20k Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Created By*
-        Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#
-        * Cornell Lab of Ornithology (CLO)
-        ^ Center for Urban Science and Progress, New York University
-        # Music and Audio Research Lab, New York University
+    *Created By*  
+        Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#  
+        * Cornell Lab of Ornithology (CLO)  
+        ^ Center for Urban Science and Progress, New York University    
+        # Music and Audio Research Lab, New York University   
 
     Version 1.0
 
@@ -42,7 +43,7 @@
         The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
 
     *Feedback*
-        Please help us improve BirdVox-DCASE-20k by sending your feedback to:
+        Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
         * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
         * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
         * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
