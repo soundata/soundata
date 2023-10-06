@@ -44,9 +44,9 @@ BirdVox20k Dataset Loader
 
     *Feedback*
         Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
-        * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-        * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-        * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
+        | * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
+        | * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
+        | * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
 
         In case of a problem, please include as many details as possible.
 

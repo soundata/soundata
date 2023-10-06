@@ -6,8 +6,10 @@
     *TAU SSE 2019*
 
     *Created By:*
-        Sharath Adavanne; Archontis Politis; Tuomas Virtanen
-        Audio Research Group, Tampere University. Version 2
+        | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
+        | Audio Research Group, Tampere University. 
+        
+    Version 2
 
     *Description:*
         Recordings with stationary point sources (events) from multiple sound classes.

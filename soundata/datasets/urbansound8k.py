@@ -4,12 +4,12 @@
     :class: dropdown
 
     *Created By:*
-        Justin Salamon*^, Christopher Jacoby* and Juan Pablo Bello*
-        * Music and Audio Research Lab (MARL), New York University, USA
-        ^ Center for Urban Science and Progress (CUSP), New York University, USA
-        https://urbansounddataset.weebly.com/
-        https://steinhardt.nyu.edu/marl
-        http://cusp.nyu.edu/
+        | Justin Salamon*^, Christopher Jacoby* and Juan Pablo Bello*
+        | * Music and Audio Research Lab (MARL), New York University, USA
+        | ^ Center for Urban Science and Progress (CUSP), New York University, USA
+        | https://urbansounddataset.weebly.com/
+        | https://steinhardt.nyu.edu/marl
+        | http://cusp.nyu.edu/
 
     Version 1.0
 
@@ -109,9 +109,8 @@
         the UrbanSound8K dataset or any part of it.
 
     *Feedback*
-
-        Please help us improve UrbanSound8K by sending your feedback to: justin.salamon@nyu.edu
-        In case of a problem report please include as many details as possible.
+        | Please help us improve UrbanSound8K by sending your feedback to: justin.salamon@nyu.edu
+        | In case of a problem report please include as many details as possible.
 
 """
 
