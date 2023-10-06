@@ -6,12 +6,13 @@
     *Sony-TAu Realistic Spatial Soundscapes: sound scenes in various rooms and environments, together with temporal and spatial annotations of prominent events belonging to a set of target classes.
 
     *Created By:*
-        Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen
-        Audio Research Group, Tampere University (Finland). Version 1.0.0
+        | Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen
+        | Audio Research Group, Tampere University (Finland). 
 
-        Yuki Mitsufuji, Kazuki Shimada, Naoya Takahashi, Yuichiro Koyama, Shusuke Takahashi 
-        SONY
+        | Yuki Mitsufuji, Kazuki Shimada, Naoya Takahashi, Yuichiro Koyama, Shusuke Takahashi 
+        | SONY
 
+    Version 1.0.0
 
     *Description:*
         Contains multichannel recordings of sound scenes in various rooms and environments, 
@@ -74,7 +75,7 @@
             * Politis, Adavanne, Mitsufuji, Yuki, Sudarsanam, Parthasaarathy, Shimada, Kazuki, Adavanne, Sharath, Koyama, Yuichiro, Krause, Daniel, Takahashi, Naoya, Takahashi, Shusuke, & Virtanen, Tuomas. (2022). STARSS22: Sony-TAu Realistic Spatial Soundscapes 2022 dataset (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6387880 
 
     *License:*
-        * This datast is licensed under the [MIT](https://opensource.org/licenses/MIT) license
+        * This dataset is licensed under the [MIT](https://opensource.org/licenses/MIT) license
 """
 
 import os
