@@ -66,7 +66,7 @@ Finally, run:
 
 .. code-block:: bash
 
-    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata --black tests/ --local
+    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
 
 
 All tests should pass!

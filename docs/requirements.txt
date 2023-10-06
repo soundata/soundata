@@ -7,3 +7,7 @@ pandas
 scipy  #==1.11.1
 numpy  #==1.25.2
 matplotlib  #==3.7.2
+mypy
+flake8
+sphinx_rtd_theme
+

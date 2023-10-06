@@ -6,8 +6,10 @@
     *3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses*
     
     *Created By:*
-        Hyunkook Lee, Dale Johnson, Bogdan Bacila.
-        Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. Version 1.0.1
+        | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
+        | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
+        
+        Version 1.0.1
 	
     *Description:*
         3D-MARCo is an open-access database of 3D sound recordings of musical performances and room impulse responses. 

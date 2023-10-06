@@ -6,8 +6,10 @@
     *FSD50K: an Open Dataset of Human-Labeled Sound Events*
 
     *Created By:*
-        Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
-        Music Technology Group, Universitat Pompeu Fabra (Barcelona). Version 1.0
+        | Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
+        
+    Version 1.0
 
     *Description:*
         FSD50K is an open dataset of human-labeled sound events containing 51,197 Freesound clips unequally
