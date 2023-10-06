@@ -1,67 +1,54 @@
-"""BirdVox20k Dataset Loader
+"""
+BirdVox20k Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
 
-    Created By
-    ----------
-
-    Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#
-    * Cornell Lab of Ornithology (CLO)
-    ^ Center for Urban Science and Progress, New York University
-    # Music and Audio Research Lab, New York University
+    *Created By*  
+        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#  
+        | * Cornell Lab of Ornithology (CLO)  
+        | ^ Center for Urban Science and Progress, New York University   
+        | # Music and Audio Research Lab, New York University   
 
     Version 1.0
 
-    Description
-    -----------
+    *Description*
+        The BirdVox-DCASE-20k dataset contains 20,000 ten-second audio recordings. These recordings come from ROBIN autonomous recording units, placed near Ithaca, NY, USA during the fall 2015. They were captured on the night of September 23rd, 2015, by six different sensors, originally numbered 1, 2, 3, 5, 7, and 10.
+        Out of these 20,000 recording, 10,017 (50.09%) contain at least one bird vocalization (either song, call, or chatter).
+        The dataset is a derivative work of the BirdVox-full-night dataset [1], containing almost as much data but formatted into ten-second excerpts rather than ten-hour full night recordings.
+        In addition, the BirdVox-DCASE-20k dataset is provided as a development set in the context of the "Bird Audio Detection" challenge, organized by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society.
+        The dataset can be used, among other things, for the development and evaluation of bioacoustic classification models.
 
-    The BirdVox-DCASE-20k dataset contains 20,000 ten-second audio recordings. These recordings come from ROBIN autonomous recording units, placed near Ithaca, NY, USA during the fall 2015. They were captured on the night of September 23rd, 2015, by six different sensors, originally numbered 1, 2, 3, 5, 7, and 10.
-    Out of these 20,000 recording, 10,017 (50.09%) contain at least one bird vocalization (either song, call, or chatter).
-    The dataset is a derivative work of the BirdVox-full-night dataset [1], containing almost as much data but formatted into ten-second excerpts rather than ten-hour full night recordings.
-    In addition, the BirdVox-DCASE-20k dataset is provided as a development set in the context of the "Bird Audio Detection" challenge, organized by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society.
-    The dataset can be used, among other things, for the development and evaluation of bioacoustic classification models.
+    *Audio Files Included*
+        20,000 ten-second audio recordings (see description above) in WAV format. The wav folder contains the recordings as WAV files, sampled at 44,1 kHz, with a single channel (mono). The original sample rate was 24 kHz.
 
-    Audio Files Included
-    --------------------
+    *Meta-data Files Included*
+        A table containing a binary label "hasbird" associated to every recording in BirdVox-DCASE-20k is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
+        These labels were automatically derived from the annotations of avian flight call events in the BirdVox-full-night dataset.
 
-    20,000 ten-second audio recordings (see description above) in WAV format. The wav folder contains the recordings as WAV files, sampled at 44,1 kHz, with a single channel (mono). The original sample rate was 24 kHz.
+    *Please Acknowledge UrbanSound8K in Academic Research*
+        When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
 
-    Meta-data Files Included
-    ------------------------
+        .. code-block:: latex
+            V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
+        
+        The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
 
-    A table containing a binary label "hasbird" associated to every recording in BirdVox-DCASE-20k is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
-    These labels were automatically derived from the annotations of avian flight call events in the BirdVox-full-night dataset.
+    *Conditions of Use*
+        Dataset created by Vincent Lostanlen, Justin Salamon, Andrew Farnsworth, Steve Kelling, and Juan Pablo Bello.
 
-    Please Acknowledge BirdVox20k in Academic Research
-    ----------------------------------------------------
+        The BirdVox-DCASE-20k dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
+        https://creativecommons.org/licenses/by/4.0/
 
-    When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
+        The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
 
-    .. code-block:: latex
-        V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
-    
-    The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
+    *Feedback*
+        Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
+        | * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
+        | * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
+        | * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
 
-    Conditions of Use
-    -----------------
-
-    Dataset created by Vincent Lostanlen, Justin Salamon, Andrew Farnsworth, Steve Kelling, and Juan Pablo Bello.
-
-    The BirdVox-DCASE-20k dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
-    https://creativecommons.org/licenses/by/4.0/
-
-    The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
-
-    Feedback
-    --------
-
-    Please help us improve BirdVox-DCASE-20k by sending your feedback to:
-    * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-    * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-    * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
-
-    In case of a problem, please include as many details as possible.
+        In case of a problem, please include as many details as possible.
 
 """
 

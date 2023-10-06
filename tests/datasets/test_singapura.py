@@ -31,7 +31,7 @@ def test_clip():
         "clip_id": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
         "sensor_id": "b827ebf3744c",
         "town": "West 2",
-        "timestamp": np.datetime64("2020-08-20T06:46:04+08:00"),
+        "timestamp": np.datetime64("2020-08-20T06:46:04"),
         "dotw": 4,
     }
 

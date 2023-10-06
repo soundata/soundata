@@ -1,6 +1,5 @@
 """TAU NIGENS SSE 2020 Dataset Loader
 
-
 .. admonition:: Dataset Info
     :class: dropdown
     
@@ -8,8 +7,10 @@
     *TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories*
     
     *Created By:*
-        Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-        Audio Research Group, Tampere University (Finland). Version 1.2.0
+        | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
+        | Audio Research Group, Tampere University (Finland). 
+    
+    Version 1.2.0
     *Description:*
         Spatial sound-scene recordings, consisting of sound events of distinct categories 
         in a variety of acoustical spaces, and from multiple source directions and distances.

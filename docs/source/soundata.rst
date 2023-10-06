@@ -27,6 +27,13 @@ DCASE-bioacoustic
    :members:
    :inherited-members:
 
+DCASE-birdVox20k
+^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase_birdVox20k
+   :members:
+   :inherited-members:
+
 EigenScape
 ^^^^^^^^^^
 
