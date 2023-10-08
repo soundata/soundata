@@ -76,10 +76,10 @@ jobs:
         - name: Install Conda environment with Mamba
           uses: conda-incubator/setup-miniconda@v2
           with:
-            installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
-            auto-update-conda: true
+            use-mamba: true
+            auto-update-conda: false
             python-version: ${{ matrix.python-version }}
-            add-pip-as-python-dependency: true
+            add-pip-as-python-dependency: false
             auto-activate-base: false
             activate-environment: test
             channel-priority: ${{ matrix.channel-priority }}
