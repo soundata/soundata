@@ -78,19 +78,17 @@ jobs:
               ${{ runner.os }}-${{ matrix.python-version }}-conda-
               ${{ runner.os }}-conda-
 
-        - name: Install Conda environment using Mamba
+        - name: Install Conda environment
           uses: conda-incubator/setup-miniconda@v2
           with:
             auto-update-conda: true
             python-version: ${{ matrix.python-version }}
-            mamba-version: "*"
-            channels: conda-forge,defaults
             add-pip-as-python-dependency: true
             auto-activate-base: false
             activate-environment: test
             channel-priority: ${{ matrix.channel-priority }}
             environment-file: ${{ matrix.envfile }}
-            use-only-tar-bz2: false
+            use-only-tar-bz2: false # IMPORTANT: This needs to be set for caching to work properly!
 
         - name: Conda info
           shell: bash -l {0}
