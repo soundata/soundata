@@ -69,8 +69,14 @@ jobs:
           env:
             CACHE_NUMBER: 0
           with:
-            path: ~/conda_pkgs_dir
+            path: |
+              ~/miniconda3/pkgs
+              ~/miniconda3/envs
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
+            restore-keys: |
+              ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-
+              ${{ runner.os }}-${{ matrix.python-version }}-conda-
+              ${{ runner.os }}-conda-
 
         - name: Install Conda environment using Mamba
           uses: conda-incubator/setup-miniconda@v2
