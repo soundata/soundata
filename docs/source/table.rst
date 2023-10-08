@@ -27,6 +27,15 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
+   * - DCASE-birdVox20k
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 20,000
+     - 55.5
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
    * - | EigenScape
        | (HOA 25 ch) 
      - - audio: ✅

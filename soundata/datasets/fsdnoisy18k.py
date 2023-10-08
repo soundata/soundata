@@ -4,8 +4,10 @@
     :class: dropdown
 
     *Created By:*
-        Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
-        Music Technology Group, Universitat Pompeu Fabra (Barcelona). Version 1.0
+        | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
+    
+    Version 1.0
 
     *Description:*
         FSDnoisy18k is an audio dataset collected with the aim of fostering the investigation of label noise in sound
