@@ -97,7 +97,7 @@ jobs:
 
         - name: Run pytest
           shell: bash -l {0}
-          run: pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
+          run: pytest -n auto -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
 
         - name: Upload coverage to Codecov
           uses: codecov/codecov-action@v3
