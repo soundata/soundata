@@ -67,7 +67,7 @@ jobs:
         - name: Cache conda
           uses: actions/cache@v3
           env:
-            # Increase this value to reset cache if etc/example-environment.yml has not changed 
+            # Increase this value to reset cache if etc/example-environment.yml has not changed
             CACHE_NUMBER: 0
           with:
             path: ~/conda_pkgs_dir
@@ -77,77 +77,36 @@ jobs:
               ${{ runner.os }}-${{ matrix.python-version }}-conda-
               ${{ runner.os }}-conda-
 
-name: CI
-
-on: pull_request
-
-concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: True
-
-jobs:
-    test:
-        name: "Python ${{ matrix.python-version }} on ${{ matrix.os }}"
-        runs-on: ${{ matrix.os }}
-
-        strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - os: ubuntu-latest
-                      python-version: "3.7"
-                      envfile: ".github/environment-ci.yml"
-                      channel-priority: "flexible"
-                      name: "Minimal dependencies"
-
-                    - os: ubuntu-latest
-                      python-version: "3.8"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
-                      python-version: "3.9"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: macos-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: windows-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-        steps:
-        - uses: actions/checkout@v3
+        - name: Install Conda environment
+          uses: conda-incubator/setup-miniconda@v2
           with:
-            submodules: true
+            auto-update-conda: true
+            python-version: ${{ matrix.python-version }}
+            add-pip-as-python-dependency: true
+            auto-activate-base: false
+            activate-environment: test
+            channel-priority: ${{ matrix.channel-priority }}
+            environment-file: ${{ matrix.envfile }}
+            use-only-tar-bz2: false # IMPORTANT: This needs to be set for caching to work properly!
 
-        - name: Install OS dependencies
+        - name: Conda info
           shell: bash -l {0}
           run: |
-            case "${{ runner.os }}" in
-            Linux)
-              sudo apt-get update -yy
-              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
-              ;; 
-            macOS)
-              brew install libsamplerate wget libsndfile sox ffmpeg zip
-              ;;
-            esac
+            conda info -a
+            conda list
 
-        - name: Cache conda
-          uses: actions/cache@v3
-          env:
-            # Increase this value to reset cache if etc/example-environment.yml has not changed
-            CACHE_NUMBER: 0
+        - name: Run pytest
+          shell: bash -l {0}
+          run: pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
+
+        - name: Upload coverage to Codecov
+          uses: codecov/codecov-action@v3
           with:
-            path: ~/conda_pkgs_dir
-            key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
+            token: ${{ secrets.CODECOV_TOKEN }}
+            files: ./coverage.xml
+            directory: ./coverage/reports/
+            flags: unittests
+            env_vars: OS,PYTHON
+            name: codecov-umbrella
+            fail_ci_if_error: true
+            verbose: true
