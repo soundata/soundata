@@ -63,6 +63,8 @@ jobs:
               brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
             esac
+        - name: Print home directory contents
+          run: ls -la ~
 
         - name: Cache conda
           uses: actions/cache@v3 
