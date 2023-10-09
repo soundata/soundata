@@ -86,7 +86,7 @@ jobs:
             activate-environment: test
             auto-update-conda: false
             python-version: ${{ matrix.python-version }}
-            use-only-tar-bz2: true
+            use-only-tar-bz2: false
         - name: Install conda dependencies
           run: |-
             mamba env update -f $CONDA_ENV_FILE
