@@ -63,16 +63,12 @@ jobs:
               brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
             esac
-        - name: Set environment variables
-          run: |-
-            echo "CONDA_ENV_FILE=.github/environment-ci.yml" >> $GITHUB_ENV
-            echo "PYTHON_VERSION=${{ matrix.python-version }}" >> $GITHUB_ENV
 
         - name: Cache conda
           uses: actions/cache@v3
           env:
             # Increase this value to reset cache if etc/example-environment.yml has not changed
-            CACHE_NUMBER: 1
+            CACHE_NUMBER: 2      
           with:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
@@ -90,7 +86,7 @@ jobs:
             use-only-tar-bz2: false
 
         - name: Install conda dependencies
-          run: mamba env update -n test -f $CONDA_ENV_FILE
+          run: mamba env update -n test -f ${{ matrix.envfile }}
           if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
