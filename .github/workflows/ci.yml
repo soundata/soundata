@@ -62,12 +62,14 @@ jobs:
             macOS)
               brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
+            Windows)
+              choco install wget ffmpeg zip
+              ;; # You may need to install other dependencies specific to Windows using choco here
             esac
 
         - name: Cache conda
           uses: actions/cache@v3
           env:
-            # Increase this value to reset cache if etc/example-environment.yml has not changed
             CACHE_NUMBER: 2      
           with:
             path: ~/conda_pkgs_dir
@@ -86,7 +88,7 @@ jobs:
             use-only-tar-bz2: false
 
         - name: Install conda dependencies
-          run: mamba env update -n test -f ${{ matrix.envfile }}
+          run: mamba env update -n test --no-update-deps -f ${{ matrix.envfile }}
           if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
