@@ -88,7 +88,7 @@ jobs:
             use-only-tar-bz2: false
 
         - name: Install conda dependencies
-          run: mamba env update -n test --no-update-deps -f ${{ matrix.envfile }}
+          run: mamba env update -n test -f ${{ matrix.envfile }}
           if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
