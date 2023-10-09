@@ -63,6 +63,10 @@ jobs:
               brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
             esac
+        - name: Set environment variables
+          run: |-
+            echo "CONDA_ENV_FILE=.github/environment-ci.yml" >> $GITHUB_ENV
+            echo "PYTHON_VERSION=${{ matrix.python-version }}" >> $GITHUB_ENV
 
         - name: Cache conda
           uses: actions/cache@v3
@@ -73,18 +77,19 @@ jobs:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
 
-        - name: Install Conda environment
+        - name: Setup conda
           uses: conda-incubator/setup-miniconda@v2
           with:
-            auto-update-conda: true
-            python-version: ${{ matrix.python-version }}
-            add-pip-as-python-dependency: true
-            auto-activate-base: false
-            activate-environment: test
+            channels: conda-forge
             channel-priority: ${{ matrix.channel-priority }}
-            environment-file: ${{ matrix.envfile }}
-            use-only-tar-bz2: false # IMPORTANT: This needs to be set for caching to work properly!
-            installer: mamba # Use mamba as the installer
+            mamba-version: "*"
+            activate-environment: test
+            auto-update-conda: false
+            python-version: ${{ matrix.python-version }}
+            use-only-tar-bz2: true
+        - name: Install conda dependencies
+          run: |-
+            mamba env update -f $CONDA_ENV_FILE
 
         - name: Conda info
           shell: bash -l {0}
