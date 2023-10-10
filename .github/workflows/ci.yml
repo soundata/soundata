@@ -77,6 +77,12 @@ jobs:
               ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-
               ${{ runner.os }}-${{ matrix.python-version }}-conda-
               ${{ runner.os }}-conda-
+              
+        - name: List directory contents
+          run: |
+            echo "Contents of ~/miniconda:"
+            ls ~/miniconda
+        
         - name: Setup conda
           uses: conda-incubator/setup-miniconda@v2
           with:
