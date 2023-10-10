@@ -17,6 +17,7 @@ dependencies:
   - pytest-cov>=4.1.0
   - pytest-mock>=3.10.0
   - pytest-localserver>=0.7.1
+  - pytest-xdist>=2.3.0
 
   - pip:
     - black>=23.3.0
