@@ -51,20 +51,21 @@ jobs:
             submodules: true
 
         - name: Install OS dependencies
-          shell: bash -l {0}
+          shell: ${{ runner.os == 'Windows' && 'pwsh' || 'bash -l {0}' }}
           run: |
-            case "${{ runner.os }}" in
-            Linux)
+            if ("${{ runner.os }}" -eq "Linux")
+            {
               sudo apt-get update -yy
               sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
-              ;; 
-            macOS)
+            }
+            elseif ("${{ runner.os }}" -eq "macOS")
+            {
               brew install libsamplerate wget libsndfile sox ffmpeg zip
-              ;;
-            Windows)
+            }
+            elseif ("${{ runner.os }}" -eq "Windows")
+            {
               choco install wget ffmpeg zip
-              ;; # You may need to install other dependencies specific to Windows using choco here
-            esac
+            }
 
         - name: Cache conda
           uses: actions/cache@v3
