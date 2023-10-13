@@ -53,6 +53,6 @@ def test_to_jams():
     assert jam.validate()
 
     # validate metadata
-    assert round(jam.file_metadata.duration,1) == 10.1
+    assert round(jam.file_metadata.duration, 1) == 10.1
     assert jam.sandbox.itemid == "759808e5-f824-401e-9058"
     assert jam.sandbox.hasbird == "1"

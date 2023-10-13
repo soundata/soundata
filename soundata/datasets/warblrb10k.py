@@ -5,50 +5,42 @@ Warblrb10k Dataset Loader
     :class: dropdown
 
     *Created By*  
-        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#  
-        | * Cornell Lab of Ornithology (CLO)  
-        | ^ Center for Urban Science and Progress, New York University   
-        | # Music and Audio Research Lab, New York University   
+        | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§  
+        | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London  
+        | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford  
+        | ‡ Computer Science Department, University of Crete  
+        | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France  
+
 
     Version 1.0
 
     *Description*
-        The BirdVox-DCASE-20k dataset contains 20,000 ten-second audio recordings. These recordings come from ROBIN autonomous recording units, placed near Ithaca, NY, USA during the fall 2015. They were captured on the night of September 23rd, 2015, by six different sensors, originally numbered 1, 2, 3, 5, 7, and 10.
-        Out of these 20,000 recording, 10,017 (50.09%) contain at least one bird vocalization (either song, call, or chatter).
-        The dataset is a derivative work of the BirdVox-full-night dataset [1], containing almost as much data but formatted into ten-second excerpts rather than ten-hour full night recordings.
-        In addition, the BirdVox-DCASE-20k dataset is provided as a development set in the context of the "Bird Audio Detection" challenge, organized by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society.
-        The dataset can be used, among other things, for the development and evaluation of bioacoustic classification models.
+        The Warblr dataset consists of 10,000 ten-second audio files, collected via the Warblr app from users across the UK in 2015-2016. 
+        Using a classification method by Stowell and Plumbley (2014a), this app aims to identify bird species from user-submitted recordings. 
+        The dataset, inclusive of various human and environmental noises, is broadly distributed over different times and seasons but has biases towards mornings, weekends, and populated areas. Despite having initial automated bird species estimates, the recordings underwent manual annotation due to precision inadequacies for establishing ground-truth data. 
+        The dataset proves instrumental for research and development in bird species detection amidst variable noise conditions.
 
     *Audio Files Included*
-        20,000 ten-second audio recordings (see description above) in WAV format. The wav folder contains the recordings as WAV files, sampled at 44,1 kHz, with a single channel (mono). The original sample rate was 24 kHz.
+        10,000 ten-second audio recordings in WAV format, amassed through the Warblr app during 2015-2016 from users throughout the UK.
 
     *Meta-data Files Included*
-        A table containing a binary label "hasbird" associated to every recording in BirdVox-DCASE-20k is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
-        These labels were automatically derived from the annotations of avian flight call events in the BirdVox-full-night dataset.
+        A table containing a binary label "hasbird" associated to every recording in Warblr is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
 
     *Please Acknowledge UrbanSound8K in Academic Research*
-        When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
+        When the Warblr dataset is employed for academic research, we sincerely request that scientific publications of works partially based on this dataset cite the following publication:
 
         .. code-block:: latex
-            V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
+            Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé. "Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge", Methods in Ecology and Evolution, 2018.
         
-        The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
+        The creation and curating of this dataset were possible through the participation and contributions of the general public using the Warblr app, enabling a comprehensive collection of bird sound recordings from various regions within the UK during 2015-2016.
 
     *Conditions of Use*
-        Dataset created by Vincent Lostanlen, Justin Salamon, Andrew Farnsworth, Steve Kelling, and Juan Pablo Bello.
+        Dataset created by [Creators/Researchers involved].
 
-        The BirdVox-DCASE-20k dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
+        The Warblr dataset is offered free of charge under the terms of the Creative Commons Attribution 4.0 International (CC BY 4.0) license:
         https://creativecommons.org/licenses/by/4.0/
 
-        The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
-
-    *Feedback*
-        Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
-        | * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-        | * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-        | * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
-
-        In case of a problem, please include as many details as possible.
+        The dataset and its contents are made available on an "as is" basis and without warranties of any kind, including without limitation satisfactory quality and conformity, merchantability, fitness for a particular purpose, accuracy or completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, [Affiliated Institution/Organization] is not liable for, and expressly excludes, all liability for loss or damage however and whenever caused to anyone by any use of the Warblr dataset or any part of it.
 
 """
 
@@ -67,14 +59,15 @@ from soundata import io
 
 
 BIBTEX = """
-@inproceedings{lostanlen2018icassp,
-  title = {BirdVox-full-night: a dataset and benchmark for avian flight call detection},
-  author = {Lostanlen, Vincent and Salamon, Justin and Farnsworth, Andrew and Kelling, Steve and Bello, Juan Pablo},
-  booktitle = {Proc. IEEE ICASSP},
-  year = {2018},
-  published = {IEEE},
-  venue = {Calgary, Canada},
-  month = {April},
+@article{article,
+author = {Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé},
+year = {2018},
+month = {10},
+pages = {},
+title = {Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge},
+volume = {10},
+journal = {Methods in Ecology and Evolution},
+doi = {10.1111/2041-210X.13103}
 }
 """
 REMOTES = {
