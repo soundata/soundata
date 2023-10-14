@@ -50,22 +50,27 @@ jobs:
           with:
             submodules: true
 
-        - name: Install OS dependencies
-          shell: ${{ runner.os == 'Windows' && 'pwsh' || 'bash -l {0}' }}
+        - name: Set Mamba threading
           run: |
-            if ("${{ runner.os }}" -eq "Linux")
-            {
+            if [[ "${{ runner.os }}" == "Windows" ]]; then
+              export MAMBA_NTHREAD=4  # Set the desired number of threads
+            fi
+
+        - name: Install OS dependencies
+          shell: bash -l {0}
+          run: |
+            case "${{ runner.os }}" in
+            Linux)
               sudo apt-get update -yy
               sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
-            }
-            elseif ("${{ runner.os }}" -eq "macOS")
-            {
+              ;; 
+            macOS)
               brew install libsamplerate wget libsndfile sox ffmpeg zip
-            }
-            elseif ("${{ runner.os }}" -eq "Windows")
-            {
+              ;;
+            Windows)
               choco install wget ffmpeg zip
-            }
+              ;; # You may need to install other dependencies specific to Windows using choco here
+            esac
 
         - name: Cache conda
           uses: actions/cache@v3
