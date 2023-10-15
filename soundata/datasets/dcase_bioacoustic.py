@@ -195,7 +195,13 @@ import csv
 import jams
 import glob
 import json
-
+import sys
+import time
+import matplotlib.pyplot as plt
+import seaborn as sns
+import librosa.display
+import pandas as pd
+from IPython.display import display, Audio
 from soundata import download_utils
 from soundata import jams_utils
 from soundata import core
@@ -550,3 +556,136 @@ class Dataset(core.Dataset):
                         )
 
         return metadata_index
+    
+    def loading_spinner(self, duration=5):
+        end_time = time.time() + duration
+        symbols = ['|', '/', '-', '\\']
+
+        while time.time() < end_time:
+            for symbol in symbols:
+                sys.stdout.write(f'\rLoading {symbol}')
+                sys.stdout.flush()
+                time.sleep(0.2)
+        sys.stdout.write('\rDone!     \n')
+
+    def event_distribution(self):
+        print("Event Distribution:")
+        print("\nPlotting the distribution of different events across the dataset...")
+        events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
+
+        plt.figure(figsize=(10, 6))
+        sns.countplot(y=events, order=pd.value_counts(events).index)
+        plt.title('Event distribution in the dataset')
+        plt.xlabel('Count')
+        plt.ylabel('Event')
+        plt.tight_layout()
+        plt.show()
+        print("\n")
+
+    def dataset_analysis(self):
+        print("Dataset Analysis:")
+
+        durations = [len(self.clip(c_id).audio[0])/self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
+        mean_duration = np.mean(durations)
+        median_duration = np.median(durations)
+
+        # Print analysis results
+        print("\nShowing statistics about the dataset...")
+        print(f"Mean duration for the entire dataset: {mean_duration:.2f} seconds")
+        print(f"Median duration for the entire dataset: {median_duration:.2f} seconds")
+        print(f"Total number of clips: {len(self._index['clips'])}")
+
+        unique_classes = set([label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels])
+        print(f"Total number of unique classes: {len(unique_classes)}")
+        print(f"Subclasses: {self._metadata.get('subdatasets', 'None provided')}")
+
+        print("\nPlotting the distribution of clip durations...")
+        plt.figure(figsize=(10, 6))
+        plt.hist(durations, bins=30)
+        plt.title('Distribution of Clip Durations')
+        plt.xlabel('Duration (seconds)')
+        plt.ylabel('Number of Clips')
+        plt.show()
+
+        print("\nPlotting the distribution of subclasses (if available)...")
+        subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
+        plt.figure(figsize=(10, 6))
+        sns.countplot(y=subclasses, order=pd.value_counts(subclasses).index)
+        plt.title('Subclass distribution in the dataset')
+        plt.xlabel('Count')
+        plt.ylabel('Subclass')
+        plt.tight_layout()
+        plt.show()
+        print("\n")
+
+    def class_distribution(self):
+        print("Class Distribution:")
+        print("\nShowing counts for each class and subclass (if available)...")
+
+        classes = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
+        unique_classes = set(classes)
+
+        for cls in unique_classes:
+            print(f"Class: {cls}, Count: {classes.count(cls)}")
+
+            if "subdatasets" in self._metadata and cls in self._metadata["subdatasets"]:
+                for subclass in self._metadata["subdatasets"][cls]:
+                    print(f"    Subclass: {subclass}, Count: {classes.count(subclass)}")
+
+    def explore_dataset(self, clip_id=None, display_audio=True, display_events=True):
+        """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
+
+        # Define the clip first
+        if clip_id is None:
+            clip_id = np.random.choice(list(self._index["clips"].keys()))
+        clip = self.clip(clip_id)
+
+        print("Processing events distribution... This might take a few seconds.")
+        self.loading_spinner(duration=5)
+        self.event_distribution()
+
+        print("Processing dataset analysis... This might take a few seconds.")
+        self.loading_spinner(duration=20)
+        self.dataset_analysis()
+
+        print("Processing class distribution... This might take a few seconds.")
+        self.loading_spinner(duration=5)
+        self.class_distribution()
+
+        if display_audio:
+            print("\nDisplaying audio for the chosen clip...")
+            self.loading_spinner(duration=5)
+
+            audio, sr = clip.audio  
+            display(Audio(audio, rate=sr))
+            plt.figure(figsize=(10, 6))
+            plt.plot(audio)
+            plt.title(f"Audio waveform for clip: {clip_id}")
+            plt.xlabel('Time (samples)')
+            plt.ylabel('Amplitude')
+            plt.tight_layout()
+            plt.show()
+
+        if display_events:
+            print("\nProcessing and plotting log Mel spectrogram with event annotations for the chosen clip...")
+            self.loading_spinner(duration=5)
+
+            mel_spectrogram = librosa.feature.melspectrogram(audio, sr=sr)
+            log_mel_spectrogram = librosa.power_to_db(mel_spectrogram, ref=np.max)
+
+            plt.figure(figsize=(10, 6))
+            librosa.display.specshow(log_mel_spectrogram, sr=sr, x_axis="time", y_axis="mel")
+            plt.colorbar(format="%+2.0f dB")
+            plt.title("Log Mel Spectrogram with Events")
+
+            for idx, interval in enumerate(clip.events.intervals):
+                start_time, end_time = interval
+                label = clip.events.labels[idx]
+
+                plt.axvspan(start_time, end_time, color='red', alpha=0.3)
+                plt.annotate(label, (start_time + (end_time-start_time)/2.0, log_mel_spectrogram.shape[0]-5), 
+                             color='white', fontsize=8, ha='center')
+                print(f"Event {idx + 1}: {label} (Start: {start_time:.2f}s, End: {end_time:.2f}s)")
+
+            plt.tight_layout()
+            plt.show()
