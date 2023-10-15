@@ -50,11 +50,6 @@ jobs:
           with:
             submodules: true
 
-        - name: Set Mamba threading on Windows
-          if: runner.os == 'Windows'
-          run: |
-            echo ::set-env name=MAMBA_NTHREAD::8
-
         - name: Install OS dependencies
           shell: bash -l {0}
           run: |
