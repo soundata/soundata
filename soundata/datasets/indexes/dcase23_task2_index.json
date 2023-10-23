@@ -90411,65 +90411,9 @@
     }
   },
   "metadata": {
-    "dev": {
-      "fan": [
-        "7882613/fan/attributes_00.csv",
-        "a0b03ea8cf7dddfec09cfd6b0fabf4ae"
-      ],
-      "gearbox": [
-        "7882613/gearbox/attributes_00.csv",
-        "85579cea9e68bd468e9c6cf19a2df32c"
-      ],
-      "bearing": [
-        "7882613/bearing/attributes_00.csv",
-        "35f45fa6acfc1191fa60fb0ba80e6b7a"
-      ],
-      "slider": [
-        "7882613/slider/attributes_00.csv",
-        "439395c555b3a04751990df33150274e"
-      ],
-      "ToyCar": [
-        "7882613/ToyCar/attributes_00.csv",
-        "06923930c8982076b95ca08fa657d5c9"
-      ],
-      "ToyTrain": [
-        "7882613/ToyTrain/attributes_00.csv",
-        "69122f6c52b624ff3af149603f2bce01"
-      ],
-      "valve": [
-        "7882613/valve/attributes_00.csv",
-        "1c52489f0993b6ea9a382b3f26d86280"
-      ]
-    },
-    "add_train": {
-      "Vacuum": [
-        "7830345/Vacuum/attributes_00.csv",
-        "b36354b577f575b8ce6a73b12e55ff62"
-      ],
-      "ToyTank": [
-        "7830345/ToyTank/attributes_00.csv",
-        "783c6517981326cdeb69ceab1d2c6c86"
-      ],
-      "ToyNscale": [
-        "7830345/ToyNscale/attributes_00.csv",
-        "660e4c0dbb222ef24362844adf46b70e"
-      ],
-      "ToyDrone": [
-        "7830345/ToyDrone/attributes_00.csv",
-        "0a51274141214b95f46d8ae7d2e907fc"
-      ],
-      "bandsaw": [
-        "7830345/bandsaw/attributes_00.csv",
-        "7dedca00ff3a88f9506f88b57ab53d2b"
-      ],
-      "grinder": [
-        "7830345/grinder/attributes_00.csv",
-        "67e9111fe60da7103beb4ede7bb293ba"
-      ],
-      "shaker": [
-        "7830345/shaker/attributes_00.csv",
-        "54d840e9232a3ad49d8f3e40330e0a66"
-      ]
-    }
+    "shaker": [
+      "7830345/shaker/attributes_00.csv",
+      "54d840e9232a3ad49d8f3e40330e0a66"
+    ]
   }
 }

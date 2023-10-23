@@ -10,6 +10,7 @@ from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
+
 BIBTEX = """
 @article{green2017eigenscape,
   title={EigenScape: A database of spatial acoustic scene recordings},
@@ -118,7 +119,6 @@ REMOTES = {
         url="https://zenodo.org/records/7860847/files/eval_data_grinder_test.zip?download=1",
         checksum="631b3e1608b6077772829a6e68c82c77",
         destination_dir="7860847",
-        
     ),
     "eval_shaker": download_utils.RemoteFileMetadata(
         filename="eval_data_shaker_test.zip",
@@ -166,9 +166,7 @@ class Clip(core.Clip):
         audio_path (str): Path to the audio file
         file_name (str): Name of the clip file, useful for cross-referencing
         d1p (str): First domain shift parameter specifying the attribute causing the domain shift
-        d1v (int | float | str): First domain shift value or type associated with the domain shift parameter
-        d2p (str): Second domain shift parameter specifying the attribute causing the domain shift
-        d2v (int | float | str): Second domain shift value or type associated with the domain shift parameter
+        d1v (str): First domain shift value or type associated with the domain shift parameter
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -210,7 +208,7 @@ class Clip(core.Clip):
         """The clip's first domain shift value (d1v).
 
         Returns:
-            * int | float | str - first domain shift value of the clip
+            * str - first domain shift value of the clip
         """
         return self._clip_metadata.get("d1v")
 
@@ -267,15 +265,33 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-        machines_dev = ["fan", "gearbox", "bearing", "slider", "ToyCar", "ToyTrain", "valve"]
-        machines_add_train = ["Vacuum", "ToyTank", "ToyNscale", "ToyDrone", "bandsaw", "grinder", "shaker"]
+        machines_dev = [
+            "fan",
+            "gearbox",
+            "bearing",
+            "slider",
+            "ToyCar",
+            "ToyTrain",
+            "valve",
+        ]
+        machines_add_train = [
+            "Vacuum",
+            "ToyTank",
+            "ToyNscale",
+            "ToyDrone",
+            "bandsaw",
+            "grinder",
+            "shaker",
+        ]
 
         metadata_index = {}
 
         # Loop through each machine type for dev_data
         for machine in machines_dev:
             # Paths for metadata files
-            metadata_dev_path = os.path.join(self.data_home, "7882613", machine, "attributes_00.csv")
+            metadata_dev_path = os.path.join(
+                self.data_home, "7882613", machine, "attributes_00.csv"
+            )
             # Check for file existence
             if not os.path.exists(metadata_dev_path):
                 raise FileNotFoundError(
@@ -287,7 +303,7 @@ class Dataset(core.Dataset):
                 reader = csv.reader(f, delimiter=",")
                 next(reader)  # skipping header
                 for row in reader:
-                    key = row[0].split('/')[-1].replace(".wav", "")
+                    key = row[0].split("/")[-1].replace(".wav", "")
                     metadata_index[key] = {
                         "file_name": row[0],
                         "d1p": row[1],
@@ -297,7 +313,9 @@ class Dataset(core.Dataset):
         # Loop through each machine type for add_train_data
         for machine in machines_add_train:
             # Paths for metadata files
-            metadata_add_train_path = os.path.join(self.data_home, "7830345", machine , "attributes_00.csv")
+            metadata_add_train_path = os.path.join(
+                self.data_home, "7830345", machine, "attributes_00.csv"
+            )
 
             # Check for file existence
             if not os.path.exists(metadata_add_train_path):
@@ -310,7 +328,7 @@ class Dataset(core.Dataset):
                 reader = csv.reader(f, delimiter=",")
                 next(reader)  # skipping header
                 for row in reader:
-                    key = row[0].split('/')[-1].replace(".wav", "")
+                    key = row[0].split("/")[-1].replace(".wav", "")
                     metadata_index[key] = {
                         "file_name": row[0],
                         "d1p": row[1],

@@ -24,9 +24,9 @@ def make_index(data_path):
         metadata_dev_file = os.path.join("7882613", machine, "attributes_00.csv")
 
         if "dev" not in index["metadata"]:
-            index["metadata"]["dev"] = {}
+            index["metadata"] = {}
 
-        index["metadata"]["dev"][machine] = [
+        index["metadata"][machine] = [
             metadata_dev_file,
             md5(os.path.join(data_path, metadata_dev_file))
         ]
@@ -57,9 +57,9 @@ def make_index(data_path):
         metadata_add_file = os.path.join("7830345", machine, "attributes_00.csv")
 
         if "add_train" not in index["metadata"]:
-            index["metadata"]["add_train"] = {}
+            index["metadata"] = {}
 
-        index["metadata"]["add_train"][machine] = [
+        index["metadata"][machine] = [
             metadata_add_file,
             md5(os.path.join(data_path, metadata_add_file))
         ]
