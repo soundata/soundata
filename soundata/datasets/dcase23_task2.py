@@ -27,106 +27,128 @@ REMOTES = {
         filename="dev_bearing.zip",
         url="https://zenodo.org/records/7882613/files/dev_bearing.zip?download=1",
         checksum="8a813bc8d8f156b5395bfccdfac7673c",
+        destination_dir="7882613",
     ),
     "dev_fan": download_utils.RemoteFileMetadata(
         filename="dev_fan.zip",
         url="https://zenodo.org/records/7882613/files/dev_fan.zip?download=1",
         checksum="9348591e96fb0ad499a1e33b082562fc",
+        destination_dir="7882613",
     ),
     "dev_gearbox": download_utils.RemoteFileMetadata(
         filename="dev_gearbox.zip",
         url="https://zenodo.org/records/7882613/files/dev_gearbox.zip?download=1",
         checksum="b6e55f6a31faa0fc8569ec0afdd53ccf",
+        destination_dir="7882613",
     ),
     "dev_slider": download_utils.RemoteFileMetadata(
         filename="dev_slider.zip",
         url="https://zenodo.org/records/7882613/files/dev_slider.zip?download=1",
         checksum="b3f8dee36b4718c36d659a4fd1c4afe0",
+        destination_dir="7882613",
     ),
     "dev_ToyCar": download_utils.RemoteFileMetadata(
         filename="dev_ToyCar.zip",
         url="https://zenodo.org/records/7882613/files/dev_ToyCar.zip?download=1",
         checksum="4e3bf15f4101ed4ed4f1fecde2e2b2a3",
+        destination_dir="7882613",
     ),
     "dev_ToyTrain": download_utils.RemoteFileMetadata(
         filename="dev_ToyTrain.zip",
         url="https://zenodo.org/records/7882613/files/dev_ToyTrain.zip?download=1",
         checksum="6b02a6c65eebb3b8b1ae59a6b25bb897",
+        destination_dir="7882613",
     ),
     "dev_valve": download_utils.RemoteFileMetadata(
         filename="dev_valve.zip",
         url="https://zenodo.org/records/7882613/files/dev_valve.zip?download=1",
         checksum="b2051a2022eadb53cd97581120811cae",
+        destination_dir="7882613",
     ),
     "add_train_bandsaw": download_utils.RemoteFileMetadata(
         filename="eval_data_bandsaw_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_bandsaw_train.zip?download=1",
         checksum="9274dfe63de028743823f1123f8b4b47",
+        destination_dir="7830345",
     ),
     "add_train_grinder": download_utils.RemoteFileMetadata(
         filename="eval_data_grinder_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_grinder_train.zip?download=1",
         checksum="17569c1f9df23621a0dbabc430684a35",
+        destination_dir="7830345",
     ),
     "add_train_shaker": download_utils.RemoteFileMetadata(
         filename="eval_data_shaker_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_shaker_train.zip?download=1",
         checksum="35f821b5645b731fb5a1750e33b95fc3",
+        destination_dir="7830345",
     ),
     "add_train_ToyDrone": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyDrone_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_ToyDrone_train.zip?download=1",
         checksum="7fea367d1384a1521ae24f72203238de",
+        destination_dir="7830345",
     ),
     "add_train_ToyNscale": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyNscale_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_ToyNscale_train.zip?download=1",
         checksum="9332822f3e47afd984c01f2ecb5ca3af",
+        destination_dir="7830345",
     ),
     "add_train_ToyTank": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyTank_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_ToyTank_train.zip?download=1",
         checksum="b1fd3ab7de7561290df2d477de1c9d33",
+        destination_dir="7830345",
     ),
     "add_train_Vacuum": download_utils.RemoteFileMetadata(
         filename="eval_data_Vacuum_train.zip",
         url="https://zenodo.org/records/7830345/files/eval_data_Vacuum_train.zip?download=1",
         checksum="1c8de33d9a8c7850a1f7aaddb97d87be",
+        destination_dir="7830345",
     ),
     "eval_bandsaw": download_utils.RemoteFileMetadata(
         filename="eval_data_bandsaw_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_bandsaw_test.zip?download=1",
         checksum="2a8e8f39f6584ab366a8f4da52d4d7a6",
+        destination_dir="7860847",
     ),
     "eval_grinder": download_utils.RemoteFileMetadata(
         filename="eval_data_grinder_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_grinder_test.zip?download=1",
         checksum="631b3e1608b6077772829a6e68c82c77",
+        destination_dir="7860847",
+        
     ),
     "eval_shaker": download_utils.RemoteFileMetadata(
         filename="eval_data_shaker_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_shaker_test.zip?download=1",
         checksum="ba98c98caa96051ec80e24e44b8fca56",
+        destination_dir="7860847",
     ),
     "eval_ToyDrone": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyDrone_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_ToyDrone_test.zip?download=1",
         checksum="fdae7b8d1f4cadb2bea88bc93e2367db",
+        destination_dir="7860847",
     ),
     "eval_ToyNscale": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyNscale_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_ToyNscale_test.zip?download=1",
         checksum="62f5f5043d8fb3a305b1c2e1025872de",
+        destination_dir="7860847",
     ),
     "eval_ToyTank": download_utils.RemoteFileMetadata(
         filename="eval_data_ToyTank_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_ToyTank_test.zip?download=1",
         checksum="f5639bf58c47169c622751f19c6fc321",
+        destination_dir="7860847",
     ),
     "eval_Vacuum": download_utils.RemoteFileMetadata(
         filename="eval_data_Vacuum_test.zip",
         url="https://zenodo.org/records/7860847/files/eval_data_Vacuum_test.zip?download=1",
         checksum="a32524fd8c45b574a560685b38acc4e1",
+        destination_dir="7860847",
     ),
 }
 
@@ -192,24 +214,6 @@ class Clip(core.Clip):
         """
         return self._clip_metadata.get("d1v")
 
-    @property
-    def d2p(self):
-        """The clip's second domain shift parameter (d2p).
-
-        Returns:
-            * str - second domain shift parameter of the clip
-        """
-        return self._clip_metadata.get("d2p")
-
-    @property
-    def d2v(self):
-        """The clip's second domain shift value (d2v).
-
-        Returns:
-            * int | float | str - second domain shift value of the clip
-        """
-        return self._clip_metadata.get("d2v")
-
     def to_jams(self):
         """Get the clip's data in jams format
 
@@ -271,8 +275,7 @@ class Dataset(core.Dataset):
         # Loop through each machine type for dev_data
         for machine in machines_dev:
             # Paths for metadata files
-            metadata_dev_path = os.path.join(self.data_home, "dev_" + machine, "attributes_00.csv")
-
+            metadata_dev_path = os.path.join(self.data_home, "7882613", machine, "attributes_00.csv")
             # Check for file existence
             if not os.path.exists(metadata_dev_path):
                 raise FileNotFoundError(
@@ -284,19 +287,17 @@ class Dataset(core.Dataset):
                 reader = csv.reader(f, delimiter=",")
                 next(reader)  # skipping header
                 for row in reader:
-                    key = os.path.join("dev_data", machine, row[0]).replace(".wav", "")
+                    key = row[0].split('/')[-1].replace(".wav", "")
                     metadata_index[key] = {
-                        "split": "dev",
+                        "file_name": row[0],
                         "d1p": row[1],
                         "d1v": row[2],
-                        "d2p": row[3],
-                        "d2v": row[4],
                     }
 
         # Loop through each machine type for add_train_data
         for machine in machines_add_train:
             # Paths for metadata files
-            metadata_add_train_path = os.path.join(self.data_home, "eval_data_" + machine + "_train", "attributes_00.csv")
+            metadata_add_train_path = os.path.join(self.data_home, "7830345", machine , "attributes_00.csv")
 
             # Check for file existence
             if not os.path.exists(metadata_add_train_path):
@@ -309,9 +310,9 @@ class Dataset(core.Dataset):
                 reader = csv.reader(f, delimiter=",")
                 next(reader)  # skipping header
                 for row in reader:
-                    key = os.path.join("add_train_data", machine, row[0]).replace(".wav", "")
+                    key = row[0].split('/')[-1].replace(".wav", "")
                     metadata_index[key] = {
-                        "split": "add_train",
+                        "file_name": row[0],
                         "d1p": row[1],
                         "d1v": row[2],
                     }
