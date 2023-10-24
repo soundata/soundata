@@ -53,7 +53,6 @@ from soundata import annotations
 from soundata import io
 
 
-
 BIBTEX = """
 @article{harada2023firstshot,
   title={First-shot anomaly detection for machine condition monitoring: A domain generalization baseline},
