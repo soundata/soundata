@@ -206,11 +206,7 @@ class Dataset(object):
             raise AttributeError("This dataset does not have clips")
         else:
             return self._clip_class(
-                clip_id,
-                self.data_home,
-                self.name,
-                self._index,
-                lambda: self._metadata,
+                clip_id, self.data_home, self.name, self._index, lambda: self._metadata
             )
 
     def _clipgroup(self, clipgroup_id):
@@ -373,14 +369,7 @@ class Clip(object):
 
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         """Clip init method. Sets boilerplate attributes, including:
 
         - ``clip_id``
@@ -442,9 +431,14 @@ class Clip(object):
             if val.__doc__ is None:
                 doc = ""
             else:
-                doc = val.__doc__
+                doc = val.__doc__.split("\n")
 
-            val_type_str = doc.split(":")[0]
+            desc = [f"{st}\n" for st in doc[1:] if "*" in st]
+            if not len(desc):
+                raise NotImplementedError(
+                    f"This data loader is missing documentation in the {prop} property"
+                )
+            val_type_str = f"{doc[0]}\n{''.join(desc)[:-1]}"
             repr_str += "  {}: {},\n".format(prop, val_type_str)
 
         repr_str += ")"
@@ -481,13 +475,7 @@ class ClipGroup(Clip):
     """
 
     def __init__(
-        self,
-        clipgroup_id,
-        data_home,
-        dataset_name,
-        index,
-        clip_class,
-        metadata,
+        self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
     ):
         """Clipgroup init method. Sets boilerplate attributes, including:
 
@@ -534,6 +522,11 @@ class ClipGroup(Clip):
 
     @property
     def clip_audio_property(self):
+        """The clip's audio property.
+
+        Returns:
+
+        """
         raise NotImplementedError("Mixing is not supported for this dataset")
 
     @property

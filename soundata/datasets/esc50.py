@@ -85,7 +85,7 @@ REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="ESC-50-master.zip",
         url="https://github.com/karoldvl/ESC-50/archive/master.zip",
-        checksum="70aba3bada37d2674b8f6cd5afd5f065",
+        checksum="7771e4b9d86d0945acce719c7a59305a",
         unpack_directories=["ESC-50-master"],
     )
 }
@@ -100,34 +100,21 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        category (str): clip class in string format, i.e., label
+        clip_id (str): clip id
+        esc10 (bool): True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
         filename (str): clip filename
         fold (int): index of the cross-validation fold the clip belongs to
-        target (int): clip class in numeric format
-        category (str): clip class in string format, i.e., label
-        esc10 (bool): True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
         src_file (str): freesound ID of the original file from which the clip was taken
+        tags (soundata.annotations.Tags): tag (label) of the clip + confidence. In ESC-50 every clip has one tag.
         take (str): letter disambiguating between different fragments from the same Freesound clip (e.g., "A", "B", etc.)
-        clip_id (str): clip id
-
+        target (int): clip class in numeric format
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -144,35 +131,85 @@ class Clip(core.Clip):
 
     @property
     def filename(self):
+        """The clip's filename
+
+        Returns:
+            * str - clip filename
+        """
         return self._clip_metadata.get("filename")
 
     @property
     def fold(self):
+        """The clip's fold
+
+        Returns:
+            * int - index of the cross-validation fold the clip belongs to
+
+        """
         return self._clip_metadata.get("fold")
 
     @property
     def target(self):
+        """The clip's target.
+
+        Returns:
+            * int - clip class in numeric format
+
+        """
         return self._clip_metadata.get("target")
 
     @property
     def category(self):
+        """The clip's category.
+
+        Returns:
+            * str - clip class in string format, i.e., label
+
+        """
         return self._clip_metadata.get("category")
 
     @property
     def esc10(self):
+        """The clip's esc10.
+
+        Returns:
+            * bool - True if the clip belongs to the ESC-10 subset (10 selected classes, CC BY license)
+
+        """
         return self._clip_metadata.get("esc10")
 
     @property
     def src_file(self):
+        """The clip's source file.
+
+        Returns:
+            * str - freesound ID of the original file from which the clip was taken
+
+        """
         return self._clip_metadata.get("src_file")
 
     @property
     def take(self):
+        """The clip's take
+
+        Returns:
+            * str - letter disambiguating between different fragments from the same Freesound clip (e.g., "A", "B", etc.)
+
+        """
         return self._clip_metadata.get("take")
 
     @property
     def tags(self):
-        return annotations.Tags([self._clip_metadata.get("category")], np.array([1.0]))
+        """The clip's audio
+
+        Returns:
+            * np.ndarray - audio signal
+            * float - sample rate
+
+        """
+        return annotations.Tags(
+            [self._clip_metadata.get("category")], "open", np.array([1.0])
+        )
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -226,7 +263,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_path = os.path.join(self.data_home, "meta", "esc50.csv")
 
         if not os.path.exists(metadata_path):
@@ -241,7 +277,6 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-
             clip_id = line[0].replace(".wav", "")
 
             metadata_index[clip_id] = {

@@ -1,0 +1,2426 @@
+{
+  "version": "1.0.0",
+  "clips": {
+    "foa_dev/dev-train-sony/fold3_room21_mix001": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix001.wav",
+        "b6b4a4de495bbf9d45790a972a0bc490"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        "76e761d29a2e98248e7c0e6689d82b49"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix002": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix002.wav",
+        "5c5e9907ab5c3f399961453af4fb0d06"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix002.csv",
+        "85e7ba48579d907c5e23d7f36cbacc8a"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix003": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix003.wav",
+        "9170546a094741435d8597f024d2dc86"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix003.csv",
+        "7e7472a6ab8d254173030f53f719c0ad"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix004": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix004.wav",
+        "d1d8e61d0b19a1fc4d102573fd5b637d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix004.csv",
+        "6d6ff840732bb9a1f396e422658305a3"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix005": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix005.wav",
+        "111e2269000d921deed2b57543ba4d25"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix005.csv",
+        "994f01f0f3b6ea2ca1829f65fc395544"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix006": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix006.wav",
+        "fc02bf249a861db02845aeffc6a91c10"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix006.csv",
+        "0e121c6e3d24b932c1405d3e08135c80"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix007": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix007.wav",
+        "84351f032c7426933e54bdded18ce421"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix007.csv",
+        "5a96d1fdc9db8f3f39eafc00af8f2f1d"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix008": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix008.wav",
+        "74024adfa406da4ee91674f091d5ab9e"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix008.csv",
+        "a066370f308773f8143d3d70a99890b8"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix009": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix009.wav",
+        "4a97508e2c566ac3ee9486f98c81ffdd"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix009.csv",
+        "7d11ad4304f14bf813936a9786683650"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix010": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix010.wav",
+        "13ca2dadefbbfe02aff84c0ade4038bb"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix010.csv",
+        "d27c4202d6ecab3f87d07b7afe36e565"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix011": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix011.wav",
+        "3b0ade691783c11e7a704b8fa83e02d1"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix011.csv",
+        "91af5fa88f91197ab1fca3e691aa82f3"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix012": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix012.wav",
+        "921ce7e78734775e90ba3b7e7c0ca0e4"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix012.csv",
+        "2e9b60a0c2c1d291ac004d97da2d3a8e"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix013": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix013.wav",
+        "053aac74d0a3dbc3351cc5a11bd2b58d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix013.csv",
+        "f11a74579cc65ad20ab04462623bdc71"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix014": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix014.wav",
+        "2624a24e6374ef904e84c449b95a23a8"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix014.csv",
+        "540f1869ef5ff3686d84ca625cea1d0d"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix015": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix015.wav",
+        "51378bf476e23e2ee02e50d45aa95c7b"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix015.csv",
+        "519dfb16e2ed751339800939b077ebc3"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix016": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix016.wav",
+        "05be23d734429ae50ac30cd3ce670f26"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix016.csv",
+        "9e6ee6ac7762643258e5bbaaf98603b1"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix017": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix017.wav",
+        "b196ecbaf393b8317993b42f9ebadcf6"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix017.csv",
+        "7db9a8d1519dc0b4a980232eb3a2406b"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix018": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix018.wav",
+        "273d41a0b5394464ca96ccc6e935cdc1"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix018.csv",
+        "8f3de8129817d4990ee26f4a945fa9d8"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix019": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix019.wav",
+        "c3f77280f899063855cd5d73470a1c8e"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix019.csv",
+        "759d11222e2734896e6198ab873e190b"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix020": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix020.wav",
+        "4d53249c7124f86877e7452ad70acfbc"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix020.csv",
+        "0bdf708376bed87b342ad5311bc2b9ac"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix021": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix021.wav",
+        "51eda57d5c5359e79ebdc8202d6d6d80"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix021.csv",
+        "3e2d9bd95b5c0fb28960029b3317c92e"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix022": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix022.wav",
+        "413f36e56b55178c7a3b3d2c46e034ce"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix022.csv",
+        "9e0e18cfb9fb4cb7ca4e031aa6c9121c"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix023": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix023.wav",
+        "43380a40ac929641ba32e6bcfc015c65"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix023.csv",
+        "73a59f7e6c306124f704c50c9fa0e79c"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix024": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix024.wav",
+        "207567ae11cbfd03367568e28eafcdb2"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix024.csv",
+        "367d40c2b90dcb07ad760d0e88c004bc"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix025": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix025.wav",
+        "81b05d00c8a7d0293f6dd1355f117fab"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix025.csv",
+        "1a7db36a6a699c2f637b82c4665c35e7"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix026": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix026.wav",
+        "6a82a14aaab395d7482283297b4d34c9"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix026.csv",
+        "f55f8e024cb31dd1a1171885a2ee6ddd"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix027": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix027.wav",
+        "75841b5665556066affa9950d6ae9b04"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix027.csv",
+        "db1c9e9e0dfbe987b398f1a33713b56c"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix028": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix028.wav",
+        "497deb0d022eb0d271837dca3d23bf27"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix028.csv",
+        "eee536a919874b4b13f68df1b0fc61f0"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room21_mix029": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix029.wav",
+        "678b63210e3c4fa028084829185d4ba0"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix029.csv",
+        "3b4c266f04cc9b4a82641952a9e4956c"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix001": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix001.wav",
+        "b5b3686b5402b48c76dc79b45c3b9cab"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix001.csv",
+        "dbfea480dda34a36aa2a0e0dcffacdc0"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix002": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix002.wav",
+        "6b73804da2eb869505cf9a1860e80864"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix002.csv",
+        "de6446128eb88fdb4b0f79adedc7ae78"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix003": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix003.wav",
+        "92fe86cb3bd7707cd147c061ccd0b1e7"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix003.csv",
+        "6d70d3ca4e84622cd10a6dcbe6decf26"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix004": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix004.wav",
+        "de86785e215a93c112b75ee63ac5013d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix004.csv",
+        "a00a715272438f35a41c78236702629a"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix005": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix005.wav",
+        "299c0b64b1da672cab731f87b69a7111"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix005.csv",
+        "9b58c9bc33a3d3463148caee94a24492"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix006": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix006.wav",
+        "99856a338e0b75cf07936cf987e81b9f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix006.csv",
+        "0a703ba2322f6133645a787082172a17"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix007": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix007.wav",
+        "90839771c7ad7ad46dab4221665b7933"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix007.csv",
+        "5e9824ac1e469192851e3284d9bccd3b"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix008": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix008.wav",
+        "23b1c04195849b37d11be4b319566126"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix008.csv",
+        "f3afca05af67b5251b6aa36689aacce1"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix009": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix009.wav",
+        "81c5fe6ef483ba5a98564dd20cdd85ff"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix009.csv",
+        "f9eb5b3c4864768550e9077c0a870b19"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix010": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix010.wav",
+        "c04fe7b58d69d7b9949d9bc64858bb5c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix010.csv",
+        "313c74cee169a9062c4c53f81560267c"
+      ]
+    },
+    "foa_dev/dev-train-sony/fold3_room22_mix011": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room22_mix011.wav",
+        "d9ad0c02c34a4d80dd6136227ef3a2a3"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix011.csv",
+        "c1e260540d9cd32fac0174edd04ed482"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix001": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix001.wav",
+        "fc5f970936dbea9eb896705c7362c320"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix001.csv",
+        "3f03606f0acab75092b7c91a72193f08"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix004": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix004.wav",
+        "8d1f7d512ecc3d755b8c54271083736b"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix004.csv",
+        "766c1622c093cf41f40b2dcb5315ca88"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix005": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix005.wav",
+        "d91d727b497d085a083d94a615fc3c9c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix005.csv",
+        "a13a59757f0981b9415f30974de319fd"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix006": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix006.wav",
+        "703c31ac5f598a70e5853db252b5652c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix006.csv",
+        "b972aab2c4b33284bcd54bb13384892b"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix007": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix007.wav",
+        "b900ecc33689254ef1b2df634a8e8348"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix007.csv",
+        "50629630b57f8dcbc17c504a146756d2"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room4_mix008": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room4_mix008.wav",
+        "a694e3af1ecc9eefc94c306b68822c68"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix008.csv",
+        "8cb26742e165036af1a1b1cad4f7da62"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix001": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix001.wav",
+        "7a852214068b9605b9a7e141882c558d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix001.csv",
+        "48df78cf28496f86e3d74e9bddd96b05"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix002": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix002.wav",
+        "4f984ed57e38477f03fff4d276240ca3"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix002.csv",
+        "82742f05e0c10f962d36217cc6edd1d2"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix003": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix003.wav",
+        "8840ef9943c52236260e0f9932d6dbb7"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix003.csv",
+        "86f5c61a9df2c4bce1abf0e1079b431c"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix004": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix004.wav",
+        "76d498ba5ec23eaeb85c094bc8c6beac"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix004.csv",
+        "59ccaac7957a3ffffe794b4b9a0132e6"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix005": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix005.wav",
+        "299a571cfeb4de11ea977792578804d9"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix005.csv",
+        "8ac3fb80b9be511e03ded9b74ebcefce"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix006": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix006.wav",
+        "d6c8857f5f7a211491ac74d81010f548"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix006.csv",
+        "56ca36d9af5e87b152bed030caf01a5f"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room6_mix007": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room6_mix007.wav",
+        "4bd4e6ce2f8b5b47caee83ec91568bee"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix007.csv",
+        "108b90c861640885324a2a194df9c106"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix001": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix001.wav",
+        "e36ada958ce07a579ff4047fe9e9f23d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix001.csv",
+        "b35e9cff6fbeef20bb4d7b838e8c51c9"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix002": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix002.wav",
+        "dbb186b201a122f239abbb364845166f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix002.csv",
+        "cc3cac1351a05668d8195300b39807d2"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix003": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix003.wav",
+        "25053c0e867fe5e27bbc2cecdbc13771"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix003.csv",
+        "014c19c5a072bebee8acb46924fba9ce"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix004": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix004.wav",
+        "a0be940a17fafc64169f3160d428ce5b"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix004.csv",
+        "c7177decca1ed1fad6dbb90fd0f29ce6"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix005": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix005.wav",
+        "7b76e686a34fb77ef701be205adc74f1"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix005.csv",
+        "1932bacbe8a90c4115e2028549ff8aeb"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room7_mix006": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room7_mix006.wav",
+        "7362ebefdfb745c412bc7696c5d5b154"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix006.csv",
+        "4b7cddb5c8c2da918847d4d198437ff1"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix001": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix001.wav",
+        "84d165a462526d55084ce8b825c4f5f0"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix001.csv",
+        "874add8cb1b72cbaee5be92db19f5262"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix002": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix002.wav",
+        "1e115e1666dbb68ef82589972fe3473f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix002.csv",
+        "5ed974042ac1cb1b7dc30b2300dbd485"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix003": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix003.wav",
+        "e5d2e00fe81833264549a25c44c83fe9"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix003.csv",
+        "a3fdd9cce0a5ad2b6ddbcf7fc003dbe0"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix004": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix004.wav",
+        "beef1e9ef47de48318c565b602ecd652"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix004.csv",
+        "ff0e6e3a0a6042866cf6143218983a7c"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix005": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix005.wav",
+        "4195befd01151ca1aed55d1489e17f00"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix005.csv",
+        "1f300632af37b681a65296f6187f39f8"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix006": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix006.wav",
+        "7406996cd6446228beb462e33e344f23"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix006.csv",
+        "e04ddb250b48906583ba8f8052a12167"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix007": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix007.wav",
+        "8e4586fa65e3f3824faec8cce6b7ed32"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix007.csv",
+        "b0b677288719913a75e509144a19413b"
+      ]
+    },
+    "foa_dev/dev-train-tau/fold3_room9_mix008": {
+      "audio": [
+        "foa_dev/dev-train-tau/fold3_room9_mix008.wav",
+        "d24a3f0966f7e6130cdc1b6a60f2cc2f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix008.csv",
+        "2d4e566fc48772c35e3f78b4a40652f1"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix001": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix001.wav",
+        "ca94e58af4e47f1dc151759d276ab409"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix001.csv",
+        "5f1cbad0f5da3b8c549caf335a35c870"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix002": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix002.wav",
+        "a3e5438005f37caf1202b7bd8a41b774"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix002.csv",
+        "4d6036902cd179d1e60f4346adbd02d0"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix003": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix003.wav",
+        "3067cfb6d944283834d138fbfd3e93ed"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix003.csv",
+        "1da1e3a732ee50190abba022893f3be4"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix004": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix004.wav",
+        "b535d533e31b06b1f674d0c51030e248"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix004.csv",
+        "42cb5d3039604eaf9f9a78046050503a"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix005": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix005.wav",
+        "7e2080f443bce60dafaa643d47d96b68"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix005.csv",
+        "75ab65d7f1859e0649e49ac1a71bcbb6"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix006": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix006.wav",
+        "fb9afb50d340d64f6e53b26a64cb94f6"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix006.csv",
+        "64810ae6dd8b8855a8ff27943eb360ed"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix007": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix007.wav",
+        "a47c9415860a8cb4c240b9f697d75bac"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix007.csv",
+        "5003320473248bea57d6c7a2f3a0f1a5"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix008": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix008.wav",
+        "f887aaa987c79fcfe3c56a81eead01d6"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix008.csv",
+        "9c93ff97e43ef98cfe9cce800561f6a2"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix009": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix009.wav",
+        "f33e6490ca5daaa8aa23b8e4a35ec404"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix009.csv",
+        "54e88abd9fd309a4f14795b3cddd4bda"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix010": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix010.wav",
+        "cf14292d6ecf05e72454ac3115475b70"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix010.csv",
+        "750eb173a62e6a8878c79faa14efeb27"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix011": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix011.wav",
+        "bf24440d0c058add6389ebbbbffe9983"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix011.csv",
+        "31bd3729086966ebe012ad3297c2f9cf"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix012": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix012.wav",
+        "e06df43aa8e4b12a1d8d07b41af25cd7"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix012.csv",
+        "e89a95ab1e62994d1c05bb78a40b4024"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix013": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix013.wav",
+        "1b8f4a0ef49b4bac9ad9b89a0db26baa"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix013.csv",
+        "43daff0d201d21a2899dc3915aed04f8"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room23_mix014": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room23_mix014.wav",
+        "a4ec5d16136dca33038cce65b69f524c"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix014.csv",
+        "31c4884053791917bc3a19949fcde96b"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix001": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix001.wav",
+        "47866c19e625db3f96fa5068c4fc301e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix001.csv",
+        "ea20ae43aee4e36c98b1c8e3739abc68"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix002": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix002.wav",
+        "58913971f675d2e8b60c3a6e27071258"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix002.csv",
+        "f4a54be32fd746c99394b227c6c78b11"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix003": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix003.wav",
+        "3d69e186b6af3a9ebcdb5d96b29578ab"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix003.csv",
+        "bcfec1f5c636f2f53ea9a6defd7f7e63"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix004": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix004.wav",
+        "e4dbb834c6aa3d4292fc51877dc2398e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix004.csv",
+        "957c24437a18bfe096594d49456d642b"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix005": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix005.wav",
+        "ac5ca474129a12224703ee59fbf675cd"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix005.csv",
+        "469eeedebf9771ebe375b10ad31c79b2"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix006": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix006.wav",
+        "283a441c24a1675c35bf00f6f5c45214"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix006.csv",
+        "d1e58f48a460c716e9ee46de1d4fa9ab"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix007": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix007.wav",
+        "369b7d5ca5b709a4f381469e0f7d89f8"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix007.csv",
+        "dc2fe140965c6bc04af8bf8f85861a7f"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix008": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix008.wav",
+        "a410cf2cfbd9d430bea87747bb42eabc"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix008.csv",
+        "6827aa0403116cad27315a014ae7feb1"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix009": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix009.wav",
+        "04eeee76b427151c96f3c79f7346d083"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix009.csv",
+        "f922723f34da0a198e2da287c1d58418"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix010": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix010.wav",
+        "29f1238416434e32a4175e6d1c202218"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix010.csv",
+        "c977b6587358951048d4374eed5674c0"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix011": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix011.wav",
+        "bebd3f01b2ad6791c6ced98afef8d8ba"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix011.csv",
+        "3af1f4038d0fc436efb910a7f0a8216f"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix012": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix012.wav",
+        "f89702ff1151a8d61f0c926d7825cc52"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix012.csv",
+        "71dcfca0ed429d33d94655ccd2d7007f"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix013": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix013.wav",
+        "07204efcc7b828c7e7e3458b2deacc68"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix013.csv",
+        "c3c87f760d55afdcdd1c16de9052c0ae"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix014": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix014.wav",
+        "f87e3ef33ed31ef3062ac74fb661612d"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix014.csv",
+        "e652b7fbef90d103e2b42715f70887a9"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix015": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix015.wav",
+        "375ca9cc03b5b37e770506442ab64896"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix015.csv",
+        "974f8512bb0f8ed3804d5e6c8b8709fe"
+      ]
+    },
+    "foa_dev/dev-test-sony/fold4_room24_mix016": {
+      "audio": [
+        "foa_dev/dev-test-sony/fold4_room24_mix016.wav",
+        "041e927114a0bd0485de3684169118c1"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix016.csv",
+        "0e348f2599f65efb3a5dfc4e3ee41bce"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix001": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix001.wav",
+        "db4850212fef4206e959e02abadc5ce6"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix001.csv",
+        "6aa9c320e3f5b046ba724332f5ce7db9"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix002": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix002.wav",
+        "044a3e845ee2fc5d0a6f0fbba2568070"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix002.csv",
+        "74e3289b7d076fcf4c408836567468a7"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix003": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix003.wav",
+        "04db3ce6b738c1dad2d406a11c077b84"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix003.csv",
+        "47576831d89517740098316a4bb54866"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix004": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix004.wav",
+        "d33bfe3a1b0aac007c1994ab62aef36d"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix004.csv",
+        "736c4aefb0e8a762e84c2dabfbb8936c"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix005": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix005.wav",
+        "d136af0f0d6c5fa2afdfa794982e80db"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix005.csv",
+        "daecf2cddd61c5c1e17278cccf15dd89"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix006": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix006.wav",
+        "9b5ea749d191d760ed9c0d13bf9316f2"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix006.csv",
+        "378905a7ed3cda94ead1b0ddcc4eb531"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix007": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix007.wav",
+        "9129843fffb7c6e17644a515056742d6"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix007.csv",
+        "d23088fe20e89d3a813f88f6757da67c"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix008": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix008.wav",
+        "c53fffe3c67375f8bfa45e2e17c4d494"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix008.csv",
+        "64dbf556ccc37fea606ddaba5d8e1d28"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room10_mix009": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room10_mix009.wav",
+        "b749984695951c1f2a7ef849cf8250f2"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix009.csv",
+        "a3fad67064d9d430e3f83af281f0727a"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix001": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix001.wav",
+        "9b2d134411b618b517708eb6db42eb69"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix001.csv",
+        "e3dcee35f5b38d2c23fd6113494de2f3"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix002": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix002.wav",
+        "26dabafa094e4e887993092e0e2715eb"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix002.csv",
+        "1e41160a7e2697d1d3b50e31afdaeaa9"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix003": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix003.wav",
+        "fae2296fa41a03793a9b7fc00d3e3353"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix003.csv",
+        "c6ad4bd8408eaec5036054c7d8da4534"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix004": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix004.wav",
+        "08cc289808b4b9a9746c48e1c970fb17"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix004.csv",
+        "1bc0a52bd46367374578eab719468369"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix005": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix005.wav",
+        "fdd383f34625333e4826acab0d16252f"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix005.csv",
+        "cb1ca859f89938e190f79936a60f5945"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room2_mix006": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room2_mix006.wav",
+        "42a4bfbcfdba388c4bc4fa4c4e6bd801"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix006.csv",
+        "116b9798e28a846e2f1aaf21d9a069a8"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix001": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix001.wav",
+        "e5f8d026c8910a6eea4a6c9535cafd2d"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix001.csv",
+        "ad0066f6572cca743c1203f99cf5ef1c"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix002": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix002.wav",
+        "0c1e4f68d2fe2c42d8614ebcda6b1699"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix002.csv",
+        "8784e1ef1bc427b2180da32a45e4c608"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix003": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix003.wav",
+        "e907f6edff2e5bd8ce31ab4f1b93a915"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix003.csv",
+        "77a26aafb56e58a64915ad34c5906f78"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix004": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix004.wav",
+        "1352e70387a411f592e8cfb15a3bd6fa"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix004.csv",
+        "64f162634fe1560203355c615451a028"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix005": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix005.wav",
+        "5c0bdfa6718bbc1cfa266a553c384d16"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix005.csv",
+        "b8618ebb7ef9aa571018753d950f55af"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix006": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix006.wav",
+        "2cf2b7e456a6103b12cc06a4d7104008"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix006.csv",
+        "197873ff6a7a6730a6e6a32b92a0b58e"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix007": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix007.wav",
+        "a349fbbec5167a30747bd80661755260"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix007.csv",
+        "5d70c21b8dd8e635df590f2aa29815d8"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix008": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix008.wav",
+        "ded673786ebf2da18013ab7de7c70faf"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix008.csv",
+        "85cb2d37e2ea77b152a3e1b277e4394f"
+      ]
+    },
+    "foa_dev/dev-test-tau/fold4_room8_mix009": {
+      "audio": [
+        "foa_dev/dev-test-tau/fold4_room8_mix009.wav",
+        "047eaa56098a31b7172479761e3c2eae"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix009.csv",
+        "32906095a2dc11cc23fe9ea79c0f32f4"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix001": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix001.wav",
+        "9ff5678678433bede6ea175dde6c37ec"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        "76e761d29a2e98248e7c0e6689d82b49"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix002": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix002.wav",
+        "5cbccc8cca56320977a9e446667d516f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix002.csv",
+        "85e7ba48579d907c5e23d7f36cbacc8a"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix003": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix003.wav",
+        "43366a634fe56780d2b8c6fed561cc06"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix003.csv",
+        "7e7472a6ab8d254173030f53f719c0ad"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix004": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix004.wav",
+        "f1c00788461b6ce2b459f2a40ab51dbb"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix004.csv",
+        "6d6ff840732bb9a1f396e422658305a3"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix005": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix005.wav",
+        "282f908ced1b4ade031af3e90b1a9255"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix005.csv",
+        "994f01f0f3b6ea2ca1829f65fc395544"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix006": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix006.wav",
+        "55715fcd5ff815b488592db806fd9e7b"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix006.csv",
+        "0e121c6e3d24b932c1405d3e08135c80"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix007": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix007.wav",
+        "991caec65246a58738978169d541a273"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix007.csv",
+        "5a96d1fdc9db8f3f39eafc00af8f2f1d"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix008": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix008.wav",
+        "d3902318684b790a4d4ce03510308da4"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix008.csv",
+        "a066370f308773f8143d3d70a99890b8"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix009": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix009.wav",
+        "e3424150dc11cbe2aa1c762947b43c82"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix009.csv",
+        "7d11ad4304f14bf813936a9786683650"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix010": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix010.wav",
+        "9cbc6e2549d44f75125f84a06a3182a5"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix010.csv",
+        "d27c4202d6ecab3f87d07b7afe36e565"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix011": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix011.wav",
+        "e3338dfc17a3abfeafa57cacab4a2dbe"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix011.csv",
+        "91af5fa88f91197ab1fca3e691aa82f3"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix012": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix012.wav",
+        "0cb6ed82f82ca0d6c054f0195a5a7330"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix012.csv",
+        "2e9b60a0c2c1d291ac004d97da2d3a8e"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix013": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix013.wav",
+        "b6a3bdc4f9c4ca8000c1fc35b9da3e6b"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix013.csv",
+        "f11a74579cc65ad20ab04462623bdc71"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix014": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix014.wav",
+        "c7b493b765d2fb777db86d45e15826bd"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix014.csv",
+        "540f1869ef5ff3686d84ca625cea1d0d"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix015": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix015.wav",
+        "338361dcc871ee3c54edc96e4f871ed3"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix015.csv",
+        "519dfb16e2ed751339800939b077ebc3"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix016": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix016.wav",
+        "3f1c8a5c91bb5f6d75fe4527c4fc253c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix016.csv",
+        "9e6ee6ac7762643258e5bbaaf98603b1"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix017": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix017.wav",
+        "1462ebbe012a81d6fd9aace30c1bccc7"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix017.csv",
+        "7db9a8d1519dc0b4a980232eb3a2406b"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix018": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix018.wav",
+        "e05bd6ea7279c9b84fe53c8e1a439595"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix018.csv",
+        "8f3de8129817d4990ee26f4a945fa9d8"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix019": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix019.wav",
+        "02e4b2b8dcabfef523e9a7d09c9e1065"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix019.csv",
+        "759d11222e2734896e6198ab873e190b"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix020": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix020.wav",
+        "52f51ddd860ae548df4d88eb9ec23f69"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix020.csv",
+        "0bdf708376bed87b342ad5311bc2b9ac"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix021": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix021.wav",
+        "76e3570d121dcd33e3b057a138a82353"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix021.csv",
+        "3e2d9bd95b5c0fb28960029b3317c92e"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix022": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix022.wav",
+        "1ce9d2d2c969906aa27d3530807822bc"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix022.csv",
+        "9e0e18cfb9fb4cb7ca4e031aa6c9121c"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix023": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix023.wav",
+        "2b6510dd448a2ac24d885ec27296c2f9"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix023.csv",
+        "73a59f7e6c306124f704c50c9fa0e79c"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix024": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix024.wav",
+        "1c9da9137b7fcc02daccb2e1f761189c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix024.csv",
+        "367d40c2b90dcb07ad760d0e88c004bc"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix025": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix025.wav",
+        "46e6a3a9887967e64e6185515aa8dcfe"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix025.csv",
+        "1a7db36a6a699c2f637b82c4665c35e7"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix026": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix026.wav",
+        "aac5eae56efeb153300b44b0eae83afb"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix026.csv",
+        "f55f8e024cb31dd1a1171885a2ee6ddd"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix027": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix027.wav",
+        "ea040ffc65af2860d81be9593d21aa68"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix027.csv",
+        "db1c9e9e0dfbe987b398f1a33713b56c"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix028": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix028.wav",
+        "4b8808c6c4493b791ed59eded38d6a00"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix028.csv",
+        "eee536a919874b4b13f68df1b0fc61f0"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room21_mix029": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room21_mix029.wav",
+        "6af8a95dbb4d3b94b08499268dfaecc8"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix029.csv",
+        "3b4c266f04cc9b4a82641952a9e4956c"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix001": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix001.wav",
+        "606782c2855bfaf84c0741919044f94c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix001.csv",
+        "dbfea480dda34a36aa2a0e0dcffacdc0"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix002": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix002.wav",
+        "b80993794e49c98c055144e03b5dec4e"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix002.csv",
+        "de6446128eb88fdb4b0f79adedc7ae78"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix003": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix003.wav",
+        "a384941305b5a34e8d9df5a159fd2d26"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix003.csv",
+        "6d70d3ca4e84622cd10a6dcbe6decf26"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix004": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix004.wav",
+        "d7b991dd62023ee23c176ef21df39901"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix004.csv",
+        "a00a715272438f35a41c78236702629a"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix005": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix005.wav",
+        "9320da8a5a2bbd93999cbb2264912c68"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix005.csv",
+        "9b58c9bc33a3d3463148caee94a24492"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix006": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix006.wav",
+        "2d6775b35d532eedf1edeb68ae0646ab"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix006.csv",
+        "0a703ba2322f6133645a787082172a17"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix007": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix007.wav",
+        "b1ae288d88c5ee9f9368d86ef6cb9f96"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix007.csv",
+        "5e9824ac1e469192851e3284d9bccd3b"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix008": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix008.wav",
+        "6e95339f98e68e82db1f1bbd839a43b0"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix008.csv",
+        "f3afca05af67b5251b6aa36689aacce1"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix009": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix009.wav",
+        "875392a252da5fb064b9665e56da76cb"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix009.csv",
+        "f9eb5b3c4864768550e9077c0a870b19"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix010": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix010.wav",
+        "4a758bf3fc6420ca2907356e47af486f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix010.csv",
+        "313c74cee169a9062c4c53f81560267c"
+      ]
+    },
+    "mic_dev/dev-train-sony/fold3_room22_mix011": {
+      "audio": [
+        "mic_dev/dev-train-sony/fold3_room22_mix011.wav",
+        "1cc1bbb4cbe82bf8e12d8af74bcbab75"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room22_mix011.csv",
+        "c1e260540d9cd32fac0174edd04ed482"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix001": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix001.wav",
+        "9f62ce49bd379e529d09994d2d6bd33f"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix001.csv",
+        "3f03606f0acab75092b7c91a72193f08"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix004": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix004.wav",
+        "2ad19f7a4f9cda552f54e6bb3d99d20a"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix004.csv",
+        "766c1622c093cf41f40b2dcb5315ca88"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix005": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix005.wav",
+        "9cdcc1f9721bab6c4978b82ea84ea3f5"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix005.csv",
+        "a13a59757f0981b9415f30974de319fd"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix006": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix006.wav",
+        "f7bfeef14e28b93a43deae828814742a"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix006.csv",
+        "b972aab2c4b33284bcd54bb13384892b"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix007": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix007.wav",
+        "a351a7364a971126541deb6c7bd149b8"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix007.csv",
+        "50629630b57f8dcbc17c504a146756d2"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room4_mix008": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room4_mix008.wav",
+        "61458dec5d10333666c15b19efaf3970"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room4_mix008.csv",
+        "8cb26742e165036af1a1b1cad4f7da62"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix001": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix001.wav",
+        "30605899205d9c25fb89d8500195e359"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix001.csv",
+        "48df78cf28496f86e3d74e9bddd96b05"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix002": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix002.wav",
+        "9adc4de2e34b95d4a0e4ccabb6119d2c"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix002.csv",
+        "82742f05e0c10f962d36217cc6edd1d2"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix003": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix003.wav",
+        "7713f5e43a322aaa519f7d6d224781b9"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix003.csv",
+        "86f5c61a9df2c4bce1abf0e1079b431c"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix004": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix004.wav",
+        "d3f8d800b644514582b5d0df52b23db4"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix004.csv",
+        "59ccaac7957a3ffffe794b4b9a0132e6"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix005": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix005.wav",
+        "450bcfbe488eb325f227a0b147781bb1"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix005.csv",
+        "8ac3fb80b9be511e03ded9b74ebcefce"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix006": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix006.wav",
+        "4f51c5c3e0a53f04d12d6988458028d2"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix006.csv",
+        "56ca36d9af5e87b152bed030caf01a5f"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room6_mix007": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room6_mix007.wav",
+        "e93d5b4b648b4baa798728d81c7e0341"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room6_mix007.csv",
+        "108b90c861640885324a2a194df9c106"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix001": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix001.wav",
+        "f5b4293df64da4c91c3204d7d58f138d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix001.csv",
+        "b35e9cff6fbeef20bb4d7b838e8c51c9"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix002": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix002.wav",
+        "a0f91294a1f228fe3ad72ec08b8f7941"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix002.csv",
+        "cc3cac1351a05668d8195300b39807d2"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix003": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix003.wav",
+        "0de4495dd2c238859b757f768c0935b6"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix003.csv",
+        "014c19c5a072bebee8acb46924fba9ce"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix004": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix004.wav",
+        "00f63f0f559f07bfd9817e6f3f42626e"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix004.csv",
+        "c7177decca1ed1fad6dbb90fd0f29ce6"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix005": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix005.wav",
+        "c323c2e6dd584d1d278b0c45473e2f6d"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix005.csv",
+        "1932bacbe8a90c4115e2028549ff8aeb"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room7_mix006": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room7_mix006.wav",
+        "0f668f1a5f004291b366bd6b7a061817"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room7_mix006.csv",
+        "4b7cddb5c8c2da918847d4d198437ff1"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix001": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix001.wav",
+        "b3b8942d5a800e9376c92462cbb0745e"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix001.csv",
+        "874add8cb1b72cbaee5be92db19f5262"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix002": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix002.wav",
+        "e007e7b89e4e2b28170dc9ca8f1cfc97"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix002.csv",
+        "5ed974042ac1cb1b7dc30b2300dbd485"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix003": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix003.wav",
+        "0042fcb462003316e65cd80123e69a28"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix003.csv",
+        "a3fdd9cce0a5ad2b6ddbcf7fc003dbe0"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix004": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix004.wav",
+        "014d2658891d49c8ad5e1a7a10a9cb22"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix004.csv",
+        "ff0e6e3a0a6042866cf6143218983a7c"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix005": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix005.wav",
+        "3d5a0c81148c8fd1d35bfe13ecacf737"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix005.csv",
+        "1f300632af37b681a65296f6187f39f8"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix006": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix006.wav",
+        "3a492e22095ae6a39cd534a75e00ef66"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix006.csv",
+        "e04ddb250b48906583ba8f8052a12167"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix007": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix007.wav",
+        "f5202d04a02a3346cfc1cad4ecda1ba3"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix007.csv",
+        "b0b677288719913a75e509144a19413b"
+      ]
+    },
+    "mic_dev/dev-train-tau/fold3_room9_mix008": {
+      "audio": [
+        "mic_dev/dev-train-tau/fold3_room9_mix008.wav",
+        "9d8feddd132b4ea9956dd7b073c81eb3"
+      ],
+      "events": [
+        "metadata_dev/dev-train-tau/fold3_room9_mix008.csv",
+        "2d4e566fc48772c35e3f78b4a40652f1"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix001": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix001.wav",
+        "8669822c4b0d3e9376b8cc95e5eed80e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix001.csv",
+        "5f1cbad0f5da3b8c549caf335a35c870"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix002": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix002.wav",
+        "fe51667e62d414628cebffb6c9ff4838"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix002.csv",
+        "4d6036902cd179d1e60f4346adbd02d0"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix003": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix003.wav",
+        "637cda1d02474729a0e768725583f044"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix003.csv",
+        "1da1e3a732ee50190abba022893f3be4"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix004": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix004.wav",
+        "af1bcf5fd3eb6631964f96f4cc5cbb36"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix004.csv",
+        "42cb5d3039604eaf9f9a78046050503a"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix005": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix005.wav",
+        "318e67fd793e1d87b48e44dbae252538"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix005.csv",
+        "75ab65d7f1859e0649e49ac1a71bcbb6"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix006": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix006.wav",
+        "dda494d7dbe77848b0772142508f28f6"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix006.csv",
+        "64810ae6dd8b8855a8ff27943eb360ed"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix007": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix007.wav",
+        "ccb13be97bb94ef19b21ee068831309f"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix007.csv",
+        "5003320473248bea57d6c7a2f3a0f1a5"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix008": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix008.wav",
+        "c837d05abb4cacdc48306cbb1ee38be8"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix008.csv",
+        "9c93ff97e43ef98cfe9cce800561f6a2"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix009": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix009.wav",
+        "5f22f6ec31e4daec04726b422c828e51"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix009.csv",
+        "54e88abd9fd309a4f14795b3cddd4bda"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix010": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix010.wav",
+        "c304e77a0a63c675ef83976a24f73e9c"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix010.csv",
+        "750eb173a62e6a8878c79faa14efeb27"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix011": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix011.wav",
+        "fa99d6877e87ecd0d03e2230ef30ebf7"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix011.csv",
+        "31bd3729086966ebe012ad3297c2f9cf"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix012": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix012.wav",
+        "f500655741d6b794a76475f071bc5459"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix012.csv",
+        "e89a95ab1e62994d1c05bb78a40b4024"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix013": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix013.wav",
+        "85d82d20692db9b7171dad0dfbbae18f"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix013.csv",
+        "43daff0d201d21a2899dc3915aed04f8"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room23_mix014": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room23_mix014.wav",
+        "a0450a29c963024e54c55c52cc821eb0"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room23_mix014.csv",
+        "31c4884053791917bc3a19949fcde96b"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix001": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix001.wav",
+        "296303804fe85ff24d00054e0125428d"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix001.csv",
+        "ea20ae43aee4e36c98b1c8e3739abc68"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix002": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix002.wav",
+        "5597ba2f3ab6cbf9fa272dfdb7023242"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix002.csv",
+        "f4a54be32fd746c99394b227c6c78b11"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix003": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix003.wav",
+        "f26359f5abbdbbf0d5d0146577d63dfa"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix003.csv",
+        "bcfec1f5c636f2f53ea9a6defd7f7e63"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix004": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix004.wav",
+        "8a9ef3f130394eab288aca95228dec31"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix004.csv",
+        "957c24437a18bfe096594d49456d642b"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix005": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix005.wav",
+        "03a36989e4f730979fb44311586f5073"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix005.csv",
+        "469eeedebf9771ebe375b10ad31c79b2"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix006": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix006.wav",
+        "6aa8d884aa50efeebd6123c22be2ae2c"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix006.csv",
+        "d1e58f48a460c716e9ee46de1d4fa9ab"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix007": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix007.wav",
+        "19456e9ebb076bae1cd4626e0439a232"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix007.csv",
+        "dc2fe140965c6bc04af8bf8f85861a7f"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix008": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix008.wav",
+        "7390017d3987c8bd5c4dd04e9ed1526c"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix008.csv",
+        "6827aa0403116cad27315a014ae7feb1"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix009": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix009.wav",
+        "4b30e981e26d02db119abf242c8c14d0"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix009.csv",
+        "f922723f34da0a198e2da287c1d58418"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix010": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix010.wav",
+        "11acbcdf3628eafa19de695536adf176"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix010.csv",
+        "c977b6587358951048d4374eed5674c0"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix011": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix011.wav",
+        "89b90f3ab75c328a3fe149063dea6fa0"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix011.csv",
+        "3af1f4038d0fc436efb910a7f0a8216f"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix012": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix012.wav",
+        "c01e025b8574377e53f26078a581c6b9"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix012.csv",
+        "71dcfca0ed429d33d94655ccd2d7007f"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix013": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix013.wav",
+        "b1fa4c1657ace9c2ce68a7796a3a2857"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix013.csv",
+        "c3c87f760d55afdcdd1c16de9052c0ae"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix014": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix014.wav",
+        "bea025b5845cc471680fc643b8412e35"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix014.csv",
+        "e652b7fbef90d103e2b42715f70887a9"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix015": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix015.wav",
+        "4916372440a3807bd294e0897102d4b0"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix015.csv",
+        "974f8512bb0f8ed3804d5e6c8b8709fe"
+      ]
+    },
+    "mic_dev/dev-test-sony/fold4_room24_mix016": {
+      "audio": [
+        "mic_dev/dev-test-sony/fold4_room24_mix016.wav",
+        "aef17637e7df10a9fa8129fef93840bd"
+      ],
+      "events": [
+        "metadata_dev/dev-test-sony/fold4_room24_mix016.csv",
+        "0e348f2599f65efb3a5dfc4e3ee41bce"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix001": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix001.wav",
+        "71d90444a63dc777eefafd61634ec174"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix001.csv",
+        "6aa9c320e3f5b046ba724332f5ce7db9"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix002": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix002.wav",
+        "a7e9f054571b499b7c0dedf3ec648081"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix002.csv",
+        "74e3289b7d076fcf4c408836567468a7"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix003": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix003.wav",
+        "8755fe9dca1ad33bf1b6418ea765b865"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix003.csv",
+        "47576831d89517740098316a4bb54866"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix004": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix004.wav",
+        "97c7ffbee6b9a0aa830bf9000d1fa0a0"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix004.csv",
+        "736c4aefb0e8a762e84c2dabfbb8936c"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix005": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix005.wav",
+        "084a026f84de59e90505f2eb1254fd5e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix005.csv",
+        "daecf2cddd61c5c1e17278cccf15dd89"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix006": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix006.wav",
+        "79bcdecc51b7582c63e2f6cdcebdaea3"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix006.csv",
+        "378905a7ed3cda94ead1b0ddcc4eb531"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix007": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix007.wav",
+        "425adc867909b272c7cb80d410b01614"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix007.csv",
+        "d23088fe20e89d3a813f88f6757da67c"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix008": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix008.wav",
+        "825979bbed9984e63feff14c80ae8d2e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix008.csv",
+        "64dbf556ccc37fea606ddaba5d8e1d28"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room10_mix009": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room10_mix009.wav",
+        "d2ffae3ffe648b2d75a980972897e829"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room10_mix009.csv",
+        "a3fad67064d9d430e3f83af281f0727a"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix001": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix001.wav",
+        "32240da01ee39db4af0e8d4d1ab9a3ae"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix001.csv",
+        "e3dcee35f5b38d2c23fd6113494de2f3"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix002": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix002.wav",
+        "f3aa9b641a3d57d289f1d5a7e1f7e14a"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix002.csv",
+        "1e41160a7e2697d1d3b50e31afdaeaa9"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix003": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix003.wav",
+        "2c0e8f02dc25979870b0dd39de1f633e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix003.csv",
+        "c6ad4bd8408eaec5036054c7d8da4534"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix004": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix004.wav",
+        "0589e6e65f8ccd779a46e9c29990a989"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix004.csv",
+        "1bc0a52bd46367374578eab719468369"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix005": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix005.wav",
+        "4a84d1c402cb2210c04acae0bd858db5"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix005.csv",
+        "cb1ca859f89938e190f79936a60f5945"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room2_mix006": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room2_mix006.wav",
+        "eb2e254b0fa6a70c86dd61823083a20e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room2_mix006.csv",
+        "116b9798e28a846e2f1aaf21d9a069a8"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix001": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix001.wav",
+        "a1485434a477363067105c1ccdf5c289"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix001.csv",
+        "ad0066f6572cca743c1203f99cf5ef1c"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix002": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix002.wav",
+        "519b7545da4c40c0652dc4a6d3c38971"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix002.csv",
+        "8784e1ef1bc427b2180da32a45e4c608"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix003": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix003.wav",
+        "481de6de443ba2430d82c138fa1aa15e"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix003.csv",
+        "77a26aafb56e58a64915ad34c5906f78"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix004": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix004.wav",
+        "858d48390e8ee4be01f3e9a8674d6e1f"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix004.csv",
+        "64f162634fe1560203355c615451a028"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix005": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix005.wav",
+        "83663ba36908bc388b92d7720f3fa433"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix005.csv",
+        "b8618ebb7ef9aa571018753d950f55af"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix006": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix006.wav",
+        "e5c16655b622d138c8d0fc14b2d1af0b"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix006.csv",
+        "197873ff6a7a6730a6e6a32b92a0b58e"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix007": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix007.wav",
+        "b619cfcdfc4b48678a7c10da213b0568"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix007.csv",
+        "5d70c21b8dd8e635df590f2aa29815d8"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix008": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix008.wav",
+        "da35c77997adec4e4b04db0f460732ef"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix008.csv",
+        "85cb2d37e2ea77b152a3e1b277e4394f"
+      ]
+    },
+    "mic_dev/dev-test-tau/fold4_room8_mix009": {
+      "audio": [
+        "mic_dev/dev-test-tau/fold4_room8_mix009.wav",
+        "dd72f96c9891a34386c516564343c961"
+      ],
+      "events": [
+        "metadata_dev/dev-test-tau/fold4_room8_mix009.csv",
+        "32906095a2dc11cc23fe9ea79c0f32f4"
+      ]
+    }
+  },
+  "metadata": {}
+}

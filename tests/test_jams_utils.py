@@ -19,7 +19,9 @@ def get_jam_data(jam, namespace, annot_numb):
 
 
 def test_tags():
-    tag_data1 = annotations.Tags(["blues", "I am a description"], np.array([1.0, 1.0]))
+    tag_data1 = annotations.Tags(
+        ["blues", "I am a description"], "open", np.array([1.0, 1.0])
+    )
     tag_data3 = ("jazz", "wrong format")
     tag_data4 = [(123, "asdf")]
     jam1 = jams_utils.jams_converter(tags=tag_data1, metadata={"duration": 10.0})
@@ -31,18 +33,51 @@ def test_tags():
         jams_utils.jams_converter(tags=tag_data4)
 
 
+def test_multiannotator_tags():
+    tag_data1 = annotations.Tags(
+        ["blues", "I am a description"], "open", np.array([1.0, 1.0])
+    )
+
+    tag_data2 = annotations.Tags(
+        ["reds", "We are a description"], "open", np.array([1.0, 1.0])
+    )
+
+    tag_data3 = annotations.Tags(
+        ["greens", "They are description"], "open", np.array([1.0, 1.0])
+    )
+
+    multiannotator_data = annotations.MultiAnnotator(
+        ["01", "02", "03"], [tag_data1, tag_data2, tag_data3]
+    )
+
+    jam = jams_utils.jams_converter(
+        tags=multiannotator_data, metadata={"duration": 10.0}
+    )
+    assert jam.validate()
+
+
 def test_events():
     event_data1 = annotations.Events(
-        np.array([[0.2, 0.3], [0.3, 0.4]]), ["event A", "event B"], np.array([1.0, 1.0])
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["event A", "event B"],
+        "open",
+        np.array([1.0, 1.0]),
     )
 
     event_data2 = annotations.Events(
-        np.array([[0.2, 0.3], [0.3, 0.4]]), ["", "a great label"], np.array([0.0, 1.0])
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["", "a great label"],
+        "open",
+        np.array([0.0, 1.0]),
     )
 
     event_data3 = annotations.Events(
         np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
+        "seconds",
         ["", "a great label"],
+        "open",
         np.array([0.0, 1.0]),
     )
 
@@ -65,6 +100,41 @@ def test_events():
         jams_utils.jams_converter(events=event_data5)
     with pytest.raises(TypeError):
         jams_utils.jams_converter(events=event_data6)
+
+
+def test_multiannotator_events():
+    event_data1 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["event A", "event B"],
+        "open",
+        np.array([1.0, 1.0]),
+    )
+
+    event_data2 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 0.4]]),
+        "seconds",
+        ["", "a great label"],
+        "open",
+        np.array([0.0, 1.0]),
+    )
+
+    event_data3 = annotations.Events(
+        np.array([[0.2, 0.3], [0.3, 20.0]]),  # invalid because > duration
+        "seconds",
+        ["", "a great label"],
+        "open",
+        np.array([0.0, 1.0]),
+    )
+
+    multiannotator_data = annotations.MultiAnnotator(
+        ["01", "02", "03"], [event_data1, event_data2, event_data3]
+    )
+
+    jam = jams_utils.jams_converter(
+        events=multiannotator_data, metadata={"duration": 10.0}
+    )
+    assert jam.validate()
 
 
 def test_metadata():
@@ -118,16 +188,14 @@ def test_duration():
 
     # test metadata duration and audio file equal
     jam3 = jams_utils.jams_converter(
-        audio_path="tests/resources/test.wav",
-        metadata={"duration": 1},
+        audio_path="tests/resources/test.wav", metadata={"duration": 1}
     )
     assert jam3.file_metadata.duration == 1
     assert jam3.validate()
 
     # test metadata and duration not equal
     jam4 = jams_utils.jams_converter(
-        audio_path="tests/resources/test.wav",
-        metadata={"duration": 1000},
+        audio_path="tests/resources/test.wav", metadata={"duration": 1000}
     )
     assert jam4.file_metadata.duration == 1000
     assert jam4.validate()

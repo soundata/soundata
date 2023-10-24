@@ -7,7 +7,7 @@ from soundata import annotations
 from soundata.datasets import urbansed
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/urbansed"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/urbansed")
 
 
 def test_clip():
@@ -16,9 +16,18 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/urbansed/audio/train/soundscape_train_uniform1736.wav",
-        "jams_path": "tests/resources/sound_datasets/urbansed/annotations/train/soundscape_train_uniform1736.jams",
-        "txt_path": "tests/resources/sound_datasets/urbansed/annotations/train/soundscape_train_uniform1736.txt",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/urbansed/"),
+            "audio/train/soundscape_train_uniform1736.wav",
+        ),
+        "jams_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/urbansed/"),
+            "annotations/train/soundscape_train_uniform1736.jams",
+        ),
+        "txt_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/urbansed/"),
+            "annotations/train/soundscape_train_uniform1736.txt",
+        ),
         "clip_id": "soundscape_train_uniform1736",
     }
 
@@ -43,7 +52,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
     default_clipid = "soundscape_train_uniform1736"
     dataset = urbansed.Dataset(TEST_DATA_HOME)

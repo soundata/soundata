@@ -34,10 +34,10 @@ if __name__ == "__main__":
         install_requires=[
             "tqdm",
             "librosa >= 0.8.0",
-            "numpy>=1.16",
+            "numpy>=1.16, <=1.20",
             "jams",
             "requests",
-            "pretty_midi >= 0.2.8",
+            "pandas"
         ],
         extras_require={
             "tests": [
@@ -49,13 +49,16 @@ if __name__ == "__main__":
                 "testcontainers>=2.3",
                 "future==0.17.1",
                 "coveralls>=1.7.0",
+                "black>=21.9b0",
             ],
             "docs": [
+                "docutils==0.16",
                 "numpydoc",
                 "recommonmark",
                 "sphinx>=3.4.0",
                 "sphinxcontrib-napoleon",
                 "sphinx_rtd_theme",
+                "sphinx-togglebutton"
             ],
         },
     )

@@ -8,7 +8,7 @@ from soundata.datasets import urbansound8k
 from tests.test_utils import DEFAULT_DATA_HOME
 
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/urbansound8k"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/urbansound8k")
 
 
 def test_clip():
@@ -17,7 +17,10 @@ def test_clip():
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/urbansound8k/audio/fold1/135776-2-0-49.wav",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/urbansound8k/"),
+            "audio/fold1/135776-2-0-49.wav",
+        ),
         "clip_id": "135776-2-0-49",
     }
 
@@ -49,7 +52,6 @@ def test_load_audio():
 
 
 def test_to_jams():
-
     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
     default_clipid = "135776-2-0-49"
     dataset = urbansound8k.Dataset(TEST_DATA_HOME)
