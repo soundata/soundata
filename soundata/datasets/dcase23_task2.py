@@ -1,3 +1,44 @@
+"""
+DCASE23_Task2 Dataset Loader
+
+.. admonition:: Dataset Info
+    :class: dropdown
+
+    *Created By*  
+        | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda (Hitachi, Ltd. and NTT Corporation).
+
+    *Version*  
+        1.0 
+
+    *Description*  
+        The DCASE 2023 Task 2 "First-Shot Unsupervised Anomalous Sound Detection for Machine Condition Monitoring" dataset provides the operating sounds of seven real/toy machines: ToyCar, ToyTrain, Fan, Gearbox, Bearing, Slide rail, and Valve. Each recording is a single-channel, 10-second audio that includes both a machine's operating sound and environmental noise. The dataset contains training clips containing normal sounds in the source and target domain and test clips of both normal and anomalous sounds. 
+
+    *Audio Files Included*  
+        10,000 ten-second audio recordings for each machine type in WAV format. The `raw` directory contains recordings as WAV files, with the source/target domain and attributes provided in the file name.
+
+    *Meta-data Files Included*  
+        Attribute csv files accompany the audio files for easy access to attributes that cause domain shifts. Each file lists the file names, domain shift parameters, and the value or type of these parameters.
+
+    *Please Acknowledge DCASE 2023 Task 2 in Academic Research*  
+        When the DCASE 2023 Task 2 dataset is used for academic research, we would highly appreciate it if scientific publications of works partly based on this dataset cite the following publications:
+
+        .. code-block:: latex
+            Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda. "First-shot anomaly detection for machine condition monitoring: A domain generalization baseline", arXiv e-prints: 2303.00455, 2023.
+            Kota Dohi, Tomoya Nishida, Harsh Purohit, Ryo Tanabe, Takashi Endo, Masaaki Yamamoto, Yuki Nikaido, and Yohei Kawaguchi. "MIMII DG: sound dataset for malfunctioning industrial machine investigation and inspection for domain generalization task", Proceedings of the 7th Detection and Classification of Acoustic Scenes and Events 2022 Workshop (DCASE2022), 31-35. Nancy, France, November 2022.
+            Noboru Harada, Daisuke Niizumi, Daiki Takeuchi, Yasunori Ohishi, Masahiro Yasuda, and Shoichiro Saito. "ToyADMOS2: another dataset of miniature-machine operating sounds for anomalous sound detection under domain shift conditions", Proceedings of the 6th Detection and Classification of Acoustic Scenes and Events 2021 Workshop (DCASE2021), 1–5. Barcelona, Spain, November 2021.
+
+    *Conditions of Use*  
+        The DCASE 2023 Task 2 dataset was created jointly by Hitachi, Ltd. and NTT Corporation. It is available under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license.
+
+    *Feedback*  
+        For any issues or feedback regarding the dataset, please reach out to:  
+        | * Kota Dohi: kota.dohi.gr@hitachi.com  
+        | * Keisuke Imoto: keisuke.imoto@ieee.org  
+        | * Noboru Harada: noboru@ieee.org  
+        | * Daisuke Niizumi: daisuke.niizumi.dt@hco.ntt.co.jp  
+        | * Yohei Kawaguchi: yohei.kawaguchi.xk@hitachi.com.  
+"""
+
 import os
 from typing import BinaryIO, Optional, TextIO, Tuple
 
@@ -11,17 +52,37 @@ from soundata import core
 from soundata import annotations
 from soundata import io
 
+
+
 BIBTEX = """
-@article{green2017eigenscape,
-  title={EigenScape: A database of spatial acoustic scene recordings},
-  author={Green, Marc Ciufo and Murphy, Damian},
-  journal={Applied Sciences},
-  volume={7},
-  number={11},
-  pages={1204},
-  year={2017},
-  publisher={Multidisciplinary Digital Publishing Institute}
+@article{harada2023firstshot,
+  title={First-shot anomaly detection for machine condition monitoring: A domain generalization baseline},
+  author={Harada, Noboru and Niizumi, Daisuke and Ohishi, Yasunori and Takeuchi, Daiki and Yasuda, Masahiro},
+  journal={arXiv e-prints},
+  volume={2303.00455},
+  year={2023},
 }
+
+@inproceedings{dohi2022mimii,
+  title={MIMII DG: sound dataset for malfunctioning industrial machine investigation and inspection for domain generalization task},
+  author={Dohi, Kota and Nishida, Tomoya and Purohit, Harsh and Tanabe, Ryo and Endo, Takashi and Yamamoto, Masaaki and Nikaido, Yuki and Kawaguchi, Yohei},
+  booktitle={Proceedings of the 7th Detection and Classification of Acoustic Scenes and Events 2022 Workshop (DCASE2022)},
+  pages={31-35},
+  year={2022},
+  address={Nancy, France},
+  month={November},
+}
+
+@inproceedings{harada2021toyadmos2,
+  title={ToyADMOS2: another dataset of miniature-machine operating sounds for anomalous sound detection under domain shift conditions},
+  author={Harada, Noboru and Niizumi, Daisuke and Takeuchi, Daiki and Ohishi, Yasunori and Yasuda, Masahiro and Saito, Shoichiro},
+  booktitle={Proceedings of the 6th Detection and Classification of Acoustic Scenes and Events 2021 Workshop (DCASE2021)},
+  pages={1–5},
+  year={2021},
+  address={Barcelona, Spain},
+  month={November},
+}
+
 """
 REMOTES = {
     "dev_bearing": download_utils.RemoteFileMetadata(
