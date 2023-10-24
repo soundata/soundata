@@ -286,10 +286,18 @@ def extractall_unicode(zfile, out_dir):
     for m in zfile.infolist():
         data = zfile.read(m)  # extract zipped data into memory
 
-        if m.filename.encode("cp437").decode() != m.filename.encode("utf8").decode():
-            disk_file_name = os.path.join(out_dir, m.filename.encode("cp437").decode())
-        else:
-            disk_file_name = os.path.join(out_dir, m.filename)
+        # First try UTF-8 decoding
+        try:
+            decoded_filename = m.filename.encode("utf-8").decode()
+        except UnicodeEncodeError:
+            try:
+                # Then try CP437 decoding
+                decoded_filename = m.filename.encode("cp437").decode()
+            except UnicodeEncodeError:
+                # As a last resort, replace problematic characters
+                decoded_filename = m.filename.encode("utf-8", errors="replace").decode()
+
+        disk_file_name = os.path.join(out_dir, decoded_filename)
 
         dir_name = os.path.dirname(disk_file_name)
         if not os.path.exists(dir_name):
@@ -298,6 +306,7 @@ def extractall_unicode(zfile, out_dir):
         if not os.path.isdir(disk_file_name):
             with open(disk_file_name, "wb") as fd:
                 fd.write(data)
+
 
 
 def unzip(zip_path, cleanup):
