@@ -308,7 +308,6 @@ def extractall_unicode(zfile, out_dir):
                 fd.write(data)
 
 
-
 def unzip(zip_path, cleanup):
     """Unzip a zip file inside it's current directory.
 
