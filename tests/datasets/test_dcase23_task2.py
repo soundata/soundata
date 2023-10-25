@@ -48,7 +48,6 @@ def test_to_jams():
     default_clipid = "section_00_source_train_normal_0705_m-n_X"
     dataset = dcase23_task2.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    print(clip)
     jam = clip.to_jams()
     # Validate dcase23_task2 jam schema
     assert jam.validate()
