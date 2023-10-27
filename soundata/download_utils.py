@@ -308,9 +308,14 @@ def unzip(zip_path, cleanup):
         cleanup (bool): If True, remove zipfile after unzipping
 
     """
-    zfile = zipfile.ZipFile(zip_path, "r")
-    extractall_unicode(zfile, os.path.dirname(zip_path))
-    zfile.close()
+    with zipfile.ZipFile(zip_path, "r") as zfile:
+        # Get the list of files names in the zip
+        files = zfile.namelist()
+
+        # Iterate through each file and extract using tqdm to show progress
+        for file in tqdm(files, unit="file"):
+            zfile.extract(file, os.path.dirname(zip_path))
+
     if cleanup:
         os.remove(zip_path)
 
@@ -337,12 +342,16 @@ def untar(tar_path, cleanup):
         cleanup (bool): If True, remove tarfile after untarring
 
     """
-    tfile = tarfile.open(tar_path, "r")
-    tfile.extractall(os.path.dirname(tar_path))
-    tfile.close()
+    with tarfile.open(tar_path, "r") as tfile:
+        # Get the list of members in the tar file
+        members = tfile.getmembers()
+
+        # Iterate through each member and extract using tqdm to show progress
+        for member in tqdm(members, unit="file"):
+            tfile.extract(member, os.path.dirname(tar_path))
+
     if cleanup:
         os.remove(tar_path)
-
 
 def move_directory_contents(source_dir, target_dir):
     """Move the contents of source_dir into target_dir, and delete source_dir
