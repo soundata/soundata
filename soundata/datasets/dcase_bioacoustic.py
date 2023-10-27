@@ -1216,11 +1216,13 @@ class Dataset(core.Dataset):
     def event_distribution(self):
         print("Event Distribution:")
         print("\nPlotting the distribution of different events across the dataset...")
-        events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
 
-        plt.figure(figsize=(10, 6))
-        sns.countplot(y=events, order=pd.value_counts(events).index)
-        plt.title('Event distribution in the dataset')
+        events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
+        event_counts = pd.value_counts(events)
+
+        plt.figure(figsize=(12, 8))
+        sns.countplot(y=events, order=event_counts.index, palette="viridis")
+        plt.title('Event Distribution in the Dataset')
         plt.xlabel('Count')
         plt.ylabel('Event')
         
@@ -1229,15 +1231,21 @@ class Dataset(core.Dataset):
         for p in ax.patches:
             ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
                         ha='left', va='center', xytext=(5, 0), textcoords='offset points')
-        
+
+        most_common_event = event_counts.index[0]
+        most_common_event_count = event_counts.iloc[0]
+        plt.annotate(f'Most Common Event: {most_common_event} ({most_common_event_count} times)',
+                     xy=(0.6, 0.95), xycoords='axes fraction', fontsize=12, color='red')
+
         plt.tight_layout()
         plt.show()
         print("\n")
 
+
     def dataset_analysis(self):
         print("Dataset Analysis:")
 
-        durations = [len(self.clip(c_id).audio[0])/self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
+        durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
 
@@ -1252,12 +1260,36 @@ class Dataset(core.Dataset):
         print(f"Subclasses: {self._metadata.get('subdatasets', 'None provided')}")
 
         print("\nPlotting the distribution of clip durations...")
-        plt.figure(figsize=(10, 6))
-        plt.hist(durations, bins=30)
+        plt.figure(figsize=(12, 8))
+        n, bins, patches = plt.hist(durations, bins=30, color='lightblue', edgecolor='black')  # Unpack histogram values
+
+        mean_bin = np.digitize(mean_duration, bins)
+        median_bin = np.digitize(median_duration, bins)
+        patches[mean_bin-1].set_fc('red')  # Color the bin of the mean in red
+        patches[median_bin-1].set_fc('green')
+
+        # Highlighting mean and median values on the plot
+        plt.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
+        plt.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color='red')
+        plt.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
+        plt.text(median_duration + 0.2, max(n) * 0.8, 'Median', color='green')
+
         plt.title('Distribution of Clip Durations')
         plt.xlabel('Duration (seconds)')
         plt.ylabel('Number of Clips')
+        plt.grid(axis='y', alpha=0.75)
+
         plt.show()
+
+        # Add grid
+        plt.grid(axis='y', alpha=0.75)
+
+        # Displaying values on top of the bars
+        for i in range(len(patches)):
+            height = patches[i].get_height()
+            plt.text(patches[i].get_x() + patches[i].get_width() / 2., height + 0.5,
+                    '%d' % int(height),
+                    ha='center', va='bottom')
 
         print("\nPlotting the distribution of subclasses (if available)...")
         subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
