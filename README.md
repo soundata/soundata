@@ -5,11 +5,12 @@
 Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
 Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
 
-![CI Status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg?branch=main)
-![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg?branch=main)
-![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg?branch=main)
+![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg)
+![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg)
+![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg)
 
-[![codecov](https://codecov.io/gh/soundata/soundata/branch/main/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
+
+[![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
 [![Documentation Status](https://readthedocs.org/projects/soundata/badge/?version=latest)](https://soundata.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/soundata/soundata.svg)
 
