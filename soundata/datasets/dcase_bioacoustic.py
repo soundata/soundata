@@ -213,7 +213,7 @@ import threading
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-from ipywidgets import FloatSlider, Button, VBox, HBox
+from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox
 import threading
 import time
 from pydub import AudioSegment
@@ -1323,32 +1323,61 @@ class Dataset(core.Dataset):
                 for subclass in self._metadata["subdatasets"][cls]:
                     print(f"    Subclass: {subclass}, Count: {classes.count(subclass)}")
 
-
     def explore_dataset(self, clip_id=None):
         """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
+        
+        # Interactive checkboxes for user input
+        event_dist_check = Checkbox(value=True, description='Show Event Distribution')
+        dataset_analysis_check = Checkbox(value=True, description='Analyze Dataset')
+        class_dist_check = Checkbox(value=True, description='Visualize Class Distribution')
+        audio_plot_check = Checkbox(value=True, description='Generate Audio Plot')
+        
+        # Button to execute plotting based on selected checkboxes
+        plot_button = Button(description="Explore Dataset")
+        output = Output()
 
-        # Define the clip first
-        if clip_id is None:
-            clip_id = np.random.choice(list(self._index["clips"].keys()))
-        clip = self.clip(clip_id)
+        # Button callback function
+        def on_button_clicked(b):
+            output.clear_output(wait=True)  # Clear the previous outputs
+            local_clip_id = clip_id  # Assign clip_id value to a local variable
+            with output:
+                if event_dist_check.value:
+                    print("Analyzing event distribution... Please wait.")
+                    self.loading_spinner(duration=5)
+                    self.event_distribution()
 
-        print("Processing events distribution... This might take a few seconds.")
-        self.loading_spinner(duration=5)
-        self.event_distribution()
+                if dataset_analysis_check.value:
+                    print("Conducting dataset analysis... Please wait.")
+                    self.loading_spinner(duration=15)
+                    self.dataset_analysis()
 
-        print("Processing dataset analysis... This might take a few seconds.")
-        self.loading_spinner(duration=20)
-        self.dataset_analysis()
+                if class_dist_check.value:
+                    print("Visualizing class distribution... Please wait.")
+                    self.loading_spinner(duration=5)
+                    self.class_distribution()
 
-        print("Processing class distribution... This might take a few seconds.")
-        self.loading_spinner(duration=10)
-        self.class_distribution()
+                if audio_plot_check.value:
+                    print("Generating audio plot... Please wait.")
+                    self.loading_spinner(duration=5)
+                    self.visualize_audio(clip_id)
 
+        plot_button.on_click(on_button_clicked)
+        
+        # Provide user instructions
+        intro_text = "Welcome to the Dataset Explorer!\nSelect the options below to explore your dataset:"
+        
+        # Display checkboxes, button, and output widget for user interaction
+        display(VBox([widgets.HTML(value=intro_text), HBox([event_dist_check, dataset_analysis_check, class_dist_check, audio_plot_check]), plot_button, output]))
+
+        
+    def visualize_audio(self, clip_id):
+
+        if clip_id is None:  # Use the local variable
+            clip_id = np.random.choice(list(self._index["clips"].keys()))  # Modify the local variable
+        clip = self.clip(clip_id)  # Use the local variable
+        
         stop_event = threading.Event()
         current_time_lock = threading.Lock()
-
-        print("\nDisplaying audio for the chosen clip...")
-        self.loading_spinner(duration=5)
 
         audio, sr = clip.audio
         duration = len(audio) / sr
