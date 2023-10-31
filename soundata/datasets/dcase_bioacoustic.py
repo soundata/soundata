@@ -1248,32 +1248,42 @@ class Dataset(core.Dataset):
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
 
-        # Print analysis results
-        print(f"Mean duration for the entire dataset: {mean_duration:.2f} seconds")
-        print(f"Median duration for the entire dataset: {median_duration:.2f} seconds")
-        print(f"Total number of clips: {len(self._index['clips'])}")
+        # Create the main figure and the two axes (for the plot and the text)
+        fig = plt.figure(figsize=(10,4))
+        ax1 = fig.add_subplot(121)
+        ax2 = fig.add_subplot(122, frame_on=False)
+        ax2.axis('off')
 
-        # Plot
-        plt.figure(figsize=(12, 8))
-        n, bins, patches = plt.hist(durations, bins=30, color='lightblue', edgecolor='black')
+        # Histogram
+        n, bins, patches = ax1.hist(durations, bins=30, color='lightblue', edgecolor='black')
 
         mean_bin = np.digitize(mean_duration, bins)
         median_bin = np.digitize(median_duration, bins)
         patches[mean_bin-1].set_fc('red')  # Color the bin of the mean in red
         patches[median_bin-1].set_fc('green')
 
-        plt.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
-        plt.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color='red')
-        plt.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
-        plt.text(median_duration + 0.2, max(n) * 0.8, 'Median', color='green')
+        ax1.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
+        ax1.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color='red')
+        ax1.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
+        ax1.text(median_duration + 0.2, max(n) * 0.8, 'Median', color='green')
 
-        plt.title('Distribution of Clip Durations')
-        plt.xlabel('Duration (seconds)')
-        plt.ylabel('Number of Clips')
-        plt.grid(axis='y', alpha=0.75)
+        ax1.set_title('Distribution of Clip Durations')
+        ax1.set_xlabel('Duration (seconds)')
+        ax1.set_ylabel('Number of Clips')
+        ax1.grid(axis='y', alpha=0.75)
+
+        # Print analysis results on the second axis (next to the histogram)
+        analysis_results = (
+            f"Mean duration for the entire dataset: {mean_duration:.2f} seconds\n"
+            f"Median duration for the entire dataset: {median_duration:.2f} seconds\n"
+            f"Total number of clips: {len(self._index['clips'])}"
+        )
+        ax2.text(0.1, 0.8, analysis_results, transform=ax2.transAxes, fontsize=10)
+        
+        plt.tight_layout()
         plt.show()
-    
 
+       
     def plot_subclasses_distribution(self):
         print("\nSubclasses Distribution Analysis:")
 
@@ -1304,40 +1314,57 @@ class Dataset(core.Dataset):
         print("\n")
 
     def plot_hierarchical_distribution(self):
-        def plot_distribution(data, title, x_label, y_label):
-            plt.figure(figsize=(10, 6))
-            sns.countplot(y=data, order=pd.value_counts(data).index, palette="viridis")
-            plt.title(title, fontsize=10)
-            plt.xlabel(x_label, fontsize=8)
-            plt.ylabel(y_label, fontsize=8)
-            
-            ax = plt.gca()
+
+        def plot_distribution(data, title, x_label, y_label, subplot_position):
+            sns.countplot(y=data, order=pd.value_counts(data).index, palette="viridis", ax=axes[subplot_position])
+            axes[subplot_position].set_title(title, fontsize=8)
+            axes[subplot_position].set_xlabel(x_label, fontsize=6)
+            axes[subplot_position].set_ylabel(y_label, fontsize=6)
+            axes[subplot_position].tick_params(axis='both', which='major', labelsize=6)
+
+            ax = axes[subplot_position]
             ax.grid(axis='x', linestyle='--', alpha=0.7)
             for p in ax.patches:
                 ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
-                            ha='left', va='center', xytext=(5, 0), textcoords='offset points')
-            
-            plt.tight_layout()
-            plt.show()
-            print("\n")
+                            ha='left', va='center', xytext=(3, 0), textcoords='offset points', fontsize=6)
+
+        # Determine the number of plots
+        plot_count = 1
+        if 'subdatasets' in self._metadata:
+            plot_count += 1
+
+        layer = 0
+        while f'subdataset_layer_{layer}' in self._metadata:
+            plot_count += 1
+            layer += 1
+
+        plt.figure(figsize=(6 * plot_count, 4))
+        axes = [plt.subplot(1, plot_count, i+1) for i in range(plot_count)]
 
         # Plot Event Distribution
         events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
-        plot_distribution(events, 'Event Distribution in the Dataset', 'Count', 'Event')
+        plot_distribution(events, 'Event Distribution in the Dataset', 'Count', 'Event', 0)
 
-        # Plot Subclasses Distribution
+        # Plot Subclasses Distribution and then Hierarchical layers
+        subplot_position = 1  # We've already plotted events at position 0
         if 'subdatasets' in self._metadata:
             subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
-            plot_distribution(subclasses, 'Subclass Distribution in the Dataset', 'Count', 'Subclass')
+            plot_distribution(subclasses, 'Subclass Distribution in the Dataset', 'Count', 'Subclass', subplot_position)
+            subplot_position += 1
         else:
             print("Subclass information not available.")
 
-        # Handle hierarchical data
         layer = 0
         while f'subdataset_layer_{layer}' in self._metadata:
             layer_data = [self._metadata[clip_id][f'subdataset_layer_{layer}'] for clip_id in self._index["clips"]]
-            plot_distribution(layer_data, f'Subdataset Layer {layer} Distribution in the Dataset', 'Count', f'Subdataset Layer {layer}')
+            plot_distribution(layer_data, f'Subdataset Layer {layer} Distribution in the Dataset', 'Count', f'Subdataset Layer {layer}', subplot_position)
             layer += 1
+            subplot_position += 1
+
+        plt.tight_layout()
+        plt.show()
+        print("\n")
+
 
     def class_distribution(self):
         print("Class Distribution:")
