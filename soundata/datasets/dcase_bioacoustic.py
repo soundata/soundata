@@ -1220,12 +1220,12 @@ class Dataset(core.Dataset):
         events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
         event_counts = pd.value_counts(events)
 
-        plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(4, 4))
+
         sns.countplot(y=events, order=event_counts.index, palette="viridis")
-        plt.title('Event Distribution in the Dataset')
-        plt.xlabel('Count')
-        plt.ylabel('Event')
-        
+        plt.title('Event Distribution in the Dataset', fontsize=10)
+        plt.xlabel('Count', fontsize=8)
+        plt.ylabel('Event', fontsize=8)
         ax = plt.gca()
         ax.grid(axis='x', linestyle='--', alpha=0.7)
         for p in ax.patches:
@@ -1241,34 +1241,27 @@ class Dataset(core.Dataset):
         plt.show()
         print("\n")
 
-
-    def dataset_analysis(self):
-        print("Dataset Analysis:")
+    def plot_clip_durations(self):
+        print("Clip Durations Analysis:")
 
         durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
 
         # Print analysis results
-        print("\nShowing statistics about the dataset...")
         print(f"Mean duration for the entire dataset: {mean_duration:.2f} seconds")
         print(f"Median duration for the entire dataset: {median_duration:.2f} seconds")
         print(f"Total number of clips: {len(self._index['clips'])}")
 
-        unique_classes = set([label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels])
-        print(f"Total number of unique classes: {len(unique_classes)}")
-        print(f"Subclasses: {self._metadata.get('subdatasets', 'None provided')}")
-
-        print("\nPlotting the distribution of clip durations...")
+        # Plot
         plt.figure(figsize=(12, 8))
-        n, bins, patches = plt.hist(durations, bins=30, color='lightblue', edgecolor='black')  # Unpack histogram values
+        n, bins, patches = plt.hist(durations, bins=30, color='lightblue', edgecolor='black')
 
         mean_bin = np.digitize(mean_duration, bins)
         median_bin = np.digitize(median_duration, bins)
         patches[mean_bin-1].set_fc('red')  # Color the bin of the mean in red
         patches[median_bin-1].set_fc('green')
 
-        # Highlighting mean and median values on the plot
         plt.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
         plt.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color='red')
         plt.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
@@ -1278,21 +1271,22 @@ class Dataset(core.Dataset):
         plt.xlabel('Duration (seconds)')
         plt.ylabel('Number of Clips')
         plt.grid(axis='y', alpha=0.75)
-
         plt.show()
+    
 
-        # Add grid
-        plt.grid(axis='y', alpha=0.75)
+    def plot_subclasses_distribution(self):
+        print("\nSubclasses Distribution Analysis:")
 
-        # Displaying values on top of the bars
-        for i in range(len(patches)):
-            height = patches[i].get_height()
-            plt.text(patches[i].get_x() + patches[i].get_width() / 2., height + 0.5,
-                    '%d' % int(height),
-                    ha='center', va='bottom')
+        if 'subdatasets' not in self._metadata:
+            print("Subclass information not available.")
+            return
 
-        print("\nPlotting the distribution of subclasses (if available)...")
         subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
+        unique_classes = set([label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels])
+        print(f"Total number of unique classes: {len(unique_classes)}")
+        print(f"Subclasses: {self._metadata.get('subdatasets', 'None provided')}")
+
+        # Plot
         plt.figure(figsize=(10, 6))
         sns.countplot(y=subclasses, order=pd.value_counts(subclasses).index)
         plt.title('Subclass distribution in the dataset')
@@ -1304,10 +1298,46 @@ class Dataset(core.Dataset):
         for p in ax.patches:
             ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
                         ha='left', va='center', xytext=(5, 0), textcoords='offset points')
-        
+
         plt.tight_layout()
         plt.show()
         print("\n")
+
+    def plot_hierarchical_distribution(self):
+        def plot_distribution(data, title, x_label, y_label):
+            plt.figure(figsize=(10, 6))
+            sns.countplot(y=data, order=pd.value_counts(data).index, palette="viridis")
+            plt.title(title, fontsize=10)
+            plt.xlabel(x_label, fontsize=8)
+            plt.ylabel(y_label, fontsize=8)
+            
+            ax = plt.gca()
+            ax.grid(axis='x', linestyle='--', alpha=0.7)
+            for p in ax.patches:
+                ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
+                            ha='left', va='center', xytext=(5, 0), textcoords='offset points')
+            
+            plt.tight_layout()
+            plt.show()
+            print("\n")
+
+        # Plot Event Distribution
+        events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
+        plot_distribution(events, 'Event Distribution in the Dataset', 'Count', 'Event')
+
+        # Plot Subclasses Distribution
+        if 'subdatasets' in self._metadata:
+            subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
+            plot_distribution(subclasses, 'Subclass Distribution in the Dataset', 'Count', 'Subclass')
+        else:
+            print("Subclass information not available.")
+
+        # Handle hierarchical data
+        layer = 0
+        while f'subdataset_layer_{layer}' in self._metadata:
+            layer_data = [self._metadata[clip_id][f'subdataset_layer_{layer}'] for clip_id in self._index["clips"]]
+            plot_distribution(layer_data, f'Subdataset Layer {layer} Distribution in the Dataset', 'Count', f'Subdataset Layer {layer}')
+            layer += 1
 
     def class_distribution(self):
         print("Class Distribution:")
@@ -1344,12 +1374,12 @@ class Dataset(core.Dataset):
                 if event_dist_check.value:
                     print("Analyzing event distribution... Please wait.")
                     self.loading_spinner(duration=5)
-                    self.event_distribution()
+                    self.plot_hierarchical_distribution()
 
                 if dataset_analysis_check.value:
                     print("Conducting dataset analysis... Please wait.")
                     self.loading_spinner(duration=15)
-                    self.dataset_analysis()
+                    self.plot_clip_durations()
 
                 if class_dist_check.value:
                     print("Visualizing class distribution... Please wait.")
@@ -1405,7 +1435,7 @@ class Dataset(core.Dataset):
         log_S = librosa.power_to_db(S, ref=np.max)
 
         # Update the figure and axes to show both plots
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(5, 6))
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(4, 4))
 
         # Plotting the waveform
         ax1.plot(np.linspace(0, duration, len(audio)), audio)
