@@ -8,7 +8,7 @@ Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdat
 ![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg)
 ![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg)
 ![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg)
-[![Github All Releases](https://img.shields.io/github/downloads/soundata/soundata/total.svg)]()
+[![Downloads](https://static.pepy.tech/badge/soundata)](https://pepy.tech/project/soundata)
 
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
 [![Documentation Status](https://readthedocs.org/projects/soundata/badge/?version=latest)](https://soundata.readthedocs.io/en/latest/?badge=latest)
