@@ -1245,11 +1245,31 @@ class Dataset(core.Dataset):
         print("Clip Durations Analysis:")
 
         durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
+
+        # Calculating statistics
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
 
-        # Create the main figure and the two axes (for the plot and the text)
-        fig = plt.figure(figsize=(10,4))
+        # Determine unit conversion (seconds or minutes)
+        convert_to_minutes = mean_duration > 60 or median_duration > 60
+        conversion_factor = 60 if convert_to_minutes else 1
+        unit = "minutes" if convert_to_minutes else "seconds"
+
+        durations = [d / conversion_factor for d in durations]
+        mean_duration /= conversion_factor
+        median_duration /= conversion_factor
+
+        # Continue with statistics calculation
+        std_deviation = np.std(durations)
+        variance = np.var(durations)
+        min_duration = np.min(durations)
+        max_duration = np.max(durations)
+        q25, q75 = np.percentile(durations, [25, 75])
+        range_duration = max_duration - min_duration
+        iqr = q75 - q25
+
+        # Create the main figure and the two axes
+        fig = plt.figure(figsize=(10, 4))
         ax1 = fig.add_subplot(121)
         ax2 = fig.add_subplot(122, frame_on=False)
         ax2.axis('off')
@@ -1259,7 +1279,7 @@ class Dataset(core.Dataset):
 
         mean_bin = np.digitize(mean_duration, bins)
         median_bin = np.digitize(median_duration, bins)
-        patches[mean_bin-1].set_fc('red')  # Color the bin of the mean in red
+        patches[mean_bin-1].set_fc('red')
         patches[median_bin-1].set_fc('green')
 
         ax1.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
@@ -1267,18 +1287,26 @@ class Dataset(core.Dataset):
         ax1.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
         ax1.text(median_duration + 0.2, max(n) * 0.8, 'Median', color='green')
 
-        ax1.set_title('Distribution of Clip Durations')
-        ax1.set_xlabel('Duration (seconds)')
-        ax1.set_ylabel('Number of Clips')
+        ax1.set_title('Distribution of Clip Durations', fontsize = 8)
+        ax1.set_xlabel(f'Duration ({unit})', fontsize = 8)
+        ax1.set_ylabel('Number of Clips', fontsize = 8)
         ax1.grid(axis='y', alpha=0.75)
 
-        # Print analysis results on the second axis (next to the histogram)
+        # Displaying the analysis results
         analysis_results = (
-            f"Mean duration for the entire dataset: {mean_duration:.2f} seconds\n"
-            f"Median duration for the entire dataset: {median_duration:.2f} seconds\n"
-            f"Total number of clips: {len(self._index['clips'])}"
+            f"Mean duration: {mean_duration:.2f} {unit}\n"
+            f"Median duration: {median_duration:.2f} {unit}\n"
+            f"Standard Deviation: {std_deviation:.2f} {unit}\n"
+            f"Variance: {variance:.2f}\n"
+            f"Min Duration: {min_duration:.2f} {unit}\n"
+            f"Max Duration: {max_duration:.2f} {unit}\n"
+            f"25th Percentile: {q25:.2f} {unit}\n"
+            f"75th Percentile: {q75:.2f} {unit}\n"
+            f"Range: {range_duration:.2f} {unit}\n"
+            f"IQR: {iqr:.2f} {unit}\n"
+            f"Total Clips: {len(self._index['clips'])}"
         )
-        ax2.text(0.1, 0.8, analysis_results, transform=ax2.transAxes, fontsize=10)
+        ax2.text(0.1, 0.4, analysis_results, transform=ax2.transAxes, fontsize=10)
         
         plt.tight_layout()
         plt.show()
@@ -1400,22 +1428,22 @@ class Dataset(core.Dataset):
             with output:
                 if event_dist_check.value:
                     print("Analyzing event distribution... Please wait.")
-                    self.loading_spinner(duration=5)
+                    #self.loading_spinner(duration=5)
                     self.plot_hierarchical_distribution()
 
                 if dataset_analysis_check.value:
                     print("Conducting dataset analysis... Please wait.")
-                    self.loading_spinner(duration=15)
+                    #self.loading_spinner(duration=15)
                     self.plot_clip_durations()
 
-                if class_dist_check.value:
-                    print("Visualizing class distribution... Please wait.")
-                    self.loading_spinner(duration=5)
-                    self.class_distribution()
+                # if class_dist_check.value:
+                #     print("Visualizing class distribution... Please wait.")
+                #     self.loading_spinner(duration=5)
+                #     self.class_distribution()
 
                 if audio_plot_check.value:
                     print("Generating audio plot... Please wait.")
-                    self.loading_spinner(duration=5)
+                    #self.loading_spinner(duration=5)
                     self.visualize_audio(clip_id)
 
         plot_button.on_click(on_button_clicked)
@@ -1424,7 +1452,7 @@ class Dataset(core.Dataset):
         intro_text = "Welcome to the Dataset Explorer!\nSelect the options below to explore your dataset:"
         
         # Display checkboxes, button, and output widget for user interaction
-        display(VBox([widgets.HTML(value=intro_text), HBox([event_dist_check, dataset_analysis_check, class_dist_check, audio_plot_check]), plot_button, output]))
+        display(VBox([widgets.HTML(value=intro_text), HBox([event_dist_check, dataset_analysis_check, audio_plot_check]), plot_button, output]))
 
         
     def visualize_audio(self, clip_id):
@@ -1442,7 +1470,7 @@ class Dataset(core.Dataset):
         if audio.max() > 1 or audio.min() < -1:
             audio = audio / np.max(np.abs(audio))
 
-# Convert to int16 for playback
+        # Convert to int16 for playback
         audio_playback = np.int16(audio * 32767)
 
         audio_segment = AudioSegment(
@@ -1466,17 +1494,27 @@ class Dataset(core.Dataset):
 
         # Plotting the waveform
         ax1.plot(np.linspace(0, duration, len(audio)), audio)
-        ax1.set_title(f"Audio waveform for clip: {clip_id}")
-        ax1.set_xlabel('Time (s)')
-        ax1.set_ylabel('Amplitude')
+        ax1.set_title(f"Audio waveform for clip: {clip_id}", fontsize=8)
+        ax1.set_xlabel('Time (s)', fontsize=8)
+        ax1.set_ylabel('Amplitude', fontsize=8)
         ax1.set_xlim(0, duration)
         line1, = ax1.plot([0, 0], [min(audio), max(audio)], color='r')
 
+        for label in ax1.get_xticklabels() + ax1.get_yticklabels():
+            label.set_fontsize(8)
+
         # Plotting the Mel spectrogram
         librosa.display.specshow(log_S, sr=sr, x_axis='time', y_axis='mel', ax=ax2)
-        ax2.set_title('Mel spectrogram')
+        ax2.set_title('Mel spectrogram', fontsize=8)
         ax2.set_xlim(0, duration)
         line2, = ax2.plot([0, 0], ax2.get_ylim(), color='white', linestyle='--')
+
+        # Reduce font size for time and mel axis labels
+        ax2.set_xlabel('Time (s)', fontsize=8)
+        ax2.set_ylabel('Hz', fontsize=8)
+
+        for label in ax2.get_xticklabels() + ax2.get_yticklabels():
+            label.set_fontsize(8)
 
         plt.tight_layout()
 
@@ -1519,14 +1557,12 @@ class Dataset(core.Dataset):
         def on_play_pause_clicked(b):
             nonlocal play_thread
             if playing[0]:
-                print("Setting stop_event due to pause")
                 stop_event.set()
                 if play_thread[0].is_alive():
                     play_thread[0].join()
                 playing[0] = False
                 play_pause_button.description = "► Play"
             else:
-                print("Clearing stop_event for play")
                 stop_event.clear()
                 playing[0] = True
                 play_pause_button.description = "❚❚ Pause"
