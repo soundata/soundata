@@ -1414,7 +1414,6 @@ class Dataset(core.Dataset):
         # Interactive checkboxes for user input
         event_dist_check = Checkbox(value=True, description='Show Event Distribution')
         dataset_analysis_check = Checkbox(value=True, description='Analyze Dataset')
-        class_dist_check = Checkbox(value=True, description='Visualize Class Distribution')
         audio_plot_check = Checkbox(value=True, description='Generate Audio Plot')
         
         # Button to execute plotting based on selected checkboxes
@@ -1424,6 +1423,7 @@ class Dataset(core.Dataset):
         # Button callback function
         def on_button_clicked(b):
             output.clear_output(wait=True)  # Clear the previous outputs
+            local_clip_id = clip_id  # Assign clip_id value to a local variable
             with output:
                 if event_dist_check.value:
                     print("Analyzing event distribution... Please wait.")
@@ -1434,6 +1434,11 @@ class Dataset(core.Dataset):
                     print("Conducting dataset analysis... Please wait.")
                     #self.loading_spinner(duration=15)
                     self.plot_clip_durations()
+
+                # if class_dist_check.value:
+                #     print("Visualizing class distribution... Please wait.")
+                #     self.loading_spinner(duration=5)
+                #     self.class_distribution()
 
                 if audio_plot_check.value:
                     print("Generating audio plot... Please wait.")
