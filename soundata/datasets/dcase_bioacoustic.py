@@ -1368,7 +1368,7 @@ class Dataset(core.Dataset):
         loader = widgets.HTML(
             value='<img src="https://example.com/loader.gif" />', # Replace with the path to your loader GIF
             placeholder='Some HTML',
-            description='Current Status:',
+            description='Status:',
         )
         
         # Button callback function
