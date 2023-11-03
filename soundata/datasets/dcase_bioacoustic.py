@@ -1201,17 +1201,6 @@ class Dataset(core.Dataset):
                         )
 
         return metadata_index
-    
-    def loading_spinner(self, duration=5):
-        end_time = time.time() + duration
-        symbols = ['|', '/', '-', '\\']
-
-        while time.time() < end_time:
-            for symbol in symbols:
-                sys.stdout.write(f'\rLoading {symbol}')
-                sys.stdout.flush()
-                time.sleep(0.2)
-        sys.stdout.write('\rDone!     \n')
 
     def plot_clip_durations(self):
         print("Clip Durations Analysis:")
@@ -1264,20 +1253,18 @@ class Dataset(core.Dataset):
         ax1.set_ylabel('Number of Clips', fontsize = 8)
         ax1.grid(axis='y', alpha=0.75)
 
-        # Displaying the analysis results
         analysis_results = (
-            f"Mean duration: {mean_duration:.2f} {unit}\n"
-            f"Median duration: {median_duration:.2f} {unit}\n"
-            f"Standard Deviation: {std_deviation:.2f} {unit}\n"
-            f"Variance: {variance:.2f}\n"
-            f"Min Duration: {min_duration:.2f} {unit}\n"
-            f"Max Duration: {max_duration:.2f} {unit}\n"
-            f"25th Percentile: {q25:.2f} {unit}\n"
-            f"75th Percentile: {q75:.2f} {unit}\n"
-            f"Range: {range_duration:.2f} {unit}\n"
-            f"IQR: {iqr:.2f} {unit}\n"
-            f"Total Clips: {len(self._index['clips'])}"
-        )
+            r"$\bf{Mean\ duration:}$" + f" {mean_duration:.2f} {unit}\n"
+            r"$\bf{Median\ duration:}$" + f" {median_duration:.2f} {unit}\n"
+            r"$\bf{Standard\ Deviation:}$" + f" {std_deviation:.2f} {unit}\n"
+            r"$\bf{Variance:}$" + f" {variance:.2f}\n"
+            r"$\bf{Min\ Duration:}$" + f" {min_duration:.2f} {unit}\n"
+            r"$\bf{Max\ Duration:}$" + f" {max_duration:.2f} {unit}\n"
+            r"$\bf{25th\ Percentile:}$" + f" {q25:.2f} {unit}\n"
+            r"$\bf{75th\ Percentile:}$" + f" {q75:.2f} {unit}\n"
+            r"$\bf{Range:}$" + f" {range_duration:.2f} {unit}\n"
+            r"$\bf{IQR:}$" + f" {iqr:.2f} {unit}\n"
+            r"$\bf{Total\ Clips:}$" + f" {len(self._index['clips'])}")
         ax2.text(0.1, 0.4, analysis_results, transform=ax2.transAxes, fontsize=10)
         
         plt.tight_layout()
@@ -1377,25 +1364,41 @@ class Dataset(core.Dataset):
         plot_button = Button(description="Explore Dataset")
         output = Output()
 
+        # Loader HTML widget
+        loader = widgets.HTML(
+            value='<img src="https://example.com/loader.gif" />', # Replace with the path to your loader GIF
+            placeholder='Some HTML',
+            description='Current Status:',
+        )
+        
         # Button callback function
         def on_button_clicked(b):
             output.clear_output(wait=True)  # Clear the previous outputs
             with output:
+                display(loader)  # Display the loader
+                # Update the page with a loading message
+                loader.value = "<p style='font-size:15px;'>Rendering plots...please wait!</p>"
+                
+            # This allows the loader to be displayed before starting heavy computations
+            time.sleep(0.1)
+
+            # Now perform the computations and update the output accordingly
+            with output:
                 if event_dist_check.value:
                     print("Analyzing event distribution... Please wait.")
-                    #self.loading_spinner(duration=5)
                     self.plot_hierarchical_distribution()
 
                 if dataset_analysis_check.value:
                     print("Conducting dataset analysis... Please wait.")
-                    #self.loading_spinner(duration=15)
                     self.plot_clip_durations()
 
                 if audio_plot_check.value:
                     print("Generating audio plot... Please wait.")
-                    #self.loading_spinner(duration=5)
                     self.visualize_audio(clip_id)
-
+                
+                # Remove the loader after the content is loaded
+                loader.value = "<p style='font-size:15px;'>Completed the processes!</p>"
+                
         plot_button.on_click(on_button_clicked)
         
         # Provide user instructions
@@ -1403,7 +1406,6 @@ class Dataset(core.Dataset):
         
         # Display checkboxes, button, and output widget for user interaction
         display(VBox([widgets.HTML(value=intro_text), HBox([event_dist_check, dataset_analysis_check, audio_plot_check]), plot_button, output]))
-
         
     def visualize_audio(self, clip_id):
 
