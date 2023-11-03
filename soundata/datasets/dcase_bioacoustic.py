@@ -213,7 +213,7 @@ import threading
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox
+from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox, Label
 import threading
 import time
 from pydub import AudioSegment
@@ -1369,9 +1369,9 @@ class Dataset(core.Dataset):
         """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
         
         # Interactive checkboxes for user input
-        event_dist_check = Checkbox(value=True, description='Show Event Distribution')
-        dataset_analysis_check = Checkbox(value=True, description='Analyze Dataset')
-        audio_plot_check = Checkbox(value=True, description='Generate Audio Plot')
+        event_dist_check = Checkbox(value=True, description='Class Distribution')
+        dataset_analysis_check = Checkbox(value=True, description='Dataset Statistics')
+        audio_plot_check = Checkbox(value=True, description='Audio Visualization')
         
         # Button to execute plotting based on selected checkboxes
         plot_button = Button(description="Explore Dataset")
@@ -1440,7 +1440,7 @@ class Dataset(core.Dataset):
         log_S = librosa.power_to_db(S, ref=np.max)
 
         # Update the figure and axes to show both plots
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(4, 4))
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(9, 4))
 
         # Plotting the waveform
         ax1.plot(np.linspace(0, duration, len(audio)), audio)
@@ -1557,4 +1557,12 @@ class Dataset(core.Dataset):
         reset_button = Button(description="Reset")
         reset_button.on_click(on_reset_clicked)
 
-        display(VBox([HBox([play_pause_button, reset_button]), slider]))
+                # Set the description for the slider that indicates its purpose.
+        slider.description = 'Seek:'
+        slider.tooltip = 'Drag the slider to a specific point in the audio to play from that time.'
+
+        # You can also add a label above the slider for clarity, if the UI framework you are using supports it.
+        slider_label = Label('Drag the slider to navigate through the audio:')
+
+        # Now, display the slider with its label.
+        display(VBox([HBox([play_pause_button, reset_button]), slider_label, slider]))
