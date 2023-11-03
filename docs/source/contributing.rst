@@ -351,7 +351,7 @@ Finally, run all the tests locally like this:
 
 .. code-block:: bash
 
-    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata --black tests/ --local
+    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
 
 
 The ``--local`` flag skips tests that are built to run only on the remote testing environment.
