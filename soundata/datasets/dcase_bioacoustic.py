@@ -1435,11 +1435,6 @@ class Dataset(core.Dataset):
                     #self.loading_spinner(duration=15)
                     self.plot_clip_durations()
 
-                # if class_dist_check.value:
-                #     print("Visualizing class distribution... Please wait.")
-                #     self.loading_spinner(duration=5)
-                #     self.class_distribution()
-
                 if audio_plot_check.value:
                     print("Generating audio plot... Please wait.")
                     #self.loading_spinner(duration=5)
