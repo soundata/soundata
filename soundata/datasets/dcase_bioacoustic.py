@@ -1213,34 +1213,6 @@ class Dataset(core.Dataset):
                 time.sleep(0.2)
         sys.stdout.write('\rDone!     \n')
 
-    def event_distribution(self):
-        print("Event Distribution:")
-        print("\nPlotting the distribution of different events across the dataset...")
-
-        events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
-        event_counts = pd.value_counts(events)
-
-        plt.figure(figsize=(4, 4))
-
-        sns.countplot(y=events, order=event_counts.index, palette="viridis")
-        plt.title('Event Distribution in the Dataset', fontsize=10)
-        plt.xlabel('Count', fontsize=8)
-        plt.ylabel('Event', fontsize=8)
-        ax = plt.gca()
-        ax.grid(axis='x', linestyle='--', alpha=0.7)
-        for p in ax.patches:
-            ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
-                        ha='left', va='center', xytext=(5, 0), textcoords='offset points')
-
-        most_common_event = event_counts.index[0]
-        most_common_event_count = event_counts.iloc[0]
-        plt.annotate(f'Most Common Event: {most_common_event} ({most_common_event_count} times)',
-                     xy=(0.6, 0.95), xycoords='axes fraction', fontsize=12, color='red')
-
-        plt.tight_layout()
-        plt.show()
-        print("\n")
-
     def plot_clip_durations(self):
         print("Clip Durations Analysis:")
 
@@ -1393,21 +1365,6 @@ class Dataset(core.Dataset):
         plt.show()
         print("\n")
 
-
-    def class_distribution(self):
-        print("Class Distribution:")
-        print("\nShowing counts for each class and subclass (if available)...")
-
-        classes = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels]
-        unique_classes = set(classes)
-
-        for cls in unique_classes:
-            print(f"Class: {cls}, Count: {classes.count(cls)}")
-
-            if "subdatasets" in self._metadata and cls in self._metadata["subdatasets"]:
-                for subclass in self._metadata["subdatasets"][cls]:
-                    print(f"    Subclass: {subclass}, Count: {classes.count(subclass)}")
-
     def explore_dataset(self, clip_id=None):
         """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
         
@@ -1423,7 +1380,6 @@ class Dataset(core.Dataset):
         # Button callback function
         def on_button_clicked(b):
             output.clear_output(wait=True)  # Clear the previous outputs
-            local_clip_id = clip_id  # Assign clip_id value to a local variable
             with output:
                 if event_dist_check.value:
                     print("Analyzing event distribution... Please wait.")
