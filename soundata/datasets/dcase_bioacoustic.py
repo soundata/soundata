@@ -1203,11 +1203,10 @@ class Dataset(core.Dataset):
         return metadata_index
 
     def plot_clip_durations(self):
-        print("Clip Durations Analysis:")
-
         durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
 
         # Calculating statistics
+        total_duration = sum(durations)
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
 
@@ -1219,15 +1218,16 @@ class Dataset(core.Dataset):
         durations = [d / conversion_factor for d in durations]
         mean_duration /= conversion_factor
         median_duration /= conversion_factor
+        total_duration /= conversion_factor  # Convert to minutes if needed
+
+        if(total_duration > 120):
+            total_duration /= 60  
+            total_duration_unit = "hours"
 
         # Continue with statistics calculation
         std_deviation = np.std(durations)
-        variance = np.var(durations)
         min_duration = np.min(durations)
         max_duration = np.max(durations)
-        q25, q75 = np.percentile(durations, [25, 75])
-        range_duration = max_duration - min_duration
-        iqr = q75 - q25
 
         # Create the main figure and the two axes
         fig = plt.figure(figsize=(10, 4))
@@ -1254,16 +1254,12 @@ class Dataset(core.Dataset):
         ax1.grid(axis='y', alpha=0.75)
 
         analysis_results = (
+            r"$\bf{Total\ duration:}$" + f" {total_duration:.2f} {total_duration_unit}\n"
             r"$\bf{Mean\ duration:}$" + f" {mean_duration:.2f} {unit}\n"
             r"$\bf{Median\ duration:}$" + f" {median_duration:.2f} {unit}\n"
             r"$\bf{Standard\ Deviation:}$" + f" {std_deviation:.2f} {unit}\n"
-            r"$\bf{Variance:}$" + f" {variance:.2f}\n"
             r"$\bf{Min\ Duration:}$" + f" {min_duration:.2f} {unit}\n"
             r"$\bf{Max\ Duration:}$" + f" {max_duration:.2f} {unit}\n"
-            r"$\bf{25th\ Percentile:}$" + f" {q25:.2f} {unit}\n"
-            r"$\bf{75th\ Percentile:}$" + f" {q75:.2f} {unit}\n"
-            r"$\bf{Range:}$" + f" {range_duration:.2f} {unit}\n"
-            r"$\bf{IQR:}$" + f" {iqr:.2f} {unit}\n"
             r"$\bf{Total\ Clips:}$" + f" {len(self._index['clips'])}")
         ax2.text(0.1, 0.4, analysis_results, transform=ax2.transAxes, fontsize=10)
         
@@ -1357,7 +1353,7 @@ class Dataset(core.Dataset):
         
         # Interactive checkboxes for user input
         event_dist_check = Checkbox(value=True, description='Class Distribution')
-        dataset_analysis_check = Checkbox(value=True, description='Dataset Statistics')
+        dataset_analysis_check = Checkbox(value=False, description='Statistics (Computational)')
         audio_plot_check = Checkbox(value=True, description='Audio Visualization')
         
         # Button to execute plotting based on selected checkboxes
