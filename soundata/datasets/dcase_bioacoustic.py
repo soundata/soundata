@@ -1280,36 +1280,6 @@ class Dataset(core.Dataset):
         plt.tight_layout()
         plt.show()
 
-       
-    def plot_subclasses_distribution(self):
-        print("\nSubclasses Distribution Analysis:")
-
-        if 'subdatasets' not in self._metadata:
-            print("Subclass information not available.")
-            return
-
-        subclasses = [self._metadata[clip_id]['subdataset'] for clip_id in self._index["clips"]]
-        unique_classes = set([label for clip_id in self._index["clips"] for label in self.clip(clip_id).events.labels])
-        print(f"Total number of unique classes: {len(unique_classes)}")
-        print(f"Subclasses: {self._metadata.get('subdatasets', 'None provided')}")
-
-        # Plot
-        plt.figure(figsize=(10, 6))
-        sns.countplot(y=subclasses, order=pd.value_counts(subclasses).index)
-        plt.title('Subclass distribution in the dataset')
-        plt.xlabel('Count')
-        plt.ylabel('Subclass')
-
-        ax = plt.gca()
-        ax.grid(axis='x', linestyle='--', alpha=0.7)
-        for p in ax.patches:
-            ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2),
-                        ha='left', va='center', xytext=(5, 0), textcoords='offset points')
-
-        plt.tight_layout()
-        plt.show()
-        print("\n")
-
     def plot_hierarchical_distribution(self):
 
         def plot_distribution(data, title, x_label, y_label, subplot_position):
