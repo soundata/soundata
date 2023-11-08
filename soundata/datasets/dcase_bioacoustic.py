@@ -1203,6 +1203,9 @@ class Dataset(core.Dataset):
         return metadata_index
 
     def plot_clip_durations(self):
+        # Assuming self.clip(c_id).audio returns a tuple/list where
+        # the first element is the length of the audio in samples
+        # and the second element is the sample rate (samples per second).
         durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
 
         # Calculating statistics
@@ -1219,15 +1222,19 @@ class Dataset(core.Dataset):
         mean_duration /= conversion_factor
         median_duration /= conversion_factor
         total_duration /= conversion_factor  # Convert to minutes if needed
-
+        
+        total_duration_unit = unit  # default to the smaller unit
         if(total_duration > 120):
             total_duration /= 60  
-            total_duration_unit = "hours"
+            total_duration_unit = "hours"  # update to the larger unit if needed
 
         # Continue with statistics calculation
         std_deviation = np.std(durations)
         min_duration = np.min(durations)
         max_duration = np.max(durations)
+
+        # Define the base colors
+        base_colors = ['#404040', '#126782', '#C9C9C9']
 
         # Create the main figure and the two axes
         fig = plt.figure(figsize=(10, 4))
@@ -1235,34 +1242,41 @@ class Dataset(core.Dataset):
         ax2 = fig.add_subplot(122, frame_on=False)
         ax2.axis('off')
 
-        # Histogram
-        n, bins, patches = ax1.hist(durations, bins=30, color='lightblue', edgecolor='black')
+        # Histogram with base color for bars
+        n, bins, patches = ax1.hist(durations, bins=30, color=base_colors[0], edgecolor='black')
 
-        mean_bin = np.digitize(mean_duration, bins)
-        median_bin = np.digitize(median_duration, bins)
-        patches[mean_bin-1].set_fc('red')
-        patches[median_bin-1].set_fc('green')
+        mean_bin = np.digitize(mean_duration, bins) - 1  # Correct bin for the mean
+        median_bin = np.digitize(median_duration, bins) - 1  # Correct bin for the median
 
-        ax1.axvline(mean_duration, color='red', linestyle='dashed', linewidth=1)
-        ax1.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color='red')
-        ax1.axvline(median_duration, color='green', linestyle='dashed', linewidth=1)
-        ax1.text(median_duration + 0.2, max(n) * 0.8, 'Median', color='green')
+        # Set the mean and median bins colors if they are within the range
+        if 0 <= mean_bin < len(patches):
+            patches[mean_bin].set_fc(base_colors[1])
+        if 0 <= median_bin < len(patches):
+            patches[median_bin].set_fc(base_colors[2])
 
-        ax1.set_title('Distribution of Clip Durations', fontsize = 8)
-        ax1.set_xlabel(f'Duration ({unit})', fontsize = 8)
-        ax1.set_ylabel('Number of Clips', fontsize = 8)
+        # Lines and text for mean and median
+        ax1.axvline(mean_duration, color=base_colors[1], linestyle='dashed', linewidth=1)
+        ax1.text(mean_duration + 0.2, max(n) * 0.9, 'Mean', color=base_colors[1])
+        ax1.axvline(median_duration, color=base_colors[2], linestyle='dashed', linewidth=1)
+        ax1.text(median_duration + 0.2, max(n) * 0.8, 'Median', color=base_colors[2])
+
+        ax1.set_title('Distribution of Clip Durations', fontsize=8)
+        ax1.set_xlabel(f'Duration ({unit})', fontsize=8)
+        ax1.set_ylabel('Number of Clips', fontsize=8)
         ax1.grid(axis='y', alpha=0.75)
 
+        # Text box for statistics
         analysis_results = (
-            r"$\bf{Total\ duration:}$" + f" {total_duration:.2f} {total_duration_unit}\n"
-            r"$\bf{Mean\ duration:}$" + f" {mean_duration:.2f} {unit}\n"
-            r"$\bf{Median\ duration:}$" + f" {median_duration:.2f} {unit}\n"
-            r"$\bf{Standard\ Deviation:}$" + f" {std_deviation:.2f} {unit}\n"
-            r"$\bf{Min\ Duration:}$" + f" {min_duration:.2f} {unit}\n"
-            r"$\bf{Max\ Duration:}$" + f" {max_duration:.2f} {unit}\n"
-            r"$\bf{Total\ Clips:}$" + f" {len(self._index['clips'])}")
+            f"$\\bf{{Total\\ duration:}}$ {total_duration:.2f} {total_duration_unit}\n"
+            f"$\\bf{{Mean\\ duration:}}$ {mean_duration:.2f} {unit}\n"
+            f"$\\bf{{Median\\ duration:}}$ {median_duration:.2f} {unit}\n"
+            f"$\\bf{{Standard\\ Deviation:}}$ {std_deviation:.2f} {unit}\n"
+            f"$\\bf{{Min\\ Duration:}}$ {min_duration:.2f} {unit}\n"
+            f"$\\bf{{Max\\ Duration:}}$ {max_duration:.2f} {unit}\n"
+            f"$\\bf{{Total\\ Clips:}}$ {len(self._index['clips'])}"
+        )
         ax2.text(0.1, 0.4, analysis_results, transform=ax2.transAxes, fontsize=10)
-        
+
         plt.tight_layout()
         plt.show()
 
@@ -1299,7 +1313,9 @@ class Dataset(core.Dataset):
     def plot_hierarchical_distribution(self):
 
         def plot_distribution(data, title, x_label, y_label, subplot_position):
-            sns.countplot(y=data, order=pd.value_counts(data).index, palette="viridis", ax=axes[subplot_position])
+            my_palette = sns.color_palette("light:b", as_cmap=False)
+            my_palette = ['#404040', '#126782', '#C9C9C9']
+            sns.countplot(y=data, order=pd.value_counts(data).index, palette=my_palette, ax=axes[subplot_position])
             axes[subplot_position].set_title(title, fontsize=8)
             axes[subplot_position].set_xlabel(x_label, fontsize=6)
             axes[subplot_position].set_ylabel(y_label, fontsize=6)
@@ -1446,7 +1462,7 @@ class Dataset(core.Dataset):
         ax1.set_xlabel('Time (s)', fontsize=8)
         ax1.set_ylabel('Amplitude', fontsize=8)
         ax1.set_xlim(0, duration)
-        line1, = ax1.plot([0, 0], [min(audio), max(audio)], color='r')
+        line1, = ax1.plot([0, 0], [min(audio), max(audio)], color='#C9C9C9')
 
         for label in ax1.get_xticklabels() + ax1.get_yticklabels():
             label.set_fontsize(8)
@@ -1455,7 +1471,7 @@ class Dataset(core.Dataset):
         librosa.display.specshow(log_S, sr=sr, x_axis='time', y_axis='mel', ax=ax2)
         ax2.set_title('Mel spectrogram', fontsize=8)
         ax2.set_xlim(0, duration)
-        line2, = ax2.plot([0, 0], ax2.get_ylim(), color='white', linestyle='--')
+        line2, = ax2.plot([0, 0], ax2.get_ylim(), color='#126782', linestyle='--')
 
         # Reduce font size for time and mel axis labels
         ax2.set_xlabel('Time (s)', fontsize=8)
