@@ -1425,7 +1425,6 @@ class Dataset(core.Dataset):
 
         # Update the figure and axes to show both plots
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(9, 4))
-
         # Plotting the waveform
         ax1.plot(np.linspace(0, duration, len(audio)), audio)
         ax1.set_title(f"Audio waveform for clip: {clip_id}", fontsize=8)
@@ -1438,7 +1437,7 @@ class Dataset(core.Dataset):
             label.set_fontsize(8)
 
         # Plotting the Mel spectrogram
-        librosa.display.specshow(log_S, sr=sr, x_axis='time', y_axis='mel', ax=ax2)
+        im = librosa.display.specshow(log_S, sr=sr, x_axis='time', y_axis='mel', ax=ax2)
         ax2.set_title('Mel spectrogram', fontsize=8)
         ax2.set_xlim(0, duration)
         line2, = ax2.plot([0, 0], ax2.get_ylim(), color='#126782', linestyle='--')
@@ -1450,7 +1449,18 @@ class Dataset(core.Dataset):
         for label in ax2.get_xticklabels() + ax2.get_yticklabels():
             label.set_fontsize(8)
 
-        plt.tight_layout()
+        fig.subplots_adjust(right=0.8)  # Adjust the right side of the layout
+
+        # Add the colorbar
+        bbox = ax2.get_position()
+# Add the colorbar axes with the same y position and height as the Mel spectrogram
+        cbar_ax = fig.add_axes([bbox.x1 + 0.01, bbox.y0, 0.015, bbox.height])        
+        cbar = fig.colorbar(im, cax=cbar_ax)
+        cbar.set_label('dB', rotation=270, labelpad=15, fontsize=8)
+        cbar.ax.tick_params(labelsize=8)  # Set the size of the tick labels
+
+        # Ensure the tight_layout does not overlap the axes with colorbar
+        plt.tight_layout(rect=[0, 0, 0.8, 1])
 
         playing = [False]
         current_time = [0.0]
