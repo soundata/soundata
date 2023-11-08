@@ -186,6 +186,7 @@
     Ines Nolasco -  i.dealmeidanolasco@qmul.ac.uk
 """
 
+from functools import lru_cache
 import os
 from typing import BinaryIO, Optional, TextIO, Tuple
 
@@ -1201,17 +1202,41 @@ class Dataset(core.Dataset):
                         )
 
         return metadata_index
+    
+    @lru_cache(maxsize=None)  # Setting maxsize to None for an unbounded cache
+    def compute_clip_statistics(self):
+        durations = [
+            len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1]
+            for c_id in self._index["clips"].keys()
+        ]
 
-    def plot_clip_durations(self):
-        # Assuming self.clip(c_id).audio returns a tuple/list where
-        # the first element is the length of the audio in samples
-        # and the second element is the sample rate (samples per second).
-        durations = [len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1] for c_id in self._index["clips"].keys()]
-
-        # Calculating statistics
+        # Calculate statistics
         total_duration = sum(durations)
         mean_duration = np.mean(durations)
         median_duration = np.median(durations)
+        std_deviation = np.std(durations)
+        min_duration = np.min(durations)
+        max_duration = np.max(durations)
+
+        return {
+            "durations": durations,
+            "total_duration": total_duration,
+            "mean_duration": mean_duration,
+            "median_duration": median_duration,
+            "std_deviation": std_deviation,
+            "min_duration": min_duration,
+            "max_duration": max_duration,
+        }
+
+    def plot_clip_durations(self):
+        stats = self.compute_clip_statistics()
+        durations = stats['durations']
+        total_duration = stats['total_duration']
+        mean_duration = stats['mean_duration']
+        median_duration = stats['median_duration']
+        std_deviation = stats['std_deviation']
+        min_duration = stats['min_duration']
+        max_duration = stats['max_duration']
 
         # Determine unit conversion (seconds or minutes)
         convert_to_minutes = mean_duration > 60 or median_duration > 60
@@ -1221,17 +1246,12 @@ class Dataset(core.Dataset):
         durations = [d / conversion_factor for d in durations]
         mean_duration /= conversion_factor
         median_duration /= conversion_factor
-        total_duration /= conversion_factor  # Convert to minutes if needed
-        
-        total_duration_unit = unit  # default to the smaller unit
-        if(total_duration > 120):
-            total_duration /= 60  
-            total_duration_unit = "hours"  # update to the larger unit if needed
+        total_duration /= conversion_factor
 
-        # Continue with statistics calculation
-        std_deviation = np.std(durations)
-        min_duration = np.min(durations)
-        max_duration = np.max(durations)
+        total_duration_unit = unit  # default to the smaller unit
+        if total_duration > 120:
+            total_duration /= 60
+            total_duration_unit = "hours"  # update to the larger unit if needed
 
         # Define the base colors
         base_colors = ['#404040', '#126782', '#C9C9C9']
