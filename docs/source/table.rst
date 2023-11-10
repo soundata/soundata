@@ -1,5 +1,5 @@
 .. list-table::
-   :widths: 5 5 5 5 5 5
+   :widths: 5 5 5 5 5 5 5
    :header-rows: 1
 
    * - Dataset
@@ -7,7 +7,9 @@
      - Annotations
      - Clips
      - Hours
+     - Usecase
      - License
+     
 
    * - 3D-MARCo
      - - audio: ✅
@@ -15,6 +17,7 @@
      - :ref:`tags`
      - 26
      - 0.3
+     - Spatial Audio
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -24,6 +27,7 @@
      - :ref:`events`
      - 174
      - 21
+     - Bioacoustic detection
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -33,6 +37,7 @@
      - :ref:`tags`
      - 20,000
      - 55.5
+     - Bioacoustic detection
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -43,6 +48,7 @@
      - :ref:`tags`
      - 64
      - 10.7
+     - Acoustic scenes
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -53,6 +59,7 @@
      - :ref:`tags`
      - 64
      - 10.7
+     - Acoustic scenes
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -62,6 +69,7 @@
      - :ref:`tags`
      - 2000
      - 2.8
+     - Environment sound classification
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -71,6 +79,7 @@
      - :ref:`tags`
      - 51197
      - 108.3
+     - Sound event classification
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -80,6 +89,7 @@
      - :ref:`tags`
      - 18532
      - 42.5
+     - Sound event classification
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,6 +99,7 @@
      - :ref:`events`
      - 6547
      - 18.2
+     - Urban sound classification
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
@@ -100,6 +111,7 @@
      - Spatial Events
      - 121
      - 5
+     - Spatial Audio
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
@@ -111,6 +123,7 @@
      - Spatial Events
      - 800
      - 15
+     - Sound event location and detection
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -122,6 +135,7 @@
      - Spatial Events
      - 800
      - 15
+     - Sound event location and detection
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -133,6 +147,7 @@
      - :ref:`events`
      - 32
      - 2.02
+     - Sound event detection
      - :tut:`\ `
 
 
@@ -143,6 +158,7 @@
      - Spatial Events
      - 500
      - 8.3
+     - Sound event localization and detection
      - :tau2019sse:`\ `
 
 
@@ -154,6 +170,7 @@
      - :ref:`tags`
      - 22800
      - 63.3
+     - Urban scene classification
      - :tau2019:`\ `
 
    * - | TAU Urban
@@ -164,6 +181,7 @@
      - :ref:`tags`
      - 34915
      - 97
+     - Urban scene classification
      - :tau2020:`\ `
 
    * - URBAN-SED
@@ -172,6 +190,7 @@
      - :ref:`events`
      - 10000
      - 27.8
+     - Sound event detection
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -181,5 +200,6 @@
      - :ref:`tags`
      - 8732
      - 8.75
+     - Urban sound classification
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
