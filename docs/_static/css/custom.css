@@ -91,3 +91,14 @@ a.reference.external {
     color: #126782;
     font-weight: bold;
 }
+
+.tag {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #007BFF; /* Replace with your desired background color */
+    color: #FFFFFF; /* Replace with your desired text color */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+}

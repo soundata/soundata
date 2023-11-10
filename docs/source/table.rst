@@ -7,7 +7,7 @@
      - Annotations
      - Clips
      - Hours
-     - Usecase
+     - Usecases
      - License
      
 
@@ -17,7 +17,7 @@
      - :ref:`tags`
      - 26
      - 0.3
-     - Spatial Audio
+     - :tag:`Spatial Audio`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
