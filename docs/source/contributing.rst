@@ -109,6 +109,8 @@ To create an index, the necessary steps are:
 1. Create a script in ``scripts/``, called ``make_<datasetname>_index.py``, which generates an index file.
 2. Then run the script on the :ref:`canonical version` of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
 
+The function make_index provided is a Python function meant to automate the generation of an index by computing the MD5 checksums for given files in a dataset located at data_path. 
+Users can adapt this function to create an index for their dataset by adding their file paths and using the md5 function to generate checksums for their files.
 
 .. _index example:
 
