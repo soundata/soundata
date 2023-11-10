@@ -10,42 +10,61 @@
     Version 1.0
 
     *Description:*
-        The TUT Acoustic Scenes Strong Label Dataset was created to study the estimation of strong labels for sound events using crowdsourcing. It features 49 real-life audio files from 5 different acoustic scenes, complemented by the results of annotation performed via Amazon Mechanical Turk. The dataset spans a total duration of 189 minutes and 52 seconds.
+        MAESTRO real development contains 49 real-life audio files from 5 different acoustic scenes, each of them from 3 to 5 minutes long. 
+        The other 26 files are kept for evaluation purposes on the DCASE task 4 B. The distribution of files per scene is the following: 
+        cafe restaurant 10 files, city center 10 files, residential_area 11 files, metro station 9 files and grocery store 9 files. 
+        The total duration of the development dataset is 97 minutes and 4 seconds.
 
-        Audio files are sourced from a subset of the TUT Acoustic Scenes 2016 dataset, covering five acoustic scenes: cafe/restaurant, city center, grocery store, metro station, and residential area. Each scene comprises 6 sound event classes, some of which are common across multiple scenes, resulting in a total of 17 unique classes.
+        The audio files contain sounds from the following classes:
 
-        The dataset includes:
-            * Audio: 49 real-life recordings, each ranging from 3 to 5 minutes in length.
-            * Soft labels: Crowdsourced estimated strong labels, with values between 0 and 1 indicating the uncertainty of the annotators regarding the presence of sound events.
+        - announcement
+        - birds singing
+        - breakes squeaking
+        - car
+        - cash register
+        - children voices
+        - coffee machine
+        - cutlery/dishes
+        - door opens/closes
+        - footsteps
+        - furniture dragging
 
-        For a detailed understanding of the recordings, refer to the paper:
-            A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
-
-    *Relevant Links:*
-        * TUT Acoustic Scenes 2016 dataset: [Insert link to dataset]
-        * EUSIPCO 2016 paper: [Insert link to paper]
+    The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
 
     *Please Acknowledge TUT Acoustic Scenes Strong Label Dataset in Academic Research:*
         If you use this dataset, please cite the following paper:
 
             * A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
 
-        The dataset's creation was supported by [Insert supporting grants or acknowledgements].
 
     *License:*
-        The TUT Acoustic Scenes Strong Label Dataset is released under [Insert appropriate license here], which governs its use and distribution.
+    License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
+
+
+        Copyright (c) 2020 Tampere University and its licensors
+        All rights reserved.
+        Permission is hereby granted, without written agreement and without license or royalty
+        fees, to use and copy the MAESTRO Real - Multi Annotator Estimated Strong Labels (“Work”) described in this document
+        and composed of audio and metadata. This grant is only for experimental and non-commercial
+        purposes, provided that the copyright notice in its entirety appear in all copies of this Work,
+        and the original source of this Work, (MAchine Listening Group at Tampere University),
+        is acknowledged in any publication that reports research using this Work.
+        Any commercial use of the Work or any part thereof is strictly prohibited.
+        Commercial use include, but is not limited to:
+        - selling or reproducing the Work
+        - selling or distributing the results or content achieved by use of the Work
+        - providing services by using the Work.
 
     *Feedback:*
-        For questions or feedback, please contact [Insert contact information] or join the [Insert relevant community or forum].
+        For questions or feedback, please contact irene.martinmorato@tuni.fi.
 """
 
 import os
-from typing import BinaryIO, Optional, Tuple
-
+from typing import BinaryIO, Optional, TextIO, Tuple
+import glob
 import librosa
 import csv
 import numpy as np
-
 from soundata import download_utils, jams_utils, core, annotations, io
 
 
@@ -66,17 +85,17 @@ REMOTES = {
     "development_audio": download_utils.RemoteFileMetadata(
         filename="development_audio.zip",
         url="https://zenodo.org/records/7244360/files/development_audio.zip?download=1",
-        checksum="34dc1d34ca44622af5bf439ceb6f0d55",
+        checksum="3de7cb4f92a115a6f5cc077a41ca07b3",
     ),
     "development_annotation": download_utils.RemoteFileMetadata(
         filename="development_annotation.zip",
         url="https://zenodo.org/records/7244360/files/development_annotation.zip?download=1",
-        checksum="1ac73d70b4ef3f81900d98c261a832de",
+        checksum="e6a3f84f8020725d559b38ccb494ef3d",
     ),
     "evaluation_audio": download_utils.RemoteFileMetadata(
         filename="Evaluation_audio.zip",
         url="https://zenodo.org/records/7870026/files/Evaluation_audio.zip?download=1",
-        checksum="093a1ca185ec341ca4eac14215e7f96b",
+        checksum="f18a036f5d8d3b5d4e810cae75da308e",
     ),
 }
 
@@ -86,26 +105,31 @@ Creative Commons Attribution 4.0 International
 
 
 class Clip(core.Clip):
-    """DCASE23_Task4B Clip class
+    """TUT Sound events 2017 Clip class
 
     Args:
         clip_id (str): id of the clip
 
     Attributes:
         audio (np.ndarray, float): path to the audio file
-        aso_id (str): the id of the corresponding category as per the AudioSet Ontology
         audio_path (str): path to the audio file
+        annotations_path (str): path to the annotations file
         clip_id (str): clip id
-        manually_verified (int): flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
-        noisy_small (int): flag to indicate whether the clip belongs to the noisy_small portion (1) of the train set
-        split (str): flag to indicate whether the clip belongs the train or test split
-        tag (soundata.annotations.Tags): tag (label) of the clip + confidence
+        events (soundata.annotations.Events): sound events with start time,
+            end time, label and confidence
+        non_verified_annotations_path (str): path to the non-verified
+            annotations file
+        non_verified_events (soundata.annotations.Events): non-verified sound
+            events with start time, end time, label and confidence
+        split (str): subset the clip belongs to (for experiments):
+            development (fold1, fold2, fold3, fold4) or evaluation
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
+        self.annotations_path = self.get_path("annotations")
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -119,56 +143,24 @@ class Clip(core.Clip):
         return load_audio(self.audio_path)
 
     @property
-    def tags(self):
-        """The clip's tags.
-
-        Returns:
-            * annotations.Tags - tag (label) of the clip + confidence
-
-        """
-        return annotations.Tags(
-            [self._clip_metadata.get("tag")], "open", np.array([1.0])
-        )
-
-    @property
-    def aso_id(self):
-        """The clip's Audioset ontology ID.
-
-        Returns:
-            * str - the id of the corresponding category as per the AudioSet Ontology
-
-        """
-        return self._clip_metadata.get("aso_id")
-
-    @property
-    def manually_verified(self):
-        """The clip's manually annotated flag.
-
-        Returns:
-            * int - flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
-
-        """
-        return self._clip_metadata.get("manually_verified")
-
-    @property
-    def noisy_small(self):
-        """The clip's noisy flag.
-
-        Returns:
-            * int - flag to indicate whether the clip belongs to the noisy_small portion (1) of the train set
-
-        """
-        return self._clip_metadata.get("noisy_small")
-
-    @property
     def split(self):
         """The clip's split.
 
         Returns:
-            * str - flag to indicate whether the clip belongs the train or test split
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
 
         """
         return self._clip_metadata.get("split")
+
+    @core.cached_property
+    def events(self) -> Optional[annotations.Events]:
+        """The clip's events.
+
+        Returns:
+            * annotations.Events - sound events with start time, end time, label and confidence
+
+        """
+        return load_events(self.annotations_path)
 
     def to_jams(self):
         """Get the clip's data in jams format
@@ -178,40 +170,64 @@ class Clip(core.Clip):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
+            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
         )
 
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a FSDnoisy18K audio file.
+    """Load a TUT Sound events 2017 audio file.
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
-        sr (int or None): sample rate for loaded audio, 44100 Hz by default.
-            If different from file's sample rate it will be resampled on load.
-            Use None to load the file using its original sample rate (sample rate
-            varies from file to file).
+        sr (int or None): sample rate for loaded audio, None by default, which
+            uses the file's original sample rate of 44100 without resampling.
 
     Returns:
-        * np.ndarray - the mono audio signal
+        * np.ndarray - the stereo audio signal
         * float - The sample rate of the audio file
 
     """
-    audio, sr = librosa.load(fhandle, sr=sr, mono=True)
+    audio, sr = librosa.load(fhandle, sr=sr, mono=False)
     return audio, sr
+
+
+@io.coerce_to_string_io
+def load_events(fhandle: TextIO) -> annotations.Events:
+    """Load an TUT Sound events 2017 annotation file
+    Args:
+        fhandle (str or file-like): File-like object or path to the sound
+        events annotation file
+
+    Returns:
+        Events: sound events annotation data
+    """
+
+    times = []
+    labels = []
+    confidence = []
+    reader = csv.reader(fhandle, delimiter="\t")
+    for line in reader:
+        times.append([float(line[0]), float(line[1])])
+        labels.append(line[2])
+        confidence.append(min(float(line[3]), 1.0))
+
+    events_data = annotations.Events(
+        np.array(times), "seconds", labels, "open", np.array(confidence)
+    )
+    return events_data
 
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
-    The FSDnoisy18K dataset
+    The TUT Sound events 2017 dataset
     """
 
     def __init__(self, data_home=None):
         super().__init__(
             data_home,
-            name="fsdnoisy18k",
+            name="dcase23_task4b",
             clip_class=Clip,
             bibtex=BIBTEX,
             remotes=REMOTES,
@@ -222,44 +238,46 @@ class Dataset(core.Dataset):
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
 
+    @core.copy_docs(load_events)
+    def load_events(self, *args, **kwargs):
+        return load_events(*args, **kwargs)
+
     @core.cached_property
     def _metadata(self):
-        metadata_train_path = os.path.join(
-            self.data_home, "FSDnoisy18k.meta", "train.csv"
-        )
-        metadata_test_path = os.path.join(
-            self.data_home, "FSDnoisy18k.meta", "test.csv"
-        )
-
-        if not os.path.exists(metadata_train_path):
-            raise FileNotFoundError(
-                "Train metadata not found. Did you run .download()?"
-            )
-        if not os.path.exists(metadata_test_path):
-            raise FileNotFoundError("Test metadata not found. Did you run .download()?")
+        # Define the base paths for annotations and audio files
+        annotations_base_path = os.path.join(self.data_home, "development_annotation")
 
         metadata_index = {}
 
-        with open(metadata_train_path, "r") as f:
-            reader = csv.reader(f, delimiter=",")
-            next(reader)
-            for row in reader:
-                metadata_index[row[0].replace(".wav", "")] = {
-                    "split": "train",
-                    "tag": row[1],
-                    "aso_id": str(row[2]),
-                    "manually_verified": int(row[3]),
-                    "noisy_small": int(row[4]),
+        environments = [
+            "cafe_restaurant",
+            "city_center",
+            "grocery_store",
+            "metro_station",
+            "residential_area",
+        ]
+        for env in environments:
+            env_annotations_path = os.path.join(
+                annotations_base_path, "soft_labels_" + env
+            )
+            annotation_files = glob.glob(os.path.join(env_annotations_path, "*.txt"))
+            for annotation_file in annotation_files:
+                file_id = os.path.basename(annotation_file).replace(".txt", "")
+                annotations = []
+                with open(annotation_file, "r") as f:
+                    for line in f:
+                        start, end, label, confidence = line.strip().split("\t")
+                        annotations.append(
+                            {
+                                "start": float(start),
+                                "end": float(end),
+                                "label": label,
+                                "confidence": float(confidence),
+                            }
+                        )
+                metadata_index[file_id] = {
+                    "split": "development",
+                    "environment": env,
+                    "annotations": annotations,
                 }
-
-        with open(metadata_test_path, "r") as f:
-            reader = csv.reader(f, delimiter=",")
-            next(reader)
-            for row in reader:
-                metadata_index[row[0].replace(".wav", "")] = {
-                    "split": "test",
-                    "tag": row[1],
-                    "aso_id": str(row[2]),
-                }
-
         return metadata_index

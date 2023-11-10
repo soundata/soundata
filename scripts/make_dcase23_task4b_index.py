@@ -49,6 +49,9 @@ def make_index(data_path):
                 "audio": [
                     os.path.join('Evaluation_audio', category, os.path.basename(wf)),
                     md5(wf),
+                ],
+                "annotations": [
+                    None, None
                 ]
             }
 
