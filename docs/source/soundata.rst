@@ -20,7 +20,7 @@ Dataset Loaders
    :members:
    :inherited-members:
 
-DCAS23-Task4B
+DCASE23-Task4B
 ^^^^^^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.dcase23_task4b

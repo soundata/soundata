@@ -29,7 +29,7 @@
         - footsteps
         - furniture dragging
 
-    The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
+        The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
 
     *Please Acknowledge TUT Acoustic Scenes Strong Label Dataset in Academic Research:*
         If you use this dataset, please cite the following paper:
@@ -38,9 +38,8 @@
 
 
     *License:*
-    License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
 
-
+        License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
         Copyright (c) 2020 Tampere University and its licensors
         All rights reserved.
         Permission is hereby granted, without written agreement and without license or royalty
@@ -176,7 +175,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a TUT Sound events 2017 audio file.
+    """Load a DCASE23_Task4B audio file.
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -194,7 +193,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
-    """Load an TUT Sound events 2017 annotation file
+    """Load a DCASE23_Task4B annotation file
     Args:
         fhandle (str or file-like): File-like object or path to the sound
         events annotation file
@@ -221,7 +220,7 @@ def load_events(fhandle: TextIO) -> annotations.Events:
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
     """
-    The TUT Sound events 2017 dataset
+    The DCASE23_Task4B dataset
     """
 
     def __init__(self, data_home=None):
