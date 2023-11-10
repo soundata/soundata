@@ -96,9 +96,11 @@ a.reference.external {
     display: inline-block;
     padding: 0.2em 0.6em;
     margin: 0 0.1em;
-    background-color: #007BFF; /* Replace with your desired background color */
-    color: #FFFFFF; /* Replace with your desired text color */
+    background-color: #404040; /* Change to the color you want for the tag background */
+    color: white; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
     font-size: 90%;
     font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
 }

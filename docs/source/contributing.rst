@@ -435,6 +435,7 @@ Before you submit your loader make sure to:
       - Annotations
       - Clips
       - Hours
+      - Usecase
       - License
 
 An example of this for the ``UrbanSound8k`` dataset:
@@ -447,6 +448,7 @@ An example of this for the ``UrbanSound8k`` dataset:
      - :ref:`tags`
      - 8732
      - 8.75
+     - Urban sound classification
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0
 

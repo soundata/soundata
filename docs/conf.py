@@ -125,3 +125,14 @@ html_css_files = [
 ]
 
 html_logo = "img/soundata.png"
+
+from docutils import nodes, utils
+from docutils.parsers.rst import roles
+
+def tag_role(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    text = utils.unescape(text)
+    node = nodes.inline(rawtext, text, classes=['tag'])
+    return [node], []
+
+def setup(app):
+    app.add_role('tag', tag_role)
