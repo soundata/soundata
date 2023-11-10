@@ -47,9 +47,10 @@
         is acknowledged in any publication that reports research using this Work.
         Any commercial use of the Work or any part thereof is strictly prohibited.
         Commercial use include, but is not limited to:
-        | - selling or reproducing the Work
-        | - selling or distributing the results or content achieved by use of the Work
-        | - providing services by using the Work.
+
+        - selling or reproducing the Work
+        - selling or distributing the results or content achieved by use of the Work
+        - providing services by using the Work.
 
     *Feedback:*
         For questions or feedback, please contact irene.martinmorato@tuni.fi.
