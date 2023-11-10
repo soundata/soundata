@@ -32,17 +32,14 @@
         The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
 
     *Please Acknowledge TUT Acoustic Scenes Strong Label Dataset in Academic Research:*
-        If you use this dataset, please cite the following paper:
-
-            * A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
-
+        | If you use this dataset, please cite the following paper:
+        | A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
 
     *License:*
-
-        License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
-        Copyright (c) 2020 Tampere University and its licensors
-        All rights reserved.
-        Permission is hereby granted, without written agreement and without license or royalty
+        | License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
+        | Copyright (c) 2020 Tampere University and its licensors
+        | All rights reserved.
+        | Permission is hereby granted, without written agreement and without license or royalty
         fees, to use and copy the MAESTRO Real - Multi Annotator Estimated Strong Labels (“Work”) described in this document
         and composed of audio and metadata. This grant is only for experimental and non-commercial
         purposes, provided that the copyright notice in its entirety appear in all copies of this Work,
@@ -50,9 +47,9 @@
         is acknowledged in any publication that reports research using this Work.
         Any commercial use of the Work or any part thereof is strictly prohibited.
         Commercial use include, but is not limited to:
-        - selling or reproducing the Work
-        - selling or distributing the results or content achieved by use of the Work
-        - providing services by using the Work.
+        | - selling or reproducing the Work
+        | - selling or distributing the results or content achieved by use of the Work
+        | - providing services by using the Work.
 
     *Feedback:*
         For questions or feedback, please contact irene.martinmorato@tuni.fi.
@@ -104,7 +101,7 @@ Creative Commons Attribution 4.0 International
 
 
 class Clip(core.Clip):
-    """TUT Sound events 2017 Clip class
+    """DCASE23_Task4B Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -116,12 +113,8 @@ class Clip(core.Clip):
         clip_id (str): clip id
         events (soundata.annotations.Events): sound events with start time,
             end time, label and confidence
-        non_verified_annotations_path (str): path to the non-verified
-            annotations file
-        non_verified_events (soundata.annotations.Events): non-verified sound
-            events with start time, end time, label and confidence
-        split (str): subset the clip belongs to (for experiments):
-            development (fold1, fold2, fold3, fold4) or evaluation
+        split (str): subset the clip belongs to:
+            development or evaluation
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -146,7 +139,7 @@ class Clip(core.Clip):
         """The clip's split.
 
         Returns:
-            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+            * str - subset the clip belongs to: development or evaluation
 
         """
         return self._clip_metadata.get("split")
