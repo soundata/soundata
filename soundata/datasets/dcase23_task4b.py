@@ -39,7 +39,7 @@
         | License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
         | Copyright (c) 2020 Tampere University and its licensors
         | All rights reserved.
-        | Permission is hereby granted, without written agreement and without license or royalty
+        Permission is hereby granted, without written agreement and without license or royalty
         fees, to use and copy the MAESTRO Real - Multi Annotator Estimated Strong Labels (“Work”) described in this document
         and composed of audio and metadata. This grant is only for experimental and non-commercial
         purposes, provided that the copyright notice in its entirety appear in all copies of this Work,
