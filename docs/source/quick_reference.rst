@@ -12,7 +12,8 @@ Supported Datasets and Annotations
 
 This table is provided as a guide for users to select appropriate datasets. The
 list of annotations omits some metadata for brevity, and we document the dataset's
-primary annotations only.
+primary annotations only. For more detailed information on each dataset, please refer to the 
+:ref:`dataset loaders <Datasets API>` section in the documentation.
 
 "Downloadable" possible values:
 

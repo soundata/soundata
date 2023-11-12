@@ -17,7 +17,7 @@
      - :ref:`tags`
      - 26
      - 0.3
-     - :sed:`SEL` :music:`MUSIC`
+     - :sel:`SEL` :music:`MUSIC`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
