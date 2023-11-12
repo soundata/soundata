@@ -12,8 +12,7 @@ Supported Datasets and Annotations
 
 This table is provided as a guide for users to select appropriate datasets. The
 list of annotations omits some metadata for brevity, and we document the dataset's
-primary annotations only. For more detailed information on each dataset, please refer to the 
-:ref:`dataset loaders <Datasets API>` section in the documentation.
+primary annotations only. To access comprehensive details and API documentation for each dataset, please consult the section :ref:`dataset loaders <Datasets API>` within the documentation.
 
 "Downloadable" possible values:
 
@@ -30,8 +29,6 @@ Tasks Codes:
 | :sec:`SEC` : Sound Event Classification
 | :asc:`ASC` : Acoustic Scene Classification
 | :ac:`AC` : Audio Captioning
-
-Find the API documentation for each of the below datasets in :ref:`api`.
 
 .. include:: table.rst
 

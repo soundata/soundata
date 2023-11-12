@@ -1,5 +1,5 @@
 .. list-table::
-   :widths: 5 5 5 5 5 5 5
+   :widths: 5 4 3 2 2 5 5
    :header-rows: 1
 
    * - Dataset
@@ -37,7 +37,7 @@
      - :ref:`tags`
      - 20,000
      - 55.5
-     - :sed:`SEC` :bioacoustic:`BIOACOUSTIC`
+     - :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
