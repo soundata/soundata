@@ -13,7 +13,8 @@
 import os
 import sys
 import datetime
-
+from docutils import nodes, utils
+from docutils.parsers.rst import roles
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
@@ -127,12 +128,31 @@ html_css_files = [
 html_logo = "img/soundata.png"
 
 from docutils import nodes, utils
-from docutils.parsers.rst import roles
 
-def tag_role(role, rawtext, text, lineno, inliner, options={}, content=[]):
-    text = utils.unescape(text)
-    node = nodes.inline(rawtext, text, classes=['tag'])
-    return [node], []
+from docutils import nodes, utils
+
+def create_reference_role(node_id):
+    def role_fn(name, rawtext, text, lineno, inliner, options={}, content=[]):
+        text = utils.unescape(text)
+        # Use the same class name as defined in the CSS file for the reference node
+        class_name = name.lower()  # This should match the class name used in the CSS
+        ref_node = nodes.reference(rawtext, text, refuri=f'#{node_id}', classes=[class_name])
+        return [ref_node], []
+    return role_fn
 
 def setup(app):
-    app.add_role('tag', tag_role)
+    role_to_target = {
+        'sed': 'sed',
+        'sec': 'sec',
+        'sel': 'sel',
+        'asc': 'asc',
+        'ac': 'ac',
+        'urban': 'urban-environment',
+        'environment': 'environment-sounds',
+        'machine': 'machine-sounds',
+        'bioacoustic': 'bioacoustic-sounds',
+        'music': 'music-sounds',
+    }
+    
+    for role_name, node_id in role_to_target.items():
+        app.add_role(role_name, create_reference_role(node_id))

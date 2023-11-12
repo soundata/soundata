@@ -92,15 +92,135 @@ a.reference.external {
     font-weight: bold;
 }
 
-.tag {
+.sed, .sed a {
     display: inline-block;
     padding: 0.2em 0.6em;
     margin: 0 0.1em;
-    background-color: #404040; /* Change to the color you want for the tag background */
-    color: white; /* Change to the color you want for the tag text */
+    background-color: #264653; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
     font-size: 90%;
     font-weight: bold;
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
 }
+.sec, .sec a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #2a9d8f; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.sel, .sel a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #e9c46a; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.asc, .asc a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #f4a261; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.ac, .ac a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #e76f51; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.urban, .urban a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #03045e; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.environment, .environment a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #0077b6; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.machine, .machine a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #00b4d8; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.bioacoustic, .bioacoustic a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #90e0ef; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+.music, .music a {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0 0.1em;
+    background-color: #e0aaff; /* Change to the color you want for the tag background */
+    color: white !important; /* Change to the color you want for the tag text */
+    border-radius: 0.25em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent; /* Optional: adds a border */
+    text-decoration: none; /* Optional: removes underline from hyperlinks */
+}
+
+

@@ -7,7 +7,7 @@
      - Annotations
      - Clips
      - Hours
-     - Usecase
+     - Usecases
      - License
      
 
@@ -17,7 +17,7 @@
      - :ref:`tags`
      - 26
      - 0.3
-     - :tag:`Spatial Audio`
+     - :sed:`SEL` :music:`MUSIC`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -27,7 +27,7 @@
      - :ref:`events`
      - 174
      - 21
-     - :tag:`Bioacoustic detection`
+     - :sed:`SED` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -37,7 +37,7 @@
      - :ref:`tags`
      - 20,000
      - 55.5
-     - :tag:`Bioacoustic detection`
+     - :sed:`SEC` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -48,7 +48,7 @@
      - :ref:`tags`
      - 64
      - 10.7
-     - :tag:`Acoustic scenes`
+     - :asc:`ASC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -59,7 +59,7 @@
      - :ref:`tags`
      - 64
      - 10.7
-     - :tag:`Acoustic scenes`
+     - :asc:`ASC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -69,7 +69,7 @@
      - :ref:`tags`
      - 2000
      - 2.8
-     - :tag:`Environment sound classification`
+     - :sec:`SEC` :environment:`ENVIRONMENT`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -79,7 +79,7 @@
      - :ref:`tags`
      - 51197
      - 108.3
-     - :tag:`Sound event classification`
+     - :sec:`SEC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,7 +89,7 @@
      - :ref:`tags`
      - 18532
      - 42.5
-     - :tag:`Sound event classification`
+     - :sec:`SEC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -99,7 +99,7 @@
      - :ref:`events`
      - 6547
      - 18.2
-     - :tag:`Urban sound classification`
+     - :sed:`SED` :sel:`SEL` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
@@ -111,7 +111,7 @@
      - Spatial Events
      - 121
      - 5
-     - :tag:`Spatial Audio`
+     - :sed:`SED` :sel:`SEL`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
@@ -123,7 +123,7 @@
      - Spatial Events
      - 800
      - 15
-     - :tag:`Sound event location and detection`
+     - :sed:`SED` :sel:`SEL`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -135,7 +135,7 @@
      - Spatial Events
      - 800
      - 15
-     - :tag:`Sound event location and detection`
+     - :sed:`SED` :sel:`SEL`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -147,7 +147,7 @@
      - :ref:`events`
      - 32
      - 2.02
-     - :tag:`Sound event detection`
+     - :sed:`SED` :environment:`ENVIRONMENT`
      - :tut:`\ `
 
 
@@ -158,7 +158,7 @@
      - Spatial Events
      - 500
      - 8.3
-     - :tag:`Sound event localization and detection`
+     - :sed:`SED` :sel:`SEL`
      - :tau2019sse:`\ `
 
 
@@ -170,7 +170,7 @@
      - :ref:`tags`
      - 22800
      - 63.3
-     - :tag:`Urban scene classification`
+     - :asc:`ASC` :urban:`URBAN`
      - :tau2019:`\ `
 
    * - | TAU Urban
@@ -181,7 +181,7 @@
      - :ref:`tags`
      - 34915
      - 97
-     - :tag:`Urban scene classification`
+     - :asc:`ASC` :urban:`URBAN`
      - :tau2020:`\ `
 
    * - URBAN-SED
@@ -190,7 +190,7 @@
      - :ref:`events`
      - 10000
      - 27.8
-     - :tag:`Sound event detection`
+     - :sed:`SED` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -200,6 +200,6 @@
      - :ref:`tags`
      - 8732
      - 8.75
-     - :tag:`Urban sound classification`
+     - :sec:`SEC` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
