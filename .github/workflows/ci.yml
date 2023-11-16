@@ -18,38 +18,17 @@ jobs:
         runs-on: ${{ matrix.os }}
 
         strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - os: ubuntu-latest
-                      python-version: "3.7"
-                      envfile: ".github/environment-ci.yml"
-                      channel-priority: "strict"
-
-                    - os: ubuntu-latest
-                      python-version: "3.8"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
-                      python-version: "3.9"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: macos-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: windows-latest
-                      python-version: "3.10"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
+          fail-fast: false
+          matrix:
+            os: [ubuntu-latest, macos-latest, windows-latest]
+            python-version: ["3.7", "3.8", "3.9", "3.10"]
+            exclude:
+              - os: macos-latest
+                python-version: ["3.7", "3.8", "3.9"]
+              - os: windows-latest
+                python-version: ["3.7", "3.8", "3.9"]
+            envfile: ".github/environment-ci.yml"
+            channel-priority: "strict"
 
         steps:
         - uses: actions/checkout@v3
