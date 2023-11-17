@@ -113,7 +113,7 @@
      - Spatial Events
      - 121
      - 5
-     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` 
+     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT`
        | :music:`MUSIC`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
