@@ -17,7 +17,7 @@
      - :ref:`tags`
      - 26
      - 0.3
-     - :sel:`SEL` :music:`MUSIC`
+     - | :sel:`SEL` :music:`MUSIC`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -27,7 +27,7 @@
      - :ref:`events`
      - 174
      - 21
-     - :sed:`SED` :bioacoustic:`BIOACOUSTIC`
+     - | :sed:`SED` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -37,7 +37,7 @@
      - :ref:`tags`
      - 20,000
      - 55.5
-     - :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
+     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -48,7 +48,7 @@
      - :ref:`tags`
      - 64
      - 10.7
-     - :asc:`ASC`
+     - | :asc:`ASC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -59,7 +59,7 @@
      - :ref:`tags`
      - 64
      - 10.7
-     - :asc:`ASC`
+     - | :asc:`ASC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -69,7 +69,7 @@
      - :ref:`tags`
      - 2000
      - 2.8
-     - :sec:`SEC` :environment:`ENVIRONMENT`
+     - | :sec:`SEC` :environment:`ENVIRONMENT`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -79,7 +79,8 @@
      - :ref:`tags`
      - 51197
      - 108.3
-     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` :machine:`MACHINE` 
+     - | :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` 
+       | :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,7 +90,8 @@
      - :ref:`tags`
      - 18532
      - 42.5
-     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :machine:`MACHINE` 
+     - | :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` 
+       | :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -99,7 +101,7 @@
      - :ref:`events`
      - 6547
      - 18.2
-     - :sed:`SED` :urban:`URBAN`
+     - | :sed:`SED` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
@@ -111,7 +113,8 @@
      - Spatial Events
      - 121
      - 5
-     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC`
+     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` 
+       | :music:`MUSIC`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
@@ -123,7 +126,8 @@
      - Spatial Events
      - 800
      - 15
-     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
+     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` 
+       | :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -135,7 +139,8 @@
      - Spatial Events
      - 800
      - 15
-     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
+     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` 
+       | :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -147,7 +152,7 @@
      - :ref:`events`
      - 32
      - 2.02
-     - :sed:`SED` :environment:`ENVIRONMENT`
+     - | :sed:`SED` :environment:`ENVIRONMENT`
      - :tut:`\ `
 
 
@@ -158,7 +163,7 @@
      - Spatial Events
      - 500
      - 8.3
-     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT`
+     - | :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT`
      - :tau2019sse:`\ `
 
 
@@ -170,7 +175,7 @@
      - :ref:`tags`
      - 22800
      - 63.3
-     - :asc:`ASC` :urban:`URBAN`
+     - | :asc:`ASC` :urban:`URBAN`
      - :tau2019:`\ `
 
    * - | TAU Urban
@@ -181,7 +186,7 @@
      - :ref:`tags`
      - 34915
      - 97
-     - :asc:`ASC` :urban:`URBAN`
+     - | :asc:`ASC` :urban:`URBAN`
      - :tau2020:`\ `
 
    * - URBAN-SED
@@ -190,7 +195,7 @@
      - :ref:`events`
      - 10000
      - 27.8
-     - :sed:`SED` :urban:`URBAN`
+     - | :sed:`SED` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -200,6 +205,6 @@
      - :ref:`tags`
      - 8732
      - 8.75
-     - :sec:`SEC` :urban:`URBAN`
+     - | :sec:`SEC` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
