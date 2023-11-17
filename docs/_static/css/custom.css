@@ -95,7 +95,7 @@ a.reference.external {
 .sed, .sed a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #264653; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -108,7 +108,7 @@ a.reference.external {
 .sec, .sec a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #2a9d8f; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -121,7 +121,7 @@ a.reference.external {
 .sel, .sel a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #e9c46a; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -134,7 +134,7 @@ a.reference.external {
 .asc, .asc a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #f4a261; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -147,7 +147,7 @@ a.reference.external {
 .ac, .ac a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #e76f51; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -160,7 +160,7 @@ a.reference.external {
 .urban, .urban a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #03045e; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -173,7 +173,7 @@ a.reference.external {
 .environment, .environment a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #0077b6; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -186,7 +186,7 @@ a.reference.external {
 .machine, .machine a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #00b4d8; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -199,7 +199,7 @@ a.reference.external {
 .bioacoustic, .bioacoustic a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #90e0ef; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
@@ -212,7 +212,7 @@ a.reference.external {
 .music, .music a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.0em; /* Increased top and bottom margin */
+    margin: 0.2em 0.2em; /* Increased top and bottom margin */
     background-color: #e0aaff; /* Change to the color you want for the tag background */
     color: white !important; /* Change to the color you want for the tag text */
     border-radius: 0.25em;
