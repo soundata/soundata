@@ -36,7 +36,8 @@ if __name__ == "__main__":
             "numpy>=1.21.6",
             "pandas>=1.3.5",
             "requests>=2.31.0",
-            "tqdm>=4.65.0"
+            "tqdm>=4.65.0",
+            "jams>=0.3.4"
         ],
         extras_require={
             "tests": [
