@@ -79,7 +79,7 @@
      - :ref:`tags`
      - 51197
      - 108.3
-     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :machine:`MACHINE` 
+     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,7 +89,7 @@
      - :ref:`tags`
      - 18532
      - 42.5
-     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` :machine:`MACHINE` 
+     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
