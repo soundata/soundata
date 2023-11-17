@@ -79,7 +79,7 @@
      - :ref:`tags`
      - 51197
      - 108.3
-     - :sec:`SEC`
+     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,7 +89,7 @@
      - :ref:`tags`
      - 18532
      - 42.5
-     - :sec:`SEC`
+     - :sec:`SEC` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -99,7 +99,7 @@
      - :ref:`events`
      - 6547
      - 18.2
-     - :sed:`SED` :sel:`SEL` :urban:`URBAN`
+     - :sed:`SED` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
@@ -111,7 +111,7 @@
      - Spatial Events
      - 121
      - 5
-     - :sed:`SED` :sel:`SEL`
+     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
@@ -123,7 +123,7 @@
      - Spatial Events
      - 800
      - 15
-     - :sed:`SED` :sel:`SEL`
+     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -135,7 +135,7 @@
      - Spatial Events
      - 800
      - 15
-     - :sed:`SED` :sel:`SEL`
+     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT` :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -158,7 +158,7 @@
      - Spatial Events
      - 500
      - 8.3
-     - :sed:`SED` :sel:`SEL`
+     - :sed:`SED` :sel:`SEL` :environment:`ENVIRONMENT`
      - :tau2019sse:`\ `
 
 
