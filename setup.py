@@ -32,24 +32,23 @@ if __name__ == "__main__":
         keywords="sound dataset loader audio",
         license="BSD-3-Clause",
         install_requires=[
-            "tqdm",
-            "librosa >= 0.8.0",
-            "numpy>=1.16, <=1.20",
-            "jams",
-            "requests",
-            "pandas"
+            "librosa>=0.10.0",
+            "numpy>=1.21.6",
+            "pandas>=1.3.5",
+            "requests>=2.31.0",
+            "tqdm>=4.65.0"
         ],
         extras_require={
             "tests": [
-                "pytest>=4.4.0",
-                "pytest-cov>=2.6.1",
-                "pytest-pep8>=1.0.0",
-                "pytest-mock>=1.10.1",
-                "pytest-localserver>=0.5.0",
-                "testcontainers>=2.3",
-                "future==0.17.1",
-                "coveralls>=1.7.0",
-                "black>=21.9b0",
+                "pytest>=7.2.0",
+                "pytest-cov>=4.1.0",
+                "pytest-pep8>=1.0.6",
+                "pytest-mock>=3.10.0",
+                "pytest-localserver>=0.7.1",
+                "pytest-xdist>=2.3.0",
+                "future>=0.18.3",
+                "coveralls>=3.3.1",
+                "black>=23.3.0",
             ],
             "docs": [
                 "docutils==0.16",
