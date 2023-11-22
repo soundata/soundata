@@ -37,7 +37,12 @@ if __name__ == "__main__":
             "numpy>=1.16, <=1.20",
             "jams",
             "requests",
-            "pandas"
+            "types-requests",
+            "pandas",
+            "openpyxl", # usotw
+            "lxml", # usotw
+            "bs4", # usotw
+            "scikit-video" # usotw
         ],
         extras_require={
             "tests": [
@@ -60,5 +65,11 @@ if __name__ == "__main__":
                 "sphinx_rtd_theme",
                 "sphinx-togglebutton"
             ],
+            "ustow": [
+                "openpyxl",
+                "lxml",
+                "bs4",
+                "scikit-video"
+            ]
         },
     )

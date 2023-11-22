@@ -143,6 +143,12 @@ UrbanSound8K
    :members:
    :inherited-members:
 
+Urban Soundscapes of the World
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.usotw
+   :members:
+   :inherited-members:
 
 Core
 ----
