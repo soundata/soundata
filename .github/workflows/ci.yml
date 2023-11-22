@@ -18,8 +18,7 @@ jobs:
                     - os: ubuntu-latest
                       python-version: "3.7"
                       envfile: ".github/environment-ci.yml"
-                      channel-priority: "flexible"
-                      name: "Minimal dependencies"
+                      channel-priority: "strict"
 
                     - os: ubuntu-latest
                       python-version: "3.8"
@@ -62,28 +61,38 @@ jobs:
             macOS)
               brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
+            Windows)
+              choco install wget ffmpeg zip
+              ;; # You may need to install other dependencies specific to Windows using choco here
             esac
 
         - name: Cache conda
           uses: actions/cache@v3
           env:
-            # Increase this value to reset cache if etc/example-environment.yml has not changed
-            CACHE_NUMBER: 0
+            CACHE_NUMBER: 2      
           with:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
-
-        - name: Install Conda environment
+            restore-keys: |
+              ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-
+              ${{ runner.os }}-${{ matrix.python-version }}-conda-
+              ${{ runner.os }}-conda-
+              
+        - name: Setup conda
           uses: conda-incubator/setup-miniconda@v2
           with:
-            auto-update-conda: true
-            python-version: ${{ matrix.python-version }}
-            add-pip-as-python-dependency: true
-            auto-activate-base: false
-            activate-environment: test
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
+            use-mamba: true
             channel-priority: ${{ matrix.channel-priority }}
-            environment-file: ${{ matrix.envfile }}
-            use-only-tar-bz2: false # IMPORTANT: This needs to be set for caching to work properly!
+            activate-environment: test
+            auto-update-conda: false
+            python-version: ${{ matrix.python-version }}
+            use-only-tar-bz2: false
+
+        - name: Install conda dependencies
+          run: mamba env update -n test -f ${{ matrix.envfile }}
+          if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
           shell: bash -l {0}
@@ -93,7 +102,7 @@ jobs:
 
         - name: Run pytest
           shell: bash -l {0}
-          run: pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
+          run: pytest -n auto -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
 
         - name: Upload coverage to Codecov
           uses: codecov/codecov-action@v3
