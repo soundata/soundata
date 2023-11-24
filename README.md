@@ -8,11 +8,14 @@ Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdat
 ![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg)
 ![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg)
 ![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg)
+[![Downloads](https://static.pepy.tech/badge/soundata)](https://pepy.tech/project/soundata)
 
 
 [![codecov](https://codecov.io/gh/soundata/soundata/branch/master/graph/badge.svg)](https://codecov.io/gh/soundata/soundata)
 [![Documentation Status](https://readthedocs.org/projects/soundata/badge/?version=latest)](https://soundata.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/soundata/soundata.svg)
+[![PyPI version](https://badge.fury.io/py/soundata.svg)](https://badge.fury.io/py/soundata)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
 This library provides tools for working with common sound datasets, including tools for:
