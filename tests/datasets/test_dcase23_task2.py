@@ -59,3 +59,12 @@ def test_to_jams():
     )
     assert jam.sandbox.d1p == "m-n"
     assert jam.sandbox.d1v == "X"
+
+def test_metadata_file_not_found():
+    # Create a temporary dataset instance with an altered path to simulate missing files
+    altered_test_data_home = os.path.join(TEST_DATA_HOME, "non_existent_directory")
+    dataset = dcase23_task2.Dataset(altered_test_data_home)
+
+    # Expect a FileNotFoundError
+    with pytest.raises(FileNotFoundError):
+        _ = dataset._metadata
