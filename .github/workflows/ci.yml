@@ -62,7 +62,7 @@ jobs:
               brew install libsamplerate wget libsndfile sox ffmpeg zip 
               ;;
             Windows)
-              choco install wget ffmpeg zip libasound2-dev
+              choco install wget ffmpeg zip
               ;; # You may need to install other dependencies specific to Windows using choco here
             esac
 
