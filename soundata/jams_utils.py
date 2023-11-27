@@ -38,7 +38,7 @@ def jams_converter(
     duration = None
     if audio_path is not None:
         if os.path.exists(audio_path):
-            duration = librosa.get_duration(filename=audio_path)
+            duration = librosa.get_duration(path=audio_path)
         else:
             raise OSError(
                 "jams conversion failed because the audio file "

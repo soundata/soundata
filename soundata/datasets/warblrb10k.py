@@ -26,7 +26,7 @@ Warblrb10k Dataset Loader
     *Meta-data Files Included*
         A table containing a binary label "hasbird" associated to every recording in Warblr is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
 
-    *Please Acknowledge UrbanSound8K in Academic Research*
+    *Please Acknowledge Warblr in Academic Research*
         When the Warblr dataset is employed for academic research, we sincerely request that scientific publications of works partially based on this dataset cite the following publication:
 
         .. code-block:: latex
@@ -94,7 +94,7 @@ LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
 
 
 class Clip(core.Clip):
-    """urbansound8k Clip class
+    """warblrb10k Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -102,9 +102,8 @@ class Clip(core.Clip):
     Attributes:
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
-        itemid (str): clip id
-        datasetid (str): the dataset to which the clip belongs to
-        hasbird (str): indication of whether the clips contains bird sounds (0/1)
+        item_id (str): clip id
+        has_bird (str): indication of whether the clips contains bird sounds (0/1)
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
