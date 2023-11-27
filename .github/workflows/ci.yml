@@ -59,10 +59,10 @@ jobs:
               sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip libasound2-dev
               ;; 
             macOS)
-              brew install libsamplerate wget libsndfile sox ffmpeg zip libasound2-dev
+              brew install libsamplerate wget libsndfile sox ffmpeg zip 
               ;;
             Windows)
-              choco install wget ffmpeg zip
+              choco install wget ffmpeg zip libasound2-dev
               ;; # You may need to install other dependencies specific to Windows using choco here
             esac
 
