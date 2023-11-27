@@ -28,3 +28,4 @@ dependencies:
     - testcontainers>=3.7.1
     - simpleaudio
     - seaborn
+    - ipywidgets
