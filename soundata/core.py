@@ -21,6 +21,8 @@ from tqdm import tqdm
 import pandas as pd
 import librosa
 import numpy as np
+from IPython.display import display
+
 
 from soundata import download_utils
 from soundata import validate
