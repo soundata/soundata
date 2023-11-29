@@ -56,13 +56,13 @@ jobs:
             case "${{ runner.os }}" in
             Linux)
               sudo apt-get update -yy
-              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip py7zr
+              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
               ;; 
             macOS)
-              brew install libsamplerate wget libsndfile sox ffmpeg zip py7zr
+              brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
             Windows)
-              choco install wget ffmpeg zip py7zr
+              choco install wget ffmpeg zip
               ;; # You may need to install other dependencies specific to Windows using choco here
             esac
 
