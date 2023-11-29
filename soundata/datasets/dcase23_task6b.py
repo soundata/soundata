@@ -139,12 +139,9 @@ REMOTES = {
     ),
 }
 
-
 LICENSE_INFO = """
 Creative Commons Attribution 4.0 International
 """
-
-
 class Clip(core.Clip):
     """DCASE'23 Task 6B Clip class
 
@@ -153,7 +150,7 @@ class Clip(core.Clip):
 
     Attributes:
         audio (np.ndarray, float): Audio signal and sample rate.
-        tags (soundata.annotations.Tags): Tag (scene label) of the clip + confidence.
+        tags (soundata.annotations.Tags): Tag (keywords) of the clip + confidence.
         file_name (str): Name of the file.
         keywords (str): Associated keywords.
         sound_id (str): Unique identifier for the sound.
@@ -321,9 +318,8 @@ class Dataset(core.Dataset):
         # Process each file
         for file_name, file_type in files.items():
             file_path = os.path.join(self.data_home, file_name)
-            encoding = "ISO-8859-1"
-            # Now open the file with the detected encoding
-            with open(file_path, encoding=encoding) as csv_file:
+            # Now open the file with the mentioned encoding
+            with open(file_path, encoding="ISO-8859-1") as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter=",")
                 next(csv_reader)  # Skip the header row
                 for row in csv_reader:
