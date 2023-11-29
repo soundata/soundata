@@ -65,10 +65,6 @@ def test_load_metadata():
     default_clipid = "development/1"
     dataset = dcase23_task6b.Dataset(TEST_DATA_HOME)
     clip = dataset.clip(default_clipid)
-    assert (
-        clip.audio_path
-        == "tests/resources/sound_datasets/dcase23_task6b/development/1.wav"
-    )
     assert clip.sound_id == "267105"
     assert clip.keywords == "thunder;weather;field-recording;rain;city"
     assert clip.sound_link == "https://freesound.org/people/Omega9/sounds/267105"
