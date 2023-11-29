@@ -29,9 +29,11 @@ def mock_untar(mocker):
 def mock_unzip(mocker):
     return mocker.patch.object(download_utils, "unzip")
 
+
 @pytest.fixture
 def mock_un7z(mocker):
     return mocker.patch.object(download_utils, "un7z")
+
 
 @pytest.fixture
 def mock_path(mocker, mock_download_from_remote):
