@@ -152,7 +152,6 @@ class Clip(core.Clip):
 
     Attributes:
         audio (np.ndarray, float): Audio signal and sample rate.
-        tags (soundata.annotations.Tags): Tag (keywords) of the clip + confidence.
         file_name (str): Name of the file.
         keywords (str): Associated keywords.
         sound_id (str): Unique identifier for the sound.
@@ -177,18 +176,6 @@ class Clip(core.Clip):
 
         """
         return load_audio(self.audio_path)
-
-    @property
-    def tags(self):
-        """The clip's tags
-
-        Returns:
-            * annotations.Tags - Tags (keywords) of the clip + confidence.
-
-        """
-        return annotations.Tags(
-            [self._clip_metadata.get("keywords")], "open", np.array([1.0])
-        )
 
     @property
     def file_name(self):
@@ -261,7 +248,7 @@ class Clip(core.Clip):
 
         """
         return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
+            audio_path=self.audio_path, metadata=self._clip_metadata
         )
 
 

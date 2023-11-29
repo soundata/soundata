@@ -26,7 +26,6 @@ def test_clip():
 
     expected_property_types = {
         "audio": tuple,
-        "tags": annotations.Tags,
         "file_name": str,
         "keywords": str,
         "sound_id": str,
@@ -49,16 +48,6 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as stereo
     assert audio.shape[0] == 88200  # Check audio duration is as expected
-
-
-def test_load_tags():
-    # dataset
-    default_clipid = "development/1"
-    dataset = dcase23_task6b.Dataset(TEST_DATA_HOME)
-    clip = dataset.clip(default_clipid)
-    assert len(clip.tags.labels) == 1
-    assert clip.tags.labels[0] == "thunder;weather;field-recording;rain;city"
-    assert np.allclose([1.0], clip.tags.confidence)
 
 
 def test_load_metadata():
