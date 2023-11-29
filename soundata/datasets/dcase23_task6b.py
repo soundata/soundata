@@ -142,6 +142,8 @@ REMOTES = {
 LICENSE_INFO = """
 Creative Commons Attribution 4.0 International
 """
+
+
 class Clip(core.Clip):
     """DCASE'23 Task 6B Clip class
 
