@@ -316,22 +316,12 @@ class Dataset(core.Dataset):
             "clotho_captions_validation.csv": "captions",
             "retrieval_audio_metadata.csv": "metadata",
         }
-
-        encodings = {
-            "clotho_metadata_development.csv": "ISO-8859-1",
-            "clotho_metadata_evaluation.csv": "ascii",
-            "clotho_metadata_validation.csv": "ascii",
-            "clotho_captions_development.csv": "ascii",
-            "clotho_captions_evaluation.csv": "ascii",
-            "clotho_captions_validation.csv": "ascii",
-            "retrieval_audio_metadata.csv": "ascii",
-        }
         combined_data = {}
 
         # Process each file
         for file_name, file_type in files.items():
             file_path = os.path.join(self.data_home, file_name)
-            encoding = encodings[file_name]
+            encoding = "ISO-8859-1"
             # Now open the file with the detected encoding
             with open(file_path, encoding=encoding) as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter=",")

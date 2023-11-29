@@ -29,7 +29,7 @@ def make_index(data_path):
         'test': "retrieval_captions.csv",
     }
 
-    index = {"version": "1.0", "clips": {}, "metadata": {}, "captions": {}}
+    index = {"version": "1.0", "clips": {}, "metadata": {}}
 
     for subset, relative_path in rel_paths.items():
         audio_path = os.path.join(data_path, relative_path)
@@ -50,7 +50,7 @@ def make_index(data_path):
 
         caption_doc_id = "{}".format(os.path.basename(captions_files[subset]).replace(".csv", ""))
         captions_path = os.path.join(data_path, captions_files[subset])
-        index["captions"][caption_doc_id] = [
+        index["metadata"][caption_doc_id] = [
             os.path.join(captions_files[subset]),
             md5(captions_path)
         ]

@@ -41581,31 +41581,29 @@
       "clotho_metadata_development.csv",
       "170d20935ecfdf161ce1bb154118cda5"
     ],
-    "clotho_metadata_evaluation": [
-      "clotho_metadata_evaluation.csv",
-      "13946f054d4e1bf48079813aac61bf77"
-    ],
-    "clotho_metadata_validation": [
-      "clotho_metadata_validation.csv",
-      "2e010427c56b1ce6008b0f03f41048ce"
-    ],
-    "retrieval_audio_metadata": [
-      "retrieval_audio_metadata.csv",
-      "1301db07acbf1e4fabc467eb54e0d353"
-    ]
-  },
-  "captions": {
     "clotho_captions_development": [
       "clotho_captions_development.csv",
       "d4090b39ce9f2491908eebf4d5b09bae"
+    ],
+    "clotho_metadata_evaluation": [
+      "clotho_metadata_evaluation.csv",
+      "13946f054d4e1bf48079813aac61bf77"
     ],
     "clotho_captions_evaluation": [
       "clotho_captions_evaluation.csv",
       "1b16b9e57cf7bdb7f13a13802aeb57e2"
     ],
+    "clotho_metadata_validation": [
+      "clotho_metadata_validation.csv",
+      "2e010427c56b1ce6008b0f03f41048ce"
+    ],
     "clotho_captions_validation": [
       "clotho_captions_validation.csv",
       "5879e023032b22a2c930aaa0528bead4"
+    ],
+    "retrieval_audio_metadata": [
+      "retrieval_audio_metadata.csv",
+      "1301db07acbf1e4fabc467eb54e0d353"
     ],
     "retrieval_captions": [
       "retrieval_captions.csv",
