@@ -18,6 +18,15 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - DCASE23-Task6b
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 6974
+     - 43.2
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
    * - DCASE-bioacoustic
      - - audio: ✅
        - annotations: ✅
