@@ -20,6 +20,13 @@ Dataset Loaders
    :members:
    :inherited-members:
 
+DCASE23-Task6a
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task6a
+   :members:
+   :inherited-members:
+
 DCASE23-Task6b
 ^^^^^^^^^^^^^^
 
