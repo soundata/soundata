@@ -5,9 +5,9 @@
 Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
 Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
 
-![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg)
-![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg)
-![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg)
+![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg?branch=main)
+![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg?branch=main)
+![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg?branch=main)
 [![Downloads](https://static.pepy.tech/badge/soundata)](https://pepy.tech/project/soundata)
 
 
