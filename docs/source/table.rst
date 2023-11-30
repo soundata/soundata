@@ -208,3 +208,13 @@
      - | :sec:`SEC` :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - Warblrb10k
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 10,000
+     - 28
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
