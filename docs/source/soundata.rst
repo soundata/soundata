@@ -151,6 +151,14 @@ UrbanSound8K
    :inherited-members:
 
 
+Warblrb10k
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.warblrb10k
+   :members:
+   :inherited-members:
+
+
 Core
 ----
 
