@@ -304,13 +304,10 @@ class Dataset(core.Dataset):
             file_path = os.path.join(self.data_home, file_name)
             delimiter = ";" if file_type == "test_metadata" else ","
             with open(file_path, encoding="ISO-8859-1") as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=delimiter)
-                next(csv_reader)  # Skip the header row
+                csv_reader = csv.DictReader(csv_file, delimiter=delimiter)
                 for row in csv_reader:
-                    file_key = row[0].replace(".wav", "")
-                    dataset_type = file_name.split("_")[2].split(".")[
-                        0
-                    ]  # development, validation, evaluation, test
+                    file_key = row['file_name'].replace(".wav", "")  # Assuming 'file_name' is the header for the first column
+                    dataset_type = file_name.split("_")[2].split(".")[0]  # development, validation, evaluation, test
                     file_key = f"{dataset_type}/{file_key}"
                     if file_key not in combined_data:
                         combined_data[file_key] = {
@@ -324,26 +321,23 @@ class Dataset(core.Dataset):
                             "captions": [],
                         }
                     if file_type == "metadata":
-                        combined_data[file_key].update(
-                            {
-                                "file_name": file_key,
-                                "keywords": row[1],
-                                "sound_id": row[2],
-                                "sound_link": row[3],
-                                "start_end_samples": row[4],
-                                "manufacturer": row[5],
-                                "license": row[6],
-                            }
-                        )
+                        combined_data[file_key].update({
+                            "file_name": file_key,
+                            "keywords": row['keywords'],  # Replace with actual header names
+                            "sound_id": row['sound_id'],
+                            "sound_link": row['sound_link'],
+                            "start_end_samples": row['start_end_samples'],
+                            "manufacturer": row['manufacturer'],
+                            "license": row['license'],
+                        })
                     elif file_type == "test_metadata":
-                        combined_data[file_key].update(
-                            {
-                                "file_name": file_key,
-                                "start_end_samples": row[1],
-                                "manufacturer": row[2],
-                                "license": row[3],
-                            }
-                        )
+                        combined_data[file_key].update({
+                            "file_name": file_key,
+                            "start_end_samples": row['start_end_samples'],
+                            "manufacturer": row['manufacturer'],
+                            "license": row['license'],
+                        })
                     elif file_type == "captions":
-                        combined_data[file_key]["captions"] = row[1:]
+                        combined_data[file_key]["captions"] = [row[key] for key in row if key != 'file_name']  # Assuming rest of the keys are captions
+
         return combined_data
