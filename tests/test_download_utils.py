@@ -359,6 +359,7 @@ def test_untar():
     assert os.path.exists(expected_file_location)
     os.remove(expected_file_location)
 
+
 def test_un7z():
     download_utils.un7z("tests/resources/file.7z", cleanup=False)
     expected_file_location = os.path.join("tests", "resources", "file.txt")
@@ -420,6 +421,7 @@ def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):
     mock_download_from_remote.assert_called_once_with("a", "b", False)
     mock_untar.assert_called_once_with("foo", cleanup=False)
     _clean("a")
+
 
 def test_download_7z_file(mocker, mock_download_from_remote, mock_un7z):
     mock_download_from_remote.return_value = "foo"
