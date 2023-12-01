@@ -442,6 +442,15 @@ def test_download_7z_file(mocker, mock_download_from_remote, mock_un7z):
     _clean("a")
 
 
+def test_download_and_cleanup_7z_file(mocker, mock_download_from_remote, mock_un7z):
+    mock_download_from_remote.return_value = "foo"
+    download_utils.download_7z_file("a", "b", True, True)
+
+    mock_download_from_remote.assert_called_once_with("a", "b", True)
+    mock_un7z.assert_called_once_with("foo", cleanup=True)
+    _clean("a")
+
+
 def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
     zfile = zipfile.ZipFile("tests/resources/utfissue.zip", "r")
     download_utils.extractall_unicode(zfile, os.path.dirname("tests/resources/"))
