@@ -10,7 +10,6 @@
      - Usecases
      - License
      
-
    * - 3D-MARCo
      - - audio: ✅
        - annotations: ✅
@@ -37,6 +36,7 @@
      - :ref:`events`
      - 49
      - 3.16
+     - | :sed:`SED` :environment:`ENVIRONMENT` :bioacoustic:`BIOACOUSTIC`  
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -98,6 +98,7 @@
      - :ref:`tags`
      - 7690
      - 21.3
+     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 

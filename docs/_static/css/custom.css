@@ -104,6 +104,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .sec, .sec a {
     display: inline-block;
@@ -117,6 +119,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .sel, .sel a {
     display: inline-block;
@@ -130,6 +134,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .asc, .asc a {
     display: inline-block;
@@ -143,6 +149,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .ac, .ac a {
     display: inline-block;
@@ -156,6 +164,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .urban, .urban a {
     display: inline-block;
@@ -169,6 +179,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .environment, .environment a {
     display: inline-block;
@@ -182,6 +194,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .machine, .machine a {
     display: inline-block;
@@ -195,6 +209,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .bioacoustic, .bioacoustic a {
     display: inline-block;
@@ -208,6 +224,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 .music, .music a {
     display: inline-block;
@@ -221,6 +239,8 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
+    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+
 }
 
 
