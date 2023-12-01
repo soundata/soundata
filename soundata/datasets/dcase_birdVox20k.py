@@ -1,5 +1,4 @@
-"""
-BirdVox20k Dataset Loader
+"""BirdVox20k Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown

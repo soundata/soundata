@@ -8,6 +8,7 @@ from soundata import download_utils
 from soundata.datasets import esc50
 
 import pytest
+import tempfile
 
 
 @pytest.fixture
@@ -31,6 +32,11 @@ def mock_unzip(mocker):
 
 
 @pytest.fixture
+def mock_un7z(mocker):
+    return mocker.patch.object(download_utils, "un7z")
+
+
+@pytest.fixture
 def mock_path(mocker, mock_download_from_remote):
     return mocker.patch.object(Path, "mkdir")
 
@@ -38,6 +44,7 @@ def mock_path(mocker, mock_download_from_remote):
 def test_downloader(mocker, mock_path):
     mock_zip = mocker.patch.object(download_utils, "download_zip_file")
     mock_tar = mocker.patch.object(download_utils, "download_tar_file")
+    mock_7z = mocker.patch.object(download_utils, "download_7z_file")
     mock_download_from_remote = mocker.patch.object(
         download_utils, "download_from_remote"
     )
@@ -58,6 +65,10 @@ def test_downloader(mocker, mock_path):
         filename="remote.tar.gz", url="a", checksum=("1234")
     )
 
+    _7z_remote = download_utils.RemoteFileMetadata(
+        filename="remote.7z", url="a", checksum=("1234")
+    )
+
     file_remote = download_utils.RemoteFileMetadata(
         filename="remote.txt", url="a", checksum=("1234")
     )
@@ -70,6 +81,11 @@ def test_downloader(mocker, mock_path):
     # tar only
     download_utils.downloader("a", remotes={"b": tar_remote})
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
+    mocker.resetall()
+
+    # 7z only
+    download_utils.downloader("a", remotes={"b": _7z_remote})
+    mock_7z.assert_called_once_with(_7z_remote, "a", False, False)
     mocker.resetall()
 
     # file only
@@ -355,6 +371,13 @@ def test_untar():
     os.remove(expected_file_location)
 
 
+def test_un7z():
+    download_utils.un7z("tests/resources/file.7z", cleanup=False)
+    expected_file_location = os.path.join("tests", "resources", "file.txt")
+    assert os.path.exists(expected_file_location)
+    os.remove(expected_file_location)
+
+
 def test_download_zip_file(mocker, mock_download_from_remote, mock_unzip):
     mock_download_from_remote.return_value = "foo"
     download_utils.download_zip_file("a", "b", False, False)
@@ -409,6 +432,27 @@ def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):
     mock_download_from_remote.assert_called_once_with("a", "b", False)
     mock_untar.assert_called_once_with("foo", cleanup=False)
     _clean("a")
+
+
+def test_download_7z_file(mocker, mock_download_from_remote, mock_un7z):
+    mock_download_from_remote.return_value = "foo"
+    download_utils.download_7z_file("a", "b", False, False)
+
+    mock_download_from_remote.assert_called_once_with("a", "b", False)
+    mock_un7z.assert_called_once_with("foo", cleanup=False)
+    _clean("a")
+
+
+def test_un7z_cleanup():
+    original_sevenz_path = "tests/resources/file.7z"
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        test_sevenz_path = shutil.copy(original_sevenz_path, tmpdir)
+
+        assert os.path.exists(test_sevenz_path)
+
+        download_utils.un7z(test_sevenz_path, cleanup=True)
+        assert not os.path.exists(test_sevenz_path)
 
 
 def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
