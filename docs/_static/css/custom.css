@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 nav.wy-nav-side {
     background: rgb(255, 255, 255);
@@ -104,7 +105,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .sec, .sec a {
@@ -119,7 +120,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .sel, .sel a {
@@ -134,7 +135,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .asc, .asc a {
@@ -149,7 +150,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .ac, .ac a {
@@ -164,7 +165,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .urban, .urban a {
@@ -179,7 +180,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .environment, .environment a {
@@ -194,7 +195,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .machine, .machine a {
@@ -209,7 +210,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .bioacoustic, .bioacoustic a {
@@ -224,7 +225,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 .music, .music a {
@@ -239,7 +240,7 @@ a.reference.external {
     text-align: center;
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Courier New', monospace; /* This line sets the font to Courier New, which is monospaced */
+    font-family: 'Roboto Mono', monospace; /* This line sets the font to Courier New, which is monospaced */
 
 }
 
