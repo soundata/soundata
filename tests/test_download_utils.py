@@ -421,6 +421,25 @@ def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
         assert os.path.exists(expected_file_location)
         os.remove(expected_file_location)
 
+def test_unicode_filename():
+        # Create a zip file with a non-ASCII filename
+        test_zip = 'test.zip'
+        with zipfile.ZipFile(test_zip, 'w') as zf:
+            # Adding a file with a filename that cannot be encoded using "cp437"
+            zf.writestr("测试文件.txt", "This is a test file with a non-ASCII filename")
+
+        # Use the extractall_unicode function to extract the zip file
+        download_utils.extractall_unicode(zipfile.ZipFile(test_zip), "test_output")
+
+        # Check if the file with the non-ASCII name is correctly extracted
+        extracted_file_path = os.path.join("test_output", "测试文件.txt")
+        assert os.path.exists(extracted_file_path), "File was not extracted correctly"
+
+        # Cleanup
+        os.remove(test_zip)
+        os.remove(extracted_file_path)
+        os.rmdir("test_output")
+
 
 def test_extractall_cp437(mocker, mock_download_from_remote, mock_unzip):
     zfile = zipfile.ZipFile("tests/resources/utfissue.zip", "r")
