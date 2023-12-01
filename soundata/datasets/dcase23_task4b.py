@@ -199,11 +199,12 @@ def load_events(fhandle: TextIO) -> annotations.Events:
     times = []
     labels = []
     confidence = []
-    reader = csv.reader(fhandle, delimiter="\t")
+    default_headers = ["start", "end", "label", "confidence"]
+    reader = csv.DictReader(fhandle, delimiter="\t", fieldnames=default_headers)
     for line in reader:
-        times.append([float(line[0]), float(line[1])])
-        labels.append(line[2])
-        confidence.append(min(float(line[3]), 1.0))
+        times.append([float(line["start"]), float(line["end"])])
+        labels.append(line["label"])
+        confidence.append(min(float(line["confidence"]), 1.0))
 
     events_data = annotations.Events(
         np.array(times), "seconds", labels, "open", np.array(confidence)

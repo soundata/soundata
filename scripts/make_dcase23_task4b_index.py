@@ -59,7 +59,7 @@ def make_index(data_path):
         json.dump(index, fhandle, indent=2)
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Generate dcase23_task4b index file.")
-    PARSER.add_argument("data_path", type=str, help="Path to dcase23_task4b data folder.")
-    args = PARSER.parse_args()
+    parser = argparse.ArgumentParser(description="Generate dcase23_task4b index file.")
+    parser.add_argument("data_path", type=str, help="Path to dcase23_task4b data folder.")
+    args = parser.parse_args()
     make_index(args.data_path)
