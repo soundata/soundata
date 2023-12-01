@@ -106,7 +106,7 @@ a.reference.external {
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
     font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-
+    min-width: 50px;
 }
 .sec, .sec a {
     display: inline-block;
@@ -121,7 +121,7 @@ a.reference.external {
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
     font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-
+    min-width: 50px;
 }
 .sel, .sel a {
     display: inline-block;
@@ -136,7 +136,7 @@ a.reference.external {
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
     font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-
+    min-width: 50px;
 }
 .asc, .asc a {
     display: inline-block;
@@ -151,7 +151,7 @@ a.reference.external {
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
     font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-
+    min-width: 50px;
 }
 .ac, .ac a {
     display: inline-block;
@@ -166,7 +166,7 @@ a.reference.external {
     border: 1px solid transparent; /* Optional: adds a border */
     text-decoration: none; /* Optional: removes underline from hyperlinks */
     font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-
+    min-width: 50px;
 }
 .urban, .urban a {
     display: inline-block;
