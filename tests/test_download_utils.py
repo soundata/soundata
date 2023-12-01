@@ -43,6 +43,7 @@ def mock_path(mocker, mock_download_from_remote):
 def test_downloader(mocker, mock_path):
     mock_zip = mocker.patch.object(download_utils, "download_zip_file")
     mock_tar = mocker.patch.object(download_utils, "download_tar_file")
+    mock_7z = mocker.patch.object(download_utils, "download_7z_file")
     mock_download_from_remote = mocker.patch.object(
         download_utils, "download_from_remote"
     )
@@ -63,6 +64,10 @@ def test_downloader(mocker, mock_path):
         filename="remote.tar.gz", url="a", checksum=("1234")
     )
 
+    _7z_remote = download_utils.RemoteFileMetadata(
+        filename="remote.7z", url="a", checksum=("1234")
+    )
+
     file_remote = download_utils.RemoteFileMetadata(
         filename="remote.txt", url="a", checksum=("1234")
     )
@@ -75,6 +80,11 @@ def test_downloader(mocker, mock_path):
     # tar only
     download_utils.downloader("a", remotes={"b": tar_remote})
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
+    mocker.resetall()
+
+    # 7z only
+    download_utils.downloader("a", remotes={"b": _7z_remote})
+    mock_7z.assert_called_once_with(_7z_remote, "a", False, False)
     mocker.resetall()
 
     # file only
