@@ -26,6 +26,13 @@ DCASE23-Task2
 .. automodule:: soundata.datasets.dcase23_task2
    :members:
    :inherited-members:
+
+DCASE23-Task4B
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task4b
+   :members:
+   :inherited-members:
    
 DCASE-bioacoustic
 ^^^^^^^^^^^^^^^^^
@@ -59,6 +66,13 @@ ESC-50
 ^^^^^^
 
 .. automodule:: soundata.datasets.esc50
+   :members:
+   :inherited-members:
+
+Freefield1010
+^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.freefield1010
    :members:
    :inherited-members:
 

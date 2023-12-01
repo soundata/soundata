@@ -1,0 +1,755 @@
+{
+  "version": "1.0",
+  "clips": {
+    "cafe_restaurant_14": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_14.wav",
+        "fa6e51abd4c845e3d35b5806d1209c1b"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_14.txt",
+        "47458dd7ecb5db6e521c08f6ece63802"
+      ]
+    },
+    "cafe_restaurant_00": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_00.wav",
+        "7e36630f7a1110256b497a73145b601c"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_00.txt",
+        "b7ea2a661e3e53d50ef64f1ae32377d9"
+      ]
+    },
+    "cafe_restaurant_06": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_06.wav",
+        "878a32976ce368949067936db01633a6"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_11.txt",
+        "7793c7ab4e7d21f3098e68ddc9c7ec3b"
+      ]
+    },
+    "cafe_restaurant_12": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_12.wav",
+        "ba2585d6add4717811e5b9eb4217e29c"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_04.txt",
+        "0c85fccfe8e208c31149eec32c874d0b"
+      ]
+    },
+    "cafe_restaurant_13": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_13.wav",
+        "1846a5c4eca0df32206f5c833b14bf6b"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_10.txt",
+        "119be311f02273a7021d663d85bc571c"
+      ]
+    },
+    "cafe_restaurant_07": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_07.wav",
+        "ede0669d2d592cadbc7c3c07d3c9426a"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_06.txt",
+        "7fc302ea2bbda58a8a5e80dbf9122c41"
+      ]
+    },
+    "cafe_restaurant_11": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_11.wav",
+        "ad72a380b41c70865dc5f5a44ce33975"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_12.txt",
+        "8ebc0c8070f7cd2558d97afd12ac66ef"
+      ]
+    },
+    "cafe_restaurant_04": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_04.wav",
+        "ce3fc4c78de65d6eaf46e6ec053243ec"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_13.txt",
+        "c4080f209d9d7a62c074d8fbb2473957"
+      ]
+    },
+    "cafe_restaurant_10": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_10.wav",
+        "8da7433a5f77371ab536511e8c33c0b6"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_07.txt",
+        "3f1633872e3f43919dcf1c93addd7ffd"
+      ]
+    },
+    "cafe_restaurant_08": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_08.wav",
+        "5dace9c7d7f6a8bfdae99fa83fcd350c"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_08.txt",
+        "d966492d0ec2d546a0a93f7e4295ba60"
+      ]
+    },
+    "city_center_09": {
+      "audio": [
+        "development_audio/city_center/city_center_09.wav",
+        "f933d04533df844ac7e681a2ee5a231b"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_09.txt",
+        "1adcb975ba233799b1d1e3e5ca1c9740"
+      ]
+    },
+    "city_center_07": {
+      "audio": [
+        "development_audio/city_center/city_center_07.wav",
+        "f81150072f11f22311d3bd90b7b3ba59"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_10.txt",
+        "aae42e896217bd4952df3008b22e83d3"
+      ]
+    },
+    "city_center_12": {
+      "audio": [
+        "development_audio/city_center/city_center_12.wav",
+        "481cbdff33d8bfd4f8b2c0fbee1e2269"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_04.txt",
+        "537a5728dd3bafa4e6c5807e388217d7"
+      ]
+    },
+    "city_center_06": {
+      "audio": [
+        "development_audio/city_center/city_center_06.wav",
+        "1e7bb159363d45c8f92af6f31e4f007b"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_05.txt",
+        "116354d9f56dd8ff3ab4dcc2044ad96b"
+      ]
+    },
+    "city_center_10": {
+      "audio": [
+        "development_audio/city_center/city_center_10.wav",
+        "eb653f450d3b7164baf921b36a07c9ed"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_11.txt",
+        "b9aab5a9b087a6734191edf9a7e90824"
+      ]
+    },
+    "city_center_04": {
+      "audio": [
+        "development_audio/city_center/city_center_04.wav",
+        "35f763b9f143844e00ccd0240fb7ef01"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_07.txt",
+        "f6ce1ba40bd146c99858fddc4bb67292"
+      ]
+    },
+    "city_center_05": {
+      "audio": [
+        "development_audio/city_center/city_center_05.wav",
+        "61cc844ca2e45e7ae4cc484bb0b56413"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_12.txt",
+        "bc68aaec2178cfbbf859aeda0e73216e"
+      ]
+    },
+    "city_center_11": {
+      "audio": [
+        "development_audio/city_center/city_center_11.wav",
+        "a7c7064bc28b5e8b4be3237a8b21a61a"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_06.txt",
+        "ba3c6604b210f15cc59814a1bed8f30b"
+      ]
+    },
+    "city_center_14": {
+      "audio": [
+        "development_audio/city_center/city_center_14.wav",
+        "3e30bd67d90bdfe88c846e262bcd3324"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_02.txt",
+        "b03ee3e30e62a0a92c0eefa645e9441a"
+      ]
+    },
+    "city_center_02": {
+      "audio": [
+        "development_audio/city_center/city_center_02.wav",
+        "7126994428a8392a5ce7f8eed431525f"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_city_center/city_center_14.txt",
+        "abb18df2754926549df4471451122033"
+      ]
+    },
+    "grocery_store_01": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_01.wav",
+        "c37ee05615f6aff963150500f6b108b5"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_02.txt",
+        "9d8562940aeb0ac663ffd4aff5c3e1a3"
+      ]
+    },
+    "grocery_store_00": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_00.wav",
+        "49d2e0248fe46aa474bac95a715f85d0"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_03.txt",
+        "02c6313ef0e14e85b76ad2c54b91b5f2"
+      ]
+    },
+    "grocery_store_02": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_02.wav",
+        "266607f8d1b0a4141c590e86f0d9e507"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_01.txt",
+        "a9c98785f326a25702a02d27ed04f6f6"
+      ]
+    },
+    "grocery_store_03": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_03.wav",
+        "5ddf7eed55ccd16829019f034d4c8d3f"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_00.txt",
+        "caa66ae67d75c3330631063157146812"
+      ]
+    },
+    "grocery_store_12": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_12.wav",
+        "3127dd279ae619f272019bfd56e591a8"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_04.txt",
+        "cb26684cab3a49edfc5698e01dbabbd6"
+      ]
+    },
+    "grocery_store_04": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_04.wav",
+        "fbb816cd1b7e836efba586794900b56c"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_11.txt",
+        "7d075af09670e73973b52f5f7428a00b"
+      ]
+    },
+    "grocery_store_11": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_11.wav",
+        "cc2f66c928ff1d02ec1caa35426425a0"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_12.txt",
+        "5df15aa0e4bdd3b5df2ae68667658928"
+      ]
+    },
+    "grocery_store_08": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_08.wav",
+        "9e71a0b8c5b12a4f6c0e77a0471a9d93"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_08.txt",
+        "e63cce5bafbb65519cc9c202b09cc32e"
+      ]
+    },
+    "grocery_store_09": {
+      "audio": [
+        "development_audio/grocery_store/grocery_store_09.wav",
+        "14c867dfee3efcc5e2c02edb42efb7b3"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_grocery_store/grocery_store_09.txt",
+        "833b9a28b811c300bc21a62ec8c85ec0"
+      ]
+    },
+    "metro_station_07": {
+      "audio": [
+        "development_audio/metro_station/metro_station_07.wav",
+        "0a15204cfc334f889948cd249ad4566c"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_04.txt",
+        "1a3fec4e82eb825b8da0cc54379b0570"
+      ]
+    },
+    "metro_station_12": {
+      "audio": [
+        "development_audio/metro_station/metro_station_12.wav",
+        "3bddf13503642bea174d88d1dd56a06e"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_10.txt",
+        "a0fecd04c1f1c0704cd176e62624d75e"
+      ]
+    },
+    "metro_station_04": {
+      "audio": [
+        "development_audio/metro_station/metro_station_04.wav",
+        "6c3d07cd4b079e68e38b370f8a49aa13"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_11.txt",
+        "1c5082a8d24f95b8bffa8ebbf888e76b"
+      ]
+    },
+    "metro_station_10": {
+      "audio": [
+        "development_audio/metro_station/metro_station_10.wav",
+        "2c6ba21d42a6bb7e813181b3d3f5f060"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_05.txt",
+        "0c4a9823a253d294671af4770bc239a8"
+      ]
+    },
+    "metro_station_11": {
+      "audio": [
+        "development_audio/metro_station/metro_station_11.wav",
+        "3e61036d4e61e33605a7ce7940f4013a"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_07.txt",
+        "ea3d0d3714dca18c13dec2b72847c313"
+      ]
+    },
+    "metro_station_05": {
+      "audio": [
+        "development_audio/metro_station/metro_station_05.wav",
+        "f730fcc0e565450d6ecb4cd30c111770"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_12.txt",
+        "6b4ca2c7977f1b0635392ddb565020e0"
+      ]
+    },
+    "metro_station_01": {
+      "audio": [
+        "development_audio/metro_station/metro_station_01.wav",
+        "5bba22b48e8a9227092ebc1b278d73b6"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_02.txt",
+        "648dc676db6783a077a8dc3def1f4e6a"
+      ]
+    },
+    "metro_station_00": {
+      "audio": [
+        "development_audio/metro_station/metro_station_00.wav",
+        "d4678144ece7a1accada9dc0502e9dec"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_01.txt",
+        "f0444a584833a85a2ca31f48bb1e4901"
+      ]
+    },
+    "metro_station_02": {
+      "audio": [
+        "development_audio/metro_station/metro_station_02.wav",
+        "ce34e382ea0f1fef055c204cc1ba79be"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_metro_station/metro_station_00.txt",
+        "7e63b1d84ede0e91125e254a218e70a0"
+      ]
+    },
+    "residential_area_00": {
+      "audio": [
+        "development_audio/residential_area/residential_area_00.wav",
+        "18fac6fb758f02842e7ef9495fbe8ad9"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_03.txt",
+        "fb195ebecb577bb11484d78bdddc8b4a"
+      ]
+    },
+    "residential_area_14": {
+      "audio": [
+        "development_audio/residential_area/residential_area_14.wav",
+        "a5a2b09564a6da9ba94e4a0a1d512ec8"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_00.txt",
+        "39eab5afab87a867487a8b88af8e9952"
+      ]
+    },
+    "residential_area_01": {
+      "audio": [
+        "development_audio/residential_area/residential_area_01.wav",
+        "fb5f00f9655b0b0764cf4a8a23423624"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_14.txt",
+        "fb497774328be509345a7262861546bc"
+      ]
+    },
+    "residential_area_03": {
+      "audio": [
+        "development_audio/residential_area/residential_area_03.wav",
+        "c17ffb656285e966d175e7b4d0e40dd9"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_01.txt",
+        "817f093c502d92bd935d1b376e99a402"
+      ]
+    },
+    "residential_area_12": {
+      "audio": [
+        "development_audio/residential_area/residential_area_12.wav",
+        "a178240e9ba659bf637aafaeca660596"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_05.txt",
+        "3c1f4d6b45237921a45643953f8d16e2"
+      ]
+    },
+    "residential_area_06": {
+      "audio": [
+        "development_audio/residential_area/residential_area_06.wav",
+        "4b8b743b4a1a25c0cc797d7ebe145ba8"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_04.txt",
+        "c1634238b8e8624f1e242e319e1c611f"
+      ]
+    },
+    "residential_area_07": {
+      "audio": [
+        "development_audio/residential_area/residential_area_07.wav",
+        "7642dcef6d7b8d255b12cda248e164b2"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_12.txt",
+        "d2340a18ea493bf57bae725ab7642431"
+      ]
+    },
+    "residential_area_05": {
+      "audio": [
+        "development_audio/residential_area/residential_area_05.wav",
+        "68e3aabba713135a5c978f65f6595558"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_06.txt",
+        "3c1414248e9644f1448661497d09357e"
+      ]
+    },
+    "residential_area_04": {
+      "audio": [
+        "development_audio/residential_area/residential_area_04.wav",
+        "058576c034bc98d342b3d31a22005fa5"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_07.txt",
+        "6fd4841d5450d8d401eb6b32ab7bb143"
+      ]
+    },
+    "residential_area_09": {
+      "audio": [
+        "development_audio/residential_area/residential_area_09.wav",
+        "7dc6febf78f111825a068a5becde5c48"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_09.txt",
+        "7309f5ca2930dcb24f70fc03a65982e1"
+      ]
+    },
+    "residential_area_08": {
+      "audio": [
+        "development_audio/residential_area/residential_area_08.wav",
+        "67b2c085f2a7d6f65cbb34eb9764eb74"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_residential_area/residential_area_08.txt",
+        "d695c30bdc8f1b2fc89450e16df011a3"
+      ]
+    },
+    "cafe_restaurant_01": {
+      "audio": [
+        "Evaluation_audio/cafe_restaurant/cafe_restaurant_01.wav",
+        "901318d7723318d0875b85d9d9b6f05e"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "cafe_restaurant_03": {
+      "audio": [
+        "Evaluation_audio/cafe_restaurant/cafe_restaurant_03.wav",
+        "ec2b14111cf4c1d7360832f4d0b9dcf8"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "cafe_restaurant_02": {
+      "audio": [
+        "Evaluation_audio/cafe_restaurant/cafe_restaurant_02.wav",
+        "bea60d114c0ed31ee2f2d3ed208022b8"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "cafe_restaurant_05": {
+      "audio": [
+        "Evaluation_audio/cafe_restaurant/cafe_restaurant_05.wav",
+        "f46dba79431d03c3c30b228d49698ee9"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "cafe_restaurant_09": {
+      "audio": [
+        "Evaluation_audio/cafe_restaurant/cafe_restaurant_09.wav",
+        "6b35d779f9103d03751b3d791f32aa07"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "city_center_08": {
+      "audio": [
+        "Evaluation_audio/city_center/city_center_08.wav",
+        "6624b90bfc9d7e93f0f95952d4c7e7f2"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "city_center_13": {
+      "audio": [
+        "Evaluation_audio/city_center/city_center_13.wav",
+        "ff573f10ea540cddb6f595eb3e3216d1"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "city_center_01": {
+      "audio": [
+        "Evaluation_audio/city_center/city_center_01.wav",
+        "4233d66783c7f4003b33fc8de39ba5c9"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "city_center_00": {
+      "audio": [
+        "Evaluation_audio/city_center/city_center_00.wav",
+        "116d61e131b0a515c2e672ce267acb1f"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "city_center_03": {
+      "audio": [
+        "Evaluation_audio/city_center/city_center_03.wav",
+        "12a1e35035e9c321b7ebdc06ccca5e51"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "grocery_store_13": {
+      "audio": [
+        "Evaluation_audio/grocery_store/grocery_store_13.wav",
+        "7e9883d65c329d16b16535d0b128f199"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "grocery_store_07": {
+      "audio": [
+        "Evaluation_audio/grocery_store/grocery_store_07.wav",
+        "575af6be0ea62e1da2ec083c59366e09"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "grocery_store_06": {
+      "audio": [
+        "Evaluation_audio/grocery_store/grocery_store_06.wav",
+        "119a2f12f1c006f32dc9588ae7531800"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "grocery_store_10": {
+      "audio": [
+        "Evaluation_audio/grocery_store/grocery_store_10.wav",
+        "40f3ea050289cf62608f1f7e3e2a1614"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "grocery_store_05": {
+      "audio": [
+        "Evaluation_audio/grocery_store/grocery_store_05.wav",
+        "74fd33c6e5286590b801d0ff870bda17"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "metro_station_13": {
+      "audio": [
+        "Evaluation_audio/metro_station/metro_station_13.wav",
+        "b611d2c7ba6593840591d55cf24f0180"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "metro_station_06": {
+      "audio": [
+        "Evaluation_audio/metro_station/metro_station_06.wav",
+        "3d08cc33d14828df0c58c9d59d5b651e"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "metro_station_03": {
+      "audio": [
+        "Evaluation_audio/metro_station/metro_station_03.wav",
+        "7e08596d58be9750d7603a86594fb531"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "metro_station_08": {
+      "audio": [
+        "Evaluation_audio/metro_station/metro_station_08.wav",
+        "e9a07b27972e3b880d9167a47eb2ff19"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "metro_station_09": {
+      "audio": [
+        "Evaluation_audio/metro_station/metro_station_09.wav",
+        "d01841e3a9e8ca5a40445075a4ad2d5f"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_15": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_15.wav",
+        "c8b8062be4b0da5aa3bf82bd22e52271"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_02": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_02.wav",
+        "f3f91723f585ae80060d11e24f952be0"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_16": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_16.wav",
+        "c8ed0cd64f8fa34ac5764a42d4ba1ca1"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_13": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_13.wav",
+        "13c5e79e232aec3b4a454382e4135d52"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_11": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_11.wav",
+        "aea69189a2355ed69512a81bfdc02d08"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    },
+    "residential_area_10": {
+      "audio": [
+        "Evaluation_audio/residential_area/residential_area_10.wav",
+        "6571e62869c0e85ef56cf7d7b6c90521"
+      ],
+      "annotations": [
+        null,
+        null
+      ]
+    }
+  }
+}
