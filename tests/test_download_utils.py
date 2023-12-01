@@ -43,6 +43,7 @@ def mock_path(mocker, mock_download_from_remote):
 def test_downloader(mocker, mock_path):
     mock_zip = mocker.patch.object(download_utils, "download_zip_file")
     mock_tar = mocker.patch.object(download_utils, "download_tar_file")
+    mock_7z = mocker.patch.object(download_utils, "download_7z_file")
     mock_download_from_remote = mocker.patch.object(
         download_utils, "download_from_remote"
     )
@@ -63,6 +64,10 @@ def test_downloader(mocker, mock_path):
         filename="remote.tar.gz", url="a", checksum=("1234")
     )
 
+    _7z_remote = download_utils.RemoteFileMetadata(
+        filename="remote.7z", url="a", checksum=("1234")
+    )
+
     file_remote = download_utils.RemoteFileMetadata(
         filename="remote.txt", url="a", checksum=("1234")
     )
@@ -75,6 +80,11 @@ def test_downloader(mocker, mock_path):
     # tar only
     download_utils.downloader("a", remotes={"b": tar_remote})
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
+    mocker.resetall()
+
+    # 7z only
+    download_utils.downloader("a", remotes={"b": _7z_remote})
+    mock_7z.assert_called_once_with(_7z_remote, "a", False, False)
     mocker.resetall()
 
     # file only
@@ -360,6 +370,13 @@ def test_untar():
     os.remove(expected_file_location)
 
 
+def test_un7z():
+    download_utils.un7z("tests/resources/file.7z", cleanup=False)
+    expected_file_location = os.path.join("tests", "resources", "file.txt")
+    assert os.path.exists(expected_file_location)
+    os.remove(expected_file_location)
+
+
 def test_download_zip_file(mocker, mock_download_from_remote, mock_unzip):
     mock_download_from_remote.return_value = "foo"
     download_utils.download_zip_file("a", "b", False, False)
@@ -416,6 +433,15 @@ def test_download_tar_file(mocker, mock_download_from_remote, mock_untar):
     _clean("a")
 
 
+def test_download_7z_file(mocker, mock_download_from_remote, mock_un7z):
+    mock_download_from_remote.return_value = "foo"
+    download_utils.download_7z_file("a", "b", False, False)
+
+    mock_download_from_remote.assert_called_once_with("a", "b", False)
+    mock_un7z.assert_called_once_with("foo", cleanup=False)
+    _clean("a")
+
+
 def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
     zfile = zipfile.ZipFile("tests/resources/utfissue.zip", "r")
     download_utils.extractall_unicode(zfile, os.path.dirname("tests/resources/"))
@@ -425,6 +451,26 @@ def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
         expected_file_location = os.path.join("tests", "resources", expected_file)
         assert os.path.exists(expected_file_location)
         os.remove(expected_file_location)
+
+
+def test_unicode_filename():
+    # Create a zip file with a non-ASCII filename
+    test_zip = "test.zip"
+    with zipfile.ZipFile(test_zip, "w") as zf:
+        # Adding a file with a filename that cannot be encoded using "cp437"
+        zf.writestr("测试文件.txt", "This is a test file with a non-ASCII filename")
+
+    # Use the extractall_unicode function to extract the zip file
+    download_utils.extractall_unicode(zipfile.ZipFile(test_zip), "test_output")
+
+    # Check if the file with the non-ASCII name is correctly extracted
+    extracted_file_path = os.path.join("test_output", "测试文件.txt")
+    assert os.path.exists(extracted_file_path), "File was not extracted correctly"
+
+    # Cleanup
+    os.remove(test_zip)
+    os.remove(extracted_file_path)
+    os.rmdir("test_output")
 
 
 def test_extractall_cp437(mocker, mock_download_from_remote, mock_unzip):
