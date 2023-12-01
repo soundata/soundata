@@ -62,6 +62,6 @@ def main(args):
     make_index(args.data_path)
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Generate DCASE'23 Task 6B dataset index file.")
-    PARSER.add_argument("data_path", type=str, help="Path to DCASE'23 Task 6B dataset folder.")
-    main(PARSER.parse_args())
+    parser = argparse.ArgumentParser(description="Generate DCASE'23 Task 6B dataset index file.")
+    parser.add_argument("data_path", type=str, help="Path to DCASE'23 Task 6B dataset folder.")
+    main(parser.parse_args())

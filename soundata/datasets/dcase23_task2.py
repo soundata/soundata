@@ -1,5 +1,4 @@
-"""
-DCASE23_Task2 Dataset Loader
+"""DCASE23_Task2 Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
