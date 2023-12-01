@@ -8,6 +8,7 @@ from soundata import download_utils
 from soundata.datasets import esc50
 
 import pytest
+import tempfile
 
 
 @pytest.fixture
@@ -440,6 +441,18 @@ def test_download_7z_file(mocker, mock_download_from_remote, mock_un7z):
     mock_download_from_remote.assert_called_once_with("a", "b", False)
     mock_un7z.assert_called_once_with("foo", cleanup=False)
     _clean("a")
+
+
+def test_un7z_cleanup():
+    original_sevenz_path = "tests/resources/file.7z"
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        test_sevenz_path = shutil.copy(original_sevenz_path, tmpdir)
+
+        assert os.path.exists(test_sevenz_path)
+
+        download_utils.un7z(test_sevenz_path, cleanup=True)
+        assert not os.path.exists(test_sevenz_path)
 
 
 def test_extractall_unicode(mocker, mock_download_from_remote, mock_unzip):
