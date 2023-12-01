@@ -3,51 +3,38 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    Created By
-    ----------
+    *freefield1010: A Dataset of Field Recording Excerpts for Bioacoustic Research*
 
-   Dan Stowell*, Mark D. Plumbley*
-    * Centre for Digital Music, Queen Mary University of London
+    *Created By:*
+        | Dan Stowell, Mark D. Plumbley.
+        | Centre for Digital Music, Queen Mary University of London.
 
     Version 1.0
 
-    Description
-    -----------
+    *Description:*
+        The freefield1010 dataset is a collection of 7,690 field recording excerpts from various global locations, standardized for research purposes. These recordings cover a wide range of environments and locales. The dataset is part of the "Bird Audio Detection" challenge, a joint venture by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society. It's particularly useful for bioacoustic classification models, with annotations indicating the presence or absence of birds in the recordings.
 
-    Freefield1010 dataset, a freely accessible collection of 7,690 field recording excerpts from various global locations. These recordings have been standardized for research, and both the audio clips and their metadata are under the Creative Commons license. 
-    The dataset boasts a wide range of environments and locales. For the BAD Challenge, these recordings have been annotated to indicate whether birds are present or absent. 
-    Furthermore, the freefield1010 dataset serves as a development set for the "Bird Audio Detection" challenge, a joint venture by DCASE (Detection and Classification of Acoustic Scenes and Events) and the IEEE Signal Processing Society. 
-    This dataset is especially valuable for tasks such as creating and testing bioacoustic classification models.
+    *Audio Files Included:*
+        * The dataset consists of 7,690 audio clips, sourced from the field-recording tag in the Freesound audio archive.
+        * All sounds have been converted to standard CD-quality mono WAV format.
+        * Files are stored as 16-bit 44.1 kHz WAV files in the 'wav' folder.
+        * Amplitude of each excerpt has been normalized due to the varying levels in the Freesound archive.
 
-    Audio Files Included
-    --------------------
+    *Meta-data Files Included:*
+        * A binary label "hasbird" is associated with every recording.
+        * The metadata is available on the DCASE "Bird Audio Detection" challenge website: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
 
-    The collection contains 7,690 audio clips, sourced from the field-recording tag in the Freesound audio archive (as detailed above). All acquired sounds have been transformed into standard CD-quality mono WAV format. 
-    Inside the 'wav' folder, the recordings are stored as WAV files with a 16-bit 44.1 kHz sampling rate. 
-    Since amplitude levels in the crowdsourced Freesound archive can vary, which might be an issue for listening tests, they decided to normalize the amplitude of each excerpt in our dataset.
+    *Please Acknowledge freefield1010 in Academic Research:*
+        When using the freefield1010 dataset for academic research, please cite the following paper:
 
-    Meta-data Files Included
-    ------------------------
+            D. Stowell, M. Plumbley. "An open dataset for research on audio field recording archives: Freefield1010.", Proc. Audio Engineering Society 53rd Conference on Semantic Audio (AES53), 2014.
 
-    A table containing a binary label "hasbird" associated to every recording in freefield1010 is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
-    
+    *Conditions of Use:*
+        * The freefield1010 dataset is created by Dan Stowell and Mark D. Plumbley.
+        * It is available under the Creative Commons Attribution 4.0 International (CC BY 4.0) license: https://creativecommons.org/licenses/by/4.0/
 
-    Please Acknowledge freefield1010 in Academic Research
-    ----------------------------------------------------
-
-    When freefield1010 is used for academic research, we would highly appreciate it if scientific publications of works partly based on this dataset cite the following publication:
-
-    .. code-block:: latex
-        D. Stowell, M. Plumbley. "An open dataset for research on audio field recording archives: Freefield1010.", Proc. Audio Engineering Society 53rd Conference on Semantic Audio (AES53), 2014.
-
-    Conditions of Use
-    -----------------
-
-    Dataset created by Dan Stowell and Mark D. Plumbley
-
-    The freefield1010 dataset is offered free of charge under the terms of the Creative  Commons Attribution 4.0 International (CC BY 4.0) license:
-    https://creativecommons.org/licenses/by/4.0/
 """
+
 
 import os
 from typing import BinaryIO, Optional, TextIO, Tuple

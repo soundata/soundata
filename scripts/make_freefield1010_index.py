@@ -46,6 +46,6 @@ def main(args):
     
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Generate freefield1010 index file.")
-    PARSER.add_argument("data_path", type=str, help="Path to freefield1010 data folder.")
-    main(PARSER.parse_args())
+    parser = argparse.ArgumentParser(description="Generate freefield1010 index file.")
+    parser.add_argument("data_path", type=str, help="Path to freefield1010 data folder.")
+    main(parser.parse_args())
