@@ -46,6 +46,7 @@
      - :ref:`tags`
      - 6974
      - 43.2
+     - | :ac:`AC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -55,6 +56,7 @@
      - :ref:`tags`
      - 6974
      - 43.2
+     - | :ac:`AC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
