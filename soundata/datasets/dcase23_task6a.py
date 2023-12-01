@@ -125,12 +125,12 @@ REMOTES = {
     "clotho_audio_test": download_utils.RemoteFileMetadata(
         filename="clotho_audio_test.7z",
         url="https://zenodo.org/records/3865658/files/clotho_audio_test.7z?download=1",
-        checksum="24102395fd757c462421a483fba5c407",
+        checksum="9b3fe72560a621641ff4351ba1154349",
     ),
     "clotho_metadata_test": download_utils.RemoteFileMetadata(
         filename="clotho_metadata_test.csv",
         url="https://zenodo.org/records/3865658/files/clotho_metadata_test.csv?download=1",
-        checksum="1301db07acbf1e4fabc467eb54e0d353",
+        checksum="52f8ad01c229a310a0ff8043df480e21",
     ),
 }
 
@@ -302,12 +302,15 @@ class Dataset(core.Dataset):
         # Process each file
         for file_name, file_type in files.items():
             file_path = os.path.join(self.data_home, file_name)
+            delimiter = ";" if file_type == "test_metadata" else ","
             with open(file_path, encoding="ISO-8859-1") as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=",")
+                csv_reader = csv.reader(csv_file, delimiter=delimiter)
                 next(csv_reader)  # Skip the header row
                 for row in csv_reader:
                     file_key = row[0].replace(".wav", "")
-                    dataset_type = file_name.split("_")[2]  # development, validation, evaluation, test
+                    dataset_type = file_name.split("_")[2].split(".")[
+                        0
+                    ]  # development, validation, evaluation, test
                     file_key = f"{dataset_type}/{file_key}"
                     if file_key not in combined_data:
                         combined_data[file_key] = {
@@ -320,7 +323,19 @@ class Dataset(core.Dataset):
                             "license": "",
                             "captions": [],
                         }
-                    if file_type == "metadata" or file_type == "test_metadata":
+                    if file_type == "metadata":
+                        combined_data[file_key].update(
+                            {
+                                "file_name": file_key,
+                                "keywords": row[1],
+                                "sound_id": row[2],
+                                "sound_link": row[3],
+                                "start_end_samples": row[4],
+                                "manufacturer": row[5],
+                                "license": row[6],
+                            }
+                        )
+                    elif file_type == "test_metadata":
                         combined_data[file_key].update(
                             {
                                 "file_name": file_key,
@@ -329,14 +344,6 @@ class Dataset(core.Dataset):
                                 "license": row[3],
                             }
                         )
-                        if file_type == "metadata":
-                            combined_data[file_key].update(
-                                {
-                                    "keywords": row[1],
-                                    "sound_id": row[2],
-                                    "sound_link": row[3],
-                                }
-                            )
                     elif file_type == "captions":
                         combined_data[file_key]["captions"] = row[1:]
         return combined_data
