@@ -377,12 +377,6 @@ class Dataset(core.Dataset):
                 self.data_home, "7830345", machine, "attributes_00.csv"
             )
 
-            # Check for file existence
-            if not os.path.exists(metadata_add_train_path):
-                raise FileNotFoundError(
-                    f"Additional training metadata for {machine} not found. Did you run .download()?"
-                )
-
             # Parsing additional training metadata for each machine
             with open(metadata_add_train_path, "r") as f:
                 reader = csv.reader(f, delimiter=",")
