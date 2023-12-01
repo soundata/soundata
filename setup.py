@@ -40,7 +40,7 @@ if __name__ == "__main__":
             "jams>=0.3.4",
             "flake8>=5.0.4",
             "mypy>=0.982",
-            "py7zr",
+            "py7zr>=0.16.0",
         ],
         extras_require={
             "tests": [

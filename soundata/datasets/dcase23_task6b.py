@@ -8,12 +8,12 @@ DCASE 2023 Task-6B Dataset Loader
         | Clotho (c) by K. Drossos, S. Lipping, and T. Virtanen.
         | Clotho is licensed under the terms set by Tampere University and Creative Commons licenses for the audio files as per their origin from the Freesound platform.
         | You should have received a copy of the license along with this work.
+        | https://github.com/audio-captioning/clotho-dataset
+        | Paper: "Clotho: an Audio Captioning Dataset," ICASSP 2020
 
     *Created By:*
         | K. Drossos, S. Lipping, and T. Virtanen.
         | Tampere University, Finland
-        | https://github.com/audio-captioning/clotho-dataset
-        | Paper: "Clotho: an Audio Captioning Dataset," ICASSP 2020
 
     *Version 2.1.0*
         | Fixes for corrupted files and illegal characters.
