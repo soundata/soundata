@@ -311,9 +311,7 @@ class Dataset(core.Dataset):
             with open(file_path, encoding="ISO-8859-1") as csv_file:
                 csv_reader = csv.DictReader(csv_file, delimiter=",")
                 for row in csv_reader:
-                    file_key = row["file_name"].replace(
-                        ".wav", ""
-                    )  
+                    file_key = row["file_name"].replace(".wav", "")
                     if "development" in file_name:
                         file_key = "development/" + file_key
                     elif "validation" in file_name:
@@ -337,9 +335,7 @@ class Dataset(core.Dataset):
                         combined_data[file_key].update(
                             {
                                 "file_name": file_key,
-                                "keywords": row[
-                                    "keywords"
-                                ],  
+                                "keywords": row["keywords"],
                                 "sound_id": row["sound_id"],
                                 "sound_link": row["sound_link"],
                                 "start_end_samples": row["start_end_samples"],
@@ -350,5 +346,5 @@ class Dataset(core.Dataset):
                     elif file_type == "captions":
                         combined_data[file_key]["captions"] = [
                             row[key] for key in row if key != "file_name"
-                        ]  
+                        ]
         return combined_data
