@@ -19,6 +19,13 @@ Dataset Loaders
 .. automodule:: soundata.datasets.marco
    :members:
    :inherited-members:
+
+DCASE23-Task2
+^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task2
+   :members:
+   :inherited-members:
    
 DCASE-bioacoustic
 ^^^^^^^^^^^^^^^^^
