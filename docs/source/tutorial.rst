@@ -21,7 +21,7 @@ Soundata is easily imported into your Python code by:
 
 
 Initializing a dataset
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 Print a list of all available dataset loaders by calling:
 

@@ -33,7 +33,21 @@ DCASE23-Task4B
 .. automodule:: soundata.datasets.dcase23_task4b
    :members:
    :inherited-members:
-   
+
+DCASE23-Task6a
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task6a
+   :members:
+   :inherited-members:
+
+DCASE23-Task6b
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task6b
+   :members:
+   :inherited-members:
+
 DCASE-bioacoustic
 ^^^^^^^^^^^^^^^^^
 

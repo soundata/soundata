@@ -9,7 +9,7 @@ import tarfile
 import urllib
 import zipfile
 import subprocess
-
+import py7zr
 from tqdm import tqdm
 
 from soundata.validate import md5
@@ -112,6 +112,8 @@ def downloader(
                     download_zip_file(remotes[k], save_dir, force_overwrite, cleanup)
                 elif ".gz" in extension or ".tar" in extension or ".bz2" in extension:
                     download_tar_file(remotes[k], save_dir, force_overwrite, cleanup)
+                elif ".7z" in extension:
+                    download_7z_file(remotes[k], save_dir, force_overwrite, cleanup)
                 else:
                     download_from_remote(remotes[k], save_dir, force_overwrite)
 
@@ -315,6 +317,34 @@ def unzip(zip_path, cleanup):
     zfile.close()
     if cleanup:
         os.remove(zip_path)
+
+
+def download_7z_file(tar_remote, save_dir, force_overwrite, cleanup):
+    """Download and untar a tar file.
+
+    Args:
+        tar_remote (RemoteFileMetadata): Object containing download information
+        save_dir (str): Path to save downloaded file
+        force_overwrite (bool): If True, overwrites existing files
+        cleanup (bool): If True, remove tarfile after untarring
+
+    """
+    _7z_download_path = download_from_remote(tar_remote, save_dir, force_overwrite)
+    un7z(_7z_download_path, cleanup=cleanup)
+
+
+def un7z(sevenz_path, cleanup):
+    """Unzip a 7z file inside its current directory.
+
+    Args:
+        sevenz_path (str): Path to the 7z file
+        cleanup (bool): If True, remove 7z file after extraction
+
+    """
+    with py7zr.SevenZipFile(sevenz_path, mode="r") as z:
+        z.extractall(path=os.path.dirname(sevenz_path))
+    if cleanup:
+        os.remove(sevenz_path)
 
 
 def download_tar_file(tar_remote, save_dir, force_overwrite, cleanup):

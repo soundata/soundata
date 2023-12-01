@@ -37,7 +37,10 @@ if __name__ == "__main__":
             "pandas>=1.3.5",
             "requests>=2.31.0",
             "tqdm>=4.65.0",
-            "jams>=0.3.4"
+            "jams>=0.3.4",
+            "flake8>=5.0.4",
+            "mypy>=0.982",
+            "py7zr>=0.16.0",
         ],
         extras_require={
             "tests": [
