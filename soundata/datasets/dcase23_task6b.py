@@ -1,4 +1,5 @@
-"""DCASE 2023 Task-6B Dataset Loader
+"""
+DCASE 2023 Task-6B Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
@@ -307,12 +308,12 @@ class Dataset(core.Dataset):
         # Process each file
         for file_name, file_type in files.items():
             file_path = os.path.join(self.data_home, file_name)
-            # Now open the file with the mentioned encoding
             with open(file_path, encoding="ISO-8859-1") as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=",")
-                next(csv_reader)  # Skip the header row
+                csv_reader = csv.DictReader(csv_file, delimiter=",")
                 for row in csv_reader:
-                    file_key = row[0].replace(".wav", "")
+                    file_key = row["file_name"].replace(
+                        ".wav", ""
+                    )  
                     if "development" in file_name:
                         file_key = "development/" + file_key
                     elif "validation" in file_name:
@@ -336,14 +337,18 @@ class Dataset(core.Dataset):
                         combined_data[file_key].update(
                             {
                                 "file_name": file_key,
-                                "keywords": row[1],
-                                "sound_id": row[2],
-                                "sound_link": row[3],
-                                "start_end_samples": row[4],
-                                "manufacturer": row[5],
-                                "license": row[6],
+                                "keywords": row[
+                                    "keywords"
+                                ],  
+                                "sound_id": row["sound_id"],
+                                "sound_link": row["sound_link"],
+                                "start_end_samples": row["start_end_samples"],
+                                "manufacturer": row["manufacturer"],
+                                "license": row["license"],
                             }
                         )
                     elif file_type == "captions":
-                        combined_data[file_key]["captions"] = row[1:]
+                        combined_data[file_key]["captions"] = [
+                            row[key] for key in row if key != "file_name"
+                        ]  
         return combined_data
