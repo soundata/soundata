@@ -74,7 +74,7 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - freefield1010
+   * - Freefield1010
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`

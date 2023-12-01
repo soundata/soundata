@@ -62,7 +62,7 @@ ESC-50
    :members:
    :inherited-members:
 
-freefield1010
+Freefield1010
 ^^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.freefield1010
