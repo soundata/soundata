@@ -27,6 +27,7 @@
      - :ref:`tags`
      - 174
      - 21
+     - | :sec:`SEC` :machine:`MACHINE`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -206,6 +207,7 @@
      - :ref:`tags`
      - 349150
      - 97
+     - | :asc:`ASC` :urban:`URBAN`
      - :tau2022:`\ `
 
    * - URBAN-SED
@@ -235,5 +237,6 @@
      - :ref:`tags`
      - 10,000
      - 28
+     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0

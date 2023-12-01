@@ -127,9 +127,6 @@ html_css_files = [
 
 html_logo = "img/soundata.png"
 
-from docutils import nodes, utils
-
-from docutils import nodes, utils
 
 def create_reference_role(node_id):
     def role_fn(name, rawtext, text, lineno, inliner, options={}, content=[]):
