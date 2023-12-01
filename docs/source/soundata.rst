@@ -129,6 +129,13 @@ TAU Urban Acoustic Scenes 2020 Mobile
    :members:
    :inherited-members:
 
+TAU Urban Acoustic Scenes 2022 Mobile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2022uas_mobile
+   :members:
+   :inherited-members:
+
 TUT Sound events 2017
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -147,6 +154,14 @@ UrbanSound8K
 ^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.urbansound8k
+   :members:
+   :inherited-members:
+
+
+Warblrb10k
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.warblrb10k
    :members:
    :inherited-members:
 
