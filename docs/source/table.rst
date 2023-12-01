@@ -27,6 +27,15 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
+   * - DCASE23-Task4B
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 49
+     - 3.16
+     - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/3.0
+
    * - DCASE23-Task6a
      - - audio: ✅
        - annotations: ✅
@@ -44,6 +53,7 @@
      - 43.2
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
+
 
    * - DCASE-bioacoustic
      - - audio: ✅
@@ -91,6 +101,15 @@
      - 2.8
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
+
+   * - Freefield1010
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 7690
+     - 21.3
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
 
    * - FSD50K
      - - audio: ✅

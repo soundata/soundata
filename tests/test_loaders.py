@@ -19,6 +19,7 @@ CUSTOM_TEST_CLIPS = {
     "dcase_birdVox20k": "00053d90-e4b9-4045-a2f1-f39efc90cfa9",
     "dcase_bioacoustic": "2015-09-04_08-04-59_unit03",
     "esc50": "1-104089-A-22",
+    "freefield1010": "64486",
     "fsd50k": "64760",
     "fsdnoisy18k": "17",
     "tau2019uas": "development/airport-barcelona-0-0-a",
@@ -26,8 +27,8 @@ CUSTOM_TEST_CLIPS = {
     "tau2020uas_mobile": "airport-barcelona-0-0-a",
     "urbansed": "soundscape_train_uniform1736",
     "urbansound8k": "135776-2-0-49",
-    "tut2017se": "a001",
     "singapura": "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135",
+    "tut2017se": "a001",
     "warblrb10k": "759808e5-f824-401e-9058",
 }
 
