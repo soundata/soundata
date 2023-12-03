@@ -88,7 +88,11 @@ indexes
 
 Indexes in `soundata` are manifests of the files in a dataset and their corresponding md5 checksums.
 Specifically, an index is a json file with the mandatory top-level key ``version`` and at least one of the optional
-top-level keys ``metadata``, ``clips``, ``clipgroups`` or ``records``. An index might look like:
+top-level keys ``metadata``, ``clips``, ``clipgroups`` or ``records``. 
+The MD5 checksums serve as a fingerprint for each file, allowing users to verify the file's integrity after download. 
+If the calculated checksum of the downloaded file matches the one in the index, it confirms that the file is unchanged.
+The generated checksum is then paired with the file's relative path and added to the index under the appropriate section (metadata, clips, clipgroups, or records).
+An index might look like:
 
 
 .. admonition:: Example Index

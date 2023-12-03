@@ -18,6 +18,43 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - DCASE23-task2
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 174
+     - 21
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - DCASE23-Task4B
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 49
+     - 3.16
+     - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/3.0
+
+   * - DCASE23-Task6a
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 6974
+     - 43.2
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+   * - DCASE23-Task6b
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 6974
+     - 43.2
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+
    * - DCASE-bioacoustic
      - - audio: ✅
        - annotations: ✅
@@ -64,6 +101,15 @@
      - 2.8
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
+
+   * - Freefield1010
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 7690
+     - 21.3
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
 
    * - FSD50K
      - - audio: ✅
@@ -166,6 +212,16 @@
      - 97
      - :tau2020:`\ `
 
+   * - | TAU Urban
+       | Acoustic Scenes
+       | 2022 Mobile
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 349150
+     - 97
+     - :tau2022:`\ `
+
    * - URBAN-SED
      - - audio: ✅
        - annotations: ✅
@@ -183,3 +239,13 @@
      - 8.75
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+
+   * - Warblrb10k
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`tags`
+     - 10,000
+     - 28
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0

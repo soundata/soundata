@@ -19,7 +19,35 @@ Dataset Loaders
 .. automodule:: soundata.datasets.marco
    :members:
    :inherited-members:
-   
+
+DCASE23-Task2
+^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task2
+   :members:
+   :inherited-members:
+
+DCASE23-Task4B
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task4b
+   :members:
+   :inherited-members:
+
+DCASE23-Task6a
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task6a
+   :members:
+   :inherited-members:
+
+DCASE23-Task6b
+^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.dcase23_task6b
+   :members:
+   :inherited-members:
+
 DCASE-bioacoustic
 ^^^^^^^^^^^^^^^^^
 
@@ -52,6 +80,13 @@ ESC-50
 ^^^^^^
 
 .. automodule:: soundata.datasets.esc50
+   :members:
+   :inherited-members:
+
+Freefield1010
+^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.freefield1010
    :members:
    :inherited-members:
 
@@ -122,6 +157,13 @@ TAU Urban Acoustic Scenes 2020 Mobile
    :members:
    :inherited-members:
 
+TAU Urban Acoustic Scenes 2022 Mobile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soundata.datasets.tau2022uas_mobile
+   :members:
+   :inherited-members:
+
 TUT Sound events 2017
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -140,6 +182,14 @@ UrbanSound8K
 ^^^^^^^^^^^^
 
 .. automodule:: soundata.datasets.urbansound8k
+   :members:
+   :inherited-members:
+
+
+Warblrb10k
+^^^^^^^^^^
+
+.. automodule:: soundata.datasets.warblrb10k
    :members:
    :inherited-members:
 

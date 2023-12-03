@@ -1,5 +1,4 @@
-"""
-BirdVox20k Dataset Loader
+"""BirdVox20k Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
@@ -95,7 +94,7 @@ LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
 
 
 class Clip(core.Clip):
-    """urbansound8k Clip class
+    """BirdVox20k Clip class
 
     Args:
         clip_id (str): id of the clip
