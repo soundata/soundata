@@ -6,22 +6,30 @@ import random
 import types
 from typing import Any
 
-from functools import lru_cache
-from pydub import AudioSegment
-from pydub.playback import play
-import threading
-import time
-from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox, Label, Output
-import matplotlib.pyplot as plt
-import ipywidgets as widgets
-import simpleaudio as sa
-import seaborn as sns
-import numpy as np
-from tqdm import tqdm
-import pandas as pd
-import librosa
-import numpy as np
-from IPython.display import display
+# Audio Processing and Playback
+from pydub import AudioSegment  # For manipulating audio files
+from pydub.playback import play  # For playing audio files
+import simpleaudio as sa  # Alternative library for audio playback
+import librosa  # For advanced audio analysis
+
+# Multithreading and Time Management
+import threading  # For running processes in parallel
+import time  # For handling time-related functions
+
+# Data Handling and Visualization
+import pandas as pd  # For handling and analyzing data structures
+import numpy as np  # For numerical operations
+import seaborn as sns  # For statistical data visualization
+import matplotlib.pyplot as plt  # For creating static, animated, and interactive visualizations
+
+# User Interface and Widgets
+import ipywidgets as widgets  # For creating interactive UI components
+from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox, Label, Output  # Specific UI widgets
+from IPython.display import display  # For displaying widgets in IPython environments
+
+# Miscellaneous
+from functools import lru_cache  # For caching function call results
+from tqdm import tqdm  # For displaying progress bars
 
 
 from soundata import download_utils
@@ -382,7 +390,7 @@ class Dataset(object):
         durations = [
             len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1]
             for c_id in tqdm(
-                list(self._index["clips"].keys())[:100], desc="Calculating durations"
+                list(self._index["clips"].keys()), desc="Calculating durations"
             )
         ]
 
