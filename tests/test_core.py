@@ -4,6 +4,7 @@ import numpy as np
 import soundata
 from soundata import core
 import os
+from unittest.mock import Mock, patch
 
 
 def test_clip():
@@ -190,6 +191,20 @@ def test_dataset():
     assert isinstance(dataset, core.Dataset)
 
     print(dataset)  # test that repr doesn't fail
+
+
+def test_explore_dataset():
+    dataset = soundata.initialize("urbansound8k")
+
+    with patch("soundata.display_plot.perform_dataset_exploration") as mock_function:
+        clip_id = "test_clip_id"
+        dataset.explore_dataset(clip_id)
+        mock_function.assert_called_once_with(dataset, clip_id)
+
+        mock_function.reset_mock()
+
+        dataset.explore_dataset()
+        mock_function.assert_called_with(dataset, None)
 
 
 def test_dataset_errors():
