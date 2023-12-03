@@ -454,7 +454,7 @@ class Dataset(object):
             else:
                 total_duration_unit = "seconds"
 
-        # Define the base colors
+        # Define the base colors for soundata template
         base_colors = ["#404040", "#126782", "#C9C9C9"]
 
         # Create the main figure and the two axes
