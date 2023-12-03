@@ -24,7 +24,15 @@ import matplotlib.pyplot as plt  # For creating static, animated, and interactiv
 
 # User Interface and Widgets
 import ipywidgets as widgets  # For creating interactive UI components
-from ipywidgets import FloatSlider, Button, VBox, HBox, Checkbox, Label, Output  # Specific UI widgets
+from ipywidgets import (
+    FloatSlider,
+    Button,
+    VBox,
+    HBox,
+    Checkbox,
+    Label,
+    Output,
+)  # Specific UI widgets
 from IPython.display import display  # For displaying widgets in IPython environments
 
 # Miscellaneous
