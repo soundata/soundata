@@ -400,6 +400,7 @@ class Dataset(object):
             for c_id in tqdm(
                 list(self._index["clips"].keys()), desc="Calculating durations"
             )
+            if hasattr(self.clip(c_id), "audio")  # Adding the check here
         ]
 
         # Calculate statistics
