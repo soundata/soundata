@@ -10,6 +10,7 @@ import numpy as np
 
 from soundata import download_utils
 from soundata import validate
+from soundata import display_plot
 
 MAX_STR_LEN = 100
 DOCS_URL = "https://soundata.readthedocs.io/en/stable/source/soundata.html"
@@ -320,6 +321,9 @@ class Dataset(object):
             force_overwrite=force_overwrite,
             cleanup=cleanup,
         )
+
+    def explore_dataset(self, clip_id=None):
+        display_plot.display_utils(self, clip_id)
 
     @cached_property
     def clip_ids(self):
