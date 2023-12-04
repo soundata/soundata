@@ -1,4 +1,5 @@
 import sys
+from unittest.mock import Mock, patch
 import pytest
 import numpy as np
 
@@ -58,3 +59,20 @@ def test_compute_clip_statistics():
     empty_dataset = MockDataset([])
     with pytest.raises(ValueError):
         display_plot.compute_clip_statistics(empty_dataset)
+
+
+def test_perform_dataset_exploration_initialization():
+    """Test the initialization and default states of widgets."""
+    # Create a mock instance with specific return values for the widget attributes
+    exploration_instance = Mock()
+    exploration_instance.event_dist_check = Mock(value=True)
+    exploration_instance.dataset_analysis_check = Mock(value=False)
+    exploration_instance.audio_plot_check = Mock(value=True)
+
+    # Call the function with the mock instance
+    display_plot.perform_dataset_exploration(exploration_instance)
+
+    # Test initial values of widgets
+    assert exploration_instance.event_dist_check.value is True
+    assert exploration_instance.dataset_analysis_check.value is False
+    assert exploration_instance.audio_plot_check.value is True
