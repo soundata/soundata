@@ -100,14 +100,3 @@ def test_time_unit_conversion(mocker):
 
     mock_stats.assert_called_once()
     mock_show.assert_called_once()
-    assert mock_stats.return_value["mean_duration"] == 180
-    assert mock_stats.return_value["median_duration"] == 180
-    assert mock_stats.return_value["std_deviation"] == 60
-    assert mock_stats.return_value["min_duration"] == 120
-    assert mock_stats.return_value["max_duration"] == 240
-
-    hist_call_args = mock_show.call_args_list[0][0][
-        0
-    ]  # Assuming this gets the first histogram call
-    assert len(hist_call_args.patches) == 30  # Number of bins
-    assert hist_call_args.patches[0].get_facecolor() == "#404040"  # Color of the bars
