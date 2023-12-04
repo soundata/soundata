@@ -32,3 +32,7 @@ comment:
   layout: "header, diff"
   behavior: default
   require_changes: no
+
+coverage:
+  ignore:
+    - "tests/test_display_plot.py"

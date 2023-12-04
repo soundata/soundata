@@ -77,31 +77,6 @@ def test_perform_dataset_exploration_initialization():
     assert exploration_instance.dataset_analysis_check.value is False
     assert exploration_instance.audio_plot_check.value is True
 
-
-def test_plot_clip_durations_with_sample_data(mocker):
-    # Mock the compute_clip_statistics function
-    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
-    mock_stats.return_value = {
-        "durations": [30, 45, 60, 120, 150],
-        "total_duration": 405,
-        "mean_duration": 81,
-        "median_duration": 60,
-        "std_deviation": 10,
-        "min_duration": 30,
-        "max_duration": 150,
-    }
-
-    # Mock plt.show() to prevent opening a window during the test
-    mocker.patch("matplotlib.pyplot.show")
-
-    # Create a sample dataset object (you can use a real or mock object as required)
-    dataset = MagicMock()
-    dataset._index = {"clips": [1, 2, 3, 4, 5]}
-
-    # Call the plot_clip_durations method
-    dataset.plot_clip_durations()
-
-
 def test_time_unit_conversion(mocker):
     mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
     # Use values that would trigger conversion to minutes and hours
@@ -115,29 +90,24 @@ def test_time_unit_conversion(mocker):
         "max_duration": 240,
     }
 
-    mocker.patch("matplotlib.pyplot.show")
+    mock_show = mocker.patch('matplotlib.pyplot.show')
 
     dataset = MagicMock()
     dataset._index = {"clips": [1, 2, 3]}
 
-    dataset.plot_clip_durations()
+    display_plot.plot_clip_durations(dataset)
+
+    mock_stats.assert_called_once()
+    mock_show.assert_called_once()
+    assert mock_stats.return_value["mean_duration"] == 180
+    assert mock_stats.return_value["median_duration"] == 180
+    assert mock_stats.return_value["std_deviation"] == 60
+    assert mock_stats.return_value["min_duration"] == 120
+    assert mock_stats.return_value["max_duration"] == 240
+
+    hist_call_args = mock_show.call_args_list[0][0][0]  # Assuming this gets the first histogram call
+    assert len(hist_call_args.patches) == 30  # Number of bins
+    assert hist_call_args.patches[0].get_facecolor() == "#404040"  # Color of the bars
 
 
-def test_with_empty_dataset(mocker):
-    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
-    mock_stats.return_value = {
-        "durations": [],
-        "total_duration": 0,
-        "mean_duration": 0,
-        "median_duration": 0,
-        "std_deviation": 0,
-        "min_duration": 0,
-        "max_duration": 0,
-    }
 
-    mocker.patch("matplotlib.pyplot.show")
-
-    dataset = MagicMock()
-    dataset._index = {"clips": []}
-
-    dataset.plot_clip_durations()
