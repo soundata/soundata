@@ -35,4 +35,4 @@ comment:
 
 coverage:
   ignore:
-    - "tests/test_display_plot.py"
+    - "soundata/display_plot.py"
