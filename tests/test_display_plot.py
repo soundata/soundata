@@ -77,6 +77,7 @@ def test_perform_dataset_exploration_initialization():
     assert exploration_instance.dataset_analysis_check.value is False
     assert exploration_instance.audio_plot_check.value is True
 
+
 def test_time_unit_conversion(mocker):
     mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
     # Use values that would trigger conversion to minutes and hours
@@ -90,7 +91,7 @@ def test_time_unit_conversion(mocker):
         "max_duration": 240,
     }
 
-    mock_show = mocker.patch('matplotlib.pyplot.show')
+    mock_show = mocker.patch("matplotlib.pyplot.show")
 
     dataset = MagicMock()
     dataset._index = {"clips": [1, 2, 3]}
@@ -105,9 +106,8 @@ def test_time_unit_conversion(mocker):
     assert mock_stats.return_value["min_duration"] == 120
     assert mock_stats.return_value["max_duration"] == 240
 
-    hist_call_args = mock_show.call_args_list[0][0][0]  # Assuming this gets the first histogram call
+    hist_call_args = mock_show.call_args_list[0][0][
+        0
+    ]  # Assuming this gets the first histogram call
     assert len(hist_call_args.patches) == 30  # Number of bins
     assert hist_call_args.patches[0].get_facecolor() == "#404040"  # Color of the bars
-
-
-
