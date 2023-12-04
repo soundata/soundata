@@ -1,5 +1,5 @@
 import sys
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, Mock, patch
 import pytest
 import numpy as np
 
@@ -76,3 +76,68 @@ def test_perform_dataset_exploration_initialization():
     assert exploration_instance.event_dist_check.value is True
     assert exploration_instance.dataset_analysis_check.value is False
     assert exploration_instance.audio_plot_check.value is True
+
+
+def test_plot_clip_durations_with_sample_data(mocker):
+    # Mock the compute_clip_statistics function
+    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
+    mock_stats.return_value = {
+        "durations": [30, 45, 60, 120, 150],
+        "total_duration": 405,
+        "mean_duration": 81,
+        "median_duration": 60,
+        "std_deviation": 10,
+        "min_duration": 30,
+        "max_duration": 150,
+    }
+
+    # Mock plt.show() to prevent opening a window during the test
+    mocker.patch("matplotlib.pyplot.show")
+
+    # Create a sample dataset object (you can use a real or mock object as required)
+    dataset = MagicMock()
+    dataset._index = {"clips": [1, 2, 3, 4, 5]}
+
+    # Call the plot_clip_durations method
+    dataset.plot_clip_durations()
+
+
+def test_time_unit_conversion(mocker):
+    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
+    # Use values that would trigger conversion to minutes and hours
+    mock_stats.return_value = {
+        "durations": [120, 180, 240],  # durations in seconds
+        "total_duration": 540,  # total duration in seconds
+        "mean_duration": 180,  # mean in seconds
+        "median_duration": 180,  # median in seconds
+        "std_deviation": 60,
+        "min_duration": 120,
+        "max_duration": 240,
+    }
+
+    mocker.patch("matplotlib.pyplot.show")
+
+    dataset = MagicMock()
+    dataset._index = {"clips": [1, 2, 3]}
+
+    dataset.plot_clip_durations()
+
+
+def test_with_empty_dataset(mocker):
+    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
+    mock_stats.return_value = {
+        "durations": [],
+        "total_duration": 0,
+        "mean_duration": 0,
+        "median_duration": 0,
+        "std_deviation": 0,
+        "min_duration": 0,
+        "max_duration": 0,
+    }
+
+    mocker.patch("matplotlib.pyplot.show")
+
+    dataset = MagicMock()
+    dataset._index = {"clips": []}
+
+    dataset.plot_clip_durations()
