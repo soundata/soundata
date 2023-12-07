@@ -318,8 +318,7 @@ def visualize_audio(self, clip_id):
     audio, sr = clip.audio
     duration = len(audio) / sr
 
-    if audio.max() > 1 or audio.min() < -1:
-        audio = audio / np.max(np.abs(audio))
+    audio = audio / np.max(np.abs(audio))
 
     # Convert to int16 for playback
     audio_playback = np.int16(audio * 32767)
@@ -328,10 +327,11 @@ def visualize_audio(self, clip_id):
         audio_playback.tobytes(), frame_rate=sr, sample_width=2, channels=1
     )
 
-    if duration > 60:
-        print("Audio is longer than 1 minute. Displaying only the first 1 minute.")
-        audio = audio[: int(60 * sr)]
-        duration = 60
+    # Truncate the audio to a maximum duration (e.g., 1 minute)
+    max_duration_secs = 60
+    print("Truncating audio to the first 1 minute if less than 1 minute.")
+    audio = audio[: int(max_duration_secs * sr)]
+    duration = min(duration, max_duration_secs)
 
     # Compute the Mel spectrogram
     S = librosa.feature.melspectrogram(y=audio, sr=sr)
