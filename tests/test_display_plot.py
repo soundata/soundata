@@ -120,3 +120,48 @@ def test_visualize_audio(mocker):
     display_plot.visualize_audio(instance, "dummy_clip_id")
 
     instance.clip.assert_called_once_with("dummy_clip_id")
+
+
+def test_visualize_audio_clip_id_none(mocker):
+    # Mock the necessary attributes and methods
+    mock_index = {"clips": {"clip1": "data1", "clip2": "data2"}}
+    dataset = soundata.initialize("urbansound8k")
+    dataset._index = mock_index
+
+    # Mock the clip method to return a clip with an audio tuple (audio_data, sample_rate)
+    mock_audio_data = np.random.rand(44100)  # Random audio data for testing
+    mock_sample_rate = 44100  # Sample rate
+    mock_clip = MagicMock()
+    mock_clip.audio = (mock_audio_data, mock_sample_rate)
+    mocker.patch.object(dataset, "clip", return_value=mock_clip)
+
+    # Mock np.random.choice to control its output
+    mocker.patch("numpy.random.choice", return_value="clip1")
+
+    # Call the method with clip_id as None
+    display_plot.visualize_audio(dataset, None)
+
+    # Assert that np.random.choice was called with the correct arguments
+    np.random.choice.assert_called_once_with(list(mock_index["clips"].keys()))
+
+    # Assert that the 'clip' method was called with the 'clip_id' chosen by np.random.choice
+    dataset.clip.assert_called_once_with("clip1")
+
+
+def test_visualize_audio_clip_id_provided(mocker):
+    # Prepare the mock data
+    mock_clip_id = "clip123"
+    mock_audio_data = np.random.rand(44100)  # Random audio data for testing
+    mock_sample_rate = 44100  # Sample rate
+
+    # Mock the clip method to return a clip with an audio tuple (audio_data, sample_rate)
+    mock_clip = MagicMock()
+    mock_clip.audio = (mock_audio_data, mock_sample_rate)
+    dataset = soundata.initialize("urbansound8k")
+    mocker.patch.object(dataset, "clip", return_value=mock_clip)
+
+    # Call the visualize_audio function with a specific clip_id
+    display_plot.visualize_audio(dataset, mock_clip_id)
+
+    # Assert that the 'clip' method was called with the provided 'clip_id'
+    dataset.clip.assert_called_once_with(mock_clip_id)
