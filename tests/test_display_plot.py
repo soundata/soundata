@@ -4,6 +4,7 @@ import pytest
 import numpy as np
 
 from soundata import display_plot
+import soundata
 
 
 class MockDataset:
@@ -100,3 +101,21 @@ def test_time_unit_conversion(mocker):
 
     mock_stats.assert_called_once()
     mock_show.assert_called_once()
+
+def test_visualize_audio(mocker):
+    # Mock audio data and sample rate
+    mock_audio = np.random.rand(44100)  # 1 second of random audio data
+    mock_sr = 44100  # Sample rate
+    expected_duration = len(mock_audio) / mock_sr
+    # Mock the clip method to return the mock audio and sample rate
+    mock_clip = mocker.MagicMock()
+    mock_clip.audio = (mock_audio, mock_sr)
+    dataset = soundata.initialize("urbansound8k")
+    mocker.patch.object(dataset, 'clip', return_value=mock_clip)
+    # Create an instance of your class
+    instance = dataset
+    instance._index = {"clips": {"dummy_clip_id": None}}  # Set up _index for the test
+
+    display_plot.visualize_audio(instance, 'dummy_clip_id')
+
+    instance.clip.assert_called_once_with('dummy_clip_id')
