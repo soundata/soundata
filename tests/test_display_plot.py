@@ -1,10 +1,12 @@
 import sys
+import threading
 from unittest.mock import MagicMock, Mock, patch
 import pytest
 import numpy as np
 
 from soundata import display_plot
 import soundata
+import simpleaudio as sa  # Alternative library for audio playback
 
 
 class MockDataset:
@@ -148,7 +150,7 @@ def test_visualize_audio_clip_id_none(mocker):
     dataset.clip.assert_called_once_with("clip1")
 
 
-def test_visualize_audio_clip_id_provided(mocker):
+def test_play_segment(mocker):
     # Prepare the mock data
     mock_clip_id = "clip123"
     mock_audio_data = np.random.rand(44100)  # Random audio data for testing
@@ -159,6 +161,10 @@ def test_visualize_audio_clip_id_provided(mocker):
     mock_clip.audio = (mock_audio_data, mock_sample_rate)
     dataset = soundata.initialize("urbansound8k")
     mocker.patch.object(dataset, "clip", return_value=mock_clip)
+
+    # Mock dependencies used in play_segment
+    mocker.patch.object(sa, "play_buffer")
+    mocker.patch.object(threading.Thread, "start")
 
     # Call the visualize_audio function with a specific clip_id
     display_plot.visualize_audio(dataset, mock_clip_id)
