@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, Mock, patch
 import pytest
 import numpy as np
 
-from soundata import display_plot
+from soundata import display_plot_utils
 import soundata
 import simpleaudio as sa  # Alternative library for audio playback
 
@@ -50,7 +50,7 @@ def test_compute_clip_statistics():
     mock_clip_durations = [30, 60, 45, 90, 120]  # durations in seconds
     dataset = MockDataset(mock_clip_durations)  # Assume this is a mock class you define
 
-    stats = display_plot.compute_clip_statistics(dataset)
+    stats = display_plot_utils.compute_clip_statistics(dataset)
     assert stats["total_duration"] == sum(mock_clip_durations)
     assert stats["mean_duration"] == np.mean(mock_clip_durations)
     assert stats["median_duration"] == np.median(mock_clip_durations)
@@ -61,7 +61,7 @@ def test_compute_clip_statistics():
     # Test with empty dataset
     empty_dataset = MockDataset([])
     with pytest.raises(ValueError):
-        display_plot.compute_clip_statistics(empty_dataset)
+        display_plot_utils.compute_clip_statistics(empty_dataset)
 
 
 def test_perform_dataset_exploration_initialization():
@@ -73,7 +73,7 @@ def test_perform_dataset_exploration_initialization():
     exploration_instance.audio_plot_check = Mock(value=True)
 
     # Call the function with the mock instance
-    display_plot.perform_dataset_exploration(exploration_instance)
+    display_plot_utils.perform_dataset_exploration(exploration_instance)
 
     # Test initial values of widgets
     assert exploration_instance.event_dist_check.value is True
@@ -82,7 +82,7 @@ def test_perform_dataset_exploration_initialization():
 
 
 def test_time_unit_conversion(mocker):
-    mock_stats = mocker.patch("soundata.display_plot.compute_clip_statistics")
+    mock_stats = mocker.patch("soundata.display_plot_utils.compute_clip_statistics")
     # Use values that would trigger conversion to minutes and hours
     mock_stats.return_value = {
         "durations": [120, 180, 240],  # durations in seconds
@@ -99,7 +99,7 @@ def test_time_unit_conversion(mocker):
     dataset = MagicMock()
     dataset._index = {"clips": [1, 2, 3]}
 
-    display_plot.plot_clip_durations(dataset)
+    display_plot_utils.plot_clip_durations(dataset)
 
     mock_stats.assert_called_once()
     mock_show.assert_called_once()
@@ -119,7 +119,7 @@ def test_visualize_audio(mocker):
     instance = dataset
     instance._index = {"clips": {"dummy_clip_id": None}}  # Set up _index for the test
 
-    display_plot.visualize_audio(instance, "dummy_clip_id")
+    display_plot_utils.visualize_audio(instance, "dummy_clip_id")
 
     instance.clip.assert_called_once_with("dummy_clip_id")
 
@@ -141,7 +141,7 @@ def test_visualize_audio_clip_id_none(mocker):
     mocker.patch("numpy.random.choice", return_value="clip1")
 
     # Call the method with clip_id as None
-    display_plot.visualize_audio(dataset, None)
+    display_plot_utils.visualize_audio(dataset, None)
 
     # Assert that np.random.choice was called with the correct arguments
     np.random.choice.assert_called_once_with(list(mock_index["clips"].keys()))
@@ -167,7 +167,7 @@ def test_play_segment(mocker):
     mocker.patch.object(threading.Thread, "start")
 
     # Call the visualize_audio function with a specific clip_id
-    display_plot.visualize_audio(dataset, mock_clip_id)
+    display_plot_utils.visualize_audio(dataset, mock_clip_id)
 
     # Assert that the 'clip' method was called with the provided 'clip_id'
     dataset.clip.assert_called_once_with(mock_clip_id)

@@ -196,7 +196,9 @@ def test_dataset():
 def test_explore_dataset():
     dataset = soundata.initialize("urbansound8k")
 
-    with patch("soundata.display_plot.perform_dataset_exploration") as mock_function:
+    with patch(
+        "soundata.display_plot_utils.perform_dataset_exploration"
+    ) as mock_function:
         clip_id = "test_clip_id"
         dataset.explore_dataset(clip_id)
         mock_function.assert_called_once_with(dataset, clip_id)
