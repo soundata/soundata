@@ -13,7 +13,7 @@
    * - :ref:`3D-MARCo <marco-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <marco-module>`
+     - :ref:`tags`
      - 26
      - 0.3
      - | :sel:`SEL` :music:`MUSIC`
@@ -23,7 +23,7 @@
    * - :ref:`DCASE23-Task2 <dcase23-task2-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <dcase23-task2-module>`
+     - :ref:`tags`
      - 174
      - 21
      - | :sec:`SEC` :machine:`MACHINE`
@@ -33,7 +33,7 @@
    * - :ref:`DCASE23-Task4B <dcase23-task4b-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events <dcase23-task4b-module>`
+     - :ref:`events`
      - 49
      - 3.16
      - | :sed:`SED` :environment:`ENVIRONMENT` 
@@ -44,7 +44,7 @@
    * - :ref:`DCASE23-Task6a <dcase23-task6a-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <dcase23-task6a-module>`
+     - :ref:`tags`
      - 6974
      - 43.2
      - | :ac:`AC`
@@ -54,7 +54,7 @@
    * - :ref:`DCASE23-Task6b <dcase23-task6b-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <dcase23-task6b-module>`
+     - :ref:`tags`
      - 6974
      - 43.2
      - | :ac:`AC`
@@ -64,7 +64,7 @@
    * - :ref:`DCASE-Bioacoustic <dcase-bioacoustic-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events <dcase-bioacoustic-module>`
+     - :ref:`events`
      - 174
      - 21
      - | :sed:`SED` :bioacoustic:`BIOACOUSTIC`
@@ -74,7 +74,7 @@
    * - :ref:`DCASE-BirdVox20k <dcase-birdVox20k-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <dcase-birdVox20k-module>`
+     - :ref:`tags`
      - 20,000
      - 55.5
      - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
@@ -85,7 +85,7 @@
        | (HOA 25 ch) 
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <eigenscape-module>`
+     - :ref:`tags`
      - 64
      - 10.7
      - | :asc:`ASC`
@@ -96,7 +96,7 @@
        | (32 ch) 
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <eigenscape-raw-module>`
+     - :ref:`tags`
      - 64
      - 10.7
      - | :asc:`ASC`
@@ -106,7 +106,7 @@
    * - :ref:`ESC-50 <esc50-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <esc50-module>`
+     - :ref:`tags`
      - 2000
      - 2.8
      - | :sec:`SEC` :environment:`ENVIRONMENT`
@@ -116,7 +116,7 @@
    * - :ref:`Freefield1010 <freefield1010-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <freefield1010-module>`
+     - :ref:`tags`
      - 7690
      - 21.3
      - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
@@ -126,7 +126,7 @@
    * - :ref:`FSD50K <fsd50k-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <fsd50k-module>`
+     - :ref:`tags`
      - 51197
      - 108.3
      - | :sec:`SEC` :environment:`ENVIRONMENT` 
@@ -138,7 +138,7 @@
    * - :ref:`FSDnoisy18K <fsdnoisy18k-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <fsdnoisy18k-module>`
+     - :ref:`tags`
      - 18532
      - 42.5
      - | :sec:`SEC` :environment:`ENVIRONMENT`
@@ -149,7 +149,7 @@
    * - :ref:`SINGA:PURA <singapura-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events <singapura-module>`
+     - :ref:`events`
      - 6547
      - 18.2
      - | :sed:`SED` :urban:`URBAN`
@@ -167,7 +167,8 @@
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
-   * - | :ref:`TAU NIGENS SSE 2020 <tau2020sse_nigens-module>`
+   * - | :ref:`TAU NIGENS <tau2020sse_nigens-module>`
+       | :ref:`SSE 2020 <tau2020sse_nigens-module>`
      - - audio: ✅
        - annotations: ✅
      - Spatial Events
@@ -179,7 +180,8 @@
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
-   * - | :ref:`TAU NIGENS SSE 2021 <tau2021sse_nigens-module>`
+   * - | :ref:`TAU NIGENS <tau2021sse_nigens-module>`
+       | :ref:`SSE 2021 <tau2021sse_nigens-module>`
      - - audio: ✅
        - annotations: ✅
      - Spatial Events
@@ -194,7 +196,7 @@
    * - | :ref:`TUT Sound Events 2017 <tut2017se-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events <tut2017se-module>`
+     - :ref:`events`
      - 32
      - 2.02
      - | :sed:`SED` :environment:`ENVIRONMENT`
@@ -210,30 +212,33 @@
        | :environment:`ENVIRONMENT`
      - :tau2019sse:`\ `
 
-   * - | :ref:`TAU Urban Acoustic Scenes 2019 <tau2019uas-module>`
+   * - | :ref:`TAU Urban <tau2019uas-module>`
+       | :ref:`Acoustic Scenes 2019 <tau2019uas-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <tau2019uas-module>`
+     - :ref:`tags`
      - 22800
      - 63.3
      - | :asc:`ASC` :urban:`URBAN`
      - :tau2019:`\ `
 
-   * - | :ref:`TAU Urban Acoustic Scenes<tau2020uas_mobile-module>`
-       |  2020 Mobile 
+   * - | :ref:`TAU Urban <tau2020uas_mobile-module>`
+       | :ref:`Acoustic Scenes<tau2020uas_mobile-module>`
+       | :ref:`2020 Mobile <tau2020uas_mobile-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <tau2020uas_mobile-module>`
+     - :ref:`tags`
      - 34915
      - 97
      - | :asc:`ASC` :urban:`URBAN`
      - :tau2020:`\ `
 
-   * - | :ref:`TAU Urban Acoustic Scenes <tau2022uas_mobile-module>`
-       |  2022 Mobile 
+   * - | :ref:`TAU Urban <tau2022uas_mobile-module>`
+       | :ref:`Acoustic Scenes<tau2022uas_mobile-module>`
+       | :ref:`2022 Mobile <tau2022uas_mobile-module>` 
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <tau2022uas_mobile-module>`
+     - :ref:`tags`
      - 349150
      - 97
      - | :asc:`ASC` :urban:`URBAN`
@@ -242,7 +247,7 @@
    * - :ref:`URBAN-SED <urbansed-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`events <urbansed-module>`
+     - :ref:`events`
      - 10000
      - 27.8
      - | :sed:`SED` :urban:`URBAN`
@@ -252,7 +257,7 @@
    * - :ref:`UrbanSound8K <urbansound8k-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <urbansound8k-module>`
+     - :ref:`tags`
      - 8732
      - 8.75
      - | :sec:`SEC` :urban:`URBAN`
@@ -262,7 +267,7 @@
    * - :ref:`Warblrb10k <warblrb10k-module>`
      - - audio: ✅
        - annotations: ✅
-     - :ref:`tags <warblrb10k-module>`
+     - :ref:`tags`
      - 10,000
      - 28
      - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
