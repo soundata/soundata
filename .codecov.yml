@@ -33,6 +33,6 @@ comment:
   behavior: default
   require_changes: no
 
-coverage:
-  ignore:
-    - "soundata/display_plot.py"
+# coverage:
+#   ignore:
+#     - "soundata/display_plot.py"
