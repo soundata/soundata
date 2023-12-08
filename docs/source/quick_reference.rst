@@ -24,11 +24,11 @@ primary annotations only. To access comprehensive details and API documentation 
 
 Tasks Codes: 
 
-| :sel:`SEL` : Sound Event Localization 
-| :sed:`SED` : Sound Event Detection
-| :sec:`SEC` : Sound Event Classification
-| :asc:`ASC` : Acoustic Scene Classification
-| :ac:`AC` : Audio Captioning
+| :sel:`SEL` Sound Event Localization 
+| :sed:`SED` Sound Event Detection
+| :sec:`SEC` Sound Event Classification
+| :asc:`ASC` Acoustic Scene Classification
+| :ac:`AC` Audio Captioning
 
 .. include:: table.rst
 
