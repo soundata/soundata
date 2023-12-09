@@ -71,15 +71,16 @@ def test_perform_dataset_exploration_initialization():
     exploration_instance.event_dist_check = Mock(value=True)
     exploration_instance.dataset_analysis_check = Mock(value=False)
     exploration_instance.audio_plot_check = Mock(value=True)
+    exploration_instance.output = Mock()
+    exploration_instance.loader = Mock()
 
     # Call the function with the mock instance
     display_plot_utils.perform_dataset_exploration(exploration_instance)
-
+    exploration_instance.on_button_clicked(Mock())
     # Test initial values of widgets
     assert exploration_instance.event_dist_check.value is True
     assert exploration_instance.dataset_analysis_check.value is False
     assert exploration_instance.audio_plot_check.value is True
-
 
 def test_time_unit_conversion(mocker):
     mock_stats = mocker.patch("soundata.display_plot_utils.compute_clip_statistics")
