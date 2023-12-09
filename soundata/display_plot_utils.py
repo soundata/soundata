@@ -150,19 +150,11 @@ def plot_clip_durations(self):
     median_duration /= conversion_factor
     total_duration /= conversion_factor
 
-    # Convert total duration to hours if it exceeds 120 minutes
-    if convert_to_minutes:
-        if total_duration > 120:
-            total_duration /= 60
-            total_duration_unit = "hours"
-        else:
-            total_duration_unit = "minutes"
+    if total_duration > 120:
+        total_duration /= 60
+        total_duration_unit = "hours" if convert_to_minutes else "minutes"
     else:
-        if total_duration > 120:
-            total_duration /= 60
-            total_duration_unit = "minutes"
-        else:
-            total_duration_unit = "seconds"
+        total_duration_unit = "minutes" if convert_to_minutes else "seconds"
 
     # Define the base colors for soundata template
     base_colors = ["#404040", "#126782", "#C9C9C9"]

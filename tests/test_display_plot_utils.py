@@ -82,6 +82,7 @@ def test_perform_dataset_exploration_initialization():
     assert exploration_instance.dataset_analysis_check.value is False
     assert exploration_instance.audio_plot_check.value is True
 
+
 def test_time_unit_conversion(mocker):
     mock_stats = mocker.patch("soundata.display_plot_utils.compute_clip_statistics")
     # Use values that would trigger conversion to minutes and hours
