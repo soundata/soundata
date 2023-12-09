@@ -32,6 +32,42 @@ from functools import lru_cache  # For caching function call results
 from tqdm import tqdm  # For displaying progress bars
 
 
+def on_button_clicked(
+    event_dist_check,
+    dataset_analysis_check,
+    audio_plot_check,
+    output,
+    loader,
+    self,
+    clip_id,
+):
+    output.clear_output(wait=True)  # Clear the previous outputs
+    with output:
+        display(loader)  # Display the loader
+        # Update the page with a loading message
+        loader.value = "<p style='font-size:15px;'>Rendering plots...please wait!</p>"
+
+    # This allows the loader to be displayed before starting heavy computations
+    time.sleep(0.1)
+
+    # Now perform the computations and update the output accordingly
+    with output:
+        if event_dist_check.value:
+            print("Analyzing event distribution... Please wait.")
+            plot_hierarchical_distribution(self)
+
+        if dataset_analysis_check.value:
+            print("Conducting dataset analysis... Please wait.")
+            plot_clip_durations(self)
+
+        if audio_plot_check.value:
+            print("Generating audio plot... Please wait.")
+            visualize_audio(self, clip_id)
+
+        # Remove the loader after the content is loaded
+        loader.value = "<p style='font-size:15px;'>Completed the processes!</p>"
+
+
 def perform_dataset_exploration(self, clip_id=None):
     """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
 
@@ -53,37 +89,17 @@ def perform_dataset_exploration(self, clip_id=None):
         description="Status:",
     )
 
-    # Button callback function
-    def on_button_clicked(b):
-        output.clear_output(wait=True)  # Clear the previous outputs
-        with output:
-            display(loader)  # Display the loader
-            # Update the page with a loading message
-            loader.value = (
-                "<p style='font-size:15px;'>Rendering plots...please wait!</p>"
-            )
-
-        # This allows the loader to be displayed before starting heavy computations
-        time.sleep(0.1)
-
-        # Now perform the computations and update the output accordingly
-        with output:
-            if event_dist_check.value:
-                print("Analyzing event distribution... Please wait.")
-                plot_hierarchical_distribution(self)
-
-            if dataset_analysis_check.value:
-                print("Conducting dataset analysis... Please wait.")
-                plot_clip_durations(self)
-
-            if audio_plot_check.value:
-                print("Generating audio plot... Please wait.")
-                visualize_audio(self, clip_id)
-
-            # Remove the loader after the content is loaded
-            loader.value = "<p style='font-size:15px;'>Completed the processes!</p>"
-
-    plot_button.on_click(on_button_clicked)
+    plot_button.on_click(
+        lambda b: on_button_clicked(
+            event_dist_check,
+            dataset_analysis_check,
+            audio_plot_check,
+            output,
+            loader,
+            self,
+            clip_id,
+        )
+    )
 
     # Provide user instructions
     intro_text = "Welcome to the Dataset Explorer!\nSelect the options below to explore your dataset:"
