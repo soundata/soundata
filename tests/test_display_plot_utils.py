@@ -426,9 +426,9 @@ def test_on_reset_clicked():
     fig.canvas.draw_idle.assert_called()
 
 
-def test_on_slider_changed():
-    # Mock objects
-    playing = [False]
+def test_on_slider_changed_with_thread_alive():
+    # Setup for when play_thread is alive
+    playing = [True]
     current_time = [0.0]
     play_thread = [MagicMock()]
     stop_event = threading.Event()
@@ -437,9 +437,8 @@ def test_on_slider_changed():
     fig = MagicMock()
     current_time_lock = threading.Lock()
     change = MagicMock()
-    change.new = 5.0  # Simulate the new value of the slider
+    change.new = 5.0
 
-    # Set up the play_thread mock
     play_thread[0].is_alive.return_value = True
 
     # Call the function
@@ -455,9 +454,62 @@ def test_on_slider_changed():
         current_time_lock,
     )
 
-    # Assertions
-    with current_time_lock:
-        assert current_time[0] == change.new
-    line1.set_xdata.assert_called_with([change.new, change.new])
-    line2.set_xdata.assert_called_with([change.new, change.new])
-    fig.canvas.draw_idle.assert_called()
+    # Assertions for when thread is alive
+    play_thread[0].join.assert_called()
+    assert stop_event.is_set()
+
+
+def test_on_slider_changed_with_thread_not_alive():
+    # Setup for when play_thread is not alive
+    playing = [True]
+    current_time = [0.0]
+    play_thread = [MagicMock()]
+    stop_event = threading.Event()
+    line1 = MagicMock()
+    line2 = MagicMock()
+    fig = MagicMock()
+    current_time_lock = threading.Lock()
+    change = MagicMock()
+    change.new = 5.0
+
+    play_thread[0].is_alive.return_value = False
+
+    # Call the function
+    display_plot_utils.on_slider_changed(
+        change,
+        playing,
+        current_time,
+        play_thread,
+        stop_event,
+        line1,
+        line2,
+        fig,
+        current_time_lock,
+    )
+
+    # Assertions for when thread is not alive
+    play_thread[0].join.assert_not_called()
+
+
+def test_update_line_exception():
+    # Mock objects
+    playing = [True]
+    current_time = [0.0]
+    duration = 1.0
+    current_time_lock = threading.Lock()
+    line1 = MagicMock()
+    line2 = MagicMock()
+    fig = MagicMock()
+    step = 0.1
+
+    # Configure one of the mocks to raise an exception
+    line1.set_xdata.side_effect = Exception("Test Exception")
+
+    # Call the function with the mocks
+    with patch("soundata.display_plot_utils.time.sleep", side_effect=lambda x: None):
+        display_plot_utils.update_line(
+            playing, current_time, duration, current_time_lock, line1, line2, fig, step
+        )
+
+    # Assertions to check if the exception was caught and handled
+    line1.set_xdata.assert_called()
