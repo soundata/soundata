@@ -1,7 +1,7 @@
 import sys
 import threading
 import time
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import MagicMock, Mock, PropertyMock, patch
 import pytest
 import numpy as np
 
@@ -519,21 +519,28 @@ def test_update_line_exception():
 @patch("soundata.display_plot_utils.sns.countplot")
 @patch("soundata.display_plot_utils.pd.value_counts")
 def test_plot_distribution(mock_value_counts, mock_countplot):
+    # Mock patches for the plot
+    mock_patches = []
+    for _ in range(3):  # Assuming three patches for simplicity
+        mock_patch = MagicMock()
+        mock_patch.get_width.return_value = 5
+        mock_patch.get_y.return_value = 1
+        mock_patch.get_height.return_value = 0.5
+        mock_patches.append(mock_patch)
+
     # Prepare the data and parameters
     data = ["A", "B", "A", "C"]
     title = "Test Title"
     x_label = "X Label"
     y_label = "Y Label"
     axes = [MagicMock(), MagicMock()]
-    subplot_position = 0
+    axes[0].patches = mock_patches
 
     # Mock value_counts to return a specific order
     mock_value_counts.return_value.index = ["A", "B", "C"]
 
     # Call the function
-    display_plot_utils.plot_distribution(
-        data, title, x_label, y_label, axes, subplot_position
-    )
+    display_plot_utils.plot_distribution(data, title, x_label, y_label, axes, 0)
 
     # Assertions
     mock_value_counts.assert_called_with(data)
@@ -541,9 +548,9 @@ def test_plot_distribution(mock_value_counts, mock_countplot):
         y=data,
         order=["A", "B", "C"],
         palette=["#404040", "#126782", "#C9C9C9"],
-        ax=axes[subplot_position],
+        ax=axes[0],
     )
-    axes_subplot = axes[subplot_position]
+    axes_subplot = axes[0]
     axes_subplot.set_title.assert_called_with(title, fontsize=8)
     axes_subplot.set_xlabel.assert_called_with(x_label, fontsize=6)
     axes_subplot.set_ylabel.assert_called_with(y_label, fontsize=6)
