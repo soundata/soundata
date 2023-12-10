@@ -84,6 +84,33 @@ def test_perform_dataset_exploration_initialization():
     assert exploration_instance.audio_plot_check.value is True
 
 
+@patch("soundata.display_plot_utils.plot_distribution")
+@patch("soundata.display_plot_utils.plt", autospec=True)
+def test_plot_hierarchical_distribution(mock_plt, mock_plot_distribution):
+    # Mock the class instance and its attributes
+    mock_instance = MagicMock()
+    mock_instance._metadata = {
+        "subdatasets": "data",
+        "clip1": {"subdataset": "data1", "subdataset_layer_0": "layer1_data"},
+        "clip2": {"subdataset": "data2", "subdataset_layer_0": "layer1_data"}
+        # Add more layers if needed
+    }
+    mock_instance._index = {"clips": ["clip1", "clip2"]}
+    mock_clip = MagicMock()
+    mock_clip.tags.labels = ["event1", "event2"]
+    mock_clip.events.labels = ["event3"]
+    mock_instance.clip.return_value = mock_clip
+
+    # Execute the method
+    display_plot_utils.plot_hierarchical_distribution(mock_instance)
+
+    # Assertions
+    mock_plt.subplot.assert_called()
+    mock_plt.figure.assert_called()
+    mock_plot_distribution.assert_called()
+    mock_plt.show.assert_called()
+
+
 def test_time_unit_conversion(mocker):
     mock_stats = mocker.patch("soundata.display_plot_utils.compute_clip_statistics")
     # Use values that would trigger conversion to minutes and hours
