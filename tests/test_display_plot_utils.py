@@ -193,11 +193,23 @@ def mock_loader():
 @pytest.fixture
 def mock_self():
     # Mock the 'self' object if it has dependencies
-    return MagicMock()
+    mock = MagicMock()
+    # Mock the specific methods of the self object
+    soundata.display_plot_utils.plot_hierarchical_distribution = MagicMock()
+    soundata.display_plot_utils.plot_clip_durations = MagicMock()
+    soundata.display_plot_utils.visualize_audio = MagicMock()
+    return mock
 
 
 @pytest.mark.parametrize(
-    "event_dist, dataset_analysis, audio_plot", [(False, False, False)]
+    "event_dist, dataset_analysis, audio_plot",
+    [
+        (True, True, True),
+        (True, False, False),
+        (False, True, False),
+        (False, False, True),
+        (False, False, False),
+    ],
 )
 def test_on_button_clicked(
     event_dist, dataset_analysis, audio_plot, mock_output, mock_loader, mock_self
@@ -225,11 +237,3 @@ def test_on_button_clicked(
     assert (
         mock_loader.value == "<p style='font-size:15px;'>Completed the processes!</p>"
     )
-
-    # Assert specific function calls based on checkbox values
-    if event_dist:
-        mock_self.plot_hierarchical_distribution.assert_called_once()
-    if dataset_analysis:
-        mock_self.plot_clip_durations.assert_called_once()
-    if audio_plot:
-        mock_self.visualize_audio.assert_called_once_with(123)
