@@ -107,6 +107,30 @@ def test_time_unit_conversion(mocker):
     mock_show.assert_called_once()
 
 
+def test_time_unit_conversion_less_than_120(mocker):
+    mock_stats = mocker.patch("soundata.display_plot_utils.compute_clip_statistics")
+    # Use values that would trigger conversion to minutes and hours
+    mock_stats.return_value = {
+        "durations": [120, 180, 240],  # durations in seconds
+        "total_duration": 120,  # total duration in seconds
+        "mean_duration": 180,  # mean in seconds
+        "median_duration": 180,  # median in seconds
+        "std_deviation": 60,
+        "min_duration": 120,
+        "max_duration": 240,
+    }
+
+    mock_show = mocker.patch("matplotlib.pyplot.show")
+
+    dataset = MagicMock()
+    dataset._index = {"clips": [1, 2, 3]}
+
+    display_plot_utils.plot_clip_durations(dataset)
+
+    mock_stats.assert_called_once()
+    mock_show.assert_called_once()
+
+
 def test_visualize_audio(mocker):
     # Mock audio data and sample rate
     mock_audio = np.random.rand(44100)  # 1 second of random audio data
