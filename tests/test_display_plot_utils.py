@@ -261,3 +261,203 @@ def test_on_button_clicked(
     assert (
         mock_loader.value == "<p style='font-size:15px;'>Completed the processes!</p>"
     )
+
+
+@patch("soundata.display_plot_utils.sa.play_buffer")
+@patch("soundata.display_plot_utils.time.sleep", side_effect=lambda x: None)
+def test_play_segment(mock_sleep, mock_play_buffer):
+    # Mock simpleaudio object
+    mock_play_obj = MagicMock()
+    mock_play_obj.is_playing.side_effect = [True, True, False]
+    mock_play_buffer.return_value = mock_play_obj
+
+    # Create dummy audio segment and stop event
+    audio_segment = MagicMock()
+    stop_event = threading.Event()
+
+    # Test normal playback
+    display_plot_utils.play_segment(
+        audio_segment, start_time=0, stop_event=stop_event, sr=44100
+    )
+    mock_play_buffer.assert_called_once()
+    assert not stop_event.is_set()
+
+    # Reset mock objects and event
+    mock_play_buffer.reset_mock()
+    stop_event.clear()
+
+    # Test stopping playback
+    stop_event.set()
+    display_plot_utils.play_segment(
+        audio_segment, start_time=0, stop_event=stop_event, sr=44100
+    )
+    assert stop_event.is_set()
+
+
+@patch("soundata.display_plot_utils.time.sleep", side_effect=lambda x: None)
+def test_update_line(mock_sleep):
+    # Create mock objects for line1, line2, and fig
+    line1 = MagicMock()
+    line2 = MagicMock()
+    fig = MagicMock()
+
+    # Shared variables
+    playing = [True]
+    current_time = [0.0]
+    duration = 2.0
+    current_time_lock = threading.Lock()
+    step = 0.1
+
+    # Execute the function in a separate thread
+    update_thread = threading.Thread(
+        target=display_plot_utils.update_line,
+        args=(
+            playing,
+            current_time,
+            duration,
+            current_time_lock,
+            line1,
+            line2,
+            fig,
+            step,
+        ),
+    )
+    update_thread.start()
+
+    # Wait for the duration of the test
+    update_thread.join(duration + step)
+
+    # Assertions
+    assert not playing[0]
+    assert current_time[0] == 0.0
+    line1.set_xdata.assert_called()
+    line2.set_xdata.assert_called()
+    fig.canvas.draw_idle.assert_called()
+
+
+@patch("soundata.display_plot_utils.threading.Thread")
+def test_on_play_pause_clicked(mock_thread):
+    # Prepare mock objects
+    playing = [False]
+    current_time = [0.0]
+    play_thread = [None]
+    stop_event = threading.Event()
+    play_pause_button = MagicMock()
+    play_segment_function = MagicMock()
+    update_line_function = MagicMock()
+
+    # Test when playing is False initially
+    display_plot_utils.on_play_pause_clicked(
+        playing,
+        current_time,
+        play_thread,
+        stop_event,
+        play_pause_button,
+        play_segment_function,
+        update_line_function,
+    )
+
+    assert playing[0] == True
+    assert not stop_event.is_set()
+    play_pause_button.description == "❚❚ Pause"
+    mock_thread.assert_called()
+
+    # Reset mock objects
+    mock_thread.reset_mock()
+    play_pause_button.reset_mock()
+
+    # Set playing to True for the next test
+    playing[0] = True
+
+    # Test when playing is True
+    display_plot_utils.on_play_pause_clicked(
+        playing,
+        current_time,
+        play_thread,
+        stop_event,
+        play_pause_button,
+        play_segment_function,
+        update_line_function,
+    )
+
+    assert playing[0] == False
+    assert stop_event.is_set()
+    play_pause_button.description == "► Play"
+    mock_thread.assert_not_called()
+
+
+def test_on_reset_clicked():
+    # Mock objects
+    playing = [True]
+    current_time = [10.0]
+    play_thread = [MagicMock()]
+    stop_event = threading.Event()
+    line1 = MagicMock()
+    line2 = MagicMock()
+    slider = MagicMock()
+    play_pause_button = MagicMock()
+    fig = MagicMock()
+    current_time_lock = threading.Lock()
+
+    # Set up the play_thread mock
+    play_thread[0].is_alive.return_value = True
+
+    # Call the function
+    display_plot_utils.on_reset_clicked(
+        playing,
+        current_time,
+        play_thread,
+        stop_event,
+        line1,
+        line2,
+        slider,
+        play_pause_button,
+        fig,
+        current_time_lock,
+    )
+
+    # Assertions
+    assert not playing[0]
+    assert current_time[0] == 0.0
+    line1.set_xdata.assert_called_with([0, 0])
+    line2.set_xdata.assert_called_with([0, 0])
+    assert slider.value == 0.0
+    assert play_pause_button.description == "► Play"
+    fig.canvas.draw_idle.assert_called()
+
+
+def test_on_slider_changed():
+    # Mock objects
+    playing = [False]
+    current_time = [0.0]
+    play_thread = [MagicMock()]
+    stop_event = threading.Event()
+    line1 = MagicMock()
+    line2 = MagicMock()
+    fig = MagicMock()
+    current_time_lock = threading.Lock()
+    change = MagicMock()
+    change.new = 5.0  # Simulate the new value of the slider
+
+    # Set up the play_thread mock
+    play_thread[0].is_alive.return_value = True
+
+    # Call the function
+    display_plot_utils.on_slider_changed(
+        change,
+        playing,
+        current_time,
+        play_thread,
+        stop_event,
+        line1,
+        line2,
+        fig,
+        current_time_lock,
+    )
+
+    # Assertions
+    with current_time_lock:
+        assert current_time[0] == change.new
+    line1.set_xdata.assert_called_with([change.new, change.new])
+    line2.set_xdata.assert_called_with([change.new, change.new])
+    fig.canvas.draw_idle.assert_called()
