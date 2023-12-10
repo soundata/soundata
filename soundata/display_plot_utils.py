@@ -313,6 +313,116 @@ def plot_hierarchical_distribution(self):
     print("\n")
 
 
+def play_segment(audio_segment, start_time, stop_event, sr):
+    try:
+        segment_start = start_time * 1000  # Convert to milliseconds
+        segment_end = segment_start + 60 * 1000
+        segment = audio_segment[segment_start:segment_end]
+
+        play_obj = sa.play_buffer(segment.raw_data, 1, 2, sr)
+
+        while play_obj.is_playing():
+            if stop_event.is_set():
+                play_obj.stop()
+                break
+            time.sleep(0.1)
+    except Exception as e:
+        print(f"Error in play_segment: {e}")
+
+
+def update_line(
+    playing, current_time, duration, current_time_lock, line1, line2, fig, step=0.1
+):
+    try:
+        while playing[0]:
+            with current_time_lock:
+                current_time[0] += step
+                if current_time[0] > duration:
+                    playing[0] = False
+                    current_time[0] = 0.0
+            line1.set_xdata([current_time[0], current_time[0]])
+            line2.set_xdata([current_time[0], current_time[0]])
+            fig.canvas.draw_idle()
+            time.sleep(step)
+    except Exception as e:
+        print(f"Error in update_line: {e}")
+
+
+def on_play_pause_clicked(
+    playing,
+    current_time,
+    play_thread,
+    stop_event,
+    play_pause_button,
+    play_segment_function,
+    update_line_function,
+):
+    if playing[0]:
+        stop_event.set()
+        if play_thread[0].is_alive():
+            play_thread[0].join()
+        playing[0] = False
+        play_pause_button.description = "► Play"
+    else:
+        stop_event.clear()
+        playing[0] = True
+        play_pause_button.description = "❚❚ Pause"
+        play_thread[0] = threading.Thread(
+            target=play_segment_function, args=(current_time[0],)
+        )
+        play_thread[0].start()
+        update_line_thread = threading.Thread(target=update_line_function)
+        update_line_thread.start()
+
+
+def on_reset_clicked(
+    playing,
+    current_time,
+    play_thread,
+    stop_event,
+    line1,
+    line2,
+    slider,
+    play_pause_button,
+    fig,
+    current_time_lock,
+):
+    if playing[0]:
+        stop_event.set()
+        if play_thread[0].is_alive():
+            play_thread[0].join()
+        playing[0] = False
+    with current_time_lock:
+        current_time[0] = 0.0
+    line1.set_xdata([0, 0])
+    line2.set_xdata([0, 0])
+    slider.value = 0.0
+    play_pause_button.description = "► Play"
+    fig.canvas.draw_idle()
+
+
+def on_slider_changed(
+    change,
+    playing,
+    current_time,
+    play_thread,
+    stop_event,
+    line1,
+    line2,
+    fig,
+    current_time_lock,
+):
+    if playing[0]:
+        stop_event.set()
+        if play_thread[0].is_alive():
+            play_thread[0].join()
+    with current_time_lock:
+        current_time[0] = change.new
+    line1.set_xdata([current_time[0], current_time[0]])
+    line2.set_xdata([current_time[0], current_time[0]])
+    fig.canvas.draw_idle()
+
+
 def visualize_audio(self, clip_id):
     if clip_id is None:  # Use the local variable
         clip_id = np.random.choice(
@@ -355,6 +465,7 @@ def visualize_audio(self, clip_id):
     ax1.set_xlim(0, duration)
     (line1,) = ax1.plot([0, 0], [min(audio), max(audio)], color="#C9C9C9")
 
+    # Adjusting the font size for axis labels
     for label in ax1.get_xticklabels() + ax1.get_yticklabels():
         label.set_fontsize(8)
 
@@ -364,10 +475,9 @@ def visualize_audio(self, clip_id):
     ax2.set_xlim(0, duration)
     (line2,) = ax2.plot([0, 0], ax2.get_ylim(), color="#126782", linestyle="--")
 
-    # Reduce font size for time and mel axis labels
+    # Adjusting the font size for axis labels
     ax2.set_xlabel("Time (s)", fontsize=8)
     ax2.set_ylabel("Hz", fontsize=8)
-
     for label in ax2.get_xticklabels() + ax2.get_yticklabels():
         label.set_fontsize(8)
 
@@ -375,7 +485,6 @@ def visualize_audio(self, clip_id):
 
     # Add the colorbar
     bbox = ax2.get_position()
-    # Add the colorbar axes with the same y position and height as the Mel spectrogram
     cbar_ax = fig.add_axes([bbox.x1 + 0.01, bbox.y0, 0.015, bbox.height])
     cbar = fig.colorbar(im, cax=cbar_ax)
     cbar.set_label("dB", rotation=270, labelpad=15, fontsize=8)
@@ -388,103 +497,61 @@ def visualize_audio(self, clip_id):
     current_time = [0.0]
     play_thread = [None]
 
-    def play_segment(start_time):
-        try:
-            segment_start = start_time * 1000  # convert to milliseconds
-            segment_end = segment_start + 60 * 1000
-            segment = audio_segment[segment_start:segment_end]
-
-            play_obj = sa.play_buffer(segment.raw_data, 1, 2, sr)
-
-            while play_obj.is_playing():
-                if stop_event.is_set():
-                    play_obj.stop()
-                    break
-                time.sleep(0.1)
-        except Exception as e:
-            print(f"Error in play_segment: {e}")
-
-    def update_line():
-        try:
-            step = 0.1
-            while playing[0]:
-                with current_time_lock:
-                    current_time[0] += step
-                    if current_time[0] > duration:
-                        playing[0] = False
-                        current_time[0] = 0.0
-                line1.set_xdata([current_time[0], current_time[0]])
-                line2.set_xdata([current_time[0], current_time[0]])
-                fig.canvas.draw_idle()
-                time.sleep(step)
-        except Exception as e:
-            print(f"Error in update_line: {e}")
-
-    def on_play_pause_clicked(b):
-        nonlocal play_thread
-        if playing[0]:
-            stop_event.set()
-            if play_thread[0].is_alive():
-                play_thread[0].join()
-            playing[0] = False
-            play_pause_button.description = "► Play"
-        else:
-            stop_event.clear()
-            playing[0] = True
-            play_pause_button.description = "❚❚ Pause"
-            play_thread[0] = threading.Thread(
-                target=play_segment, args=(current_time[0],)
-            )
-            play_thread[0].start()
-            update_line_thread = threading.Thread(target=update_line)
-            update_line_thread.start()
-
-    def on_reset_clicked(b):
-        nonlocal play_thread
-        if playing[0]:
-            stop_event.set()
-            if play_thread[0].is_alive():
-                play_thread[0].join()
-            playing[0] = False
-        with current_time_lock:
-            current_time[0] = 0.0
-        line1.set_xdata([0, 0])
-        line2.set_xdata([0, 0])
-        slider.value = 0.0
-        play_pause_button.description = "► Play"
-        fig.canvas.draw_idle()
-
-    def on_slider_changed(change):
-        nonlocal play_thread
-        if playing[0]:
-            stop_event.set()
-            if play_thread[0].is_alive():
-                play_thread[0].join()
-        with current_time_lock:
-            current_time[0] = change.new
-        line1.set_xdata([current_time[0], current_time[0]])
-        line2.set_xdata([current_time[0], current_time[0]])
-        fig.canvas.draw_idle()
-
+    # Create UI elements
     slider = FloatSlider(
-        value=0.0, min=0.0, max=duration, step=0.1, description="Time (s)"
+        value=0.0,
+        min=0.0,
+        max=duration,
+        step=0.1,
+        description="Seek:",
+        tooltip="Drag the slider to a specific point in the audio to play from that time.",
     )
-    slider.observe(on_slider_changed, names="value")
-
     play_pause_button = Button(description="► Play")
-    play_pause_button.on_click(on_play_pause_clicked)
-
     reset_button = Button(description="Reset")
-    reset_button.on_click(on_reset_clicked)
 
-    # Set the description for the slider that indicates its purpose.
-    slider.description = "Seek:"
-    slider.tooltip = (
-        "Drag the slider to a specific point in the audio to play from that time."
+    # Setting up event handlers
+    play_pause_button.on_click(
+        lambda b: on_play_pause_clicked(
+            playing,
+            current_time,
+            play_thread,
+            stop_event,
+            play_pause_button,
+            lambda start_time: play_segment(audio_segment, start_time, stop_event, sr),
+            lambda: update_line(
+                playing, current_time, duration, current_time_lock, line1, line2, fig
+            ),
+        )
+    )
+    reset_button.on_click(
+        lambda b: on_reset_clicked(
+            playing,
+            current_time,
+            play_thread,
+            stop_event,
+            line1,
+            line2,
+            slider,
+            play_pause_button,
+            fig,
+            current_time_lock,
+        )
+    )
+    slider.observe(
+        lambda change: on_slider_changed(
+            change,
+            playing,
+            current_time,
+            play_thread,
+            stop_event,
+            line1,
+            line2,
+            fig,
+            current_time_lock,
+        ),
+        names="value",
     )
 
-    # You can also add a label above the slider for clarity, if the UI framework you are using supports it.
+    # Display the UI elements
     slider_label = Label("Drag the slider to navigate through the audio:")
-
-    # Now, display the slider with its label.
     display(VBox([HBox([play_pause_button, reset_button]), slider_label, slider]))
