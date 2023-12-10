@@ -222,34 +222,35 @@ def plot_clip_durations(self):
     plt.show()
 
 
-def plot_hierarchical_distribution(self):
-    def plot_distribution(data, title, x_label, y_label, subplot_position):
-        my_palette = sns.color_palette("light:b", as_cmap=False)
-        my_palette = ["#404040", "#126782", "#C9C9C9"]
-        sns.countplot(
-            y=data,
-            order=pd.value_counts(data).index,
-            palette=my_palette,
-            ax=axes[subplot_position],
+def plot_distribution(data, title, x_label, y_label, axes, subplot_position):
+    my_palette = sns.color_palette("light:b", as_cmap=False)
+    my_palette = ["#404040", "#126782", "#C9C9C9"]
+    sns.countplot(
+        y=data,
+        order=pd.value_counts(data).index,
+        palette=my_palette,
+        ax=axes[subplot_position],
+    )
+    axes[subplot_position].set_title(title, fontsize=8)
+    axes[subplot_position].set_xlabel(x_label, fontsize=6)
+    axes[subplot_position].set_ylabel(y_label, fontsize=6)
+    axes[subplot_position].tick_params(axis="both", which="major", labelsize=6)
+
+    ax = axes[subplot_position]
+    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    for p in ax.patches:
+        ax.annotate(
+            f"{int(p.get_width())}",
+            (p.get_width(), p.get_y() + p.get_height() / 2),
+            ha="left",
+            va="center",
+            xytext=(3, 0),
+            textcoords="offset points",
+            fontsize=6,
         )
-        axes[subplot_position].set_title(title, fontsize=8)
-        axes[subplot_position].set_xlabel(x_label, fontsize=6)
-        axes[subplot_position].set_ylabel(y_label, fontsize=6)
-        axes[subplot_position].tick_params(axis="both", which="major", labelsize=6)
 
-        ax = axes[subplot_position]
-        ax.grid(axis="x", linestyle="--", alpha=0.7)
-        for p in ax.patches:
-            ax.annotate(
-                f"{int(p.get_width())}",
-                (p.get_width(), p.get_y() + p.get_height() / 2),
-                ha="left",
-                va="center",
-                xytext=(3, 0),
-                textcoords="offset points",
-                fontsize=6,
-            )
 
+def plot_hierarchical_distribution(self):
     # Determine the number of plots
     plot_count = 1
     if "subdatasets" in self._metadata:
@@ -272,8 +273,9 @@ def plot_hierarchical_distribution(self):
         elif hasattr(clip, "events") and hasattr(clip.events, "labels"):
             events.extend(clip.events.labels)
 
-    # events = [label for clip_id in self._index["clips"] for label in self.clip(clip_id).tags.labels]
-    plot_distribution(events, "Event Distribution in the Dataset", "Count", "Event", 0)
+    plot_distribution(
+        events, "Event Distribution in the Dataset", "Count", "Event", axes, 0
+    )
 
     # Plot Subclasses Distribution and then Hierarchical layers
     subplot_position = 1  # We've already plotted events at position 0
@@ -286,6 +288,7 @@ def plot_hierarchical_distribution(self):
             "Subclass Distribution in the Dataset",
             "Count",
             "Subclass",
+            axes,
             subplot_position,
         )
         subplot_position += 1
@@ -303,6 +306,7 @@ def plot_hierarchical_distribution(self):
             f"Subdataset Layer {layer} Distribution in the Dataset",
             "Count",
             f"Subdataset Layer {layer}",
+            axes,
             subplot_position,
         )
         layer += 1
