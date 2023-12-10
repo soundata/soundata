@@ -546,3 +546,37 @@ def test_play_segment_stop(mock_play_buffer):
 
     # Wait for the thread to finish
     play_thread.join()
+
+
+@patch("soundata.display_plot_utils.sns.countplot")
+@patch("soundata.display_plot_utils.pd.value_counts")
+def test_plot_distribution(mock_value_counts, mock_countplot):
+    # Prepare the data and parameters
+    data = ["A", "B", "A", "C"]
+    title = "Test Title"
+    x_label = "X Label"
+    y_label = "Y Label"
+    axes = [MagicMock(), MagicMock()]
+    subplot_position = 0
+
+    # Mock value_counts to return a specific order
+    mock_value_counts.return_value.index = ["A", "B", "C"]
+
+    # Call the function
+    display_plot_utils.plot_distribution(
+        data, title, x_label, y_label, axes, subplot_position
+    )
+
+    # Assertions
+    mock_value_counts.assert_called_with(data)
+    mock_countplot.assert_called_with(
+        y=data,
+        order=["A", "B", "C"],
+        palette=["#404040", "#126782", "#C9C9C9"],
+        ax=axes[subplot_position],
+    )
+    axes_subplot = axes[subplot_position]
+    axes_subplot.set_title.assert_called_with(title, fontsize=8)
+    axes_subplot.set_xlabel.assert_called_with(x_label, fontsize=6)
+    axes_subplot.set_ylabel.assert_called_with(y_label, fontsize=6)
+    axes_subplot.tick_params.assert_called_with(axis="both", which="major", labelsize=6)
