@@ -88,7 +88,7 @@ def test_time_unit_conversion(mocker):
     # Use values that would trigger conversion to minutes and hours
     mock_stats.return_value = {
         "durations": [120, 180, 240],  # durations in seconds
-        "total_duration": 540,  # total duration in seconds
+        "total_duration": 54000,  # total duration in seconds
         "mean_duration": 180,  # mean in seconds
         "median_duration": 180,  # median in seconds
         "std_deviation": 60,
