@@ -1,5 +1,6 @@
 import sys
 import threading
+import time
 from unittest.mock import MagicMock, Mock, patch
 import pytest
 import numpy as np
@@ -513,3 +514,35 @@ def test_update_line_exception():
 
     # Assertions to check if the exception was caught and handled
     line1.set_xdata.assert_called()
+
+
+@patch("soundata.display_plot_utils.sa.play_buffer")
+def test_play_segment_stop(mock_play_buffer):
+    # Mock play_obj and its methods
+    play_obj = MagicMock()
+    play_obj.is_playing.side_effect = [
+        True,
+        True,
+        True,
+        False,
+    ]  # Extend the playback simulation
+    mock_play_buffer.return_value = play_obj
+
+    # Prepare other mocks and shared variables
+    audio_segment = MagicMock()
+    audio_segment.__getitem__.return_value.raw_data = b"some raw data"
+    stop_event = threading.Event()
+    sr = 44100  # Sample rate
+
+    # Start playing in a separate thread
+    play_thread = threading.Thread(
+        target=display_plot_utils.play_segment, args=(audio_segment, 0, stop_event, sr)
+    )
+    play_thread.start()
+
+    # Increase the delay before setting the stop event
+    time.sleep(0.5)
+    stop_event.set()
+
+    # Wait for the thread to finish
+    play_thread.join()
