@@ -173,3 +173,63 @@ def test_play_segment(mocker):
 
     # Assert that the 'clip' method was called with the provided 'clip_id'
     dataset.clip.assert_called_once_with(mock_clip_id)
+
+
+@pytest.fixture
+def mock_output():
+    # Mock the output object
+    mock = MagicMock()
+    mock.clear_output = MagicMock()
+    return mock
+
+
+@pytest.fixture
+def mock_loader():
+    # Mock the loader object
+    mock = MagicMock()
+    return mock
+
+
+@pytest.fixture
+def mock_self():
+    # Mock the 'self' object if it has dependencies
+    return MagicMock()
+
+
+@pytest.mark.parametrize(
+    "event_dist, dataset_analysis, audio_plot", [(False, False, False)]
+)
+def test_on_button_clicked(
+    event_dist, dataset_analysis, audio_plot, mock_output, mock_loader, mock_self
+):
+    # Mock the checkbox objects
+    event_dist_check = MagicMock(value=event_dist)
+    dataset_analysis_check = MagicMock(value=dataset_analysis)
+    audio_plot_check = MagicMock(value=audio_plot)
+
+    # Mock the time.sleep to speed up the test
+    with patch("soundata.display_plot_utils.time.sleep", return_value=None):
+        # Call the function
+        display_plot_utils.on_button_clicked(
+            event_dist_check,
+            dataset_analysis_check,
+            audio_plot_check,
+            mock_output,
+            mock_loader,
+            mock_self,
+            clip_id=123,  # Use an appropriate clip_id
+        )
+
+    mock_output.clear_output.assert_called_once_with(wait=True)
+
+    assert (
+        mock_loader.value == "<p style='font-size:15px;'>Completed the processes!</p>"
+    )
+
+    # Assert specific function calls based on checkbox values
+    if event_dist:
+        mock_self.plot_hierarchical_distribution.assert_called_once()
+    if dataset_analysis:
+        mock_self.plot_clip_durations.assert_called_once()
+    if audio_plot:
+        mock_self.visualize_audio.assert_called_once_with(123)
