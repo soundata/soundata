@@ -1,14 +1,11 @@
-import sys
 import threading
-import time
 from unittest import mock
-from unittest.mock import MagicMock, Mock, PropertyMock, patch
+from unittest.mock import MagicMock, Mock, patch
 import pytest
 import numpy as np
-
 from soundata import display_plot_utils
 import soundata
-import simpleaudio as sa  # Alternative library for audio playback
+import simpleaudio as sa
 
 
 class MockDataset:
