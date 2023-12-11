@@ -268,14 +268,24 @@ def test_play_segment(mocker):
     mocker.patch.object(dataset, "clip", return_value=mock_clip)
 
     # Mock dependencies used in play_segment
-    mocker.patch.object(sa, "play_buffer")
-    mocker.patch.object(threading.Thread, "start")
+    mocker.patch.object(
+        sa, "play_buffer", return_value=MagicMock()
+    )  # Mock sa.play_buffer
+    mocker.patch.object(threading.Thread, "start")  # Mock threading.Thread.start
 
     # Call the visualize_audio function with a specific clip_id
     display_plot_utils.visualize_audio(dataset, mock_clip_id)
 
     # Assert that the 'clip' method was called with the provided 'clip_id'
     dataset.clip.assert_called_once_with(mock_clip_id)
+
+    # Assert that sa.play_buffer and play_obj.stop were called
+    sa.play_buffer.assert_called_once()
+    play_obj = sa.play_buffer.return_value
+    play_obj.stop.assert_called_once()
+
+    # Assert that the 'break' condition was checked
+    play_obj.is_playing.assert_called_once()
 
 
 @pytest.fixture
