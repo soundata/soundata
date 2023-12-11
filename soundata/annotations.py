@@ -200,16 +200,17 @@ class SpatialEvents:
         time_step=None,
         confidence=None,
     ):
-        validate_array_like(intervals, list, list)
-        validate_array_like(labels, list, str)
+        validate_array_like(intervals, list, list, none_allowed=True)
+        validate_array_like(labels, list, str, none_allowed=True)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
-        [
+        if intervals is not None:
             [
-                validate_intervals(intervals[np.newaxis, :])
-                for intervals in event_intervals
+                [
+                    validate_intervals(intervals[np.newaxis, :])
+                    for intervals in event_intervals
+                ]
+                for event_intervals in intervals
             ]
-            for event_intervals in intervals
-        ]
         validate_confidence(confidence)
         validate_unit(labels_unit, LABEL_UNITS)
         validate_unit(intervals_unit, TIME_UNITS)
@@ -220,10 +221,10 @@ class SpatialEvents:
         self.labels_unit = labels_unit
         self.confidence = confidence
 
-        validate_array_like(clip_number_index, list, str)
-        validate_array_like(elevations, list, list)
-        validate_array_like(azimuths, list, list)
-        validate_array_like(distances, list, list)
+        validate_array_like(clip_number_index, list, str, none_allowed=True)
+        validate_array_like(elevations, list, list, none_allowed=True)
+        validate_array_like(azimuths, list, list, none_allowed=True)
+        validate_array_like(distances, list, list, none_allowed=True)
         validate_lengths_equal(
             [
                 intervals,
@@ -236,52 +237,75 @@ class SpatialEvents:
             ]
         )
         # validate location information for each event are numpy arrays
-        [
+        if elevations is not None:
             [
-                [validate_array_like(subitem, np.ndarray, int) for subitem in sitem]
-                for sitem in item
+                [
+                    validate_array_like(subitem, np.ndarray, int, none_allowed=True)
+                    for subitem in sitem
+                ]
+                for sitem in elevations
             ]
-            for item in [elevations, azimuths]
-        ]
-        [
+
+        if azimuths is not None:
             [
-                validate_array_like(
-                    subitem, np.ndarray, np.array([None]).dtype, none_allowed=True
-                )
-                for subitem in item
+                [
+                    validate_array_like(subitem, np.ndarray, int, none_allowed=True)
+                    for subitem in sitem
+                ]
+                for sitem in azimuths
             ]
-            for item in distances
-        ]
+        if distances is not None:
+            [
+                [
+                    validate_array_like(
+                        subitem, np.ndarray, np.array([None]).dtype, none_allowed=True
+                    )
+                    for subitem in item
+                ]
+                for item in distances
+            ]
         # validate length of location information is consistent
         # for each event
-        [
-            [validate_lengths_equal([e, a, d]) for e, a, d in zip(els, azs, dis)]
-            for els, azs, dis in zip(elevations, azimuths, distances)
-        ]
-        [
+        if elevations is not None and azimuths is not None and distances is not None:
             [
-                validate_locations(
-                    np.concatenate(
-                        [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]], axis=1
+                [validate_lengths_equal([e, a, d]) for e, a, d in zip(els, azs, dis)]
+                for els, azs, dis in zip(elevations, azimuths, distances)
+            ]
+        if elevations is not None and azimuths is not None and distances is not None:
+            [
+                [
+                    validate_locations(
+                        np.concatenate(
+                            [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]],
+                            axis=1,
+                        )
                     )
-                )
-                for e, a, d in zip(els, azs, dis)
+                    for e, a, d in zip(els, azs, dis)
+                ]
+                for els, azs, dis in zip(elevations, azimuths, distances)
             ]
-            for els, azs, dis in zip(elevations, azimuths, distances)
-        ]
-        [
+        if (
+            elevations is not None
+            and azimuths is not None
+            and distances is not None
+            and intervals is not None
+        ):
             [
-                validate_time_steps(
-                    time_step,
-                    np.concatenate(
-                        [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]], axis=1
-                    ),
-                    i,
+                [
+                    validate_time_steps(
+                        time_step,
+                        np.concatenate(
+                            [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]],
+                            axis=1,
+                        ),
+                        i,
+                    )
+                    for e, a, d, i in zip(els, azs, dis, ivl)
+                ]
+                for els, azs, dis, ivl in zip(
+                    elevations, azimuths, distances, intervals
                 )
-                for e, a, d, i in zip(els, azs, dis, ivl)
             ]
-            for els, azs, dis, ivl in zip(elevations, azimuths, distances, intervals)
-        ]
 
         validate_unit(elevations_unit, ELEVATIONS_UNITS)
         validate_unit(azimuths_unit, AZIMUTHS_UNITS)
