@@ -86,6 +86,32 @@ def test_perform_dataset_exploration_initialization():
 
 @patch("soundata.display_plot_utils.plot_distribution")
 @patch("soundata.display_plot_utils.plt", autospec=True)
+def test_plot_hierarchical_distribution_no_subdatasets(
+    mock_plt, mock_plot_distribution
+):
+    # Mock the class instance and its attributes without 'subdatasets'
+    mock_instance = MagicMock()
+    mock_instance._metadata = {}
+    mock_instance._index = {"clips": ["clip1", "clip2"]}
+
+    # Mock clips
+    mock_clip = MagicMock()
+    mock_clip.tags.labels = ["event1", "event2"]
+    mock_clip.events.labels = ["event3"]
+    mock_instance.clip.return_value = mock_clip
+
+    # Execute the method
+    display_plot_utils.plot_hierarchical_distribution(mock_instance)
+
+    # Assertions
+    mock_plt.subplot.assert_called()
+    mock_plt.figure.assert_called()
+    mock_plot_distribution.assert_called()
+    mock_plt.show.assert_called()
+
+
+@patch("soundata.display_plot_utils.plot_distribution")
+@patch("soundata.display_plot_utils.plt", autospec=True)
 def test_plot_hierarchical_distribution(mock_plt, mock_plot_distribution):
     # Mock the class instance and its attributes
     mock_instance = MagicMock()
