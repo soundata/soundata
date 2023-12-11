@@ -200,7 +200,7 @@ class SpatialEvents:
         time_step=None,
         confidence=None,
     ):
-        # validate_array_like(intervals, list, list)
+        validate_array_like(intervals, list, list)
         validate_array_like(labels, list, str)
         validate_array_like(confidence, np.ndarray, float, none_allowed=True)
         [
