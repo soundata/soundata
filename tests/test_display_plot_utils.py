@@ -1,6 +1,7 @@
 import sys
 import threading
 import time
+from unittest import mock
 from unittest.mock import MagicMock, Mock, PropertyMock, patch
 import pytest
 import numpy as np
@@ -108,6 +109,42 @@ def test_plot_hierarchical_distribution_no_subdatasets(
     mock_plt.figure.assert_called()
     mock_plot_distribution.assert_called()
     mock_plt.show.assert_called()
+
+
+def test_play_segment_true():
+    # Mock audio segment and other dependencies
+    audio_segment = mock.MagicMock()
+    start_time = 0
+    sr = 44100
+    stop_event = mock.MagicMock()
+
+    # Set stop_event to True for testing purposes
+    stop_event.is_set.return_value = True
+
+    # Mock the play_buffer function to return a mock play_obj
+    mock_play_obj = mock.MagicMock()
+    with mock.patch(
+        "soundata.display_plot_utils.sa.play_buffer", return_value=mock_play_obj
+    ):
+        # Set is_playing() to return True initially and then False
+        mock_play_obj.is_playing.side_effect = [True, False]
+
+        # Call the play_segment function
+        display_plot_utils.play_segment(audio_segment, start_time, stop_event, sr)
+
+        # Assert that the play_buffer function was called with the correct arguments
+        sa.play_buffer.assert_called_once_with(
+            audio_segment[start_time * 1000 : (start_time + 60) * 1000].raw_data,
+            1,
+            2,
+            sr,
+        )
+
+        # Assert that play_obj.stop() was called once
+        mock_play_obj.stop.assert_called_once()
+
+        # Assert that is_playing was called at least twice
+        mock_play_obj.is_playing.assert_called()
 
 
 @patch("soundata.display_plot_utils.plot_distribution")
