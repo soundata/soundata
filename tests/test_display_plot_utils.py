@@ -91,15 +91,40 @@ def test_plot_hierarchical_distribution(mock_plt, mock_plot_distribution):
     mock_instance = MagicMock()
     mock_instance._metadata = {
         "subdatasets": "data",
-        "clip1": {"subdataset": "data1", "subdataset_layer_0": "layer1_data"},
-        "clip2": {"subdataset": "data2", "subdataset_layer_0": "layer1_data"}
-        # Add more layers if needed
+        "subdataset_layer_0": "layer0_data",
+        "subdataset_layer_1": "layer1_data",  # Add an additional layer
+        "clip1": {
+            "subdataset": "data1",
+            "subdataset_layer_0": "layer1_data",
+            "subdataset_layer_1": "layer1_data",
+        },
+        "clip2": {
+            "subdataset": "data2",
+            "subdataset_layer_0": "layer1_data",
+            "subdataset_layer_1": "layer1_data",
+        },
     }
     mock_instance._index = {"clips": ["clip1", "clip2"]}
-    mock_clip = MagicMock()
-    mock_clip.tags.labels = ["event1", "event2"]
-    mock_clip.events.labels = ["event3"]
-    mock_instance.clip.return_value = mock_clip
+
+    # Mock clip with events labels but without tags labels
+    mock_clip_with_events = MagicMock()
+    mock_clip_with_events.tags = MagicMock(return_value=None)  # No tags.labels
+    mock_clip_with_events.events.labels = ["event3"]
+
+    # Mock clip with tags labels (existing setup)
+    mock_clip_with_tags = MagicMock()
+    mock_clip_with_tags.tags.labels = ["event1", "event2"]
+    mock_clip_with_tags.events = MagicMock(return_value=None)  # No events.labels
+
+    # Setup clip method to return different mocks based on clip_id
+    def clip_side_effect(clip_id):
+        if clip_id == "clip1":
+            return mock_clip_with_tags
+        elif clip_id == "clip2":
+            return mock_clip_with_events
+        return None
+
+    mock_instance.clip.side_effect = clip_side_effect
 
     # Execute the method
     display_plot_utils.plot_hierarchical_distribution(mock_instance)
