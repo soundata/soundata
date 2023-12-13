@@ -22,7 +22,7 @@ primary annotations only. To access comprehensive details and API documentation 
 
 * ❌ : Not available
 
-Tasks Codes: 
+Usecase Codes: 
 
 | :sel:`SEL` Sound Event Localization 
 | :sed:`SED` Sound Event Detection
