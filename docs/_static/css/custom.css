@@ -93,159 +93,66 @@ a.reference.external {
     font-weight: bold;
 }
 
-.sed, .sed a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em; /* Increased top and bottom margin */
-    background-color: #264653; /* Change to the color you want for the tag background */
-    color: white !important; /* Change to the color you want for the tag text */
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent; /* Optional: adds a border */
-    text-decoration: none; /* Optional: removes underline from hyperlinks */
-    font-family: 'Geologica', monospace; /* This line sets the font to Courier New, which is monospaced */
-    min-width: 50px;
-}
-.sec, .sec a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #2a9d8f;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-    min-width: 50px;
-}
-
-.sel, .sel a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #e9c46a;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-    min-width: 50px;
-}
-
-.asc, .asc a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #f4a261;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-    min-width: 50px;
-}
-
-.ac, .ac a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #e76f51;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-    min-width: 50px;
-}
-
-.urban, .urban a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #03045e;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-}
-
-.environment, .environment a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #0077b6;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-}
-
-.machine, .machine a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #00b4d8;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-}
-
-.bioacoustic, .bioacoustic a {
-    display: inline-block;
-    padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em;
-    background-color: #90e0ef;
-    color: white !important;
-    border-radius: 0.25em;
-    font-size: 90%;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid transparent;
-    text-decoration: none;
-    font-family: 'Geologica', monospace;
-}
-
+.sed, .sed a,
+.sec, .sec a,
+.sel, .sel a,
+.asc, .asc a,
+.ac, .ac a,
+.urban, .urban a,
+.environment, .environment a,
+.machine, .machine a,
+.bioacoustic, .bioacoustic a,
 .music, .music a {
     display: inline-block;
     padding: 0.1em 0.6em;
-    margin: 0.2em 0.2em; 
-    background-color: #e0aaff; 
-    color: white !important; 
-    border-radius: 0.25em;
+    margin: 0.2em 0.2em;
     font-size: 90%;
     font-weight: bold;
     text-align: center;
-    border: 1px solid transparent; 
-    text-decoration: none; 
-    font-family: 'Geologica', monospace; 
-
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-family: 'Geologica', monospace;
+    min-width: 50px;
+    color: white !important;
+    border-radius: 0.25em;
 }
 
+.sed, .sed a {
+    background-color: #264653;
+}
 
+.sec, .sec a {
+    background-color: #2a9d8f;
+}
+
+.sel, .sel a {
+    background-color: #e9c46a;
+}
+
+.asc, .asc a {
+    background-color: #f4a261;
+}
+
+.ac, .ac a {
+    background-color: #e76f51;
+}
+
+.urban, .urban a {
+    background-color: #03045e;
+}
+
+.environment, .environment a {
+    background-color: #0077b6;
+}
+
+.machine, .machine a {
+    background-color: #00b4d8;
+}
+
+.bioacoustic, .bioacoustic a {
+    background-color: #90e0ef;
+}
+
+.music, .music a {
+    background-color: #e0aaff;
+}
