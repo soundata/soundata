@@ -1,5 +1,5 @@
 .. list-table::
-   :widths: 5 4 3 1 1 5 5
+   :widths: 4 4 3 1 1 3 5 3
    :header-rows: 1
 
    * - Dataset
@@ -7,7 +7,8 @@
      - Annotations
      - Clips
      - Hours
-     - Usecases
+     - Tasks
+     - Soundscapes
      - License
      
    * - :ref:`3D-MARCo <marco-module>`
@@ -16,7 +17,8 @@
      - :ref:`tags`
      - 26
      - 0.3
-     - | :sel:`SEL` :music:`MUSIC`
+     - | :sel:`SEL` 
+     - | :music:`MUSIC`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -26,7 +28,8 @@
      - :ref:`tags`
      - 174
      - 21
-     - | :sec:`SEC` :machine:`MACHINE`
+     - | :sec:`SEC` 
+     - | :machine:`MACHINE`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -36,8 +39,8 @@
      - :ref:`events`
      - 49
      - 3.16
-     - | :sed:`SED` :environment:`ENVIRONMENT` 
-       | :bioacoustic:`BIOACOUSTIC` 
+     - | :sed:`SED` 
+     - | :environment:`ENVIRONMENT` :bioacoustic:`BIOACOUSTIC` 
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -48,6 +51,7 @@
      - 6974
      - 43.2
      - | :ac:`AC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -58,6 +62,7 @@
      - 6974
      - 43.2
      - | :ac:`AC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -67,7 +72,8 @@
      - :ref:`events`
      - 174
      - 21
-     - | :sed:`SED` :bioacoustic:`BIOACOUSTIC`
+     - | :sed:`SED` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -77,7 +83,8 @@
      - :ref:`tags`
      - 20,000
      - 55.5
-     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -89,6 +96,7 @@
      - 64
      - 10.7
      - | :asc:`ASC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -100,6 +108,7 @@
      - 64
      - 10.7
      - | :asc:`ASC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -109,7 +118,8 @@
      - :ref:`tags`
      - 2000
      - 2.8
-     - | :sec:`SEC` :environment:`ENVIRONMENT`
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
@@ -119,7 +129,8 @@
      - :ref:`tags`
      - 7690
      - 21.3
-     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -129,9 +140,10 @@
      - :ref:`tags`
      - 51197
      - 108.3
-     - | :sec:`SEC` :environment:`ENVIRONMENT` 
-       | :music:`MUSIC` :bioacoustic:`BIOACOUSTIC` 
-       | :urban:`URBAN` :machine:`MACHINE` 
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
+       | :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` 
+       | :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -141,8 +153,9 @@
      - :ref:`tags`
      - 18532
      - 42.5
-     - | :sec:`SEC` :environment:`ENVIRONMENT`
-       | :music:`MUSIC` :machine:`MACHINE` 
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
+       | :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -152,40 +165,33 @@
      - :ref:`events`
      - 6547
      - 18.2
-     - | :sed:`SED` :urban:`URBAN`
+     - | :sed:`SED` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
    * - | :ref:`STARSS 2022 <starss2022-module>`
      - - audio: ✅
        - annotations: ✅
-     - Spatial Events
+     - :ref:`spatialevents`
      - 121
      - 5
-     - | :sed:`SED` :sel:`SEL`
-       | :environment:`ENVIRONMENT` :music:`MUSIC`
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
-
-   * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
-     - 500
-     - 8.3
-     - | :sed:`SED` :sel:`SEL` 
-       | :environment:`ENVIRONMENT`
-     - :tau2019sse:`\ `
 
    * - | :ref:`TAU NIGENS <tau2020sse_nigens-module>`
        | :ref:`SSE 2020 <tau2020sse_nigens-module>`
      - - audio: ✅
        - annotations: ✅
-     - Spatial Events
+     - :ref:`spatialevents`
      - 800
      - 15
-     - | :sed:`SED` :sel:`SEL` 
-       | :environment:`ENVIRONMENT` :music:`MUSIC` 
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC` 
        | :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
@@ -194,24 +200,27 @@
        | :ref:`SSE 2021 <tau2021sse_nigens-module>`
      - - audio: ✅
        - annotations: ✅
-     - Spatial Events
+     - :ref:`spatialevents`
      - 800
      - 15
-     - | :sed:`SED` :sel:`SEL` 
-       | :environment:`ENVIRONMENT` :music:`MUSIC` 
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC` 
        | :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
 
    * - | :ref:`TAU Urban <tau2019uas-module>`
-       | :ref:`Acoustic Scenes 2019 <tau2019uas-module>`
+       | :ref:`Acoustic Scenes <tau2019uas-module>`
+       | :ref:`2019 <tau2019uas-module>`
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
      - 22800
      - 63.3
-     - | :asc:`ASC` :urban:`URBAN`
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2019:`\ `
 
    * - | :ref:`TAU Urban <tau2020uas_mobile-module>`
@@ -222,7 +231,8 @@
      - :ref:`tags`
      - 34915
      - 97
-     - | :asc:`ASC` :urban:`URBAN`
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2020:`\ `
 
    * - | :ref:`TAU Urban <tau2022uas_mobile-module>`
@@ -233,16 +243,30 @@
      - :ref:`tags`
      - 349150
      - 97
-     - | :asc:`ASC` :urban:`URBAN`
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2022:`\ `
 
-   * - | :ref:`TUT Sound Events 2017 <tut2017se-module>`
+   * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`spatialevents`
+     - 500
+     - 8.3
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT`
+     - :tau2019sse:`\ `
+
+   * - | :ref:`TUT Sound <tut2017se-module>`
+       | :ref:`Events 2017 <tut2017se-module>`
      - - audio: ✅
        - annotations: ✅
      - :ref:`events`
      - 32
      - 2.02
-     - | :sed:`SED` :environment:`ENVIRONMENT`
+     - | :sed:`SED` 
+     - | :environment:`ENVIRONMENT`
      - :tut:`\ `
 
    * - :ref:`URBAN-SED <urbansed-module>`
@@ -251,7 +275,8 @@
      - :ref:`events`
      - 10000
      - 27.8
-     - | :sed:`SED` :urban:`URBAN`
+     - | :sed:`SED` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
@@ -261,7 +286,8 @@
      - :ref:`tags`
      - 8732
      - 8.75
-     - | :sec:`SEC` :urban:`URBAN`
+     - | :sec:`SEC` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
@@ -271,6 +297,7 @@
      - :ref:`tags`
      - 10,000
      - 28
-     - | :sec:`SEC` :bioacoustic:`BIOACOUSTIC`
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0

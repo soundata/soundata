@@ -16,19 +16,21 @@ primary annotations only. To access comprehensive details and API documentation 
 
 "Downloadable" possible values:
 
-* ✅ : Freely downloadable
+* ✅ Freely downloadable
 
-* 📺 : Youtube Links only
+* 📺 Youtube Links only
 
-* ❌ : Not available
+* ❌ Not available
 
-Usecase Codes: 
+Tasks Codes (More information at the bottom of the page): 
 
 | :sel:`SEL` Sound Event Localization 
 | :sed:`SED` Sound Event Detection
 | :sec:`SEC` Sound Event Classification
 | :asc:`ASC` Acoustic Scene Classification
 | :ac:`AC` Audio Captioning
+
+Please note that you can click on each tag to access more information related to that specific usecase.
 
 .. include:: table.rst
 
@@ -60,8 +62,18 @@ When Tags annotations contain varying numbers of labels (including 0), it is typ
 Events
 ^^^^^^
 Sound events with a ``start time``, ``end time``, ``label``, and ``confidence``. Events are used to represent annotations for:
+
 * Sound Event Detection (SED) - strong labels
 
+
+.. _spatialevents:
+
+Spatial Events
+^^^^^^^^^^^^^^
+Spatial events represent annotations used for various applications, including spatial event detection and tracking. Similar to Sound Events, Spatial Events include essential attributes such as ``start time``, ``end time``, ``label``, and ``confidence`` to characterize and annotate spatial phenomena. This can be extended to include additional attributes specific to the application, such as geographical coordinates (latitude, longitude), altitude, direction (azimuth and elevation), and distance from reference points. 
+Spatial events are used to represent annotations for:
+
+* Sound Event Detection (SED) + Sound Event Localization (SEL)
 Usecases
 ================
 
