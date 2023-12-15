@@ -193,15 +193,6 @@
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
-   * - | :ref:`TUT Sound Events 2017 <tut2017se-module>`
-     - - audio: ✅
-       - annotations: ✅
-     - :ref:`events`
-     - 32
-     - 2.02
-     - | :sed:`SED` :environment:`ENVIRONMENT`
-     - :tut:`\ `
-
    * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
      - - audio: ✅
        - annotations: ✅
@@ -243,6 +234,15 @@
      - 97
      - | :asc:`ASC` :urban:`URBAN`
      - :tau2022:`\ `
+
+   * - | :ref:`TUT Sound Events 2017 <tut2017se-module>`
+     - - audio: ✅
+       - annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - | :sed:`SED` :environment:`ENVIRONMENT`
+     - :tut:`\ `
 
    * - :ref:`URBAN-SED <urbansed-module>`
      - - audio: ✅
