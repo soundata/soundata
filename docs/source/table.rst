@@ -41,7 +41,7 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - :ref:`DCASE23-Task6a <dcase23-task6a-module>`
+   * - :ref:`DCASE23-Task6A <dcase23-task6a-module>`
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
@@ -51,7 +51,7 @@
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - :ref:`DCASE23-Task6b <dcase23-task6b-module>`
+   * - :ref:`DCASE23-Task6B <dcase23-task6b-module>`
      - - audio: ✅
        - annotations: ✅
      - :ref:`tags`
@@ -167,6 +167,16 @@
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
+   * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
+     - - audio: ✅
+       - annotations: ✅
+     - Spatial Events
+     - 500
+     - 8.3
+     - | :sed:`SED` :sel:`SEL` 
+       | :environment:`ENVIRONMENT`
+     - :tau2019sse:`\ `
+
    * - | :ref:`TAU NIGENS <tau2020sse_nigens-module>`
        | :ref:`SSE 2020 <tau2020sse_nigens-module>`
      - - audio: ✅
@@ -193,15 +203,6 @@
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
-   * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
-     - 500
-     - 8.3
-     - | :sed:`SED` :sel:`SEL` 
-       | :environment:`ENVIRONMENT`
-     - :tau2019sse:`\ `
 
    * - | :ref:`TAU Urban <tau2019uas-module>`
        | :ref:`Acoustic Scenes 2019 <tau2019uas-module>`
