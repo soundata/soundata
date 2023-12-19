@@ -62,10 +62,10 @@ jobs:
             case "${{ runner.os }}" in
             Linux)
               sudo apt-get update -yy
-              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip libasound2-dev
+              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
               ;; 
             macOS)
-              brew install libsamplerate wget libsndfile sox ffmpeg zip 
+              brew install libsamplerate wget libsndfile sox ffmpeg zip
               ;;
             Windows)
               choco install wget ffmpeg zip
