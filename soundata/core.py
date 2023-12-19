@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 
-from soundata import display_plot_utils, download_utils
+from soundata import download_utils
 from soundata import validate
 
 MAX_STR_LEN = 100
@@ -320,10 +320,6 @@ class Dataset(object):
             force_overwrite=force_overwrite,
             cleanup=cleanup,
         )
-
-    def explore_dataset(self, clip_id=None):
-        """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
-        display_plot_utils.perform_dataset_exploration(self, clip_id)
 
     @cached_property
     def clip_ids(self):
