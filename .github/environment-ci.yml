@@ -26,4 +26,7 @@ dependencies:
     - future>=0.18.3
     - jams>=0.3.4
     - testcontainers>=3.7.1
+    - simpleaudio
+    - seaborn
+    - ipywidgets
     - py7zr>=0.16.0
