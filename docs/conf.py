@@ -62,6 +62,7 @@ extlinks = {
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
     "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
+    "tau2022": ("https://zenodo.org/records/6337421%s", "Custom"),
 }
 
 intersphinx_mapping = {
