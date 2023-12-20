@@ -1,5 +1,5 @@
 .. list-table::
-   :widths: 5 5 5 5 5 5
+   :widths: 4 4 3 1 1 2 4 3
    :header-rows: 1
 
    * - Dataset
@@ -7,245 +7,297 @@
      - Annotations
      - Clips
      - Hours
+     - Tasks
+     - Soundscapes
      - License
-
-   * - 3D-MARCo
-     - - audio: ✅
-       - annotations: ✅
+     
+   * - :ref:`3D-MARCo <marco-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 26
      - 0.3
+     - | :sel:`SEL` 
+     - | :music:`MUSIC`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - DCASE23-task2
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE23-Task2 <dcase23-task2-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 174
      - 21
+     - | :sec:`SEC` 
+     - | :machine:`MACHINE`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - DCASE23-Task4B
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE23-Task4B <dcase23-task4b-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`events`
      - 49
      - 3.16
+     - | :sed:`SED` 
+     - | :environment:`ENVIRONMENT` :bioacoustic:`BIOACOUSTIC` 
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - DCASE23-Task6a
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE23-Task6A <dcase23-task6a-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 6974
      - 43.2
+     - | :ac:`AC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - DCASE23-Task6b
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE23-Task6B <dcase23-task6b-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 6974
      - 43.2
+     - | :ac:`AC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-
-   * - DCASE-bioacoustic
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE-Bioacoustic <dcase-bioacoustic-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`events`
      - 174
      - 21
+     - | :sed:`SED` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - DCASE-birdVox20k
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`DCASE-BirdVox20k <dcase-birdVox20k-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 20,000
      - 55.5
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - | EigenScape
+   * - | :ref:`EigenScape <eigenscape-module>`
        | (HOA 25 ch) 
-     - - audio: ✅
-       - annotations: ✅
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 64
      - 10.7
+     - | :asc:`ASC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - | EigenScape Raw
+   * - | :ref:`EigenScape Raw <eigenscape-raw-module>`
        | (32 ch) 
-     - - audio: ✅
-       - annotations: ✅
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 64
      - 10.7
+     - | :asc:`ASC`
+     - | 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - ESC-50
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`ESC-50 <esc50-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 2000
      - 2.8
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT`
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
-   * - Freefield1010
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`Freefield1010 <freefield1010-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 7690
      - 21.3
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - FSD50K
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`FSD50K <fsd50k-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 51197
      - 108.3
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
+       | :bioacoustic:`BIOACOUSTIC` :urban:`URBAN` 
+       | :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - FSDnoisy18K
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`FSDnoisy18K <fsdnoisy18k-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 18532
      - 42.5
+     - | :sec:`SEC` 
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
+       | :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - SINGA:PURA
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`SINGA:PURA <singapura-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`events`
      - 6547
      - 18.2
+     - | :sed:`SED` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0
 
-
-   * - | STARSS
-       | 2022
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
+   * - | :ref:`STARSS 2022 <starss2022-module>`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`spatialevents`
      - 121
      - 5
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC`
      - .. image:: https://img.shields.io/badge/License-MIT-blue.svg
           :target: https://lbesson.mit-license.org/ 
 
-
-   * - | TAU NIGENS 
-       | SSE 2020
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
+   * - | :ref:`TAU NIGENS <tau2020sse_nigens-module>`
+       | :ref:`SSE 2020 <tau2020sse_nigens-module>`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`spatialevents`
      - 800
      - 15
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC` 
+       | :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
+     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-nc/4.0 
+
+   * - | :ref:`TAU NIGENS <tau2021sse_nigens-module>`
+       | :ref:`SSE 2021 <tau2021sse_nigens-module>`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`spatialevents`
+     - 800
+     - 15
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT` :music:`MUSIC` 
+       | :bioacoustic:`BIOACOUSTIC` :machine:`MACHINE` 
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
 
-   * - | TAU NIGENS 
-       | SSE 2021
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
-     - 800
-     - 15
-     - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
-          :target: https://creativecommons.org/licenses/by-nc/4.0 
-
-
-   * - | TUT Sound
-       | Events 2017
-     - - audio: ✅
-       - annotations: ✅
-     - :ref:`events`
-     - 32
-     - 2.02
-     - :tut:`\ `
-
-
-   * - | TAU SSE
-       | 2019
-     - - audio: ✅
-       - annotations: ✅
-     - Spatial Events
-     - 500
-     - 8.3
-     - :tau2019sse:`\ `
-
-
-   * - | TAU Urban
-       | Acoustic Scenes
-       | 2019
-     - - audio: ✅
-       - annotations: ✅
+   * - | :ref:`TAU Urban <tau2019uas-module>`
+       | :ref:`Acoustic Scenes <tau2019uas-module>`
+       | :ref:`2019 <tau2019uas-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 22800
      - 63.3
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2019:`\ `
 
-   * - | TAU Urban
-       | Acoustic Scenes
-       | 2020 Mobile
-     - - audio: ✅
-       - annotations: ✅
+   * - | :ref:`TAU Urban <tau2020uas_mobile-module>`
+       | :ref:`Acoustic Scenes<tau2020uas_mobile-module>`
+       | :ref:`2020 Mobile <tau2020uas_mobile-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 34915
      - 97
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2020:`\ `
 
-   * - | TAU Urban
-       | Acoustic Scenes
-       | 2022 Mobile
-     - - audio: ✅
-       - annotations: ✅
+   * - | :ref:`TAU Urban <tau2022uas_mobile-module>`
+       | :ref:`Acoustic Scenes<tau2022uas_mobile-module>`
+       | :ref:`2022 Mobile <tau2022uas_mobile-module>` 
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 349150
      - 97
+     - | :asc:`ASC` 
+     - | :urban:`URBAN`
      - :tau2022:`\ `
 
-   * - URBAN-SED
-     - - audio: ✅
-       - annotations: ✅
+   * - | :ref:`TAU SSE 2019 <tau2019sse-module>`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`spatialevents`
+     - 500
+     - 8.3
+     - | :sed:`SED` 
+       | :sel:`SEL`
+     - | :environment:`ENVIRONMENT`
+     - :tau2019sse:`\ `
+
+   * - | :ref:`TUT Sound <tut2017se-module>`
+       | :ref:`Events 2017 <tut2017se-module>`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`events`
+     - 32
+     - 2.02
+     - | :sed:`SED` 
+     - | :environment:`ENVIRONMENT`
+     - :tut:`\ `
+
+   * - :ref:`URBAN-SED <urbansed-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`events`
      - 10000
      - 27.8
+     - | :sed:`SED` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
-   * - UrbanSound8K
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`UrbanSound8K <urbansound8k-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 8732
      - 8.75
+     - | :sec:`SEC` 
+     - | :urban:`URBAN`
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
-
-   * - Warblrb10k
-     - - audio: ✅
-       - annotations: ✅
+   * - :ref:`Warblrb10k <warblrb10k-module>`
+     - | audio: ✅
+       | annotations: ✅
      - :ref:`tags`
      - 10,000
      - 28
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0

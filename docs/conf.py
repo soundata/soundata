@@ -13,7 +13,8 @@
 import os
 import sys
 import datetime
-
+from docutils import nodes, utils
+from docutils.parsers.rst import roles
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
@@ -61,6 +62,7 @@ extlinks = {
     "tau2019sse": ("https://zenodo.org/record/2580091%s", "Custom"),
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
+    "tau2022": ("https://zenodo.org/record/6337421%s", "Custom"),
     "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
 }
 
@@ -125,3 +127,30 @@ html_css_files = [
 ]
 
 html_logo = "img/soundata.png"
+
+
+def create_reference_role(node_id):
+    def role_fn(name, rawtext, text, lineno, inliner, options={}, content=[]):
+        text = utils.unescape(text)
+        # Use the same class name as defined in the CSS file for the reference node
+        class_name = name.lower()  # This should match the class name used in the CSS
+        ref_node = nodes.reference(rawtext, text, refuri=f'#{node_id}', classes=[class_name])
+        return [ref_node], []
+    return role_fn
+
+def setup(app):
+    role_to_target = {
+        'sed': 'sed',
+        'sec': 'sec',
+        'sel': 'sel',
+        'asc': 'asc',
+        'ac': 'ac',
+        'urban': 'urban-environment',
+        'environment': 'environment-sounds',
+        'machine': 'machine-sounds',
+        'bioacoustic': 'bioacoustic-sounds',
+        'music': 'music-sounds',
+    }
+    
+    for role_name, node_id in role_to_target.items():
+        app.add_role(role_name, create_reference_role(node_id))
