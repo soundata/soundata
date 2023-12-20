@@ -15,6 +15,7 @@ Dataset Loaders
 
 3D-MARCo
 ^^^^^^^^
+.. _marco-module:
 
 .. automodule:: soundata.datasets.marco
    :members:
@@ -22,6 +23,7 @@ Dataset Loaders
 
 DCASE23-Task2
 ^^^^^^^^^^^^^
+.. _dcase23-task2-module:
 
 .. automodule:: soundata.datasets.dcase23_task2
    :members:
@@ -29,6 +31,7 @@ DCASE23-Task2
 
 DCASE23-Task4B
 ^^^^^^^^^^^^^^
+.. _dcase23-task4b-module:
 
 .. automodule:: soundata.datasets.dcase23_task4b
    :members:
@@ -36,6 +39,7 @@ DCASE23-Task4B
 
 DCASE23-Task6a
 ^^^^^^^^^^^^^^
+.. _dcase23-task6a-module:
 
 .. automodule:: soundata.datasets.dcase23_task6a
    :members:
@@ -43,6 +47,7 @@ DCASE23-Task6a
 
 DCASE23-Task6b
 ^^^^^^^^^^^^^^
+.. _dcase23-task6b-module:
 
 .. automodule:: soundata.datasets.dcase23_task6b
    :members:
@@ -50,13 +55,15 @@ DCASE23-Task6b
 
 DCASE-bioacoustic
 ^^^^^^^^^^^^^^^^^
+.. _dcase-bioacoustic-module:
 
 .. automodule:: soundata.datasets.dcase_bioacoustic
    :members:
    :inherited-members:
 
 DCASE-birdVox20k
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+.. _dcase-birdVox20k-module:
 
 .. automodule:: soundata.datasets.dcase_birdVox20k
    :members:
@@ -64,6 +71,7 @@ DCASE-birdVox20k
 
 EigenScape
 ^^^^^^^^^^
+.. _eigenscape-module:
 
 .. automodule:: soundata.datasets.eigenscape
    :members:
@@ -71,6 +79,7 @@ EigenScape
 
 EigenScape Raw
 ^^^^^^^^^^^^^^
+.. _eigenscape-raw-module:
 
 .. automodule:: soundata.datasets.eigenscape_raw
    :members:
@@ -78,6 +87,7 @@ EigenScape Raw
 
 ESC-50
 ^^^^^^
+.. _esc50-module:
 
 .. automodule:: soundata.datasets.esc50
    :members:
@@ -85,6 +95,7 @@ ESC-50
 
 Freefield1010
 ^^^^^^^^^^^^^
+.. _freefield1010-module:
 
 .. automodule:: soundata.datasets.freefield1010
    :members:
@@ -92,6 +103,7 @@ Freefield1010
 
 FSD50K
 ^^^^^^
+.. _fsd50k-module:
 
 .. automodule:: soundata.datasets.fsd50k
    :members:
@@ -99,6 +111,7 @@ FSD50K
 
 FSDnoisy18K
 ^^^^^^^^^^^
+.. _fsdnoisy18k-module:
 
 .. automodule:: soundata.datasets.fsdnoisy18k
    :members:
@@ -106,6 +119,7 @@ FSDnoisy18K
 
 SINGA:PURA
 ^^^^^^^^^^
+.. _singapura-module:
 
 .. automodule:: soundata.datasets.singapura
    :members:
@@ -113,7 +127,8 @@ SINGA:PURA
 
 
 STARSS 2022
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
+.. _starss2022-module:
 
 .. automodule:: soundata.datasets.starss2022
    :members:
@@ -122,6 +137,7 @@ STARSS 2022
 
 TAU NIGENS SSE 2020
 ^^^^^^^^^^^^^^^^^^^
+.. _tau2020sse_nigens-module:
 
 .. automodule:: soundata.datasets.tau2020sse_nigens
    :members:
@@ -130,6 +146,7 @@ TAU NIGENS SSE 2020
 
 TAU NIGENS SSE 2021
 ^^^^^^^^^^^^^^^^^^^
+.. _tau2021sse_nigens-module:
 
 .. automodule:: soundata.datasets.tau2021sse_nigens
    :members:
@@ -138,6 +155,7 @@ TAU NIGENS SSE 2021
 
 TAU Spatial Sound Events 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _tau2019sse-module:
 
 .. automodule:: soundata.datasets.tau2019sse
    :members:
@@ -145,6 +163,7 @@ TAU Spatial Sound Events 2019
 
 TAU Urban Acoustic Scenes 2019
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _tau2019uas-module:
 
 .. automodule:: soundata.datasets.tau2019uas
    :members:
@@ -152,6 +171,7 @@ TAU Urban Acoustic Scenes 2019
    
 TAU Urban Acoustic Scenes 2020 Mobile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _tau2020uas_mobile-module:
 
 .. automodule:: soundata.datasets.tau2020uas_mobile
    :members:
@@ -159,6 +179,7 @@ TAU Urban Acoustic Scenes 2020 Mobile
 
 TAU Urban Acoustic Scenes 2022 Mobile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _tau2022uas_mobile-module:
 
 .. automodule:: soundata.datasets.tau2022uas_mobile
    :members:
@@ -166,6 +187,7 @@ TAU Urban Acoustic Scenes 2022 Mobile
 
 TUT Sound events 2017
 ^^^^^^^^^^^^^^^^^^^^^
+.. _tut2017se-module:
 
 .. automodule:: soundata.datasets.tut2017se
    :members:
@@ -173,6 +195,7 @@ TUT Sound events 2017
 
 URBAN-SED
 ^^^^^^^^^
+.. _urbansed-module:
 
 .. automodule:: soundata.datasets.urbansed
    :members:
@@ -180,6 +203,7 @@ URBAN-SED
 
 UrbanSound8K
 ^^^^^^^^^^^^
+.. _urbansound8k-module:
 
 .. automodule:: soundata.datasets.urbansound8k
    :members:
@@ -188,6 +212,7 @@ UrbanSound8K
 
 Warblrb10k
 ^^^^^^^^^^
+.. _warblrb10k-module:
 
 .. automodule:: soundata.datasets.warblrb10k
    :members:
@@ -231,5 +256,4 @@ soundata.jams_utils
 
 .. automodule:: soundata.jams_utils
    :members:
-
 

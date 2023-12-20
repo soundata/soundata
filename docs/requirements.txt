@@ -10,4 +10,5 @@ matplotlib  #==3.7.2
 mypy
 flake8
 sphinx_rtd_theme
-py7zr
+py7zr>=0.16.0
+pydub
