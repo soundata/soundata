@@ -41,6 +41,26 @@ def on_button_clicked(
     self,
     clip_id,
 ):
+    """Download data to `save_dir` and optionally print a message.
+
+    Args:
+        event_dist_check (Checkbox):
+            Checkbox widget for event distribution analysis.
+        dataset_analysis_check (Checkbox):
+            Checkbox widget for dataset analysis.
+        audio_plot_check (Checkbox):
+            Checkbox widget for audio plot generation.
+        output (Output):
+            Output widget to display results.
+        loader (HTML):
+            HTML widget displaying a loader.
+        self:
+            Reference to the current instance of the class.
+        clip_id (str or None):
+            The identifier of the clip to explore. If None, a random clip will be chosen.
+
+    Clears previous outputs, displays a loader, performs selected computations, and updates the output accordingly.
+    """
     output.clear_output(wait=True)  # Clear the previous outputs
     with output:
         display(loader)  # Display the loader
@@ -69,8 +89,16 @@ def on_button_clicked(
 
 
 def perform_dataset_exploration(self, clip_id=None):
-    """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
+    """Explore the dataset for a given clip_id or a random clip if clip_id is None.
 
+    Args:
+        self:
+            Reference to the current instance of the class.
+        clip_id (str or None):
+            The identifier of the clip to explore. If None, a random clip will be chosen.
+
+    Displays interactive checkboxes for user input, a button to trigger exploration, and the exploration results.
+    """
     # Interactive checkboxes for user input
     event_dist_check = Checkbox(value=True, description="Class Distribution")
     dataset_analysis_check = Checkbox(
@@ -119,6 +147,18 @@ def perform_dataset_exploration(self, clip_id=None):
 
 @lru_cache(maxsize=None)  # Setting maxsize to None for an unbounded cache
 def compute_clip_statistics(self):
+    """Compute statistics for clip durations in the dataset.
+
+    Args:
+        self:
+            Reference to the current instance of the class.
+
+    Returns:
+        dict: Dictionary containing clip duration statistics.
+
+    Calculates statistics such as total duration, mean duration, median duration, standard deviation,
+    minimum duration, maximum duration, and total clip count.
+    """
     durations = [
         len(self.clip(c_id).audio[0]) / self.clip(c_id).audio[1]
         for c_id in tqdm(
@@ -147,6 +187,14 @@ def compute_clip_statistics(self):
 
 
 def plot_clip_durations(self):
+    """Plot the distribution of clip durations in the dataset.
+
+    Args:
+        self:
+            Reference to the current instance of the class.
+
+    Generates a histogram of clip durations, overlays mean and median lines, and displays statistics.
+    """
     stats = compute_clip_statistics(self)
     durations = stats["durations"]
     total_duration = stats["total_duration"]
@@ -223,6 +271,24 @@ def plot_clip_durations(self):
 
 
 def plot_distribution(data, title, x_label, y_label, axes, subplot_position):
+    """Plot the distribution of data.
+
+    Args:
+        data (list):
+            Data values to be plotted.
+        title (str):
+            Title for the plot.
+        x_label (str):
+            Label for the x-axis.
+        y_label (str):
+            Label for the y-axis.
+        axes (list of Axes):
+            List of subplot axes.
+        subplot_position (int):
+            Position of the subplot.
+
+    Plots the distribution of data with count labels and adjusts font sizes.
+    """
     my_palette = sns.color_palette("light:b", as_cmap=False)
     my_palette = ["#404040", "#126782", "#C9C9C9"]
     sns.countplot(
@@ -251,6 +317,14 @@ def plot_distribution(data, title, x_label, y_label, axes, subplot_position):
 
 
 def plot_hierarchical_distribution(self):
+    """Plot hierarchical distributions of events, subclasses, and subdataset layers.
+
+    Args:
+        self:
+            Reference to the current instance of the class.
+
+    Generates count plots for event distribution, subclass distribution, and subdataset layers distribution.
+    """
     # Determine the number of plots
     plot_count = 1
     if "subdatasets" in self._metadata:
@@ -318,6 +392,20 @@ def plot_hierarchical_distribution(self):
 
 
 def play_segment(audio_segment, start_time, stop_event, sr):
+    """Play an audio segment.
+
+    Args:
+        audio_segment (AudioSegment):
+            Audio segment to be played.
+        start_time (float):
+            Start time in seconds.
+        stop_event (Event):
+            Event to signal the stop of audio playback.
+        sr (int):
+            Sample rate.
+
+    Plays an audio segment from the specified start time until the stop event is set.
+    """
     try:
         segment_start = start_time * 1000  # Convert to milliseconds
         segment_end = segment_start + 60 * 1000
@@ -337,6 +425,28 @@ def play_segment(audio_segment, start_time, stop_event, sr):
 def update_line(
     playing, current_time, duration, current_time_lock, line1, line2, fig, step=0.1
 ):
+    """Update the position of a vertical line on a plot.
+
+    Args:
+        playing (list):
+            List indicating if audio is currently playing.
+        current_time (list):
+            List containing the current time position.
+        duration (float):
+            Total duration of the audio.
+        current_time_lock (Lock):
+            Lock to ensure thread-safe access to current_time.
+        line1 (Line2D):
+            Line to be updated.
+        line2 (Line2D):
+            Another line to be updated.
+        fig (Figure):
+            Figure containing the plot.
+        step (float, optional):
+            Step size for updating the line position. Defaults to 0.1.
+
+    Updates the position of the vertical lines on the plot while audio is playing.
+    """
     try:
         while playing[0]:
             with current_time_lock:
@@ -361,6 +471,26 @@ def on_play_pause_clicked(
     play_segment_function,
     update_line_function,
 ):
+    """Handle the play/pause button click event.
+
+    Args:
+        playing (list):
+            List indicating if audio is currently playing.
+        current_time (list):
+            List containing the current time position.
+        play_thread (list):
+            List containing the audio playback thread.
+        stop_event (Event):
+            Event to signal the stop of audio playback.
+        play_pause_button (Button):
+            Button widget for play/pause control.
+        play_segment_function (function):
+            Function to play an audio segment.
+        update_line_function (function):
+            Function to update the position of a vertical line on the plot.
+
+    Handles the play/pause button click event to control audio playback.
+    """
     if playing[0]:
         stop_event.set()
         if play_thread[0].is_alive():
@@ -391,6 +521,32 @@ def on_reset_clicked(
     fig,
     current_time_lock,
 ):
+    """Handle the reset button click event.
+
+    Args:
+        playing (list):
+            List indicating if audio is currently playing.
+        current_time (list):
+            List containing the current time position.
+        play_thread (list):
+            List containing the audio playback thread.
+        stop_event (Event):
+            Event to signal the stop of audio playback.
+        line1 (Line2D):
+            Line to be reset.
+        line2 (Line2D):
+            Another line to be reset.
+        slider (FloatSlider):
+            Slider widget for audio navigation.
+        play_pause_button (Button):
+            Button widget for play/pause control.
+        fig (Figure):
+            Figure containing the plot.
+        current_time_lock (Lock):
+            Lock to ensure thread-safe access to current_time.
+
+    Handles the reset button click event to stop audio playback and reset the plot and slider.
+    """
     if playing[0]:
         stop_event.set()
         if play_thread[0].is_alive():
@@ -416,6 +572,30 @@ def on_slider_changed(
     fig,
     current_time_lock,
 ):
+    """Handle slider value change event.
+
+    Args:
+        change:
+            Change event object.
+        playing (list):
+            List indicating if audio is currently playing.
+        current_time (list):
+            List containing the current time position.
+        play_thread (list):
+            List containing the audio playback thread.
+        stop_event (Event):
+            Event to signal the stop of audio playback.
+        line1 (Line2D):
+            Line to be updated.
+        line2 (Line2D):
+            Another line to be updated.
+        fig (Figure):
+            Figure containing the plot.
+        current_time_lock (Lock):
+            Lock to ensure thread-safe access to current_time.
+
+    Handles the slider value change event to update the audio playback position and plot.
+    """
     if playing[0]:
         stop_event.set()
         if play_thread[0].is_alive():
@@ -428,6 +608,16 @@ def on_slider_changed(
 
 
 def visualize_audio(self, clip_id):
+    """Visualize audio data for a specified clip.
+
+    Args:
+        self:
+            Reference to the current instance of the class.
+        clip_id (str or None):
+            The identifier of the clip to explore. If None, a random clip will be chosen.
+
+    Displays audio waveform, a Mel spectrogram, and provides playback controls.
+    """
     if clip_id is None:  # Use the local variable
         clip_id = np.random.choice(
             list(self._index["clips"].keys())
