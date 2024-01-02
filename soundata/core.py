@@ -322,7 +322,13 @@ class Dataset(object):
         )
 
     def explore_dataset(self, clip_id=None):
-        """Explore the dataset for a given clip_id or a random clip if clip_id is None."""
+        """Explore the dataset for a given clip_id or a random clip if clip_id is None.
+
+        Args:
+            clip_id (str or None):
+                The identifier of the clip to explore. If None, a random clip will be chosen.
+
+        """
         display_plot_utils.perform_dataset_exploration(self, clip_id)
 
     @cached_property
