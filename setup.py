@@ -41,6 +41,10 @@ if __name__ == "__main__":
             "flake8>=5.0.4",
             "mypy>=0.982",
             "py7zr>=0.16.0",
+            "pydub>=0.25.1",
+            "simpleaudio>=1.0.4",
+            "seaborn>=0.11.2",
+            "ipywidgets>=8.1.1",
         ],
         extras_require={
             "tests": [

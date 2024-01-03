@@ -38,7 +38,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas"]
+autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
 
 
 # # -- General configuration ---------------------------------------------------
