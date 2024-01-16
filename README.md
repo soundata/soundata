@@ -3,7 +3,7 @@
 <img src="docs/img/soundata.png" height="100px">
 
 Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
-Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
+For Music Information Retrieval (MIR) datasets please check [mirdata](https://github.com/mir-dataset-loaders/mirdata). 
 
 ![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg?branch=main)
 ![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg?branch=main)
@@ -53,15 +53,7 @@ See the [documentation](https://soundata.readthedocs.io/) for more examples and 
 
 
 ```
-@misc{fuentes_salamon2021soundata,
-      title={Soundata: A Python library for reproducible use of audio datasets}, 
-      author={Magdalena Fuentes and Justin Salamon and Pablo Zinemanas and Martín Rocamora and 
-      Genís Plaja and Irán R. Román and Marius Miron and Xavier Serra and Juan Pablo Bello},
-      year={2021},
-      eprint={2109.12690},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD}
-}
+TBA
 ```
 
 
