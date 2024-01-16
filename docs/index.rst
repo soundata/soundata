@@ -72,13 +72,7 @@ in the repository.
 Citing soundata
 """""""""""""""
 
-If you refer to soundata's design principles, motivation etc., please cite the following
-`paper <https://arxiv.org/abs/2109.12690>`_  [#]_:
-
-.. [#] Fuentes, M., Salamon, J., Zinemanas, P., Rocamora, M., Plaja, G., Román, I.R., Miron, M., Serra, X. and Bello, J.P., 2021. Soundata: A Python library for reproducible use of audio datasets. arXiv e-prints, pp.arXiv-2109.
-
-When working with datasets, please cite the version of ``soundata`` that you are using (given by the ``DOI`` above)
-**AND** include the reference of the dataset, which can be found in the respective dataset loader using the ``cite()`` method.
+`TBA`
 
 
 .. toctree::
