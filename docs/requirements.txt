@@ -2,7 +2,7 @@ sphinx-togglebutton
 jams
 librosa>=0.7.0
 tqdm
-sphinx==4.0.2
+sphinx>=5.1.1
 pandas
 scipy  #==1.11.1
 numpy  #==1.25.2
