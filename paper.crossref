@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doi_batch xmlns="http://www.crossref.org/schema/5.3.1"
+           xmlns:ai="http://www.crossref.org/AccessIndicators.xsd"
+           xmlns:rel="http://www.crossref.org/relations.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           version="5.3.1"
+           xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 http://www.crossref.org/schemas/crossref5.3.1.xsd">
+  <head>
+    <doi_batch_id>20240123T215954-10f101409bb9e58fafc9f895811a3a2931ccca91</doi_batch_id>
+    <timestamp>20240123215954</timestamp>
+    <depositor>
+      <depositor_name>JOSS Admin</depositor_name>
+      <email_address>admin@theoj.org</email_address>
+    </depositor>
+    <registrant>The Open Journal</registrant>
+  </head>
+  <body>
+    <journal>
+      <journal_metadata>
+        <full_title>Journal of Open Source Software</full_title>
+        <abbrev_title>JOSS</abbrev_title>
+        <issn media_type="electronic">2475-9066</issn>
+        <doi_data>
+          <doi>10.21105/joss</doi>
+          <resource>https://joss.theoj.org</resource>
+        </doi_data>
+      </journal_metadata>
+      <journal_issue>
+        <publication_date media_type="online">
+          <month>01</month>
+          <year>1970</year>
+        </publication_date>
+        <journal_volume>
+          <volume>¿VOL?</volume>
+        </journal_volume>
+        <issue>¿ISSUE?</issue>
+      </journal_issue>
+      <journal_article publication_type="full_text">
+        <titles>
+          <title>Soundata: Reproducible use of audio datasets</title>
+        </titles>
+        <contributors>
+          <person_name sequence="first" contributor_role="author">
+            <given_name>Magdalena</given_name>
+            <surname>Fuentes</surname>
+            <ORCID>https://orcid.org/0000-0003-4506-6639</ORCID>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Genís</given_name>
+            <surname>Plaja-Roglans</surname>
+            <ORCID>https://orcid.org/0000-0003-3450-3194</ORCID>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Guillem</given_name>
+            <surname>Cortès-Sebastià</surname>
+            <ORCID>https://orcid.org/0000-0003-2827-8955</ORCID>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Tanmay</given_name>
+            <surname>Khandelwal</surname>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Marius</given_name>
+            <surname>Miron</surname>
+            <ORCID>https://orcid.org/0000-0002-2563-075X</ORCID>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Xavier</given_name>
+            <surname>Serra</surname>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Juan Pablo</given_name>
+            <surname>Bello</surname>
+          </person_name>
+          <person_name sequence="additional"
+                       contributor_role="author">
+            <given_name>Justin</given_name>
+            <surname>Salamon</surname>
+          </person_name>
+        </contributors>
+        <publication_date>
+          <month>01</month>
+          <day>01</day>
+          <year>1970</year>
+        </publication_date>
+        <pages>
+          <first_page>¿PAGE?</first_page>
+        </pages>
+        <publisher_item>
+          <identifier id_type="doi">N/A</identifier>
+        </publisher_item>
+        <ai:program name="AccessIndicators">
+          <ai:license_ref applies_to="vor">http://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+          <ai:license_ref applies_to="am">http://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+          <ai:license_ref applies_to="tdm">http://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+        </ai:program>
+        <rel:program>
+          <rel:related_item>
+            <rel:description>Software archive</rel:description>
+            <rel:inter_work_relation relationship-type="references" identifier-type="doi">10.5281</rel:inter_work_relation>
+          </rel:related_item>
+          <rel:related_item>
+            <rel:description>GitHub review issue</rel:description>
+            <rel:inter_work_relation relationship-type="hasReview" identifier-type="uri">https://github.com/openjournals</rel:inter_work_relation>
+          </rel:related_item>
+        </rel:program>
+        <doi_data>
+          <doi>N/A</doi>
+          <resource>https://joss.theoj.org/papers/N/A</resource>
+          <collection property="text-mining">
+            <item>
+              <resource mime_type="application/pdf">https://joss.theoj.org/papers/N/A.pdf</resource>
+            </item>
+          </collection>
+        </doi_data>
+        <citation_list>
+          <citation key="lhoest2021datasets">
+            <article_title>Datasets: A community library for natural
+language processing</article_title>
+            <author>Lhoest</author>
+            <journal_title>arXiv preprint
+arXiv:2109.02846</journal_title>
+            <cYear>2021</cYear>
+            <unstructured_citation>Lhoest, Q., Moral, A. V. del,
+Jernite, Y., Thakur, A., Platen, P. von, Patil, S., Chaumond, J., Drame,
+M., Plu, J., Tunstall, L., &amp; others. (2021). Datasets: A community
+library for natural language processing. arXiv Preprint
+arXiv:2109.02846.</unstructured_citation>
+          </citation>
+          <citation key="bittner2019mirdata">
+            <article_title>Mirdata: Software for reproducible usage of
+datasets</article_title>
+            <author>Bittner</author>
+            <journal_title>ISMIR</journal_title>
+            <cYear>2019</cYear>
+            <unstructured_citation>Bittner, R. M., Fuentes, M.,
+Rubinstein, D., Jansson, A., Choi, K., &amp; Kell, T. (2019). Mirdata:
+Software for reproducible usage of datasets.
+ISMIR.</unstructured_citation>
+          </citation>
+          <citation key="pedregosa2011scikit">
+            <article_title>Scikit-learn: Machine learning in
+python</article_title>
+            <author>Pedregosa</author>
+            <journal_title>Journal of machine learning
+research</journal_title>
+            <issue>Oct</issue>
+            <volume>12</volume>
+            <cYear>2011</cYear>
+            <unstructured_citation>Pedregosa, F., Varoquaux, G.,
+Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M.,
+Prettenhofer, P., Weiss, R., Dubourg, V., &amp; others. (2011).
+Scikit-learn: Machine learning in python. Journal of Machine Learning
+Research, 12(Oct), 2825–2830.</unstructured_citation>
+          </citation>
+          <citation key="tensorflow">
+            <article_title>TensorFlow: A system for large-scale machine
+learning</article_title>
+            <author>Abadi</author>
+            <journal_title>12th USENIX symposium on operating systems
+design and implementation (OSDI 16)</journal_title>
+            <cYear>2016</cYear>
+            <unstructured_citation>Abadi, M., Barham, P., Chen, J.,
+Chen, Z., Davis, A., Dean, J., Devin, M., Ghemawat, S., Irving, G.,
+Isard, M., Kudlur, M., Levenberg, J., Monga, R., Moore, S., Murray, D.
+G., Steiner, B., Tucker, P., Vasudevan, V., Warden, P., … Zheng, X.
+(2016). TensorFlow: A system for large-scale machine learning. 12th
+USENIX Symposium on Operating Systems Design and Implementation (OSDI
+16), 265–283.
+https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf</unstructured_citation>
+          </citation>
+          <citation key="chollet2015keras">
+            <article_title>Keras</article_title>
+            <author>Chollet</author>
+            <cYear>2015</cYear>
+            <unstructured_citation>Chollet, F., &amp; others. (2015).
+Keras. https://keras.io.</unstructured_citation>
+          </citation>
+          <citation key="zinemanas2020dcase">
+            <article_title>DCASE-models: A phyton library for
+computational environmental sound analysis using deep-learning
+models</article_title>
+            <author>Zinemanas</author>
+            <journal_title>Ono n, harada n, kawaguchi y, mesaros a,
+imoto k, koizumi y, komatsu t, editors. Proceedings of the fifth
+workshop on detection and classification of acoustic scenes and events
+(DCASE 2020); 2020 nov 2-3; tokyo, japan.[tokyo]: DCASE;
+2020.</journal_title>
+            <cYear>2020</cYear>
+            <unstructured_citation>Zinemanas, P., Hounie, I., Cancela,
+P., Font Corbera, F., Rocamora, M., &amp; Serra, X. (2020).
+DCASE-models: A phyton library for computational environmental sound
+analysis using deep-learning models. Ono n, Harada n, Kawaguchi y,
+Mesaros a, Imoto k, Koizumi y, Komatsu t, Editors. Proceedings of the
+Fifth Workshop on Detection and Classification of Acoustic Scenes and
+Events (DCASE 2020); 2020 Nov 2-3; Tokyo, Japan.[tokyo]: DCASE;
+2020.</unstructured_citation>
+          </citation>
+          <citation key="mesaros2016metrics">
+            <article_title>Metrics for polyphonic sound event
+detection</article_title>
+            <author>Mesaros</author>
+            <journal_title>Applied Sciences</journal_title>
+            <issue>6</issue>
+            <volume>6</volume>
+            <cYear>2016</cYear>
+            <unstructured_citation>Mesaros, A., Heittola, T., &amp;
+Virtanen, T. (2016). Metrics for polyphonic sound event detection.
+Applied Sciences, 6(6), 162.</unstructured_citation>
+          </citation>
+          <citation key="speechbrain">
+            <article_title>SpeechBrain: A general-purpose speech
+toolkit</article_title>
+            <author>Ravanelli</author>
+            <cYear>2021</cYear>
+            <unstructured_citation>Ravanelli, M., Parcollet, T.,
+Plantinga, P., Rouhe, A., Cornell, S., Lugosch, L., Subakan, C.,
+Dawalatabad, N., Heba, A., Zhong, J., Chou, J.-C., Yeh, S.-L., Fu,
+S.-W., Liao, C.-F., Rastorgueva, E., Grondin, F., Aris, W., Na, H., Gao,
+Y., … Bengio, Y. (2021). SpeechBrain: A general-purpose speech toolkit.
+https://arxiv.org/abs/2106.04624</unstructured_citation>
+          </citation>
+          <citation key="pytorch">
+            <article_title>PyTorch: An Imperative Style,
+High-Performance Deep Learning Library</article_title>
+            <author>Paszke</author>
+            <journal_title>Advances in neural information processing
+systems 32</journal_title>
+            <cYear>2019</cYear>
+            <unstructured_citation>Paszke, A., Gross, S., Massa, F.,
+Lerer, A., Bradbury, J., Chanan, G., Killeen, T., Lin, Z., Gimelshein,
+N., Antiga, L., Desmaison, A., Kopf, A., Yang, E., DeVito, Z., Raison,
+M., Tejani, A., Chilamkurthy, S., Steiner, B., Fang, L., … Chintala, S.
+(2019). PyTorch: An Imperative Style, High-Performance Deep Learning
+Library. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d’Alché-Buc,
+E. Fox, &amp; R. Garnett (Eds.), Advances in neural information
+processing systems 32 (pp. 8024–8035). Curran Associates, Inc.
+http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf</unstructured_citation>
+          </citation>
+        </citation_list>
+      </journal_article>
+    </journal>
+  </body>
+</doi_batch>
