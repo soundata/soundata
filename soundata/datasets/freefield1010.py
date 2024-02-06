@@ -35,7 +35,6 @@
 
 """
 
-
 import os
 from typing import BinaryIO, Optional, TextIO, Tuple
 
