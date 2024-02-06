@@ -500,11 +500,16 @@ class Dataset(core.Dataset):
                 "subdataset": os.path.normpath(v["csv"][0])
                 .split(clip_id)[0]
                 .split(os.path.sep)[-2],
-                "split": "train"
-                if "Training" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
-                else "validation"
-                if "Validation" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
-                else "evaluation",
+                "split": (
+                    "train"
+                    if "Training" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
+                    else (
+                        "validation"
+                        if "Validation"
+                        in os.path.normpath(v["csv"][0]).split(clip_id)[0]
+                        else "evaluation"
+                    )
+                ),
             }
             for clip_id, v in self._index["clips"].items()
         }

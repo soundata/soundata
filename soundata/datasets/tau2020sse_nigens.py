@@ -296,10 +296,13 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
         # keep only one value if the event is static
         azimuths_elevations = [
             [
-                np.array([azimuth[0], elevation[0]])
-                if (azimuth == azimuth[0]).all() and (elevation == elevation[0]).all()
-                else np.concatenate(
-                    [azimuth[:, np.newaxis], elevation[:, np.newaxis]], axis=1
+                (
+                    np.array([azimuth[0], elevation[0]])
+                    if (azimuth == azimuth[0]).all()
+                    and (elevation == elevation[0]).all()
+                    else np.concatenate(
+                        [azimuth[:, np.newaxis], elevation[:, np.newaxis]], axis=1
+                    )
                 )
                 for azimuth, elevation in zip(event_azimuths, event_elevations)
             ]
@@ -309,18 +312,22 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
         # separate azimuths and elevations again
         azimuths = [
             [
-                azimuth_elevation[:, 0]
-                if len(azimuth_elevation.shape) == 2
-                else np.array([azimuth_elevation[0]])
+                (
+                    azimuth_elevation[:, 0]
+                    if len(azimuth_elevation.shape) == 2
+                    else np.array([azimuth_elevation[0]])
+                )
                 for azimuth_elevation in event_azimuths_elevations
             ]
             for event_azimuths_elevations in azimuths_elevations
         ]
         elevations = [
             [
-                azimuth_elevation[:, 1]
-                if len(azimuth_elevation.shape) == 2
-                else np.array([azimuth_elevation[1]])
+                (
+                    azimuth_elevation[:, 1]
+                    if len(azimuth_elevation.shape) == 2
+                    else np.array([azimuth_elevation[1]])
+                )
                 for azimuth_elevation in event_azimuths_elevations
             ]
             for event_azimuths_elevations in azimuths_elevations
