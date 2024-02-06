@@ -1,5 +1,6 @@
 """Core soundata classes
 """
+
 import json
 import os
 import random

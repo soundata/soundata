@@ -1,5 +1,6 @@
 """soundata annotation data types
 """
+
 import numpy as np
 
 #: Time units
