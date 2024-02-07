@@ -50,7 +50,7 @@ bibliography: paper.bib
 
 # Statement of need
 
-As research pipelines become increasingly complex, it is key that their different components are reproducible. In recent years, the machine listening research community has made considerable efforts towards standardization and reproducibility, by using common libraries for modeling and evaluation ([@tensorflow, @pedregosa2011scikit, @chollet2015keras, @mesaros2016metrics](#)), open sourcing models ([@zinemanas2020dcase, @speechbrain](#)) and data dissemination using resources such as [Zenodo](https://zenodo.org). However, it has been previously shown that discrepancies in the local version of the data and different practices in loading and parsing datasets can lead to considerable differences in performance results, which is misleading when comparing methods ([@bittner2019mirdata](#)). Besides, from a practical point of view, it is extremely inefficient to develop pipelines from scratch for loading and parsing a dataset for each researcher or team each time, and this increases the chances of bugs and differences that hinder reproducibility.
+As research pipelines become increasingly complex, it is key that their different components are reproducible. In recent years, the machine listening research community has made considerable efforts towards standardization and reproducibility, by using common libraries for modeling and evaluation ([@tensorflow, @pedregosa2011scikit, @mesaros2016metrics](#)), open sourcing models ([@zinemanas2020dcase, @speechbrain](#)) and data dissemination using resources such as [Zenodo](https://zenodo.org). However, it has been previously shown that discrepancies in the local version of the data and different practices in loading and parsing datasets can lead to considerable differences in performance results, which is misleading when comparing methods ([@bittner2019mirdata](#)). Besides, from a practical point of view, it is extremely inefficient to develop pipelines from scratch for loading and parsing a dataset for each researcher or team each time, and this increases the chances of bugs and differences that hinder reproducibility.
 
 
 There are other libraries that handle datasets, like `Tensorflow` ([@tensorflow](#)) or `DCASE-models` ([@zinemanas2020dcase](#)). However, using datasets in the context of those libraries makes it difficult to interchange models and software, as data loaders are designed to work with those environments and further adaptation is required to migrate them. Instead, we think that data should be handled separately, as a standalone library that can easily be plugged into different work pipelines, with different modeling software. Other alternatives such as Tensorflow-Datasets([@tensorflow_datasets](#)) or HuggingFace Datasets ([@lhoest2021datasets](#)), initially developed for other fields such as Natural Language Processing (NLP) datasets, started including computer vision as well as audio datasets. However, they do not standardize classes, so audio events can come in different formats in each dataset, requiring further work from the user each time. Having a community-centric, open-source, audio-specialized library allows us greater flexibility to incorporate more audio-specific API functionalities and align our priorities with those of the audio community.
@@ -66,7 +66,7 @@ There are other libraries that handle datasets, like `Tensorflow` ([@tensorflow]
 - **Standardize usage of sound datasets:** Standardizes common attributes of sound datasets such as audio or tags to simplify audio research pipelines, while preserving each dataset’s idiosyncrasies (e.g. if a dataset has ‘non-standard’ attributes, we include them as well).
 
 
-`Soundata` is based on and inspired by `mirdata` with which shares goals and vision. `mirdata` ([@bittner2019mirdata](#)) is a `Python`[^python] package introduced as a tool for mitigating the lack of reproducibility and efficiency when working with datasets in the context of Music Information Research (MIR). In MIR, the mentioned issues are exacerbated due to the intrinsic commercial nature of music data, since it is very difficult to get licenses to distribute music recordings openly. Moreover, musical datasets are extremely complex compared to other audio datasets. They usually convey much more metadata information (e.g. artists, musicians, instruments) and their annotations are of several different types and formats, reflecting the different tasks that there are in MIR such as melody estimation, beat tracking, and chord estimation. Using the same software package for handling music and other audio datasets would lead to a very complex, hard-to-manage repository, which would be difficult to scale. Instead, we introduce `Soundata` as a separate effort that is inspired and based on `mirdata`. It specifically addresses the annotation types and formats required by communities like DCASE[^dcase], which work with bioacoustics, environmental, urban, and spatial sound datasets.
+`Soundata` is based on and inspired by `mirdata` with which shares goals and vision. `mirdata` ([@bittner2019mirdata](#)) is a `Python`[^python] package introduced as a tool for mitigating the lack of reproducibility and efficiency when working with datasets in the context of Music Information Research (MIR). In MIR, the mentioned issues are exacerbated due to the intrinsic commercial nature of music data, since it is very difficult to get licenses to distribute music recordings openly. Moreover, musical datasets are extremely complex compared to other audio datasets. Using the same software package for handling music and other audio datasets would lead to a very complex, hard-to-manage repository, which would be difficult to scale. Instead, we introduce `Soundata` as a separate effort that is inspired and based on `mirdata`. It specifically addresses the annotation types and formats required by communities like DCASE[^dcase], which work with bioacoustics, environmental, urban, and spatial sound datasets.
 
 # Design Choices
 
@@ -76,15 +76,15 @@ There are other libraries that handle datasets, like `Tensorflow` ([@tensorflow]
 
 ## Core
 
-The core module forms the foundation of `Soundata`, encapsulating the primary `Dataset` class and essential functionalities such as annotations handling, dataset indexing, and dataset-level metadata. `Soundata` allows easy initialization of the available datasets, letting the user specify the home folder where the data is going to be stored. Attributes and paths specific to each audio clip, such as the audio itself, annotations and metadata are accessed using a class denoted `Clip`, included in the `Dataset` class. These attributes are parsed from a JSON file that acts as a dataset index, in which the dataset version, folder structure and md5 checksums (for checking consistency) are listed. Such an index is used to ensure reproducibility by checking that different copies of a dataset are consistent and match the md5 hash keys. The contents of the datasets in `Soundata` are straightforwardly accessed using the specifically implemented methods in the library, including dataset information such as how to cite the dataset or plotting functionalities. 
+The core module forms the foundation of `Soundata`, encapsulating the primary `Dataset` class and essential functionalities such as annotations handling, dataset indexing, and dataset-level metadata. `Soundata` allows easy initialization of the available datasets, letting the user specify the home folder where the data is going to be stored. Attributes and paths specific to each audio clip, such as the audio itself, annotations and metadata are accessed using a class denoted `Clip`, included in the `Dataset` class. These attributes are parsed from a JSON file that acts as a dataset index, in which the dataset version, folder structure and md5 checksums (for checking consistency) are listed. 
 
 ## Utils 
 
-This module offers utility functions for tasks like downloading, unzipping and validating datasets (i.e. making sure all files are present and not corrupted). It also contains utilities for converting `Soundata` annotations to `JAMS`[^jams] format. To validate the data integrity of a dataset, the utils module includes functions to perform md5 checksum comparison between the local copy and the official dataset release. One is also able to download just a part of a dataset if distributed in several splits, or even merging and unzipping the dataset that are multi-partly distributed due to an extensive size. This is all automatically performed by the downloading utils function. Utils support the main functionalities of the core classes.
+This module offers utility functions for tasks like downloading, unzipping and validating datasets (i.e. making sure all files are present and not corrupted). It also contains utilities for converting `Soundata` annotations to `JAMS`[^jams] format. To validate the data integrity of a dataset, the utils module includes functions to perform md5 checksum comparison between the local copy and the official dataset release. 
 
 ## Loaders 
 
-Dedicated to specific datasets, loaders are `Python` modules that instantiate core classes and implement specific loading functions for each dataset. Each dataset has its own loader, which contains the necessary code to convert the dataset audio, annotations and metadata to a standardized format. A loader will typically consist of code for loading the annotations of the dataset in one of `Soundata`'s supported annotation types, code for loading metadata, audio, and instantiating the functionalities from `core` and `utils` to serve that particular dataset. See the Contributing section of this document for an overview of the process of contributing with a loader to `Soundata`.
+Dedicated to specific datasets, loaders are `Python` modules that instantiate core classes and implement specific loading functions for each dataset. Each dataset has its own loader, which contains the necessary code to convert the dataset audio, annotations and metadata to a standardized format. 
 
 
 # Annotation Types
@@ -103,47 +103,19 @@ Annotation types in `Soundata` ensure compatibility with existing evaluation lib
 
 # Supported Soundscapes and Tasks 
 
-`Soundata` is designed to support a wide range of audio research tasks and soundscapes (or auditory domains) by providing a standardized interface for interacting with diverse audio datasets. 
+`Soundata` is designed to support a wide range of audio research tasks and soundscapes (or auditory domains) by providing a standardized interface for interacting with diverse audio datasets. Figure \autoref{fig:tasks} shows the tasks currently supported by `Soundata`.
 
 
 ![Audio tasks supported by `Soundata` as of today. \label{fig:tasks}](images/annotations_tasks.pdf){ width=100% }
 
 
-Figure \autoref{fig:tasks} shows the tasks currently supported by `Soundata`, which include:
-
-- **Sound Event Detection (SED)**: Is concerned with identifying the presence and duration of sound events within an audio stream. It uses both weak labels (Tags) for presence and strong labels (Events) for temporal localization of sound events.
-- **Sound Event Localization (SEL)**: Involves determining the spatial location from where a sound originates within an environment. It goes beyond detection and classification to include the position in space relative to the listener or recording device.
-- **Sound Event Classification (SEC)**: Categorizes sounds into predefined classes and involves analyzing audio to assign a category based on the type of sound event it contains, using Tags for the entire clip’s duration.
-- **Acoustic Scene Classification (ASC)**: Classifies an entire audio stream into a scene category, characterizing the recording’s environment. Tags are used to indicate the single acoustic scene represented in the clip.
-- **Audio Captioning (AC)**: Involves generating a textual description of the sound events and context within an audio clip. It is similar to image captioning but for audio content. This will involve the use of Tags or Events depending if the captions span the entire duration of the audio clip.
-
-The library's modular design allows for the easy addition of new datasets spanning different tasks and soundscapes, and this list is in constant evolution. For the most up-to-date information, we refer the reader to the list of supported datasets[^supported_datasets].
-
-Currently, `Soundata` includes five main auditory environments or soundscapes:
-
-1. **Urban:** Sounds typically found in city environments (e.g. car, jackhammer).
-2. **Environment:** Natural and ambient sounds from various ecosystems (e.g. running water).
-3. **Machine:** Sounds originating from machinery and industrial activities (e.g. valve, fan).
-4. **Bioacoustic:** Sounds produced by living organisms, particularly animals (e.g. a specific bird species).
-5. **Music:** A range of musical compositions and performances (e.g. musical instruments). These are not MIR datasets, which are included in `mirdata` instead.
-
 ## Example usage \label{sec:example_usage}
 
-`Soundata` is designed to be user-friendly, so that users can start working with audio datasets right away after following a few steps, as summarized in \autoref{fig:supported_datasets}. These steps are:
-
-1. **Installation**: Begin by installing `Soundata` using the `Python` package manager `pip`. This ensures that all the necessary dependencies to work with the datasets are set up in the user's environment.
-
-2. **Initialization of Dataset**: After installation, initialize the desired dataset using: ```dataset = soundata.initialize('dataset_name')```, replacing `'dataset_name'` with the actual name of the desired dataset. The list of all supported datasets can be displayed using ```soundata.list_datasets()```.
-
-3. **Download Dataset**: With the dataset initialized, users can proceed to download it using ```dataset.download()```. The library manages the entire download process, including unzipping files, and handling multi-part downloads for large datasets.
-
-4. **Validation**: To ensure the integrity and completeness of the dataset, validate it using ```dataset.validate()```. This method performs an md5 checksum comparison against a canonical version of the dataset, verifying that the data is correct and unchanged.
+`Soundata` is designed to be user-friendly, so that users can start working with audio datasets right away after following a few steps, as summarized in \autoref{fig:supported_datasets}. 
 
 ![How to work with any supported dataset in `Soundata`.\label{fig:supported_datasets}](images/download.pdf){ width=100% }
 
-Once the dataset is downloaded and validated, `Soundata` can be integrated into an audio research pipeline easily. Users can use the `utils` module to quickly explore the contents of the dataset, by doing ```dataset.explore_dataset()```. This will trigger an interactive plot showing the dataset class distribution, some statistics such as the mean duration of its audio files, and the visualization of a random audio example which can be listened by the user.
-
-The following code shows an example of how to get any SED dataset into a deep learning pipeline using `Soundata` and `Tensorflow`. 
+Once the dataset is downloaded and validated, `Soundata` can be integrated into an audio research pipeline easily. Users can quickly explore the contents of the dataset by doing ```dataset.explore_dataset()```. The following code shows an example of how to get any SED dataset into a deep learning pipeline using `Soundata` and `Tensorflow`. 
 
 ```python
 import soundata
@@ -177,17 +149,9 @@ for audio, label in tf_dataset.take(1):
 
 ## Contributing \label{sec:contributing}
 
-Contribution to `Soundata` is highly encouraged. To facilitate the process, `Soundata` provides an exhaustive contributing guide[^contributing] available in the `Soundata` documentation with all the necessary information on how to contribute. The contributing guide is maintained alongside the rest of the project, ensuring that it is up to date.
-
-Every contribution to `Soundata` is done via Pull Requests (PR) on GitHub[^pr]. The most common contribution in `Soundata` is the creation of new dataset loaders, as they play a crucial role in advancing `Soundata`'s objective of accommodating as many datasets as possible. \autoref{fig:contributing} summarizes the process of creating a new loader, which is explained below.
+Contribution to `Soundata` is highly encouraged. To facilitate the process, `Soundata` provides an exhaustive contributing guide[^contributing] available in the `Soundata` documentation with all the necessary information on how to contribute. The contributing guide is maintained alongside the rest of the project, ensuring that it is up to date. The most common contribution in `Soundata` is the creation of new dataset loaders, as they play a crucial role in advancing `Soundata`'s objective of accommodating as many datasets as possible. \autoref{fig:contributing} summarizes the process of creating a new loader.
 
 ![Steps for contributing a dataset loader to `Soundata`. \label{fig:contributing}](images/contributing.pdf){ width=100% }
-
-1. **Create Index**: The contributor has to first write a script that iterates over the data and creates an index to organize and manage the dataset files (examples are provided in the documentation and the GitHub repository). Indices contain identifiers and paths for audio files, annotations and metadata, their relative location in the dataset folder, and their checksums.
-2. **Create Module**: The next step is to write a loader (i.e. a `.py` module) with functions to handle the logic of downloading, managing and loading the dataset audio and annotations. This is done by using `Soundata`'s core and utils functionalities, and examples are also provided in the documentation.
-3. **Add tests**: Creating and running tests is required to contribute to `Soundata` to ensure the robustness of the library. `Soundata` has code coverage checks to make sure that every new loader is properly tested before incorporating into the repository. It is also necessary to run not only the loader-specific tests that the contributor writes, but also core `Soundata`'s tests too. These tackle OS compatibility, linting and formatting, among others.
-4. **Write Docs**: To wrap up the new loader, it is important to provide descriptive documentation about the dataset task, size, contents and license, to help other users understand the loader and how they can interact with it. This documentation should be included in the loader module, and will be used to render `Soundata`'s documentation online.
-5. **Submit Loader**: Finally, contributors will submit a pull request (PR) to the GitHub repository for review.
 
 
 # Acknowledgements
