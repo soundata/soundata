@@ -89,21 +89,16 @@ Dedicated to specific datasets, loaders are `Python` modules that instantiate co
 
 # Annotation Types
 
-`Soundata` encompasses diverse annotation types that support a variety of tasks in bioacoustics, environmental, urban and spatial sound datasets. Further annotation types can be integrated into the library easily, but current annotation types include (see \autoref{fig:annotations}):
+`Soundata` currently includes three annotation types (see \autoref{fig:annotations}):
 
-- **Tags**: Used typically for Acoustic Scene Classification (ASC), Sound Event Classification (SEC), and weak label Sound Event Detection (SED). These are essentially string labels with associated confidence values, spanning the full duration of the audio clip.
-- **Events**: These annotations are for sound events with defined start times, end times, labels, and (optionally) confidence values. They are instrumental in strong label SED.
-- **Spatial Events**: Spatial Events extends Events introducing additional attributes such as geographical coordinates (latitude, longitude), altitude, direction (azimuth and elevation), and distance from reference points. Spatial events are used for tasks such as Sound Event Detection and Localization (SELD).
+- **Tags**: These are essentially string labels with associated confidence values, spanning the full duration of the audio clip.
+- **Events**: These annotations are for sound events with defined start times, end times, labels, and (optionally) confidence values. 
+- **Spatial Events**: Spatial Events extends Events introducing additional attributes such as geographical coordinates (latitude, longitude), altitude, direction (azimuth and elevation), and dist
 
 ![Annotation types included in `Soundata`.\label{fig:annotations}](images/annotation_types.png){ width=100% }
 
 
-Annotation types in `Soundata` ensure compatibility with existing evaluation libraries from the DCASE community such as `sed_eval`, and are convertible to the `JAMS` format. `Soundata` can also be easily used together with `TensorFlow` and `PyTorch` ([@pytorch](#)). The "Example usage" section contains examples of how to do it.
-
-
-# Supported Soundscapes and Tasks 
-
-`Soundata` is designed to support a wide range of audio research tasks and soundscapes (or auditory domains) by providing a standardized interface for interacting with diverse audio datasets. Figure \autoref{fig:tasks} shows the tasks currently supported by `Soundata`.
+Annotation types in `Soundata` ensure compatibility with existing evaluation libraries from the DCASE community such as `sed_eval`, and are convertible to the `JAMS` format. These annotation types allow `Soundata` to support a wide range of audio research tasks, as shown in Figure \autoref{fig:tasks}.
 
 
 ![Audio tasks supported by `Soundata` as of today. \label{fig:tasks}](images/annotations_tasks.pdf){ width=100% }
