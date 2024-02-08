@@ -52,20 +52,19 @@ bibliography: paper.bib
 
 As research pipelines become increasingly complex, it is key that their different components are reproducible. In recent years, the research community has made considerable efforts towards standardization and reproducibility, with modeling and evaluation libraries ([@tensorflow, @pedregosa2011scikit, @mesaros2016metrics](#)), open sourcing models ([@zinemanas2020dcase, @speechbrain](#)) and data dissemination using resources such as [Zenodo](https://zenodo.org). However, discrepancies in the local version of the data and different practices in loading and parsing datasets can lead to considerable differences in performance results, which is misleading when comparing methods ([@bittner2019mirdata](#)). Besides, it is extremely inefficient to develop pipelines from scratch for loading and parsing a dataset for each researcher or team each time, and this increases the chances of bugs and differences that hinder reproducibility.
 
+`Soundata` is based on and inspired by `mirdata` ([@bittner2019mirdata](#)), the popular library for working with Music Information Research (MIR) datasets, with which shares goals and vision. However in MIR, the aforementioned issues are exacerbated due to the intrinsic commercial nature of music data, since it is very difficult to get licenses to distribute music recordings openly. Since musical datasets are extremely complex compared to other audio datasets, using the same software package for handling music and other audio datasets would lead to a very complex, hard-to-manage repository, which would be difficult to scale. Instead, we introduce `Soundata` as a separate effort that specifically addresses the annotation types and formats required by communities like DCASE[^dcase], which work with bioacoustics, environmental, urban, and spatial sound datasets.
+
 There are other libraries that handle datasets like `Tensorflow` ([@tensorflow](#)) or Tensorflow-Datasets ([@tensorflow_datasets](#)), `DCASE-models` ([@zinemanas2020dcase](#)) or HuggingFace Datasets ([@lhoest2021datasets](#)). But none of them serve as a stand-alone library that can easily be plugged into different work pipelines, with different modeling software.  Having a community-centric, open-source, audio-specialized library allows us greater flexibility to incorporate more audio-specific API functionalities and align our priorities with those of the audio community.
 
-`Soundata` was created following these design principles:
+`Soundata` follows these design principles:
 
 - **Easy to use**: Simplifies audio research pipelines considerably by having plug-and-play datasets in a standardized format. 
 
 - **Easy to contribute to:** Users do not need to go through all the source code to contribute. `Soundata` provides extensive documentation explaining how to contribute a new loader.
 
-- **Increase reproducibility:** Provides a common framework for researchers to compare and validate their data. It also allows to easily propagate datasets' updates or fixes to the audio community, ensuring that methods are still comparable and researchers have the same up-to-date datasets' versions.
+- **Increase reproducibility:** Provides a common framework for researchers to compare and validate their data. It also allows to easily propagate dataset updates or fixes to the audio community, ensuring that methods are still comparable and researchers have the same up-to-date dataset versions.
 
-- **Standardize usage of sound datasets:** Standardizes common attributes of sound datasets such as audio or tags to simplify audio research pipelines, while preserving each dataset's idiosyncrasies (e.g. if a dataset has ‘non-standard’ attributes, we include them as well).
-
-
-`Soundata` is based on and inspired by `mirdata` ([@bittner2019mirdata](#)) with which shares goals and vision. In Music Information Research (MIR), the mentioned issues are exacerbated due to the intrinsic commercial nature of music data, since it is very difficult to get licenses to distribute music recordings openly. Since musical datasets are extremely complex compared to other audio datasets, using the same software package for handling music and other audio datasets would lead to a very complex, hard-to-manage repository, which would be difficult to scale. Instead, we introduce `Soundata` as a separate effort that specifically addresses the annotation types and formats required by communities like DCASE[^dcase], which work with bioacoustics, environmental, urban, and spatial sound datasets.
+- **Standardize usage of sound datasets:** Standardizes common attributes of sound datasets such as audio or tags to simplify audio research pipelines, while preserving the idiosyncrasies of each dataset (e.g. if a dataset has ‘non-standard’ attributes, we include them as well).
 
 # Design Choices
 
@@ -94,7 +93,7 @@ Annotation types in `Soundata` (see \autoref{fig:annotations}) ensure compatibil
 
 Once the dataset is downloaded and validated, `Soundata` can be integrated into an audio research pipeline easily. The code in \autoref{fig:example} shows an example of how to get any SED dataset into a deep learning pipeline using `Soundata` and `Tensorflow`. 
 
-![Soundata usage example.\label{fig:example}](images/example.png){ width=100% }
+![Soundata usage example.\label{fig:example}](images/example.png){ width=80% }
 
 
 ## Contributing \label{sec:contributing}
