@@ -136,6 +136,7 @@ the values are dictionaries of files associated with a clip id, along with their
 or annotations related to the clip id. File paths are relative to the top level directory of a dataset.
 
     .. note::
+
         If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
 
 Currently, soundata does not include built-in functions to automatically create train, testing, and validation splits if these are not originally defined in the dataset. 
@@ -327,7 +328,8 @@ This will also engage users to use the dataloader!
 
 For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
 
-.. note::  
+.. note::
+
     If the dataset you are trying to integrate stores every clip in a separated compressed file, it cannot be currently supported by soundata. Feel free to open and issue to discuss a solution (hopefully for the near future!)
 
 
@@ -353,8 +355,9 @@ To finish your contribution, please include tests that check the integrity of yo
    sure everything is working.
 
 
-.. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions,
-           as well as some basic edge cases of the ``Clip`` class, so you don't need to write tests for these!
+.. note::  
+
+    We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions, as well as some basic edge cases of the ``Clip`` class, so you don't need to write tests for these!
 
 
 .. _test_file:
