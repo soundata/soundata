@@ -124,6 +124,9 @@ Here's an example of an index to use as a guide:
 
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
+    .. note::
+        Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the maintainer team the need for it.
+
 Example index with clips
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -131,6 +134,15 @@ Most sound datasets are organized as a collection of clips and annotations. In s
 top-level key. Under this ``clips`` top-level key, you should store a dictionary where the keys are the unique clip ids of the dataset, and
 the values are dictionaries of files associated with a clip id, along with their checksums. These files can be for instance audio files
 or annotations related to the clip id. File paths are relative to the top level directory of a dataset.
+
+    .. note::
+        If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
+
+Currently, soundata does not include built-in functions to automatically create train, testing, and validation splits if these are not originally defined in the dataset. 
+Users can do that using  external functions such as ``sklearn.model_selection.train_test_split``.
+If a dataset has predefined splits, you can include the split name as an attribute of the ``Clip`` class. You should not create separate indexes for the different splits, or indicate the split in the index.
+See an example of how an index should look like:
+
 
 .. admonition:: Index Examples - Clips
     :class: dropdown
@@ -157,45 +169,46 @@ or annotations related to the clip id. File paths are relative to the top level 
     .. code-block:: javascript
 
 
-        {   "version": "1.0",
-            "clips":
-                "clip1": {
-                    "audio": [
-                        "audio/clip1.wav",  // the relative path for clip1's audio file
-                        "912ec803b2ce49e4a541068d495ab570"  // clip1.wav's md5 checksum
-                    ],
-                    "annotation": [
-                        "annotations/clip1.csv",  // the relative path for clip1's annotation
-                        "2cf33591c3b28b382668952e236cccd5"  // clip1.csv's md5 checksum
+        {
+            "version": "1.0",
+                "clips":
+                    "clip1": {
+                        "audio": [
+                            "audio/clip1.wav",  // the relative path for clip1's audio file
+                            "912ec803b2ce49e4a541068d495ab570"  // clip1.wav's md5 checksum
+                        ],
+                        "annotation": [
+                            "annotations/clip1.csv",  // the relative path for clip1's annotation
+                            "2cf33591c3b28b382668952e236cccd5"  // clip1.csv's md5 checksum
+                        ]
+                    },
+                    "clip2": {
+                        "audio": [
+                            "audio/clip2.wav",
+                            "65d671ec9787b32cfb7e33188be32ff7"
+                        ],
+                        "annotation": [
+                            "annotations/Clip2.csv",
+                            "e1964798cfe86e914af895f8d0291812"
+                        ]
+                    },
+                    "clip3": {
+                        "audio": [
+                            "audio/clip3.wav",
+                            "60edeb51dc4041c47c031c4bfb456b76"
+                        ],
+                        "annotation": [
+                            "annotations/clip3.csv",
+                            "06cb006cc7b61de6be6361ff904654b3"
+                        ]
+                    },
+                }
+            "metadata": {
+                    "metadata_file": [
+                        "metadata/metadata_file.csv",
+                        "7a41b280c7b74e2ddac5184708f9525b"
                     ]
-                },
-                "clip2": {
-                    "audio": [
-                        "audio/clip2.wav",
-                        "65d671ec9787b32cfb7e33188be32ff7"
-                    ],
-                    "annotation": [
-                        "annotations/Clip2.csv",
-                        "e1964798cfe86e914af895f8d0291812"
-                    ]
-                },
-                "clip3": {
-                    "audio": [
-                        "audio/clip3.wav",
-                        "60edeb51dc4041c47c031c4bfb456b76"
-                    ],
-                    "annotation": [
-                        "annotations/clip3.csv",
-                        "06cb006cc7b61de6be6361ff904654b3"
-                    ]
-                },
             }
-        "metadata": {
-                "metadata_file": [
-                    "metadata/metadata_file.csv",
-                    "7a41b280c7b74e2ddac5184708f9525b"
-                ]
-        }
         }
 
 
@@ -294,7 +307,28 @@ You may find these examples useful as references:
 * `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217>`_
 * `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
+Please, do remember to include the variables ``BIBTEX``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
+You should follow the provided template as much as possible, and use the recommended functions and classes.
+An important example of that is ``download_utils.RemoteFileMetadata``. Please use this class to parse the dataset from an online repository, which takes cares of the download process and checksum validation, and addresses corner carses. Please do not use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+
+Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
+* The dataset name
+* A general purpose description, the task it is used for
+* Details about the coverage: how many clips, how many hours of audio, how many classes, the annotations available, etc.
+* The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already)
+* The authors of the dataset, the centre in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already)
+* Please reference also any relevant link or website that users can check for more information
+
+This docstring is important for users to understand the dataset and its purpose.
+Having proper documentation also enhances transparency, and helps users to understand the dataset better.
+Please do not include complicated tables, big pieces of text, or unformatted copy-pasted text pieces. 
+It is important that the docstring is clean, and the information is very clear to users.
+This will also engage users to use the dataloader!
+
 For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
+
+.. note::  
+    If the dataset you are trying to integrate stores every clip in a separated compressed file, it cannot be currently supported by soundata. Feel free to open and issue to discuss a solution (hopefully for the near future!)
 
 
 .. _add_tests:
