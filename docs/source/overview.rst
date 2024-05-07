@@ -44,7 +44,7 @@ See the :ref:`tutorial` for a detailed explanation of how to get started using t
 
 
 soundata design principles
-#########################
+##########################
 
 Ease of use and contribution
 ----------------------------

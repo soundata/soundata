@@ -64,6 +64,7 @@ The dataset's license information goes here.
 
 class Clip(core.Clip):
     """Example Clip class
+    
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
     # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)
@@ -127,7 +128,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle):
-    """Load a Example audio file.
+    """Load a Example audio file
 
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
@@ -135,7 +136,6 @@ def load_audio(fhandle):
     Returns:
         * np.ndarray - the audio signal
         * float - The sample rate of the audio file
-
     """
     # -- for example, the code below. This should be dataset specific!
     # -- By default we load to mono
@@ -167,8 +167,7 @@ def load_annotation(fhandle):
 # -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """The Example dataset
-    """
+    """The Example dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(
