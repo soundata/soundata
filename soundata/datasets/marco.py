@@ -170,12 +170,11 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
-    """Load a 3D-MARCo audio file.
+    """Load a 3D-MARCo audio file
+    
     Args:
         fhandle (str or file-like): file-like object or path to audio file
-        sr (int or None): sample rate for loaded audio, 48000 by default, which
-            re-samples all files except the EigenMike ones, resulting in constant
-            sampling rate between all clips in the dataset.
+        sr (int or None): sample rate for loaded audio, 48000 by default, which re-samples all files except the EigenMike ones, resulting in constant sampling rate between all clips in the dataset.
 
     Returns:
         * np.ndarray - the audio signal
@@ -187,9 +186,7 @@ def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The 3D-MARCo dataset
-    """
+    """The 3D-MARCo dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

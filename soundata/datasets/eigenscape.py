@@ -35,7 +35,7 @@
     *License:*
         * Creative Commons Attribution 4.0 International
 
-    *Important:
+    *Important:*
         * Use with caution. This loader "Engineers" a solution to obtain the correct files after Park6 and Park8 got mixed-up at the `eigenscape` and `eigenscape_raw` remotes. See the REMOTES and index if you want to understand how this engineered solution works. Also see the discussion about this engineered solution with the dataset author https://github.com/micarraylib/micarraylib/issues/8#issuecomment-1105357329
 """
 
@@ -194,7 +194,7 @@ class Clip(core.Clip):
 
     @property
     def additional_information(self):
-        """The clip's additional information.
+        """The clip's additional information
 
         Returns:
             * str - notes included by the dataset authors with other details relevant to the specific clip
@@ -215,7 +215,8 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load an EigenScape audio file.
+    """Load an EigenScape audio file
+
     Args:
         fhandle (str or file-like): file-like object or path to audio file
         sr (int or None): sample rate for loaded audio, None by default, which
@@ -231,9 +232,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The EigenScape dataset
-    """
+    """The EigenScape dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

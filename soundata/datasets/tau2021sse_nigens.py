@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories*
+    **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
 
     *Created By:*
         | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
@@ -54,9 +54,8 @@
         * The evalutation dataset constists of 200 recordings.
 
     *Please Acknowledge TAU-NIGENS SSE 2021 in Academic Research:*
-        * If you use this dataset please cite the report on its creation, and the corresponding DCASE2021 task setup:
-
-            * Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
+    If you use this dataset please cite the report on its creation, and the corresponding DCASE2021 task setup:
+    Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
 
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International
@@ -143,6 +142,7 @@ Creative Commons Attribution Non Commercial 4.0 International
 
 class Clip(core.Clip):
     """TAU NIGENS SSE 2021 Clip class
+
     Args:
         clip_id (str): id of the clip
     Attributes:
@@ -179,6 +179,7 @@ class Clip(core.Clip):
     @core.cached_property
     def spatial_events(self) -> Optional[annotations.SpatialEvents]:
         """The clip's event annotations
+
         Returns:
             * SpatialEvents with attributes
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
@@ -198,7 +199,6 @@ class Clip(core.Clip):
                 * labels_unit (str): labels unit, one of LABELS_UNITS
                 * clip_number_indices (list): list of clip number indices (as strings)
                 * confidence (np.ndarray or None): array of confidence values
-
         """
         return load_spatialevents(self.csv_path)
 
@@ -214,7 +214,8 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
-    """Load a TAU NIGENS SSE 2021 audio file.
+    """Load a TAU NIGENS SSE 2021 audio file
+
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
         sr (int or None): sample rate for loaded audio, 24000 Hz by default.
@@ -231,6 +232,7 @@ def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
     """Load an TAU NIGENS SSE 2021 annotation file
+    
     Args:
         fhandle (str or file-like): File-like object or path to
             the sound events annotation file
@@ -390,9 +392,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The TAU NIGENS SSE 2021 dataset
-    """
+    """The TAU NIGENS SSE 2021 dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

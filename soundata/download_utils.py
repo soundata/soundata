@@ -48,14 +48,14 @@ def downloader(
     force_overwrite=False,
     cleanup=False,
 ):
-    """Download data to `save_dir` and optionally log a message.
+    """Download data to `save_dir` and optionally log a message
 
     Args:
         save_dir (str):
             The directory to download the data
         remotes (dict or None):
             A dictionary of RemoteFileMetadata tuples of data in zip format.
-           If an element of the dictionary is a list of RemoteFileMetadata,
+            If an element of the dictionary is a list of RemoteFileMetadata,
                 it is handled as a multipart zip file
             If None, there is no data to download
         partial_download (list or None):
@@ -68,7 +68,6 @@ def downloader(
             If True, existing files are overwritten by the downloaded files.
         cleanup (bool):
             Whether to delete the zip/tar file after extracting.
-
     """
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -143,9 +142,7 @@ def downloader(
 
 
 class DownloadProgressBar(tqdm):
-    """
-    Wrap `tqdm` to show download progress
-    """
+    """Wrap tqdm to show download progress"""
 
     def update_to(self, b=1, bsize=1, tsize=None):
         if tsize is not None:
@@ -185,6 +182,7 @@ def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
 
 def download_from_remote(remote, save_dir, force_overwrite):
     """Download a remote dataset into path
+
     Fetch a dataset pointed by remote's url, save into path using remote's
     filename and ensure its integrity based on the MD5 Checksum of the
     downloaded file.

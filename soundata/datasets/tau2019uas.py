@@ -3,35 +3,33 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    **TAU Urban Acoustic Scenes 2019, Development, Leaderboard and Evaluation
-    datasets**
+    **TAU Urban Acoustic Scenes 2019, Development, Leaderboard and Evaluation datasets**
 
     `Audio Research Group,
     Tampere University of Technology <http://arg.cs.tut.fi/>`_
 
-    Authors
+    *Authors*
 
     * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
     * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
     * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Henri Laakso
     * Ronal Bejarano Rodriguez
     * Toni Heittola
 
 
-    Links
+    *Links*
 
     * `Development dataset <https://zenodo.org/record/2589280>`_
     * `Leaderboard dataset <https://zenodo.org/record/2672993>`_
     * `Evaluation dataset <https://zenodo.org/record/3063822>`_
 
-    **Dataset**
+    *Dataset*
 
-    TAU Urban Acoustic Scenes 2019 dataset consists of 10-seconds audio
-    segments from 10 acoustic scenes:
+    TAU Urban Acoustic Scenes 2019 dataset consists of 10-seconds audio segments from 10 acoustic scenes:
 
     - Airport - `airport`
     - Indoor shopping mall - `shopping_mall`
@@ -44,8 +42,7 @@
     - Travelling by an underground metro - `metro`
     - Urban park - `park`
 
-    A detailed description of the data recording and annotation procedure is
-    available in:
+    A detailed description of the data recording and annotation procedure is available in:
 
     .. code-block:: latex
 
@@ -67,14 +64,13 @@
 
     The dataset contains in total 1200 segments (200 minutes of audio).
 
-
     The dataset was collected by Tampere University of Technology between
     05/2018 -11/2018. The data collection has received funding from
     the European Research Council under the `ERC <https://erc.europa.eu/1>`_
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The dataset was recorded in 12 large European cities: Amsterdam, Barcelona,
     Helsinki, Lisbon, London, Lyon, Madrid, Milan, Prague, Paris, Stockholm,
@@ -103,7 +99,7 @@
     the segments coming from this dataset.
 
 
-    **Dataset statistics**
+    *Dataset statistics*
 
     The **development dataset** contains audio material from 10 cities, whereas
     the evaluation dataset (TAU Urban Acoustic Scenes 2019 evaluation) contains
@@ -147,7 +143,7 @@
     **Total**            **514**     **43**      **42**      **56**     **54**     **52**     **56**     **63**     **65**     **45**      **39**    
     ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
 
-    **Usage**
+    *Usage*
 
     The partitioning of the data was done based on the location of the original
     recordings. All segments recorded at the same location were included into a
@@ -192,7 +188,7 @@
     ===================  =================  ==================  ================  =================  ==================  =================== 
 
 
-    **License**
+    *License*
 
     License permits free academic usage. Any commercial use is strictly
     prohibited. For commercial use, contact dataset authors.

@@ -4,7 +4,7 @@ SINGA:PURA Dataset Loader
 .. admonition:: Dataset Info
     :class: dropdown
     
-    *SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a*
+    **SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a**
     
     *Created by:*
         * Kenneth Ooi, Karn N. Watcharasupat, Santi Peksi, Furi Andi Karnapi, Zhen-Ting Ong, Danny Chua, Hui-Wen Leow, Li-Long Kwok, Xin-Lei Ng, Zhen-Ann Loh, Woon-Seng Gan
@@ -114,7 +114,6 @@ import numpy as np
 import pandas as pd
 from soundata import annotations, core, download_utils, io, jams_utils
 
-# -- Add any relevant citations here
 BIBTEX = """
 @inproceedings{ooi2021singapura,
     author    = "K. Ooi and K. N. Watcharasupat and S. Peksi and F. A. Karnapi and Z.-T. Ong and D. Chua and H.-W. Leow and L.-L. Kwok and X.-L. Ng and Z.-A. Loh and W.-S. Gan",
@@ -124,11 +123,6 @@ BIBTEX = """
     year      = 2021
 }
 """
-
-# -- REMOTES is a dictionary containing all files that need to be downloaded.
-# -- The keys should be descriptive (e.g. 'annotations', 'audio').
-# -- When having data that can be partially downloaded, remember to set up
-# -- correctly destination_dir to download the files following the correct structure.
 
 meta_files = [
     ("metadata", "labelled_metadata_public.csv", "c5beb6374e55abfe7cd50f4f498c8376"),
@@ -151,8 +145,8 @@ meta_remotes = {
     k: download_utils.RemoteFileMetadata(
         filename=f,
         url=f"https://zenodo.org/record/5645825/files/{f}?download=1",
-        checksum=m,  # -- the md5 checksum
-        destination_dir=None,  # -- relative path for where to unzip the data, or None
+        checksum=m,
+        destination_dir=None,
     )
     for k, f, m in meta_files
 }
@@ -163,8 +157,8 @@ audio_remotes = {
         download_utils.RemoteFileMetadata(
             filename=f,
             url=f"https://zenodo.org/record/5645825/files/{f}?download=1",
-            checksum=m,  # -- the md5 checksum
-            destination_dir=None,  # -- relative path for where to unzip the data, or None
+            checksum=m,
+            destination_dir=None,
         )
         for f, m in audio_files
     ]
@@ -178,15 +172,13 @@ RemoteDictType = Dict[
 
 REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
 
-# -- Include any information that should be printed when downloading
-# -- remove this variable if you don't need to print anything during download
+
 DOWNLOAD_INFO = """
 SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a
 
 Labelled data subset downloaded from https://zenodo.org/record/5645825.
 """
 
-# -- Include the dataset's license information
 LICENSE_INFO = "Creative Commons Attribution-ShareAlike 4.0 International"
 
 

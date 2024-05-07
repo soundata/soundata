@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Sony-TAu Realistic Spatial Soundscapes: sound scenes in various rooms and environments, together with temporal and spatial annotations of prominent events belonging to a set of target classes.
+    **Sony-TAu Realistic Spatial Soundscapes:** sound scenes in various rooms and environments, together with temporal and spatial annotations of prominent events belonging to a set of target classes.
 
     *Created By:*
         | Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen
@@ -28,12 +28,14 @@
             * TAU Spatial Sound Events 2019 (development/evaluation), 
             * TAU-NIGENS Spatial Sound Events 2020, and 
             * TAU-NIGENS Spatial Sound Events 2021 
+
         associated with the previous iterations of the DCASE Challenge, the STARS22 dataset contains 
         recordings of real sound scenes and hence it avoids some of the pitfalls of synthetic 
         generation of scenes. Some such key properties are:
-            * annotations are based on a combination of human annotators for sound event activity and optical tracking for spatial positions,
-            * the annotated target event classes are determined by the composition of the real scenes,
-            * the density, polyphony, occurences and co-occurences of events and sound classes is not random, and it follows actions and interactions of participants in the real scenes.
+
+            * annotations are based on a combination of human annotators for sound event activity and optical tracking for spatial positions
+            * the annotated target event classes are determined by the composition of the real scenes
+            * the density, polyphony, occurences and co-occurences of events and sound classes is not random, and it follows actions and interactions of participants in the real scenes
 
         The recordings were collected between September 2021 and January 2022. Collection of data 
         from the TAU side has received funding from Google.
@@ -61,7 +63,8 @@
         * Frame, class, and source enumeration begins at 0. 
         * Frames correspond to a temporal resolution of 100msec. 
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
-	* The source index is a unique integer for each source in the scene, and it is provided only as additional information. Note that each unique actor gets assigned one such identifier, but not individual events produced by the same actor; e.g. a clapping event and a laughter event produced by the same person have the same identifier. Independent sources that are not actors (e.g. a loudspeaker playing music in the room) get a 0 identifier. Note that source identifier information is only included in the development metadata and is not required to be provided by the participants in their results.
+	
+    * The source index is a unique integer for each source in the scene, and it is provided only as additional information. Note that each unique actor gets assigned one such identifier, but not individual events produced by the same actor; e.g. a clapping event and a laughter event produced by the same person have the same identifier. Independent sources that are not actors (e.g. a loudspeaker playing music in the room) get a 0 identifier. Note that source identifier information is only included in the development metadata and is not required to be provided by the participants in their results.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
 
     *Organization*
@@ -70,9 +73,8 @@
         * The test set consists of 54 recordings.
 
     *Please Acknowledge Sony-TAu Realistic Spatial Soundscapes (STARSS) 2022 in Academic Research:*
-        * If you use this dataset please cite the report on its creation, and the corresponding DCASE2022 task setup:
-
-            * Politis, Adavanne, Mitsufuji, Yuki, Sudarsanam, Parthasaarathy, Shimada, Kazuki, Adavanne, Sharath, Koyama, Yuichiro, Krause, Daniel, Takahashi, Naoya, Takahashi, Shusuke, & Virtanen, Tuomas. (2022). STARSS22: Sony-TAu Realistic Spatial Soundscapes 2022 dataset (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6387880 
+    If you use this dataset please cite the report on its creation, and the corresponding DCASE2022 task setup:
+    Politis, Adavanne, Mitsufuji, Yuki, Sudarsanam, Parthasaarathy, Shimada, Kazuki, Adavanne, Sharath, Koyama, Yuichiro, Krause, Daniel, Takahashi, Naoya, Takahashi, Shusuke, & Virtanen, Tuomas. (2022). STARSS22: Sony-TAu Realistic Spatial Soundscapes 2022 dataset (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6387880 
 
     *License:*
         * This dataset is licensed under the [MIT](https://opensource.org/licenses/MIT) license
@@ -140,6 +142,7 @@ This datast is licensed under the [MIT](https://opensource.org/licenses/MIT) lic
 
 class Clip(core.Clip):
     """STARSS 2022 Clip class
+
     Args:
         clip_id (str): id of the clip
     Attributes:
@@ -179,6 +182,7 @@ class Clip(core.Clip):
     @core.cached_property
     def spatial_events(self) -> Optional[annotations.SpatialEvents]:
         """The clip's event annotations
+
         Returns:
             * SpatialEvents with attributes
                 * intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
@@ -198,7 +202,6 @@ class Clip(core.Clip):
                 * labels_unit (str): labels unit, one of LABELS_UNITS
                 * clip_number_indices (list): list of clip number indices (as strings)
                 * confidence (np.ndarray or None): array of confidence values
-
         """
         return load_spatialevents(self.csv_path)
 
@@ -214,7 +217,8 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
-    """Load a STARSS 2022 audio file.
+    """Load a STARSS 2022 audio file
+
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
         sr (int or None): sample rate for loaded audio, 24000 Hz by default.
@@ -231,6 +235,7 @@ def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
     """Load a STARSS 2022 annotation file
+
     Args:
         fhandle (str or file-like): File-like object or path to
             the sound events annotation file
@@ -390,9 +395,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The STARSS 2022 dataset
-    """
+    """The STARSS 2022 dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

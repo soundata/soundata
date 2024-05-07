@@ -32,13 +32,13 @@
         The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
 
     *Please Acknowledge TUT Acoustic Scenes Strong Label Dataset in Academic Research:*
-        | If you use this dataset, please cite the following paper:
-        | A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
+        If you use this dataset, please cite the following paper:
+        A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
 
     *License:*
-        | License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
-        | Copyright (c) 2020 Tampere University and its licensors
-        | All rights reserved.
+        License permits free academic usage. Any commercial use is strictly prohibited. For commercial use, contact dataset authors.
+        Copyright (c) 2020 Tampere University and its licensors. All rights reserved.
+
         Permission is hereby granted, without written agreement and without license or royalty
         fees, to use and copy the MAESTRO Real - Multi Annotator Estimated Strong Labels (“Work”) described in this document
         and composed of audio and metadata. This grant is only for experimental and non-commercial
@@ -188,9 +188,9 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
     """Load a DCASE23_Task4B annotation file
+
     Args:
-        fhandle (str or file-like): File-like object or path to the sound
-        events annotation file
+        fhandle (str or file-like): File-like object or path to the sound events annotation file
 
     Returns:
         Events: sound events annotation data

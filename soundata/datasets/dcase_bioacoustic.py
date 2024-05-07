@@ -13,88 +13,16 @@
 
     Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest. 
 
-    this version (3):
-
-    - fixes issues with annotations from HB set
-
-
-    Folder Structure:
-
-    Development_Set.zip
-
-    |_Development_Set/
-
-        |__Training_Set/
-
-            |___JD/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___HT/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___BV/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___MT/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___WMW/
-
-                |____*.wav
-
-                |____*.csv
+    This version (3) fixes issues with annotations from HB set. Development_Set_Annotations.zip has the same structure but contains only the .csv files.
 
     
-
-        |__Validation_Set/
-
-            |___HB/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___PB/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___ME/
-
-                |____*.wav
-
-                |____*.csv
-
-    
-
-    Development_Set_Annotations.zip has the same structure but contains only the *.csv files
-
-    
-
     *Annotation structure*
 
     Each line of the annotation csv represents an event in the audio file. The column descriptions are as follows:
 
-    TRAINING SET
-    ---------------------
-    Audiofilename, Starttime, Endtime, CLASS_1, CLASS_2, ...CLASS_N
+    TRAINING SET: Audiofilename, Starttime, Endtime, CLASS_1, CLASS_2, ...CLASS_N
 
-    VALIDATION SET
-    ---------------------
-    Audiofilename, Starttime, Endtime, Q
+    VALIDATION SET: Audiofilename, Starttime, Endtime, Q
 
     
 
@@ -102,13 +30,9 @@
 
     DCASE2022_task5_training_set_classes.csv and DCASE2022_task5_validation_set_classes.csv provide a table with class code correspondence to class name for all classes in the Development set.
 
-    DCASE2022_task5_training_set_classes.csv
-    ---------------------
-    dataset, class_code, class_name
+    DCASE2022_task5_training_set_classes.csv: dataset, class_code, class_name
 
-    DCASE2022_task5_validation_set_classes.csv
-    ---------------------
-    dataset, recording, class_code, class_name
+    DCASE2022_task5_validation_set_classes.csv: dataset, recording, class_code, class_name
 
     
 
@@ -118,53 +42,11 @@
 
     The first 5 annotations are provided for each file, with events marked as positive (POS) for the class of interest. 
 
-    This dataset is to be used for evaluation purposes during the task and the rest of the annotations will be released after the end of the DCASE 2022 challenge (July 1st).
+    This dataset is to be used for evaluation purposes during the task and the rest of the annotations will be released after the end of the DCASE 2022 challenge (July 1st).    
 
-    Folder Structure
+    Evaluation_Set_5shots.zip has the same structure but contains only the .wav files.
 
-    Evaluation_Set.zip
-
-        |___DC/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___CT/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___CHE/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___MGE/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___MS/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___QU/
-
-            |____*.wav
-
-            |____*.csv
-
-    
-
-    Evaluation_Set_5shots.zip has the same structure but contains only the *.wav files.
-
-    Evaluation_Set_5shots_annotations_only.zip has the same structure but contains only the *.csv files
+    Evaluation_Set_5shots_annotations_only.zip has the same structure but contains only the .csv files
 
     The subfolders denote different recording sources and there may or may not be overlap between classes of interest from different wav files.
 
@@ -174,12 +56,12 @@
     [ Audiofilename, Starttime, Endtime, Q ]
 
 
-    Open Access:
+    *Open Access:*
 
     This dataset is available under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
     
 
-    Contact info:
+    *Contact info:*
 
     Please send any feedback or questions to:
 
@@ -475,9 +357,7 @@ def load_events_classes(fhandle: TextIO) -> list:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The DCASE bioacoustic dataset
-    """
+    """The DCASE bioacoustic dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

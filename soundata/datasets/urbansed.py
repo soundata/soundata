@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *URBAN-SED*
+    **URBAN-SED**
         | URBAN-SED (c) by Justin Salamon, Duncan MacConnell, Mark Cartwright, Peter Li, and Juan Pablo Bello.
         | URBAN-SED is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
         | You should have received a copy of the license along with this work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
@@ -29,6 +29,7 @@
         A detailed description of the dataset is provided in the following article:
 
         .. code-block:: latex
+
             J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
             In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
@@ -56,9 +57,8 @@
     *Annotation Files Included*
         The annotations list the sound events that occur in every soundscape. The annotations are "strong", meaning for every 
         sound event the annotations include (at least) the start time, end time, and label of the sound event. Sound events 
-        come from the following 10 labels (categories):
-            * air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling, gun_shot, jackhammer, 
-            siren, street_music
+        come from the following 10 labels (categories): air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling,
+        gun_shot, jackhammer, siren, street_music
 
         There are two types of annotations: full annotations in JAMS format, and simplified annotations in 
         tab-separated txt format.
@@ -67,18 +67,16 @@
         * The full annotations are distributed in JAMS format (https://github.com/marl/jams).
         * There are 10,000 JAMS annotation files, each one corresponding to a single soundscape with the same filename (other than the extension)
         * Each JAMS file contains a single annotation in the scaper namespace format - jams >=v0.3.2 is required in order to load the annotation into python with jams:
+
         import jams
         jam = jams.load('soundscape_train_bimodal0.jams').
+        
         * The value of each observation (sound event) is a dictionary storing all scaper-related sound event parameters:
             * label, source_file, source_time, event_time, event_duration, snr, role, pitch_shift, time_stretch.
-            * Note: the event_duration stored in the value dictionary represents the specified duration prior to any time 
-            stretching. The actual event durtation in the soundscape is stored in the duration field of the JAMS observation.
+            * Note: the event_duration stored in the value dictionary represents the specified duration prior to any time stretching. The actual event durtation in the soundscape is stored in the duration field of the JAMS observation.
         * The observations (sound events) in the JAMS annotation include both foreground sound events and the background(s).
-        * The probabilistic scaper foreground and background event specifications are stored in the annotation's sandbox, allowing
-        a complete reconstruction of the soundscape audio from the JAMS annotation (assuming access to the original source material)
-        using scaper.generate_from_jams('soundscape_train_bimodal0.jams').
-        * The annotation sandbox also includes additional metadata such as the total number of foreground sound events, the 
-        maximum polyphony (sound event overlap) of the soundscape and its gini coefficient (a measure of soundscape complexity).
+        * The probabilistic scaper foreground and background event specifications are stored in the annotation's sandbox, allowing a complete reconstruction of the soundscape audio from the JAMS annotation (assuming access to the original source material) using scaper.generate_from_jams('soundscape_train_bimodal0.jams').
+        * The annotation sandbox also includes additional metadata such as the total number of foreground sound events, the maximum polyphony (sound event overlap) of the soundscape and its gini coefficient (a measure of soundscape complexity).
 
     *Simplified Annotations*
         * The simplified annotations are distributed as tab-separated text files.
@@ -93,6 +91,7 @@
         partly based on the URBAN-SED dataset cite the following publication:
 
         .. code-block:: latex
+
             J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
             In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
