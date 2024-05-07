@@ -508,8 +508,14 @@ Docs
 
 Staged docs for every new PR are built and accessible at ``soundata.github.io/preview/PR-<#PR_ID>`` in which ``<#PR_ID>`` is the pull request ID. 
 To quickly troubleshoot any issues, you can build the docs locally by nagivating to the ``docs`` folder, and running 
-``make html`` (note, you must have ``sphinx`` installed). Then open the generated ``_build/source/index.html`` 
+``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``_build/source/index.html`` 
 file in your web browser to view.
+
+Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up when running ``make clean html``. These will indicate formatting,
+listing, and indentiation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
+See the docstrings of ``docs/source/contributing_examples/example.py`` to see an example of how to write thes docstrings to prevent Sphinx errors
+and warning essages.
+
 
 Troubleshooting
 ^^^^^^^^^^^^^^^
