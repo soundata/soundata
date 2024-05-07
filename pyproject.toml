@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "soundata"
+dynamic = ["version"]
+description = "Python library for loading and working with sound datasets."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.7"
+authors = [
+    {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+]
+maintainers = [
+    {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+]
+keywords = ["sound", "dataset loader", "audio"]
+classifiers=[
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+
+[project.optional-dependencies]
+tests = [
+    "pytest>=7.2.0",
+    "pytest-cov>=4.1.0",
+    "pytest-pep8>=1.0.6",
+    "pytest-mock>=3.10.0",
+    "pytest-localserver>=0.7.1",
+    "pytest-xdist>=2.3.0",
+    "future>=0.18.3",
+    "coveralls>=3.3.1",
+    "black>=23.3.0",
+]
+docs = [
+    "docutils==0.16",
+    "numpydoc",
+    "recommonmark",
+    "sphinx>=3.4.0",
+    "sphinxcontrib-napoleon",
+    "sphinx_rtd_theme",
+    "sphinx-togglebutton"
+]
+
+[project.urls]
+url = "https://github.com/soundata/soundata"
+download_url = "http://github.com/soundata/soundata/releases"
+
+# Not sure we need this
+# [tool.setuptools.dynamic]
+# version = {attr = "soundata.__version__"}
