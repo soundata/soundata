@@ -543,7 +543,7 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
         )
 
-        # PP/PNP ratings path 
+        # PP/PNP ratings path
         self.pp_pnp_ratings_path = os.path.join(
             self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json"
         )

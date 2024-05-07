@@ -227,7 +227,7 @@ def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
     """Load an TAU NIGENS SSE 2020 annotation file
-    
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound events annotation file
         dt (float): time step

@@ -171,7 +171,7 @@ class Clip(core.Clip):
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
     """Load a 3D-MARCo audio file
-    
+
     Args:
         fhandle (str or file-like): file-like object or path to audio file
         sr (int or None): sample rate for loaded audio, 48000 by default, which re-samples all files except the EigenMike ones, resulting in constant sampling rate between all clips in the dataset.

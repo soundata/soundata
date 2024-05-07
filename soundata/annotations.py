@@ -563,7 +563,7 @@ def validate_intervals(intervals):
 
 def validate_unit(unit, unit_values, allow_none=False):
     """Validate that the given unit is one of the allowed unit values.
-    
+
     Args:
         unit (str): the unit name
         unit_values (dict): dictionary of possible unit values
