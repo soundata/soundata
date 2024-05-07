@@ -2,7 +2,7 @@
 
 <img src="docs/img/soundata.png" height="100px">
 
-Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
+Python library for downloading, loading & working with sound datasets. Check the [API documentation](https://soundata.readthedocs.io/) and the [contributing instructions](https://soundata.readthedocs.io/en/latest/source/contributing.html). <br/>
 For Music Information Retrieval (MIR) datasets please check [mirdata](https://github.com/mir-dataset-loaders/mirdata). 
 
 ![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg?branch=main)
@@ -49,6 +49,11 @@ print(example_clip)  # see the available data
 See the [documentation](https://soundata.readthedocs.io/) for more examples and the API reference.
 
 
+### Contributing a new dataset loader
+
+We welcome and encourage contributions to this library, especially new dataset loaders. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines. Feel free to [open an issue](https://github.com/soundata/soundata/issues) if you have any doubt or your run into problems when working on the library.
+
+
 ### Citing
 
 
@@ -58,7 +63,3 @@ TBA
 
 
 When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
-
-### Contributing a new dataset loader
-
-We welcome and encourage contributions to this library, especially new datasets. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines.
