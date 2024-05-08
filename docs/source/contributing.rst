@@ -39,6 +39,7 @@ To install ``soundata`` for development purposes:
         pip install .
         pip install ."[tests]"
         pip install ."[docs]"
+        pip install ."[plots]"
 
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
