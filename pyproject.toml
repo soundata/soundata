@@ -53,7 +53,3 @@ docs = [
 [project.urls]
 url = "https://github.com/soundata/soundata"
 download_url = "http://github.com/soundata/soundata/releases"
-
-# Not sure we need this
-# [tool.setuptools.dynamic]
-# version = {attr = "soundata.__version__"}
