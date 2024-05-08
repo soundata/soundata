@@ -27,6 +27,18 @@ classifiers=[
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10"
 ]
+dependencies = [
+    "librosa>=0.10.0",
+    "numpy>=1.21.6",
+    "pandas>=1.3.5",
+    "requests>=2.31.0",
+    "tqdm>=4.65.0",
+    "jams>=0.3.4",
+    "flake8>=5.0.4",
+    "mypy>=0.982",
+    "py7zr>=0.16.0",
+    "pydub>=0.25.1",
+]
 
 [project.optional-dependencies]
 tests = [
@@ -48,6 +60,11 @@ docs = [
     "sphinxcontrib-napoleon",
     "sphinx_rtd_theme",
     "sphinx-togglebutton"
+]
+plots = [
+    "simpleaudio>=1.0.4",
+    "seaborn>=0.11.2",
+    "ipywidgets>=8.1.1",
 ]
 
 [project.urls]
