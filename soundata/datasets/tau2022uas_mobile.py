@@ -3,31 +3,30 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    **TAU Urban Acoustic Scenes 2022 Mobile, Development and Evaluation
-    datasets**
+    **TAU Urban Acoustic Scenes 2022 Mobile, Development and Evaluation datasets**
 
     `Audio Research Group,
-    Tampere University of Technology <http://arg.cs.tut.fi/>`_
+    Tampere University of Technology <http://arg.cs.tut.fi/>`__
 
-    Authors
+    *Authors*
 
-    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
-    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
-    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
+    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`__
+    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`__
+    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`__
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Henri Laakso
     * Ronal Bejarano Rodriguez
     * Toni Heittola
 
 
-    Links
+    *Links*
 
-    * `Development dataset <https://zenodo.org/record/6337421>`_
-    * `Evaluation dataset <https://zenodo.org/record/7870258>`_
+    * `Development dataset <https://zenodo.org/record/6337421>`__
+    * `Evaluation dataset <https://zenodo.org/record/7870258>`__
 
-    **Dataset**
+    *Dataset*
 
     TAU Urban Acoustic Scenes 2022 Mobile development dataset consists of
     1-seconds audio segments from 10 acoustic scenes:
@@ -78,7 +77,7 @@
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The dataset was recorded in 12 large European cities: Amsterdam, Barcelona,
     Helsinki, Lisbon, London, Lyon, Madrid, Milan, Prague, Paris, Stockholm,
@@ -528,21 +527,21 @@
 
     *Number of segments in train / test setup*
 
-    ===================  =================  ==================  ================  =================  ==================  ===================
-    Scene class          Train / Device A   Train / Device B,C,S1-S3   Test / Device A   Test / Device Device B,C,S1-S3   Test / Device S4-S6  
-    ===================  =================  ==================  ================  =================  ==================  ===================
-    Airport              10190              750                        330               330                              330                  
-    Bus                  10250              750                        330               330                              330                  
-    Metro                10070              750                        330               330                              330                  
-    Metro station        10050              750                        330               330                              330                  
-    Park                 10540              750                        330               330                              330                  
-    Public square        10530              750                        330               330                              330                  
-    Shopping mall        9990               750                        330               330                              330                  
-    Street, pedestrian   10110              750                        330               330                              330                  
-    Street, traffic      10380              750                        330               330                              330                  
-    Tram                 10040              750                        330               330                              330                  
-    **Total**            102150             **7500**                   **3300**          **16500**                        **9900**             
-    ===================  =================  ==================  ================  =================  ==================  ===================
+    ===================  =================  ==========================  ================  =================================  =====================
+    Scene class          Train / Device A   Train / Device B,C,S1-S3    Test / Device A   Test / Device Device B,C,S1-S3     Test / Device S4-S6  
+    ===================  =================  ==========================  ================  =================================  =====================
+    Airport              10190              750                         330               330                                330                  
+    Bus                  10250              750                         330               330                                330                  
+    Metro                10070              750                         330               330                                330                  
+    Metro station        10050              750                         330               330                                330                  
+    Park                 10540              750                         330               330                                330                  
+    Public square        10530              750                         330               330                                330                  
+    Shopping mall        9990               750                         330               330                                330                  
+    Street, pedestrian   10110              750                         330               330                                330                  
+    Street, traffic      10380              750                         330               330                                330                  
+    Tram                 10040              750                         330               330                                330                  
+    **Total**            102150             **7500**                    **3300**          **16500**                          **9900**             
+    ===================  =================  ==========================  ================  =================================  =====================
 
     **License**
     
@@ -872,7 +871,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a TAU Urban Acoustic Scenes 2022 Mobile audio file.
+    """Load a TAU Urban Acoustic Scenes 2022 Mobile audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -890,9 +889,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The TAU Urban Acoustic Scenes 2022 Mobile dataset
-    """
+    """The TAU Urban Acoustic Scenes 2022 Mobile dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

@@ -3,9 +3,10 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *freefield1010: A Dataset of Field Recording Excerpts for Bioacoustic Research*
+    **freefield1010: A Dataset of Field Recording Excerpts for Bioacoustic Research**
 
     *Created By:*
+
         | Dan Stowell, Mark D. Plumbley.
         | Centre for Digital Music, Queen Mary University of London.
 
@@ -25,9 +26,11 @@
         * The metadata is available on the DCASE "Bird Audio Detection" challenge website: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
 
     *Please Acknowledge freefield1010 in Academic Research:*
-        When using the freefield1010 dataset for academic research, please cite the following paper:
+    When using the freefield1010 dataset for academic research, please cite the following paper:
 
-            D. Stowell, M. Plumbley. "An open dataset for research on audio field recording archives: Freefield1010.", Proc. Audio Engineering Society 53rd Conference on Semantic Audio (AES53), 2014.
+    .. code-block:: latex
+
+        D. Stowell, M. Plumbley. "An open dataset for research on audio field recording archives: Freefield1010.", Proc. Audio Engineering Society 53rd Conference on Semantic Audio (AES53), 2014.
 
     *Conditions of Use:*
         * The freefield1010 dataset is created by Dan Stowell and Mark D. Plumbley.

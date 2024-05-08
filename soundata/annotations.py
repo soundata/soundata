@@ -158,6 +158,7 @@ LABEL_UNITS = {"open": "no strict schema or units"}
 
 class SpatialEvents:
     """SpatialEvents class
+
     Attributes:
         intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
             (as floats) in TIME_UNITS in the form [start_time, end_time]
@@ -324,7 +325,9 @@ class SpatialEvents:
 
 def validate_time_steps(time_step, locations, interval):
     """Validate if timesteps are well-formed.
+
     If locations is None, validation passes automatically
+
     Args:
         time_step (float): spacing between location steps
         locations (np.ndarray): (n x 3) array
@@ -393,7 +396,9 @@ def validate_array_like(
     array_like, expected_type, expected_dtype, check_child=False, none_allowed=False
 ):
     """Validate that array-like object is well formed
+
     If array_like is None, validation passes automatically.
+
     Args:
         array_like (array-like): object to validate
         expected_type (type): expected type, either list or np.ndarray
@@ -558,6 +563,7 @@ def validate_intervals(intervals):
 
 def validate_unit(unit, unit_values, allow_none=False):
     """Validate that the given unit is one of the allowed unit values.
+
     Args:
         unit (str): the unit name
         unit_values (dict): dictionary of possible unit values

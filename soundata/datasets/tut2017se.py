@@ -6,25 +6,25 @@
     **TUT Sound events 2017, Development and Evaluation datasets**
 
     `Audio Research Group,
-    Tampere University of Technology <http://arg.cs.tut.fi/>`_
+    Tampere University of Technology <http://arg.cs.tut.fi/>`__
 
-    Authors
+    *Authors*
 
-    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
-    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
-    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
+    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`__
+    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`__
+    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`__
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Eemi Fagerlund
     * Aku Hiltunen
 
-    Links
+    *Links*
 
-    * `Development dataset <https://zenodo.org/record/814831>`_
-    * `Evaluation dataset <https://zenodo.org/record/1040179>`_
+    * `Development dataset <https://zenodo.org/record/814831>`__
+    * `Evaluation dataset <https://zenodo.org/record/1040179>`__
 
-    **Dataset**
+    *Dataset*
 
     TUT Sound Events 2017 dataset consists of two subsets: development dataset
     and evaluation dataset. Partitioning of data into these subsets was done
@@ -35,8 +35,7 @@
     to a certain extent, but so that the majority of events are in the
     development set.
 
-    A detailed description of the data recording and annotation procedure is
-    available in:
+    A detailed description of the data recording and annotation procedure is available in:
 
     .. code-block:: latex
 
@@ -57,7 +56,7 @@
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The recordings were captured each in a different location (different
     streets). The equipment used for recording consists of a binaural
@@ -103,12 +102,11 @@
     Annotations with only targeted sound events classes are in the directory
     `meta`.
 
-    Event statistics
-    ----------------
+    *Event statistics*
 
     The sound event instance counts for the dataset are shown below.
 
-    **Development set**
+    *Development set*
 
     +------------------+------------+----------------+--------------------+
     |                  |    Development dataset      | Evaluation dataset |
@@ -131,7 +129,7 @@
     +------------------+------------+----------------+--------------------+
 
 
-    **Usage**
+    *Usage*
 
     Partitioning of data into **development dataset** and **evaluation
     dataset** was done based on the amount of examples available for each event
@@ -150,7 +148,7 @@
 
     The setup is provided with the dataset in the directory `evaluation_setup`.
 
-    **License**
+    *License*
 
     See file `EULA.pdf
     <https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf>`_
@@ -304,7 +302,7 @@ class Clip(core.Clip):
 
     @core.cached_property
     def non_verified_events(self) -> Optional[annotations.Events]:
-        """The clip's non verified events path.
+        """The clip's non verified events path
 
         Returns:
             * str - path to the non-verified annotations file
@@ -326,7 +324,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a TUT Sound events 2017 audio file.
+    """Load a TUT Sound events 2017 audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -345,6 +343,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
     """Load an TUT Sound events 2017 annotation file
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound
         events annotation file
@@ -373,9 +372,7 @@ def load_events(fhandle: TextIO) -> annotations.Events:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The TUT Sound events 2017 dataset
-    """
+    """The TUT Sound events 2017 dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

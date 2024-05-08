@@ -3,17 +3,18 @@
 .. admonition:: Dataset Info
     :class: dropdown
     
-    *3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses*
+    **3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses**
     
     *Created By:*
+
         | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
         | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
         
-        Version 1.0.1
+    Version 1.0.1
 	
     *Description:*
         3D-MARCo is an open-access database of 3D sound recordings of musical performances and room impulse responses. 
-        The recordings were made in the St. Paul’s concert hall in Huddersfield, UK 
+        The recordings were made in the St. Paul's concert hall in Huddersfield, UK 
         A total of 71 microphone capsules were used simultaneously. 
         The main microphone arrays included in the database comprise PCMA-3D, OCT-3D, 2L-Cube, Decca Cubioid, First-order Ambisonics (FOA), Higher-order Ambisonics (HOA) and Hamasaki Square with height. 
         In addition, ORTF, side/height, Voice of God and floor channels as well as a dummy head and spot microphones are included. 
@@ -36,8 +37,11 @@
         * Angular orientation for "impulse responses" and "single sources" (follows the ITU-R convention where positive angles in the left-hand side and negative angles in the right-hand side, e.g. +30° for Front Left and -30° for Front Right).
 	
     *Please Acknowledge 3D-MARCo in Academic Research:*
-        * If you use this dataset please cite its original publication:
-        * Lee H, Johnson D. An open-access database of 3D microphone array recordings. InAudio Engineering Society Convention 147 2019 Oct 8. Audio Engineering Society.
+    If you use this dataset please cite its original publication:
+    
+    .. code-block:: latex
+    
+        Lee H, Johnson D. An open-access database of 3D microphone array recordings. InAudio Engineering Society Convention 147 2019 Oct 8. Audio Engineering Society.
 	    
     *License:*
         * CC-BY NC 3.0 license (free to share and adapt the material, but not permitted to use it for commercial purposes)
@@ -170,12 +174,11 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
-    """Load a 3D-MARCo audio file.
+    """Load a 3D-MARCo audio file
+
     Args:
         fhandle (str or file-like): file-like object or path to audio file
-        sr (int or None): sample rate for loaded audio, 48000 by default, which
-            re-samples all files except the EigenMike ones, resulting in constant
-            sampling rate between all clips in the dataset.
+        sr (int or None): sample rate for loaded audio, 48000 by default, which re-samples all files except the EigenMike ones, resulting in constant sampling rate between all clips in the dataset.
 
     Returns:
         * np.ndarray - the audio signal
@@ -187,9 +190,7 @@ def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The 3D-MARCo dataset
-    """
+    """The 3D-MARCo dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

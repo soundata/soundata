@@ -3,32 +3,31 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    **TAU Urban Acoustic Scenes 2020 Mobile, Development and Evaluation
-    datasets**
+    **TAU Urban Acoustic Scenes 2020 Mobile, Development and Evaluation datasets**
 
     `Audio Research Group,
-    Tampere University of Technology <http://arg.cs.tut.fi/>`_
+    Tampere University of Technology <http://arg.cs.tut.fi/>`__
 
-    Authors
+    *Authors*
 
-    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
-    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
-    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
+    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`__
+    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`__
+    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`__
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Henri Laakso
     * Ronal Bejarano Rodriguez
     * Toni Heittola
 
 
-    Links
+    *Links*
 
-    * `Development dataset <https://zenodo.org/record/2589280>`_
-    * `Leaderboard dataset <https://zenodo.org/record/2672993>`_
-    * `Evaluation dataset <https://zenodo.org/record/3063822>`_
+    * `Development dataset <https://zenodo.org/record/2589280>`__
+    * `Leaderboard dataset <https://zenodo.org/record/2672993>`__
+    * `Evaluation dataset <https://zenodo.org/record/3063822>`__
 
-    **Dataset**
+    *Dataset*
 
     TAU Urban Acoustic Scenes 2020 Mobile development dataset consists of
     10-seconds audio segments from 10 acoustic scenes:
@@ -76,7 +75,7 @@
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The dataset was recorded in 12 large European cities: Amsterdam, Barcelona,
     Helsinki, Lisbon, London, Lyon, Madrid, Milan, Prague, Paris, Stockholm,
@@ -123,7 +122,7 @@
     Scenes 2019 Development dataset. Audio segment filenames are retained for
     the segments coming from this dataset.
 
-    **Dataset statistics**
+    *Dataset statistics*
 
     The development set contains data from 10 cities and 9 devices: 3 real
     devices (A, B, C) and 6 simulated devices (S1-S6). Data from devices B, C
@@ -526,21 +525,21 @@
 
     *Number of segments in train / test setup*
 
-    ===================  =================  ==================  ================  =================  ==================  ===================
+    ===================  =================  =========================  ================  ===============================  ==================== 
     Scene class          Train / Device A   Train / Device B,C,S1-S3   Test / Device A   Test / Device Device B,C,S1-S3   Test / Device S4-S6  
-    ===================  =================  ==================  ================  =================  ==================  ===================
-    Airport              1019               75                         33                33                               33                   
-    Bus                  1025               75                         33                33                               33                   
-    Metro                1007               75                         33                33                               33                   
-    Metro station        1005               75                         33                33                               33                   
-    Park                 1054               75                         33                33                               33                   
-    Public square        1053               75                         33                33                               33                   
-    Shopping mall        999                75                         33                33                               33                   
-    Street, pedestrian   1011               75                         33                33                               33                   
-    Street, traffic      1038               75                         33                33                               33                   
-    Tram                 1004               75                         33                33                               33                   
-    **Total**            10215              **750**                    **330**           **5 x 330 = 1650**               **3 x 330 = 990**    
-    ===================  =================  ==================  ================  =================  ==================  ===================
+    ===================  =================  =========================  ================  ===============================  ==================== 
+    Airport              1019               75                         33                33                               33                  
+    Bus                  1025               75                         33                33                               33                  
+    Metro                1007               75                         33                33                               33                  
+    Metro station        1005               75                         33                33                               33                  
+    Park                 1054               75                         33                33                               33                  
+    Public square        1053               75                         33                33                               33                  
+    Shopping mall        999                75                         33                33                               33                  
+    Street, pedestrian   1011               75                         33                33                               33                  
+    Street, traffic      1038               75                         33                33                               33                  
+    Tram                 1004               75                         33                33                               33                  
+    **Total**            10215              **750**                    **330**           **5 x 330 = 1650**               **3 x 330 = 990**   
+    ===================  =================  =========================  ================  ===============================  ====================
 
     **License**
     
@@ -573,7 +572,7 @@
 """
 
 import os
-from typing import BinaryIO, Optional, TextIO, Tuple
+from typing import BinaryIO, Optional, Tuple
 
 import librosa
 import numpy as np

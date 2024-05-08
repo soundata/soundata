@@ -74,6 +74,7 @@ Spatial events represent annotations used for various applications, including sp
 Spatial events are used to represent annotations for:
 
 * Sound Event Detection (SED) + Sound Event Localization (SEL)
+
 Usecases
 ================
 
@@ -118,6 +119,7 @@ Soundscapes
 
 | :environment:`ENVIRONMENT`
 |   The spectrum of environmental sounds includes all the background noises found in various habitats. These auditory elements can be as diverse as the whisper of foliage in woodlands, the gentle flow of water in brooks, or the fierce gusts of wind sweeping through arid landscapes.
+
 .. _machine-sounds:
 
 | :machine:`MACHINE`

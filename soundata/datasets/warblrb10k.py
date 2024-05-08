@@ -4,13 +4,15 @@ Warblrb10k Dataset Loader
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Created By*  
+    **Warblrb10k**
+
+    *Created By* 
+
         | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§  
         | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London  
         | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford  
         | ‡ Computer Science Department, University of Crete  
         | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France  
-
 
     Version 1.0
 
@@ -29,7 +31,9 @@ Warblrb10k Dataset Loader
     *Please Acknowledge Warblr in Academic Research*
         When the Warblr dataset is employed for academic research, we sincerely request that scientific publications of works partially based on this dataset cite the following publication:
 
-        * Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé. "Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge", Methods in Ecology and Evolution, 2018.
+        .. code-block:: latex
+        
+            Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé. "Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge", Methods in Ecology and Evolution, 2018.
         
         The creation and curating of this dataset were possible through the participation and contributions of the general public using the Warblr app, enabling a comprehensive collection of bird sound recordings from various regions within the UK during 2015-2016.
 

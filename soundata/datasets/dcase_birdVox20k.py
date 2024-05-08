@@ -3,11 +3,14 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
+    **BirdVox20k**
+
     *Created By*  
-        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#  
-        | * Cornell Lab of Ornithology (CLO)  
-        | ^ Center for Urban Science and Progress, New York University   
-        | # Music and Audio Research Lab, New York University   
+
+        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#.
+        | * Cornell Lab of Ornithology (CLO).
+        | ^ Center for Urban Science and Progress, New York University.
+        | # Music and Audio Research Lab, New York University.
 
     Version 1.0
 
@@ -29,6 +32,7 @@
         When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
 
         .. code-block:: latex
+
             V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
         
         The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
@@ -43,9 +47,9 @@
 
     *Feedback*
         Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
-        | * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-        | * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-        | * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
+        * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
+        * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
+        * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
 
         In case of a problem, please include as many details as possible.
 
