@@ -55,8 +55,7 @@ def downloader(
             The directory to download the data
         remotes (dict or None):
             A dictionary of RemoteFileMetadata tuples of data in zip format.
-            If an element of the dictionary is a list of RemoteFileMetadata,
-                it is handled as a multipart zip file
+            If an element of the dictionary is a list of RemoteFileMetadata, it is handled as a multipart zip file
             If None, there is no data to download
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
