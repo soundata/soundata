@@ -3,20 +3,21 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *DCASE 2023 Task-6A*
+    **DCASE 2023 Task-6A**
+
         | Clotho (c) by K. Drossos, S. Lipping, and T. Virtanen.
         | Clotho is licensed under the terms set by Tampere University and Creative Commons licenses for the audio files as per their origin from the Freesound platform.
         | You should have received a copy of the license along with this work.
-        | https://github.com/audio-captioning/clotho-dataset
-        | Paper: "Clotho: an Audio Captioning Dataset," ICASSP 2020
+        | https://github.com/audio-captioning/clotho-dataset. Paper: "Clotho: an Audio Captioning Dataset," ICASSP 2020
 
     *Created By:*
+
         | K. Drossos, S. Lipping, and T. Virtanen.
         | Tampere University, Finland
         
     *Version 2.1.0*
-        | Fixes for corrupted files and illegal characters.
-        | More details on version changes are available in the dataset repository.
+        Fixes for corrupted files and illegal characters.
+        More details on version changes are available in the dataset repository.
 
     *Description*
         Clotho is an audio captioning dataset, consisting of 6974 audio samples, each accompanied by five captions, totaling 34,870 captions. 
@@ -41,18 +42,21 @@
         * Accompanying metadata for each audio file, including file name, keywords, original URL, excerpt samples, uploader, and license link.
 
     *Conditions of Use*
-        | Dataset created by K. Drossos, S. Lipping, and T. Virtanen.
-        | Audio files under various Creative Commons licenses as per Freesound platform terms.
-        | Captions under Tampere University license, primarily non-commercial with attribution.
-        | Full details in the LICENSE file included with the dataset.
+        Dataset created by K. Drossos, S. Lipping, and T. Virtanen.
+        Audio files under various Creative Commons licenses as per Freesound platform terms.
+        Captions under Tampere University license, primarily non-commercial with attribution.
+        Full details in the LICENSE file included with the dataset.
 
     *Acknowledgment in Academic Research*
-        | When using Clotho for academic research, please cite:
-            K. Drossos, S. Lipping, and T. Virtanen, "Clotho: an Audio Captioning Dataset," ICASSP 2020.
+    When using Clotho for academic research, please cite:
+        
+    .. code-block:: latex
+
+        K. Drossos, S. Lipping, and T. Virtanen, "Clotho: an Audio Captioning Dataset," ICASSP 2020.
 
     *Feedback and Contributions*
-        | Feedback and contributions are welcome.
-        | Please contact the creators through the GitHub repository.
+        Feedback and contributions are welcome.
+        Please contact the creators through the GitHub repository.
 
 """
 

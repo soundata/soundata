@@ -3,9 +3,10 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *TAU SSE 2019*
+    **TAU SSE 2019**
 
     *Created By:*
+
         | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
         | Audio Research Group, Tampere University. 
         
@@ -34,8 +35,11 @@
             * whether there are temporally-overlapping events
 
     *Please Acknowledge TAU SSE 2019 in Academic Research:*
-        * If you use this dataset please cite its original publication: 
-            * Sharath Adavanne, Archontis Politis, and Tuomas Virtanen. A multi-room reverberant dataset for sound event localization and uetection. In Submitted to Detection and Classification of Acoustic Scenes and Events 2019 Workshop (DCASE2019). 2019. URL: https://arxiv.org/abs/1905.08546.
+    If you use this dataset please cite its original publication: 
+
+    .. code-block:: latex
+
+        Sharath Adavanne, Archontis Politis, and Tuomas Virtanen. A multi-room reverberant dataset for sound event localization and uetection. In Submitted to Detection and Classification of Acoustic Scenes and Events 2019 Workshop (DCASE2019). 2019. URL: https://arxiv.org/abs/1905.08546.
 
     *License:*
         * Copyright (c) 2019 Tampere University and its licensors All rights reserved. Permission is hereby granted, without written agreement and without license or royalty fees, to use and copy the TAU Spatial Sound Events 2019 - Ambisonic and Microphone Array described in this document and composed of audio and metadata. This grant is only for experimental and non-commercial purposes, provided that the copyright notice in its entirety appear in all copies of this Work, and the original source of this Work, (Audio Research Group at Tampere University), is acknowledged in any publication that reports research using this Work.

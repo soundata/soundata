@@ -4,11 +4,12 @@ SINGA:PURA Dataset Loader
 .. admonition:: Dataset Info
     :class: dropdown
     
-    *SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a*
+    **SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a**
     
     *Created by:*
-        * Kenneth Ooi, Karn N. Watcharasupat, Santi Peksi, Furi Andi Karnapi, Zhen-Ting Ong, Danny Chua, Hui-Wen Leow, Li-Long Kwok, Xin-Lei Ng, Zhen-Ann Loh, Woon-Seng Gan
-        * Digital Signal Processing Laboratory, School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore.
+
+        | Kenneth Ooi, Karn N. Watcharasupat, Santi Peksi, Furi Andi Karnapi, Zhen-Ting Ong, Danny Chua, Hui-Wen Leow, Li-Long Kwok, Xin-Lei Ng, Zhen-Ann Loh, Woon-Seng Gan
+        | Digital Signal Processing Laboratory, School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore.
         
     *Description:*
         The SINGA:PURA (SINGApore: Polyphonic URban Audio) dataset is a strongly-labelled polyphonic urban sound dataset with spatiotemporal context. The dataset contains 6547 strongly-labelled and 72406 unlabelled recordings from a wireless acoustic sensor network deployed in Singapore to identify and mitigate noise sources in Singapore. The strongly-labelled and unlabelled recordings are disjoint, so there are a total of 78953 unique recordings. The recordings are all 10 seconds in length, and may have 1 or 7 channels, depending on the recording device used to record them. Total duration for the labelled subset provided here is 18.2 hours.
@@ -97,9 +98,11 @@ SINGA:PURA Dataset Loader
         - DR-NTU (all): https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/Y8UQ6F
         
     *Please Acknowledge SINGA:PURA in Academic Research:*
-        If you use this dataset please cite its original publication:
+    If you use this dataset please cite its original publication:
         
-        K. Ooi, K. N. Watcharasupat, S. Peksi, F. A. Karnapi, Z.-T. Ong, D. Chua, H.-W. Leow, L.-L. Kwok, X.-L. Ng, Z.-A. Loh, W.-S. Gan, "A Strongly-Labelled Polyphonic Dataset of Urban Sounds with Spatiotemporal Context," in Proceedings of the 13th Asia Pacific Signal and Information Processing Association Annual Summit and Conference, 2021.
+        .. code-block:: latex
+        
+            K. Ooi, K. N. Watcharasupat, S. Peksi, F. A. Karnapi, Z.-T. Ong, D. Chua, H.-W. Leow, L.-L. Kwok, X.-L. Ng, Z.-A. Loh, W.-S. Gan, "A Strongly-Labelled Polyphonic Dataset of Urban Sounds with Spatiotemporal Context," in Proceedings of the 13th Asia Pacific Signal and Information Processing Association Annual Summit and Conference, 2021.
         
     *License:*
         Creative Commons Attribution-ShareAlike 4.0 International.
@@ -114,7 +117,6 @@ import numpy as np
 import pandas as pd
 from soundata import annotations, core, download_utils, io, jams_utils
 
-# -- Add any relevant citations here
 BIBTEX = """
 @inproceedings{ooi2021singapura,
     author    = "K. Ooi and K. N. Watcharasupat and S. Peksi and F. A. Karnapi and Z.-T. Ong and D. Chua and H.-W. Leow and L.-L. Kwok and X.-L. Ng and Z.-A. Loh and W.-S. Gan",
@@ -124,11 +126,6 @@ BIBTEX = """
     year      = 2021
 }
 """
-
-# -- REMOTES is a dictionary containing all files that need to be downloaded.
-# -- The keys should be descriptive (e.g. 'annotations', 'audio').
-# -- When having data that can be partially downloaded, remember to set up
-# -- correctly destination_dir to download the files following the correct structure.
 
 meta_files = [
     ("metadata", "labelled_metadata_public.csv", "c5beb6374e55abfe7cd50f4f498c8376"),
@@ -151,8 +148,8 @@ meta_remotes = {
     k: download_utils.RemoteFileMetadata(
         filename=f,
         url=f"https://zenodo.org/record/5645825/files/{f}?download=1",
-        checksum=m,  # -- the md5 checksum
-        destination_dir=None,  # -- relative path for where to unzip the data, or None
+        checksum=m,
+        destination_dir=None,
     )
     for k, f, m in meta_files
 }
@@ -163,8 +160,8 @@ audio_remotes = {
         download_utils.RemoteFileMetadata(
             filename=f,
             url=f"https://zenodo.org/record/5645825/files/{f}?download=1",
-            checksum=m,  # -- the md5 checksum
-            destination_dir=None,  # -- relative path for where to unzip the data, or None
+            checksum=m,
+            destination_dir=None,
         )
         for f, m in audio_files
     ]
@@ -178,15 +175,12 @@ RemoteDictType = Dict[
 
 REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
 
-# -- Include any information that should be printed when downloading
-# -- remove this variable if you don't need to print anything during download
 DOWNLOAD_INFO = """
 SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a
 
 Labelled data subset downloaded from https://zenodo.org/record/5645825.
 """
 
-# -- Include the dataset's license information
 LICENSE_INFO = "Creative Commons Attribution-ShareAlike 4.0 International"
 
 

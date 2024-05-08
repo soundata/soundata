@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    ESC-50: Dataset for Environmental Sound Classification
+    **ESC-50: Dataset for Environmental Sound Classification**
 
     The ESC-50 dataset is a labeled collection of 2000 environmental audio recordings suitable for benchmarking methods of environmental sound classification.
     The total duration of the dataset is 2.8 hours (2000 x 5 seconds).
@@ -28,12 +28,13 @@
     A more thorough description of the dataset is available in the original paper with some supplementary materials on GitHub: 
     
     .. code-block:: latex
+
         K. J. Piczak. ESC: Dataset for Environmental Sound Classification. Proceedings of the 23rd Annual ACM Conference on Multimedia, Brisbane, Australia, 2015.
 
     https://github.com/karolpiczak/ESC-50
 
     Repository content
-    audio/*.wav
+    audio/<audio_name>.wav
 
     2000 audio recordings in WAV format (5 seconds, 44.1 kHz, mono) with the following naming convention:
 
@@ -225,7 +226,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load an ESC-50 audio file.
+    """Load an ESC-50 audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -243,9 +244,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The ESC-50 dataset
-    """
+    """The ESC-50 dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(

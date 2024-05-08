@@ -3,9 +3,10 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *FSD50K: an Open Dataset of Human-Labeled Sound Events*
+    **FSD50K: an Open Dataset of Human-Labeled Sound Events**
 
     *Created By:*
+
         | Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
         | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
         
@@ -155,7 +156,9 @@
     *Please Acknowledge FSD50K in Academic Research:*
         If you use the FSD50K Dataset please cite the following paper:
 
-            * Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
+        .. code-block:: latex
+        
+            Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
         The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
         Collado, Ceren Can, Rachit Gupta, Javier Arredondo, Gary Avendano and Sara Fernandez for their commitment and
@@ -402,7 +405,7 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a FSD50K audio file.
+    """Load a FSD50K audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -414,7 +417,6 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     Returns:
         * np.ndarray - the mono audio signal
         * float - The sample rate of the audio file
-
     """
     audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
@@ -503,9 +505,7 @@ def load_fsd50k_vocabulary(data_path):
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The FSD50K dataset
-    """
+    """The FSD50K dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(
@@ -517,7 +517,7 @@ class Dataset(core.Dataset):
             license_info=LICENSE_INFO,
         )
 
-        # --- Ground_truth paths --- #
+        # Ground_truth paths
         self.ground_truth_dev_path = os.path.join(
             self.data_home, "FSD50K.ground_truth", "dev.csv"
         )
@@ -525,7 +525,7 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.ground_truth", "eval.csv"
         )
 
-        # --- Sound collection format labels paths --- #
+        # Sound collection format labels paths
         self.collection_dev_path = os.path.join(
             self.data_home, "FSD50K.metadata", "collection", "collection_dev.csv"
         )
@@ -533,7 +533,7 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "collection", "collection_eval.csv"
         )
 
-        # --- Clip metadata paths --- #
+        # Clip metadata paths
         self.clips_info_dev_path = os.path.join(
             self.data_home, "FSD50K.metadata", "dev_clips_info_FSD50K.json"
         )
@@ -541,17 +541,17 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json"
         )
 
-        # --- Class info path --- #
+        # Class info path
         self.label_info_path = os.path.join(
             self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
         )
 
-        # ---  PP/PNP ratings path --- #
+        # PP/PNP ratings path
         self.pp_pnp_ratings_path = os.path.join(
             self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json"
         )
 
-        # --- Vocabulary paths --- #
+        # Vocabulary paths
         self.vocabulary_path = os.path.join(
             self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
         )

@@ -3,14 +3,15 @@
 .. admonition:: Dataset Info
     :class: dropdown
     
-    
-    *TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories*
+    **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
     
     *Created By:*
+
         | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
         | Audio Research Group, Tampere University (Finland). 
     
     Version 1.2.0
+
     *Description:*
         Spatial sound-scene recordings, consisting of sound events of distinct categories 
         in a variety of acoustical spaces, and from multiple source directions and distances.
@@ -20,6 +21,7 @@
         time-variant RIRs are used. 
         Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA) 
         format. 
+
     *Audio Files Included:*
    	* 600 one-minute long sound scene recordings (development dataset).
    	* 200 one-minute long sound scene recordings (evaluation dataset).
@@ -32,6 +34,7 @@
    	* Both static reverberant and moving reverberant sound events.
    	* Up to two overlapping sound events allowed, temporally and spatially.
    	* Realistic spatial ambient noise collected from each room is added to the spatialized sound events, at varying signal-to-noise ratios (SNR) ranging from noiseless (30dB) to noisy (6dB).
+    
     *Annotations Included:*
         * Each recording in the development set has labels of events and Directions of arrival in a plain csv file with the same filename.
         * Each row in the csv file has a frame number, active class index, clip number index, azimuth, and elevation.
@@ -40,9 +43,14 @@
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
         * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. 
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
+    
     *Please Acknowledge TAU-NIGENS SSE 2020 in Academic Research:*
-        * If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup:
-            * Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
+    If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup: 
+    
+    .. code-block:: latex
+    
+        Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
+    
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International
 """
@@ -189,7 +197,6 @@ class Clip(core.Clip):
                 * labels_unit (str): labels unit, one of LABELS_UNITS
                 * clip_number_indices (list): list of clip number indices (as strings)
                 * confidence (np.ndarray or None): array of confidence values
-
         """
         return load_spatialevents(self.csv_path)
 
@@ -205,7 +212,8 @@ class Clip(core.Clip):
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
-    """Load a TAU NIGENS SSE 2020 audio file.
+    """Load a TAU NIGENS SSE 2020 audio file
+
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
         sr (int or None): sample rate for loaded audio, 24000 Hz by default.
@@ -222,9 +230,9 @@ def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
     """Load an TAU NIGENS SSE 2020 annotation file
+
     Args:
-        fhandle (str or file-like): File-like object or path to
-            the sound events annotation file
+        fhandle (str or file-like): File-like object or path to the sound events annotation file
         dt (float): time step
     Raises:
         IOError: if txt_path doesn't exist
@@ -381,9 +389,7 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The TAU NIGENS SSE 2020 dataset
-    """
+    """The TAU NIGENS SSE 2020 dataset"""
 
     def __init__(self, data_home=None):
         super().__init__(
