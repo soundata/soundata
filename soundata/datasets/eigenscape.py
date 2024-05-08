@@ -3,11 +3,11 @@
 .. admonition:: Dataset Info
     :class: dropdown
     
-    *EigenScape: a database of spatial acoustic scene recordings*
+    **EigenScape: a database of spatial acoustic scene recordings**
     
     *Created By:*
-        | Marc Ciufo Green, Damian Murphy.
-        | Audio Lab, Department of Electronic Engineering, University of York. 
+    | Marc Ciufo Green, Damian Murphy.
+    | Audio Lab, Department of Electronic Engineering, University of York. 
         
     Version 2.0
 	

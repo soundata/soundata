@@ -3,9 +3,11 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Created By:*
-        | Annamaria Mesaros, Tuomas Heittola, and Tuomas Virtanen.
-        | Tampere University of Technology. 
+    **DCASE 2023 Task-4B**
+
+    *Created By:* 
+    | Annamaria Mesaros, Tuomas Heittola, and Tuomas Virtanen.
+    | Tampere University of Technology. 
     
     Version 1.0
 

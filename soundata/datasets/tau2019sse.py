@@ -3,11 +3,11 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *TAU SSE 2019*
+    **TAU SSE 2019**
 
     *Created By:*
-        | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
-        | Audio Research Group, Tampere University. 
+    | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
+    | Audio Research Group, Tampere University. 
         
     Version 2
 

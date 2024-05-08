@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *DCASE-BIOACOUSTIC*
+    **DCASE-BIOACOUSTIC**
 
     *Development set:*
 

@@ -3,14 +3,14 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    **Sony-TAu Realistic Spatial Soundscapes:** sound scenes in various rooms and environments, together with temporal and spatial annotations of prominent events belonging to a set of target classes.
+    **Sony-TAu Realistic Spatial Soundscapes:** sound scenes in various rooms and environments, together with temporal and spatial annotations of prominent events belonging to a set of target classes**
 
     *Created By:*
-        | Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen
-        | Audio Research Group, Tampere University (Finland). 
+    | Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen.
+    | Audio Research Group, Tampere University (Finland). 
 
-        | Yuki Mitsufuji, Kazuki Shimada, Naoya Takahashi, Yuichiro Koyama, Shusuke Takahashi 
-        | SONY
+    | Yuki Mitsufuji, Kazuki Shimada, Naoya Takahashi, Yuichiro Koyama, Shusuke Takahashi
+    | SONY.
 
     Version 1.0.0
 

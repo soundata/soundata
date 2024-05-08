@@ -3,17 +3,17 @@
 .. admonition:: Dataset Info
     :class: dropdown
     
-    *3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses*
+    **3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses**
     
     *Created By:*
-        | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
-        | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
+    | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
+    | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
         
-        Version 1.0.1
+    Version 1.0.1
 	
     *Description:*
         3D-MARCo is an open-access database of 3D sound recordings of musical performances and room impulse responses. 
-        The recordings were made in the St. Paul’s concert hall in Huddersfield, UK 
+        The recordings were made in the St. Paul's concert hall in Huddersfield, UK 
         A total of 71 microphone capsules were used simultaneously. 
         The main microphone arrays included in the database comprise PCMA-3D, OCT-3D, 2L-Cube, Decca Cubioid, First-order Ambisonics (FOA), Higher-order Ambisonics (HOA) and Hamasaki Square with height. 
         In addition, ORTF, side/height, Voice of God and floor channels as well as a dummy head and spot microphones are included. 

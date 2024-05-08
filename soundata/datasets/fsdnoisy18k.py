@@ -3,9 +3,11 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
+    **FSDnoisy18K**
+
     *Created By:*
-        | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
-        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
+    | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
+    | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
     
     Version 1.0
 
@@ -98,7 +100,6 @@
         In addition, FSDnoisy18k as a whole is the result of a curation process and it has an additional license.
         FSDnoisy18k is released under CC-BY. This license is specified in the LICENSE-DATASET file downloaded with
         the dataset.
-
 
     *Feedback:*
         For further questions, please contact eduardo.fonseca@upf.edu, or join the freesound-annotator Google Group.

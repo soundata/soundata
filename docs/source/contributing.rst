@@ -1,7 +1,7 @@
 .. _contributing:
 
 ########################
-Contributing to soundata
+Contributing to Soundata
 ########################
 
 We encourage contributions to soundata, especially new dataset loaders. To contribute a new loader, follow the
@@ -125,7 +125,7 @@ Here's an example of an index to use as a guide:
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
     .. note::
-        Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the maintainer team the need for it.
+        Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the Soundata maintainers the need for it.
 
 Example index with clips
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -138,7 +138,7 @@ or annotations related to the clip id. File paths are relative to the top level 
     .. note::
         If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
 
-Currently, soundata does not include built-in functions to automatically create train, testing, and validation splits if these are not originally defined in the dataset. 
+Currently, Soundata does not include built-in functions to automatically create train, test, and validation splits if these are not originally defined in the dataset. 
 Users can do that using  external functions such as ``sklearn.model_selection.train_test_split``.
 If a dataset has predefined splits, you can include the split name as an attribute of the ``Clip`` class. You should not create separate indexes for the different splits, or indicate the split in the index.
 See an example of how an index should look like:
@@ -309,7 +309,7 @@ You may find these examples useful as references:
 
 Please, do remember to include the variables ``BIBTEX``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
 You should follow the provided template as much as possible, and use the recommended functions and classes.
-An important example of that is ``download_utils.RemoteFileMetadata``. Please use this class to parse the dataset from an online repository, which takes cares of the download process and checksum validation, and addresses corner carses. Please do not use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+An important example of that is ``download_utils.RemoteFileMetadata``. Please use this class to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses. Please do not use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
@@ -318,7 +318,7 @@ Make sure to include, in the docstring of the dataloader, information about the 
 * A general purpose description, the task it is used for
 * Details about the coverage: how many clips, how many hours of audio, how many classes, the annotations available, etc.
 * The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already)
-* The authors of the dataset, the centre in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already)
+* The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already)
 * Please reference also any relevant link or website that users can check for more information
 
 This docstring is important for users to understand the dataset and its purpose.

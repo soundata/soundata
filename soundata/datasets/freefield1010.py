@@ -3,11 +3,11 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *freefield1010: A Dataset of Field Recording Excerpts for Bioacoustic Research*
+    **freefield1010: A Dataset of Field Recording Excerpts for Bioacoustic Research**
 
     *Created By:*
-        | Dan Stowell, Mark D. Plumbley.
-        | Centre for Digital Music, Queen Mary University of London.
+        Dan Stowell, Mark D. Plumbley.
+        Centre for Digital Music, Queen Mary University of London.
 
     Version 1.0
 

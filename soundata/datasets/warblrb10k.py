@@ -4,13 +4,14 @@ Warblrb10k Dataset Loader
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Created By*  
-        | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§  
-        | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London  
-        | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford  
-        | ‡ Computer Science Department, University of Crete  
-        | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France  
+    **Warblrb10k**
 
+    *Created By*  
+    | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§  
+    | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London  
+    | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford  
+    | ‡ Computer Science Department, University of Crete  
+    | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France  
 
     Version 1.0
 

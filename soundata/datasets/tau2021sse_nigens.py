@@ -6,8 +6,8 @@
     **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
 
     *Created By:*
-        | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-        | Audio Research Group, Tampere University (Finland). 
+    | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
+    | Audio Research Group, Tampere University (Finland). 
     
     Version 1.2.0
 

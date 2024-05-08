@@ -3,8 +3,12 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
+    **DCASE 2023 Task-2**
+
     *Created By*  
-        | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda (Hitachi, Ltd. and NTT Corporation).
+    | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda.
+    | Hitachi, Ltd.
+    | NTT Corporation.
 
     *Version*  
         1.0 
@@ -22,7 +26,7 @@
         When the DCASE 2023 Task 2 dataset is used for academic research, we would highly appreciate it if scientific publications of works partly based on this dataset cite the following publications:
 
         .. code-block:: latex
-        
+
             Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda. "First-shot anomaly detection for machine condition monitoring: A domain generalization baseline", arXiv e-prints: 2303.00455, 2023.
             Kota Dohi, Tomoya Nishida, Harsh Purohit, Ryo Tanabe, Takashi Endo, Masaaki Yamamoto, Yuki Nikaido, and Yohei Kawaguchi. "MIMII DG: sound dataset for malfunctioning industrial machine investigation and inspection for domain generalization task", Proceedings of the 7th Detection and Classification of Acoustic Scenes and Events 2022 Workshop (DCASE2022), 31-35. Nancy, France, November 2022.
             Noboru Harada, Daisuke Niizumi, Daiki Takeuchi, Yasunori Ohishi, Masahiro Yasuda, and Shoichiro Saito. "ToyADMOS2: another dataset of miniature-machine operating sounds for anomalous sound detection under domain shift conditions", Proceedings of the 6th Detection and Classification of Acoustic Scenes and Events 2021 Workshop (DCASE2021), 1–5. Barcelona, Spain, November 2021.
@@ -32,11 +36,11 @@
 
     *Feedback*  
         For any issues or feedback regarding the dataset, please reach out to:  
-        | * Kota Dohi: kota.dohi.gr@hitachi.com  
-        | * Keisuke Imoto: keisuke.imoto@ieee.org  
-        | * Noboru Harada: noboru@ieee.org  
-        | * Daisuke Niizumi: daisuke.niizumi.dt@hco.ntt.co.jp  
-        | * Yohei Kawaguchi: yohei.kawaguchi.xk@hitachi.com.  
+        * Kota Dohi: kota.dohi.gr@hitachi.com  
+        * Keisuke Imoto: keisuke.imoto@ieee.org  
+        * Noboru Harada: noboru@ieee.org  
+        * Daisuke Niizumi: daisuke.niizumi.dt@hco.ntt.co.jp  
+        * Yohei Kawaguchi: yohei.kawaguchi.xk@hitachi.com.  
 """
 
 import os

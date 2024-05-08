@@ -7,8 +7,8 @@ SINGA:PURA Dataset Loader
     **SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a**
     
     *Created by:*
-        * Kenneth Ooi, Karn N. Watcharasupat, Santi Peksi, Furi Andi Karnapi, Zhen-Ting Ong, Danny Chua, Hui-Wen Leow, Li-Long Kwok, Xin-Lei Ng, Zhen-Ann Loh, Woon-Seng Gan
-        * Digital Signal Processing Laboratory, School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore.
+    | Kenneth Ooi, Karn N. Watcharasupat, Santi Peksi, Furi Andi Karnapi, Zhen-Ting Ong, Danny Chua, Hui-Wen Leow, Li-Long Kwok, Xin-Lei Ng, Zhen-Ann Loh, Woon-Seng Gan
+    | Digital Signal Processing Laboratory, School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore.
         
     *Description:*
         The SINGA:PURA (SINGApore: Polyphonic URban Audio) dataset is a strongly-labelled polyphonic urban sound dataset with spatiotemporal context. The dataset contains 6547 strongly-labelled and 72406 unlabelled recordings from a wireless acoustic sensor network deployed in Singapore to identify and mitigate noise sources in Singapore. The strongly-labelled and unlabelled recordings are disjoint, so there are a total of 78953 unique recordings. The recordings are all 10 seconds in length, and may have 1 or 7 channels, depending on the recording device used to record them. Total duration for the labelled subset provided here is 18.2 hours.
@@ -171,7 +171,6 @@ RemoteDictType = Dict[
 ]
 
 REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
-
 
 DOWNLOAD_INFO = """
 SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a
