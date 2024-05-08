@@ -6,9 +6,10 @@
     **DCASE 2023 Task-2**
 
     *Created By*  
-    | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda.
-    | Hitachi, Ltd.
-    | NTT Corporation.
+
+        | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda.
+        | Hitachi, Ltd.
+        | NTT Corporation.
 
     *Version*  
         1.0 

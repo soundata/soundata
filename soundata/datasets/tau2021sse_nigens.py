@@ -6,9 +6,10 @@
     **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
 
     *Created By:*
-    | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-    | Audio Research Group, Tampere University (Finland). 
-    
+
+        | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
+        | Audio Research Group, Tampere University (Finland). 
+        
     Version 1.2.0
 
     *Description:*
@@ -55,7 +56,10 @@
 
     *Please Acknowledge TAU-NIGENS SSE 2021 in Academic Research:*
     If you use this dataset please cite the report on its creation, and the corresponding DCASE2021 task setup:
-    Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
+    
+    .. code-block:: latex
+
+        Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
 
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International

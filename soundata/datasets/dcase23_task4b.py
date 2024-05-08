@@ -6,8 +6,9 @@
     **DCASE 2023 Task-4B**
 
     *Created By:* 
-    | Annamaria Mesaros, Tuomas Heittola, and Tuomas Virtanen.
-    | Tampere University of Technology. 
+
+        | Annamaria Mesaros, Tuomas Heittola, and Tuomas Virtanen.
+        | Tampere University of Technology. 
     
     Version 1.0
 
@@ -34,7 +35,10 @@
         The real life-recordings used in this study include a subset of the TUT Sound Events 2016 and a subset of TUT Sound Events 2017.
 
     *Please Acknowledge TUT Acoustic Scenes Strong Label Dataset in Academic Research:*
-        If you use this dataset, please cite the following paper:
+    If you use this dataset, please cite the following paper:
+
+    .. code-block:: latex
+
         A. Mesaros, T. Heittola, and T. Virtanen, "TUT database for acoustic scene classification and sound event detection," in 2016 24th European Signal Processing Conference (EUSIPCO), 2016, pp. 1128-1132.
 
     *License:*

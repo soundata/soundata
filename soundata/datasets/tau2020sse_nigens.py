@@ -6,8 +6,9 @@
     **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
     
     *Created By:*
-    | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-    | Audio Research Group, Tampere University (Finland). 
+
+        | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
+        | Audio Research Group, Tampere University (Finland). 
     
     Version 1.2.0
 
@@ -45,7 +46,10 @@
     
     *Please Acknowledge TAU-NIGENS SSE 2020 in Academic Research:*
     If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup: 
-    Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
+    
+    .. code-block:: latex
+    
+        Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
     
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International

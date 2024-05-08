@@ -6,8 +6,9 @@
     **FSDnoisy18K**
 
     *Created By:*
-    | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
-    | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
+
+        | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
     
     Version 1.0
 
@@ -82,7 +83,9 @@
     *Please Acknowledge FSDnoisy18K in Academic Research:*
         If you use the FSDnoisy18K Dataset please cite the following paper:
 
-            * Eduardo Fonseca, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, and Xavier Serra, “Learning Sound Event Classifiers from Web Audio with Noisy Labels”, arXiv preprint arXiv:1901.01189, 2019
+        .. code-block:: latex
+        
+            Eduardo Fonseca, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, and Xavier Serra, “Learning Sound Event Classifiers from Web Audio with Noisy Labels”, arXiv preprint arXiv:1901.01189, 2019
             
         This work is partially supported by the European Union’s Horizon 2020 research and innovation programme
         under grant agreement No 688382 AudioCommons. Eduardo Fonseca is also sponsored by a Google Faculty Research

@@ -6,8 +6,9 @@
     **3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses**
     
     *Created By:*
-    | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
-    | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
+
+        | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
+        | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
         
     Version 1.0.1
 	
@@ -36,8 +37,11 @@
         * Angular orientation for "impulse responses" and "single sources" (follows the ITU-R convention where positive angles in the left-hand side and negative angles in the right-hand side, e.g. +30° for Front Left and -30° for Front Right).
 	
     *Please Acknowledge 3D-MARCo in Academic Research:*
-        * If you use this dataset please cite its original publication:
-        * Lee H, Johnson D. An open-access database of 3D microphone array recordings. InAudio Engineering Society Convention 147 2019 Oct 8. Audio Engineering Society.
+    If you use this dataset please cite its original publication:
+    
+    .. code-block:: latex
+    
+        Lee H, Johnson D. An open-access database of 3D microphone array recordings. InAudio Engineering Society Convention 147 2019 Oct 8. Audio Engineering Society.
 	    
     *License:*
         * CC-BY NC 3.0 license (free to share and adapt the material, but not permitted to use it for commercial purposes)

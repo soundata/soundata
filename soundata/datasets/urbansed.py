@@ -4,17 +4,19 @@
     :class: dropdown
 
     **URBAN-SED**
-    | URBAN-SED (c) by Justin Salamon, Duncan MacConnell, Mark Cartwright, Peter Li, and Juan Pablo Bello.
-    | URBAN-SED is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
-    | You should have received a copy of the license along with this work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+
+        | URBAN-SED (c) by Justin Salamon, Duncan MacConnell, Mark Cartwright, Peter Li, and Juan Pablo Bello.
+        | URBAN-SED is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+        | You should have received a copy of the license along with this work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
 
     *Created By:*
-    | Justin Salamon*^, Duncan MacConnell*, Mark Cartwright*, Peter Li*, and Juan Pablo Bello*.
-    | * Music and Audio Research Lab (MARL), New York University, USA
-    | ^ Center for Urban Science and Progress (CUSP), New York University, USA
-    | http://urbansed.weebly.co
-    | http://steinhardt.nyu.edu/marl/
-    | http://cusp.nyu.edu/
+
+        | Justin Salamon*^, Duncan MacConnell*, Mark Cartwright*, Peter Li*, and Juan Pablo Bello*.
+        | * Music and Audio Research Lab (MARL), New York University, USA
+        | ^ Center for Urban Science and Progress (CUSP), New York University, USA
+        | http://urbansed.weebly.co
+        | http://steinhardt.nyu.edu/marl/
+        | http://cusp.nyu.edu/
 
     *Version 2.0.0*
         * Audio files generated with scaper v0.1.0 (identical to audio in URBAN-SED 1.0)

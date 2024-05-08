@@ -6,12 +6,13 @@
     **UrbanSound8K**
 
     **Created By:**
-    | Justin Salamon*^, Christopher Jacoby* and Juan Pablo Bello*
-    | * Music and Audio Research Lab (MARL), New York University, USA
-    | ^ Center for Urban Science and Progress (CUSP), New York University, USA
-    | https://urbansounddataset.weebly.com/
-    | https://steinhardt.nyu.edu/marl
-    | http://cusp.nyu.edu/
+
+        | Justin Salamon*^, Christopher Jacoby* and Juan Pablo Bello*
+        | * Music and Audio Research Lab (MARL), New York University, USA
+        | ^ Center for Urban Science and Progress (CUSP), New York University, USA
+        | https://urbansounddataset.weebly.com/
+        | https://steinhardt.nyu.edu/marl
+        | http://cusp.nyu.edu/
 
     Version 1.0
 

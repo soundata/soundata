@@ -6,10 +6,11 @@
     **BirdVox20k**
 
     *Created By*  
-    | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#.
-    | * Cornell Lab of Ornithology (CLO).
-    | ^ Center for Urban Science and Progress, New York University.
-    | # Music and Audio Research Lab, New York University.
+
+        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#.
+        | * Cornell Lab of Ornithology (CLO).
+        | ^ Center for Urban Science and Progress, New York University.
+        | # Music and Audio Research Lab, New York University.
 
     Version 1.0
 

@@ -6,8 +6,9 @@
     **EigenScape: a database of spatial acoustic scene recordings**
     
     *Created By:*
-    | Marc Ciufo Green, Damian Murphy.
-    | Audio Lab, Department of Electronic Engineering, University of York. 
+
+        | Marc Ciufo Green, Damian Murphy.
+        | Audio Lab, Department of Electronic Engineering, University of York. 
         
     Version raw
 	
@@ -29,8 +30,11 @@
         * No predefined training, validation, or testing splits. 
 	
     *Please Acknowledge EigenScape in Academic Research:*
-        * If you use this dataset please cite its original publication:
-            * Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
+    If you use this dataset please cite its original publication:
+
+    .. code-block:: latex
+
+        Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
 	    
     *License:*
         * Creative Commons Attribution 4.0 International
