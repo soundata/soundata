@@ -30,7 +30,7 @@ Tasks Codes (More information at the bottom of the page):
 | :asc:`ASC` Acoustic Scene Classification
 | :ac:`AC` Audio Captioning
 
-Please note that you can click on each tag to access more information related to that specific usecase.
+Please note that you can select each tag to explore further information related to its specific use case, and beneath each title, you'll find an ID for downloading the dataset.
 
 .. include:: table.rst
 
