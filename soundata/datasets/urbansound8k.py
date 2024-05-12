@@ -156,6 +156,11 @@ REMOTES = {
         url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz?download=1",
         checksum="9aa69802bbf37fb986f71ec1483a196e",
         unpack_directories=["UrbanSound8K"],
+    ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="urbansound8k_index_1.0.json",
+        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+        checksum="1c4940e08c1305c49b592f3d9c103e6f",
     )
 }
 
@@ -338,6 +343,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="urbansound8k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

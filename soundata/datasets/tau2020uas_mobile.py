@@ -734,6 +734,11 @@ REMOTES = {
         url="https://zenodo.org/record/3685828/files/TAU-urban-acoustic-scenes-2020-mobile-evaluation.meta.zip?download=1",
         checksum="b8d9bb50faa282be170b81dc57e2b8b3",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="tau2020uas_mobile_index_2.0.json",
+        url="https://zenodo.org/records/11176867/files/tau2020uas_mobile_index_2.0.json?download=1",
+        checksum="26f7cb19566ab3727473f8a4e188f3ec",
+    )
 }
 
 
@@ -899,6 +904,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="tau2020uas_mobile_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)

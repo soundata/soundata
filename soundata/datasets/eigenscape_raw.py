@@ -100,6 +100,11 @@ REMOTES = {
         url="https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1",
         checksum="cbed105fb56604c4b763788690089d55",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="eigenscape_raw_index_1.0.json",
+        url="https://zenodo.org/records/11176807/files/eigenscape_raw_index_1.0.json?download=1",
+        checksum="619fa16f7e58aa247b4da43ff5c36a03",
+    )
 }
 
 wav_md5_dict = {
@@ -283,6 +288,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="eigenscape_raw_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

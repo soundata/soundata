@@ -441,6 +441,11 @@ REMOTES = {
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip?download=1",
         checksum="fa3451868a2adf9d8a91882604a2d9b5",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="tau2019uas_index_1.0.json",
+        url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
+        checksum="b1d7af813507b4943540397c519c7a0b",
+    )
 }
 
 LICENSE_INFO = """
@@ -594,6 +599,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="tau2019uas_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

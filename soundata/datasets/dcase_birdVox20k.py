@@ -92,6 +92,11 @@ REMOTES = {
         url="https://ndownloader.figshare.com/files/10853300",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="dcase_birdVox20k_index_1.0.json",
+        url="https://zenodo.org/records/11176775/files/dcase_birdVox20k_index_1.0.json?download=1",
+        checksum="d68016f669df15b67b5af1c4043593b9",
+    )
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
@@ -203,6 +208,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="dcase_birdVox20k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

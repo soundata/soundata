@@ -136,6 +136,11 @@ REMOTES = {
         url="https://zenodo.org/records/3865658/files/clotho_metadata_test.csv?download=1",
         checksum="52f8ad01c229a310a0ff8043df480e21",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="dcase23_task6a_index_1.0.json",
+        url="https://zenodo.org/records/11176789/files/dcase23_task6a_index_1.0.json?download=1",
+        checksum="67415822f11bdb4400e422f0136a22f8",
+    )
 }
 
 LICENSE_INFO = """
@@ -283,6 +288,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="dcase23_task6a_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

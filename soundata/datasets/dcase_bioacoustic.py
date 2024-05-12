@@ -135,6 +135,11 @@ REMOTES = {
         checksum="5212c0e133874bba1ee25c81ced0de99",
         # unpack_directories=["URBAN-SED_v2.0.0"],
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="dcase_bioacoustic_index_3.0.json",
+        url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
+        checksum="e4c4eca3f1b9224e178f283bd2835f8f",
+    )
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
@@ -367,6 +372,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="dcase_bioacoustic_index_3.0.json",
         )
 
     @core.copy_docs(load_audio)

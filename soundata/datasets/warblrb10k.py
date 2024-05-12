@@ -91,6 +91,11 @@ REMOTES = {
         url="https://ndownloader.figshare.com/files/10853306",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="warblrb10k_index_1.0.json",
+        url="https://zenodo.org/records/11176933/files/warblrb10k_index_1.0.json?download=1",
+        checksum="98002f35a7e9f7050a6cb188d18328ab",
+    )
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
@@ -191,6 +196,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="warblrb10k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

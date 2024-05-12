@@ -142,6 +142,11 @@ REMOTES = {
         url="https://zenodo.org/record/6590983/files/retrieval_captions.csv?download=1",
         checksum="f9e810118be00c64ea8cd7557816d4fe",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="dcase23_task6b_index_1.0.json",
+        url="https://zenodo.org/records/11176793/files/dcase23_task6b_index_1.0.json?download=1",
+        checksum="66def2c298050d30ad9661d3e824c6b0",
+    )
 }
 
 LICENSE_INFO = """
@@ -289,6 +294,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="dcase23_task6b_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

@@ -150,6 +150,11 @@ REMOTES = {
         url="https://zenodo.org/record/2529934/files/FSDnoisy18k.meta.zip?download=1",
         checksum="96e27a4a63b7a2870522ddcedb5d8296",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="fsdnoisy18k_index_1.0.json",
+        url="https://zenodo.org/records/11176823/files/fsdnoisy18k_index_1.0.json?download=1",
+        checksum="09b7c6156156b9ccef2200c37c9b2791",
+    )
 }
 
 LICENSE_INFO = """
@@ -293,6 +298,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="fsdnoisy18k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

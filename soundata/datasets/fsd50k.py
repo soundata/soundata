@@ -274,6 +274,11 @@ REMOTES = {
         url="https://zenodo.org/record/4060432/files/FSD50K.doc.zip?download=1",
         checksum="3516162b82dc2945d3e7feba0904e800",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="fsd50k_index_1.0.json",
+        url="https://zenodo.org/records/11176815/files/fsd50k_index_1.0.json?download=1",
+        checksum="3317c25426cb3f539eea2b94651c14ba",
+    )
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
@@ -515,6 +520,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="fsd50k_index_1.0.json",
         )
 
         # Ground_truth paths

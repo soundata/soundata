@@ -152,6 +152,11 @@ REMOTES = {
         url="https://zenodo.org/record/1324404/files/URBAN-SED_v2.0.0.tar.gz?download=1",
         checksum="a2d24a2148ece7c021fcc079ee87c2dc",
         unpack_directories=["URBAN-SED_v2.0.0"],
+    ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="urbansed_index_2.0.json",
+        url="https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",
+        checksum="95e7a152729ebdb386356e7d21b342b7",
     )
 }
 
@@ -280,6 +285,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="urbansed_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)

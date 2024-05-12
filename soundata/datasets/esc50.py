@@ -88,6 +88,11 @@ REMOTES = {
         url="https://github.com/karoldvl/ESC-50/archive/master.zip",
         checksum="7771e4b9d86d0945acce719c7a59305a",
         unpack_directories=["ESC-50-master"],
+    ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="esc50_index_2.0.json",
+        url="https://zenodo.org/records/11176809/files/esc50_index_2.0.json?download=1",
+        checksum="7f1bf89ff69ee6aaa5c7018a75de73cf",
     )
 }
 
@@ -254,6 +259,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="esc50_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)

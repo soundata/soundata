@@ -112,6 +112,11 @@ REMOTES = {
         url="https://zenodo.org/record/3477602/files/10%203D-MARCo%20Samples_Single%20sources.zip?download=1",
         checksum="389e774c829a0729047bd8802021b239",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="marco_index_1.0.1.json",
+        url="https://zenodo.org/records/11176835/files/marco_index_1.0.1.json?download=1",
+        checksum="caf2a5c17bbe75ff6c26c450cb24bcb7",
+    )
 }
 
 LICENSE_INFO = """
@@ -200,6 +205,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="marco_index_1.0.1.json",
         )
 
     @core.copy_docs(load_audio)

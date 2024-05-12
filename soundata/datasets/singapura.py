@@ -173,7 +173,15 @@ RemoteDictType = Dict[
     Union[List[download_utils.RemoteFileMetadata], download_utils.RemoteFileMetadata],
 ]
 
-REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
+REMOTES: RemoteDictType = {
+    **audio_remotes,
+    **meta_remotes,
+    "index": download_utils.RemoteFileMetadata(
+        filename="singapura_index_1.0a.json",
+        url="https://zenodo.org/records/11176844/files/singapura_index_1.0a.json?download=1",
+        checksum="404d2057835cc97ef4dcef1b78e1a946",
+    )
+}
 
 DOWNLOAD_INFO = """
 SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a
@@ -351,6 +359,7 @@ class Dataset(core.Dataset):
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,
+            custom_index_path="singapura_index_1.0a.json",
         )
 
     @core.copy_docs(load_audio)

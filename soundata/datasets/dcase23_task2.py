@@ -215,6 +215,11 @@ REMOTES = {
         checksum="a32524fd8c45b574a560685b38acc4e1",
         destination_dir="7860847",
     ),
+    "index": download_utils.RemoteFileMetadata(
+        filename="dcase23_task2_index_1.0.json",
+        url="https://zenodo.org/records/11176781/files/dcase23_task2_index_1.0.json?download=1",
+        checksum="d026ec551fad229ffd8c5e5339100e54",
+    )
 }
 
 
@@ -322,6 +327,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
+            custom_index_path="dcase23_task2_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)
