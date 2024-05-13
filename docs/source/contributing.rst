@@ -313,15 +313,15 @@ An important example of that is ``download_utils.RemoteFileMetadata``. Please us
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
-* The dataset name
-* A general purpose description, the task it is used for
+* The dataset name.
+* A general purpose description, the task it is used for.
 * Details about the coverage: how many clips, how many hours of audio, how many classes, the annotations available, etc.
-* The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already)
-* The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already)
-* Please reference also any relevant link or website that users can check for more information
+* The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already).
+* The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already).
+* Please reference also any relevant link or website that users can check for more information.
 
 .. note::  
-    In addition to the module docstring,you should write docstrings for every new class and function you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
+    In addition to the module docstring, you should write docstrings for every new class and function you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
 
 
 This docstring is important for users to understand the dataset and its purpose.
@@ -346,7 +346,7 @@ To finish your contribution, please include tests that check the integrity of yo
 1. Make a toy version of the dataset in the tests folder ``tests/resources/sound_datasets/my_dataset/``,
    so you can test against little data. For example:
 
-    * Include all audio and annotation files for one clip of the dataset
+    * Include all audio and annotation files for one clip of the dataset.
     * For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.
     * If the dataset has a metadata file, reduce the length to a few lines.
 
