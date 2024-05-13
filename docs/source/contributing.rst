@@ -321,7 +321,7 @@ Make sure to include, in the docstring of the dataloader, information about the 
 * Please reference also any relevant link or website that users can check for more information
 
 .. note::  
-    In addition to the module docstring, you should also write a docstrings for your Clip class, and for the functions you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
+    In addition to the module docstring,you should write docstrings for every new class and function you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
 
 
 This docstring is important for users to understand the dataset and its purpose.
@@ -646,13 +646,13 @@ Objects
 Documenting your contribution
 -----------------------------
 
-Staged docs for every new PR are built and accessible at ``soundata.github.io/preview/PR-<#PR_ID>`` in which ``<#PR_ID>`` is the pull request ID. 
-To quickly troubleshoot any issues, you can build the docs locally by nagivating to the ``docs`` folder, and running 
+Staged docs for every new PR are built and accessible at ``soundata--<#PR_ID>.org.readthedocs.build/en/<#PR_ID>/`` in which ``<#PR_ID>`` is the pull request ID. 
+To quickly troubleshoot any issues, you can build the docs locally by navigating to the ``docs`` folder, and running 
 ``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``soundata/docs/_build/source/index.html`` 
 file in your web browser to view.
 
 **Important:** Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up in the terminal when running ``make clean html``. 
-These will indicate formatting, listing, and indentiation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
+These will indicate formatting, listing, and indentation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
 See the examples aboove and also the docstrings of ``docs/source/contributing_examples/example.py`` to see a list of examples of how to write the docstrings to prevent Sphinx errors and warning messages.
 
 
