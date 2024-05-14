@@ -215,15 +215,15 @@ def test_dataset_versions():
 
     dataset = VersionTest("asdf")
     assert dataset.version == "1"
-    assert dataset.index_path == "asdf/soundataindexes/blah_1.json"
+    assert dataset.index_path == "asdf/soundata_indexes/blah_1.json"
 
     dataset_default = VersionTest("asdf", version="default")
     assert dataset_default.version == "1"
-    assert dataset_default.index_path == "asdf/soundataindexes/blah_1.json"
+    assert dataset_default.index_path == "asdf/soundata_indexes/blah_1.json"
 
     dataset_1 = VersionTest("asdf", version="1")
     assert dataset_1.version == "1"
-    assert dataset_1.index_path == "asdf/soundataindexes/blah_1.json"
+    assert dataset_1.index_path == "asdf/soundata_indexes/blah_1.json"
     with pytest.raises(FileNotFoundError):
         dataset_1._index
 

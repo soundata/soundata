@@ -191,9 +191,10 @@ class Dataset(object):
                 raise FileNotFoundError(
                     "This dataset's index must be downloaded. Did you run .download()?"
                 )
+            #TODO: change this since we are not expecting any index to be packaged with soundata
             raise FileNotFoundError(
                 f"Dataset index for {self.name} was expected "
-                + "to be packaged with mirdata, but not found."
+                + "to be packaged with soundata, but not found."
             )
 
         return index
@@ -746,7 +747,8 @@ class Index(object):
         # as the data
         if self.remote:
             return os.path.join(data_home, "soundata_indexes", self.filename)
-        # if the index is part of mirdata locally, it is in the indexes folder
+        #TODO: change this since we are not expecting to have indexes locally
+        # if the index is part of soundata locally, it is in the indexes folder
         # of the repository
         else:
             return os.path.join(
