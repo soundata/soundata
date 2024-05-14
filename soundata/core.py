@@ -5,7 +5,7 @@ import json
 import os
 import random
 import types
-from typing import Any
+from typing import Any, List, Optional
 
 import numpy as np
 
@@ -89,6 +89,7 @@ class Dataset(object):
         data_home (str): path where soundata will look for the dataset
         name (str): the identifier of the dataset
         bibtex (str or None): dataset citation/s in bibtex format
+        indexes (dict or None): indexes to be downloaded
         remotes (dict or None): data to be downloaded
         readme (str): information about the dataset
         clip (function): a function mapping a clip_id to a soundata.core.Clip
@@ -99,14 +100,15 @@ class Dataset(object):
     def __init__(
         self,
         data_home=None,
+        version="default",
         name=None,
         clip_class=None,
         clipgroup_class=None,
         bibtex=None,
+        indexes=None,
         remotes=None,
         download_info=None,
         license_info=None,
-        custom_index_path=None,
     ):
         """Dataset init method
 
@@ -119,21 +121,32 @@ class Dataset(object):
             remotes (dict or None): data to be downloaded
             download_info (str or None): download instructions or caveats
             license_info (str or None): license of the dataset
-            custom_index_path (str or None): overwrites the default index path for remote indexes
 
         """
         self.name = name
         self.data_home = self.default_path if data_home is None else data_home
-        if custom_index_path:
-            self.index_path = os.path.join(self.data_home, custom_index_path)
-            self.remote_index = True
-        else:
-            self.index_path = os.path.join(
-                os.path.dirname(os.path.realpath(__file__)),
-                "datasets/indexes",
-                "{}_index.json".format(self.name),
+
+        if version not in indexes:
+            raise ValueError(
+                "Invalid version {}. Must be one of {}.".format(version, indexes.keys())
             )
-            self.remote_index = False
+        if isinstance(indexes[version], str):
+            self.version = indexes[version]
+        else:
+            self.version = version
+        self._index_data = indexes[self.version]
+        self.index_path = self._index_data.get_path(self.data_home)
+        # TODO: Review and remove
+        # if custom_index_path:
+        #     self.index_path = os.path.join(self.data_home, custom_index_path)
+        #     self.remote_index = True
+        # else:
+        #     self.index_path = os.path.join(
+        #         os.path.dirname(os.path.realpath(__file__)),
+        #         "datasets/indexes",
+        #         "{}_index.json".format(self.name),
+        #     )
+        #     self.remote_index = False
         self._clip_class = clip_class
         self._clipgroup_class = clipgroup_class
         self.bibtex = bibtex
@@ -168,12 +181,19 @@ class Dataset(object):
 
     @cached_property
     def _index(self):
-        if self.remote_index and not os.path.exists(self.index_path):
+        try:
+            with open(self.index_path, encoding="utf-8") as fhandle:
+                index = json.load(fhandle)
+        except FileNotFoundError:
+            if self._index_data.remote:
+                raise FileNotFoundError(
+                    "This dataset's index must be downloaded. Did you run .download()?"
+                )
             raise FileNotFoundError(
-                "This dataset's index is not available locally. You may need to first run .download()"
+                f"Dataset index for {self.name} was expected "
+                + "to be packaged with mirdata, but not found."
             )
-        with open(self.index_path) as fhandle:
-            index = json.load(fhandle)
+
         return index
 
     @cached_property
@@ -316,6 +336,7 @@ class Dataset(object):
         download_utils.downloader(
             self.data_home,
             remotes=self.remotes,
+            index=self._index_data,
             partial_download=partial_download,
             info_message=self._download_info,
             force_overwrite=force_overwrite,
@@ -665,3 +686,69 @@ class ClipGroup(Clip):
         clips = list(self.clips.keys())
         assert len(clips) > 0
         return self.get_target(clips)
+
+
+class Index(object):
+    """Class for storing information about dataset indexes.
+
+    Args:
+        filename (str): The index filename (not path), e.g. "example_dataset_index_1.2.json"
+        url (str or None): None if index is not remote, or a url to download from
+        checksum (str or None): None if index is not remote, or the md5 checksum of the file
+        partial_download (list or None): if provided, specifies a subset of Dataset.remotes
+            corresponding to this index to be downloaded. If None, all Dataset.remotes will
+            be downloaded when calling Dataset.download()
+
+    Attributes:
+        remote (download_utils.RemoteFileMetadata or None): None if index is not remote, or
+            a RemoteFileMetadata object
+        partial_download (list or None): a list of keys to partially download, or None
+
+    """
+
+    def __init__(
+        self,
+        filename: str,
+        url: Optional[str] = None,
+        checksum: Optional[str] = None,
+        partial_download: Optional[List[str]] = None,
+    ):
+        self.filename = filename
+        self.remote: Optional[download_utils.RemoteFileMetadata]
+        if url and checksum:
+            self.remote = download_utils.RemoteFileMetadata(
+                filename=filename,
+                url=url,
+                checksum=checksum,
+                destination_dir="soundata_indexes",
+            )
+        elif url or checksum:
+            raise ValueError(
+                "Remote indexes must have both a url and a checksum specified."
+            )
+        else:
+            self.remote = None
+
+        self.partial_download = partial_download
+
+    def get_path(self, data_home: str) -> str:
+        """Get the absolute path to the index file
+
+        Args:
+            data_home (str): Path where the dataset's data lives
+
+        Returns:
+            str: absolute path to the index file
+        """
+        # if the index is downloaded from remote, it is in the same folder
+        # as the data
+        if self.remote:
+            return os.path.join(data_home, "soundata_indexes", self.filename)
+        # if the index is part of mirdata locally, it is in the indexes folder
+        # of the repository
+        else:
+            return os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "datasets/indexes",
+                self.filename,
+            )
