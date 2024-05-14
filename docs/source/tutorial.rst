@@ -461,7 +461,7 @@ To explore the dataset, first initialize it and then call the `explore_dataset()
 When you run this function, you'll see an interface with several options, and you can choose to display the following:
 
 - **Class Distribution**: Displays the distribution of different event classes in the dataset.
-- **Statistics (Computational)**: Provides computational statistics about the dataset.
+- **Statistics (Computational)**: Provides computational statistics about the dataset (Time consuming operation).
 - **Audio Visualization**: Offers visualizations related to the audio data, such as waveforms or spectrograms.
 
 Here is an example of the output you will see:
