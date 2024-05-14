@@ -369,9 +369,10 @@ def load_events_classes(fhandle: TextIO) -> list:
 class Dataset(core.Dataset):
     """The DCASE bioacoustic dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase_bioacoustic",
             clip_class=Clip,
             bibtex=BIBTEX,
