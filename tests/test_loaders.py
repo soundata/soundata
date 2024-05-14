@@ -9,8 +9,8 @@ import requests
 
 
 import soundata
-from soundata import core, download_utils
-from tests.test_utils import DEFAULT_DATA_HOME, get_attributes_and_properties
+from soundata import core
+from tests.test_utils import get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
@@ -38,8 +38,9 @@ TEST_DATA_HOME = "tests/resources/sound_datasets"
 
 def test_dataset_attributes():
     for dataset_name in DATASETS:
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         assert (
             dataset.name == dataset_name
@@ -90,8 +91,9 @@ DOWNLOAD_EXCEPTIONS = ["maestro"]
 def test_download(mocker):
     for dataset_name in DATASETS:
         print(dataset_name)
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         # test parameters & defaults
         assert callable(dataset.download), "{}.download is not callable".format(
@@ -154,10 +156,9 @@ def test_download(mocker):
 # when tests are run with the --local flag
 def test_validate(skip_local):
     for dataset_name in DATASETS:
-        data_home = os.path.join("tests/resources/sound_datasets", dataset_name)
-
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         try:
             dataset.validate()
@@ -172,9 +173,9 @@ def test_validate(skip_local):
 
 def test_load_and_clipids():
     for dataset_name in DATASETS:
-        data_home = os.path.join("tests/resources/sound_datasets", dataset_name)
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         try:
             clip_ids = dataset.clip_ids
@@ -212,13 +213,10 @@ def test_load_and_clipids():
 
 
 def test_clip():
-    data_home_dir = "tests/resources/sound_datasets"
-
     for dataset_name in DATASETS:
-        data_home = os.path.join(data_home_dir, dataset_name)
-
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         # if the dataset doesn't have a clip object, make sure it raises a value error
         # and move on to the next dataset
@@ -291,10 +289,11 @@ def test_clip_placeholder_case():
     for dataset_name in DATASETS:
         data_home = os.path.join(data_home_dir, dataset_name)
 
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(data_home, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, data_home, version="test"
+        )
 
-        if dataset._clip_class is None or dataset.remote_index:
+        if not dataset._clip_class:
             continue
 
         if dataset_name in CUSTOM_TEST_CLIPS:
@@ -329,8 +328,9 @@ SKIP = {}
 
 def test_load_methods():
     for dataset_name in DATASETS:
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         all_methods = dir(dataset)
         load_methods = [
@@ -378,8 +378,9 @@ def test_clipgroups():
     data_home_dir = "tests/resources/sound_datasets"
 
     for dataset_name in DATASETS:
-        module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = soundata.initialize(
+            dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         # TODO this is currently an opt-in test. Make it an opt out test
         # once #265 is addressed

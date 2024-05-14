@@ -4,7 +4,7 @@ import shutil
 import zipfile
 import re
 
-from soundata import download_utils
+from soundata import download_utils, core
 from soundata.datasets import esc50
 
 import pytest
@@ -72,48 +72,49 @@ def test_downloader(mocker, mock_path):
     file_remote = download_utils.RemoteFileMetadata(
         filename="remote.txt", url="a", checksum=("1234")
     )
+    index = core.Index("asdf.json")
 
     # Zip only
-    download_utils.downloader("a", remotes={"b": zip_remote})
+    download_utils.downloader("a", index=index, remotes={"b": zip_remote})
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mocker.resetall()
 
     # tar only
-    download_utils.downloader("a", remotes={"b": tar_remote})
+    download_utils.downloader("a", index=index, remotes={"b": tar_remote})
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mocker.resetall()
 
     # 7z only
-    download_utils.downloader("a", remotes={"b": _7z_remote})
+    download_utils.downloader("a", index=index, remotes={"b": _7z_remote})
     mock_7z.assert_called_once_with(_7z_remote, "a", False, False)
     mocker.resetall()
 
     # file only
-    download_utils.downloader("a", remotes={"b": file_remote})
+    download_utils.downloader("a", index=index, remotes={"b": file_remote})
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mocker.resetall()
 
     # zip and tar
-    download_utils.downloader("a", remotes={"b": zip_remote, "c": tar_remote})
+    download_utils.downloader("a", index=index, remotes={"b": zip_remote, "c": tar_remote})
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mocker.resetall()
 
     # zip and file
-    download_utils.downloader("a", remotes={"b": zip_remote, "c": file_remote})
+    download_utils.downloader("a", index=index, remotes={"b": zip_remote, "c": file_remote})
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mocker.resetall()
 
     # tar and file
-    download_utils.downloader("a", remotes={"b": tar_remote, "c": file_remote})
+    download_utils.downloader("a", index=index, remotes={"b": tar_remote, "c": file_remote})
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mocker.resetall()
 
     # zip and tar and file
     download_utils.downloader(
-        "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
     )
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
@@ -121,13 +122,14 @@ def test_downloader(mocker, mock_path):
     mocker.resetall()
 
     # Zip multipart
-    download_utils.downloader("a", remotes={"b": multipart_zip_remote})
+    download_utils.downloader("a", index=index, remotes={"b": multipart_zip_remote})
     mock_multipart_zip.assert_called_once_with(multipart_zip_remote, "a", False, False)
     mocker.resetall()
 
     # test partial download
     download_utils.downloader(
         "a",
+        index=index,
         remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
         partial_download=["b", "d"],
     )
@@ -139,6 +141,7 @@ def test_downloader(mocker, mock_path):
     with pytest.raises(ValueError):
         download_utils.downloader(
             "a",
+            index=index,
             remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
             partial_download="b",
         )
@@ -146,6 +149,7 @@ def test_downloader(mocker, mock_path):
     with pytest.raises(ValueError):
         download_utils.downloader(
             "a",
+            index=index,
             remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
             partial_download=["d", "e"],
         )
@@ -153,6 +157,7 @@ def test_downloader(mocker, mock_path):
     with pytest.raises(NotImplementedError):
         download_utils.downloader(
             "a",
+            index=index,
             remotes={"b": [zip_remote, tar_remote, file_remote]},
         )
 
@@ -162,19 +167,91 @@ def test_downloader(mocker, mock_path):
 
     # test download twice - defaults
     download_utils.downloader(
-        "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
     )
     download_utils.downloader(
-        "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
     )
 
     # test download twice - cleanup=True
     download_utils.downloader(
-        "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}, cleanup=True
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}, cleanup=True
     )
     download_utils.downloader(
-        "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
     )
+
+
+def test_download_index_cases(mocker, mock_path):
+    mock_zip = mocker.patch.object(download_utils, "download_zip_file")
+    mock_download_from_remote = mocker.patch.object(
+        download_utils, "download_from_remote"
+    )
+
+    zip_remote = download_utils.RemoteFileMetadata(
+        filename="remote.zip", url="a", checksum=("1234")
+    )
+    file_remote = download_utils.RemoteFileMetadata(
+        filename="remote.txt", url="a", checksum=("1234")
+    )
+    index = core.Index("asdf.json")
+    index_partial = core.Index("asdf.json", partial_download=["b"])
+    remote_index = core.Index("asdf.json", url="b", checksum="4567")
+
+    # no remotes, no remote index
+    download_utils.downloader(
+        "a",
+        index=index,
+        remotes=None,
+        partial_download=None,
+    )
+    mock_zip.assert_not_called()
+    mock_download_from_remote.assert_not_called()
+    mocker.resetall()
+
+    # remotes, partial download index
+    download_utils.downloader(
+        "a",
+        index=index_partial,
+        remotes={"b": zip_remote, "d": file_remote},
+        partial_download=None,
+    )
+    mock_zip.assert_called_once_with(zip_remote, "a", False, False)
+    mock_download_from_remote.assert_not_called()
+    mocker.resetall()
+
+    # remotes, partial download index overwrite
+    download_utils.downloader(
+        "a",
+        index=index_partial,
+        remotes={"b": zip_remote, "d": file_remote},
+        partial_download=["d"],
+    )
+    mock_zip.assert_not_called()
+    mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
+    mocker.resetall()
+
+    # no remotes, remote index
+    download_utils.downloader(
+        "a",
+        index=remote_index,
+        remotes=None,
+        partial_download=None,
+    )
+    mock_zip.assert_not_called()
+    mock_download_from_remote.assert_called_once_with(remote_index.remote, "a", False)
+    mocker.resetall()
+
+    # remotes, remote index
+    download_utils.downloader(
+        "a",
+        index=remote_index,
+        remotes={"b": zip_remote},
+        partial_download=None,
+    )
+    mock_zip.assert_called_once_with(zip_remote, "a", False, False)
+    mock_download_from_remote.assert_called_once_with(remote_index.remote, "a", False)
+    mocker.resetall()
 
 
 def _clean(fpath):
@@ -183,6 +260,7 @@ def _clean(fpath):
 
 
 def test_downloader_with_server_file(httpserver):
+    index = core.Index("asdf.json")
     httpserver.serve_content(open("tests/resources/remote.wav").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -194,26 +272,27 @@ def test_downloader_with_server_file(httpserver):
     save_dir = "tests/resources/tmp_download_test"
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
     download_utils.downloader(
-        save_dir, remotes={"b": TEST_REMOTE}, force_overwrite=True
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, force_overwrite=True
     )
 
     _clean(save_dir)
 
 
 def test_downloader_with_server_zip(httpserver):
+    index = core.Index("asdf.json")
     httpserver.serve_content(open("tests/resources/remote.zip", "rb").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -225,33 +304,34 @@ def test_downloader_with_server_zip(httpserver):
     save_dir = "tests/resources/_tmp_test_download_utils"
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
     download_utils.downloader(
-        save_dir, remotes={"b": TEST_REMOTE}, force_overwrite=True
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, force_overwrite=True
     )
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
     # test downloading twice
     download_utils.downloader(
-        save_dir, remotes={"b": TEST_REMOTE}, force_overwrite=True
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, force_overwrite=True
     )
 
     _clean(save_dir)
 
 
 def test_downloader_with_server_tar(httpserver):
+    index = core.Index("asdf.json")
     httpserver.serve_content(open("tests/resources/remote.tar.gz", "rb").read())
 
     TEST_REMOTE = download_utils.RemoteFileMetadata(
@@ -263,20 +343,20 @@ def test_downloader_with_server_tar(httpserver):
     save_dir = "tests/resources/_tmp_test_download_utils"
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
     # test downloading twice
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, remotes={"b": TEST_REMOTE})
+    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
     # test downloading twice
     download_utils.downloader(
-        save_dir, remotes={"b": TEST_REMOTE}, force_overwrite=True
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, force_overwrite=True
     )
 
     _clean(save_dir)

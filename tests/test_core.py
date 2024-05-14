@@ -1,9 +1,10 @@
 import pytest
+import os
 import numpy as np
 
 import soundata
 from soundata import core
-import os
+from tests.test_utils import DEFAULT_DATA_HOME
 from unittest.mock import Mock, patch
 
 
@@ -191,6 +192,73 @@ def test_dataset():
     assert isinstance(dataset, core.Dataset)
 
     print(dataset)  # test that repr doesn't fail
+
+
+#TODO: Review this properly
+def test_dataset_versions():
+    class VersionTest(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "1",
+                    "test": "0",
+                    "0": core.Index("blah_0.json"),
+                    "1": core.Index(
+                        "blah_1.json", url="https://google.com", checksum="asdf"
+                    ),
+                    "2": core.Index("blah_2.json"),
+                    "real": core.Index("beatles_index_1.2.json"),
+                },
+            )
+
+    dataset = VersionTest("asdf")
+    assert dataset.version == "1"
+    assert dataset.index_path == "asdf/soundataindexes/blah_1.json"
+
+    dataset_default = VersionTest("asdf", version="default")
+    assert dataset_default.version == "1"
+    assert dataset_default.index_path == "asdf/soundataindexes/blah_1.json"
+
+    dataset_1 = VersionTest("asdf", version="1")
+    assert dataset_1.version == "1"
+    assert dataset_1.index_path == "asdf/soundataindexes/blah_1.json"
+    with pytest.raises(FileNotFoundError):
+        dataset_1._index
+
+    local_index_path = os.path.dirname(os.path.realpath(__file__))[:-5]
+    dataset_test = VersionTest("asdf", version="test")
+    assert dataset_test.version == "0"
+    assert dataset_test.index_path == os.path.join(
+        local_index_path, "soundata/datasets/indexes/blah_0.json"
+    )
+
+    with pytest.raises(IOError):
+        dataset_test._index
+
+    dataset_0 = VersionTest("asdf", version="0")
+    assert dataset_0.version == "0"
+    assert dataset_0.index_path == os.path.join(
+        local_index_path, "soundata/datasets/indexes/blah_0.json"
+    )
+
+    dataset_2 = VersionTest("asdf", version="2")
+    assert dataset_2.version == "2"
+    assert dataset_2.index_path == os.path.join(
+        local_index_path, "soundata/datasets/indexes/blah_2.json"
+    )
+
+    dataset_real = VersionTest("asdf", version="real")
+    assert dataset_real.version == "real"
+    assert dataset_real.index_path == os.path.join(
+        local_index_path, "soundata/datasets/indexes/beatles_index_1.2.json"
+    )
+    idx_test = dataset_real._index
+    assert isinstance(idx_test, dict)
+
+    with pytest.raises(ValueError):
+        VersionTest("asdf", version="not_a_version")
 
 
 def test_explore_dataset():
