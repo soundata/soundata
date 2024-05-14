@@ -436,3 +436,37 @@ The following is a simple example of a generator that can be used to create a te
         )
 
 In future ``soundata`` versions, generators for Tensorflow and PyTorch will be included out-of-the-box.
+
+
+Using soundata to explore dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `explore_dataset()` function in `soundata` allows you to visualize various aspects of the dataset. This can be particularly useful for understanding the distribution of events and the nature of the audio data before proceeding with analysis or model training.
+
+Using `explore_dataset()` to Visualize Data in Jupyter Notebook
+---------------------------------------------------------------
+
+To explore the dataset, first initialize it and then call the `explore_dataset()` method:
+
+.. code-block:: python
+
+    import soundata
+
+    # Initialize the dataset
+    dataset = soundata.initialize('urbansound8k', data_home='your_data_directory')
+
+    # Explore the dataset
+    dataset.explore_dataset()
+
+When you run this function, you'll see an interface with several options, and you can choose to display the following:
+
+- **Class Distribution**: Displays the distribution of different event classes in the dataset.
+- **Statistics (Computational)**: Provides computational statistics about the dataset.
+- **Audio Visualization**: Offers visualizations related to the audio data, such as waveforms or spectrograms.
+
+Here is an example of the output you will see:
+
+.. image:: ../img/dataset_exp.png
+   :alt: Dataset Exploration Output
+
+By using the `explore_dataset()` function, you can gain a comprehensive overview of the dataset's structure and content, which is crucial for effective analysis and model building.
