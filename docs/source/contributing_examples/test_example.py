@@ -8,7 +8,7 @@ TEST_DATA_HOME = "tests/resources/sound_datasets/example"
 
 def test_clip():
     default_clipid = "some_id"
-    dataset = example.Dataset(TEST_DATA_HOME)
+    dataset = example.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -39,7 +39,7 @@ def test_to_jams():
 
     default_clipid = "some_id"
     data_home = "tests/resources/sound_datasets/dataset"
-    dataset = example.Dataset(data_home)
+    dataset = example.Dataset(data_home, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 
@@ -69,6 +69,6 @@ def test_load_annotation():
 
 def test_metadata():
     data_home = "tests/resources/sound_datasets/dataset"
-    dataset = example.Dataset(data_home)
+    dataset = example.Dataset(data_home, version="test")
     metadata = dataset._metadata
     assert metadata["some_id"] == "something"
