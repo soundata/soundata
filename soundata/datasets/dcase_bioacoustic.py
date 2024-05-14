@@ -110,6 +110,16 @@ BIBTEX = """
   url          = {https://doi.org/10.5281/zenodo.6482837}
 }
 """
+INDEXES = {
+    "default": "3.0",
+    "test": "sample",
+    "3.0": core.Index(
+        filename="dcase_bioacoustic_index_3.0.json",
+        url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
+        checksum="e4c4eca3f1b9224e178f283bd2835f8f",
+    ),
+    "sample": core.Index(filename="dcase_bioacoustic_index_3.0_sample.json"),
+}
 REMOTES = {
     "dev": download_utils.RemoteFileMetadata(
         filename="Development_Set.zip",
@@ -134,11 +144,6 @@ REMOTES = {
         url="https://zenodo.org/record/6517414/files/Evaluation_set_5shots.zip?download=1",
         checksum="5212c0e133874bba1ee25c81ced0de99",
         # unpack_directories=["URBAN-SED_v2.0.0"],
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="dcase_bioacoustic_index_3.0.json",
-        url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
-        checksum="e4c4eca3f1b9224e178f283bd2835f8f",
     ),
 }
 
@@ -370,9 +375,9 @@ class Dataset(core.Dataset):
             name="dcase_bioacoustic",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="dcase_bioacoustic_index_3.0.json",
         )
 
     @core.copy_docs(load_audio)
