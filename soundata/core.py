@@ -87,6 +87,7 @@ class Dataset(object):
 
     Attributes:
         data_home (str): path where soundata will look for the dataset
+        version (str): dataset version
         name (str): the identifier of the dataset
         bibtex (str or None): dataset citation/s in bibtex format
         indexes (dict or None): indexes to be downloaded
@@ -114,6 +115,7 @@ class Dataset(object):
 
         Args:
             data_home (str or None): path where soundata will look for the dataset
+            version (str): dataset version
             name (str or None): the identifier of the dataset
             clip_class (soundata.core.Clip or None): a Clip class
             clipgroup_class (soundata.core.Clipgroup or None): a Clipgroup class
