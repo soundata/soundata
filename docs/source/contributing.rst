@@ -313,13 +313,16 @@ An important example of that is ``download_utils.RemoteFileMetadata``. Please us
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
-* The dataset name
-
-* A general purpose description, the task it is used for
+* The dataset name.
+* A general purpose description, the task it is used for.
 * Details about the coverage: how many clips, how many hours of audio, how many classes, the annotations available, etc.
-* The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already)
-* The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already)
-* Please reference also any relevant link or website that users can check for more information
+* The license of the dataset (even if you have included the ``LICENSE_INFO`` variable already).
+* The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already).
+* Please reference also any relevant link or website that users can check for more information.
+
+.. note::  
+    In addition to the module docstring, you should write docstrings for every new class and function you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
+
 
 This docstring is important for users to understand the dataset and its purpose.
 Having proper documentation also enhances transparency, and helps users to understand the dataset better.
@@ -343,7 +346,7 @@ To finish your contribution, please include tests that check the integrity of yo
 1. Make a toy version of the dataset in the tests folder ``tests/resources/sound_datasets/my_dataset/``,
    so you can test against little data. For example:
 
-    * Include all audio and annotation files for one clip of the dataset
+    * Include all audio and annotation files for one clip of the dataset.
     * For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.
     * If the dataset has a metadata file, reduce the length to a few lines.
 
@@ -503,20 +506,6 @@ it will simplify the reviewing process and also help you make a complete PR. You
 ``...soundata/soundata/compare?expand=1`` will become
 ``...soundata/soundata/compare?expand=1&template=new_loader.md``.
 
-Docs
-^^^^
-
-Staged docs for every new PR are built and accessible at ``soundata.github.io/preview/PR-<#PR_ID>`` in which ``<#PR_ID>`` is the pull request ID. 
-To quickly troubleshoot any issues, you can build the docs locally by nagivating to the ``docs`` folder, and running 
-``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``_build/source/index.html`` 
-file in your web browser to view.
-
-Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up when running ``make clean html``. These will indicate formatting,
-listing, and indentiation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
-See the docstrings of ``docs/source/contributing_examples/example.py`` to see an example of how to write thes docstrings to prevent Sphinx errors
-and warning essages.
-
-
 Troubleshooting
 ^^^^^^^^^^^^^^^
 
@@ -551,6 +540,8 @@ If github shows a red ``X`` next to your latest commit, it means one of our chec
    If they are passing locally but failing in the check, open an `issue` and we can help debug.
 
 
+.. _documentation_tutorial:
+
 Documentation
 #############
 
@@ -560,6 +551,8 @@ The API documentation is built using `autodoc <https://www.sphinx-doc.org/en/mas
 documentation from the code's docstrings. We use the `napoleon <https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html>`_ plugin
 for building docs in Google docstring style. See the next section for docstring conventions.
 
+Docstring conventions
+---------------------
 
 soundata uses `Google's Docstring formatting style <https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings>`_.
 Here are some common examples.
@@ -649,6 +642,20 @@ Objects
         barf (bool): Document them with this special header.
 
     """
+
+Documenting your contribution
+-----------------------------
+
+Staged docs for every new PR are built and accessible at ``soundata--<#PR_ID>.org.readthedocs.build/en/<#PR_ID>/`` in which ``<#PR_ID>`` is the pull request ID. 
+To quickly troubleshoot any issues, you can build the docs locally by navigating to the ``docs`` folder, and running 
+``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``soundata/docs/_build/source/index.html`` 
+file in your web browser to view.
+
+**Important:** Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up in the terminal when running ``make clean html``. 
+These will indicate formatting, listing, and indentation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
+See the examples aboove and also the docstrings of ``docs/source/contributing_examples/example.py`` to see a list of examples of how to write the docstrings to prevent Sphinx errors and warning messages.
+
+
 
 
 Conventions
