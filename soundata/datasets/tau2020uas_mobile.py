@@ -738,7 +738,7 @@ REMOTES = {
         filename="tau2020uas_mobile_index_2.0.json",
         url="https://zenodo.org/records/11176867/files/tau2020uas_mobile_index_2.0.json?download=1",
         checksum="26f7cb19566ab3727473f8a4e188f3ec",
-    )
+    ),
 }
 
 

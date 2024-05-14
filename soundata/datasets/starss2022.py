@@ -141,7 +141,7 @@ REMOTES = {
         filename="starss2022_index_1.0.json",
         url="https://zenodo.org/records/11176851/files/starss2022_index_1.0.json?download=1",
         checksum="bca18a9267c4f072a23d3293ad4fe071",
-    )
+    ),
 }
 
 LICENSE_INFO = """

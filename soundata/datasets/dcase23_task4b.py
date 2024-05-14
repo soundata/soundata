@@ -104,7 +104,7 @@ REMOTES = {
         filename="dcase23_task4b_index_1.0.json",
         url="https://zenodo.org/records/11176783/files/dcase23_task4b_index_1.0.json?download=1",
         checksum="fc6bf79b17b2ce713e5389668174966a",
-    )
+    ),
 }
 
 LICENSE_INFO = """

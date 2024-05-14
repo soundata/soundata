@@ -278,7 +278,7 @@ REMOTES = {
         filename="fsd50k_index_1.0.json",
         url="https://zenodo.org/records/11176815/files/fsd50k_index_1.0.json?download=1",
         checksum="3317c25426cb3f539eea2b94651c14ba",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"

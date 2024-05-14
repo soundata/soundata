@@ -139,7 +139,7 @@ REMOTES = {
         filename="dcase_bioacoustic_index_3.0.json",
         url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
         checksum="e4c4eca3f1b9224e178f283bd2835f8f",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"

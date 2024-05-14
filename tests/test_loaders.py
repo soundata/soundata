@@ -289,9 +289,7 @@ def test_clip_placeholder_case():
     for dataset_name in DATASETS:
         data_home = os.path.join(data_home_dir, dataset_name)
 
-        dataset = soundata.initialize(
-            dataset_name, data_home, version="test"
-        )
+        dataset = soundata.initialize(dataset_name, data_home, version="test")
 
         if not dataset._clip_class:
             continue

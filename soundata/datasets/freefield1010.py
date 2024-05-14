@@ -76,7 +76,7 @@ REMOTES = {
         filename="freefield1010_index_1.0.json",
         url="https://zenodo.org/records/11176811/files/freefield1010_index_1.0.json?download=1",
         checksum="0aed8eebb8fb66da1a8437729dfa0f05",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
@@ -188,7 +188,7 @@ class Dataset(core.Dataset):
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="freefield1010_index_1.0.json"
+            custom_index_path="freefield1010_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

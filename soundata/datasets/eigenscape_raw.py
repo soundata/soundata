@@ -104,7 +104,7 @@ REMOTES = {
         filename="eigenscape_raw_index_1.0.json",
         url="https://zenodo.org/records/11176807/files/eigenscape_raw_index_1.0.json?download=1",
         checksum="619fa16f7e58aa247b4da43ff5c36a03",
-    )
+    ),
 }
 
 wav_md5_dict = {

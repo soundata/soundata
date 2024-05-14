@@ -93,7 +93,7 @@ REMOTES = {
         filename="esc50_index_2.0.json",
         url="https://zenodo.org/records/11176809/files/esc50_index_2.0.json?download=1",
         checksum="7f1bf89ff69ee6aaa5c7018a75de73cf",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)"

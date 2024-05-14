@@ -194,7 +194,7 @@ def test_dataset():
     print(dataset)  # test that repr doesn't fail
 
 
-#TODO: Review this properly
+# TODO: Review this properly
 def test_dataset_versions():
     class VersionTest(core.Dataset):
         def __init__(self, data_home=None, version="default"):

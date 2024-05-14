@@ -116,7 +116,7 @@ REMOTES = {
         filename="marco_index_1.0.1.json",
         url="https://zenodo.org/records/11176835/files/marco_index_1.0.1.json?download=1",
         checksum="caf2a5c17bbe75ff6c26c450cb24bcb7",
-    )
+    ),
 }
 
 LICENSE_INFO = """

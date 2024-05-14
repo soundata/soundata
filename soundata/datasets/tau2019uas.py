@@ -445,7 +445,7 @@ REMOTES = {
         filename="tau2019uas_index_1.0.json",
         url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
         checksum="b1d7af813507b4943540397c519c7a0b",
-    )
+    ),
 }
 
 LICENSE_INFO = """

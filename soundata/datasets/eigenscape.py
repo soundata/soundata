@@ -119,7 +119,7 @@ REMOTES = {
         filename="eigenscape_index_2.0.json",
         url="https://zenodo.org/records/11176800/files/eigenscape_index_2.0.json?download=1",
         checksum="3ea0322ee5e5174a1e265155c9de9be1",
-    )
+    ),
 }
 
 LICENSE_INFO = """

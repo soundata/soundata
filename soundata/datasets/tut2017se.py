@@ -240,7 +240,7 @@ REMOTES = {
         filename="tut2017se_index_2.0.json",
         url="https://zenodo.org/records/11176916/files/tut2017se_index_2.0.json?download=1",
         checksum="26fea2fd4082f48d7e8ef8c85df88ad1",
-    )
+    ),
 }
 
 LICENSE_INFO = "TUT License <https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf>"

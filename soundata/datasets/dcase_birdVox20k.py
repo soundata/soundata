@@ -96,7 +96,7 @@ REMOTES = {
         filename="dcase_birdVox20k_index_1.0.json",
         url="https://zenodo.org/records/11176775/files/dcase_birdVox20k_index_1.0.json?download=1",
         checksum="d68016f669df15b67b5af1c4043593b9",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"

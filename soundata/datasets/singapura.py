@@ -180,7 +180,7 @@ REMOTES: RemoteDictType = {
         filename="singapura_index_1.0a.json",
         url="https://zenodo.org/records/11176844/files/singapura_index_1.0a.json?download=1",
         checksum="404d2057835cc97ef4dcef1b78e1a946",
-    )
+    ),
 }
 
 DOWNLOAD_INFO = """

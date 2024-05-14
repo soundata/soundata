@@ -161,7 +161,7 @@ REMOTES = {
         filename="urbansound8k_index_1.0.json",
         url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
         checksum="1c4940e08c1305c49b592f3d9c103e6f",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"

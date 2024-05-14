@@ -95,7 +95,7 @@ REMOTES = {
         filename="warblrb10k_index_1.0.json",
         url="https://zenodo.org/records/11176933/files/warblrb10k_index_1.0.json?download=1",
         checksum="98002f35a7e9f7050a6cb188d18328ab",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"

@@ -138,7 +138,7 @@ REMOTES = {
         filename="tau2020sse_nigens_index_1.2.0.json",
         url="https://zenodo.org/records/11176861/files/tau2020sse_nigens_index_1.2.0.json?download=1",
         checksum="3ec732e50263d352070a32bc4af73eb1",
-    )
+    ),
 }
 
 LICENSE_INFO = """

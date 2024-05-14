@@ -95,19 +95,25 @@ def test_downloader(mocker, mock_path):
     mocker.resetall()
 
     # zip and tar
-    download_utils.downloader("a", index=index, remotes={"b": zip_remote, "c": tar_remote})
+    download_utils.downloader(
+        "a", index=index, remotes={"b": zip_remote, "c": tar_remote}
+    )
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mocker.resetall()
 
     # zip and file
-    download_utils.downloader("a", index=index, remotes={"b": zip_remote, "c": file_remote})
+    download_utils.downloader(
+        "a", index=index, remotes={"b": zip_remote, "c": file_remote}
+    )
     mock_zip.assert_called_once_with(zip_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mocker.resetall()
 
     # tar and file
-    download_utils.downloader("a", index=index, remotes={"b": tar_remote, "c": file_remote})
+    download_utils.downloader(
+        "a", index=index, remotes={"b": tar_remote, "c": file_remote}
+    )
     mock_tar.assert_called_once_with(tar_remote, "a", False, False)
     mock_download_from_remote.assert_called_once_with(file_remote, "a", False)
     mocker.resetall()
@@ -175,7 +181,10 @@ def test_downloader(mocker, mock_path):
 
     # test download twice - cleanup=True
     download_utils.downloader(
-        "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}, cleanup=True
+        "a",
+        index=index,
+        remotes={"b": zip_remote, "c": tar_remote, "d": file_remote},
+        cleanup=True,
     )
     download_utils.downloader(
         "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
@@ -277,7 +286,9 @@ def test_downloader_with_server_file(httpserver):
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True
+    )
     # test downloading twice
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
@@ -309,7 +320,9 @@ def test_downloader_with_server_zip(httpserver):
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True
+    )
     # test downloading twice
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
@@ -321,7 +334,9 @@ def test_downloader_with_server_zip(httpserver):
     )
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True
+    )
     # test downloading twice
     download_utils.downloader(
         save_dir, index=index, remotes={"b": TEST_REMOTE}, force_overwrite=True
@@ -348,7 +363,9 @@ def test_downloader_with_server_tar(httpserver):
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
     _clean(save_dir)
-    download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True)
+    download_utils.downloader(
+        save_dir, index=index, remotes={"b": TEST_REMOTE}, cleanup=True
+    )
     # test downloading twice
     download_utils.downloader(save_dir, index=index, remotes={"b": TEST_REMOTE})
 
