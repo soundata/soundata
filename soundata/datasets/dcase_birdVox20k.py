@@ -80,6 +80,16 @@ BIBTEX = """
   month = {April},
 }
 """
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "3.0": core.Index(
+        filename="dcase_birdVox20k_index_1.0.json",
+        url="https://zenodo.org/records/11176775/files/dcase_birdVox20k_index_1.0.json?download=1",
+        checksum="d68016f669df15b67b5af1c4043593b9",
+    ),
+    "sample": core.Index(filename="dcase_birdVox20k_index_1.0_sample.json"),
+}
 REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
         filename="BirdVox-DCASE-20k.zip",
@@ -91,11 +101,6 @@ REMOTES = {
         filename="BirdVoxDCASE20k_csvpublic.csv",
         url="https://ndownloader.figshare.com/files/10853300",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="dcase_birdVox20k_index_1.0.json",
-        url="https://zenodo.org/records/11176775/files/dcase_birdVox20k_index_1.0.json?download=1",
-        checksum="d68016f669df15b67b5af1c4043593b9",
     ),
 }
 
@@ -200,15 +205,16 @@ class Dataset(core.Dataset):
     The BirdVox20k dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase_birdVox20k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="dcase_birdVox20k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

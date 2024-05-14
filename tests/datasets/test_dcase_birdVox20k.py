@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/dcase_birdVox2
 
 def test_clip():
     default_clipid = "00053d90-e4b9-4045-a2f1-f39efc90cfa9"
-    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME)
+    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -34,7 +34,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME)
+    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("00053d90-e4b9-4045-a2f1-f39efc90cfa9")
     audio_path = clip.audio_path
     audio, sr = dcase_birdVox20k.load_audio(audio_path)
@@ -47,7 +47,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "00053d90-e4b9-4045-a2f1-f39efc90cfa9"
-    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME)
+    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
     # Validate birdVox20k jam schema
