@@ -63,7 +63,7 @@ def downloader(
             or a subset of remotes to download by default.
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
-            If None, all data is downloaded
+            If None, all data specified by the index is downloaded
         info_message (str or None):
             A string of info to log when this function is called.
             If None, no string is logged.
