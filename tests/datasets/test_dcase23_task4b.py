@@ -10,7 +10,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/dcase23_task4b
 
 def test_clip():
     default_clipid = "cafe_restaurant_14"
-    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -40,7 +40,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("cafe_restaurant_14")
     audio_path = clip.audio_path
     audio, sr = dcase23_task4b.load_audio(audio_path)
@@ -51,7 +51,7 @@ def test_load_audio():
 
 
 def test_load_events():
-    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("cafe_restaurant_14")
     annotations_path = clip.annotations_path
     annotations = dcase23_task4b.load_events(annotations_path)
@@ -67,7 +67,7 @@ def test_load_events():
 
 def test_to_jams():
     default_clipid = "cafe_restaurant_14"
-    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

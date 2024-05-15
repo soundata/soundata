@@ -88,6 +88,18 @@ BIBTEX = """
 }
 
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="dcase23_task2_index_1.0.json",
+        url="https://zenodo.org/records/11176781/files/dcase23_task2_index_1.0.json?download=1",
+        checksum="d026ec551fad229ffd8c5e5339100e54",
+    ),
+    "sample": core.Index(filename="dcase23_task2_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "dev_bearing": download_utils.RemoteFileMetadata(
         filename="dev_bearing.zip",
@@ -215,11 +227,6 @@ REMOTES = {
         checksum="a32524fd8c45b574a560685b38acc4e1",
         destination_dir="7860847",
     ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="dcase23_task2_index_1.0.json",
-        url="https://zenodo.org/records/11176781/files/dcase23_task2_index_1.0.json?download=1",
-        checksum="d026ec551fad229ffd8c5e5339100e54",
-    ),
 }
 
 
@@ -319,15 +326,16 @@ class Dataset(core.Dataset):
     The DCASE23_Task2 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase23_task2",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="dcase23_task2_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

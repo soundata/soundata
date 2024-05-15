@@ -80,6 +80,7 @@ BIBTEX = """
   month = {April},
 }
 """
+
 INDEXES = {
     "default": "1.0",
     "test": "sample",
@@ -90,6 +91,7 @@ INDEXES = {
     ),
     "sample": core.Index(filename="dcase_birdVox20k_index_1.0_sample.json"),
 }
+
 REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
         filename="BirdVox-DCASE-20k.zip",

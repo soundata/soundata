@@ -1,0 +1,11 @@
+{
+  "version": "sample",
+  "clips": {
+    "development/1": {
+      "audio": [
+        "development/1.wav",
+        "b4e5ba99338fa4af0f58454be7147928"
+      ]
+    }
+  }
+}
