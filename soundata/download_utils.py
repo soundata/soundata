@@ -59,7 +59,7 @@ def downloader(
             If an element of the dictionary is a list of RemoteFileMetadata, it is handled as a multipart zip file
             If None, there is no data to download
         index (core.Index):
-            A mirdata Index class, which may contain a remote index to be downloaded
+            A soundata Index class, which contains a remote index to be downloaded
             or a subset of remotes to download by default.
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
@@ -85,8 +85,7 @@ def downloader(
         )
 
     if index.remote:
-        # add index to remotes
-        if not remotes:
+        if remotes is None:
             remotes = {}
         remotes["index"] = index.remote
 

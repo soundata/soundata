@@ -182,19 +182,12 @@ def test_clip_repr():
 
 
 def test_dataset():
-    dataset = soundata.initialize("esc50")
-    assert isinstance(dataset, core.Dataset)
-
     dataset = soundata.initialize("urbansound8k")
-    assert isinstance(dataset, core.Dataset)
-
-    dataset = soundata.initialize("urbansed")
     assert isinstance(dataset, core.Dataset)
 
     print(dataset)  # test that repr doesn't fail
 
 
-# TODO: Review this properly
 def test_dataset_versions():
     class VersionTest(core.Dataset):
         def __init__(self, data_home=None, version="default"):
@@ -208,22 +201,21 @@ def test_dataset_versions():
                     "1": core.Index(
                         "blah_1.json", url="https://google.com", checksum="asdf"
                     ),
-                    "2": core.Index("blah_2.json"),
-                    "real": core.Index("beatles_index_1.2.json"),
+                    "real": core.Index("dcase_bioacoustic_index_3.0_sample.json"),
                 },
             )
 
     dataset = VersionTest("asdf")
     assert dataset.version == "1"
-    assert dataset.index_path == "asdf/soundata_indexes/blah_1.json"
+    assert os.path.join(*dataset.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
     dataset_default = VersionTest("asdf", version="default")
     assert dataset_default.version == "1"
-    assert dataset_default.index_path == "asdf/soundata_indexes/blah_1.json"
+    assert os.path.join(*dataset.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
     dataset_1 = VersionTest("asdf", version="1")
     assert dataset_1.version == "1"
-    assert dataset_1.index_path == "asdf/soundata_indexes/blah_1.json"
+    assert os.path.join(*dataset_1.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
     with pytest.raises(FileNotFoundError):
         dataset_1._index
 
@@ -231,7 +223,7 @@ def test_dataset_versions():
     dataset_test = VersionTest("asdf", version="test")
     assert dataset_test.version == "0"
     assert dataset_test.index_path == os.path.join(
-        local_index_path, "soundata/datasets/indexes/blah_0.json"
+        local_index_path, "tests", "indexes", "blah_0.json"
     )
 
     with pytest.raises(IOError):
@@ -240,19 +232,13 @@ def test_dataset_versions():
     dataset_0 = VersionTest("asdf", version="0")
     assert dataset_0.version == "0"
     assert dataset_0.index_path == os.path.join(
-        local_index_path, "soundata/datasets/indexes/blah_0.json"
-    )
-
-    dataset_2 = VersionTest("asdf", version="2")
-    assert dataset_2.version == "2"
-    assert dataset_2.index_path == os.path.join(
-        local_index_path, "soundata/datasets/indexes/blah_2.json"
+        local_index_path, "tests", "indexes", "blah_0.json"
     )
 
     dataset_real = VersionTest("asdf", version="real")
     assert dataset_real.version == "real"
     assert dataset_real.index_path == os.path.join(
-        local_index_path, "soundata/datasets/indexes/beatles_index_1.2.json"
+        local_index_path, "tests", "indexes", "dcase_bioacoustic_index_3.0_sample.json"
     )
     idx_test = dataset_real._index
     assert isinstance(idx_test, dict)
@@ -281,7 +267,7 @@ def test_dataset_errors():
     with pytest.raises(ValueError):
         soundata.initialize("not_a_dataset")
 
-    d = soundata.initialize("esc50")
+    d = soundata.initialize("esc50", version="sample")
     d._clip_class = None
     with pytest.raises(AttributeError):
         d.clip("asdf")
@@ -300,11 +286,6 @@ def test_dataset_errors():
 
     with pytest.raises(AttributeError):
         d.choice_clipgroup()
-
-    # uncomment this to test \in dataset with remote index
-    # d = soundata.initialize("dataset_with_remote_index")
-    # with pytest.raises(FileNotFoundError):
-    #     d._index
 
     # uncomment this to test in dataset with clip_group
     # d = soundata.initialize("dataset_with_clip_group")

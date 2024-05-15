@@ -150,17 +150,24 @@ BIBTEX = """
 	Title = {A Dataset and Taxonomy for Urban Sound Research},
 	Year = {2014}}
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="urbansound8k_index_1.0.json",
+        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+        checksum="1c4940e08c1305c49b592f3d9c103e6f",
+    ),
+    "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="UrbanSound8K.tar.gz",
         url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz?download=1",
         checksum="9aa69802bbf37fb986f71ec1483a196e",
         unpack_directories=["UrbanSound8K"],
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="urbansound8k_index_1.0.json",
-        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
-        checksum="1c4940e08c1305c49b592f3d9c103e6f",
     ),
 }
 
@@ -335,15 +342,16 @@ class Dataset(core.Dataset):
     The urbansound8k dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="urbansound8k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="urbansound8k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

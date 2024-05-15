@@ -137,18 +137,7 @@ class Dataset(object):
         else:
             self.version = version
         self._index_data = indexes[self.version]
-        self.index_path = self._index_data.get_path(self.data_home)
-        # TODO: Review and remove
-        # if custom_index_path:
-        #     self.index_path = os.path.join(self.data_home, custom_index_path)
-        #     self.remote_index = True
-        # else:
-        #     self.index_path = os.path.join(
-        #         os.path.dirname(os.path.realpath(__file__)),
-        #         "datasets/indexes",
-        #         "{}_index.json".format(self.name),
-        #     )
-        #     self.remote_index = False
+        self.index_path = self._index_data.get_path()
         self._clip_class = clip_class
         self._clipgroup_class = clipgroup_class
         self.bibtex = bibtex
@@ -191,10 +180,9 @@ class Dataset(object):
                 raise FileNotFoundError(
                     "This dataset's index must be downloaded. Did you run .download()?"
                 )
-            #TODO: change this since we are not expecting any index to be packaged with soundata
             raise FileNotFoundError(
                 f"Dataset index for {self.name} was expected "
-                + "to be packaged with soundata, but not found."
+                + "but not found. Make sure your sample indexes for testing are in soundata/tests/indexes/"
             )
 
         return index
@@ -718,41 +706,36 @@ class Index(object):
     ):
         self.filename = filename
         self.remote: Optional[download_utils.RemoteFileMetadata]
+        self.indexes_dir = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)),
+            "datasets",
+            "indexes",
+        )
         if url and checksum:
             self.remote = download_utils.RemoteFileMetadata(
                 filename=filename,
                 url=url,
                 checksum=checksum,
-                destination_dir="soundata_indexes",
+                destination_dir=self.indexes_dir,
             )
         elif url or checksum:
             raise ValueError(
                 "Remote indexes must have both a url and a checksum specified."
             )
         else:
+            self.indexes_dir = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
+                "tests",
+                "indexes",
+            )
             self.remote = None
 
         self.partial_download = partial_download
 
-    def get_path(self, data_home: str) -> str:
+    def get_path(self) -> str:
         """Get the absolute path to the index file
-
-        Args:
-            data_home (str): Path where the dataset's data lives
 
         Returns:
             str: absolute path to the index file
         """
-        # if the index is downloaded from remote, it is in the same folder
-        # as the data
-        if self.remote:
-            return os.path.join(data_home, "soundata_indexes", self.filename)
-        #TODO: change this since we are not expecting to have indexes locally
-        # if the index is part of soundata locally, it is in the indexes folder
-        # of the repository
-        else:
-            return os.path.join(
-                os.path.dirname(os.path.realpath(__file__)),
-                "datasets/indexes",
-                self.filename,
-            )
+        return os.path.join(self.indexes_dir, self.filename)

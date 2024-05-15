@@ -82,17 +82,24 @@ BIBTEX = """
   pages = {1015--1018}
 }
 """
+
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="esc50_index_2.0.json",
+        url="https://zenodo.org/records/11176809/files/esc50_index_2.0.json?download=1",
+        checksum="7f1bf89ff69ee6aaa5c7018a75de73cf",
+    ),
+    "sample": core.Index(filename="esc50_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="ESC-50-master.zip",
         url="https://github.com/karoldvl/ESC-50/archive/master.zip",
         checksum="7771e4b9d86d0945acce719c7a59305a",
         unpack_directories=["ESC-50-master"],
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="esc50_index_2.0.json",
-        url="https://zenodo.org/records/11176809/files/esc50_index_2.0.json?download=1",
-        checksum="7f1bf89ff69ee6aaa5c7018a75de73cf",
     ),
 }
 
@@ -251,15 +258,16 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 class Dataset(core.Dataset):
     """The ESC-50 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="esc50",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="esc50_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)

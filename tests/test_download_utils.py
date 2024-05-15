@@ -168,7 +168,7 @@ def test_downloader(mocker, mock_path):
         )
 
     # test info message
-    download_utils.downloader("a", info_message="I am a message!")
+    download_utils.downloader("a", index=index, info_message="I am a message!")
     mocker.resetall()
 
     # test download twice - defaults
@@ -500,6 +500,7 @@ def test_download_multipart_zip(mocker, mock_download_from_remote, mock_unzip):
     download_utils.downloader(
         os.path.normpath("tests/resources"),
         multipart_zip_remote,
+        index=core.Index("foo.json"),
         force_overwrite=False,
         cleanup=True,
     )
