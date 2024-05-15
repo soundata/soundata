@@ -444,7 +444,7 @@ Using soundata to explore dataset
 The ``explore_dataset()`` function in ``soundata`` allows you to visualize various aspects of the dataset. This can be particularly useful for understanding the distribution of events and the nature of the audio data before proceeding with analysis or model training.
 
 Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
----------------------------------------------------------------
+-----------------------------------------------------------------
 
 To explore the dataset, first initialize it and then call the ``explore_dataset()`` method:
 
@@ -458,15 +458,49 @@ To explore the dataset, first initialize it and then call the ``explore_dataset(
     # Explore the dataset
     dataset.explore_dataset()
 
-When you run this function, you'll see an interface with several options, and you can choose to display the following:
+When you run this function, an interface will appear with several options, allowing you to choose what to plot.
 
-- **Class Distribution**: Displays the distribution of different event classes in the dataset.
-- **Statistics (Computational)**: Provides computational statistics about the dataset (Time consuming operation).
-- **Audio Visualization**: Offers visualizations related to the audio data, such as waveforms or spectrograms.
+.. toggle:: dataset explorer
 
-Here is an example of the output you will see:
+   .. image:: ../img/dataset_exp.png
+       :alt: class dataset explorer
+       :scale: 80%
 
-.. image:: ../img/dataset_exp.png
-   :alt: Dataset Exploration Output
+Class Distribution
+==================
+
+Displays the distribution of different event classes in the dataset.
+
+.. toggle:: class distribution plot example
+
+   .. image:: ../img/class_dist.png
+       :alt: class distribution plot example
+       :scale: 50%
+
+
+Statistics (Computational)
+==========================
+
+Provides computational statistics about the dataset (Time-consuming operation).
+
+.. toggle:: statistics plot example
+
+   .. image:: ../img/class_stat.png
+       :alt: statistics plot example
+       :scale: 50%
+
+
+Audio Visualization
+===================
+
+Offers visualizations related to the audio data, such as waveforms or spectrograms.
+
+.. toggle:: audio visualization plot example
+
+   .. image:: ../img/audio_plot.png
+       :alt: audio visualization plot example
+       :scale: 50%
+
+
 
 By using the ``explore_dataset()`` function, you can gain a comprehensive overview of the dataset's structure and content, which is crucial for effective analysis and model building.
