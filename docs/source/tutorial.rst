@@ -446,6 +446,12 @@ The ``explore_dataset()`` function in ``soundata`` allows you to visualize vario
 Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
 -----------------------------------------------------------------
 
+If you want to use the this functionality you must install the optional dependencies too:
+
+    .. code-block:: console
+        
+        pip install soundata[plots]
+
 To explore the dataset, first initialize it and then call the ``explore_dataset()`` method:
 
 .. code-block:: python
