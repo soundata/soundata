@@ -33,8 +33,6 @@ dependencies = [
     "pandas>=1.3.5",
     "tqdm>=4.65.0",
     "jams>=0.3.4",
-    "flake8>=5.0.4",
-    "mypy>=0.982",
     "py7zr>=0.16.0",
 ]
 
@@ -50,6 +48,7 @@ tests = [
     "future>=0.18.3",
     "coveralls>=3.3.1",
     "black>=23.3.0",
+    "flake8>=5.0.4",
 ]
 docs = [
     "docutils==0.16",
@@ -58,7 +57,8 @@ docs = [
     "sphinx>=3.4.0",
     "sphinxcontrib-napoleon",
     "sphinx_rtd_theme",
-    "sphinx-togglebutton"
+    "sphinx-togglebutton",
+    "mypy>=0.982",
 ]
 plots = [
     "simpleaudio>=1.0.4",
