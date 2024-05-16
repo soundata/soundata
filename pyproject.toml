@@ -49,6 +49,7 @@ tests = [
     "coveralls>=3.3.1",
     "black>=23.3.0",
     "flake8>=5.0.4",
+    "mypy>=0.982",
 ]
 docs = [
     "docutils==0.16",
@@ -58,7 +59,6 @@ docs = [
     "sphinxcontrib-napoleon",
     "sphinx_rtd_theme",
     "sphinx-togglebutton",
-    "mypy>=0.982",
 ]
 plots = [
     "simpleaudio>=1.0.4",
