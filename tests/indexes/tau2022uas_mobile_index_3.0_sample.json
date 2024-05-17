@@ -1,0 +1,33 @@
+{
+  "version": "sample",
+  "clips": {
+    "airport-lisbon-1000-40000-0-a": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2022-mobile-development/audio/airport-lisbon-1000-40000-0-a.wav",
+        "4200d5e02bdbd590e891f2df154cd751"
+      ]
+    }
+  },
+  "metadata": {
+    "meta.csv": [
+      "TAU-urban-acoustic-scenes-2022-mobile-development/meta.csv",
+      "208ef72125adc8f5fd37f4789412418c"
+    ],
+    "fold1_evaluate.csv": [
+      "TAU-urban-acoustic-scenes-2022-mobile-development/evaluation_setup/fold1_evaluate.csv",
+      "e2d796a97e1d21c1fad8714488829cd2"
+    ],
+    "fold1_test.csv": [
+      "TAU-urban-acoustic-scenes-2022-mobile-development/evaluation_setup/fold1_test.csv",
+      "24d01d2403f5395fec210f8934750842"
+    ],
+    "fold1_train.csv": [
+      "TAU-urban-acoustic-scenes-2022-mobile-development/evaluation_setup/fold1_train.csv",
+      "53102e57ce5b83f5963ad26bada74f28"
+    ],
+    "evaluation/fold1_test.csv": [
+      "TAU-urban-acoustic-scenes-2023-mobile-evaluation/evaluation_setup/fold1_test.csv",
+      "088d2a60578f608c7531c2e34d2ca76b"
+    ]
+  }
+}

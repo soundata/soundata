@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "clips": {
+    "759808e5-f824-401e-9058": {
+      "audio": [
+        "wav/759808e5-f824-401e-9058.wav",
+        "e245e1c8d1d12615621cf2f86be79197"
+      ]
+    }
+  },
+  "metadata": {
+    "Warblrb10k": [
+      "warblrb10k_public_metadata.csv",
+      "bf816bfe06f1adb867026b62c7e100d2"
+    ]
+  }
+}

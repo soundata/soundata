@@ -12,7 +12,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2021sse_nig
 
 def test_clip():
     default_clipid = "foa_dev/dev-train/fold1_room1_mix001"
-    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME)
+    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -39,7 +39,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME)
+    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("foa_dev/dev-train/fold1_room1_mix001")
     audio_path = clip.audio_path
     audio, sr = tau2021sse_nigens.load_audio(audio_path)
@@ -51,7 +51,7 @@ def test_load_audio():
 
 
 def test_load_SpatialEvents():
-    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME)
+    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("foa_dev/dev-train/fold1_room1_mix001")
     annotations_path = clip.csv_path
     tau2021_annotations = tau2021sse_nigens.load_spatialevents(annotations_path)
@@ -147,7 +147,7 @@ def test_load_SpatialEvents():
 
 def test_to_jams():
     default_clipid = "foa_dev/dev-train/fold1_room1_mix001"
-    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME)
+    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

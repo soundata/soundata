@@ -73,6 +73,18 @@ journal = {Methods in Ecology and Evolution},
 doi = {10.1111/2041-210X.13103}
 }
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="warblrb10k_index_1.0.json",
+        url="https://zenodo.org/records/11176933/files/warblrb10k_index_1.0.json?download=1",
+        checksum="98002f35a7e9f7050a6cb188d18328ab",
+    ),
+    "sample": core.Index(filename="warblrb10k_index_1.0_sample.json")
+}
+
 REMOTES = {
     "train": download_utils.RemoteFileMetadata(
         filename="warblrb10k_public_wav.zip",
@@ -90,11 +102,6 @@ REMOTES = {
         filename="warblrb10k_public_metadata.csv",
         url="https://ndownloader.figshare.com/files/10853306",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="warblrb10k_index_1.0.json",
-        url="https://zenodo.org/records/11176933/files/warblrb10k_index_1.0.json?download=1",
-        checksum="98002f35a7e9f7050a6cb188d18328ab",
     ),
 }
 
@@ -188,15 +195,16 @@ class Dataset(core.Dataset):
     The Warblrb10k dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="warblrb10k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="warblrb10k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

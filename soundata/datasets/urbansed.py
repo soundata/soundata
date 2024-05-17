@@ -146,18 +146,25 @@ BIBTEX = """
 	Title = {Scaper: A Library for Soundscape Synthesis and Augmentation},
 	Year = {2017}}
 """
+
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="urbansed_index_2.0.json",
+        url="https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",
+        checksum="95e7a152729ebdb386356e7d21b342b7",
+    ),
+    "sample": core.Index(filename="urbansed_index_2.0_sample.json")
+}
+
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="URBAN-SED_v2.0.0.tar.gz",
         url="https://zenodo.org/record/1324404/files/URBAN-SED_v2.0.0.tar.gz?download=1",
         checksum="a2d24a2148ece7c021fcc079ee87c2dc",
         unpack_directories=["URBAN-SED_v2.0.0"],
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="urbansed_index_2.0.json",
-        url="https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",
-        checksum="95e7a152729ebdb386356e7d21b342b7",
-    ),
+    )
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
@@ -277,15 +284,16 @@ class Dataset(core.Dataset):
     The URBAN-SED dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="urbansed",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="urbansed_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)

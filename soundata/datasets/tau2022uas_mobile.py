@@ -595,6 +595,18 @@ BIBTEX = """
     generalization across devices and low complexity solutions},
     Year = {2020}}
 """
+
+INDEXES = {
+    "default": "3.0",
+    "test": "sample",
+    "3.0": core.Index(
+        filename="tau2022uas_mobile_index_3.0.json",
+        url="https://zenodo.org/records/11176910/files/tau2022uas_mobile_index_3.0.json?download=1",
+        checksum="2295aeee8aad1ccdf2525ce44fcf165c",
+    ),
+    "sample": core.Index(filename="tau2022uas_mobile_index_3.0_sample.json")
+}
+
 REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2022-mobile-development.audio.1.zip",
@@ -735,12 +747,7 @@ REMOTES = {
         filename="TAU-urban-acoustic-scenes-2023-mobile-evaluation.meta.zip",
         url="https://zenodo.org/record/7870258/files/TAU-urban-acoustic-scenes-2023-mobile-evaluation.meta.zip?download=1",
         checksum="21deb3451741b6dab46287eb220261c2",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="tau2022uas_mobile_index_3.0.json",
-        url="https://zenodo.org/records/11176910/files/tau2022uas_mobile_index_3.0.json?download=1",
-        checksum="2295aeee8aad1ccdf2525ce44fcf165c",
-    ),
+    )
 }
 
 
@@ -896,15 +903,16 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 class Dataset(core.Dataset):
     """The TAU Urban Acoustic Scenes 2022 Mobile dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2022uas_mobile",
             clip_class=Clip,
             bibtex=BIBTEX,
+            index=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="tau2022uas_mobile_index_3.0.json",
         )
 
     @core.copy_docs(load_audio)

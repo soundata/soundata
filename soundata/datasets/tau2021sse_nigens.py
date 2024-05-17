@@ -92,6 +92,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.2.0",
+    "test": "sample",
+    "1.2.0": core.Index(
+        filename="tau2021sse_nigens_index_1.2.0.json",
+        url="https://zenodo.org/records/11176908/files/tau2021sse_nigens_index_1.2.0.json?download=1",
+        checksum="8a3a7348faded292dcdd5e3e072058f5",
+    ),
+    "sample": core.Index(filename="tau2021sse_nigens_index_1.2.0_sample.json")
+}
+
 REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
@@ -136,12 +147,7 @@ REMOTES = {
         filename="metadata_eval.zip",
         url="http://zenodo.org/record/5476980/files/metadata_eval.zip?download=1",
         checksum="11c021253c8b55fd74083bd0a35c2ee4",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="tau2021sse_nigens_index_1.2.0.json",
-        url="https://zenodo.org/records/11176908/files/tau2021sse_nigens_index_1.2.0.json?download=1",
-        checksum="8a3a7348faded292dcdd5e3e072058f5",
-    ),
+    )
 }
 
 LICENSE_INFO = """
@@ -403,15 +409,16 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 class Dataset(core.Dataset):
     """The TAU NIGENS SSE 2021 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2021sse_nigens",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="tau2021sse_nigens_index_1.2.0.json",
         )
 
     @core.copy_docs(load_audio)
