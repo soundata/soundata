@@ -15,7 +15,7 @@ Quick link to contributing templates
 ####################################
 
 If you're familiar with Soundata's API already, you can find the template files for contributing `here <https://github.com/soundata/soundata/tree/master/docs/source/contributing_examples>`__,
-and the loader checklist for submiting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`__.
+and the loader checklist for submitting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`__.
 
 
 
