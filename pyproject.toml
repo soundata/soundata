@@ -11,9 +11,19 @@ license = {file = "LICENSE"}
 requires-python = ">=3.7"
 authors = [
     {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+    {name = "Genís Plaja-Roglans"},
+    {name = "Guillem Cortès-Sebastià"},
+    {name = "Tanmay Khandelwal"},
+    {name = "Marius Miron"},
+    {name = "Xavier Serra"},
+    {name = "Juan Pablo Bello"},
+    {name = "Justin Salamon"}
 ]
 maintainers = [
     {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+    {name = "Genís Plaja-Roglans"},
+    {name = "Guillem Cortès-Sebastià"},
+    {name = "Tanmay Khandelwal"},
 ]
 keywords = ["sound", "dataset loader", "audio"]
 classifiers=[
@@ -68,5 +78,7 @@ plots = [
 ]
 
 [project.urls]
-url = "https://github.com/soundata/soundata"
-download_url = "http://github.com/soundata/soundata/releases"
+Homepage = "https://github.com/soundata/soundata"
+Documentation = "https://soundata.readthedocs.io/en/latest/"
+Issues = "https://github.com/soundata/soundata/issues"
+Releases = "http://github.com/soundata/soundata/releases"
