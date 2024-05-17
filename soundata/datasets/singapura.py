@@ -363,7 +363,7 @@ class Dataset(core.Dataset):
             name="singapura",
             clip_class=Clip,
             bibtex=BIBTEX,
-            index=INDEXES,
+            indexes=INDEXES,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,

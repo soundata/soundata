@@ -910,7 +910,7 @@ class Dataset(core.Dataset):
             name="tau2022uas_mobile",
             clip_class=Clip,
             bibtex=BIBTEX,
-            index=INDEXES,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
