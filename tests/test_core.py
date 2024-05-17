@@ -204,6 +204,18 @@ def test_dataset_versions():
                     "real": core.Index("dcase_bioacoustic_index_3.0_sample.json"),
                 },
             )
+    class VersionTest2(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "2",
+                    "2": core.Index(
+                        "blah_2.json", url="https://google.com"
+                    )
+                }
+            )       
 
     dataset = VersionTest("asdf")
     assert dataset.version == "1"
@@ -251,6 +263,9 @@ def test_dataset_versions():
 
     with pytest.raises(ValueError):
         VersionTest("asdf", version="not_a_version")
+
+    with pytest.raises(ValueError):
+        VersionTest2("asdf", version="2")
 
 
 def test_explore_dataset():
