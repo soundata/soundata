@@ -30,7 +30,7 @@ Tasks Codes (More information at the bottom of the page):
 | :asc:`ASC` Acoustic Scene Classification
 | :ac:`AC` Audio Captioning
 
-Please note that you can click on each tag to access more information related to that specific usecase.
+Explore each dataset's documentation by clicking its name. For Soundata API usage, the dataset ID is displayed below each name
 
 .. include:: table.rst
 
