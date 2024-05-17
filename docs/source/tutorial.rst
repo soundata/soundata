@@ -455,7 +455,7 @@ If you want to use the plot functionalities used in ``display_plot_utils.py`` yo
         pip install soundata[plots]
 
 .. note::
-        If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>` guide and check the dependencies.
+        If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>`__ guide and check the dependencies.
 
 
 To explore the dataset, first initialize it and then call the ``explore_dataset()`` method:
