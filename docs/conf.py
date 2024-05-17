@@ -125,7 +125,7 @@ html_static_path = ["_static"]
 html_css_files = [
     "css/custom.css",
 ]
-
+togglebutton_hint = "Click here to show example"
 html_logo = "img/soundata.png"
 
 

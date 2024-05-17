@@ -29,7 +29,7 @@ To install Soundata simply do:
         pip install soundata
 
 
-We recommend to do this inside a conda or virtual environment for reproducibility. To install optional dependencies for plots functionality, please follow our :ref:`tutorial`.
+We recommend to do this inside a conda or virtual environment for reproducibility. To install optional dependencies for plots functionality, please follow :ref:`tutorial`.
 
 ------------
 
