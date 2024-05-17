@@ -121,6 +121,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="starss2022_index_1.0.json",
+        url="https://zenodo.org/records/11176851/files/starss2022_index_1.0.json?download=1",
+        checksum="bca18a9267c4f072a23d3293ad4fe071",
+    ),
+    "sample": core.Index(filename="starss2022_index_1.0_sample.json")
+}
+
 REMOTES = {
     "foa_dev": download_utils.RemoteFileMetadata(
         filename="foa_dev.zip",
@@ -136,12 +147,7 @@ REMOTES = {
         filename="metadata_dev.zip",
         url="https://zenodo.org/record/6387880/files/metadata_dev.zip?download=1",
         checksum="b460e17e0848c49f03f238afb89fa87e",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="starss2022_index_1.0.json",
-        url="https://zenodo.org/records/11176851/files/starss2022_index_1.0.json?download=1",
-        checksum="bca18a9267c4f072a23d3293ad4fe071",
-    ),
+    )
 }
 
 LICENSE_INFO = """
@@ -406,15 +412,16 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 class Dataset(core.Dataset):
     """The STARSS 2022 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="starss2022",
             clip_class=Clip,
+            indexes=INDEXES,
             bibtex=BIBTEX,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="starss2022_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

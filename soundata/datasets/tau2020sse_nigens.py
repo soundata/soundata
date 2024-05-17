@@ -79,6 +79,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.2",
+    "test": "sample",
+    "1.2": core.Index(
+        filename="tau2020sse_nigens_index_1.2.0.json",
+        url="https://zenodo.org/records/11176861/files/tau2020sse_nigens_index_1.2.0.json?download=1",
+        checksum="3ec732e50263d352070a32bc4af73eb1",
+    ),
+    "sample": core.Index(filename="tau2020sse_nigens_index_1.2.0_sample.json")
+}
+
 REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
@@ -396,15 +407,16 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 class Dataset(core.Dataset):
     """The TAU NIGENS SSE 2020 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2020sse_nigens",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="tau2020sse_nigens_index_1.2.0.json",
         )
 
     @core.copy_docs(load_audio)

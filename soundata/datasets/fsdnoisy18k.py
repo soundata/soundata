@@ -129,6 +129,18 @@ BIBTEX = """
       primaryClass={cs.SD}
 }
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="fsdnoisy18k_index_1.0.json",
+        url="https://zenodo.org/records/11176823/files/fsdnoisy18k_index_1.0.json?download=1",
+        checksum="09b7c6156156b9ccef2200c37c9b2791",
+    ),
+    "sample": core.Index(filename="fsdnoisy18k_index_1.0_sample.json")
+}
+
 REMOTES = {
     "audio_train": download_utils.RemoteFileMetadata(
         filename="FSDnoisy18k.audio_train.zip",
@@ -149,11 +161,6 @@ REMOTES = {
         filename="FSDnoisy18k.meta.zip",
         url="https://zenodo.org/record/2529934/files/FSDnoisy18k.meta.zip?download=1",
         checksum="96e27a4a63b7a2870522ddcedb5d8296",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="fsdnoisy18k_index_1.0.json",
-        url="https://zenodo.org/records/11176823/files/fsdnoisy18k_index_1.0.json?download=1",
-        checksum="09b7c6156156b9ccef2200c37c9b2791",
     ),
 }
 
@@ -290,15 +297,16 @@ class Dataset(core.Dataset):
     The FSDnoisy18K dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="fsdnoisy18k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="fsdnoisy18k_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

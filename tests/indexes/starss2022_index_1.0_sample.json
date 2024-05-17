@@ -1,0 +1,16 @@
+{
+  "version": "sample",
+  "clips": {
+    "foa_dev/dev-train-sony/fold3_room21_mix001": {
+      "audio": [
+        "foa_dev/dev-train-sony/fold3_room21_mix001.wav",
+        "b6b4a4de495bbf9d45790a972a0bc490"
+      ],
+      "events": [
+        "metadata_dev/dev-train-sony/fold3_room21_mix001.csv",
+        "76e761d29a2e98248e7c0e6689d82b49"
+      ]
+    }
+  },
+  "metadata": {}
+}

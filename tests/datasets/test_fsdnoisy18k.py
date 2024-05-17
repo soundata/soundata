@@ -12,7 +12,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k")
 
 def test_clip():
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     expected_attributes = {
         "audio_path": os.path.join(
@@ -56,7 +56,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("17")
     audio_path = clip.audio_path
     audio, sr = fsdnoisy18k.load_audio(audio_path)
@@ -68,7 +68,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 
@@ -94,7 +94,7 @@ def test_to_jams():
 
 def test_tag():
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     tag = clip.tags
     assert tag.labels == ["Walk_or_footsteps"]
@@ -104,7 +104,7 @@ def test_tag():
 def test_metadata():
     # Testing metadata from a training clip
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()[default_clipid]
 
@@ -116,7 +116,7 @@ def test_metadata():
 
     # Testing metadata from an evaluation clip
     default_clipid = "564"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()[default_clipid]
 

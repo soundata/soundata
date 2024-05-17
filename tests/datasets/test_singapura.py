@@ -11,7 +11,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/singapura")
 
 def test_clip():
     default_clipid = "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
-    dataset = singapura.Dataset(TEST_DATA_HOME)
+    dataset = singapura.Dataset(TEST_DATA_HOME, version="default")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -52,7 +52,7 @@ def test_clip():
 
 def test_load_audio():
     default_clipid = "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
-    dataset = singapura.Dataset(TEST_DATA_HOME)
+    dataset = singapura.Dataset(TEST_DATA_HOME, version="default")
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
     audio = singapura.load_audio(audio_path)
@@ -63,7 +63,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
-    dataset = singapura.Dataset(TEST_DATA_HOME)
+    dataset = singapura.Dataset(TEST_DATA_HOME, version="default")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 
@@ -71,7 +71,7 @@ def test_to_jams():
 
 
 def test_metadata():
-    dataset = singapura.Dataset(TEST_DATA_HOME)
+    dataset = singapura.Dataset(TEST_DATA_HOME, version="default")
     metadata = dataset._metadata
     default_clipid = "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
 

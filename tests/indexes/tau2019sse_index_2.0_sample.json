@@ -1,0 +1,16 @@
+{
+  "version": "2",
+  "clips": {
+    "foa_dev/split1_ir0_ov1_1": {
+      "audio": [
+        "foa_dev/split1_ir0_ov1_1.wav",
+        "c465bdd4e9401d1c35569c452c8bcc2b"
+      ],
+      "events": [
+        "metadata_dev/split1_ir0_ov1_1.csv",
+        "03a6d900428fed1c2f6a3e82c9940084"
+      ]
+    }
+  },
+  "metadata": {}
+}

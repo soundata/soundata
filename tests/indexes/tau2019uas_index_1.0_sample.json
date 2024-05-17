@@ -1,0 +1,23 @@
+{
+  "version": "sample",
+  "clips": {
+    "development/airport-barcelona-0-0-a": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2019-development/audio/airport-barcelona-0-0-a.wav",
+        "b39f203dbb53a112eb42ab07eee7740a"
+      ]
+    },
+    "evaluation/0": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2019-evaluation/audio/0.wav",
+        "919eaa7b71ba18243875554544e0f7aa"
+      ]
+    },
+    "leaderboard/0": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2019-leaderboard/audio/0.wav",
+        "b325d385b1eee118bf67833a2b2a738d"
+      ]
+    }
+  }
+}

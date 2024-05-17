@@ -240,6 +240,18 @@ BIBTEX = """
     Title = {A multi-device dataset for urban acoustic scene classification},
     Year = {2018}}
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="tau2019uas_index_1.0.json",
+        url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
+        checksum="b1d7af813507b4943540397c519c7a0b",
+    ),
+    "sample": core.Index(filename="tau2019uas_index_1.0_sample.json")
+}
+
 REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.1.zip",
@@ -440,12 +452,7 @@ REMOTES = {
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip?download=1",
         checksum="fa3451868a2adf9d8a91882604a2d9b5",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="tau2019uas_index_1.0.json",
-        url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
-        checksum="b1d7af813507b4943540397c519c7a0b",
-    ),
+    ) 
 }
 
 LICENSE_INFO = """
@@ -591,15 +598,16 @@ class Dataset(core.Dataset):
     The  TAU Urban Acoustic Scenes 2019 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2019uas",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="tau2019uas_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

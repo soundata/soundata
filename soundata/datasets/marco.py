@@ -71,6 +71,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="marco_index_1.0.1.json",
+        url="https://zenodo.org/records/11176835/files/marco_index_1.0.1.json?download=1",
+        checksum="caf2a5c17bbe75ff6c26c450cb24bcb7",
+    ),
+    "sample": core.Index(filename="marco_index_1.0.1_sample.json")
+}
+
 REMOTES = {
     "ImpulseResponses": download_utils.RemoteFileMetadata(
         filename="03 3D-MARCo Impulse Responses.zip",
@@ -111,12 +122,7 @@ REMOTES = {
         filename="10 3D-MARCo Samples_Single sources.zip",
         url="https://zenodo.org/record/3477602/files/10%203D-MARCo%20Samples_Single%20sources.zip?download=1",
         checksum="389e774c829a0729047bd8802021b239",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="marco_index_1.0.1.json",
-        url="https://zenodo.org/records/11176835/files/marco_index_1.0.1.json?download=1",
-        checksum="caf2a5c17bbe75ff6c26c450cb24bcb7",
-    ),
+    )
 }
 
 LICENSE_INFO = """
@@ -197,15 +203,16 @@ def load_audio(fhandle: BinaryIO, sr=48000) -> Tuple[np.ndarray, float]:
 class Dataset(core.Dataset):
     """The 3D-MARCo dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="marco",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="marco_index_1.0.1.json",
         )
 
     @core.copy_docs(load_audio)

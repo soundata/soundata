@@ -1,0 +1,39 @@
+{
+  "version": "2.0",
+  "clips": {
+    "airport-barcelona-0-0-a": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2020-mobile-development/audio/airport-barcelona-0-0-a.wav",
+        "46bbb1c503d6031e396a4dd5bd86099c"
+      ]
+    },
+    "0": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2020-mobile-evaluation/audio/0.wav",
+        "c7b9a67ae05c126289f763d6fc6ee501"
+      ]
+    }
+  },
+  "metadata": {
+    "meta.csv": [
+      "TAU-urban-acoustic-scenes-2020-mobile-development/meta.csv",
+      "80628c657b1fa5ebe0b884ce61d4b499"
+    ],
+    "fold1_evaluate.csv": [
+      "TAU-urban-acoustic-scenes-2020-mobile-development/evaluation_setup/fold1_evaluate.csv",
+      "0cd9534fc50f1daa6e4cbe1c043a6a32"
+    ],
+    "fold1_test.csv": [
+      "TAU-urban-acoustic-scenes-2020-mobile-development/evaluation_setup/fold1_test.csv",
+      "da669947af474a9c2f6ad5327643750d"
+    ],
+    "fold1_train.csv": [
+      "TAU-urban-acoustic-scenes-2020-mobile-development/evaluation_setup/fold1_train.csv",
+      "8b8db89f28ddbd7db96ef460dfe3ce62"
+    ],
+    "evaluation/fold1_test.csv": [
+      "TAU-urban-acoustic-scenes-2020-mobile-evaluation/evaluation_setup/fold1_test.csv",
+      "e5cf6b5788b3539269b0d241e1f61dcb"
+    ]
+  }
+}

@@ -77,6 +77,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="tau2019sse_index_2.0.json",
+        url="https://zenodo.org/records/11176857/files/tau2019sse_index_2.0.json?download=1",
+        checksum="6fdfe1ec087ceeaef421b264dd390e24",
+    ),
+    "sample": core.Index(filename="tau2019sse_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
@@ -126,12 +137,7 @@ REMOTES = {
         filename="metadata_eval.zip",
         url="https://zenodo.org/record/3377088/files/metadata_eval.zip?download=1",
         checksum="a0ec7640284ade0744dfe299f7ba107b",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="tau2019sse_index_2.0.json",
-        url="https://zenodo.org/records/11176857/files/tau2019sse_index_2.0.json?download=1",
-        checksum="6fdfe1ec087ceeaef421b264dd390e24",
-    ),
+    )
 }
 
 LICENSE_INFO = "Copyright (c) 2019 Tampere University and its licensors All rights reserved. Permission is hereby granted, without written agreement and without license or royalty fees, to use and copy the TAU Spatial Sound Events 2019 - Ambisonic and Microphone Array described in this document and composed of audio and metadata. This grant is only for experimental and non-commercial purposes, provided that the copyright notice in its entirety appear in all copies of this Work, and the original source of this Work, (Audio Research Group at Tampere University), is acknowledged in any publication that reports research using this Work. Any commercial use of the Work or any part thereof is strictly prohibited. Commercial use include, but is not limited to: selling or reproducing the Work, selling or distributing the results or content achieved by use of the Work providing services by using the Work. IN NO EVENT SHALL TAMPERE UNIVERSITY OR ITS LICENSORS BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS WORK AND ITS DOCUMENTATION, EVEN IF TAMPERE UNIVERSITY OR ITS LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. TAMPERE UNIVERSITY AND ALL ITS LICENSORS SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE WORK PROVIDED HEREUNDER IS ON AN AS IS BASIS, AND THE TAMPERE UNIVERSITY HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
@@ -383,15 +389,16 @@ class Dataset(core.Dataset):
     The TAU SSE 2019 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2019sse",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="tau2019sse_index_2.0.json",
         )
 
     @core.copy_docs(load_audio)
