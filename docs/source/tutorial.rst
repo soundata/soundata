@@ -40,11 +40,18 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
 You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
 object containing common methods, described in the following.
 
+
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
 
-All dataset loaders in soundata have a ``download()`` function that allows the user to download the :ref:`canonical <faq>`
-version of the dataset (when available). When initializing a dataset it is important to correctly set up the directory
+All dataset loaders in soundata have a ``download()`` function that allows the user to download:
+
+* The :ref:`canonical <faq>` version of the dataset (when available).
+* The dataset index, which indicates the list of clips in the dataset and the paths to audio and annotation files.
+
+The index, which is considered part of the source files of Soundata, is specifically downloaded by running ``download(["index"])`` and it will be directly stored in the indexes folder in the library (``soundata/datasets/indexes``).
+However, the user can indicate where the dataset files will be stored.
+To do so, when initializing a dataset it is important to correctly set up the directory
 where the dataset is going to be stored and retrieved.
 
 Downloading a dataset into the default folder:
@@ -64,7 +71,6 @@ Downloading a dataset into a specified folder:
 
         dataset = soundata.initialize('urbansound8k', data_home='Users/johnsmith/Desktop')
         dataset.download()  # Dataset is downloaded to John Smith's desktop
-
 
 
 Partially downloading a dataset

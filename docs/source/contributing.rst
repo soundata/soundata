@@ -85,6 +85,7 @@ The steps to add a new dataset loader to ``soundata`` are:
 2. `Create a module <create_module_>`_
 3. `Add tests <add_tests_>`_
 4. `Submit your loader <submit_loader_>`_
+5. `Upload JSON index to the Soundata index repository in Zenodo <upload_index_>`_
 
 **Before starting**, if your dataset **is not fully downloadable** you should:
 
@@ -108,6 +109,7 @@ To create an index, the necessary steps are:
 
 1. Create a script in ``scripts/``, called ``make_<datasetname>_index.py``, which generates an index file.
 2. Then run the script on the canonical version of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
+3. When the dataloader is completed and the PR is accepted, upload the index in our `Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_. See more details `here <upload_index_>`_.
 
 The function ``make_<datasetname>_index.py`` should automate the generation of an index by computing the MD5 checksums for given files in a dataset located at data_path. 
 Users can adapt this function to create an index for their dataset by adding their file paths and using the md5 function to generate checksums for their files.
@@ -281,6 +283,33 @@ See an example of how an index should look like:
 
     Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single clip because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multiclip mix and it is stored in the ``multiclips`` group. The multiclip ``multiclip1`` has an additional clip ``multiclip1-mix.wav`` which may be the master clip, the final mix, the recording of ``multiclip1`` with another microphone.
 
+
+.. _upload_index:
+
+3. Uploading the index on an online repository
+----------------------------------------------
+
+To prevent an the exponential growth in size of the library, we are storing all indexes in an online repository, while removing these from the repository itself.
+For that task, we use Zenodo.
+To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
+To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
+
+From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
+
+    .. note::
+        All JSON files in ``soundata/indexes/`` are included in the .gitignore file, therefore there is no need to remove it when pushing, since it will be ignored by git.
+
+**When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:** 
+
+* First, click on ``New upload``. 
+* Add your index in the ``Upload files`` section.
+* Let Zenodo create a DOI for your index, so click *No*.
+* Resource type is *Other*.
+* Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
+* Add yourself as the Creator of this entry.
+
+Visibility should be set as *Public*. There is no need to fill up anything else. 
+All the information that users may need is found in the dataloader and the corresponding documentation.
 
 
 .. _create_module:

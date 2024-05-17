@@ -1,6 +1,7 @@
 tests/resources/sound_datasets_full
 tests/data/output.wav
 soundata/datasets/indexes/__MACOSX
+soundata/datasets/indexes/*.json
 *.DS_Store
 
 # Byte-compiled / optimized / DLL files
