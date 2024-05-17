@@ -87,7 +87,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176861/files/tau2020sse_nigens_index_1.2.0.json?download=1",
         checksum="3ec732e50263d352070a32bc4af73eb1",
     ),
-    "sample": core.Index(filename="tau2020sse_nigens_index_1.2.0_sample.json")
+    "sample": core.Index(filename="tau2020sse_nigens_index_1.2.0_sample.json"),
 }
 
 REMOTES = {
@@ -144,7 +144,7 @@ REMOTES = {
         filename="metadata_eval.zip",
         url="http://zenodo.org/record/4064792/files/metadata_eval.zip?download=1",
         checksum="f3584166d9a63b43c1e301b6fb722293",
-    )
+    ),
 }
 
 LICENSE_INFO = """

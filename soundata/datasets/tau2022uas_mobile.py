@@ -604,7 +604,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176910/files/tau2022uas_mobile_index_3.0.json?download=1",
         checksum="2295aeee8aad1ccdf2525ce44fcf165c",
     ),
-    "sample": core.Index(filename="tau2022uas_mobile_index_3.0_sample.json")
+    "sample": core.Index(filename="tau2022uas_mobile_index_3.0_sample.json"),
 }
 
 REMOTES = {
@@ -747,7 +747,7 @@ REMOTES = {
         filename="TAU-urban-acoustic-scenes-2023-mobile-evaluation.meta.zip",
         url="https://zenodo.org/record/7870258/files/TAU-urban-acoustic-scenes-2023-mobile-evaluation.meta.zip?download=1",
         checksum="21deb3451741b6dab46287eb220261c2",
-    )
+    ),
 }
 
 

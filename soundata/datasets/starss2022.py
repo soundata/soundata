@@ -129,7 +129,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176851/files/starss2022_index_1.0.json?download=1",
         checksum="bca18a9267c4f072a23d3293ad4fe071",
     ),
-    "sample": core.Index(filename="starss2022_index_1.0_sample.json")
+    "sample": core.Index(filename="starss2022_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -147,7 +147,7 @@ REMOTES = {
         filename="metadata_dev.zip",
         url="https://zenodo.org/record/6387880/files/metadata_dev.zip?download=1",
         checksum="b460e17e0848c49f03f238afb89fa87e",
-    )
+    ),
 }
 
 LICENSE_INFO = """

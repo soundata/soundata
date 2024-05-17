@@ -220,7 +220,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176815/files/fsd50k_index_1.0.json?download=1",
         checksum="3317c25426cb3f539eea2b94651c14ba",
     ),
-    "sample": core.Index(filename="fsd50k_index_1.0_sample.json")
+    "sample": core.Index(filename="fsd50k_index_1.0_sample.json"),
 }
 # a dictionary key that has a list of RemoteFileMetadata implies a multi-part zip
 # and will be processed as such using the zip subprocess (see soundata.download_utils)
@@ -283,7 +283,7 @@ REMOTES = {
         filename="FSD50K.doc.zip",
         url="https://zenodo.org/record/4060432/files/FSD50K.doc.zip?download=1",
         checksum="3516162b82dc2945d3e7feba0904e800",
-    ), 
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"

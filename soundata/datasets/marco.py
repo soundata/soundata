@@ -79,7 +79,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176835/files/marco_index_1.0.1.json?download=1",
         checksum="caf2a5c17bbe75ff6c26c450cb24bcb7",
     ),
-    "sample": core.Index(filename="marco_index_1.0.1_sample.json")
+    "sample": core.Index(filename="marco_index_1.0.1_sample.json"),
 }
 
 REMOTES = {
@@ -122,7 +122,7 @@ REMOTES = {
         filename="10 3D-MARCo Samples_Single sources.zip",
         url="https://zenodo.org/record/3477602/files/10%203D-MARCo%20Samples_Single%20sources.zip?download=1",
         checksum="389e774c829a0729047bd8802021b239",
-    )
+    ),
 }
 
 LICENSE_INFO = """

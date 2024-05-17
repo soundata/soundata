@@ -249,7 +249,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
         checksum="b1d7af813507b4943540397c519c7a0b",
     ),
-    "sample": core.Index(filename="tau2019uas_index_1.0_sample.json")
+    "sample": core.Index(filename="tau2019uas_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -452,7 +452,7 @@ REMOTES = {
         filename="TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip",
         url="https://zenodo.org/record/2672993/files/TAU-urban-acoustic-scenes-2019-leaderboard.meta.zip?download=1",
         checksum="fa3451868a2adf9d8a91882604a2d9b5",
-    ) 
+    ),
 }
 
 LICENSE_INFO = """

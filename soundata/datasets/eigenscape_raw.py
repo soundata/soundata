@@ -77,7 +77,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176807/files/eigenscape_raw_index_1.0.json?download=1",
         checksum="619fa16f7e58aa247b4da43ff5c36a03",
     ),
-    "sample": core.Index(filename="eigenscape_raw_index_1.0_sample.json")
+    "sample": core.Index(filename="eigenscape_raw_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -110,7 +110,7 @@ REMOTES = {
         filename="Metadata-EigenScape.csv",
         url="https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1",
         checksum="cbed105fb56604c4b763788690089d55",
-    ) 
+    ),
 }
 
 wav_md5_dict = {

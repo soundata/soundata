@@ -138,7 +138,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176823/files/fsdnoisy18k_index_1.0.json?download=1",
         checksum="09b7c6156156b9ccef2200c37c9b2791",
     ),
-    "sample": core.Index(filename="fsdnoisy18k_index_1.0_sample.json")
+    "sample": core.Index(filename="fsdnoisy18k_index_1.0_sample.json"),
 }
 
 REMOTES = {

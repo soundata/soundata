@@ -65,11 +65,11 @@ INDEXES = {
     "default": "1.0",
     "test": "sample",
     "1.0": core.Index(
-       filename="freefield1010_index_1.0.json",
+        filename="freefield1010_index_1.0.json",
         url="https://zenodo.org/records/11176811/files/freefield1010_index_1.0.json?download=1",
-        checksum="0aed8eebb8fb66da1a8437729dfa0f05", 
+        checksum="0aed8eebb8fb66da1a8437729dfa0f05",
     ),
-    "sample": core.Index(filename="freefield1010_index_1.0_sample.json")
+    "sample": core.Index(filename="freefield1010_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -83,7 +83,7 @@ REMOTES = {
         filename="ff1010bird_metadata_2018.csv",
         url="https://ndownloader.figshare.com/files/10853303",
         checksum="2f4e7e194ccbd3de86e997af8f2a0405",
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"

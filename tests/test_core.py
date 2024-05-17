@@ -207,15 +207,21 @@ def test_dataset_versions():
 
     dataset = VersionTest("asdf")
     assert dataset.version == "1"
-    assert os.path.join(*dataset.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
     dataset_default = VersionTest("asdf", version="default")
     assert dataset_default.version == "1"
-    assert os.path.join(*dataset.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
     dataset_1 = VersionTest("asdf", version="1")
     assert dataset_1.version == "1"
-    assert os.path.join(*dataset_1.index_path.split(os.path.sep)[-4:]) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+    assert os.path.join(
+        *dataset_1.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
     with pytest.raises(FileNotFoundError):
         dataset_1._index
 

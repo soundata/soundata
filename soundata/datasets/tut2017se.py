@@ -188,7 +188,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176916/files/tut2017se_index_2.0.json?download=1",
         checksum="26fea2fd4082f48d7e8ef8c85df88ad1",
     ),
-    "sample": core.Index(filename="tut2017se_index_2.0_sample.json")
+    "sample": core.Index(filename="tut2017se_index_2.0_sample.json"),
 }
 
 REMOTES = {
@@ -247,7 +247,7 @@ REMOTES = {
             "evaluation.meta.zip?download=1"
         ),
         checksum="a951598abaea87296ca409e30fb0b379",
-    )
+    ),
 }
 
 LICENSE_INFO = "TUT License <https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf>"

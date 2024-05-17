@@ -155,7 +155,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",
         checksum="95e7a152729ebdb386356e7d21b342b7",
     ),
-    "sample": core.Index(filename="urbansed_index_2.0_sample.json")
+    "sample": core.Index(filename="urbansed_index_2.0_sample.json"),
 }
 
 REMOTES = {

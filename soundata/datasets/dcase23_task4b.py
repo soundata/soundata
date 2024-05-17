@@ -93,7 +93,7 @@ INDEXES = {
         url="https://zenodo.org/records/11176783/files/dcase23_task4b_index_1.0.json?download=1",
         checksum="fc6bf79b17b2ce713e5389668174966a",
     ),
-    "sample": core.Index(filename="dcase23_task4b_index_1.0_sample.json")
+    "sample": core.Index(filename="dcase23_task4b_index_1.0_sample.json"),
 }
 
 REMOTES = {
