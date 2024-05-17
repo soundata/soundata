@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "soundata"
+dynamic = ["version"]
+description = "Python library for loading and working with sound datasets."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.7"
+authors = [
+    {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+    {name = "Genís Plaja-Roglans"},
+    {name = "Guillem Cortès-Sebastià"},
+    {name = "Tanmay Khandelwal"},
+    {name = "Marius Miron"},
+    {name = "Xavier Serra"},
+    {name = "Juan Pablo Bello"},
+    {name = "Justin Salamon"}
+]
+maintainers = [
+    {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
+    {name = "Genís Plaja-Roglans"},
+    {name = "Guillem Cortès-Sebastià"},
+    {name = "Tanmay Khandelwal"},
+]
+keywords = ["sound", "dataset loader", "audio"]
+classifiers=[
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+dependencies = [
+    "librosa>=0.10.0",
+    "numpy>=1.21.6",
+    "pandas>=1.3.5",
+    "tqdm>=4.65.0",
+    "jams>=0.3.4",
+    "py7zr>=0.16.0",
+]
+
+[project.optional-dependencies]
+tests = [
+    "requests>=2.31.0",
+    "pytest>=7.2.0",
+    "pytest-cov>=4.1.0",
+    "pytest-pep8>=1.0.6",
+    "pytest-mock>=3.10.0",
+    "pytest-localserver>=0.7.1",
+    "pytest-xdist>=2.3.0",
+    "future>=0.18.3",
+    "coveralls>=3.3.1",
+    "black>=23.3.0",
+    "flake8>=5.0.4",
+    "mypy>=0.982",
+]
+docs = [
+    "docutils==0.16",
+    "numpydoc",
+    "recommonmark",
+    "sphinx>=3.4.0",
+    "sphinxcontrib-napoleon",
+    "sphinx_rtd_theme",
+    "sphinx-togglebutton",
+]
+plots = [
+    "simpleaudio>=1.0.4",
+    "seaborn>=0.11.2",
+    "ipywidgets>=8.1.1",
+    "pydub>=0.25.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/soundata/soundata"
+Documentation = "https://soundata.readthedocs.io/en/latest/"
+Issues = "https://github.com/soundata/soundata/issues"
+Releases = "http://github.com/soundata/soundata/releases"
