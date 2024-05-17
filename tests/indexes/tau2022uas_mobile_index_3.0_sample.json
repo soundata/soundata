@@ -6,6 +6,12 @@
         "TAU-urban-acoustic-scenes-2022-mobile-development/audio/airport-lisbon-1000-40000-0-a.wav",
         "4200d5e02bdbd590e891f2df154cd751"
       ]
+    },
+    "0": {
+      "audio": [
+        "TAU-urban-acoustic-scenes-2023-mobile-evaluation/audio/0.wav",
+        "8272107bafda90b11c235a352d12ac9c"
+      ]
     }
   },
   "metadata": {
