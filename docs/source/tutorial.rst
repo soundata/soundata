@@ -15,15 +15,6 @@ To install Soundata simply do:
 
 We recommend to do this inside a conda or virtual environment for reproducibility.
 
-If you want to use the plot functionalities used in ``display_plot_utils.py`` you must install the optional dependencies too:
-
-    .. code-block:: console
-
-        pip install soundata[plots]
-
-.. note::
-        If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>` guide and check the dependencies.
-
 Soundata is easily imported into your Python code by:
 
 .. code-block:: python
@@ -457,11 +448,15 @@ The ``explore_dataset()`` function in ``soundata`` allows you to visualize vario
 Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
 -----------------------------------------------------------------
 
-If you want to use the this functionality you must install the optional dependencies too:
+If you want to use the plot functionalities used in ``display_plot_utils.py`` you must install the optional dependencies too:
 
     .. code-block:: console
-        
+
         pip install soundata[plots]
+
+.. note::
+        If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>` guide and check the dependencies.
+
 
 To explore the dataset, first initialize it and then call the ``explore_dataset()`` method:
 
