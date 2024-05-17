@@ -69,6 +69,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="eigenscape_raw_index_1.0.json",
+        url="https://zenodo.org/records/11176807/files/eigenscape_raw_index_1.0.json?download=1",
+        checksum="619fa16f7e58aa247b4da43ff5c36a03",
+    ),
+    "sample": core.Index(filename="eigenscape_raw_index_1.0_sample.json")
+}
+
 REMOTES = {
     "Beach": download_utils.RemoteFileMetadata(
         filename="Beach.zip",
@@ -99,12 +110,7 @@ REMOTES = {
         filename="Metadata-EigenScape.csv",
         url="https://zenodo.org/record/1284156/files/Metadata-EigenScape.csv?download=1",
         checksum="cbed105fb56604c4b763788690089d55",
-    ),
-    "index": download_utils.RemoteFileMetadata(
-        filename="eigenscape_raw_index_1.0.json",
-        url="https://zenodo.org/records/11176807/files/eigenscape_raw_index_1.0.json?download=1",
-        checksum="619fa16f7e58aa247b4da43ff5c36a03",
-    ),
+    ) 
 }
 
 wav_md5_dict = {
@@ -280,15 +286,16 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 class Dataset(core.Dataset):
     """The EigenScape Raw dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="eigenscape_raw",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
-            custom_index_path="eigenscape_raw_index_1.0.json",
         )
 
     @core.copy_docs(load_audio)

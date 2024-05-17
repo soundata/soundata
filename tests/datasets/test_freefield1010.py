@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/freefield1010"
 
 def test_clip():
     default_clipid = "64486"
-    dataset = freefield1010.Dataset(TEST_DATA_HOME)
+    dataset = freefield1010.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -34,7 +34,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = freefield1010.Dataset(TEST_DATA_HOME)
+    dataset = freefield1010.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("64486")
     audio_path = clip.audio_path
     audio, sr = freefield1010.load_audio(audio_path)
@@ -47,7 +47,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "64486"
-    dataset = freefield1010.Dataset(TEST_DATA_HOME)
+    dataset = freefield1010.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
     # Validate freefield1010 jam schema

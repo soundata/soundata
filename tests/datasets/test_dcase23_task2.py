@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/dcase23_task2"
 
 def test_clip():
     default_clipid = "section_00_source_train_normal_0705_m-n_X"
-    dataset = dcase23_task2.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task2.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     expected_attributes = {
         "audio_path": os.path.join(
@@ -34,7 +34,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = dcase23_task2.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task2.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("section_00_source_train_normal_0705_m-n_X")
     audio_path = clip.audio_path
     audio, sr = dcase23_task2.load_audio(audio_path)
@@ -46,7 +46,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "section_00_source_train_normal_0705_m-n_X"
-    dataset = dcase23_task2.Dataset(TEST_DATA_HOME)
+    dataset = dcase23_task2.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
     # Validate dcase23_task2 jam schema
@@ -64,7 +64,7 @@ def test_to_jams():
 def test_metadata_file_not_found():
     # Create a temporary dataset instance with an altered path to simulate missing files
     altered_test_data_home = os.path.join(TEST_DATA_HOME, "non_existent_directory")
-    dataset = dcase23_task2.Dataset(altered_test_data_home)
+    dataset = dcase23_task2.Dataset(altered_test_data_home, version="test")
 
     # Expect a FileNotFoundError
     with pytest.raises(FileNotFoundError):

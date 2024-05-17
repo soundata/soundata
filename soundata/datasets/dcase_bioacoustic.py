@@ -110,6 +110,7 @@ BIBTEX = """
   url          = {https://doi.org/10.5281/zenodo.6482837}
 }
 """
+
 INDEXES = {
     "default": "3.0",
     "test": "sample",
@@ -120,6 +121,7 @@ INDEXES = {
     ),
     "sample": core.Index(filename="dcase_bioacoustic_index_3.0_sample.json"),
 }
+
 REMOTES = {
     "dev": download_utils.RemoteFileMetadata(
         filename="Development_Set.zip",
