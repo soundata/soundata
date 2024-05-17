@@ -189,6 +189,11 @@ def test_downloader(mocker, mock_path):
     download_utils.downloader(
         "a", index=index, remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
     )
+    # test downloader without index
+    with pytest.raises(ValueError):
+        download_utils.downloader(
+            "a", remotes={"b": zip_remote, "c": tar_remote, "d": file_remote}
+        )
 
 
 def test_download_index_cases(mocker, mock_path):
