@@ -286,7 +286,7 @@ See an example of how an index should look like:
 
 .. _upload_index:
 
-3. Uploading the index on an online repository
+3. Uploading the index to an online repository
 ----------------------------------------------
 
 To prevent an the exponential growth in size of the library, we are storing all indexes in an online repository, while removing these from the repository itself.
@@ -299,7 +299,7 @@ From a contributor point of view, you may create the index, store it locally, an
     .. note::
         All JSON files in ``soundata/indexes/`` are included in the .gitignore file, therefore there is no need to remove it when pushing, since it will be ignored by git.
 
-**When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:** 
+**Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
 
 * First, click on ``New upload``. 
 * Add your index in the ``Upload files`` section.
