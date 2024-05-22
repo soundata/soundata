@@ -440,7 +440,8 @@ def test_unpackdir(httpserver):
             unpack_directories=["ESC-50-master"],
         )
     }
-    dataset = esc50.Dataset(data_home)
+
+    dataset = esc50.Dataset(data_home, version="test")
     dataset.remotes = remotes
     dataset.download(None, False, False)
 
