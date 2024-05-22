@@ -222,7 +222,7 @@ def test_dataset_versions():
         *dataset.index_path.split(os.path.sep)[-4:]
     ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
-    dataset_default = VersionTest("asdf", version="test")
+    dataset_default = VersionTest("asdf")
     assert dataset_default.version == "1"
     assert os.path.join(
         *dataset.index_path.split(os.path.sep)[-4:]
