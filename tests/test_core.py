@@ -190,7 +190,7 @@ def test_dataset():
 
 def test_dataset_versions():
     class VersionTest(core.Dataset):
-        def __init__(self, data_home=None, version="default"):
+        def __init__(self, data_home=None, version="test"):
             super().__init__(
                 data_home,
                 version,
@@ -206,7 +206,7 @@ def test_dataset_versions():
             )
 
     class VersionTest2(core.Dataset):
-        def __init__(self, data_home=None, version="default"):
+        def __init__(self, data_home=None, version="test"):
             super().__init__(
                 data_home,
                 version,
@@ -222,7 +222,7 @@ def test_dataset_versions():
         *dataset.index_path.split(os.path.sep)[-4:]
     ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
 
-    dataset_default = VersionTest("asdf", version="default")
+    dataset_default = VersionTest("asdf", version="test")
     assert dataset_default.version == "1"
     assert os.path.join(
         *dataset.index_path.split(os.path.sep)[-4:]
