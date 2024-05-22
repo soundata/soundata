@@ -222,10 +222,7 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
         # parsing the data from the filenames due to lack of metadata file
-        json_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "indexes/marco_index.json"
-        )
-
+        json_path = self.index_path
         metadata_index = {}
 
         with open(json_path) as f:
