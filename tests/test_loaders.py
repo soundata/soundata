@@ -2,6 +2,7 @@ import importlib
 import inspect
 from inspect import signature
 import io
+import json
 import os
 import sys
 import pytest
@@ -381,6 +382,11 @@ def test_clipgroups():
         dataset = soundata.initialize(
             dataset_name, os.path.join(TEST_DATA_HOME, dataset_name), version="test"
         )
+
+        # TODO: Create a .load() Index class method that loads the Index content
+        with open(dataset.index_path) as f:
+            index_data = json.load(f)
+        assert index_data["version"] == "sample"
 
         # TODO this is currently an opt-in test. Make it an opt out test
         # once #265 is addressed
