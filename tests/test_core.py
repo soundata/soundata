@@ -190,7 +190,7 @@ def test_dataset():
 
 def test_dataset_versions():
     class VersionTest(core.Dataset):
-        def __init__(self, data_home=None, version="test"):
+        def __init__(self, data_home=None, version="default"):
             super().__init__(
                 data_home,
                 version,
@@ -206,7 +206,7 @@ def test_dataset_versions():
             )
 
     class VersionTest2(core.Dataset):
-        def __init__(self, data_home=None, version="test"):
+        def __init__(self, data_home=None, version="default"):
             super().__init__(
                 data_home,
                 version,
