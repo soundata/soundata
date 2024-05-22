@@ -222,10 +222,9 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
         # parsing the data from the filenames due to lack of metadata file
-        json_path = self.index_path
         metadata_index = {}
 
-        with open(json_path) as f:
+        with open(self.index_path) as f:
             marco_index = json.load(f)
             all_paths_filenames = list(marco_index["clips"].keys())
 

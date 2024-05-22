@@ -421,14 +421,9 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
         # parsing the data from the filenames due to lack of metadata file
-        json_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            "indexes/tau2020sse_nigens_index.json",
-        )
-
         metadata_index = {}
 
-        with open(json_path) as f:
+        with open(self.index_path) as f:
             taunigenssse2020_index = json.load(f)
             all_paths_filenames = list(taunigenssse2020_index["clips"].keys())
 
