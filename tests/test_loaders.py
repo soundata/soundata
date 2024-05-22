@@ -71,7 +71,9 @@ def test_dataset_attributes():
 def test_cite_and_license():
     for dataset_name in DATASETS:
         module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-        dataset = module.Dataset(os.path.join(TEST_DATA_HOME, dataset_name))
+        dataset = module.Dataset(
+            os.path.join(TEST_DATA_HOME, dataset_name), version="test"
+        )
 
         text_trap = io.StringIO()
         sys.stdout = text_trap
