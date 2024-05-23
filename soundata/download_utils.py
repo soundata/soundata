@@ -108,7 +108,14 @@ def downloader(
         else:
             objs_to_download = list(remotes.keys())
 
-        logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
+        if "index" in objs_to_download:
+            logging.info(
+                "Downloading {}. Index is being stored in {}, and the rest of files in {}".format(
+                    objs_to_download, index.indexes_dir, save_dir
+                )
+            )
+        else:
+            logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
             if isinstance(remotes[k], list):

@@ -308,6 +308,9 @@ From a contributor point of view, you may create the index, store it locally, an
 * Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
 * Add yourself as the Creator of this entry.
 
+    .. note::
+        *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
+
 Visibility should be set as *Public*. There is no need to fill up anything else. 
 All the information that users may need is found in the dataloader and the corresponding documentation.
 
