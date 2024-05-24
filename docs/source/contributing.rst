@@ -307,6 +307,7 @@ From a contributor point of view, you may create the index, store it locally, an
 * Resource type is *Other*.
 * Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
 * Add yourself as the Creator of this entry.
+* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
 
     .. note::
         *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.

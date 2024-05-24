@@ -108,10 +108,16 @@ def downloader(
         else:
             objs_to_download = list(remotes.keys())
 
-        if "index" in objs_to_download:
+        if "index" in objs_to_download and len(objs_to_download) > 1:
             logging.info(
                 "Downloading {}. Index is being stored in {}, and the rest of files in {}".format(
                     objs_to_download, index.indexes_dir, save_dir
+                )
+            )
+        elif "index" in objs_to_download and len(objs_to_download) == 1:
+            logging.info(
+                "Downloading {}. Index is being stored in {}".format(
+                    objs_to_download, index.indexes_dir
                 )
             )
         else:
