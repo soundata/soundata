@@ -188,6 +188,10 @@ def test_dataset():
     print(dataset)  # test that repr doesn't fail
 
 
+def test_list_versions():
+    assert soundata.list_dataset_versions("urbansound8k") == ["1.0"]
+
+
 def test_dataset_versions():
     class VersionTest(core.Dataset):
         def __init__(self, data_home=None, version="default"):
