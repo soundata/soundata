@@ -42,7 +42,7 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
 You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
 object containing common methods, described in the following.
 
-Some datasets have more that one version available. Soundata can handle more than one version if included in the dataloader.
+Some datasets have more than one version available. Soundata can handle more than one version if included in the dataloader.
 
 .. code-block:: python
 
