@@ -289,8 +289,7 @@ See an example of how an index should look like:
 3. Uploading the index to an online repository
 ----------------------------------------------
 
-To prevent an the exponential growth in size of the library, we are storing all indexes in an online repository, while removing these from the repository itself.
-For that task, we use Zenodo.
+We store all dataset indexes in an online repository on Zenodo.
 To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
 To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
 

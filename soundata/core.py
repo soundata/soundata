@@ -27,7 +27,7 @@ and respect the dataset's license.
 
 
 class cached_property(object):
-    """Cached propery decorator
+    """Cached property decorator
 
     A property that is only computed once per instance and then replaces
     itself with an ordinary attribute. Deleting the attribute resets the

@@ -42,6 +42,17 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
 You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
 object containing common methods, described in the following.
 
+Some datasets have more that one version available. Soundata can handle more than one version if included in the dataloader.
+
+.. code-block:: python
+
+    import soundata
+    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live', version="1.0")
+
+By default, version is set to ``'default'``, which routes to the latest version available in the dataloader. 
+You may run ``soundata.list_dataset_versions('urbansound8k')`` to see all available versions of the dataset that are available through its dataloder.
+
+
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
@@ -56,7 +67,7 @@ However, the user can indicate where the dataset files will be stored.
 To do so, when initializing a dataset it is important to correctly set up the directory
 where the dataset is going to be stored and retrieved.
 
-Downloading a dataset into the default folder:
+Downloading a dataset into the default folder
     In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
     the default folder, ``sound_datasets``, created in the user's root folder:
 
@@ -66,7 +77,7 @@ Downloading a dataset into the default folder:
         dataset = soundata.initialize('urbansound8k')
         dataset.download()  # Dataset is downloaded into "sound_datasets" folder inside user's root folder
 
-Downloading a dataset into a specified folder:
+Downloading a dataset into a specified folder
     In the next example ``data_home`` is specified, so UrbanSound8K will be downloaded and retrieved from the specified location:
 
     .. code-block:: python
@@ -159,6 +170,16 @@ Downloading a multipart dataset
                     ),
                 ],
                 ...
+                
+
+Working with non-available datasets to openly download
+    Some datasets are private, and therefore it is not possible to directly retrieve them from an online repository.
+    In those cases, the download function will only download the index file, and if available, the dataset parts that are not private (for some cases, the annotations are available but not the audio).
+    The user will have to gather the private data themselves, store it in the preferred ``data_home`` location, and then initialize the dataset as usual, indicating the data location in the ``data_home`` parameter.
+
+
+    .. note::
+        Private datasets may be available to the public upon request. If you are interested in a dataset that is not openly available, please contact the dataset authors or the dataset maintainers to request access.
 
 
 
@@ -199,7 +220,7 @@ You can choose a random clip from a dataset with the ``choice_clip()`` method.
 
 
 
-You can also access specific clips by id. The available clip ids can be acessed by doing ``dataset.clip_ids``.
+You can also access specific clips by id. The available clip ids can be accessed by doing ``dataset.clip_ids``.
 In the next example we take the first clip id, and then we retrieve its ``tags``
 annotation.
 
@@ -273,10 +294,10 @@ see an example.
 Annotation classes
 ^^^^^^^^^^^^^^^^^^
 
-``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standarize the format for
+``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standardize the format for
 all loaders, so you can use the same code with different datasets. The list and descriptions of available annotation classes can be found in :ref:`annotations`.
 
-.. note:: These classes are standarized to the point that the data allow for it. In some cases where the dataset has
+.. note:: These classes are standardized to the point that the data allow for it. In some cases where the dataset has
         its own idiosyncrasies, the classes may be extended e.g. adding a customize, uncommon attribute.
 
 Iterating over datasets and annotations
