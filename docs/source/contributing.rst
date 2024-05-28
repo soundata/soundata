@@ -126,8 +126,8 @@ Here's an example of an index to use as a guide:
 
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
-    .. note::
-        Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the Soundata maintainers the need for it.
+.. note::
+    Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the Soundata maintainers the need for it.
 
 Example index with clips
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,8 +137,8 @@ top-level key. Under this ``clips`` top-level key, you should store a dictionary
 the values are dictionaries of files associated with a clip id, along with their checksums. These files can be for instance audio files
 or annotations related to the clip id. File paths are relative to the top level directory of a dataset.
 
-    .. note::
-        If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
+.. note::
+    If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
 
 Currently, Soundata does not include built-in functions to automatically create train, test, and validation splits if these are not originally defined in the dataset. 
 Users can do that using  external functions such as ``sklearn.model_selection.train_test_split``.
@@ -214,8 +214,8 @@ See an example of how an index should look like:
         }
 
 
-    .. note::
-        In this example there is a (purposeful) mismatch between the name of the audio file ``clip2.wav`` and its corresponding annotation file, ``Clip2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
+.. note::
+    In this example there is a (purposeful) mismatch between the name of the audio file ``clip2.wav`` and its corresponding annotation file, ``Clip2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
 
 ..
     Example index with multiclips
@@ -318,10 +318,8 @@ The values of the dictionary are instances of the ``core.Index`` class. This cla
 As seen in the example, we have two ways to define an index:
 providing a URL to download the index file, or by providing the filename of the index file, assuming it available locally.
 
-* The full indexes for each version of the dataset should be retrieved from our Zenodo community.
-See more details `here <upload_index_>`_.
-* The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename.
-See more details `here <add_tests>`_.
+* The full indexes for each version of the dataset should be retrieved from our Zenodo community. See more details `here <upload_index_>`_.
+* The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests>`_.
 
 **Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
 However, if there is a reason for having a different version as the default, please do so.
@@ -337,9 +335,8 @@ To use a dataloader, users may retrieve the index running the ``dataset.download
 To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
 
 From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
-
-    .. note::
-        All JSON files in ``soundata/indexes/`` are included in the .gitignore file, therefore there is no need to remove it when pushing, since it will be ignored by git.
+All JSON files in ``soundata/indexes/`` are included in the .gitignore file, 
+therefore there is no need to remove it when pushing to the remote branch during development, since it will be ignored by git.
 
 **Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
 
@@ -350,13 +347,10 @@ From a contributor point of view, you may create the index, store it locally, an
 * Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
 * Add yourself as the Creator of this entry.
 * The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
+* Visibility should be set as *Public*.
 
-    .. note::
-        *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
-
-Visibility should be set as *Public*. There is no need to fill up anything else.
-All the information that users may need is found in the dataloader and the corresponding documentation.
-
+.. note::
+    *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
 
 
 .. _create_module:
