@@ -44,7 +44,7 @@ Example Usage
     print(soundata.list_datasets())
 
     # choose a dataset and download it
-    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
+    dataset = soundata.initialize('urbansound8k', data_home='/choose/where/data/live')
     dataset.download()
 
     # get annotations and audio for a random clip

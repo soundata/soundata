@@ -37,19 +37,18 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
 .. code-block:: python
 
     import soundata
-    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
+    dataset = soundata.initialize('urbansound8k', data_home='/choose/where/data/live')
 
-You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``dataset`` is a ``Dataset``
-object containing common methods, described in the following.
+You can specify the directory where the Soundata data is stored by passing a path to ``data_home``.
 
-Some datasets have more that one version available. Soundata can handle more than one version if included in the dataloader.
-To see all available versions of the dataset, run ``soundata.list_dataset_versions('urbansound8k')``.
-Then, specify through the ``version`` parameter if you wish to use a version other than the default one.
+Soundata supports working with multiple dataset versions.
+To see all available versions of a specific dataset, run ``soundata.list_dataset_versions('urbansound8k')``.
+Use ``version`` parameter if you wish to use a version other than the default one.
 
 .. code-block:: python
 
     import soundata
-    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live', version="1.0")
+    dataset = soundata.initialize('urbansound8k', data_home='/choose/where/data/live', version="1.0")
 
 
 Downloading a dataset
@@ -60,10 +59,8 @@ All dataset loaders in soundata have a ``download()`` function that allows the u
 * The :ref:`canonical <faq>` version of the dataset (when available).
 * The dataset index, which indicates the list of clips in the dataset and the paths to audio and annotation files.
 
-The index, which is considered part of the source files of Soundata, is specifically downloaded by running ``download(["index"])`` and it will be directly stored in the indexes folder in the library (``soundata/datasets/indexes``).
-However, the user can indicate where the dataset files will be stored.
-To do so, when initializing a dataset it is important to correctly set up the directory
-where the dataset is going to be stored and retrieved.
+The index, which is considered part of the source files of Soundata, is specifically downloaded by running ``download(["index"])``.
+Indexes will be directly stored in Soundata's indexes folder (``soundata/datasets/indexes``) whereas users can indicate where the dataset files will be stored via ``data_home``.
 
 Downloading a dataset into the default folder
     In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
