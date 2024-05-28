@@ -189,7 +189,10 @@ def test_dataset():
 
 
 def test_list_versions():
-    assert soundata.list_dataset_versions("urbansound8k") == "Available versions for urbansound8k: ['1.0']. Default version: 1.0" 
+    assert (
+        soundata.list_dataset_versions("urbansound8k")
+        == "Available versions for urbansound8k: ['1.0']. Default version: 1.0"
+    )
 
 
 def test_dataset_versions():
