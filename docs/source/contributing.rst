@@ -86,6 +86,7 @@ The steps to add a new dataset loader to ``soundata`` are:
 3. `Add tests <add_tests_>`_
 4. `Submit your loader <submit_loader_>`_
 5. `Upload JSON index to the Soundata index repository in Zenodo <upload_index_>`_
+6. `Create a Pull Request on GitHub <create_pr_>`_
 
 **Before starting**, if your dataset **is not fully downloadable** you should:
 
@@ -555,8 +556,8 @@ You can find license badges images and links `here <https://gist.github.com/luka
 
 .. _upload_index:
 
-5. Uploading the index to Audio Data Loaders Zenodo community
--------------------------------------------------------------
+5. Uploading the index to Zenodo
+--------------------------------
 
 We store all dataset indexes in an online repository on Zenodo.
 To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
@@ -581,10 +582,12 @@ therefore there is no need to remove it when pushing to the remote branch during
     *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
 
 
-Pull Request template
-^^^^^^^^^^^^^^^^^^^^^
+.. _create_pr:
 
-When starting your PR please use the `new_loader.md template <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
+6. Create a Pull Request
+------------------------
+
+Please, create a Pull Request with all your development. When starting your PR please use the `new_loader.md template <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
 it will simplify the reviewing process and also help you make a complete PR. You can do that by adding
 ``&template=new_loader.md`` at the end of the url when you are creating the PR :
 
@@ -739,8 +742,6 @@ file in your web browser to view.
 **Important:** Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up in the terminal when running ``make clean html``. 
 These will indicate formatting, listing, and indentation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
 See the examples aboove and also the docstrings of ``docs/source/contributing_examples/example.py`` to see a list of examples of how to write the docstrings to prevent Sphinx errors and warning messages.
-
-
 
 
 Conventions
