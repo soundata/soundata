@@ -284,75 +284,6 @@ See an example of how an index should look like:
     Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single clip because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multiclip mix and it is stored in the ``multiclips`` group. The multiclip ``multiclip1`` has an additional clip ``multiclip1-mix.wav`` which may be the master clip, the final mix, the recording of ``multiclip1`` with another microphone.
 
 
-Providing index information in the loader
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once the index is created, you should include it in the loader module. The index path should be indicated in the ``INDEXES`` variable in the loader module.
-The ``INDEXES`` variable is basically a dictionary indicating which index to load for each available version of a dataset.
-
-Let's visualize an example ``INDEXES`` for the ``urbansound8k`` loader:
-
-    .. code-block:: javascript
-
-        INDEXES = {
-            "default": "1.0",
-            "test": "sample",
-            "1.0": core.Index(
-                filename="urbansound8k_index_1.0.json",
-                url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
-                checksum="1c4940e08c1305c49b592f3d9c103e6f",
-            ),
-            "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
-        }
-
-In this example, the ``INDEXES`` variable is a dictionary with the following keys:
-
-* ``default``: The default version of the dataset to be loaded in case no version is explicitly given in the ``initialize()`` method.
-* ``test``: In the key ``test``, we store a sample version of the dataset to be used for testing purposes.
-* ``1.0``: An available version of the dataset through the dataloader.
-* ``sample``: A sample version of the dataset to be used for testing purposes. See `testing indications <add_tests>`_. for more detail.
-In a nutshell, this is a one-clip version of the dataset index which is used to test the methods and classes of the new dataloader,
-while keeping the size of the repository as low as possible.
-
-The values of the dictionary are instances of the ``core.Index`` class. This class wraps up a downloader and validator for an index.
-As seen in the example, we have two ways to define an index:
-providing a URL to download the index file, or by providing the filename of the index file, assuming it available locally.
-
-* The full indexes for each version of the dataset should be retrieved from our Zenodo community. See more details `here <upload_index_>`_.
-* The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests>`_.
-
-**Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
-However, if there is a reason for having a different version as the default, please do so.
-
-
-.. _upload_index:
-
-3. Uploading the index to an online repository
-----------------------------------------------
-
-We store all dataset indexes in an online repository on Zenodo.
-To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
-To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
-
-From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
-All JSON files in ``soundata/indexes/`` are included in the .gitignore file, 
-therefore there is no need to remove it when pushing to the remote branch during development, since it will be ignored by git.
-
-**Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
-
-* First, click on ``New upload``. 
-* Add your index in the ``Upload files`` section.
-* Let Zenodo create a DOI for your index, so click *No*.
-* Resource type is *Other*.
-* Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
-* Add yourself as the Creator of this entry.
-* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
-* Visibility should be set as *Public*.
-
-.. note::
-    *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
-
-
 .. _create_module:
 
 2. Create a module
@@ -379,11 +310,54 @@ You may find these examples useful as references:
 * `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217>`_
 * `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
-Please, do remember to include the variables ``BIBTEX``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
-While the ``BIBTEX`` (including the bibtex-formatted citation of the dataset)
-and ``LICENSE_INFO`` (including the license that protects the dataset in the dataloader) variables are mandatory,
-the ``REMOTES`` variable only applied if the dataset is openly downloadable.
-The ``REMOTES`` variable should be a list of ``RemoteFileMetadata`` objects, which are used to download the dataset files. See an example below:
+.. Providing index information in the loader
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Once the index is created, you should include it in the loader module. The index path should be indicated in the ``INDEXES`` variable in the loader module.
+.. The ``INDEXES`` variable is basically a dictionary indicating which index to load for each available version of a dataset.
+
+.. Let's visualize an example ``INDEXES`` for the ``urbansound8k`` loader:
+
+..     .. code-block:: javascript
+
+..         INDEXES = {
+..             "default": "1.0",
+..             "test": "sample",
+..             "1.0": core.Index(
+..                 filename="urbansound8k_index_1.0.json",
+..                 url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+..                 checksum="1c4940e08c1305c49b592f3d9c103e6f",
+..             ),
+..             "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+..         }
+
+.. In this example, the ``INDEXES`` variable is a dictionary with the following keys:
+
+.. * ``default``: The default version of the dataset to be loaded in case no version is explicitly given in the ``initialize()`` method.
+.. * ``test``: In the key ``test``, we store a sample version of the dataset to be used for testing purposes.
+.. * ``1.0``: An available version of the dataset through the dataloader.
+.. * ``sample``: A sample version of the dataset to be used for testing purposes. See `testing indications <add_tests>`_. for more detail.
+.. In a nutshell, this is a one-clip version of the dataset index which is used to test the methods and classes of the new dataloader,
+.. while keeping the size of the repository as low as possible.
+
+Declare constant variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Please, include the variables ``BIBTEX``, ``INDEXES``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
+While ``BIBTEX`` (including the bibtex-formatted citation of the dataset), ``INDEXES`` (indexes urls, checksums and versions),
+and ``LICENSE_INFO`` (including the license that protects the dataset in the dataloader) are mandatory, ``REMOTES`` is only defined if the dataset is openly downloadable.
+
+``INDEXES``
+    As seen in the example, we have two ways to define an index:
+    providing a URL to download the index file, or by providing the filename of the index file, assuming it is available locally (like sample indexes).
+
+    * The full indexes for each version of the dataset should be retrieved from our Zenodo community. See more details `here <upload_index_>`_.
+    * The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests>`_.
+
+    **Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
+    However, if there is a reason for having a different version as the default, please do so.
+
+``REMOTES``
+    Should be a list of ``RemoteFileMetadata`` objects, which are used to download the dataset files. See an example below:
 
     .. code-block:: javascript
 
@@ -396,12 +370,12 @@ The ``REMOTES`` variable should be a list of ``RemoteFileMetadata`` objects, whi
             ),
         }
 
-Add more ``RemoteFileMetadata`` objects to the ``REMOTES`` dictionary if the dataset is split into multiple files.
-Please use ``download_utils.RemoteFileMetadata`` to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses.
-Please do NOT use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+    Add more ``RemoteFileMetadata`` objects to the ``REMOTES`` dictionary if the dataset is split into multiple files.
+    Please use ``download_utils.RemoteFileMetadata`` to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses.
+    Please do NOT use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
 
 .. note::
-    Direct url for download and checksum can be found in the Zenodo entry of the dataset.
+    Direct url for download and checksum can be found in the Zenodo entries of the dataset and index. Bear in mind that the url and checksum for the index will be available once a maintainer of the Audio Data Loaders Zenodo community has accepted the index upload.
     For other repositories, you may need to generate the checksum yourself.
     You may use the function provided in ``soundata.validate.py``.
 
@@ -578,6 +552,34 @@ An example of this for the ``UrbanSound8k`` dataset:
 
 
 You can find license badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba>`_.
+
+.. _upload_index:
+
+5. Uploading the index to Audio Data Loaders Zenodo community
+-------------------------------------------------------------
+
+We store all dataset indexes in an online repository on Zenodo.
+To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
+To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
+
+From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
+All JSON files in ``soundata/indexes/`` are included in the .gitignore file, 
+therefore there is no need to remove it when pushing to the remote branch during development, since it will be ignored by git.
+
+**Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
+
+* First, click on ``New upload``. 
+* Add your index in the ``Upload files`` section.
+* Let Zenodo create a DOI for your index, so click *No*.
+* Resource type is *Other*.
+* Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
+* Add yourself as the Creator of this entry.
+* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
+* Visibility should be set as *Public*.
+
+.. note::
+    *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
+
 
 Pull Request template
 ^^^^^^^^^^^^^^^^^^^^^

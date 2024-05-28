@@ -35,18 +35,24 @@ BIBTEX = """
 }
 """
 # -- INDEXES specifies different versions of a dataset
-# -- "default" and "test" specify which key should be used
-# -- by default, and when running tests.
-# -- Some datasets have a "sample" version, which is a mini-version
-# -- that makes it easier to try out a large dataset without needing
-# -- to download the whole thing.
-# -- If there is no sample version, simply set "test": "1.0".
-# -- If the default data is remote, there must be a local sample for tests!
+# -- "default" and "test" specify which key should be used by default, and when running tests
+# -- Each index is defined by {"version": core.Index instance}
+# -- | filename: index name
+# -- | url: Zenodo direct download link of the index (will be available afer the index upload is
+# -- accepted to Audio Data Loaders Zenodo community).
+# -- | checksum: Checksum of the index hosted at Zenodo.
+# -- Direct url for download and checksum can be found in the Zenodo entry of the dataset.
+# -- Sample index is a mini-version that makes it easier to test a large datasets.
+# -- There must be a local sample index for testing for each remote index.
 INDEXES = {
     "default": "1.0",
     "test": "sample",
-    "1.0": core.Index(filename="example_index_1.0.json"),
-    "sample": core.Index(filename="example_index_sample.json")
+    "1.0": core.Index(
+        filename="urbansound8k_index_1.0.json",
+        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+        checksum="1c4940e08c1305c49b592f3d9c103e6f",
+    ),
+    "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
 }
 # -- REMOTES is a dictionary containing all files that need to be downloaded.
 # -- The keys should be descriptive (e.g. 'annotations', 'audio').
