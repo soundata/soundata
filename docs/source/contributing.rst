@@ -284,6 +284,49 @@ See an example of how an index should look like:
     Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single clip because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multiclip mix and it is stored in the ``multiclips`` group. The multiclip ``multiclip1`` has an additional clip ``multiclip1-mix.wav`` which may be the master clip, the final mix, the recording of ``multiclip1`` with another microphone.
 
 
+Providing index information in the loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once the index is created, you should include it in the loader module. The index path should be indicated in the ``INDEXES`` variable in the loader module.
+The ``INDEXES`` variable is basically a dictionary indicating which index to load for each available version of a dataset.
+
+Let's visualize an example ``INDEXES`` for the ``urbansound8k`` loader:
+
+    .. code-block:: javascript
+
+        INDEXES = {
+            "default": "1.0",
+            "test": "sample",
+            "1.0": core.Index(
+                filename="urbansound8k_index_1.0.json",
+                url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+                checksum="1c4940e08c1305c49b592f3d9c103e6f",
+            ),
+            "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+        }
+
+In this example, the ``INDEXES`` variable is a dictionary with the following keys:
+
+* ``default``: The default version of the dataset to be loaded in case no version is explicitly given in the ``initialize()`` method.
+* ``test``: In the key ``test``, we store a sample version of the dataset to be used for testing purposes.
+* ``1.0``: An available version of the dataset through the dataloader.
+* ``sample``: A sample version of the dataset to be used for testing purposes. See `testing indications <add_tests>`_. for more detail.
+In a nutshell, this is a one-clip version of the dataset index which is used to test the methods and classes of the new dataloader,
+while keeping the size of the repository as low as possible.
+
+The values of the dictionary are instances of the ``core.Index`` class. This class wraps up a downloader and validator for an index.
+As seen in the example, we have two ways to define an index:
+providing a URL to download the index file, or by providing the filename of the index file, assuming it available locally.
+
+* The full indexes for each version of the dataset should be retrieved from our Zenodo community.
+See more details `here <upload_index_>`_.
+* The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename.
+See more details `here <add_tests>`_.
+
+**Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
+However, if there is a reason for having a different version as the default, please do so.
+
+
 .. _upload_index:
 
 3. Uploading the index to an online repository
@@ -311,8 +354,9 @@ From a contributor point of view, you may create the index, store it locally, an
     .. note::
         *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
 
-Visibility should be set as *Public*. There is no need to fill up anything else. 
+Visibility should be set as *Public*. There is no need to fill up anything else.
 All the information that users may need is found in the dataloader and the corresponding documentation.
+
 
 
 .. _create_module:
@@ -327,6 +371,8 @@ To quickstart a new module:
 2. Find & Replace ``Example`` with the <your_dataset_name>.
 3. Remove any lines beginning with `# --` which are there as guidelines. 
 
+You should follow the provided template as much as possible, and use the recommended functions and classes.
+
 .. admonition:: Example Module
     :class: dropdown
 
@@ -340,8 +386,31 @@ You may find these examples useful as references:
 * `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
 Please, do remember to include the variables ``BIBTEX``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
-You should follow the provided template as much as possible, and use the recommended functions and classes.
-An important example of that is ``download_utils.RemoteFileMetadata``. Please use this class to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses. Please do not use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+While the ``BIBTEX`` (including the bibtex-formatted citation of the dataset)
+and ``LICENSE_INFO`` (including the license that protects the dataset in the dataloader) variables are mandatory,
+the ``REMOTES`` variable only applied if the dataset is openly downloadable.
+The ``REMOTES`` variable should be a list of ``RemoteFileMetadata`` objects, which are used to download the dataset files. See an example below:
+
+    .. code-block:: javascript
+
+        REMOTES = {
+            "all": download_utils.RemoteFileMetadata(
+                filename="UrbanSound8K.tar.gz",
+                url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz?download=1",
+                checksum="9aa69802bbf37fb986f71ec1483a196e",
+                unpack_directories=["UrbanSound8K"],
+            ),
+        }
+
+Add more ``RemoteFileMetadata`` objects to the ``REMOTES`` dictionary if the dataset is split into multiple files.
+Please use ``download_utils.RemoteFileMetadata`` to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses.
+Please do NOT use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+
+.. note::
+    Direct url for download and checksum can be found in the Zenodo entry of the dataset.
+    For other repositories, you may need to generate the checksum yourself.
+    You may use the function provided in ``soundata.validate.py``.
+
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
@@ -382,12 +451,19 @@ To finish your contribution, please include tests that check the integrity of yo
     * For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.
     * If the dataset has a metadata file, reduce the length to a few lines.
 
-2. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
+2. Create a toy index corresponding to the one-clip toy dataset in the tests folder ``tests/indexes/``. Some further detail:
+
+    * The index should include only the clips you need for the toy dataset for testing.
+    * The index should be named ``<dataset-id>_index_<dataset-version>_sample.json``. The version in the JSON file should also be ``sample``.
+    * Include this index in the ``INDEXES`` variable in your dataloader module.
+    * Then, when testing your dataset, initialize it passing ``version='test'`` in the ``.initialize()`` method.
+
+3. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
    custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
    If your loader has a custom download function, add tests similar to
    `this mirdata loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
-3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
-   sure everything is working.
+
+4. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make sure everything is working.
 
 
 .. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions,
@@ -444,13 +520,14 @@ Finally, there is one local test you should run, which we can't easily run in ou
 
 
 Where ``dataset`` is the name of the module of the dataset you added. The ``-s`` tells pytest not to skip print 
-statments, which is useful here for seeing the download progress bar when testing the download function.
+statements, which is useful here for seeing the download progress bar when testing the download function.
 
 This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
 for some datasets, but it's important to ensure the integrity of the library.
 
 The ``--skip-download`` flag can be added to ``pytest`` command to run the tests skipping the download.
 This will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.
+
 
 .. _working_big_datasets:
 
@@ -459,26 +536,6 @@ Working with big datasets
 
 In the development of large datasets, it is advisable to create an index as small as possible to optimize the implementation process
 of the dataset loader and pass the tests.
-
-
-Working with remote indexes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For the end-user there is no difference between the remote and local indexes. However, indexes can get large when there are a lot of clips
-in the dataset. In these cases, storing and accessing an index remotely can be convenient. Large indexes can be added to REMOTES, 
-and will be downloaded with the rest of the dataset. For example:
-
-.. code-block:: python
-
-    "index": download_utils.RemoteFileMetadata(
-        filename="remote_index.json.zip",
-        url="https://zenodo.org/record/.../remote_index.json.zip?download=1",
-        checksum="810f1c003f53cbe58002ba96e6d4d138",
-    )
-
-
-Unlike local indexes, the remote indexes will live in the ``data_home`` directory. When creating the ``Dataset``
-object, specify the ``custom_index_path`` to where the index will be downloaded (as a relative path to ``data_home``).
 
 
 .. _reducing_test_space:

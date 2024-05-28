@@ -32,9 +32,15 @@ def list_dataset_versions(dataset_name):
     if dataset_name not in DATASETS:
         raise ValueError("Invalid dataset {}".format(dataset_name))
     module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-    return [
-        x for x in list(module.INDEXES.keys()) if x not in ["default", "sample", "test"]
-    ]
+    return "Available versions for {}: {}. Default version: {}".format(
+        dataset_name,
+        [
+            x
+            for x in list(module.INDEXES.keys())
+            if x not in ["default", "sample", "test"]
+        ],
+        module.INDEXES["default"],
+    )
 
 
 def initialize(dataset_name, data_home=None, version="default"):

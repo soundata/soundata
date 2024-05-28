@@ -39,19 +39,17 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
     import soundata
     dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
 
-You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
+You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``dataset`` is a ``Dataset``
 object containing common methods, described in the following.
 
 Some datasets have more that one version available. Soundata can handle more than one version if included in the dataloader.
+To see all available versions of the dataset, run ``soundata.list_dataset_versions('urbansound8k')``.
+Then, specify through the ``version`` parameter if you wish to use a version other than the default one.
 
 .. code-block:: python
 
     import soundata
     dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live', version="1.0")
-
-By default, version is set to ``'default'``, which routes to the latest version available in the dataloader. 
-You may run ``soundata.list_dataset_versions('urbansound8k')`` to see all available versions of the dataset that are available through its dataloder.
-
 
 
 Downloading a dataset
