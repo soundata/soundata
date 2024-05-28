@@ -85,7 +85,7 @@ The steps to add a new dataset loader to ``soundata`` are:
 2. `Create a module <create_module_>`_
 3. `Add tests <add_tests_>`_
 4. `Submit your loader <submit_loader_>`_
-5. `Upload JSON index to the Soundata index repository in Zenodo <upload_index_>`_
+5. `Upload index to Zenodo <upload_index_>`_
 6. `Create a Pull Request on GitHub <create_pr_>`_
 
 **Before starting**, if your dataset **is not fully downloadable** you should:
@@ -352,7 +352,7 @@ and ``LICENSE_INFO`` (including the license that protects the dataset in the dat
     providing a URL to download the index file, or by providing the filename of the index file, assuming it is available locally (like sample indexes).
 
     * The full indexes for each version of the dataset should be retrieved from our Zenodo community. See more details `here <upload_index_>`_.
-    * The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests>`_.
+    * The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests_>`_.
 
     **Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
     However, if there is a reason for having a different version as the default, please do so.
@@ -429,8 +429,6 @@ To finish your contribution, please include tests that check the integrity of yo
 
 3. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
    custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
-   If your loader has a custom download function, add tests similar to
-   `this mirdata loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
 
 4. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make sure everything is working.
 
@@ -879,7 +877,7 @@ in addition to giving users the ability to use file streams instead of paths in
 case the data is in a remote location e.g. GCS. The decorators modify the function
 to:
 
-- Return `None` if `None` if passed in.
+- Return `None` if `None` is passed in.
 - Open a file if a string path is passed in either `'w'` mode for `string_io` or `wb` for `bytes_io` and
   pass the file handle to the decorated function.
 - Pass the file handle to the decorated function if a file-like object is passed.
