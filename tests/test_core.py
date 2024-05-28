@@ -193,6 +193,8 @@ def test_list_versions():
         soundata.list_dataset_versions("urbansound8k")
         == "Available versions for urbansound8k: ['1.0']. Default version: 1.0"
     )
+    with pytest.raises(ValueError):
+        soundata.list_dataset_versions("asdf") 
 
 
 def test_dataset_versions():
