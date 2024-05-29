@@ -23,22 +23,16 @@ and the loader checklist for submitting your PR `here <https://github.com/sounda
 Installing soundata for development purposes
 ############################################
 
-To install ``soundata`` for development purposes:
+To install Soundata for development purposes:
 
-    - First run:
+    - First run: ``git clone https://github.com/soundata/soundata.git``
 
-    .. code-block:: console
+    - Then, after opening source data library you have to install all the dependencies:
 
-        git clone https://github.com/soundata/soundata.git
-
-    - Then, after opening source data library you have to install the dependencies for updating the documentation
-      and running tests:
-
-    .. code-block:: console
-
-        pip install .
-        pip install ."[tests]"
-        pip install ."[docs]"
+      - Install Core dependencies with ``pip install .``
+      - Install Testing dependencies with ``pip install ."[tests]"``
+      - Install Docs dependencies with ``pip install ."[docs]"``
+      - Install Plotting dependencies with ``pip install ."[plots]"``
 
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
