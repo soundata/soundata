@@ -426,6 +426,12 @@ To finish your contribution, please include tests that check the integrity of yo
 
 4. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make sure everything is working.
 
+    .. warning::
+        The ``test_full_dataset`` won't pass unless you add the checksum of the main index in the ``INDEXES`` variable.
+        The checksum is automatically computed when uploading the index to Zenodo, but at this point, you can compute the checksum using the function ``soundata.validate.md5()``,
+        passing the path to the index file as an argument.
+        The checksum should be added to the ``INDEXES`` variable, specifically as argument ``checksum`` in the ``core.Index`` object of the main index.
+
 
 .. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions,
            as well as some basic edge cases of the ``Clip`` class, so you don't need to write tests for these!
