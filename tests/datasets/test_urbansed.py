@@ -12,7 +12,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/urbansed")
 
 def test_clip():
     default_clipid = "soundscape_train_uniform1736"
-    dataset = urbansed.Dataset(TEST_DATA_HOME)
+    dataset = urbansed.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -41,7 +41,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = urbansed.Dataset(TEST_DATA_HOME)
+    dataset = urbansed.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("soundscape_train_uniform1736")
     audio_path = clip.audio_path
     audio, sr = urbansed.load_audio(audio_path)
@@ -54,7 +54,7 @@ def test_load_audio():
 def test_to_jams():
     # Note: original file is 4 sec, but for testing we've trimmed it to 1 sec
     default_clipid = "soundscape_train_uniform1736"
-    dataset = urbansed.Dataset(TEST_DATA_HOME)
+    dataset = urbansed.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

@@ -69,6 +69,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="eigenscape_index_2.0.json",
+        url="https://zenodo.org/records/11176800/files/eigenscape_index_2.0.json?download=1",
+        checksum="3ea0322ee5e5174a1e265155c9de9be1",
+    ),
+    "sample": core.Index(filename="eigenscape_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "Beach": download_utils.RemoteFileMetadata(
         filename="Beach.zip",
@@ -238,12 +249,14 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 class Dataset(core.Dataset):
     """The EigenScape dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="eigenscape",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

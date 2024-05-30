@@ -60,6 +60,18 @@ BIBTEX = """
   year={2014},
   publisher={Audio Engineering Society}}
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="freefield1010_index_1.0.json",
+        url="https://zenodo.org/records/11176811/files/freefield1010_index_1.0.json?download=1",
+        checksum="0aed8eebb8fb66da1a8437729dfa0f05",
+    ),
+    "sample": core.Index(filename="freefield1010_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
         filename="ff1010bird_wav.zip",
@@ -175,12 +187,14 @@ class Dataset(core.Dataset):
     The freefield1010 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="freefield1010",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

@@ -11,7 +11,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tut2017se")
 
 def test_clip():
     default_clipid = "a001"
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -47,7 +47,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("a001")
     audio_path = clip.audio_path
     audio, sr = tut2017se.load_audio(audio_path)
@@ -58,7 +58,7 @@ def test_load_audio():
 
 
 def test_load_events():
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("a001")
     annotations_path = clip.annotations_path
     annotations = tut2017se.load_events(annotations_path)
@@ -75,7 +75,7 @@ def test_load_events():
 
 def test_to_jams():
     default_clipid = "a001"
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

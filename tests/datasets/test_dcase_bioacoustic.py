@@ -12,7 +12,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/dcase_bioacous
 
 def test_clip():
     default_clipid = "2015-09-04_08-04-59_unit03"
-    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME)
+    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -40,7 +40,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME)
+    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("2015-09-04_08-04-59_unit03")
     audio_path = clip.audio_path
     audio, sr = dcase_bioacoustic.load_audio(audio_path)
@@ -53,7 +53,7 @@ def test_load_audio():
 def test_to_jams():
     # Note: for testing we've trimmed the original file to 1 sec
     default_clipid = "2015-09-04_08-04-59_unit03"
-    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME)
+    dataset = dcase_bioacoustic.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

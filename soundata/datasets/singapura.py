@@ -127,6 +127,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0a",
+    "test": "sample",
+    "1.0a": core.Index(
+        filename="singapura_index_1.0a.json",
+        url="https://zenodo.org/records/11176844/files/singapura_index_1.0a.json?download=1",
+        checksum="404d2057835cc97ef4dcef1b78e1a946",
+    ),
+    "sample": core.Index(filename="singapura_index_1.0a_sample.json"),
+}
+
 meta_files = [
     ("metadata", "labelled_metadata_public.csv", "c5beb6374e55abfe7cd50f4f498c8376"),
     (
@@ -173,7 +184,10 @@ RemoteDictType = Dict[
     Union[List[download_utils.RemoteFileMetadata], download_utils.RemoteFileMetadata],
 ]
 
-REMOTES: RemoteDictType = {**audio_remotes, **meta_remotes}
+REMOTES: RemoteDictType = {
+    **audio_remotes,
+    **meta_remotes,
+}
 
 DOWNLOAD_INFO = """
 SINGA:PURA (SINGApore: Polyphonic URban Audio) v1.0a
@@ -342,12 +356,14 @@ class Dataset(core.Dataset):
     SINGA:PURA v1.0 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="singapura",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,

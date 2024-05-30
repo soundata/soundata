@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/warblrb10k")
 
 def test_clip():
     default_clipid = "759808e5-f824-401e-9058"
-    dataset = warblrb10k.Dataset(TEST_DATA_HOME)
+    dataset = warblrb10k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -33,7 +33,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = warblrb10k.Dataset(TEST_DATA_HOME)
+    dataset = warblrb10k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("759808e5-f824-401e-9058")
     audio_path = clip.audio_path
     audio, sr = warblrb10k.load_audio(audio_path)
@@ -46,7 +46,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "759808e5-f824-401e-9058"
-    dataset = warblrb10k.Dataset(TEST_DATA_HOME)
+    dataset = warblrb10k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
     # Validate warblrb10k jam schema

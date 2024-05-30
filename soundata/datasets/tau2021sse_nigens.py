@@ -92,6 +92,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.2.0",
+    "test": "sample",
+    "1.2.0": core.Index(
+        filename="tau2021sse_nigens_index_1.2.0.json",
+        url="https://zenodo.org/records/11176908/files/tau2021sse_nigens_index_1.2.0.json?download=1",
+        checksum="8a3a7348faded292dcdd5e3e072058f5",
+    ),
+    "sample": core.Index(filename="tau2021sse_nigens_index_1.2.0_sample.json"),
+}
+
 REMOTES = {
     "foa_dev": [
         download_utils.RemoteFileMetadata(
@@ -398,12 +409,14 @@ def load_spatialevents(fhandle: TextIO, dt=0.1) -> annotations.SpatialEvents:
 class Dataset(core.Dataset):
     """The TAU NIGENS SSE 2021 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2021sse_nigens",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -415,14 +428,9 @@ class Dataset(core.Dataset):
     @core.cached_property
     def _metadata(self):
         # parsing the data from the filenames due to lack of metadata file
-        json_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            "indexes/tau2021sse_nigens_index.json",
-        )
-
         metadata_index = {}
 
-        with open(json_path) as f:
+        with open(self.index_path) as f:
             taunigenssse2021_index = json.load(f)
             all_paths_filenames = list(taunigenssse2021_index["clips"].keys())
 

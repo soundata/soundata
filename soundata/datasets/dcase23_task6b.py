@@ -81,6 +81,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="dcase23_task6b_index_1.0.json",
+        url="https://zenodo.org/records/11176793/files/dcase23_task6b_index_1.0.json?download=1",
+        checksum="66def2c298050d30ad9661d3e824c6b0",
+    ),
+    "sample": core.Index(filename="dcase23_task6b_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "clotho_audio_development": download_utils.RemoteFileMetadata(
         filename="clotho_audio_development.7z",
@@ -281,12 +292,14 @@ class Dataset(core.Dataset):
     The DCASE'23 Task 6B dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase23_task6b",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

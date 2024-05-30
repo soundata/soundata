@@ -11,7 +11,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/eigenscape_raw
 
 def test_clip():
     default_clipid = "Beach-01-Raw"
-    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME)
+    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -37,7 +37,7 @@ def test_clip():
 
 def test_load_audio():
     default_clipid = "Beach-01-Raw"
-    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME)
+    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
     audio, sr = eigenscape_raw.load_audio(audio_path)
@@ -51,7 +51,7 @@ def test_load_audio():
 def test_load_tags():
     # dataset
     default_clipid = "Beach-01-Raw"
-    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME)
+    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     assert len(clip.tags.labels) == 1
     assert clip.tags.labels[0] == "Beach"
@@ -61,7 +61,7 @@ def test_load_tags():
 def test_load_metadata():
     # dataset
     default_clipid = "Beach-01-Raw"
-    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME)
+    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     assert clip.location == "Bridlington Beach"
     assert clip.time == "10:42"
@@ -71,7 +71,7 @@ def test_load_metadata():
 
 def test_to_jams():
     default_clipid = "Beach-01-Raw"
-    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME)
+    dataset = eigenscape_raw.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 

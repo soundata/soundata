@@ -34,7 +34,26 @@ BIBTEX = """
   year = "1986"
 }
 """
-
+# -- INDEXES specifies different versions of a dataset
+# -- "default" and "test" specify which key should be used by default, and when running tests
+# -- Each index is defined by {"version": core.Index instance}
+# -- | filename: index name
+# -- | url: Zenodo direct download link of the index (will be available afer the index upload is
+# -- accepted to Audio Data Loaders Zenodo community).
+# -- | checksum: Checksum of the index hosted at Zenodo.
+# -- Direct url for download and checksum can be found in the Zenodo entry of the dataset.
+# -- Sample index is a mini-version that makes it easier to test a large datasets.
+# -- There must be a local sample index for testing for each remote index.
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="urbansound8k_index_1.0.json",
+        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+        checksum="1c4940e08c1305c49b592f3d9c103e6f",
+    ),
+    "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+}
 # -- REMOTES is a dictionary containing all files that need to be downloaded.
 # -- The keys should be descriptive (e.g. 'annotations', 'audio').
 # -- When having data that can be partially downloaded, remember to set up
@@ -169,12 +188,14 @@ def load_annotation(fhandle):
 class Dataset(core.Dataset):
     """The Example dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name='dataset_name',
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,

@@ -110,6 +110,18 @@ BIBTEX = """
   url          = {https://doi.org/10.5281/zenodo.6482837}
 }
 """
+
+INDEXES = {
+    "default": "3.0",
+    "test": "sample",
+    "3.0": core.Index(
+        filename="dcase_bioacoustic_index_3.0.json",
+        url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
+        checksum="e4c4eca3f1b9224e178f283bd2835f8f",
+    ),
+    "sample": core.Index(filename="dcase_bioacoustic_index_3.0_sample.json"),
+}
+
 REMOTES = {
     "dev": download_utils.RemoteFileMetadata(
         filename="Development_Set.zip",
@@ -359,12 +371,14 @@ def load_events_classes(fhandle: TextIO) -> list:
 class Dataset(core.Dataset):
     """The DCASE bioacoustic dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase_bioacoustic",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

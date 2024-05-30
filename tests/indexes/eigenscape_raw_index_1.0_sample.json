@@ -1,0 +1,11 @@
+{
+  "version": "sample",
+  "clips": {
+    "Beach-01-Raw": {
+      "audio": [
+        "Beach-01-Raw.wav",
+        "5612673e79f8d586ba47d43dc902d5da"
+      ]
+    }
+  }
+}

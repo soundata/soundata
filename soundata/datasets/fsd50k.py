@@ -212,6 +212,16 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="fsd50k_index_1.0.json",
+        url="https://zenodo.org/records/11176815/files/fsd50k_index_1.0.json?download=1",
+        checksum="3317c25426cb3f539eea2b94651c14ba",
+    ),
+    "sample": core.Index(filename="fsd50k_index_1.0_sample.json"),
+}
 # a dictionary key that has a list of RemoteFileMetadata implies a multi-part zip
 # and will be processed as such using the zip subprocess (see soundata.download_utils)
 REMOTES = {
@@ -507,12 +517,14 @@ def load_fsd50k_vocabulary(data_path):
 class Dataset(core.Dataset):
     """The FSD50K dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="fsd50k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

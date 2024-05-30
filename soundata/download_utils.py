@@ -43,6 +43,7 @@ class RemoteFileMetadata(object):
 def downloader(
     save_dir,
     remotes=None,
+    index=None,
     partial_download=None,
     info_message=None,
     force_overwrite=False,
@@ -57,9 +58,12 @@ def downloader(
             A dictionary of RemoteFileMetadata tuples of data in zip format.
             If an element of the dictionary is a list of RemoteFileMetadata, it is handled as a multipart zip file
             If None, there is no data to download
+        index (core.Index):
+            A soundata Index class, which contains a remote index to be downloaded
+            or a subset of remotes to download by default.
         partial_download (list or None):
             A list of keys to partially download the remote objects of the download dict.
-            If None, all data is downloaded
+            If None, all data specified by the index is downloaded
         info_message (str or None):
             A string of info to log when this function is called.
             If None, no string is logged.
@@ -71,11 +75,23 @@ def downloader(
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
+    if not index:
+        raise ValueError("Index must be specified.")
+
     if cleanup:
         logging.warning(
             "Zip and tar files will be deleted after they are uncompressed. "
             + "If you download this dataset again, it will overwrite existing files, even if force_overwrite=False"
         )
+
+    if index.remote:
+        if remotes is None:
+            remotes = {}
+        remotes["index"] = index.remote
+
+    # if partial download is specified, use it. Otherwise, use the
+    # partial download specified by the index.
+    partial_download = partial_download if partial_download else index.partial_download
 
     if remotes is not None:
         if partial_download is not None:
@@ -92,7 +108,20 @@ def downloader(
         else:
             objs_to_download = list(remotes.keys())
 
-        logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
+        if "index" in objs_to_download and len(objs_to_download) > 1:
+            logging.info(
+                "Downloading {}. Index is being stored in {}, and the rest of files in {}".format(
+                    objs_to_download, index.indexes_dir, save_dir
+                )
+            )
+        elif "index" in objs_to_download and len(objs_to_download) == 1:
+            logging.info(
+                "Downloading {}. Index is being stored in {}".format(
+                    objs_to_download, index.indexes_dir
+                )
+            )
+        else:
+            logging.info("Downloading {} to {}".format(objs_to_download, save_dir))
 
         for k in objs_to_download:
             if isinstance(remotes[k], list):

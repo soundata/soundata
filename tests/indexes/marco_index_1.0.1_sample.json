@@ -1,0 +1,11 @@
+{
+  "version": "sample",
+  "clips": {
+    "impulse_response/+90deg_011_OCT3D_2_FR": {
+      "audio": [
+        "3D-MARCo Impulse Responses/01_Speaker_+90deg_3m/+90deg_011_OCT3D_2_FR.wav",
+        "685a974d1400a93a8c2618e3ba8b0592"
+      ]
+    }
+  }
+}

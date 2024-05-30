@@ -14,7 +14,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/fsd50k")
 
 def test_clip():
     default_clipid = "64760"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     expected_attributes = {
         "audio_path": os.path.join(
@@ -38,7 +38,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("64760")
     audio_path = clip.audio_path
     audio, sr = fsd50k.load_audio(audio_path)
@@ -50,7 +50,7 @@ def test_load_audio():
 
 def test_to_jams():
     default_clipid = "64760"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     jam = clip.to_jams()
 
@@ -99,7 +99,7 @@ def test_to_jams():
 def test_labels():
     # For multiple tags
     default_clipid = "64760"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     tags = clip.tags
     assert tags.labels == [
@@ -117,7 +117,7 @@ def test_labels():
 
     # For a single tag
     default_clipid = "21914"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     tags = clip.tags
     assert tags.labels == ["Crushing"]
@@ -127,7 +127,7 @@ def test_labels():
 def test_dev_metadata():
     # Testing metadata from a training clip
     default_clipid = "64760"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()
 
@@ -161,14 +161,14 @@ def test_dev_metadata():
 
     # Testing metadata from an evaluation clip
     default_clipid = "21914"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()
     clip_ground_truth = clip_metadata[default_clipid]["ground_truth"]
     assert clip_ground_truth["split"] == "validation"
 
     default_clipid = "99"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()
 
@@ -221,7 +221,7 @@ def test_dev_metadata():
 
 
 def test_load_vocabulary():
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
 
     # Testing load vocabulary function
     fsd50k_to_audioset, audioset_to_fsd50k = dataset.load_fsd50k_vocabulary(
@@ -248,7 +248,7 @@ def test_load_vocabulary():
 
 
 def test_label_info():
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
 
     # Testing label info property
     label_info = dataset.label_info
@@ -267,7 +267,7 @@ def test_label_info():
 
 
 def test_vocabularies():
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
 
     # Testing load vocabulary function
     fsd50k_to_audioset, audioset_to_fsd50k = dataset.load_fsd50k_vocabulary(
@@ -294,7 +294,7 @@ def test_vocabularies():
 
 
 def test_collection_vocabulary():
-    dataset = fsd50k.Dataset(TEST_DATA_HOME)
+    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
 
     # Testing collection vocabularies
     collection_fsd50k_to_audioset = dataset.collection_fsd50k_to_audioset

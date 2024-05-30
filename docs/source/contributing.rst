@@ -23,22 +23,16 @@ and the loader checklist for submitting your PR `here <https://github.com/sounda
 Installing soundata for development purposes
 ############################################
 
-To install ``soundata`` for development purposes:
+To install Soundata for development purposes:
 
-    - First run:
+    - First, run ``git clone https://github.com/soundata/soundata.git``
 
-    .. code-block:: console
+    - Then, after opening source data library you have to install all the dependencies:
 
-        git clone https://github.com/soundata/soundata.git
-
-    - Then, after opening source data library you have to install the dependencies for updating the documentation
-      and running tests:
-
-    .. code-block:: console
-
-        pip install .
-        pip install ."[tests]"
-        pip install ."[docs]"
+      - Install Core dependencies with ``pip install .``
+      - Install Testing dependencies with ``pip install ."[tests]"``
+      - Install Docs dependencies with ``pip install ."[docs]"``
+      - Install Plotting dependencies with ``pip install ."[plots]"``
 
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
@@ -85,6 +79,8 @@ The steps to add a new dataset loader to ``soundata`` are:
 2. `Create a module <create_module_>`_
 3. `Add tests <add_tests_>`_
 4. `Submit your loader <submit_loader_>`_
+5. `Upload index to Zenodo <upload_index_>`_
+6. `Create a Pull Request on GitHub <create_pr_>`_
 
 **Before starting**, if your dataset **is not fully downloadable** you should:
 
@@ -108,6 +104,7 @@ To create an index, the necessary steps are:
 
 1. Create a script in ``scripts/``, called ``make_<datasetname>_index.py``, which generates an index file.
 2. Then run the script on the canonical version of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
+3. When the dataloader is completed and the PR is accepted, upload the index in our `Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_. See more details `here <upload_index_>`_.
 
 The function ``make_<datasetname>_index.py`` should automate the generation of an index by computing the MD5 checksums for given files in a dataset located at data_path. 
 Users can adapt this function to create an index for their dataset by adding their file paths and using the md5 function to generate checksums for their files.
@@ -124,8 +121,8 @@ Here's an example of an index to use as a guide:
 
 More examples of scripts used to create dataset indexes can be found in the `scripts <https://github.com/soundata/soundata/tree/master/scripts>`_ folder.
 
-    .. note::
-        Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the Soundata maintainers the need for it.
+.. note::
+    Users should be able to create the dataset indexes without the need for additional dependencies that are not included in soundata by default. Should you need an additional dependency for a specific reason, please open an issue to discuss with the Soundata maintainers the need for it.
 
 Example index with clips
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,8 +132,8 @@ top-level key. Under this ``clips`` top-level key, you should store a dictionary
 the values are dictionaries of files associated with a clip id, along with their checksums. These files can be for instance audio files
 or annotations related to the clip id. File paths are relative to the top level directory of a dataset.
 
-    .. note::
-        If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
+.. note::
+    If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
 
 Currently, Soundata does not include built-in functions to automatically create train, test, and validation splits if these are not originally defined in the dataset. 
 Users can do that using  external functions such as ``sklearn.model_selection.train_test_split``.
@@ -212,8 +209,8 @@ See an example of how an index should look like:
         }
 
 
-    .. note::
-        In this example there is a (purposeful) mismatch between the name of the audio file ``clip2.wav`` and its corresponding annotation file, ``Clip2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
+.. note::
+    In this example there is a (purposeful) mismatch between the name of the audio file ``clip2.wav`` and its corresponding annotation file, ``Clip2.csv``, compared with the other pairs. This mismatch should be included in the index. This type of slight difference in filenames happens often in publicly available datasets, making pairing audio and annotation files more difficult. We use a fixed, version-controlled index to account for this kind of mismatch, rather than relying on string parsing on load.
 
 ..
     Example index with multiclips
@@ -282,7 +279,6 @@ See an example of how an index should look like:
     Note that in this examples we group ``audio_voice1`` and ``audio_voice2`` in a single clip because the annotation ``voice-f0`` annotation corresponds to their mixture. In contrast, the annotation ``voice-f0`` is extracted from the multiclip mix and it is stored in the ``multiclips`` group. The multiclip ``multiclip1`` has an additional clip ``multiclip1-mix.wav`` which may be the master clip, the final mix, the recording of ``multiclip1`` with another microphone.
 
 
-
 .. _create_module:
 
 2. Create a module
@@ -294,6 +290,8 @@ To quickstart a new module:
 1. Copy the example below and save it to ``soundata/datasets/<your_dataset_name>.py``
 2. Find & Replace ``Example`` with the <your_dataset_name>.
 3. Remove any lines beginning with `# --` which are there as guidelines. 
+
+You should follow the provided template as much as possible, and use the recommended functions and classes.
 
 .. admonition:: Example Module
     :class: dropdown
@@ -307,9 +305,75 @@ You may find these examples useful as references:
 * `A dataset which uses dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/esc50.py#L217>`_
 * `A dataset which does not use dataset-level metadata <https://github.com/soundata/soundata/blob/master/soundata/datasets/urbansed.py#L294>`_
 
-Please, do remember to include the variables ``BIBTEX``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
-You should follow the provided template as much as possible, and use the recommended functions and classes.
-An important example of that is ``download_utils.RemoteFileMetadata``. Please use this class to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses. Please do not use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+.. Providing index information in the loader
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Once the index is created, you should include it in the loader module. The index path should be indicated in the ``INDEXES`` variable in the loader module.
+.. The ``INDEXES`` variable is basically a dictionary indicating which index to load for each available version of a dataset.
+
+.. Let's visualize an example ``INDEXES`` for the ``urbansound8k`` loader:
+
+..     .. code-block:: javascript
+
+..         INDEXES = {
+..             "default": "1.0",
+..             "test": "sample",
+..             "1.0": core.Index(
+..                 filename="urbansound8k_index_1.0.json",
+..                 url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+..                 checksum="1c4940e08c1305c49b592f3d9c103e6f",
+..             ),
+..             "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+..         }
+
+.. In this example, the ``INDEXES`` variable is a dictionary with the following keys:
+
+.. * ``default``: The default version of the dataset to be loaded in case no version is explicitly given in the ``initialize()`` method.
+.. * ``test``: In the key ``test``, we store a sample version of the dataset to be used for testing purposes.
+.. * ``1.0``: An available version of the dataset through the dataloader.
+.. * ``sample``: A sample version of the dataset to be used for testing purposes. See `testing indications <add_tests>`_. for more detail.
+.. In a nutshell, this is a one-clip version of the dataset index which is used to test the methods and classes of the new dataloader,
+.. while keeping the size of the repository as low as possible.
+
+Declare constant variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Please, include the variables ``BIBTEX``, ``INDEXES``, ``REMOTES``, and ``LICENSE_INFO`` at the beginning of your module.
+While ``BIBTEX`` (including the bibtex-formatted citation of the dataset), ``INDEXES`` (indexes urls, checksums and versions),
+and ``LICENSE_INFO`` (including the license that protects the dataset in the dataloader) are mandatory, ``REMOTES`` is only defined if the dataset is openly downloadable.
+
+``INDEXES``
+    As seen in the example, we have two ways to define an index:
+    providing a URL to download the index file, or by providing the filename of the index file, assuming it is available locally (like sample indexes).
+
+    * The full indexes for each version of the dataset should be retrieved from our Zenodo community. See more details `here <upload_index_>`_.
+    * The sample indexes should be locally stored in the ``tests/indexes/`` folder, and directly accessed through filename. See more details `here <add_tests_>`_.
+
+    **Important:** We do recommend to set the highest version of the dataset as the default version in the ``INDEXES`` variable.
+    However, if there is a reason for having a different version as the default, please do so.
+
+``REMOTES``
+    Should be a list of ``RemoteFileMetadata`` objects, which are used to download the dataset files. See an example below:
+
+    .. code-block:: javascript
+
+        REMOTES = {
+            "all": download_utils.RemoteFileMetadata(
+                filename="UrbanSound8K.tar.gz",
+                url="https://zenodo.org/record/1203745/files/UrbanSound8K.tar.gz?download=1",
+                checksum="9aa69802bbf37fb986f71ec1483a196e",
+                unpack_directories=["UrbanSound8K"],
+            ),
+        }
+
+    Add more ``RemoteFileMetadata`` objects to the ``REMOTES`` dictionary if the dataset is split into multiple files.
+    Please use ``download_utils.RemoteFileMetadata`` to parse the dataset from an online repository, which takes cares of the download process and the checksum validation, and addresses corner carses.
+    Please do NOT use specific functions like ``download_zip_file`` or ``download_and_extract`` individually in your loader.
+
+.. note::
+    Direct url for download and checksum can be found in the Zenodo entries of the dataset and index. Bear in mind that the url and checksum for the index will be available once a maintainer of the Audio Data Loaders Zenodo community has accepted the index upload.
+    For other repositories, you may need to generate the checksum yourself.
+    You may use the function provided in ``soundata.validate.py``.
+
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
@@ -350,12 +414,23 @@ To finish your contribution, please include tests that check the integrity of yo
     * For each audio/annotation file, reduce the audio length to 1-2 seconds and remove all but a few of the annotations.
     * If the dataset has a metadata file, reduce the length to a few lines.
 
-2. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
+2. Create a toy index corresponding to the one-clip toy dataset in the tests folder ``tests/indexes/``. Some further detail:
+
+    * The index should include only the clips you need for the toy dataset for testing.
+    * The index should be named ``<dataset-id>_index_<dataset-version>_sample.json``. The version in the JSON file should also be ``sample``.
+    * Include this index in the ``INDEXES`` variable in your dataloader module.
+    * Then, when testing your dataset, initialize it passing ``version='test'`` in the ``.initialize()`` method.
+
+3. Test all of the dataset specific code, e.g. the public attributes of the Clip class, the load functions and any other
    custom functions you wrote. See the `tests folder <https://github.com/soundata/soundata/tree/master/tests>`_ for reference.
-   If your loader has a custom download function, add tests similar to
-   `this mirdata loader <https://github.com/soundata/soundata/blob/master/tests/test_groove_midi.py#L96>`_.
-3. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make 
-   sure everything is working.
+
+4. Locally run ``pytest -s tests/test_full_dataset.py --local --dataset my_dataset`` before submitting your loader to make sure everything is working.
+
+    .. warning::
+        The ``test_full_dataset`` won't pass unless you add the checksum of the main index in the ``INDEXES`` variable.
+        The checksum is automatically computed when uploading the index to Zenodo, but at this point, you can compute the checksum using the function ``soundata.validate.md5()``,
+        passing the path to the index file as an argument.
+        The checksum should be added to the ``INDEXES`` variable, specifically as argument ``checksum`` in the ``core.Index`` object of the main index.
 
 
 .. note::  We have written automated tests for all loader's ``cite``, ``download``, ``validate``, ``load``, ``clip_ids`` functions,
@@ -412,13 +487,14 @@ Finally, there is one local test you should run, which we can't easily run in ou
 
 
 Where ``dataset`` is the name of the module of the dataset you added. The ``-s`` tells pytest not to skip print 
-statments, which is useful here for seeing the download progress bar when testing the download function.
+statements, which is useful here for seeing the download progress bar when testing the download function.
 
 This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
 for some datasets, but it's important to ensure the integrity of the library.
 
 The ``--skip-download`` flag can be added to ``pytest`` command to run the tests skipping the download.
 This will skip the downloading step. Note that this is just for convenience during debugging - the tests should eventually all pass without this flag.
+
 
 .. _working_big_datasets:
 
@@ -427,26 +503,6 @@ Working with big datasets
 
 In the development of large datasets, it is advisable to create an index as small as possible to optimize the implementation process
 of the dataset loader and pass the tests.
-
-
-Working with remote indexes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For the end-user there is no difference between the remote and local indexes. However, indexes can get large when there are a lot of clips
-in the dataset. In these cases, storing and accessing an index remotely can be convenient. Large indexes can be added to REMOTES, 
-and will be downloaded with the rest of the dataset. For example:
-
-.. code-block:: python
-
-    "index": download_utils.RemoteFileMetadata(
-        filename="remote_index.json.zip",
-        url="https://zenodo.org/record/.../remote_index.json.zip?download=1",
-        checksum="810f1c003f53cbe58002ba96e6d4d138",
-    )
-
-
-Unlike local indexes, the remote indexes will live in the ``data_home`` directory. When creating the ``Dataset``
-object, specify the ``custom_index_path`` to where the index will be downloaded (as a relative path to ``data_home``).
 
 
 .. _reducing_test_space:
@@ -496,10 +552,40 @@ An example of this for the ``UrbanSound8k`` dataset:
 
 You can find license badges images and links `here <https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba>`_.
 
-Pull Request template
-^^^^^^^^^^^^^^^^^^^^^
+.. _upload_index:
 
-When starting your PR please use the `new_loader.md template <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
+5. Uploading the index to Zenodo
+--------------------------------
+
+We store all dataset indexes in an online repository on Zenodo.
+To use a dataloader, users may retrieve the index running the ``dataset.download()`` function that is also used to download the dataset.
+To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
+
+From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
+All JSON files in ``soundata/indexes/`` are included in the .gitignore file, 
+therefore there is no need to remove it when pushing to the remote branch during development, since it will be ignored by git.
+
+**Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
+
+* First, click on ``New upload``. 
+* Add your index in the ``Upload files`` section.
+* Let Zenodo create a DOI for your index, so click *No*.
+* Resource type is *Other*.
+* Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
+* Add yourself as the Creator of this entry.
+* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
+* Visibility should be set as *Public*.
+
+.. note::
+    *<dataset-id>* is the identifier we use to initialize the dataset using ``soundata.initialize()``. It's also the filename of your dataset module.
+
+
+.. _create_pr:
+
+6. Create a Pull Request
+------------------------
+
+Please, create a Pull Request with all your development. When starting your PR please use the `new_loader.md template <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`_,
 it will simplify the reviewing process and also help you make a complete PR. You can do that by adding
 ``&template=new_loader.md`` at the end of the url when you are creating the PR :
 
@@ -656,8 +742,6 @@ These will indicate formatting, listing, and indentation problems that may be pr
 See the examples aboove and also the docstrings of ``docs/source/contributing_examples/example.py`` to see a list of examples of how to write the docstrings to prevent Sphinx errors and warning messages.
 
 
-
-
 Conventions
 ###########
 
@@ -793,7 +877,7 @@ in addition to giving users the ability to use file streams instead of paths in
 case the data is in a remote location e.g. GCS. The decorators modify the function
 to:
 
-- Return `None` if `None` if passed in.
+- Return `None` if `None` is passed in.
 - Open a file if a string path is passed in either `'w'` mode for `string_io` or `wb` for `bytes_io` and
   pass the file handle to the decorated function.
 - Pass the file handle to the decorated function if a file-like object is passed.

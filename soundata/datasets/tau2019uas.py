@@ -240,6 +240,18 @@ BIBTEX = """
     Title = {A multi-device dataset for urban acoustic scene classification},
     Year = {2018}}
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="tau2019uas_index_1.0.json",
+        url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
+        checksum="b1d7af813507b4943540397c519c7a0b",
+    ),
+    "sample": core.Index(filename="tau2019uas_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.1.zip",
@@ -586,12 +598,14 @@ class Dataset(core.Dataset):
     The  TAU Urban Acoustic Scenes 2019 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2019uas",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
