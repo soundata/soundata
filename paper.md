@@ -24,10 +24,13 @@ authors:
     orcid: 0000-0002-2563-075X
     affiliation: 3
   - name: Xavier Serra
+    orcid: 0000-0003-1395-2345
     affiliation: 2
   - name: Juan Pablo Bello
+    orcid: 0000-0001-8561-5204
     affiliation: 1
   - name: Justin Salamon
+    orcid: 0000-0001-6345-4593
     affiliation: 4     
 affiliations:
  - name: New York University, New York, United States
