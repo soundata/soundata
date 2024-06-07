@@ -19,6 +19,7 @@ authors:
     orcid: 0000-0003-2827-8955
     affiliation: 2
   - name: Tanmay Khandelwal
+    orcid: 0009-0004-3770-8317
     affiliation: 1
   - name: Marius Miron
     orcid: 0000-0002-2563-075X
