@@ -323,7 +323,6 @@ def test_dataset_errors():
     #     d._clipgroup("a")
 
 
-
 def test_clipgroup():
     index_clips = {
         "clips": {
