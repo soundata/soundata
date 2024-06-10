@@ -1,5 +1,6 @@
 import pytest
 import os
+import sys
 import numpy as np
 
 import soundata
@@ -320,6 +321,17 @@ def test_dataset_errors():
     # d = soundata.initialize("dataset_with_clip_group")
     # with pytest.raises(ValueError):
     #     d._clipgroup("a")
+
+
+def test_import_failure():
+    # Simulate missing module by temporarily removing it from sys.modules
+    with patch.dict("sys.modules", soundata=None):
+        with pytest.raises(expected_exception=SystemExit):
+            d = soundata.initialize("urbansound8k")
+            d.explore_dataset()
+
+    # Restore original sys.modules (optional, but good practice)
+    del sys.modules["soundata"]
 
 
 def test_clipgroup():
