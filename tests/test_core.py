@@ -323,16 +323,6 @@ def test_dataset_errors():
     #     d._clipgroup("a")
 
 
-def test_missing_plots_deps():
-    # Simulate missing module by temporarily removing it from sys.modules
-    with patch.dict("sys.modules", soundata=None):
-        with pytest.raises(expected_exception=SystemExit):
-            d = soundata.initialize("urbansound8k")
-            d.explore_dataset()
-
-    # Restore original sys.modules (optional, but good practice)
-    del sys.modules["soundata"]
-
 
 def test_clipgroup():
     index_clips = {

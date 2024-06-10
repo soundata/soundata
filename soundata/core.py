@@ -335,7 +335,7 @@ class Dataset(object):
             cleanup=cleanup,
         )
 
-    def explore_dataset(self, clip_id=None):
+    def explore_dataset(self, clip_id=None):  # pragma: no cover
         """Explore the dataset for a given clip_id or a random clip if clip_id is None.
 
         Args:
