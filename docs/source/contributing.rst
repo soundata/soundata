@@ -78,7 +78,7 @@ The steps to add a new dataset loader to ``soundata`` are:
 1. `Create an index <create_index_>`_
 2. `Create a module <create_module_>`_
 3. `Add tests <add_tests_>`_
-4. `Submit your loader <submit_loader_>`_
+4. `Update Soundata documentation <update_docs_>`_
 5. `Upload index to Zenodo <upload_index_>`_
 6. `Create a Pull Request on GitHub <create_pr_>`_
 
@@ -374,6 +374,8 @@ and ``LICENSE_INFO`` (including the license that protects the dataset in the dat
     For other repositories, you may need to generate the checksum yourself.
     You may use the function provided in ``soundata.validate.py``.
 
+Document your loader
+^^^^^^^^^^^^^^^^^^^^
 
 Make sure to include, in the docstring of the dataloader, information about the following list of relevant aspects about the dataset you are integrating:
 
@@ -515,12 +517,12 @@ kindly ask the contributors to **reduce the size of the testing data** if possib
 csv files).
 
 
-.. _submit_loader:
+.. _update_docs:
 
-4. Submit your loader
----------------------
+4. Update Soundata documentation
+--------------------------------
 
-Before you submit your loader make sure to:
+Make sure to include your module info in the following files:
 
 1. Add your module to ``docs/source/soundata.rst`` following an alphabetical order.
 2. Add your module to ``docs/source/table.rst`` following an alphabetical order as follows:
