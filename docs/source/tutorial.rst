@@ -474,7 +474,10 @@ If you want to use the plot functionalities used in ``display_plot_utils.py`` yo
 
     .. code-block:: console
 
-        pip install soundata[plots]
+        pip install soundata"[plots]"
+
+If you try to load the visualizations without the optional dependencies, you will be thrown an exception indicating that the dependencies are missing.
+Please do install the optional dependencies using the command above in order to use the visualization functionalities.
 
 .. note::
         If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>`__ guide and check the dependencies.

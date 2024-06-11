@@ -3,13 +3,14 @@
 
 import json
 import os
+import sys
 import random
 import types
 from typing import Any, List, Optional
 
 import numpy as np
 
-from soundata import display_plot_utils, download_utils
+from soundata import download_utils
 from soundata import validate
 
 MAX_STR_LEN = 100
@@ -334,7 +335,7 @@ class Dataset(object):
             cleanup=cleanup,
         )
 
-    def explore_dataset(self, clip_id=None):
+    def explore_dataset(self, clip_id=None):  # pragma: no cover
         """Explore the dataset for a given clip_id or a random clip if clip_id is None.
 
         Args:
@@ -342,7 +343,14 @@ class Dataset(object):
                 The identifier of the clip to explore. If None, a random clip will be chosen.
 
         """
-        display_plot_utils.perform_dataset_exploration(self, clip_id)
+        try:
+            from soundata import display_plot_utils
+
+            display_plot_utils.perform_dataset_exploration(self, clip_id)
+        except ModuleNotFoundError:
+            sys.exit(
+                """Dependencies for display utils not found. Did you install plotting optional dependencies? Please run pip install soundata"[plots]" """
+            )
 
     @cached_property
     def clip_ids(self):
