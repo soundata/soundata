@@ -66,7 +66,7 @@ There are other libraries that handle datasets like `Tensorflow` [@tensorflow] o
 
 - **Easy to contribute to:** Users do not need to go through all the source code to contribute. `Soundata` provides extensive documentation explaining how to contribute a new loader.
 
-- **Increase reproducibility:** Provides a common framework for researchers to compare and validate their data. It also allows researchers to easily propagate dataset updates or fixes to the audio community, ensuring that methods are still comparable and researchers have the same up-to-date dataset versions. On that note, `Soundata` is designed to handle multiple versions of the same dataset, allowing transparent access to all versions of the dataset.
+- **Increase reproducibility:** Provides a common framework for users to compare and validate their data. It also allows them to easily propagate dataset updates or fixes to the audio community, ensuring that methods are still comparable and users have the same up-to-date dataset versions. On that note, `Soundata` is designed to handle multiple versions of the same dataset, allowing transparent access to all versions of the dataset.
 
 - **Standardize usage of sound datasets:** Standardizes common attributes of sound datasets such as audio or tags to simplify audio research pipelines, while preserving the idiosyncrasies of each dataset (e.g., if a dataset has ‘non-standard’ attributes, we include them as well).
 
