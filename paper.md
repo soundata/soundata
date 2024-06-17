@@ -78,7 +78,7 @@ There are other libraries that handle datasets like `Tensorflow` [@tensorflow] o
 
 # Annotation Types
 
-Annotation types in `Soundata` (see \autoref{fig:annotations}) ensure compatibility with existing evaluation libraries from the DCASE community such as `sed_eval`, and are convertible to the `JAMS` format. These annotation types allow `Soundata` to support a wide range of audio research tasks, as shown in \autoref{fig:tasks}. It currently includes three annotation types :
+Annotation types in `Soundata` (see \autoref{fig:annotations}) ensure compatibility with existing evaluation libraries from the DCASE community such as `sed_eval`, and are convertible to the `JAMS` format. These annotation types allow `Soundata` to support a wide range of audio research tasks, as shown in \autoref{fig:tasks}. It currently includes three annotation types:
 
 - **Tags**: String labels with associated confidence values, spanning the full duration of the audio clip.
 - **Events**: These annotations are for sound events with defined start times, end times, labels, and (optionally) confidence values. 
