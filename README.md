@@ -2,6 +2,8 @@
 
 <img src="docs/img/soundata.png" height="100px">
 
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.06634/status.svg)](https://doi.org/10.21105/joss.06634)
+
 Python library for downloading, loading & working with sound datasets. Check the [API documentation](https://soundata.readthedocs.io/) and the [contributing instructions](https://soundata.readthedocs.io/en/latest/source/contributing.html). <br/>
 For Music Information Retrieval (MIR) datasets please check [mirdata](https://github.com/mir-dataset-loaders/mirdata). 
 
@@ -56,10 +58,6 @@ We welcome and encourage contributions to this library, especially new dataset l
 
 ### Citing
 
+Please, refer to [CITATION.cff](./CITATION.cff). Read more about CITATION files [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files#about-citation-files).
 
-```
-TBA
-```
-
-
-When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
+When working with datasets, please also cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
