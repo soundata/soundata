@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = "Python library for loading and working with sound datasets."
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 authors = [
     {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
     {name = "Genís Plaja-Roglans"},
@@ -32,10 +32,10 @@ classifiers=[
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
     "Topic :: Multimedia :: Sound/Audio :: Analysis",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
     "librosa>=0.10.0",
