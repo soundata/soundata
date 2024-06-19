@@ -22,11 +22,6 @@ jobs:
             matrix:
                 include:
                     - os: ubuntu-latest
-                      python-version: "3.7"
-                      envfile: ".github/environment-ci.yml"
-                      channel-priority: "strict"
-
-                    - os: ubuntu-latest
                       python-version: "3.8"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
@@ -41,13 +36,18 @@ jobs:
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: ubuntu-latest
+                      python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: macos-latest
-                      python-version: "3.10"
+                      python-version: "3.11"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
                     - os: windows-latest
-                      python-version: "3.10"
+                      python-version: "3.11"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
