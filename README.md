@@ -65,7 +65,9 @@ The Soundata Zenodo repository is the preferred source for downloading the softw
 
 ### Citing
 
-If you use Soundata please cite the JOSS article **AND** indicate the version used with the corresponding DOI of the version release in Zenodo (`10.5281/zenodo.11580085` for v1.0.1, for example).
+If you use Soundata in your pipeline, please cite the version used with the corresponding DOI of the version release in Zenodo (`10.5281/zenodo.11580085` for v1.0.1, for example).
+
+To cite Soundata as related work in your article, please cite the JOSS article:
 
 ```bibtex
 @article{Fuentes2024,
