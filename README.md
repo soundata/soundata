@@ -2,8 +2,6 @@
 
 <img src="docs/img/soundata.png" height="100px">
 
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.06634/status.svg)](https://doi.org/10.21105/joss.06634)
-
 Python library for downloading, loading & working with sound datasets. Check the [API documentation](https://soundata.readthedocs.io/) and the [contributing instructions](https://soundata.readthedocs.io/en/latest/source/contributing.html). <br/>
 For Music Information Retrieval (MIR) datasets please check [mirdata](https://github.com/mir-dataset-loaders/mirdata). 
 
@@ -65,9 +63,14 @@ The Soundata Zenodo repository is the preferred source for downloading the softw
 
 ### Citing
 
-If you use Soundata in your pipeline, please cite the version used with the corresponding DOI of the version release in Zenodo (`10.5281/zenodo.11580085` for v1.0.1, for example).
+If you use Soundata in your pipeline, please cite the version used with the corresponding DOI of the version release in Zenodo. For Soundata v1.0.1.:
 
-To cite Soundata as related work in your article, please cite the JOSS article:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11580085.svg)](https://doi.org/10.5281/zenodo.11580085) 
+
+
+If you refer to mirdata's design principles, motivation etc., please cite the JOSS article:
+
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.06634/status.svg)](https://doi.org/10.21105/joss.06634)
 
 ```bibtex
 @article{Fuentes2024,
@@ -84,4 +87,4 @@ To cite Soundata as related work in your article, please cite the JOSS article:
 }
 ```
 
-When working with datasets, please include the reference of the dataset, which can be found in the respective dataset loader using `dataset.cite()`. 
+When working with datasets, please include the reference of the dataset, which can be found in the respective dataset loader using `cite()`. 
