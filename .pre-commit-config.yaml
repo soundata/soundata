@@ -12,7 +12,6 @@ repos:
     hooks:
       - id: black
         types: [python]
-        args: ["--check", "--diff"]
 
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.10.0
