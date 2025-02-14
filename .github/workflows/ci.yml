@@ -76,7 +76,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry config virtualenvs.in-project true
-          poetry install --with=tests,plots
+          poetry install --with=tests,plots,docs
 
       - name: Run pytest
         shell: bash -l {0}
