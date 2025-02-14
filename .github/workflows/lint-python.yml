@@ -50,7 +50,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry config virtualenvs.in-project true
-          poetry install --with=linting
+          poetry install --only=linting
 
       - name: (flake8) Style check
         shell: bash -l {0}
