@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0  # Last compatible version with pre-commit v2.20.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -14,6 +14,6 @@ repos:
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.10.0
+    rev: v1.12.1
     hooks:
       - id: blacken-docs

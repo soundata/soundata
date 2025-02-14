@@ -18,8 +18,6 @@ If you're familiar with Soundata's API already, you can find the template files 
 and the loader checklist for submitting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`__.
 
 
-
-
 Installing soundata for development purposes
 ############################################
 
@@ -27,18 +25,19 @@ To install Soundata for development purposes:
 
     - First, run ``git clone https://github.com/soundata/soundata.git``
 
-    - Then, after opening source data library you have to install all the dependencies:
+    - Install Poetry by following the instructions at `https://python-poetry.org/docs/#installation`.
 
-      - Install Core dependencies with ``pip install .``
-      - Install Testing dependencies with ``pip install ."[tests]"``
-      - Install Docs dependencies with ``pip install ."[docs]"``
-      - Install Plotting dependencies with ``pip install ."[plots]"``
+    - Then, after opening the source data library, you have to install all the dependencies:
 
+      - Install Core dependencies with ``poetry install``
+      - Install Testing dependencies with ``poetry install --with tests``
+      - Install Docs dependencies with ``poetry install --with docs``
+      - Install Plotting dependencies with ``poetry install --with plots``
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
 `pyenv <https://github.com/pyenv/pyenv#installation>`__ to manage your Python versions
 and install all ``soundata`` requirements. You will want to install the latest supported Python versions (see README.md).
-Once ``conda`` or ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you've installed all the 
+Once ``conda`` or ``pyenv`` and the Python versions are configured, install ``pytest``. Make sure you've installed all the
 necessary pytest plugins needed (e.g. `pytest-cov`) to automatically test your code successfully.
 
 Before running the tests, make sure to have formatted ``soundata/`` and ``tests/`` with ``black``.
@@ -66,7 +65,7 @@ Finally, run:
 All tests should pass!
 
 .. note::
-        Soundata assumes that your system has the zip library installed for unzipping files. 
+        Soundata assumes that your system has the zip library installed for unzipping files.
 
 
 Writing a new dataset loader
@@ -86,7 +85,7 @@ The steps to add a new dataset loader to ``soundata`` are:
 
 
 1. Contact the soundata team by opening an issue or PR so we can discuss how to proceed with the closed dataset.
-2. Show that the version used to create the checksum is the "canonical" one, either by getting the version from the 
+2. Show that the version used to create the checksum is the "canonical" one, either by getting the version from the
    dataset creator, or by verifying equivalence with several other copies of the dataset.
 
 To reduce friction, we will make commits on top of contributors PRs by default unless
@@ -106,7 +105,7 @@ To create an index, the necessary steps are:
 2. Then run the script on the canonical version of the dataset and save the index in ``soundata/datasets/indexes/`` as ``<datasetname>_index.json``.
 3. When the dataloader is completed and the PR is accepted, upload the index in our `Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_. See more details `here <upload_index_>`_.
 
-The function ``make_<datasetname>_index.py`` should automate the generation of an index by computing the MD5 checksums for given files in a dataset located at data_path. 
+The function ``make_<datasetname>_index.py`` should automate the generation of an index by computing the MD5 checksums for given files in a dataset located at data_path.
 Users can adapt this function to create an index for their dataset by adding their file paths and using the md5 function to generate checksums for their files.
 
 .. _index example:
@@ -135,7 +134,7 @@ or annotations related to the clip id. File paths are relative to the top level 
 .. note::
     If your sound dataset does not fit into a structure around the clip class, please open an issue in the GitHub repository to discuss how to proceed. These are corner cases that we address especially to maintain the consistency of the library.
 
-Currently, Soundata does not include built-in functions to automatically create train, test, and validation splits if these are not originally defined in the dataset. 
+Currently, Soundata does not include built-in functions to automatically create train, test, and validation splits if these are not originally defined in the dataset.
 Users can do that using  external functions such as ``sklearn.model_selection.train_test_split``.
 If a dataset has predefined splits, you can include the split name as an attribute of the ``Clip`` class. You should not create separate indexes for the different splits, or indicate the split in the index.
 See an example of how an index should look like:
@@ -289,7 +288,7 @@ To quickstart a new module:
 
 1. Copy the example below and save it to ``soundata/datasets/<your_dataset_name>.py``
 2. Find & Replace ``Example`` with the <your_dataset_name>.
-3. Remove any lines beginning with `# --` which are there as guidelines. 
+3. Remove any lines beginning with `# --` which are there as guidelines.
 
 You should follow the provided template as much as possible, and use the recommended functions and classes.
 
@@ -386,19 +385,19 @@ Make sure to include, in the docstring of the dataloader, information about the 
 * The authors of the dataset, the organization in which it was created, and the year of creation (even if you have included the ``BIBTEX`` variable already).
 * Please reference also any relevant link or website that users can check for more information.
 
-.. note::  
+.. note::
     In addition to the module docstring, you should write docstrings for every new class and function you write. See :ref:`the documentation tutorial <documentation_tutorial>` for practical information on best documentation practices.
 
 
 This docstring is important for users to understand the dataset and its purpose.
 Having proper documentation also enhances transparency, and helps users to understand the dataset better.
-Please do not include complicated tables, big pieces of text, or unformatted copy-pasted text pieces. 
+Please do not include complicated tables, big pieces of text, or unformatted copy-pasted text pieces.
 It is important that the docstring is clean, and the information is very clear to users.
 This will also engage users to use the dataloader!
 
 For many more examples, see the `datasets folder <https://github.com/soundata/soundata/tree/master/soundata/datasets>`_.
 
-.. note::  
+.. note::
     If the dataset you are trying to integrate stores every clip in a separated compressed file, it cannot be currently supported by soundata. Feel free to open and issue to discuss a solution (hopefully for the near future!)
 
 
@@ -488,7 +487,7 @@ Finally, there is one local test you should run, which we can't easily run in ou
     pytest -s tests/test_full_dataset.py --local --dataset dataset
 
 
-Where ``dataset`` is the name of the module of the dataset you added. The ``-s`` tells pytest not to skip print 
+Where ``dataset`` is the name of the module of the dataset you added. The ``-s`` tells pytest not to skip print
 statements, which is useful here for seeing the download progress bar when testing the download function.
 
 This tests that your dataset downloads, validates, and loads properly for every clip. This test takes a long time
@@ -564,18 +563,18 @@ To use a dataloader, users may retrieve the index running the ``dataset.download
 To download only the index, you may run ``.download(["index"])``. The index will be automatically downloaded and stored in the expected folder in Soundata.
 
 From a contributor point of view, you may create the index, store it locally, and develop the dataloader.
-All JSON files in ``soundata/indexes/`` are included in the .gitignore file, 
+All JSON files in ``soundata/indexes/`` are included in the .gitignore file,
 therefore there is no need to remove it when pushing to the remote branch during development, since it will be ignored by git.
 
 **Important!** When creating the PR, please `submit your index to our Zenodo community <https://zenodo.org/communities/audio-data-loaders/>`_:
 
-* First, click on ``New upload``. 
+* First, click on ``New upload``.
 * Add your index in the ``Upload files`` section.
 * Let Zenodo create a DOI for your index, so click *No*.
 * Resource type is *Other*.
 * Title should be *soundata-<dataset-id>_index_<version>*, e.g. soundata-tau2021sse_nigens_index_1.2.0.
 * Add yourself as the Creator of this entry.
-* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_. 
+* The license of the index should be the `same as Soundata <https://github.com/soundata/soundata/blob/main/LICENSE>`_.
 * Visibility should be set as *Public*.
 
 .. note::
@@ -621,10 +620,10 @@ If github shows a red ``X`` next to your latest commit, it means one of our chec
 
 4. the test coverage is too low -- this means that there are too many new lines of code introduced that are not tested.
 
-5. the docs build has failed -- this means that one of the changes you made to the documentation has caused the build to fail. 
+5. the docs build has failed -- this means that one of the changes you made to the documentation has caused the build to fail.
    Check the formatting in your changes and make sure they are consistent.
 
-6. the tests have failed -- this means at least one of the tests is failing. Run the tests locally to make sure they are passing. 
+6. the tests have failed -- this means at least one of the tests is failing. Run the tests locally to make sure they are passing.
    If they are passing locally but failing in the check, open an `issue` and we can help debug.
 
 
@@ -648,7 +647,7 @@ Here are some common examples.
 .. note::
     The small formatting details in these examples are important. Differences in new lines, indentation, and spacing make
     a difference in how the documentation is rendered. For example writing ``Returns:`` will render correctly, but ``Returns``
-    or ``Returns :`` will not. 
+    or ``Returns :`` will not.
 
 
 Functions:
@@ -734,12 +733,12 @@ Objects
 Documenting your contribution
 -----------------------------
 
-Staged docs for every new PR are built and accessible at ``soundata--<#PR_ID>.org.readthedocs.build/en/<#PR_ID>/`` in which ``<#PR_ID>`` is the pull request ID. 
-To quickly troubleshoot any issues, you can build the docs locally by navigating to the ``docs`` folder, and running 
-``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``soundata/docs/_build/source/index.html`` 
+Staged docs for every new PR are built and accessible at ``soundata--<#PR_ID>.org.readthedocs.build/en/<#PR_ID>/`` in which ``<#PR_ID>`` is the pull request ID.
+To quickly troubleshoot any issues, you can build the docs locally by navigating to the ``docs`` folder, and running
+``make clean html`` (note, you must have ``sphinx`` installed). Then open the generated ``soundata/docs/_build/source/index.html``
 file in your web browser to view.
 
-**Important:** Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up in the terminal when running ``make clean html``. 
+**Important:** Make sure to check out the ``WARNINGS`` and ``ERROR`` messages that may show up in the terminal when running ``make clean html``.
 These will indicate formatting, listing, and indentation problems that may be present in your docstrings and that need to be fixed for a proper rendering of the documentation.
 See the examples aboove and also the docstrings of ``docs/source/contributing_examples/example.py`` to see a list of examples of how to write the docstrings to prevent Sphinx errors and warning messages.
 
@@ -780,24 +779,15 @@ For example, if ``_metadata`` returns a dictionary of the form:
 .. code-block:: python
 
     {
-        'clip1': {
-            'microphone-type': 'Awesome',
-            'recording-date': '27.10.2021'
-        },
-        'clip2': {
-            'microphone-type': 'Less_awesome',
-            'recording-date': '27.10.2021'
-        }
+        "clip1": {"microphone-type": "Awesome", "recording-date": "27.10.2021"},
+        "clip2": {"microphone-type": "Less_awesome", "recording-date": "27.10.2021"},
     }
 
 the ``_clip metadata`` for ``clip_id=clip2`` will be:
 
 .. code-block:: python
 
-    {
-        'microphone-type': 'Less_awesome',
-        'recording-date': '27.10.2021'
-    }
+    {"microphone-type": "Less_awesome", "recording-date": "27.10.2021"}
 
 
 Load methods vs Clip properties
@@ -815,6 +805,7 @@ Clip properties and cached properties should be simple, and directly call a ``lo
 
         """
         return self._clip_metadata.get("split")
+
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:

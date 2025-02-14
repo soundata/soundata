@@ -46,9 +46,9 @@ jobs:
           Linux)
             sudo apt-get update -yy
             sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip libasound2-dev
-            ;; 
+            ;;
           macOS)
-            brew install libsamplerate wget libsndfile sox ffmpeg zip 
+            brew install libsamplerate wget libsndfile sox ffmpeg zip
             ;;
           Windows)
             choco install wget ffmpeg zip
@@ -82,11 +82,10 @@ jobs:
         shell: bash -l {0}
         run: poetry run poetry run pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
 
-      # UNCOMMENT LATER WHEN GET ACCESS TO CODECOV SECRET
       # - name: Upload coverage to Codecov
       #   uses: codecov/codecov-action@v4
       #   with:
-      #     token: {{ secrets.CODECOV_TOKEN }}
+      #     token: ${{ secrets.CODECOV_TOKEN }}
       #     files: ./coverage.xml
       #     directory: ./coverage/reports/
       #     flags: unittests
