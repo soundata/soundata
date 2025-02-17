@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "soundata"
-version = "0.1.0"
+version = "1.0.1"
 description = "Python library for loading and working with sound datasets."
 license = {file = "LICENSE"}
 readme = "README.md"
@@ -39,7 +39,7 @@ classifiers=[
 
 [tool.poetry]
 name = "soundata"
-version = "0.1.0"
+version = "1.0.1"
 authors = ["Magdalena Fuentes <mfuentes@nyu.edu>"]
 description = "Python library for loading and working with sound datasets."
 

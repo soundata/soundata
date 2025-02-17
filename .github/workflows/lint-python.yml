@@ -3,7 +3,7 @@ name: Linting
 on:
   push:
     branches:
-      - migration-to-poetry
+      - main
   pull_request:
     branches:
       - main
