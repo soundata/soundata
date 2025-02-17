@@ -11,6 +11,7 @@ repos:
     rev: 22.3.0
     hooks:
       - id: black
+        args: ["--verbose"]
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
