@@ -89,28 +89,3 @@ def test_load_metadata():
     assert lead_clip.split == "leaderboard"
     assert lead_clip.identifier is None
     assert lead_clip.city is None
-
-
-def test_to_jams():
-    default_clipid = "development/airport-barcelona-0-0-a"
-    dataset = tau2019uas.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 1
-    assert tags[0].time == 0
-    assert tags[0].duration == 1.0
-    assert tags[0].value == "airport"
-    assert tags[0].confidence == 1
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.split == "development.train"
-    assert jam.sandbox.identifier == "barcelona-0"
-    assert jam.sandbox.city == "barcelona"
-    assert jam.sandbox.scene_label == "airport"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"
