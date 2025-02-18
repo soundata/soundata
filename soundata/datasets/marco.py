@@ -53,13 +53,12 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import json
 import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils,  core, annotations, io
 
 BIBTEX = """
 @inproceedings{lee2019open,
@@ -171,16 +170,7 @@ class Clip(core.Clip):
         """
         return load_audio(self.audio_path)
 
-    def to_jams(self):
-        """Get the clip's data in jams format
 
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=None, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

@@ -66,7 +66,7 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import numpy as np
 import csv
 import librosa
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils,  core, annotations, io
 
 BIBTEX = """
 @inproceedings{Drossos:ICASSP:20,
@@ -249,17 +249,6 @@ class Clip(core.Clip):
             * str - License information.
         """
         return self._clip_metadata.get("license")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

@@ -115,7 +115,7 @@ from typing import Dict, List, Optional, TextIO, Union
 import librosa
 import numpy as np
 import pandas as pd
-from soundata import annotations, core, download_utils, io, jams_utils
+from soundata import annotations, core, download_utils, io
 
 BIBTEX = """
 @inproceedings{ooi2021singapura,
@@ -291,13 +291,6 @@ class Clip(core.Clip):
         """
         return self._clip_metadata["day"]
 
-    def to_jams(self):
-        """
-        Jams: the clip's data in jams format
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_string_io
