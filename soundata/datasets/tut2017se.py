@@ -162,7 +162,7 @@ import numpy as np
 import csv
 
 
-from soundata import download_utils,  core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """

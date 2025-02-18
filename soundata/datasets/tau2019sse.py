@@ -8,13 +8,13 @@
     *Created By:*
 
         | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
-        | Audio Research Group, Tampere University. 
-        
+        | Audio Research Group, Tampere University.
+
     Version 2
 
     *Description:*
         Recordings with stationary point sources (events) from multiple sound classes.
-        Up to two temporally overlaping sound events. 
+        Up to two temporally overlaping sound events.
         Recordings of identical scenes are available in both 1st-order ambisonics and corresponding four-channel tetrahedral microphone format.
         Recordings can happen in one of five different rooms.
         The sound classes are the 11 different ones from the `DCASE 2016 challenge task 2 <http://dcase.community/challenge2016/task-sound-event-detection-in-synthetic-audio>`_. Each class has 20 different examples.
@@ -25,8 +25,8 @@
     *Annotations Included:*
         * sound event category with:
             * start time
-            * end time 
-            * elevation 
+            * end time
+            * elevation
             * azimuth
             * distance
         * Moreover, the clip id indicates:
@@ -35,7 +35,7 @@
             * whether there are temporally-overlapping events
 
     *Please Acknowledge TAU SSE 2019 in Academic Research:*
-    If you use this dataset please cite its original publication: 
+    If you use this dataset please cite its original publication:
 
     .. code-block:: latex
 
@@ -60,7 +60,7 @@ import csv
 import glob
 import json
 
-from soundata import download_utils,  core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 ELEVATIONS_UNITS = {"degrees": "degrees"}
 AZIMUTHS_UNITS = {"degrees": "degrees"}

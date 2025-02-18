@@ -2,40 +2,40 @@
 
 .. admonition:: Dataset Info
     :class: dropdown
-    
+
     **EigenScape: a database of spatial acoustic scene recordings**
-    
+
     *Created By:*
 
         | Marc Ciufo Green, Damian Murphy.
-        | Audio Lab, Department of Electronic Engineering, University of York. 
-        
+        | Audio Lab, Department of Electronic Engineering, University of York.
+
     Version raw
-	
+
     *Description:*
-        EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike. 
+        EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike.
         All scenes in this format are in Raw format (A-format) with 32 channels
         The database contains recordings of eight different location classes: Beach, Busy Street, Park, Pedestrian Zone, Quiet Street, Shopping Centre, Train Station, Woodland.
-        The recordings were made in May 2017 at sites across the North of England. 
-	
+        The recordings were made in May 2017 at sites across the North of England.
+
     *Audio Files Included:*
-	* 8 different examples of each location class were recorded over a duration of 10 minutes 
-        * 64 recordings in total. 
-        * EigenMike channel ordering (32 total) with calibration and PGA level (captured with firewire interface and EigenStudio). 24-bit / 48 kHz resolution. 
-	
+        * 8 different examples of each location class were recorded over a duration of 10 minutes
+        * 64 recordings in total.
+        * EigenMike channel ordering (32 total) with calibration and PGA level (captured with firewire interface and EigenStudio). 24-bit / 48 kHz resolution.
+
     *Annotations Included:*
         * No event labels associated with this dataset
         * The metadata file gives more tempogeographic detail on each recording
         * the EigenScape `recording map <http://bit.ly/EigenSMap>`_ shows the locations and classes of all the recordings.
-        * No predefined training, validation, or testing splits. 
-	
+        * No predefined training, validation, or testing splits.
+
     *Please Acknowledge EigenScape in Academic Research:*
     If you use this dataset please cite its original publication:
 
     .. code-block:: latex
 
         Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
-	    
+
     *License:*
         * Creative Commons Attribution 4.0 International
 
@@ -251,8 +251,6 @@ class Clip(core.Clip):
             * str - notes included by the dataset authors with other details relevant to the specific clip
         """
         return self._clip_metadata.get("additional information")
-
-
 
 
 @io.coerce_to_bytes_io

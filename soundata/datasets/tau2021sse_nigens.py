@@ -8,20 +8,20 @@
     *Created By:*
 
         | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-        | Audio Research Group, Tampere University (Finland). 
-        
+        | Audio Research Group, Tampere University (Finland).
+
     Version 1.2.0
 
     *Description:*
-        Spatial sound-scene recordings, consisting of sound events of distinct categories 
+        Spatial sound-scene recordings, consisting of sound events of distinct categories
         in a variety of acoustical spaces, and from multiple source directions and distances.
-        The spatialization of all sound events is based on filtering through real spatial 
-        room impulse responses (RIRs) of diverse acoustic environments. The sound events are 
-        spatialized as either stationary sound sources, or moving sound sources, in which case 
-        time-variant RIRs are used. 
+        The spatialization of all sound events is based on filtering through real spatial
+        room impulse responses (RIRs) of diverse acoustic environments. The sound events are
+        spatialized as either stationary sound sources, or moving sound sources, in which case
+        time-variant RIRs are used.
 
-        Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA) 
-        format. 
+        Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA)
+        format.
 
     *Audio Files Included:*
         * 600 one-minute-long sound scene recordings with annotations (development dataset).
@@ -41,8 +41,8 @@
     *Annotations Included:*
         * Each recording in the development set has labels of events and DoAs in a plain csv file with the same filename.
         * Each row in the csv file has a frame number, active class index, event number index, azimuth, and elevation.
-        * Frame, class, and clip enumeration begins at 0. 
-        * Frames correspond to a temporal resolution of 100msec. 
+        * Frame, class, and clip enumeration begins at 0.
+        * Frames correspond to a temporal resolution of 100msec.
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
         * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. The interferers are considered unknown and no activity or direction labels of them are provided with the training datasets.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
@@ -56,10 +56,10 @@
 
     *Please Acknowledge TAU-NIGENS SSE 2021 in Academic Research:*
     If you use this dataset please cite the report on its creation, and the corresponding DCASE2021 task setup:
-    
+
     .. code-block:: latex
 
-        Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999. 
+        Archontis Politis, Sharath Adavanne, Daniel Krause, Antoine Deleforge, Prerak Srivastava, and Tuomas Virtanen. A dataset of dynamic reverberant sound scenes with directional interferers for sound event localization and detection. arXiv preprint arXiv:2106.06999, 2021. URL: https://arxiv.org/abs/2106.06999, arXiv:2106.06999.
 
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International
@@ -76,7 +76,7 @@ import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils,  core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 BIBTEX = """
 @article{politis2021dataset,

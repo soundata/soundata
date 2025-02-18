@@ -2,55 +2,55 @@
 
 .. admonition:: Dataset Info
     :class: dropdown
-    
+
     **TAU NIGENS Spatial Sound Events: scene recordings with (moving) sound events of distinct categories**
-    
+
     *Created By:*
 
         | Archontis Politis, Sharath Adavanne, Tuomas Virtanen.
-        | Audio Research Group, Tampere University (Finland). 
-    
+        | Audio Research Group, Tampere University (Finland).
+
     Version 1.2.0
 
     *Description:*
-        Spatial sound-scene recordings, consisting of sound events of distinct categories 
+        Spatial sound-scene recordings, consisting of sound events of distinct categories
         in a variety of acoustical spaces, and from multiple source directions and distances.
-        The spatialization of all sound events is based on filtering through real spatial 
-        room impulse responses (RIRs) of diverse acoustic environments. The sound events are 
-        spatialized as either stationary sound sources, or moving sound sources, in which case 
-        time-variant RIRs are used. 
-        Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA) 
-        format. 
+        The spatialization of all sound events is based on filtering through real spatial
+        room impulse responses (RIRs) of diverse acoustic environments. The sound events are
+        spatialized as either stationary sound sources, or moving sound sources, in which case
+        time-variant RIRs are used.
+        Each scene recording is delivered in microphone array (MIC) and first-order Ambisonics (FOA)
+        format.
 
     *Audio Files Included:*
-   	* 600 one-minute long sound scene recordings (development dataset).
-   	* 200 one-minute long sound scene recordings (evaluation dataset).
+        * 600 one-minute long sound scene recordings (development dataset).
+        * 200 one-minute long sound scene recordings (evaluation dataset).
         * Sampling rate is 24 kHz (16-bit signed integer PCM).
-   	* About 700 sound event samples spread over 14 classes (see here for more details).
-   	* 8 provided cross-validation folds of 100 recordings each, with unique sound event samples and rooms in each of them.
-   	* Two 4-channel 3-dimensional recording formats: first-order Ambisonics (FOA) and tetrahedral microphone array.
-   	* Realistic spatialization and reverberation through RIRs collected in 15 different enclosures.
-   	* From about 1500 to 3500 possible RIR positions across the different rooms.
-   	* Both static reverberant and moving reverberant sound events.
-   	* Up to two overlapping sound events allowed, temporally and spatially.
-   	* Realistic spatial ambient noise collected from each room is added to the spatialized sound events, at varying signal-to-noise ratios (SNR) ranging from noiseless (30dB) to noisy (6dB).
-    
+        * About 700 sound event samples spread over 14 classes (see here for more details).
+        * 8 provided cross-validation folds of 100 recordings each, with unique sound event samples and rooms in each of them.
+        * Two 4-channel 3-dimensional recording formats: first-order Ambisonics (FOA) and tetrahedral microphone array.
+        * Realistic spatialization and reverberation through RIRs collected in 15 different enclosures.
+        * From about 1500 to 3500 possible RIR positions across the different rooms.
+        * Both static reverberant and moving reverberant sound events.
+        * Up to two overlapping sound events allowed, temporally and spatially.
+        * Realistic spatial ambient noise collected from each room is added to the spatialized sound events, at varying signal-to-noise ratios (SNR) ranging from noiseless (30dB) to noisy (6dB).
+
     *Annotations Included:*
         * Each recording in the development set has labels of events and Directions of arrival in a plain csv file with the same filename.
         * Each row in the csv file has a frame number, active class index, clip number index, azimuth, and elevation.
-        * Frame, class, and clip enumeration begins at 0. 
-        * Frames correspond to a temporal resolution of 100msec. 
+        * Frame, class, and clip enumeration begins at 0.
+        * Frames correspond to a temporal resolution of 100msec.
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
-        * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file. 
+        * The event number index is a unique integer for each event in the recording, enumerating them in the order of appearance. This event identifiers are useful to disentangle directions of co-occuring events through time in the metadata file.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
-    
+
     *Please Acknowledge TAU-NIGENS SSE 2020 in Academic Research:*
-    If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup: 
-    
+    If you use this dataset please cite the report on its creation, and the corresponding DCASE2020 task setup:
+
     .. code-block:: latex
-    
+
         Politis., Archontis, Adavanne, Sharath, & Virtanen, Tuomas (2020). A Dataset of Reverberant Spatial Sound Scenes with Moving Sources for Sound Event Localization and Detection. In Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020), Tokyo, Japan.
-    
+
     *License:*
         * Creative Commons Attribution Non Commercial 4.0 International
 """
@@ -66,7 +66,7 @@ import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils,  core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 BIBTEX = """
 @inproceedings{politis2020dataset,
@@ -209,6 +209,7 @@ class Clip(core.Clip):
                 * confidence (np.ndarray or None): array of confidence values
         """
         return load_spatialevents(self.csv_path)
+
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=24000) -> Tuple[np.ndarray, float]:

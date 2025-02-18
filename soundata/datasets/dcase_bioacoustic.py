@@ -7,15 +7,15 @@
 
     *Development set:*
 
-    The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets. 
+    The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets.
 
-    Multi-class annotations are provided for the training set with positive (POS), negative (NEG) and unkwown (UNK) values for each class. UNK indicates uncertainty about a class. 
+    Multi-class annotations are provided for the training set with positive (POS), negative (NEG) and unkwown (UNK) values for each class. UNK indicates uncertainty about a class.
 
-    Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest. 
+    Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest.
 
     This version (3) fixes issues with annotations from HB set. Development_Set_Annotations.zip has the same structure but contains only the .csv files.
 
-    
+
     *Annotation structure*
 
     Each line of the annotation csv represents an event in the audio file. The column descriptions are as follows:
@@ -24,7 +24,7 @@
 
     VALIDATION SET: Audiofilename, Starttime, Endtime, Q
 
-    
+
 
     *Classes*
 
@@ -34,15 +34,15 @@
 
     DCASE2022_task5_validation_set_classes.csv: dataset, recording, class_code, class_name
 
-    
+
 
     *Evaluation set*
 
-    The evaluation set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 46 audio files acquired from different bioacoustic sources. 
+    The evaluation set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 46 audio files acquired from different bioacoustic sources.
 
-    The first 5 annotations are provided for each file, with events marked as positive (POS) for the class of interest. 
+    The first 5 annotations are provided for each file, with events marked as positive (POS) for the class of interest.
 
-    This dataset is to be used for evaluation purposes during the task and the rest of the annotations will be released after the end of the DCASE 2022 challenge (July 1st).    
+    This dataset is to be used for evaluation purposes during the task and the rest of the annotations will be released after the end of the DCASE 2022 challenge (July 1st).
 
     Evaluation_Set_5shots.zip has the same structure but contains only the .wav files.
 
@@ -59,7 +59,7 @@
     *Open Access:*
 
     This dataset is available under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
-    
+
 
     *Contact info:*
 
