@@ -38,7 +38,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
+autodoc_mock_imports = ["librosa", "numpy", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -68,7 +68,6 @@ extlinks = {
 
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
-    "jams": ("https://jams.readthedocs.io/en/stable/", None),
 }
 
 # Napoleon settings

@@ -249,11 +249,3 @@ soundata.download_utils
 
 .. automodule:: soundata.download_utils
    :members:
-
-
-soundata.jams_utils
-^^^^^^^^^^^^^^^^^^^
-
-.. automodule:: soundata.jams_utils
-   :members:
-
