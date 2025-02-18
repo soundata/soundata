@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-    - removing-jams
+    - main
   pull_request:
     branches:
     - main
