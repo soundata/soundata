@@ -17,7 +17,7 @@ build:
 
 sphinx:
   configuration: docs/conf.py
-  formats: ["html", "pdf", "epub"]  # Changed to inline array format
+
 
 # # Build documentation in the docs/ directory with Sphinx
 # sphinx:
