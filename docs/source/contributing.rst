@@ -46,22 +46,22 @@ Before running the tests, make sure to have formatted ``soundata/`` and ``tests/
 
 .. code-block:: bash
 
-    black soundata/ tests/
+    poetry run black soundata/ tests/
 
 
 Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.
 
 .. code-block:: bash
 
-    flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
-    python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+    poetry run python -m flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+    poetry run python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
 
 
 Finally, run:
 
 .. code-block:: bash
 
-    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
+    poetry run pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
 
 
 All tests should pass!
