@@ -8,22 +8,45 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "3.9"
+  jobs:
 
-# Build documentation in the docs/ directory with Sphinx
+    post_create_environment:
+
+      # Install poetry
+
+      # https://python-poetry.org/docs/#installing-manually
+
+      - pip install poetry
+
+    post_install:
+
+      # Install dependencies with 'docs' dependency group
+
+      # https://python-poetry.org/docs/managing-dependencies/#dependency-groups
+
+      # VIRTUAL_ENV needs to be set manually for now, see #11150
+
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --only=docs
+
 sphinx:
   configuration: docs/conf.py
+  # Optionally build your docs in additional formats such as PDF and ePub
+  # this might not be needed with pre-commit
+  formats: all
 
-# Build documentation with MkDocs
-#mkdocs:
-#  configuration: mkdocs.yml
+# # Build documentation in the docs/ directory with Sphinx
+# sphinx:
+#   configuration: docs/conf.py
 
-# Optionally build your docs in additional formats such as PDF and ePub
-formats: all
+# # Build documentation with MkDocs
+# #mkdocs:
+# #  configuration: mkdocs.yml
 
-# Optionally set the version of Python and requirements required to build your docs
-python:
-  install:
-      - method: pip
-        path: .
-        extra_requirements:
-          - docs
+
+# # Optionally set the version of Python and requirements required to build your docs
+# python:
+#   install:
+#       - method: pip
+#         path: .
+#         extra_requirements:
+#           - docs

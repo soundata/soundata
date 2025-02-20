@@ -33,6 +33,8 @@ To install Soundata for development purposes:
       - Install Testing dependencies with ``poetry install --with tests``
       - Install Docs dependencies with ``poetry install --with docs``
       - Install Plotting dependencies with ``poetry install --with plots``
+      - Install Linting dependencies with ``poetry install --with linting``
+      - Install all optional dependencies with ``poetry install --all-groups``
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
 `pyenv <https://github.com/pyenv/pyenv#installation>`__ to manage your Python versions
