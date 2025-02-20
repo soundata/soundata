@@ -31,8 +31,10 @@ build:
 sphinx:
   configuration: docs/conf.py
   # Optionally build your docs in additional formats such as PDF and ePub
-  # this might not be needed with pre-commit
-  formats: all
+  formats:
+      - html
+      - pdf
+      - epub
 
 # # Build documentation in the docs/ directory with Sphinx
 # sphinx:
