@@ -78,7 +78,7 @@
     locations: different streets, different parks, different shopping malls.
     In each location, multiple 2-3 minute long audio recordings were captured
     in a few slightly different positions (2-4) within the selected location.
-    Collected audio material was cut into segments of 10 seconds length. 
+    Collected audio material was cut into segments of 10 seconds length.
 
     The equipment used for recording consists of a binaural `Soundman OKM II
     Klassik/studio A3 <http://www.soundman.de/en/products/>`_ electret in-ear
@@ -110,7 +110,7 @@
     *Audio segments (Development dataset)*
 
     ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
-    Scene class          Segments    Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna    
+    Scene class          Segments    Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna
     ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
     Airport              1440        128         149         144        145        144        144        156        144        158         128
     Bus                  1440        144         144         144        144        144        144        144        144        144         144
@@ -123,25 +123,25 @@
     Street, traffic      1440        144         144         144        144        144        144        144        144        144         144
     Tram                 1440        143         145         144        144        144        144        144        144        144         144
     **Total**            **14400**   **1421**    **1447**    **1440**   **1444**   **1440**   **1440**   **1452**   **1440**   **1456**    **1420**
-    ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========    
+    ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
 
     *Audio segments (Recording locations)*
 
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
-    Scene class          Locations   Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna    
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
-    Airport              40          4           3           4          3          4          4          4          6          5           3         
-    Bus                  71          4           4           11         7          7          7          11         10         6           4         
-    Metro                67          3           5           11         4          9          8          9          10         4           4         
-    Metro station        57          5           6           4          12         5          4          9          4          4           4         
-    Park                 41          4           4           4          4          4          4          4          4          5           4         
-    Public_square        43          4           4           4          4          5          4          4          6          4           4         
-    Shopping mall        36          4           4           4          2          3          3          4          4          4           4         
-    Street, pedestrian   46          7           4           4          4          4          5          5          5          4           4         
-    Street, traffic      43          4           4           4          5          4          6          4          4          4           4         
-    Tram                 70          4           4           6          9          7          11         9          11         5           4         
-    **Total**            **514**     **43**      **42**      **56**     **54**     **52**     **56**     **63**     **65**     **45**      **39**    
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
+    Scene class          Locations   Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
+    Airport              40          4           3           4          3          4          4          4          6          5           3
+    Bus                  71          4           4           11         7          7          7          11         10         6           4
+    Metro                67          3           5           11         4          9          8          9          10         4           4
+    Metro station        57          5           6           4          12         5          4          9          4          4           4
+    Park                 41          4           4           4          4          4          4          4          4          5           4
+    Public_square        43          4           4           4          4          5          4          4          6          4           4
+    Shopping mall        36          4           4           4          2          3          3          4          4          4           4
+    Street, pedestrian   46          7           4           4          4          4          5          5          5          4           4
+    Street, traffic      43          4           4           4          5          4          6          4          4          4           4
+    Tram                 70          4           4           6          9          7          11         9          11         5           4
+    **Total**            **514**     **43**      **42**      **56**     **54**     **52**     **56**     **63**     **65**     **45**      **39**
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
 
     *Usage*
 
@@ -167,25 +167,25 @@
     material can be used when using full dataset to train the system and
     testing it with evaluation dataset.
 
-    The setup is provided with the dataset in the directory `evaluation_setup`. 
+    The setup is provided with the dataset in the directory `evaluation_setup`.
 
     *Statistics*
 
-    ===================  =================  ==================  ================  =================  ==================  =================== 
-    Scene class          Train / Segments   Train / Locations   Test / Segments   Test / Locations   Unused / Segments   Unused / Locations   
-    ===================  =================  ==================  ================  =================  ==================  =================== 
-    Airport              911                25                  421               12                 108                 3                   
-    Bus                  928                46                  415               20                 97                  5                   
-    Metro                902                41                  433               20                 105                 6                   
-    Metro station        897                37                  435               17                 108                 3                   
-    Park                 946                27                  386               11                 108                 3                   
-    Public square        945                28                  387               12                 108                 3                   
-    Shopping mall        896                24                  441               10                 103                 2                   
-    Street, pedestrian   924                29                  429               14                 87                  3                   
-    Street, traffic      942                27                  402               12                 96                  4                   
-    Tram                 894                41                  436               21                 110                 8                   
-    **Total**            **9185**           **325**             **4185**          **149**            **1030**            **40**              
-    ===================  =================  ==================  ================  =================  ==================  =================== 
+    ===================  =================  ==================  ================  =================  ==================  ===================
+    Scene class          Train / Segments   Train / Locations   Test / Segments   Test / Locations   Unused / Segments   Unused / Locations
+    ===================  =================  ==================  ================  =================  ==================  ===================
+    Airport              911                25                  421               12                 108                 3
+    Bus                  928                46                  415               20                 97                  5
+    Metro                902                41                  433               20                 105                 6
+    Metro station        897                37                  435               17                 108                 3
+    Park                 946                27                  386               11                 108                 3
+    Public square        945                28                  387               12                 108                 3
+    Shopping mall        896                24                  441               10                 103                 2
+    Street, pedestrian   924                29                  429               14                 87                  3
+    Street, traffic      942                27                  402               12                 96                  4
+    Tram                 894                41                  436               21                 110                 8
+    **Total**            **9185**           **325**             **4185**          **149**            **1030**            **40**
+    ===================  =================  ==================  ================  =================  ==================  ===================
 
 
     *License*

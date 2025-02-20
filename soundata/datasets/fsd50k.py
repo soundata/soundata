@@ -8,8 +8,8 @@
     *Created By:*
 
         | Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
-        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
-        
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona).
+
     Version 1.0
 
     *Description:*
@@ -157,7 +157,7 @@
         If you use the FSD50K Dataset please cite the following paper:
 
         .. code-block:: latex
-        
+
             Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
         The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
@@ -203,7 +203,7 @@ from soundata import download_utils, jams_utils, core, annotations, io
 
 BIBTEX = """
 @dataset{fonseca2020fsd50k,
-    title={FSD50K: an Open Dataset of Human-Labeled Sound Events}, 
+    title={FSD50K: an Open Dataset of Human-Labeled Sound Events},
     author={Eduardo Fonseca and Xavier Favory and Jordi Pons and Frederic Font and Xavier Serra},
     year={2020},
     eprint={2010.00475},
