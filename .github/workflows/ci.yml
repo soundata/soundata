@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-    - main
+    - removing-jams
   pull_request:
     branches:
     - main
@@ -73,9 +73,10 @@ jobs:
             esac
 
         - name: Cache conda
+          id: cache      
           uses: actions/cache@v4
           env:
-            CACHE_NUMBER: 2      
+            CACHE_NUMBER: 3      
           with:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
@@ -91,12 +92,12 @@ jobs:
             miniforge-version: latest
             channel-priority: ${{ matrix.channel-priority }}
             activate-environment: test
-            auto-update-conda: false
+            auto-update-conda: true
             python-version: ${{ matrix.python-version }}
 
         - name: Install conda dependencies
-          run: mamba env update -n test -f ${{ matrix.envfile }}
           if: steps.cache.outputs.cache-hit != 'true'
+          run: conda env update -n test -f ${{ matrix.envfile }}
 
         - name: Conda info
           shell: bash -l {0}
