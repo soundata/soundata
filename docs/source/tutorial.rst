@@ -63,7 +63,7 @@ The index, which is considered part of the source files of Soundata, is specific
 Indexes will be directly stored in Soundata's indexes folder (``soundata/datasets/indexes``) whereas users can indicate where the dataset files will be stored via ``data_home``.
 
 Downloading a dataset into the default folder
-    In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
+    In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from
     the default folder, ``sound_datasets``, created in the user's root folder:
 
     .. code-block:: python
@@ -87,7 +87,7 @@ Partially downloading a dataset
     the available downloadable elements are listed.
 
     ``tau2019uas`` has different elements as seen in the ``REMOTES`` dictionary. You can specify a subset of these elements to
-    download by passing the ``download()`` function a list of the ``REMOTES`` keys that we are interested in via the 
+    download by passing the ``download()`` function a list of the ``REMOTES`` keys that we are interested in via the
     ``partial_download`` variable.
 
     .. admonition:: Example REMOTES
@@ -165,7 +165,7 @@ Downloading a multipart dataset
                     ),
                 ],
                 ...
-                
+
 
 Working with non-available datasets to openly download
     Some datasets are private, and therefore it is not possible to directly retrieve them from an online repository.
@@ -244,12 +244,12 @@ You can also load a single clip without loading all clips in the dataset:
     example_tags = example_clip.tags  # Get the tags for the first clip
 
 
-.. _Remote Data Example: 
+.. _Remote Data Example:
 
 Accessing data remotely
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Annotations can also be accessed through ``load_*()`` methods which may be useful, for instance, when your data aren't available locally. 
+Annotations can also be accessed through ``load_*()`` methods which may be useful, for instance, when your data aren't available locally.
 If you specify the annotation's path, you can use the module's loading functions directly. Let's
 see an example.
 
@@ -301,7 +301,7 @@ In general, most datasets are a collection of clips, and in most cases each clip
 
 With the ``load_clips()`` method, all clips are loaded as a dictionary with the clip id as keys and
 clip objects as values. The clip objects include their respective audio and annotations, which are lazy-loaded on access
-to keep things speedy and memory efficient. 
+to keep things speedy and memory efficient.
 
 .. code-block:: python
 
@@ -474,7 +474,7 @@ If you want to use the plot functionalities used in ``display_plot_utils.py`` yo
 
     .. code-block:: console
 
-        pip install soundata"[plots]"
+        poetry install --with plots
 
 If you try to load the visualizations without the optional dependencies, you will be thrown an exception indicating that the dependencies are missing.
 Please do install the optional dependencies using the command above in order to use the visualization functionalities.

@@ -14,7 +14,8 @@ repos:
         args: ["--verbose"]
         types: [python]
 
-  - repo: https://github.com/asottile/blacken-docs
-    rev: v1.12.1
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.7
     hooks:
-      - id: blacken-docs
+      - id: autopep8
+        args: ["--aggressive", "--aggressive"]
