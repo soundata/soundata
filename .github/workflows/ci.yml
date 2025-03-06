@@ -97,7 +97,6 @@ jobs:
 
         - name: Install conda dependencies
           run: mamba env update -n test -f ${{ matrix.envfile }}
-          if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
           shell: bash -l {0}
