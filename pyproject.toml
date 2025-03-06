@@ -69,6 +69,7 @@ docs = [
     "sphinx_rtd_theme",
     "sphinx-togglebutton",
     "ipywidgets>=8.1.1",
+    "sphinx-copybutton",
 ]
 plots = [
     "simpleaudio>=1.0.4",

@@ -249,3 +249,33 @@ soundata.download_utils
 
 .. automodule:: soundata.download_utils
    :members:
+
+
+Using soundata with JAMS
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section demonstrates how to use JAMS to load clips's data.
+
+Ensure you have JAMS installed by running:
+
+    .. code-block:: bash
+
+        pip install jams
+
+.. admonition:: jams_utils
+    :class: dropdown
+
+    The following code contains utilities functions for converting soundata Annotation classes to JAMS format.
+
+    .. literalinclude:: tutorial_examples/jams_utils.py
+        :language: python
+
+
+.. admonition:: Using JAMS to read Annotations
+
+    The following example shows how to convert a clip's data into JAMS format using the utilities above.
+
+    .. literalinclude:: tutorial_examples/to_jams.py
+        :language: python
+
+For more information, visit the `JAMS documentation <https://jams.readthedocs.io/en/stable/index.html>`_.

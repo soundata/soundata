@@ -55,6 +55,7 @@ extensions = [
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
     "sphinx_togglebutton",
+    "sphinx_copybutton",
 ]
 
 # To shorten links of licenses and add to table
