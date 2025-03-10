@@ -22,11 +22,6 @@ jobs:
             matrix:
                 include:
                     - os: ubuntu-latest
-                      python-version: "3.8"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
                       python-version: "3.9"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
@@ -41,13 +36,38 @@ jobs:
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: ubuntu-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: macos-latest
+                      python-version: "3.10"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: macos-latest
                       python-version: "3.11"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: macos-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: windows-latest
+                      python-version: "3.10"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: windows-latest
                       python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: windows-latest
+                      python-version: "3.12"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
@@ -97,6 +117,7 @@ jobs:
 
         - name: Install conda dependencies
           run: mamba env update -n test -f ${{ matrix.envfile }}
+          if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
           shell: bash -l {0}
