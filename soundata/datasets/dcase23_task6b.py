@@ -173,6 +173,8 @@ class Clip(core.Clip):
         sound_id (str): Unique identifier for the sound.
         sound_link (str): Link to the sound.
         start_end_samples (tuple): Start and end samples in the audio file.
+        split (str): Subset of the dataset (dev, val, eval, test).
+        captions (list): Captions annotations, 8 to 20 words long.
         manufacturer (str): Manufacturer of the recording equipment.
         license (str): License of the clip.
     """
@@ -246,7 +248,25 @@ class Clip(core.Clip):
             * str - Manufacturer name.
         """
         return self._clip_metadata.get("manufacturer")
+    
+    @property
+    def split(self):
+        """Subset of the dataset the clip belongs to: dev, val, eval, test.
 
+        Returns:
+            * str - split
+        """
+        return self._clip_metadata.get("split")
+    
+    @property
+    def captions(self):
+        """Captions Annotations, 8 to 20 words long.
+
+        Returns:
+            * List[str] - captions
+        """
+        return self._clip_metadata.get("captions")
+    
     @property
     def license(self):
         """License of the clip.
@@ -327,16 +347,21 @@ class Dataset(core.Dataset):
             file_path = os.path.join(self.data_home, file_name)
             with open(file_path, encoding="ISO-8859-1") as csv_file:
                 csv_reader = csv.DictReader(csv_file, delimiter=",")
+                split = ""
                 for row in csv_reader:
                     file_key = row["file_name"].replace(".wav", "")
                     if "development" in file_name:
                         file_key = "development/" + file_key
+                        split = "dev"
                     elif "validation" in file_name:
                         file_key = "validation/" + file_key
+                        split = "val"
                     elif "evaluation" in file_name:
                         file_key = "evaluation/" + file_key
+                        split = "eval"
                     elif "retrieval" in file_name:
                         file_key = "test/" + file_key
+                        split = "test"
                     if file_key not in combined_data:
                         combined_data[file_key] = {
                             "file_name": "",
@@ -347,6 +372,7 @@ class Dataset(core.Dataset):
                             "manufacturer": "",
                             "license": "",
                             "captions": [],
+                            "split": split,
                         }
                     if file_type == "metadata":
                         combined_data[file_key].update(
@@ -358,6 +384,7 @@ class Dataset(core.Dataset):
                                 "start_end_samples": row["start_end_samples"],
                                 "manufacturer": row["manufacturer"],
                                 "license": row["license"],
+                                "split": split,
                             }
                         )
                     elif file_type == "captions":
