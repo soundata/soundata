@@ -2,47 +2,47 @@
 
 .. admonition:: Dataset Info
     :class: dropdown
-
+    
     **3D-MARCo: database of 3D sound recordings of musical performances and room impulse responses**
-
+    
     *Created By:*
 
         | Hyunkook Lee, Dale Johnson, Bogdan Bacila.
-        | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield.
-
+        | Centre for Audio and Psychoacoustic Engineering, University of Huddersfield. 
+        
     Version 1.0.1
-
+	
     *Description:*
-        3D-MARCo is an open-access database of 3D sound recordings of musical performances and room impulse responses.
-        The recordings were made in the St. Paul's concert hall in Huddersfield, UK
-        A total of 71 microphone capsules were used simultaneously.
-        The main microphone arrays included in the database comprise PCMA-3D, OCT-3D, 2L-Cube, Decca Cubioid, First-order Ambisonics (FOA), Higher-order Ambisonics (HOA) and Hamasaki Square with height.
-        In addition, ORTF, side/height, Voice of God and floor channels as well as a dummy head and spot microphones are included.
-        The sound sources recorded are string quartet, piano trio, piano solo, organ, a cappella group, various single sources and room impulse responses of a virtual ensemble with 13 source positions captured by all of the microphones.
+        3D-MARCo is an open-access database of 3D sound recordings of musical performances and room impulse responses. 
+        The recordings were made in the St. Paul's concert hall in Huddersfield, UK 
+        A total of 71 microphone capsules were used simultaneously. 
+        The main microphone arrays included in the database comprise PCMA-3D, OCT-3D, 2L-Cube, Decca Cubioid, First-order Ambisonics (FOA), Higher-order Ambisonics (HOA) and Hamasaki Square with height. 
+        In addition, ORTF, side/height, Voice of God and floor channels as well as a dummy head and spot microphones are included. 
+        The sound sources recorded are string quartet, piano trio, piano solo, organ, a cappella group, various single sources and room impulse responses of a virtual ensemble with 13 source positions captured by all of the microphones. 
         3D-MARCo would be useful for spatial audio research, recording education, critical ear training, etc.
 
     *Audio Files Included:*
-        * For each musical performance sound source (Acappella, Organ, Piano Solo 1, Piano solo 2, Quartet, Trio), there are 65 wav files that correspond to:
-            * 64 individual capsules (24-bit / 96kHz resolution)
-            * one 32-channel EigenMike file in A-format (24-bit / 48kHz resolution).
+        * For each musical performance sound source (Acappella, Organ, Piano Solo 1, Piano solo 2, Quartet, Trio), there are 65 wav files that correspond to: 
+            * 64 individual capsules (24-bit / 96kHz resolution) 
+            * one 32-channel EigenMike file in A-format (24-bit / 48kHz resolution). 
         * The piano recordings contain two more channels (left and right) that correspond to spot microphones placed just outside the piano pointing toward the hammers.
         * The quartet recordings contain four more channels corresponding to spot microphones placed above the instruments (violin 1, violin 2, cello, viola) pointing toward the F hole.
         * The trio recordins contain four more channels corresponding to spot microphones, two placed above the string instruments (violin, cello) pointing toward the F hole, and two placed just outside the piano pointing toward the hammers.
         * The single sources were recorded at 7 different azimuth angles. For each angle there are also 65 wav files.
-        * The impulse responses were recorded at 13 different azimuth angles. For each angle there are 66 wav files. The extra one is the EigenMike 4th-order B-format ambisonics (ACN SN3D; 24-bit / 48kHz resolution).
-
+        * The impulse responses were recorded at 13 different azimuth angles. For each angle there are 66 wav files. The extra one is the EigenMike 4th-order B-format ambisonics (ACN SN3D; 24-bit / 48kHz resolution). 
+	
     *Annotations Included:*
         * No event labels associated with this dataset
-        * No predefined training, validation, or testing splits.
+        * No predefined training, validation, or testing splits. 
         * Angular orientation for "impulse responses" and "single sources" (follows the ITU-R convention where positive angles in the left-hand side and negative angles in the right-hand side, e.g. +30° for Front Left and -30° for Front Right).
-
+	
     *Please Acknowledge 3D-MARCo in Academic Research:*
     If you use this dataset please cite its original publication:
-
+    
     .. code-block:: latex
-
+    
         Lee H, Johnson D. An open-access database of 3D microphone array recordings. InAudio Engineering Society Convention 147 2019 Oct 8. Audio Engineering Society.
-
+	    
     *License:*
         * CC-BY NC 3.0 license (free to share and adapt the material, but not permitted to use it for commercial purposes)
 """

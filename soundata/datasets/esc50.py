@@ -21,12 +21,12 @@
     Insects (flying)Pouring water	                        Brushing teeth	            Clock alarm             	Airplane
     Sheep	        Toilet flush                        	Snoring	                    Clock tick              	Fireworks
     Crow	        Thunderstorm	                        Drinking, sipping	        Glass breaking	            Hand saw
-
-    Clips in this dataset have been manually extracted from public field recordings gathered by the Freesound.org project.
+    
+    Clips in this dataset have been manually extracted from public field recordings gathered by the Freesound.org project. 
     The dataset has been prearranged into 5 folds for comparable cross-validation, making sure that fragments from the same original source file are contained in a single fold.
 
-    A more thorough description of the dataset is available in the original paper with some supplementary materials on GitHub:
-
+    A more thorough description of the dataset is available in the original paper with some supplementary materials on GitHub: 
+    
     .. code-block:: latex
 
         K. J. Piczak. ESC: Dataset for Environmental Sound Classification. Proceedings of the 23rd Annual ACM Conference on Multimedia, Brisbane, Australia, 2015.
@@ -49,7 +49,7 @@
     CSV file with the following structure:
 
     filename	fold	target	category	esc10	src_file	take
-
+    
     The esc10 column indicates if a given file belongs to the ESC-10 subset (10 selected classes, CC BY license).
 
     https://github.com/karolpiczak/ESC-50/blob/master/meta/esc50-human.xlsx

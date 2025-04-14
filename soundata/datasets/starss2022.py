@@ -8,7 +8,7 @@
     *Created By:*
 
         | Archontis Politis, Parthasaarathy Sudarsanam, Sharath Adavanne, Daniel Krause, Tuomas Virtanen.
-        | Audio Research Group, Tampere University (Finland).
+        | Audio Research Group, Tampere University (Finland). 
 
         | Yuki Mitsufuji, Kazuki Shimada, Naoya Takahashi, Yuichiro Koyama, Shusuke Takahashi
         | SONY.
@@ -16,55 +16,55 @@
     Version 1.0.0
 
     *Description:*
-        Contains multichannel recordings of sound scenes in various rooms and environments,
-        together with temporal and spatial annotations of prominent events belonging to a
-        set of target classes. The dataset is collected in two different countries, in Tampere,
-        Finland by the Audio Researh Group (ARG) of Tampere University (TAU), and in Tokyo,
-        Japan by SONY, using a similar setup and annotation procedure. The dataset is delivered
-        in two 4-channel spatial recording formats, a microphone array one (MIC), and first-order
-        Ambisonics one (FOA). These recordings serve as the development dataset for the DCASE 2022
+        Contains multichannel recordings of sound scenes in various rooms and environments, 
+        together with temporal and spatial annotations of prominent events belonging to a 
+        set of target classes. The dataset is collected in two different countries, in Tampere, 
+        Finland by the Audio Researh Group (ARG) of Tampere University (TAU), and in Tokyo, 
+        Japan by SONY, using a similar setup and annotation procedure. The dataset is delivered 
+        in two 4-channel spatial recording formats, a microphone array one (MIC), and first-order 
+        Ambisonics one (FOA). These recordings serve as the development dataset for the DCASE 2022 
         Sound Event Localization and Detection Task of the DCASE 2022 Challenge.
 
-        Contrary to the three previous datasets of synthetic spatial sound scenes of
-            * TAU Spatial Sound Events 2019 (development/evaluation),
-            * TAU-NIGENS Spatial Sound Events 2020, and
-            * TAU-NIGENS Spatial Sound Events 2021
+        Contrary to the three previous datasets of synthetic spatial sound scenes of 
+            * TAU Spatial Sound Events 2019 (development/evaluation), 
+            * TAU-NIGENS Spatial Sound Events 2020, and 
+            * TAU-NIGENS Spatial Sound Events 2021 
 
-        associated with the previous iterations of the DCASE Challenge, the STARS22 dataset contains
-        recordings of real sound scenes and hence it avoids some of the pitfalls of synthetic
+        associated with the previous iterations of the DCASE Challenge, the STARS22 dataset contains 
+        recordings of real sound scenes and hence it avoids some of the pitfalls of synthetic 
         generation of scenes. Some such key properties are:
 
             * annotations are based on a combination of human annotators for sound event activity and optical tracking for spatial positions
             * the annotated target event classes are determined by the composition of the real scenes
             * the density, polyphony, occurences and co-occurences of events and sound classes is not random, and it follows actions and interactions of participants in the real scenes
 
-        The recordings were collected between September 2021 and January 2022. Collection of data
+        The recordings were collected between September 2021 and January 2022. Collection of data 
         from the TAU side has received funding from Google.
 
     *Audio Files Included:*
-        * 70 recording clips of 30 sec ~ 5 min durations, with a total time of ~2hrs, contributed by SONY (development dataset).
-        * 51 recording clips of 1 min ~ 5 min durations, with a total time of ~3hrs, contributed by TAU (development dataset).
-        * 40 recordings contributed by SONY for the training split, captured in 2 rooms (dev-train-sony).
-        * 30 recordings contributed by SONY for the testing split, captured in 2 rooms (dev-test-sony).
-        * 27 recordings contributed by TAU for the training split, captured in 4 rooms (dev-train-tau).
-        * 24 recordings contributed by TAU for the testing split, captured in 3 rooms (dev-test-tau).
-        * A total of 11 unique rooms captured in the recordings, 4 from SONY and 7 from TAU (development set).
-        * Sampling rate 24kHz.
-        * Two 4-channel 3-dimensional recording formats: first-order Ambisonics (FOA) and tetrahedral microphone array (MIC).
-        * Recordings are taken in two different countries and two different sites.
-        * Each recording clip is part of a recording session happening in a unique room.
-        * Groups of participants, sound making props, and scene scenarios are unique for each session (with a few exceptions).
-        * 13 target classes are identified in the recordings and strongly annotated by humans.
-        * Spatial annotations for those active events are captured by an optical tracking system.
-        * Sound events out of the target classes are considered as interference and are not labeled.
+    	* 70 recording clips of 30 sec ~ 5 min durations, with a total time of ~2hrs, contributed by SONY (development dataset).
+    	* 51 recording clips of 1 min ~ 5 min durations, with a total time of ~3hrs, contributed by TAU (development dataset).
+    	* 40 recordings contributed by SONY for the training split, captured in 2 rooms (dev-train-sony).
+    	* 30 recordings contributed by SONY for the testing split, captured in 2 rooms (dev-test-sony).
+    	* 27 recordings contributed by TAU for the training split, captured in 4 rooms (dev-train-tau).
+    	* 24 recordings contributed by TAU for the testing split, captured in 3 rooms (dev-test-tau).
+    	* A total of 11 unique rooms captured in the recordings, 4 from SONY and 7 from TAU (development set).
+    	* Sampling rate 24kHz.
+    	* Two 4-channel 3-dimensional recording formats: first-order Ambisonics (FOA) and tetrahedral microphone array (MIC).
+    	* Recordings are taken in two different countries and two different sites.
+    	* Each recording clip is part of a recording session happening in a unique room.
+    	* Groups of participants, sound making props, and scene scenarios are unique for each session (with a few exceptions).
+    	* 13 target classes are identified in the recordings and strongly annotated by humans.
+    	* Spatial annotations for those active events are captured by an optical tracking system.
+    	* Sound events out of the target classes are considered as interference and are not labeled.
 
     *Annotations Included:*
         * Each recording in the development set has labels of events and DoAs in a plain csv file with the same filename.
         * Each row in the csv file has a frame number, active class index, source number index, azimuth, and elevation.
-        * Frame, class, and source enumeration begins at 0.
-        * Frames correspond to a temporal resolution of 100msec.
+        * Frame, class, and source enumeration begins at 0. 
+        * Frames correspond to a temporal resolution of 100msec. 
         * Azimuth and elevation angles are given in degrees, rounded to the closest integer value, with azimuth and elevation being zero at the front, azimuth :math:`\phi \in [-180^{\circ}, 180^{\circ}]`, and elevation :math:`\\theta \in [-90^{\circ}, 90^{\circ}]`. Note that the azimuth angle is increasing counter-clockwise (:math:`\phi = 90^{\circ}` at the left).
-
+	
     * The source index is a unique integer for each source in the scene, and it is provided only as additional information. Note that each unique actor gets assigned one such identifier, but not individual events produced by the same actor; e.g. a clapping event and a laughter event produced by the same person have the same identifier. Independent sources that are not actors (e.g. a loudspeaker playing music in the room) get a 0 identifier. Note that source identifier information is only included in the development metadata and is not required to be provided by the participants in their results.
         * Overlapping sound events are indicated with duplicate frame numbers, and can belong to a different or the same class.
 
@@ -75,10 +75,10 @@
 
     *Please Acknowledge Sony-TAu Realistic Spatial Soundscapes (STARSS) 2022 in Academic Research:*
     If you use this dataset please cite the report on its creation, and the corresponding DCASE2022 task setup:
-
+    
     .. code-block:: latex
 
-        Politis, Adavanne, Mitsufuji, Yuki, Sudarsanam, Parthasaarathy, Shimada, Kazuki, Adavanne, Sharath, Koyama, Yuichiro, Krause, Daniel, Takahashi, Naoya, Takahashi, Shusuke, & Virtanen, Tuomas. (2022). STARSS22: Sony-TAu Realistic Spatial Soundscapes 2022 dataset (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6387880
+        Politis, Adavanne, Mitsufuji, Yuki, Sudarsanam, Parthasaarathy, Shimada, Kazuki, Adavanne, Sharath, Koyama, Yuichiro, Krause, Daniel, Takahashi, Naoya, Takahashi, Shusuke, & Virtanen, Tuomas. (2022). STARSS22: Sony-TAu Realistic Spatial Soundscapes 2022 dataset (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6387880 
 
     *License:*
         * This dataset is licensed under the [MIT](https://opensource.org/licenses/MIT) license
@@ -110,7 +110,7 @@ BIBTEX = """
                   Takahashi, Naoya and
                   Takahashi, Shusuke and
                   Virtanen, Tuomas},
-  title        = {{STARSS22: Sony-TAu Realistic Spatial Soundscapes
+  title        = {{STARSS22: Sony-TAu Realistic Spatial Soundscapes 
                    2022 dataset}},
   month        = mar,
   year         = 2022,

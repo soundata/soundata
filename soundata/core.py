@@ -1,4 +1,5 @@
-"""Core soundata classes"""
+"""Core soundata classes
+"""
 
 import json
 import os

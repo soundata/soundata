@@ -32,7 +32,7 @@
 
         .. code-block:: latex
 
-            J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation",
+            J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
             In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
         A summary is provided here:
@@ -47,7 +47,7 @@
             * There are 6000 soundscapes in the training set, generated using clips from folds 1-6 in UrbanSound8K
             * There are 2000 soundscapes in the validation set,  generated using clips from folds 7-8 in UrbanSound8K
             * There are 2000 soundscapes in the test set, generated using clips from folds 9-10 in UrbanSound8K
-        * Further details about how the soundscapes were generated including the distribution of sound event start times, durations, signal-to-noise ratios, pitch shifting, time stretching, and the range of sound event polyphony (overlap) can be found in Section 3 of the aforementioned scaper paper
+        * Further details about how the soundscapes were generated including the distribution of sound event start times, durations, signal-to-noise ratios, pitch shifting, time stretching, and the range of sound event polyphony (overlap) can be found in Section 3 of the aforementioned scaper paper 
         * The scripts used to generated URBAN-SED using scaper can be found here: https://github.com/justinsalamon/scaper_waspaa2017/tree/master/notebooks
 
 
@@ -57,12 +57,12 @@
 
 
     *Annotation Files Included*
-        The annotations list the sound events that occur in every soundscape. The annotations are "strong", meaning for every
-        sound event the annotations include (at least) the start time, end time, and label of the sound event. Sound events
+        The annotations list the sound events that occur in every soundscape. The annotations are "strong", meaning for every 
+        sound event the annotations include (at least) the start time, end time, and label of the sound event. Sound events 
         come from the following 10 labels (categories): air_conditioner, car_horn, children_playing, dog_bark, drilling, engine_idling,
         gun_shot, jackhammer, siren, street_music
 
-        There are two types of annotations: full annotations in JAMS format, and simplified annotations in
+        There are two types of annotations: full annotations in JAMS format, and simplified annotations in 
         tab-separated txt format.
 
     *JAMS Annotations*
@@ -89,28 +89,28 @@
 
 
     *Please Acknowledge URBAN-SED in Academic Research*
-        When URBAN-SED is used for academic research, we would highly appreciate it if scientific publications of works
+        When URBAN-SED is used for academic research, we would highly appreciate it if scientific publications of works 
         partly based on the URBAN-SED dataset cite the following publication:
 
         .. code-block:: latex
 
-            J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation",
+            J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. "Scaper: A Library for Soundscape Synthesis and Augmentation", 
             In IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), New Paltz, NY, USA, Oct. 2017.
 
         The creation of this dataset was supported by NSF award 1544753.
 
 
     *Conditions of Use*
-        Dataset created by J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. Audio files contain excerpts of
+        Dataset created by J. Salamon, D. MacConnell, M. Cartwright, P. Li, and J. P. Bello. Audio files contain excerpts of 
         recordings uploaded to www.freesound.org. Please see FREESOUNDCREDITS.txt for an attribution list.
-
+        
         The URBAN-SED dataset is offered free of charge under the terms of the Creative Commons
         Attribution 4.0 International License (CC BY 4.0): http://creativecommons.org/licenses/by/4.0/
-
-        The dataset and its contents are made available on an "as is" basis and without warranties of any kind, including
-        without limitation satisfactory quality and conformity, merchantability, fitness for a particular purpose, accuracy or
-        completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, NYU is not
-        liable for, and expressly excludes, all liability for loss or damage however and whenever caused to anyone by any use of
+        
+        The dataset and its contents are made available on an "as is" basis and without warranties of any kind, including 
+        without limitation satisfactory quality and conformity, merchantability, fitness for a particular purpose, accuracy or 
+        completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, NYU is not 
+        liable for, and expressly excludes, all liability for loss or damage however and whenever caused to anyone by any use of 
         the URBAN-SED dataset or any part of it.
 
 
