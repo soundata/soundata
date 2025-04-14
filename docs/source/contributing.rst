@@ -66,19 +66,6 @@ Finally, run:
 All tests should pass!
 
 .. note::
-    Soundata uses `pre-commit <https://pre-commit.com/>`_ to manage multi-language pre-commit hooks,
-    which help ensure that all code changes meet our project's coding standards before they are committed.
-    To install and configure pre-commit locally, run:
-
-    .. code-block:: bash
-
-        poetry run pre-commit install
-
-    With pre-commit installed, every time you commit changes, the hooks will run automatically. If any
-    hook fails, the commit will be aborted. You'll need to review the reported issues before attempting to commit again.
-
-
-.. note::
         Soundata assumes that your system has the zip library installed for unzipping files.
 
 
