@@ -78,6 +78,7 @@ sphinxcontrib-napoleon = "*"
 sphinx_rtd_theme = "*"
 sphinx-togglebutton = "*"
 ipywidgets = ">=8.1.1"
+toml = ">=0.10.2"
 
 [tool.poetry.group.plots]
 optional = true
