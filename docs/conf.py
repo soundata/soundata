@@ -9,36 +9,54 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
+
 import os
+import toml
 import sys
 import datetime
 from docutils import nodes, utils
 from docutils.parsers.rst import roles
+
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
 year = datetime.datetime.utcnow().year
-copyright = '2021-{}, Soundata development team'.format(year)
+copyright = "2021-{}, Soundata development team".format(year)
 author = "The Soundata development team"
 
-
-import importlib
-
-soundata_version = importlib.import_module("soundata.version")
+# Read version from pyproject.toml
+with open(os.path.abspath("../pyproject.toml"), "r") as f:
+    pyproject = toml.load(f)
+    full_version = pyproject["tool"]["poetry"]["version"]
 
 # The short X.Y version.
-version = soundata_version.short_version
+version = ".".join(full_version.split(".")[:2])
 # The full version, including alpha/beta/rc tags.
-release = soundata_version.version
+release = full_version
 # Show only copyright
 show_authors = False
 
+# import importlib
+# soundata_version = importlib.import_module("soundata.version")
+# # The short X.Y version.
+# version = soundata_version.short_version
+# # The full version, including alpha/beta/rc tags.
+# release = soundata_version.version
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
+autodoc_mock_imports = [
+    "librosa",
+    "numpy",
+    "jams",
+    "pandas",
+    "pydub",
+    "simpleaudio",
+    "seaborn",
+    "py7zr",
+    "matplotlib",
+]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -63,7 +81,10 @@ extlinks = {
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom%s"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom%s"),
     "tau2022": ("https://zenodo.org/record/6337421%s", "Custom%s"),
-    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom%s"),
+    "tut": (
+        "https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s",
+        "Custom%s",
+    ),
 }
 
 intersphinx_mapping = {
@@ -113,9 +134,8 @@ exclude_patterns = [
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
+# The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.
-#
 html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -134,23 +154,27 @@ def create_reference_role(node_id):
         text = utils.unescape(text)
         # Use the same class name as defined in the CSS file for the reference node
         class_name = name.lower()  # This should match the class name used in the CSS
-        ref_node = nodes.reference(rawtext, text, refuri=f'#{node_id}', classes=[class_name])
+        ref_node = nodes.reference(
+            rawtext, text, refuri=f"#{node_id}", classes=[class_name]
+        )
         return [ref_node], []
+
     return role_fn
+
 
 def setup(app):
     role_to_target = {
-        'sed': 'sed',
-        'sec': 'sec',
-        'sel': 'sel',
-        'asc': 'asc',
-        'ac': 'ac',
-        'urban': 'urban-environment',
-        'environment': 'environment-sounds',
-        'machine': 'machine-sounds',
-        'bioacoustic': 'bioacoustic-sounds',
-        'music': 'music-sounds',
+        "sed": "sed",
+        "sec": "sec",
+        "sel": "sel",
+        "asc": "asc",
+        "ac": "ac",
+        "urban": "urban-environment",
+        "environment": "environment-sounds",
+        "machine": "machine-sounds",
+        "bioacoustic": "bioacoustic-sounds",
+        "music": "music-sounds",
     }
-    
+
     for role_name, node_id in role_to_target.items():
         app.add_role(role_name, create_reference_role(node_id))

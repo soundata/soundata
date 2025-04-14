@@ -12,6 +12,9 @@ __pycache__/
 # C extensions
 *.so
 
+# poetry lock not tracked
+poetry.lock
+
 # Distribution / packaging
 .Python
 env/
