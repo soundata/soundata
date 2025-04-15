@@ -71,3 +71,4 @@ target/
 
 #IntelliJ
 .idea
+.python-version

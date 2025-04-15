@@ -1,0 +1,47 @@
+{
+  "version": "sample",
+  "clips": {
+    " Ambience Birds": {
+      "audio": [
+        "clotho_audio_development/ Ambience Birds.wav",
+        "9c99bd23d99b6f4485b650f25239429a"
+      ],
+      "captions": [
+        "clotho_captions_development.csv",
+        "d4090b39ce9f2491908eebf4d5b09bae"
+      ],
+      "metadata": [
+        "clotho_metadata_development.csv",
+        "170d20935ecfdf161ce1bb154118cda5"
+      ]
+    },
+    "_Stream 2 at Krka falls": {
+      "audio": [
+        "clotho_audio_evaluation/_Stream 2 at Krka falls.wav",
+        "25ee4078cfffbd385dee2dad847e3da5"
+      ],
+      "captions": [
+        "clotho_captions_evaluation.csv",
+        "1b16b9e57cf7bdb7f13a13802aeb57e2"
+      ],
+      "metadata": [
+        "clotho_metadata_evaluation.csv",
+        "13946f054d4e1bf48079813aac61bf77"
+      ]
+    },
+    " e ieio ieai": {
+      "audio": [
+        "clotho_audio_validation/ e ieio ieai.wav",
+        "fdd67917c321c564f6fff68c3edd9798"
+      ],
+      "captions": [
+        "clotho_captions_validation.csv",
+        "5879e023032b22a2c930aaa0528bead4"
+      ],
+      "metadata": [
+        "clotho_metadata_validation.csv",
+        "2e010427c56b1ce6008b0f03f41048ce"
+      ]
+    }
+  }
+}
