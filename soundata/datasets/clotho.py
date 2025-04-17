@@ -90,11 +90,11 @@ BIBTEX = """
 """
 
 INDEXES = {
-    "default": "2.1", 
+    "default": "2.1",
     "test": "sample",
     "2.1": core.Index(
         filename="clotho_index_2.1.json",
-        #url= "https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",  NOT PUBLISHED YET
+        # url= "https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",  NOT PUBLISHED YET
         checksum="709296224289d8d69a3cd33bc6249606",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),
@@ -147,9 +147,10 @@ REMOTES = {
         checksum="2e010427c56b1ce6008b0f03f41048ce",
     ),
 }
-####### 
+#######
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
-####### 
+#######
+
 
 class Clip(core.Clip):
     """Clotho Clip class
@@ -171,7 +172,6 @@ class Clip(core.Clip):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
-        
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -198,7 +198,7 @@ class Clip(core.Clip):
             return "validation"
         elif "evaluation" in self.audio_path:
             return "evaluation"
-    
+
     @property
     def file_name(self):
         """The name of the audio file.
@@ -263,7 +263,6 @@ class Clip(core.Clip):
         return self._clip_metadata.get("license")
 
 
-
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """Load a Clotho audio file.
@@ -280,9 +279,6 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     """
     audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
-
-
-
 
 
 @core.docstring_inherit(core.Dataset)
@@ -302,7 +298,7 @@ class Dataset(core.Dataset):
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
-    
+
     @core.copy_docs(load_audio)
     def load_audio(self, *args, **kwargs):
         return load_audio(*args, **kwargs)
@@ -314,8 +310,12 @@ class Dataset(core.Dataset):
 
         for split in splits:
             try:
-                metadata_path = os.path.join(self.data_home, f"clotho_metadata_{split}.csv")
-                captions_path = os.path.join(self.data_home, f"clotho_captions_{split}.csv")
+                metadata_path = os.path.join(
+                    self.data_home, f"clotho_metadata_{split}.csv"
+                )
+                captions_path = os.path.join(
+                    self.data_home, f"clotho_captions_{split}.csv"
+                )
 
                 metadata_df = pd.read_csv(metadata_path)
                 captions_df = pd.read_csv(captions_path)
@@ -325,21 +325,20 @@ class Dataset(core.Dataset):
                     track_id = os.path.splitext(file_name)[0]
 
                     caption_row = captions_df[captions_df["file_name"] == file_name]
-                    metadata_index[track_id]= {
-                        "duration":row.get("duration"),
-                        "license":row.get("license"),
-                        "source":row.get("source"),
-                        "keywords":row.get("keywords"),
-                        "sound_id":row.get("sound_id"),
-                        "sound_link":row.get("sound_link"),
-                        
-                        "caption_1":caption_row("caption_1").values[0],
-                        "caption_2":caption_row("caption_2").values[0],
-                        "caption_3":caption_row("caption_3").values[0],
-                        "caption_4":caption_row("caption_4").values[0],
-                        "caption_5":caption_row("caption_5").values[0],
+                    metadata_index[track_id] = {
+                        "duration": row.get("duration"),
+                        "license": row.get("license"),
+                        "source": row.get("source"),
+                        "keywords": row.get("keywords"),
+                        "sound_id": row.get("sound_id"),
+                        "sound_link": row.get("sound_link"),
+                        "caption_1": caption_row("caption_1").values[0],
+                        "caption_2": caption_row("caption_2").values[0],
+                        "caption_3": caption_row("caption_3").values[0],
+                        "caption_4": caption_row("caption_4").values[0],
+                        "caption_5": caption_row("caption_5").values[0],
                     }
-        
+
             except FileNotFoundError:
                 raise FileNotFoundError("Metadata not found. Did you run .download()?")
 
