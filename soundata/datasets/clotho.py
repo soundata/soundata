@@ -15,15 +15,15 @@
         | Tampere University, Finland
 
     *Version 2.1*
-        In version 2.1 of Clotho, we fixed some files that were corrupted from the compression and transferring processes (around 150 files) and we also replaced some characters that were illegal for most filesystems, e.g. ":" (around 10 files). 
+        In version 2.1 of Clotho, we fixed some files that were corrupted from the compression and transferring processes (around 150 files) and we also replaced some characters that were illegal for most filesystems, e.g. ":" (around 10 files).
 
 
     *Description*
 
-        Clotho is an audio captioning dataset, now reached version 2. Clotho consists of 6974 audio samples, and each audio sample has five captions (a total of 34 870 captions). Audio samples are of 15 to 30 s duration and captions are eight to 20 words long. 
+        Clotho is an audio captioning dataset, now reached version 2. Clotho consists of 6974 audio samples, and each audio sample has five captions (a total of 34 870 captions). Audio samples are of 15 to 30 s duration and captions are eight to 20 words long.
         Clotho is thoroughly described in our paper:
         K. Drossos, S. Lipping and T. Virtanen, "Clotho: an Audio Captioning Dataset," IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Barcelona, Spain, 2020, pp. 736-740, doi: 10.1109/ICASSP40776.2020.9052990.
-        available online at: https://arxiv.org/abs/1910.09387 and at: https://ieeexplore.ieee.org/document/9052990 
+        available online at: https://arxiv.org/abs/1910.09387 and at: https://ieeexplore.ieee.org/document/9052990
 
 
     *Audio Files Included*
@@ -42,7 +42,7 @@
         Metadata includes keywords, sound_id, sound_link, start_end_samples, manufacturer, license.
 
     *Please Acknowledge URBAN-SED in Academic Research*
-        For using Cloto for academic research, please cite the paper. The paper can be found from :https://ieeexplore.ieee.org/document/9052990 
+        For using Cloto for academic research, please cite the paper. The paper can be found from :https://ieeexplore.ieee.org/document/9052990
 
 
     *Conditions of Use*
@@ -94,7 +94,7 @@ INDEXES = {
     "test": "sample",
     "2.1": core.Index(
         filename="clotho_index_2.1.json",
-        # url= "https://zenodo.org/records/11176925/files/urbansed_index_2.0.json?download=1",  NOT PUBLISHED YET
+        url="https://zenodo.org/records/15208093/files/clotho_index_2.1.json?download=1&preview=1",  # NOT PUBLISHED YET
         checksum="709296224289d8d69a3cd33bc6249606",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),
@@ -156,22 +156,26 @@ class Clip(core.Clip):
     """Clotho Clip class
 
     Args:
-        track_id (str): track id of the track
+        clip_id (str):id of the clip
 
     Attributes:
-        audio_path (str): path to the .wav file
-        captions (list of str): list of 5 captions describing the audio
-        duration (float): duration in seconds
-        source (str): audio source (e.g., freesound)
-        license (str): license type (e.g., cc_by_4.0)
-        keywords (str): comma-separated keywords
-        split (str): one of "development", "validation", "evaluation"
+        audio (np.ndarray, float): Audio signal and sample rate.
+        file_name (str): Name of the file.
+        keywords (str): Associated keywords.
+        sound_id (str): Unique identifier for the sound.
+        sound_link (str): Link to the sound.
+        start_end_samples (tuple): Start and end samples in the audio file.
+        manufacturer (str): Manufacturer of the recording equipment.
+        captions (list): Captions for the clip
+        license (str): License of the clip.
+        split (str): split
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
         super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
+
 
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
@@ -183,22 +187,7 @@ class Clip(core.Clip):
 
         """
         return load_audio(self.audio_path)
-
-    @property
-    def split(self):
-        """The data splits (e.g. train)
-
-        Returns
-            * str - split
-
-        """
-        if "development" in self.audio_path:
-            return "development"
-        elif "validation" in self.audio_path:
-            return "validation"
-        elif "evaluation" in self.audio_path:
-            return "evaluation"
-
+    
     @property
     def file_name(self):
         """The name of the audio file.
@@ -252,6 +241,15 @@ class Clip(core.Clip):
             * str - Manufacturer name.
         """
         return self._clip_metadata.get("manufacturer")
+    
+    @property
+    def captions(self):
+        """Captions for the clip.
+
+        Returns:
+            * list - Captions.
+        """
+        return self._clip_metadata.get("captions")
 
     @property
     def license(self):
@@ -261,6 +259,16 @@ class Clip(core.Clip):
             * str - License information.
         """
         return self._clip_metadata.get("license")
+    
+    @property
+    def split(self):
+        """Split of the clip.
+        
+        Returns:
+            * str - split name
+        """
+
+        return self._clip_metadata.get("split")
 
 
 @io.coerce_to_bytes_io
@@ -292,7 +300,7 @@ class Dataset(core.Dataset):
             data_home,
             version,
             name="clotho",
-            track_class=Clip,
+            clip_class=Clip,
             bibtex=BIBTEX,
             indexes=INDEXES,
             remotes=REMOTES,
@@ -305,41 +313,53 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
+        # Name of each splits
         splits = ["development", "validation", "evaluation"]
+        
+        # Create empty index dictionary
         metadata_index = {}
 
+        # Process through each split    
         for split in splits:
-            try:
-                metadata_path = os.path.join(
-                    self.data_home, f"clotho_metadata_{split}.csv"
-                )
-                captions_path = os.path.join(
-                    self.data_home, f"clotho_captions_{split}.csv"
-                )
 
-                metadata_df = pd.read_csv(metadata_path)
-                captions_df = pd.read_csv(captions_path)
+        
+            metadata_path = os.path.join(self.data_home, f"clotho_metadata_{split}.csv")
+            captions_path = os.path.join(self.data_home, f"clotho_captions_{split}.csv")
 
-                for _, row in metadata_df.iterrows():
-                    file_name = row["file_name"]
-                    track_id = os.path.splitext(file_name)[0]
+            metadata_df = pd.read_csv(metadata_path)
+            captions_df = pd.read_csv(captions_path)
 
-                    caption_row = captions_df[captions_df["file_name"] == file_name]
-                    metadata_index[track_id] = {
-                        "duration": row.get("duration"),
-                        "license": row.get("license"),
-                        "source": row.get("source"),
-                        "keywords": row.get("keywords"),
-                        "sound_id": row.get("sound_id"),
-                        "sound_link": row.get("sound_link"),
-                        "caption_1": caption_row("caption_1").values[0],
-                        "caption_2": caption_row("caption_2").values[0],
-                        "caption_3": caption_row("caption_3").values[0],
-                        "caption_4": caption_row("caption_4").values[0],
-                        "caption_5": caption_row("caption_5").values[0],
-                    }
+            # Create clip_id in df by removing .wav from the file_name
+            captions_df["clip_id"] = captions_df["file_name"].apply(
+            lambda x: x.strip().replace(".wav", ""))
+            metadata_df["clip_id"] = metadata_df["file_name"].apply(
+            lambda x: x.strip().replace(".wav", ""))
 
-            except FileNotFoundError:
-                raise FileNotFoundError("Metadata not found. Did you run .download()?")
+            
+            for _, row in metadata_df.iterrows():
+                clip_id = row["clip_id"]
 
-        return metadata_index
+                # find matching row in captions_df
+                caption_row = captions_df[captions_df["clip_id"] == clip_id].iloc[0]
+
+                metadata_index[clip_id] = {
+                "clip_id": clip_id,
+                "file_name": row["file_name"].strip(),
+                "keywords": row.get("keywords", ""),
+                "sound_id": row.get("sound_id", ""),
+                "sound_link": row.get("sound_link", ""),
+                "start_end_samples": row.get("start_end_samples", ""),
+                "manufacturer": row.get("manufacturer", ""),
+                "license": row.get("license", ""),
+                "captions": [
+                    caption_row.get("caption_1", ""),
+                    caption_row.get("caption_2", ""),
+                    caption_row.get("caption_3", ""),
+                    caption_row.get("caption_4", ""),
+                    caption_row.get("caption_5", ""),
+                ],
+                "split": split,
+            }
+
+            return metadata_index
+

@@ -1,5 +1,4 @@
-"""Utilities for converting soundata Annotation classes to jams format.
-"""
+"""Utilities for converting soundata Annotation classes to jams format."""
 
 import logging
 import os
