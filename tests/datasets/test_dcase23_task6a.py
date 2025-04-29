@@ -57,19 +57,3 @@ def test_load_metadata():
     assert clip.sound_id == "267105"
     assert clip.keywords == "thunder;weather;field-recording;rain;city"
     assert clip.sound_link == "https://freesound.org/people/Omega9/sounds/267105"
-
-
-def test_to_jams():
-    default_clipid = "development/1"
-    dataset = dcase23_task6a.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # validate metadata
-    assert jam.file_metadata.duration == 2.0
-    assert jam.sandbox.keywords == "thunder;weather;field-recording;rain;city"
-    assert jam.sandbox.sound_id == "267105"
-    assert jam.sandbox.sound_link == "https://freesound.org/people/Omega9/sounds/267105"
-    assert jam.sandbox.manufacturer == "Omega9"

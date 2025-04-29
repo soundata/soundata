@@ -143,13 +143,3 @@ def test_load_SpatialEvents():
         annotations.validate_locations(
             np.array([[90, 181, None], [2, 3, None]], dtype=object)
         )
-
-
-def test_to_jams():
-    default_clipid = "foa_dev/dev-train/fold1_room1_mix001"
-    dataset = tau2021sse_nigens.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate tau2021sse_nigens jam schema
-    assert jam.validate()

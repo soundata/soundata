@@ -48,54 +48,6 @@ def test_load_audio():
     assert len(audio) == 75601
 
 
-def test_to_jams():
-    default_clipid = "64760"
-    dataset = fsd50k.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate fsd50k jam schema
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 5
-    assert [tag.time for tag in tags] == [0.0, 0.0, 0.0, 0.0, 0.0]
-    assert [tag.duration for tag in tags] == [
-        1.7143083900226757,
-        1.7143083900226757,
-        1.7143083900226757,
-        1.7143083900226757,
-        1.7143083900226757,
-    ]
-    assert [tag.value for tag in tags] == [
-        "Electric_guitar",
-        "Guitar",
-        "Plucked_string_instrument",
-        "Musical_instrument",
-        "Music",
-    ]
-    assert [tag.confidence for tag in tags] == [1.0, 1.0, 1.0, 1.0, 1.0]
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.7143083900226757
-    assert jam.file_metadata.title == "guitarras_63.wav"
-    assert jam.sandbox.mids == [
-        "/m/02sgy",
-        "/m/0342h",
-        "/m/0fx80y",
-        "/m/04szw",
-        "/m/04rlf",
-    ]
-    assert jam.sandbox.split == "train"
-    assert jam.sandbox.description == "electric guitar"
-    assert jam.sandbox.freesound_tags == ["electric", "guitar"]
-    assert jam.sandbox.license == "http://creativecommons.org/licenses/sampling+/1.0/"
-    assert jam.sandbox.uploader == "casualsamples"
-    assert jam.sandbox.pp_pnp_ratings == {"/m/02sgy": [1.0, 1.0]}
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"
-
-
 def test_labels():
     # For multiple tags
     default_clipid = "64760"

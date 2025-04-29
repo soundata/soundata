@@ -14,14 +14,14 @@
 
         | K. Drossos, S. Lipping, and T. Virtanen.
         | Tampere University, Finland
-        
+
     *Version 2.1.0*
         Fixes for corrupted files and illegal characters.
         More details on version changes are available in the dataset repository.
 
     *Description*
-        Clotho is an audio captioning dataset, consisting of 6974 audio samples, each accompanied by five captions, totaling 34,870 captions. 
-        
+        Clotho is an audio captioning dataset, consisting of 6974 audio samples, each accompanied by five captions, totaling 34,870 captions.
+
         * Audio samples are 15 to 30 seconds in duration.
         * Captions are 8 to 20 words long.
         * Dataset splits: development, validation, and evaluation.
@@ -49,7 +49,7 @@
 
     *Acknowledgment in Academic Research*
     When using Clotho for academic research, please cite:
-        
+
     .. code-block:: latex
 
         K. Drossos, S. Lipping, and T. Virtanen, "Clotho: an Audio Captioning Dataset," ICASSP 2020.
@@ -66,7 +66,7 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import numpy as np
 import csv
 import librosa
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 BIBTEX = """
 @inproceedings{Drossos:ICASSP:20,
@@ -249,17 +249,6 @@ class Clip(core.Clip):
             * str - License information.
         """
         return self._clip_metadata.get("license")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io
