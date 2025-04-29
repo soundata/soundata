@@ -6,20 +6,20 @@ Warblrb10k Dataset Loader
 
     **Warblrb10k**
 
-    *Created By* 
+    *Created By*
 
-        | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§  
-        | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London  
-        | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford  
-        | ‡ Computer Science Department, University of Crete  
-        | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France  
+        | Dan Stowell*#, Mike Wood†, Yannis Stylianou‡, and Hervé Glotin§
+        | * Machine Listening Lab, Centre for Digital Music, Queen Mary University of London
+        | † Ecosystems and Environment Research Centre, School of Environment and Life Sciences, University of Salford
+        | ‡ Computer Science Department, University of Crete
+        | § LSIS UMR CNRS, University of Toulon, Institut Universitaire de France
 
     Version 1.0
 
     *Description*
-        The Warblr dataset consists of 10,000 ten-second audio files, collected via the Warblr app from users across the UK in 2015-2016. 
-        Using a classification method by Stowell and Plumbley (2014a), this app aims to identify bird species from user-submitted recordings. 
-        The dataset, inclusive of various human and environmental noises, is broadly distributed over different times and seasons but has biases towards mornings, weekends, and populated areas. Despite having initial automated bird species estimates, the recordings underwent manual annotation due to precision inadequacies for establishing ground-truth data. 
+        The Warblr dataset consists of 10,000 ten-second audio files, collected via the Warblr app from users across the UK in 2015-2016.
+        Using a classification method by Stowell and Plumbley (2014a), this app aims to identify bird species from user-submitted recordings.
+        The dataset, inclusive of various human and environmental noises, is broadly distributed over different times and seasons but has biases towards mornings, weekends, and populated areas. Despite having initial automated bird species estimates, the recordings underwent manual annotation due to precision inadequacies for establishing ground-truth data.
         The dataset proves instrumental for research and development in bird species detection amidst variable noise conditions.
 
     *Audio Files Included*
@@ -32,9 +32,9 @@ Warblrb10k Dataset Loader
         When the Warblr dataset is employed for academic research, we sincerely request that scientific publications of works partially based on this dataset cite the following publication:
 
         .. code-block:: latex
-        
+
             Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé. "Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge", Methods in Ecology and Evolution, 2018.
-        
+
         The creation and curating of this dataset were possible through the participation and contributions of the general public using the Warblr app, enabling a comprehensive collection of bird sound recordings from various regions within the UK during 2015-2016.
 
     *Conditions of Use*
@@ -55,7 +55,6 @@ import numpy as np
 import csv
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -156,17 +155,6 @@ class Clip(core.Clip):
 
         """
         return self._clip_metadata.get("hasbird")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

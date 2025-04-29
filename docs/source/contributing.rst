@@ -761,8 +761,6 @@ We use the following libraries for loading data from files:
 +-------------------------+-------------+
 | csv                     | csv         |
 +-------------------------+-------------+
-| jams                    | jams        |
-+-------------------------+-------------+
 
 Clip Attributes
 ----------------

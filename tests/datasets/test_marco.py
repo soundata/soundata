@@ -50,16 +50,3 @@ def test_load_metadata():
     dataset = marco.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     assert clip.microphone_info == ["OCT3D", "2", "FR"]
-
-
-def test_to_jams():
-    default_clipid = "impulse_response/+90deg_011_OCT3D_2_FR"
-    dataset = marco.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.microphone_info == ["OCT3D", "2", "FR"]

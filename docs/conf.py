@@ -38,7 +38,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
+autodoc_mock_imports = ["librosa", "numpy", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -55,6 +55,7 @@ extensions = [
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
     "sphinx_togglebutton",
+    "sphinx_copybutton",
 ]
 
 # To shorten links of licenses and add to table
@@ -68,7 +69,6 @@ extlinks = {
 
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
-    "jams": ("https://jams.readthedocs.io/en/stable/", None),
 }
 
 # Napoleon settings

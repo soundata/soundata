@@ -1,7 +1,3 @@
-"""Utilities for converting soundata Annotation classes to jams format.
-"""
-
-import logging
 import os
 from typing import Callable, List
 
@@ -59,7 +55,7 @@ def jams_converter(
                 and metadata[key] != duration
                 and audio_path is not None
             ):
-                logging.warning(
+                print(
                     "Duration provided in metadata does not"
                     + "match the duration computed from the audio file."
                     + "Using the duration provided by the metadata."
