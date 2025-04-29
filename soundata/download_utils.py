@@ -1,5 +1,4 @@
-"""utilities for downloading from the web.
-"""
+"""utilities for downloading from the web."""
 
 import glob
 import logging

@@ -5,25 +5,25 @@
 
     **DCASE 2023 Task-2**
 
-    *Created By*  
+    *Created By*
 
         | Noboru Harada, Daisuke Niizumi, Yasunori Ohishi, Daiki Takeuchi, and Masahiro Yasuda.
         | Hitachi, Ltd.
         | NTT Corporation.
 
-    *Version*  
-        1.0 
+    *Version*
+        1.0
 
-    *Description*  
-        The DCASE 2023 Task 2 "First-Shot Unsupervised Anomalous Sound Detection for Machine Condition Monitoring" dataset provides the operating sounds of seven real/toy machines: ToyCar, ToyTrain, Fan, Gearbox, Bearing, Slide rail, and Valve. Each recording is a single-channel, 10-second audio that includes both a machine's operating sound and environmental noise. The dataset contains training clips containing normal sounds in the source and target domain and test clips of both normal and anomalous sounds. 
+    *Description*
+        The DCASE 2023 Task 2 "First-Shot Unsupervised Anomalous Sound Detection for Machine Condition Monitoring" dataset provides the operating sounds of seven real/toy machines: ToyCar, ToyTrain, Fan, Gearbox, Bearing, Slide rail, and Valve. Each recording is a single-channel, 10-second audio that includes both a machine's operating sound and environmental noise. The dataset contains training clips containing normal sounds in the source and target domain and test clips of both normal and anomalous sounds.
 
-    *Audio Files Included*  
+    *Audio Files Included*
         10,000 ten-second audio recordings for each machine type in WAV format. The `raw` directory contains recordings as WAV files, with the source/target domain and attributes provided in the file name.
 
-    *Meta-data Files Included*  
+    *Meta-data Files Included*
         Attribute csv files accompany the audio files for easy access to attributes that cause domain shifts. Each file lists the file names, domain shift parameters, and the value or type of these parameters.
 
-    *Please Acknowledge DCASE 2023 Task 2 in Academic Research*  
+    *Please Acknowledge DCASE 2023 Task 2 in Academic Research*
         When the DCASE 2023 Task 2 dataset is used for academic research, we would highly appreciate it if scientific publications of works partly based on this dataset cite the following publications:
 
         .. code-block:: latex
@@ -32,16 +32,16 @@
             Kota Dohi, Tomoya Nishida, Harsh Purohit, Ryo Tanabe, Takashi Endo, Masaaki Yamamoto, Yuki Nikaido, and Yohei Kawaguchi. "MIMII DG: sound dataset for malfunctioning industrial machine investigation and inspection for domain generalization task", Proceedings of the 7th Detection and Classification of Acoustic Scenes and Events 2022 Workshop (DCASE2022), 31-35. Nancy, France, November 2022.
             Noboru Harada, Daisuke Niizumi, Daiki Takeuchi, Yasunori Ohishi, Masahiro Yasuda, and Shoichiro Saito. "ToyADMOS2: another dataset of miniature-machine operating sounds for anomalous sound detection under domain shift conditions", Proceedings of the 6th Detection and Classification of Acoustic Scenes and Events 2021 Workshop (DCASE2021), 1–5. Barcelona, Spain, November 2021.
 
-    *Conditions of Use*  
+    *Conditions of Use*
         The DCASE 2023 Task 2 dataset was created jointly by Hitachi, Ltd. and NTT Corporation. It is available under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license.
 
-    *Feedback*  
-        For any issues or feedback regarding the dataset, please reach out to:  
-        * Kota Dohi: kota.dohi.gr@hitachi.com  
-        * Keisuke Imoto: keisuke.imoto@ieee.org  
-        * Noboru Harada: noboru@ieee.org  
-        * Daisuke Niizumi: daisuke.niizumi.dt@hco.ntt.co.jp  
-        * Yohei Kawaguchi: yohei.kawaguchi.xk@hitachi.com.  
+    *Feedback*
+        For any issues or feedback regarding the dataset, please reach out to:
+        * Kota Dohi: kota.dohi.gr@hitachi.com
+        * Keisuke Imoto: keisuke.imoto@ieee.org
+        * Noboru Harada: noboru@ieee.org
+        * Daisuke Niizumi: daisuke.niizumi.dt@hco.ntt.co.jp
+        * Yohei Kawaguchi: yohei.kawaguchi.xk@hitachi.com.
 """
 
 import os
@@ -52,7 +52,6 @@ import numpy as np
 import csv
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -288,16 +287,6 @@ class Clip(core.Clip):
             * str - first domain shift value of the clip
         """
         return self._clip_metadata.get("d1v")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

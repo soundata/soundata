@@ -5,17 +5,17 @@
 
     **DCASE 2023 Task-4B**
 
-    *Created By:* 
+    *Created By:*
 
         | Annamaria Mesaros, Tuomas Heittola, and Tuomas Virtanen.
-        | Tampere University of Technology. 
-    
+        | Tampere University of Technology.
+
     Version 1.0
 
     *Description:*
-        MAESTRO real development contains 49 real-life audio files from 5 different acoustic scenes, each of them from 3 to 5 minutes long. 
-        The other 26 files are kept for evaluation purposes on the DCASE task 4 B. The distribution of files per scene is the following: 
-        cafe restaurant 10 files, city center 10 files, residential_area 11 files, metro station 9 files and grocery store 9 files. 
+        MAESTRO real development contains 49 real-life audio files from 5 different acoustic scenes, each of them from 3 to 5 minutes long.
+        The other 26 files are kept for evaluation purposes on the DCASE task 4 B. The distribution of files per scene is the following:
+        cafe restaurant 10 files, city center 10 files, residential_area 11 files, metro station 9 files and grocery store 9 files.
         The total duration of the development dataset is 97 minutes and 4 seconds.
 
         The audio files contain sounds from the following classes:
@@ -68,7 +68,7 @@ import glob
 import librosa
 import csv
 import numpy as np
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -172,17 +172,6 @@ class Clip(core.Clip):
 
         """
         return load_events(self.annotations_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

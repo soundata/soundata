@@ -8,8 +8,8 @@
     *Created By:*
 
         | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
-        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
-    
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona).
+
     Version 1.0
 
     *Description:*
@@ -48,7 +48,7 @@
     The noisy portion of the data consists of audio clips that received no human validation. In this case, they are
     categorized on the basis of the user-provided tags in Freesound. Hence, the noisy portion features a certain
     amount of label noise.
-    
+
     *Included files and statistics:*
         * FSDnoisy18k contains 18,532 audio clips (42.5h) unequally distributed in the 20 aforementioned classes drawn from the AudioSet Ontology.
         * The audio clips are provided as uncompressed PCM 16 bit, 44.1 kHz, mono audio files.
@@ -72,7 +72,7 @@
         some type of label noise. Please check the FSDnoisy18k companion site for a detailed characterization of
         the label noise in the dataset, including a taxonomy of label noise for singly-labeled data as well as a
         per-class description of the label noise.
-        
+
     *Relevant links:*
         * Source code for our preprint: https://github.com/edufonseca/icassp19
         * Freesound Annotator: https://annotator.freesound.org/
@@ -84,9 +84,9 @@
         If you use the FSDnoisy18K Dataset please cite the following paper:
 
         .. code-block:: latex
-        
+
             Eduardo Fonseca, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, and Xavier Serra, “Learning Sound Event Classifiers from Web Audio with Noisy Labels”, arXiv preprint arXiv:1901.01189, 2019
-            
+
         This work is partially supported by the European Union’s Horizon 2020 research and innovation programme
         under grant agreement No 688382 AudioCommons. Eduardo Fonseca is also sponsored by a Google Faculty Research
         Award 2017. We thank everyone who contributed to FSDnoisy18k with annotations.
@@ -116,7 +116,7 @@ import librosa
 import csv
 import numpy as np
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -258,17 +258,6 @@ class Clip(core.Clip):
 
         """
         return self._clip_metadata.get("split")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

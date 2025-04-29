@@ -243,10 +243,6 @@ def test_clip():
             clip_test, core.Clip
         ), "{}.clip must be an instance of type core.Clip".format(dataset_name)
 
-        assert hasattr(
-            clip_test, "to_jams"
-        ), "{}.clip must have a to_jams method".format(dataset_name)
-
         # test calling all attributes, properties and cached properties
         clip_data = get_attributes_and_properties(clip_test)
 
@@ -258,16 +254,6 @@ def test_clip():
 
         for cprop in clip_data["cached_properties"]:
             ret = getattr(clip_test, cprop)
-
-        # Validate JSON schema
-        try:
-            jam = clip_test.to_jams()
-        except:
-            assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
-
-        assert jam.validate(), "Jams validation failed for {}.clip({})".format(
-            dataset_name, clipid
-        )
 
         # will fail if something goes wrong with __repr__
         try:
@@ -415,18 +401,4 @@ def test_clipgroups():
             clipgroup_test, core.ClipGroup
         ), "{}.ClipGroup must be an instance of type core.ClipGroup".format(
             dataset_name
-        )
-
-        assert hasattr(
-            clipgroup_test, "to_jams"
-        ), "{}.ClipGroup must have a to_jams method".format(dataset_name)
-
-        # Validate JSON schema
-        try:
-            jam = clipgroup_test.to_jams()
-        except:
-            assert False, "{}: {}".format(dataset_name, sys.exc_info()[0])
-
-        assert jam.validate(), "Jams validation failed for {}.ClipGroup({})".format(
-            dataset_name, clipgroup_id
         )
