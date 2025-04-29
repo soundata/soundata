@@ -61,15 +61,6 @@ def test_load_audio():
     assert audio.shape[0] == 44100  # Check audio duration is as expected
 
 
-def test_to_jams():
-    default_clipid = "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135"
-    dataset = singapura.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-
 def test_metadata():
     dataset = singapura.Dataset(TEST_DATA_HOME, version="test")
     metadata = dataset._metadata

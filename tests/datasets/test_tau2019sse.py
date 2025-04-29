@@ -50,17 +50,6 @@ def test_load_audio():
     assert audio.shape[1] == 48000  # Check audio duration in samples is as expected
 
 
-def test_to_jams():
-    # Note: original file  tsrimmed to 1 sec
-    default_clipid = "foa_dev/split1_ir0_ov1_1"
-    dataset = tau2019sse.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate jam schema
-    assert jam.validate()
-
-
 def test_load_spatialevents():
     dataset = tau2019sse.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("foa_dev/split1_ir0_ov1_1")

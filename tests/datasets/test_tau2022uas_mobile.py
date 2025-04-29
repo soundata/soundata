@@ -77,29 +77,3 @@ def test_load_metadata():
     assert eval_clip.identifier is None
     assert eval_clip.city is None
     assert eval_clip.source_label is None
-
-
-def test_to_jams():
-    default_clipid = "airport-lisbon-1000-40000-0-a"
-    dataset = tau2022uas_mobile.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 1
-    assert tags[0].time == 0
-    assert tags[0].duration == 1.0
-    assert tags[0].value == "airport"
-    assert tags[0].confidence == 1
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.split == "2022.development.train"
-    assert jam.sandbox.source_label == "a"
-    assert jam.sandbox.identifier == "lisbon-1000"
-    assert jam.sandbox.city == "lisbon"
-    assert jam.sandbox.scene_label == "airport"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"

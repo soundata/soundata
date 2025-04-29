@@ -34,9 +34,6 @@ def test_clip():
     with pytest.raises(AttributeError):
         clip._clip_metadata
 
-    with pytest.raises(NotImplementedError):
-        clip.to_jams()
-
     path_good = clip.get_path("annotation")
     assert path_good == os.path.normpath("tests/resources/sound_datasets/asdf/asdd")
     path_none = clip.get_path("audio")
@@ -117,9 +114,6 @@ def test_clip_repr():
     test_clip_bad = TestClip_bad()
     with pytest.raises(NotImplementedError):
         test_clip_bad.__repr__()
-
-    with pytest.raises(NotImplementedError):
-        test_clip.to_jams()
 
 
 # def test_clipgroup_repr():
@@ -369,9 +363,6 @@ def test_clipgroup():
     with pytest.raises(AttributeError):
         clipgroup._clipgroup_metadata
 
-    with pytest.raises(NotImplementedError):
-        clipgroup.to_jams()
-
     with pytest.raises(KeyError):
         clipgroup.get_target(["c"])
 
@@ -431,9 +422,6 @@ def test_clipgroup():
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
-        def to_jams(self):
-            return None
-
         @property
         def clip_audio_property(self):
             """The clip's audio property.
@@ -448,7 +436,6 @@ def test_clipgroup():
     clipgroup = TestMultiClip1(
         clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
-    clipgroup.to_jams()
     clipgroup.get_target(["a"])
     clipgroup.get_random_target()
 
@@ -471,9 +458,6 @@ def test_multiclip_mixing():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
@@ -569,9 +553,6 @@ def test_multiclip_unequal_len():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
@@ -675,9 +656,6 @@ def test_multiclip_mono():
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
-        def to_jams(self):
-            return None
-
         @property
         def clip_audio_property(self):
             """The clip's audio property.
@@ -722,9 +700,6 @@ def test_multiclip_mono():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):

@@ -44,23 +44,6 @@ def test_load_audio():
     assert len(audio) == 441000
 
 
-def test_to_jams():
-    default_clipid = "section_00_source_train_normal_0705_m-n_X"
-    dataset = dcase23_task2.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-    # Validate dcase23_task2 jam schema
-    assert jam.validate()
-    # validate metadata
-    assert jam.file_metadata.duration == 10.0
-    assert (
-        jam.sandbox.file_name
-        == "fan/train/section_00_source_train_normal_0705_m-n_X.wav"
-    )
-    assert jam.sandbox.d1p == "m-n"
-    assert jam.sandbox.d1v == "X"
-
-
 def test_metadata_file_not_found():
     # Create a temporary dataset instance with an altered path to simulate missing files
     altered_test_data_home = os.path.join(TEST_DATA_HOME, "non_existent_directory")

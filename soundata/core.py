@@ -1,5 +1,4 @@
-"""Core soundata classes
-"""
+"""Core soundata classes"""
 
 import json
 import os
@@ -474,9 +473,6 @@ class Clip(object):
 
         repr_str += ")"
         return repr_str
-
-    def to_jams(self):
-        raise NotImplementedError
 
     def get_path(self, key):
         """Get absolute path to clip audio and annotations. Returns None if

@@ -66,32 +66,6 @@ def test_load_audio():
     assert len(audio) == 47786
 
 
-def test_to_jams():
-    default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate fsd50k jam schema
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 1
-    assert [tag.time for tag in tags] == [0.0]
-    assert [tag.duration for tag in tags] == [1.0835827664399094]
-    assert [tag.value for tag in tags] == ["Walk_or_footsteps"]
-    assert [tag.confidence for tag in tags] == [1.0]
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0835827664399094
-    assert jam.sandbox.aso_id == "/m/07pbtc8"
-    assert jam.sandbox.manually_verified == 1
-    assert jam.sandbox.noisy_small == 0
-    assert jam.sandbox.split == "train"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"
-
-
 def test_tag():
     default_clipid = "17"
     dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")

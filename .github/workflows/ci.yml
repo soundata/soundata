@@ -22,11 +22,6 @@ jobs:
             matrix:
                 include:
                     - os: ubuntu-latest
-                      python-version: "3.8"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
                       python-version: "3.9"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
@@ -41,13 +36,38 @@ jobs:
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: ubuntu-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: macos-latest
+                      python-version: "3.10"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: macos-latest
                       python-version: "3.11"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: macos-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: windows-latest
+                      python-version: "3.10"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: windows-latest
                       python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: windows-latest
+                      python-version: "3.12"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
@@ -73,9 +93,10 @@ jobs:
             esac
 
         - name: Cache conda
+          id: cache      
           uses: actions/cache@v4
           env:
-            CACHE_NUMBER: 2      
+            CACHE_NUMBER: 3      
           with:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
@@ -87,18 +108,15 @@ jobs:
         - name: Setup conda
           uses: conda-incubator/setup-miniconda@v3
           with:
-            miniforge-variant: Mambaforge
+            miniforge-variant: Miniforge3
             miniforge-version: latest
-            use-mamba: true
             channel-priority: ${{ matrix.channel-priority }}
             activate-environment: test
             auto-update-conda: false
             python-version: ${{ matrix.python-version }}
-            use-only-tar-bz2: false
 
         - name: Install conda dependencies
           run: mamba env update -n test -f ${{ matrix.envfile }}
-          if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
           shell: bash -l {0}

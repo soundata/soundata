@@ -43,18 +43,3 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
     assert audio.shape[0] == 441000  # Check audio duration in samples is as expected
-
-
-def test_to_jams():
-    default_clipid = "00053d90-e4b9-4045-a2f1-f39efc90cfa9"
-    dataset = dcase_birdVox20k.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-    # Validate birdVox20k jam schema
-    assert jam.validate()
-
-    # validate metadata
-    assert jam.file_metadata.duration == 10.0
-    assert jam.sandbox.itemid == "00053d90-e4b9-4045-a2f1-f39efc90cfa9"
-    assert jam.sandbox.datasetid == "BirdVox-DCASE-20k"
-    assert jam.sandbox.hasbird == "1"
