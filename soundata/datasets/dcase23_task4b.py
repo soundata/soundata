@@ -68,7 +68,7 @@ import glob
 import librosa
 import csv
 import numpy as np
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -172,17 +172,6 @@ class Clip(core.Clip):
 
         """
         return load_events(self.annotations_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, events=self.events, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

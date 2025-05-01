@@ -57,11 +57,10 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 import json
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 ELEVATIONS_UNITS = {"degrees": "degrees"}
 AZIMUTHS_UNITS = {"degrees": "degrees"}
@@ -278,17 +277,6 @@ class Clip(core.Clip):
                 * intervals_unit (str): intervals unit, one of TIME_UNITS
         """
         return load_spatialevents(self.csv_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io

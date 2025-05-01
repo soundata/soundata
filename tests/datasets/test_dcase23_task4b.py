@@ -63,36 +63,3 @@ def test_load_events():
 
     for j in range(3):
         assert labels[j] == annotations.labels[j]
-
-
-def test_to_jams():
-    default_clipid = "cafe_restaurant_14"
-    dataset = dcase23_task4b.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # Validate Events
-    events = jam.search(namespace="segment_open")[0]["data"]
-    assert len(events) == 3
-
-    assert np.allclose(events[0].time, 0.0)
-    assert np.allclose(events[0].duration, 1.0 - 0.0)
-    assert events[0].value == "cutlery and dishes"
-    assert events[0].confidence == 0.22607917138849756
-
-    assert np.allclose(events[1].time, 0.0)
-    assert np.allclose(events[1].duration, 1.0 - 0.0)
-    assert events[1].value == "footsteps"
-    assert events[1].confidence == 0.12977944582818704
-
-    assert np.allclose(events[2].time, 0.0)
-    assert np.allclose(events[2].duration, 1.0 - 0.0)
-    assert events[2].value == "furniture dragging"
-    assert events[2].confidence == 0.3863415649633261
-
-    # Validate metadata
-    assert jam.file_metadata.duration == 5.0
-    assert jam.sandbox.split == "development"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"

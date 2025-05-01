@@ -126,11 +126,9 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -221,17 +219,6 @@ class Clip(core.Clip):
 
         """
         return load_events(self.txt_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        jam = jams.load(self.jams_path)
-        jam.annotations[0].annotation_metadata.data_source = "soundata"
-        return jam
 
 
 @io.coerce_to_bytes_io

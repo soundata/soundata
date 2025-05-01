@@ -198,7 +198,7 @@ import logging
 import subprocess
 import numpy as np
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -389,28 +389,6 @@ class Clip(core.Clip):
             * dict - PP/PNP ratings given to the main label of the clip
         """
         return self._clip_metadata.get("pp_pnp_ratings")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            tags=self.tags,
-            metadata={
-                "split": self._clip_metadata["ground_truth"].get("split"),
-                "mids": self._clip_metadata["ground_truth"].get("mids"),
-                "pp_pnp_ratings": self._clip_metadata.get("pp_pnp_ratings"),
-                "title": self._clip_metadata["clip_info"].get("title"),
-                "description": self._clip_metadata["clip_info"].get("description"),
-                "freesound_tags": self._clip_metadata["clip_info"].get("tags"),
-                "license": self._clip_metadata["clip_info"].get("license"),
-                "uploader": self._clip_metadata["clip_info"].get("uploader"),
-            },
-        )
 
 
 @io.coerce_to_bytes_io

@@ -65,7 +65,7 @@ import librosa
 import numpy as np
 import csv
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -222,17 +222,6 @@ class Clip(core.Clip):
         """
         return annotations.Tags(
             [self._clip_metadata.get("category")], "open", np.array([1.0])
-        )
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
         )
 
 

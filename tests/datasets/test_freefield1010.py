@@ -43,18 +43,3 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
     assert audio.shape[0] == 441000  # Check audio duration in samples is as expected
-
-
-def test_to_jams():
-    default_clipid = "64486"
-    dataset = freefield1010.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-    # Validate freefield1010 jam schema
-    assert jam.validate()
-
-    # validate metadata
-    assert jam.file_metadata.duration == 10.0
-    assert jam.sandbox.itemid == "64486"
-    assert jam.sandbox.datasetid == "ff1010bird"
-    assert jam.sandbox.hasbird == "0"

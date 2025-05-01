@@ -49,12 +49,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 BIBTEX = """
 @article{green2017eigenscape,
@@ -215,17 +214,6 @@ class Clip(core.Clip):
             * str - notes included by the dataset authors with other details relevant to the specific clip
         """
         return self._clip_metadata.get("additional information")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io
