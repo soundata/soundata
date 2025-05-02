@@ -23,7 +23,7 @@ import numpy as np
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 # -- Add any relevant citations here
 BIBTEX = """
@@ -132,18 +132,6 @@ class Clip(core.Clip):
     def audio(self):
         """(np.ndarray, float): DESCRIPTION audio signal, sample rate"""
         return load_audio(self.audio_path)
-
-    # -- we use the to_jams function to convert all the annotations in the JAMS format.
-    # -- The converter takes as input all the annotations in the proper format (e.g. tags)
-    # -- and returns a jams object with the annotations.
-    def to_jams(self):
-        """Jams: the clip's data in jams format"""
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            annotation_data=[(self.annotation, None)],
-            metadata=self._metadata,
-        )
-        # -- see the documentation for `jams_utils.jams_converter for all fields
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle):

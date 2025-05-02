@@ -8,13 +8,13 @@
     *Created By:*
 
         | Sharath Adavanne; Archontis Politis; Tuomas Virtanen
-        | Audio Research Group, Tampere University. 
-        
+        | Audio Research Group, Tampere University.
+
     Version 2
 
     *Description:*
         Recordings with stationary point sources (events) from multiple sound classes.
-        Up to two temporally overlaping sound events. 
+        Up to two temporally overlaping sound events.
         Recordings of identical scenes are available in both 1st-order ambisonics and corresponding four-channel tetrahedral microphone format.
         Recordings can happen in one of five different rooms.
         The sound classes are the 11 different ones from the `DCASE 2016 challenge task 2 <http://dcase.community/challenge2016/task-sound-event-detection-in-synthetic-audio>`_. Each class has 20 different examples.
@@ -25,8 +25,8 @@
     *Annotations Included:*
         * sound event category with:
             * start time
-            * end time 
-            * elevation 
+            * end time
+            * elevation
             * azimuth
             * distance
         * Moreover, the clip id indicates:
@@ -35,7 +35,7 @@
             * whether there are temporally-overlapping events
 
     *Please Acknowledge TAU SSE 2019 in Academic Research:*
-    If you use this dataset please cite its original publication: 
+    If you use this dataset please cite its original publication:
 
     .. code-block:: latex
 
@@ -57,11 +57,10 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 import json
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 ELEVATIONS_UNITS = {"degrees": "degrees"}
 AZIMUTHS_UNITS = {"degrees": "degrees"}
@@ -278,17 +277,6 @@ class Clip(core.Clip):
                 * intervals_unit (str): intervals unit, one of TIME_UNITS
         """
         return load_spatialevents(self.csv_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
 
 
 @io.coerce_to_bytes_io
