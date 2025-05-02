@@ -15,6 +15,8 @@ import sys
 import datetime
 from docutils import nodes, utils
 from docutils.parsers.rst import roles
+
+sys.path.insert(0, os.path.abspath("./source/_ext"))
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
@@ -55,6 +57,7 @@ extensions = [
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
     "sphinx_togglebutton",
+    "docstring_mod",
     "sphinx_copybutton",
 ]
 
