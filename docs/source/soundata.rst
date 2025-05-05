@@ -21,6 +21,14 @@ Dataset Loaders
    :members:
    :inherited-members:
 
+Clotho
+^^^^^^
+.. _clotho-module:
+
+.. automodule:: soundata.datasets.clotho
+   :members:
+   :inherited-members:
+
 DCASE23-Task2
 ^^^^^^^^^^^^^
 .. _dcase23-task2-module:
