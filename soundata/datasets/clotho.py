@@ -92,7 +92,7 @@ INDEXES = {
     "test": "sample",
     "2.1": core.Index(
         filename="clotho_index.json",
-        url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1&preview=1",  # NOT PUBLISHED YET
+        url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1&preview=1",
         checksum="da0e7fbffcd18a59e2da830e62340343",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),
@@ -145,9 +145,8 @@ REMOTES = {
         checksum="2e010427c56b1ce6008b0f03f41048ce",
     ),
 }
-#######
+
 LICENSE_INFO = "Creative Commons Attribution 4.0 International"
-#######
 
 
 class Clip(core.Clip):
