@@ -64,13 +64,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 
 import pandas as pd
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -93,8 +91,8 @@ INDEXES = {
     "default": "2.1",
     "test": "sample",
     "2.1": core.Index(
-        filename="clotho_index_2.1.json",
-        url="https://zenodo.org/records/15208093/files/clotho_index_2.1.json?download=1&preview=1",  # NOT PUBLISHED YET
+        filename="clotho_index.json",
+        url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1&preview=1",  # NOT PUBLISHED YET
         checksum="709296224289d8d69a3cd33bc6249606",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),
@@ -176,7 +174,6 @@ class Clip(core.Clip):
 
         self.audio_path = self.get_path("audio")
 
-
     @property
     def audio(self) -> Optional[Tuple[np.ndarray, float]]:
         """The clip's audio
@@ -187,7 +184,7 @@ class Clip(core.Clip):
 
         """
         return load_audio(self.audio_path)
-    
+
     @property
     def file_name(self):
         """The name of the audio file.
@@ -241,7 +238,7 @@ class Clip(core.Clip):
             * str - Manufacturer name.
         """
         return self._clip_metadata.get("manufacturer")
-    
+
     @property
     def captions(self):
         """Captions for the clip.
@@ -259,11 +256,11 @@ class Clip(core.Clip):
             * str - License information.
         """
         return self._clip_metadata.get("license")
-    
+
     @property
     def split(self):
         """Split of the clip.
-        
+
         Returns:
             * str - split name
         """
@@ -315,14 +312,13 @@ class Dataset(core.Dataset):
     def _metadata(self):
         # Name of each splits
         splits = ["development", "validation", "evaluation"]
-        
+
         # Create empty index dictionary
         metadata_index = {}
 
-        # Process through each split    
+        # Process through each split
         for split in splits:
 
-        
             metadata_path = os.path.join(self.data_home, f"clotho_metadata_{split}.csv")
             captions_path = os.path.join(self.data_home, f"clotho_captions_{split}.csv")
 
@@ -331,11 +327,12 @@ class Dataset(core.Dataset):
 
             # Create clip_id in df by removing .wav from the file_name
             captions_df["clip_id"] = captions_df["file_name"].apply(
-            lambda x: x.strip().replace(".wav", ""))
+                lambda x: x.replace(".wav", "")
+            )
             metadata_df["clip_id"] = metadata_df["file_name"].apply(
-            lambda x: x.strip().replace(".wav", ""))
+                lambda x: x.replace(".wav", "")
+            )
 
-            
             for _, row in metadata_df.iterrows():
                 clip_id = row["clip_id"]
 
@@ -343,23 +340,22 @@ class Dataset(core.Dataset):
                 caption_row = captions_df[captions_df["clip_id"] == clip_id].iloc[0]
 
                 metadata_index[clip_id] = {
-                "clip_id": clip_id,
-                "file_name": row["file_name"].strip(),
-                "keywords": row.get("keywords", ""),
-                "sound_id": row.get("sound_id", ""),
-                "sound_link": row.get("sound_link", ""),
-                "start_end_samples": row.get("start_end_samples", ""),
-                "manufacturer": row.get("manufacturer", ""),
-                "license": row.get("license", ""),
-                "captions": [
-                    caption_row.get("caption_1", ""),
-                    caption_row.get("caption_2", ""),
-                    caption_row.get("caption_3", ""),
-                    caption_row.get("caption_4", ""),
-                    caption_row.get("caption_5", ""),
-                ],
-                "split": split,
-            }
+                    "clip_id": str(clip_id),
+                    "file_name": str(row["file_name"]),
+                    "keywords": str(row.get("keywords", "")),
+                    "sound_id": str(row.get("sound_id", "")),
+                    "sound_link": str(row.get("sound_link", "")),
+                    "start_end_samples": str(row.get("start_end_samples", "")),
+                    "manufacturer": str(row.get("manufacturer", "")),
+                    "license": str(row.get("license", "")),
+                    "captions": [
+                        caption_row.get("caption_1", ""),
+                        caption_row.get("caption_2", ""),
+                        caption_row.get("caption_3", ""),
+                        caption_row.get("caption_4", ""),
+                        caption_row.get("caption_5", ""),
+                    ],
+                    "split": split,
+                }
 
             return metadata_index
-
