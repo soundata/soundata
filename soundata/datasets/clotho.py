@@ -93,7 +93,7 @@ INDEXES = {
     "2.1": core.Index(
         filename="clotho_index.json",
         url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1&preview=1",  # NOT PUBLISHED YET
-        checksum="709296224289d8d69a3cd33bc6249606",
+        checksum="da0e7fbffcd18a59e2da830e62340343",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),
 }
@@ -322,8 +322,8 @@ class Dataset(core.Dataset):
             metadata_path = os.path.join(self.data_home, f"clotho_metadata_{split}.csv")
             captions_path = os.path.join(self.data_home, f"clotho_captions_{split}.csv")
 
-            metadata_df = pd.read_csv(metadata_path)
-            captions_df = pd.read_csv(captions_path)
+            metadata_df = pd.read_csv(metadata_path, encoding="ISO-8859-1")
+            captions_df = pd.read_csv(captions_path, encoding="ISO-8859-1")
 
             # Create clip_id in df by removing .wav from the file_name
             captions_df["clip_id"] = captions_df["file_name"].apply(

@@ -65,7 +65,10 @@ def test_metadata():
     )
     assert metadata[" Ambience Birds"]["start_end_samples"] == "[11162624, 11932169]"
     assert metadata[" Ambience Birds"]["manufacturer"] == "Juan_Merie_Venter"
-    assert metadata[" Ambience Birds"]["license"] == "http://creativecommons.org/licenses/by-nc/3.0/"
+    assert (
+        metadata[" Ambience Birds"]["license"]
+        == "http://creativecommons.org/licenses/by-nc/3.0/"
+    )
 
     assert metadata[" Ambience Birds"]["captions"] == [
         "A wild assortment of birds are chirping and calling out in nature.",

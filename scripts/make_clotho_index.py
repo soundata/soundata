@@ -12,7 +12,8 @@ def make_dataset_index(dataset_data_path):
     index_clips = {}
 
     for split in splits:
-        audio_dir = os.path.join(dataset_data_path, f"clotho_audio_{split}")
+        #audio_dir = os.path.join(dataset_data_path, f"clotho_audio_{split}")
+        audio_dir = os.path.join(dataset_data_path, f"{split}")
         captions_file = os.path.join(dataset_data_path, f"clotho_captions_{split}.csv")
         metadata_file = os.path.join(dataset_data_path, f"clotho_metadata_{split}.csv")
 
@@ -25,7 +26,7 @@ def make_dataset_index(dataset_data_path):
         for audio_path in audio_files:
             clip_id = os.path.splitext(os.path.basename(audio_path))[0]
 
-            audio_rel_path = os.path.join(f"clotho_audio_{split}", os.path.basename(audio_path))
+            audio_rel_path = os.path.join(f"{split}", os.path.basename(audio_path))
 
             index_clips[clip_id] = {
                 "audio": [audio_rel_path, md5(audio_path)],
