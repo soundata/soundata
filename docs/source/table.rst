@@ -23,6 +23,19 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+   * - | :ref:`Clotho <clotho-module>`
+       | ID: :code:`clotho`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`tags`
+     - 5929
+     - 37.05
+     - | :sel:`SEL` 
+     - | :music:`MUSIC`
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
+
+
    * - | :ref:`DCASE23-Task2 <dcase23-task2-module>`
        | ID: :code:`dcase23_task2`
      - | audio: ✅

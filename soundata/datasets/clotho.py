@@ -20,7 +20,7 @@
 
     *Description*
 
-        Clotho is an audio captioning dataset, now reached version 2. Clotho consists of 6974 audio samples, and each audio sample has five captions (a total of 34 870 captions). Audio samples are of 15 to 30 s duration and captions are eight to 20 words long.
+        Clotho is an audio captioning dataset, now reached version 2.1. Clotho consists of 5929 audio samples, and each audio sample has five captions (a total of 34 870 captions). Audio samples are of 15 to 30 s duration and captions are eight to 20 words long.
         Clotho is thoroughly described in our paper:
         K. Drossos, S. Lipping and T. Virtanen, "Clotho: an Audio Captioning Dataset," IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Barcelona, Spain, 2020, pp. 736-740, doi: 10.1109/ICASSP40776.2020.9052990.
         available online at: https://arxiv.org/abs/1910.09387 and at: https://ieeexplore.ieee.org/document/9052990
