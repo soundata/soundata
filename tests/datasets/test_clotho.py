@@ -10,7 +10,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/clotho")
 
 def test_clip():
     default_clipid = " Ambience Birds"
-    dataset = clotho.Dataset(TEST_DATA_HOME, version="sample")
+    dataset = clotho.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -35,6 +35,31 @@ def test_clip():
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
+
+
+def test_properties():
+    default_clipid = " Ambience Birds"
+    dataset = clotho.Dataset(TEST_DATA_HOME, version="test")
+    clip = dataset.clip(default_clipid)
+
+    assert clip.file_name == " Ambience Birds.wav"
+    assert clip.keywords == "Ambience;outside;OWI;Birds;night"
+    assert clip.sound_id == "327673"
+    assert (
+        clip.sound_link
+        == "https://freesound.org/people/Juan_Merie_Venter/sounds/327673"
+    )
+    assert clip.start_end_samples == "[11162624, 11932169]"
+    assert clip.manufacturer == "Juan_Merie_Venter"
+    assert clip.license == "http://creativecommons.org/licenses/by-nc/3.0/"
+    assert clip.captions == [
+        "A wild assortment of birds are chirping and calling out in nature.",
+        "Several different types of bird are tweeting and making calls.",
+        "Birds tweeting and chirping happily, engine in the distance.",
+        "An assortment of  wild birds are chirping and calling out in nature.",
+        "Birds are chirping and making loud bird noises.",
+    ]
+    assert clip.split == "development"
 
 
 # Test all the load functions, for instance, the load audio one
