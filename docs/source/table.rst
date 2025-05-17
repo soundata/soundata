@@ -30,8 +30,8 @@
      - :ref:`tags`
      - 5929
      - 37.05
-     - | :sel:`AC` 
-     - | :music:`ENVIRONMENT`
+     - | :ac:`AC` 
+     - | :environment:`ENVIRONMENT`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
 
