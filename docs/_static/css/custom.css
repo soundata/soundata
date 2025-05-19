@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;500&display=swap');
+
+nav.wy-nav-side {
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
 div.wy-side-nav-search {
-    background: #FFFFFF;
+    color: #404040;
+    background: rgb(255, 255, 255);
+    margin-left: 15px;
 }
 
 div.wy-side-nav-search .version {
@@ -13,5 +22,137 @@ span.caption-text {
 }
 
 div.wy-menu .caption-text {
-    color: #a054d8;
+    color: #404040;
+    font-weight: bold;
+    margin-left:15px;
+}
+
+div.wy-nav-content {
+    border-left: solid;
+    border-left-color:#404040;
+    list-style: disc;
+    max-width: 1200px;
+}
+
+div.wy-menu{
+
+    background: rgb(255, 255, 255);
+    color: #404040;
+}
+
+div.wy-menu.wy-menu-vertical {
+
+    margin-left: 15px;
+    background: rgb(255, 255, 255);
+}
+
+div.wy-menu.wy-menu-vertical p {
+    margin: 0 0 0;
+}
+
+
+div.wy-menu-vertical a {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:hover {
+    color: #126782;
+    font-weight: bold;
+    background: #ced4da;
+}
+
+div.wy-menu-vertical a:active {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #126782;
+    font-weight: bold;
+}
+
+div.wy-menu-vertical a:visited {
+    color: #126782;
+    font-weight: bold;
+}
+
+
+.rst-content .admonition-title, .wy-alert-title {
+    background: #126782;
+}
+
+span.std.std-ref {
+    color: #126782;
+    font-weight: bold;
+
+}
+
+a.reference.external {
+    color: #126782;
+    font-weight: bold;
+}
+
+.sed, .sed a,
+.sec, .sec a,
+.sel, .sel a,
+.asc, .asc a,
+.ac, .ac a,
+.urban, .urban a,
+.environment, .environment a,
+.machine, .machine a,
+.bioacoustic, .bioacoustic a,
+.music, .music a {
+    display: inline-block;
+    padding: 0.1em 0.6em;
+    margin: 0.2em 0.2em;
+    font-size: 90%;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-family: 'Geologica', monospace;
+    min-width: 50px;
+    color: white !important;
+    border-radius: 0.25em;
+}
+
+.sed, .sed a {
+    background-color: #264653;
+}
+
+.sec, .sec a {
+    background-color: #2a9d8f;
+}
+
+.sel, .sel a {
+    background-color: #e9c46a;
+}
+
+.asc, .asc a {
+    background-color: #f4a261;
+}
+
+.ac, .ac a {
+    background-color: #e76f51;
+}
+
+.urban, .urban a {
+    background-color: #03045e;
+}
+
+.environment, .environment a {
+    background-color: #0077b6;
+}
+
+.machine, .machine a {
+    background-color: #00b4d8;
+}
+
+.bioacoustic, .bioacoustic a {
+    background-color: #90e0ef;
+}
+
+.music, .music a {
+    background-color: #e0aaff;
 }

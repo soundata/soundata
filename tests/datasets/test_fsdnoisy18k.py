@@ -5,16 +5,20 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import fsdnoisy18k
+import os
 
-TEST_DATA_HOME = "tests/resources/sound_datasets/fsdnoisy18k"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k")
 
 
 def test_clip():
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     expected_attributes = {
-        "audio_path": "tests/resources/sound_datasets/fsdnoisy18k/FSDnoisy18k.audio_train/17.wav",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),
+            "FSDnoisy18k.audio_train/17.wav",
+        ),
         "clip_id": "17",
     }
 
@@ -32,7 +36,10 @@ def test_clip():
     default_clipid_test = "564"
     clip_test = dataset.clip(default_clipid_test)
     expected_attributes_test = {
-        "audio_path": "tests/resources/sound_datasets/fsdnoisy18k/FSDnoisy18k.audio_test/564.wav",
+        "audio_path": os.path.join(
+            os.path.normpath("tests/resources/sound_datasets/fsdnoisy18k/"),
+            "FSDnoisy18k.audio_test/564.wav",
+        ),
         "clip_id": "564",
     }
 
@@ -49,7 +56,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("17")
     audio_path = clip.audio_path
     audio, sr = fsdnoisy18k.load_audio(audio_path)
@@ -59,35 +66,9 @@ def test_load_audio():
     assert len(audio) == 47786
 
 
-def test_to_jams():
-    default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate fsd50k jam schema
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 1
-    assert [tag.time for tag in tags] == [0.0]
-    assert [tag.duration for tag in tags] == [1.0835827664399094]
-    assert [tag.value for tag in tags] == ["Walk_or_footsteps"]
-    assert [tag.confidence for tag in tags] == [1.0]
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0835827664399094
-    assert jam.sandbox.aso_id == "/m/07pbtc8"
-    assert jam.sandbox.manually_verified == 1
-    assert jam.sandbox.noisy_small == 0
-    assert jam.sandbox.split == "train"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"
-
-
 def test_tag():
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     tag = clip.tags
     assert tag.labels == ["Walk_or_footsteps"]
@@ -97,7 +78,7 @@ def test_tag():
 def test_metadata():
     # Testing metadata from a training clip
     default_clipid = "17"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()[default_clipid]
 
@@ -109,7 +90,7 @@ def test_metadata():
 
     # Testing metadata from an evaluation clip
     default_clipid = "564"
-    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME)
+    dataset = fsdnoisy18k.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     clip_metadata = clip._metadata()[default_clipid]
 

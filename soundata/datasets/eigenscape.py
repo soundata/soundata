@@ -2,36 +2,45 @@
 
 .. admonition:: Dataset Info
     :class: dropdown
-    
-    *EigenScape: a database of spatial acoustic scene recordings*
-    
+
+    **EigenScape: a database of spatial acoustic scene recordings**
+
     *Created By:*
-        Marc Ciufo Green, Damian Murphy.
-        Audio Lab, Department of Electronic Engineering, University of York. Version 2.0
-	
+
+        | Marc Ciufo Green, Damian Murphy.
+        | Audio Lab, Department of Electronic Engineering, University of York.
+
+    Version 2.0
+
     *Description:*
-        EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike. 
+        EigenScape is a database of acoustic scenes recorded spatially using the mh Acoustics EigenMike.
         All scenes were recorded in 4th-order Ambisonics
         The database contains recordings of eight different location classes: Beach, Busy Street, Park, Pedestrian Zone, Quiet Street, Shopping Centre, Train Station, Woodland.
-        The recordings were made in May 2017 at sites across the North of England. 
-	
+        The recordings were made in May 2017 at sites across the North of England.
+
     *Audio Files Included:*
-	* 8 different examples of each location class were recorded over a duration of 10 minutes 
-        * 64 recordings in total. 
-        * ACN channel ordering with SN3D normalisation at 24-bit / 48 kHz resolution. 
-	
+        * 8 different examples of each location class were recorded over a duration of 10 minutes
+        * 64 recordings in total.
+        * ACN channel ordering with SN3D normalisation at 24-bit / 48 kHz resolution.
+
     *Annotations Included:*
         * No event labels associated with this dataset
         * The metadata file gives more tempogeographic detail on each recording
         * the EigenScape [recording map](http://bit.ly/EigenSMap) shows the locations and classes of all the recordings.
-        * No predefined training, validation, or testing splits. 
-	
+        * No predefined training, validation, or testing splits.
+
     *Please Acknowledge EigenScape in Academic Research:*
-        * If you use this dataset please cite its original publication:
-            * Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
-	    
+    If you use this dataset please cite its original publication:
+
+    .. code-block:: latex
+
+        Green MC, Murphy D. EigenScape: A database of spatial acoustic scene recordings. Applied Sciences. 2017 Nov;7(11):1204.
+
     *License:*
         * Creative Commons Attribution 4.0 International
+
+    *Important:*
+        * Use with caution. This loader "Engineers" a solution to obtain the correct files after Park6 and Park8 got mixed-up at the `eigenscape` and `eigenscape_raw` remotes. See the REMOTES and index if you want to understand how this engineered solution works. Also see the discussion about this engineered solution with the dataset author https://github.com/micarraylib/micarraylib/issues/8#issuecomment-1105357329
 """
 
 import os
@@ -40,12 +49,11 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 import numbers
 from itertools import cycle
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 BIBTEX = """
 @article{green2017eigenscape,
@@ -60,6 +68,17 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="eigenscape_index_2.0.json",
+        url="https://zenodo.org/records/11176800/files/eigenscape_index_2.0.json?download=1",
+        checksum="3ea0322ee5e5174a1e265155c9de9be1",
+    ),
+    "sample": core.Index(filename="eigenscape_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "Beach": download_utils.RemoteFileMetadata(
         filename="Beach.zip",
@@ -73,8 +92,8 @@ REMOTES = {
     ),
     "Park": download_utils.RemoteFileMetadata(
         filename="Park.zip",
-        url="https://zenodo.org/record/1284156/files/Park.zip?download=1",
-        checksum="1268c7d8057529672d3cc17bec8ae302",
+        url="https://zenodo.org/record/2628463/files/Park.zip?download=1",
+        checksum="c5d638518b4f7d597dd410ee5bb48b67",
     ),
     "PedestrianZone": download_utils.RemoteFileMetadata(
         filename="PedestrianZone.zip",
@@ -123,9 +142,11 @@ class Clip(core.Clip):
         tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
         audio_path (str): path to the audio file
         clip_id (str): clip id
-        city (str): city were the audio signal was recorded
-        identifier (str): identifier present in the metadata
-
+        location (str): city were the audio signal was recorded
+        time (str): time when the audio signal was recorded
+        date (str): date when the audio signal was recorded
+        additional information (str): notes included by the dataset
+            authors with other details relevant to the specific clip
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
@@ -146,6 +167,12 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
+        """The clip's tags
+
+        Returns:
+            * annotations.Tags - Tags (scene label) of the clip + confidence.
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -154,35 +181,45 @@ class Clip(core.Clip):
 
     @property
     def location(self):
+        """The clip's location.
+
+        Returns:
+            * str - Tags annotation object
+        """
         return self._clip_metadata.get("location")
 
     @property
     def time(self):
+        """The clip's time.
+
+        Returns:
+            * str - time when the audio signal was recorded
+        """
         return self._clip_metadata.get("time")
 
     @property
     def date(self):
+        """The clip's date.
+
+        Returns:
+            * str - date when the audio signal was recorded
+        """
         return self._clip_metadata.get("date")
 
     @property
     def additional_information(self):
-        return self._clip_metadata.get("additional information")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
+        """The clip's additional information
 
         Returns:
-            jams.JAMS: the clip's data in jams format
-
+            * str - notes included by the dataset authors with other details relevant to the specific clip
         """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
+        return self._clip_metadata.get("additional information")
 
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load an EigenScape audio file.
+    """Load an EigenScape audio file
+
     Args:
         fhandle (str or file-like): file-like object or path to audio file
         sr (int or None): sample rate for loaded audio, None by default, which
@@ -198,16 +235,16 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The EigenScape dataset
-    """
+    """The EigenScape dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="eigenscape",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -218,7 +255,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_path = os.path.join(self.data_home, "Metadata-EigenScape.csv")
 
         if not os.path.exists(metadata_path):

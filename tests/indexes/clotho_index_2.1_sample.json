@@ -1,0 +1,19 @@
+{
+  "version": "sample",
+  "clips": {
+    " Ambience Birds": {
+      "audio": [
+        "clotho_audio_development/ Ambience Birds.wav",
+        "9c99bd23d99b6f4485b650f25239429a"
+      ],
+      "captions": [
+        "clotho_captions_development.csv",
+        "d4090b39ce9f2491908eebf4d5b09bae"
+      ],
+      "metadata": [
+        "clotho_metadata_development.csv",
+        "170d20935ecfdf161ce1bb154118cda5"
+      ]
+    }
+  }
+}

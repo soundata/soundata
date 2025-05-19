@@ -6,25 +6,25 @@
     **TUT Sound events 2017, Development and Evaluation datasets**
 
     `Audio Research Group,
-    Tampere University of Technology <http://arg.cs.tut.fi/>`_
+    Tampere University of Technology <http://arg.cs.tut.fi/>`__
 
-    Authors
+    *Authors*
 
-    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
-    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
-    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
+    * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`__
+    * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`__
+    * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`__
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Eemi Fagerlund
     * Aku Hiltunen
 
-    Links
+    *Links*
 
-    * `Development dataset <https://zenodo.org/record/814831>`_
-    * `Evaluation dataset <https://zenodo.org/record/1040179>`_
+    * `Development dataset <https://zenodo.org/record/814831>`__
+    * `Evaluation dataset <https://zenodo.org/record/1040179>`__
 
-    **Dataset**
+    *Dataset*
 
     TUT Sound Events 2017 dataset consists of two subsets: development dataset
     and evaluation dataset. Partitioning of data into these subsets was done
@@ -35,8 +35,7 @@
     to a certain extent, but so that the majority of events are in the
     development set.
 
-    A detailed description of the data recording and annotation procedure is
-    available in:
+    A detailed description of the data recording and annotation procedure is available in:
 
     .. code-block:: latex
 
@@ -57,7 +56,7 @@
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The recordings were captured each in a different location (different
     streets). The equipment used for recording consists of a binaural
@@ -103,12 +102,11 @@
     Annotations with only targeted sound events classes are in the directory
     `meta`.
 
-    Event statistics
-    ----------------
+    *Event statistics*
 
     The sound event instance counts for the dataset are shown below.
 
-    **Development set**
+    *Development set*
 
     +------------------+------------+----------------+--------------------+
     |                  |    Development dataset      | Evaluation dataset |
@@ -131,7 +129,7 @@
     +------------------+------------+----------------+--------------------+
 
 
-    **Usage**
+    *Usage*
 
     Partitioning of data into **development dataset** and **evaluation
     dataset** was done based on the amount of examples available for each event
@@ -150,7 +148,7 @@
 
     The setup is provided with the dataset in the directory `evaluation_setup`.
 
-    **License**
+    *License*
 
     See file `EULA.pdf
     <https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf>`_
@@ -163,9 +161,8 @@ import librosa
 import numpy as np
 import csv
 
-# import jams
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -181,6 +178,18 @@ BIBTEX = """
              System},
     Year = {2017}}
 """
+
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="tut2017se_index_2.0.json",
+        url="https://zenodo.org/records/11176916/files/tut2017se_index_2.0.json?download=1",
+        checksum="26fea2fd4082f48d7e8ef8c85df88ad1",
+    ),
+    "sample": core.Index(filename="tut2017se_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TUT-sound-events-2017-development.audio.1.zip",
@@ -250,35 +259,22 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        events (soundata.annotation.Events): sound events with start time,
-            end time, label and confidence.
-        non_verified_events (soundata.annotation.Events): non-verified sound
-            events with start time, end time, label and confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
         annotations_path (str): path to the annotations file
+        clip_id (str): clip id
+        events (soundata.annotations.Events): sound events with start time,
+            end time, label and confidence
         non_verified_annotations_path (str): path to the non-verified
             annotations file
+        non_verified_events (soundata.annotations.Events): non-verified sound
+            events with start time, end time, label and confidence
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4) or evaluation
-        clip_id (str): clip id
-
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
         self.annotations_path = self.get_path("annotations")
@@ -297,33 +293,38 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4) or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @core.cached_property
     def events(self) -> Optional[annotations.Events]:
+        """The clip's events.
+
+        Returns:
+            * annotations.Events - sound events with start time, end time, label and confidence
+
+        """
         return load_events(self.annotations_path)
 
     @core.cached_property
     def non_verified_events(self) -> Optional[annotations.Events]:
-        return load_events(self.non_verified_annotations_path)
-
-    def to_jams(self):
-        """Get the clip's data in jams format
+        """The clip's non verified events path
 
         Returns:
-            jams.JAMS: the clip's data in jams format
+            * str - path to the non-verified annotations file
 
         """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            events=self.events,
-            metadata=self._clip_metadata,
-        )
+        return load_events(self.non_verified_annotations_path)
 
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a TUT Sound events 2017 audio file.
+    """Load a TUT Sound events 2017 audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -342,6 +343,7 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 @io.coerce_to_string_io
 def load_events(fhandle: TextIO) -> annotations.Events:
     """Load an TUT Sound events 2017 annotation file
+
     Args:
         fhandle (str or file-like): File-like object or path to the sound
         events annotation file
@@ -370,16 +372,16 @@ def load_events(fhandle: TextIO) -> annotations.Events:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The TUT Sound events 2017 dataset
-    """
+    """The TUT Sound events 2017 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tut2017se",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -394,7 +396,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         splits = [
             "development.fold1",
             "development.fold2",
@@ -406,7 +407,6 @@ class Dataset(core.Dataset):
         metadata_index = {}
 
         for split in splits:
-
             if split.split(".")[0] == "development":
                 evaluation_setup_path = (
                     "TUT-sound-events-2017-development/evaluation_setup"

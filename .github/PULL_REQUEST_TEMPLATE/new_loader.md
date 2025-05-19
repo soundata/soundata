@@ -16,16 +16,19 @@ Please include the following information at the top level docstring for the data
 #### Dataset loaders checklist:
 
 - [ ] Create a script in `scripts/`, e.g. `make_my_dataset_index.py`, which generates an index file.
-- [ ] Run the script on the canonical version of the dataset and save the index in `soundata/indexes/` e.g. `my_dataset_index.json`.
-- [ ] Create a module in soundata, e.g. `soundata/my_dataset.py`
-- [ ] Create tests for your loader in `tests/`, e.g. `test_my_dataset.py`
-- [ ] Add your module to `docs/source/soundata.rst` and `docs/source/quick_reference.rst`
+- [ ] Run the script on the canonical version of the dataset and upload the index to [Zenodo Audio Data Loaders community](https://zenodo.org/communities/audio-data-loaders).
+- [ ] Create a sample version of the index with the necessary information for testing.
+- [ ] Create a module in soundata, e.g. `soundata/my_dataset.py`.
+- [ ] Create tests for your loader in `tests/`, e.g. `test_my_dataset.py`.
+- [ ] Add your module to `docs/source/soundata.rst` and `docs/source/quick_reference.rst`.
+- [ ] Run `black`, `flake8` and `mypy` (see [Running your tests locally](https://soundata.github.io/en/latest/source/contributing.html#running-your-tests-locally)).
 - [ ] Run `tests/test_full_dataset.py` on your dataset.
+- [ ] Check that codecov coverage does not decrease.
 
 If your dataset **is not fully downloadable** there are two extra steps you should follow:
 - [ ] Contacting the soundata organizers by opening an issue or PR so we can discuss how to proceed with the closed dataset.
-- [ ] Show that the version used to create the checksum is the "canonical" one, either by getting the version from the dataset creator, or by verifying equivalence with several other copies of the dataset.
-- [ ] Make sure someone has run `pytest -s tests/test_full_dataset.py --local --dataset my_dataset` once on your dataset locally and confirmed it passes
+- [ ] Show that the version used to create the checksum is the "canonical" one, either by getting the version from the dataset creator, or by verifying equivalence with several other copies of the dataset. 
+- [ ] Make sure someone has run `pytest -s tests/test_full_dataset.py --local --dataset my_dataset` once on your dataset locally and confirmed it passes.
 
 #### Please-do-not-edit flag
-To reduce friction, we will make commits on top of contributor's pull requests by default unless they use the `please-do-not-edit` flag. If you don't want this to happen don't forget to add the flag when you start your pull request.
+To reduce friction, we will make commits on top of contributor's pull requests by default unless they use the `please-do-not-edit` flag. If you don't want this to happen don't forget to add the flag when you start your pull request. 

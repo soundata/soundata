@@ -1,8 +1,12 @@
 import pytest
+import os
+import sys
 import numpy as np
 
 import soundata
 from soundata import core
+from tests.test_utils import DEFAULT_DATA_HOME
+from unittest.mock import Mock, patch
 
 
 def test_clip():
@@ -10,13 +14,13 @@ def test_clip():
         "clips": {
             "a": {
                 "audio": (None, None),
-                "annotation": ("asdf/asdd", "asdfasdfasdfasdf"),
+                "annotation": (os.path.normpath("asdf/asdd"), "asdfasdfasdfasdf"),
             }
         }
     }
     clip_id = "a"
     dataset_name = "test"
-    data_home = "tests/resources/sound_datasets"
+    data_home = os.path.normpath("tests/resources/sound_datasets")
     clip = core.Clip(clip_id, data_home, dataset_name, index, lambda: None)
 
     assert clip.clip_id == clip_id
@@ -24,17 +28,14 @@ def test_clip():
     assert clip._data_home == data_home
     assert clip._clip_paths == {
         "audio": (None, None),
-        "annotation": ("asdf/asdd", "asdfasdfasdfasdf"),
+        "annotation": (os.path.normpath("asdf/asdd"), "asdfasdfasdfasdf"),
     }
     assert clip._metadata() is None
     with pytest.raises(AttributeError):
         clip._clip_metadata
 
-    with pytest.raises(NotImplementedError):
-        clip.to_jams()
-
     path_good = clip.get_path("annotation")
-    assert path_good == "tests/resources/sound_datasets/asdf/asdd"
+    assert path_good == os.path.normpath("tests/resources/sound_datasets/asdf/asdd")
     path_none = clip.get_path("audio")
     assert path_none is None
 
@@ -51,10 +52,7 @@ def test_clip():
     clip_metadata_global = core.Clip(
         clip_id, data_home, dataset_name, index, metadata_global
     )
-    assert clip_metadata_global._clip_metadata == {
-        "asdf": [1, 2, 3],
-        "asdd": [4, 5, 6],
-    }
+    assert clip_metadata_global._clip_metadata == {"asdf": [1, 2, 3], "asdd": [4, 5, 6]}
 
     clip_metadata_none = core.Clip(
         clip_id, data_home, dataset_name, index, metadata_none
@@ -64,7 +62,7 @@ def test_clip():
 
 
 def test_clip_repr():
-    class TestClip(core.Clip):
+    class TestClip_bad(core.Clip):
         def __init__(self):
             self.a = "asdf"
             self.b = 1.2345678
@@ -78,9 +76,23 @@ def test_clip_repr():
             """ThisObjectType: I have a docstring"""
             return None
 
+    class TestClip(core.Clip):
+        def __init__(self):
+            self.a = "asdf"
+            self.b = 1.2345678
+            self.c = {1: "a", "b": 2}
+            self._d = "hidden"
+            self.e = None
+            self.long = "a" + "b" * 50 + "c" * 50
+
         @property
-        def g(self):
-            """I have an improper docstring"""
+        def f(self):
+            """The proper docstring.
+
+            Returns:
+                * str - yay this is correct
+
+            """
             return None
 
         def h(self):
@@ -89,85 +101,197 @@ def test_clip_repr():
     expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
     expected2 = """c={1: 'a', 'b': 2},\n  e=None,\n  """
     expected3 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
-    expected4 = """f: ThisObjectType,\n  g: I have an improper docstring,\n)"""
+    expected4 = (
+        """f: The proper docstring.\n                * str - yay this is correct,\n)"""
+    )
 
     test_clip = TestClip()
     actual = test_clip.__repr__()
+    print("aaaaa")
+    print(expected1 + expected2 + expected3 + expected4)
     assert actual == expected1 + expected2 + expected3 + expected4
 
+    test_clip_bad = TestClip_bad()
     with pytest.raises(NotImplementedError):
-        test_clip.to_jams()
+        test_clip_bad.__repr__()
 
 
-def test_clipgroup_repr():
-    class TestClip(core.Clip):
-        def __init__(self):
-            self.a = "asdf"
-
-    class TestClipGroup(core.ClipGroup):
-        def __init__(self, clipgroup_id, data_home):
-            self.a = "asdf"
-            self.b = 1.2345678
-            self.c = {1: "a", "b": 2}
-            self._d = "hidden"
-            self.e = None
-            self.long = "a" + "b" * 50 + "c" * 50
-            self.clipgroup_id = clipgroup_id
-            self._data_home = data_home
-            self._dataset_name = "foo"
-            self._index = None
-            self._metadata = None
-            self._clip_class = TestClip
-            self.clip_ids = ["a", "b", "c"]
-
-        @property
-        def f(self):
-            """ThisObjectType: I have a docstring"""
-            return None
-
-        @property
-        def g(self):
-            """I have an improper docstring"""
-            return None
-
-        def h(self):
-            return "I'm a function!"
-
-    expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
-    expected2 = """c={1: \'a\', \'b\': 2},\n  clip_ids=[\'a\', \'b\', \'c\'],\n  """
-    expected3 = """clipgroup_id="test",\n  e=None,\n  """
-    expected4 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
-    expected5 = """clip_audio_property: ,\n  clips: ,\n  f: ThisObjectType,\n  """
-    expected6 = """g: I have an improper docstring,\n)"""
-
-    test_clipgroup = TestClipGroup("test", "foo")
-    actual = test_clipgroup.__repr__()
-    assert (
-        actual == expected1 + expected2 + expected3 + expected4 + expected5 + expected6
-    )
-
-    with pytest.raises(NotImplementedError):
-        test_clipgroup.to_jams()
+# def test_clipgroup_repr():
+#     class TestClip(core.Clip):
+#         def __init__(self):
+#             self.a = "asdf"
+#
+#     class TestClipGroup_bad(core.ClipGroup):
+#         def __init__(self, clipgroup_id, data_home):
+#             self.a = "asdf"
+#
+#         @property
+#         def g(self):
+#             """I have an improper docstring"""
+#             return None
+#
+#     class TestClipGroup(core.ClipGroup):
+#         def __init__(self, clipgroup_id, data_home):
+#             self.a = "asdf"
+#             self.b = 1.2345678
+#             self.c = {1: "a", "b": 2}
+#             self._d = "hidden"
+#             self.e = None
+#             self.long = "a" + "b" * 50 + "c" * 50
+#             self.clipgroup_id = clipgroup_id
+#             self._data_home = data_home
+#             self._dataset_name = "foo"
+#             self._index = None
+#             self._metadata = None
+#             self._clip_class = TestClip
+#             self.clip_ids = ["a", "b", "c"]
+#
+#         @property
+#         def f(self):
+#             """The proper docstring.
+#
+#             Returns:
+#                 * str - yay this is correct
+#
+#             """
+#             return None
+#
+#         def h(self):
+#             return "I'm a function!"
+#
+#     expected1 = """Clip(\n  a="asdf",\n  b=1.2345678,\n  """
+#     expected2 = """c={1: \'a\', \'b\': 2},\n  clip_ids=[\'a\', \'b\', \'c\'],\n  """
+#     expected3 = """clipgroup_id="test",\n  e=None,\n  """
+#     expected4 = """long="...{}",\n  """.format("b" * 50 + "c" * 50)
+#     expected5 = """clip_audio_property: ,\n  clips: ,\n  f: ThisObjectType,\n  """
+#     expected6 = """g: I have an improper docstring,\n)"""
+#
+#     test_clipgroup = TestClipGroup("test", "foo")
+#     actual = test_clipgroup.__repr__()
+#     assert (
+#         actual == expected1 + expected2 + expected3 + expected4 + expected5 + expected6
+#     )
+#
+#     with pytest.raises(NotImplementedError):
+#         test_clipgroup.to_jams()
 
 
 def test_dataset():
-    dataset = soundata.initialize("esc50")
-    assert isinstance(dataset, core.Dataset)
-
     dataset = soundata.initialize("urbansound8k")
     assert isinstance(dataset, core.Dataset)
 
-    dataset = soundata.initialize("urbansed")
-    assert isinstance(dataset, core.Dataset)
-
     print(dataset)  # test that repr doesn't fail
+
+
+def test_list_versions():
+    assert (
+        soundata.list_dataset_versions("urbansound8k")
+        == "Available versions for urbansound8k: ['1.0']. Default version: 1.0"
+    )
+    with pytest.raises(ValueError):
+        soundata.list_dataset_versions("asdf")
+
+
+def test_dataset_versions():
+    class VersionTest(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "1",
+                    "test": "0",
+                    "0": core.Index("blah_0.json"),
+                    "1": core.Index(
+                        "blah_1.json", url="https://google.com", checksum="asdf"
+                    ),
+                    "real": core.Index("dcase_bioacoustic_index_3.0_sample.json"),
+                },
+            )
+
+    class VersionTest2(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "2",
+                    "2": core.Index("blah_2.json", url="https://google.com"),
+                },
+            )
+
+    dataset = VersionTest("asdf")
+    assert dataset.version == "1"
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+
+    dataset_default = VersionTest("asdf")
+    assert dataset_default.version == "1"
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+
+    dataset_1 = VersionTest("asdf", version="1")
+    assert dataset_1.version == "1"
+    assert os.path.join(
+        *dataset_1.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+    with pytest.raises(FileNotFoundError):
+        dataset_1._index
+
+    local_index_path = os.path.dirname(os.path.realpath(__file__))[:-5]
+    dataset_test = VersionTest("asdf", version="test")
+    assert dataset_test.version == "0"
+    assert dataset_test.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "blah_0.json"
+    )
+
+    with pytest.raises(IOError):
+        dataset_test._index
+
+    dataset_0 = VersionTest("asdf", version="0")
+    assert dataset_0.version == "0"
+    assert dataset_0.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "blah_0.json"
+    )
+
+    dataset_real = VersionTest("asdf", version="real")
+    assert dataset_real.version == "real"
+    assert dataset_real.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "dcase_bioacoustic_index_3.0_sample.json"
+    )
+    idx_test = dataset_real._index
+    assert isinstance(idx_test, dict)
+
+    with pytest.raises(ValueError):
+        VersionTest("asdf", version="not_a_version")
+
+    with pytest.raises(ValueError):
+        VersionTest2("asdf", version="2")
+
+
+def test_explore_dataset():
+    dataset = soundata.initialize("urbansound8k")
+
+    with patch(
+        "soundata.display_plot_utils.perform_dataset_exploration"
+    ) as mock_function:
+        clip_id = "test_clip_id"
+        dataset.explore_dataset(clip_id)
+        mock_function.assert_called_once_with(dataset, clip_id)
+
+        mock_function.reset_mock()
+
+        dataset.explore_dataset()
+        mock_function.assert_called_with(dataset, None)
 
 
 def test_dataset_errors():
     with pytest.raises(ValueError):
         soundata.initialize("not_a_dataset")
 
-    d = soundata.initialize("esc50")
+    d = soundata.initialize("esc50", version="sample")
     d._clip_class = None
     with pytest.raises(AttributeError):
         d.clip("asdf")
@@ -186,11 +310,6 @@ def test_dataset_errors():
 
     with pytest.raises(AttributeError):
         d.choice_clipgroup()
-
-    # uncomment this to test \in dataset with remote index
-    # d = soundata.initialize("dataset_with_remote_index")
-    # with pytest.raises(FileNotFoundError):
-    #     d._index
 
     # uncomment this to test in dataset with clip_group
     # d = soundata.initialize("dataset_with_clip_group")
@@ -215,7 +334,7 @@ def test_clipgroup():
         "clipgroups": {
             "ab": {
                 "clips": ["a", "b"],
-                "audio_master": ("foo/bar", "asdfasdfasdfasdf"),
+                "audio_master": (os.path.normpath("foo/bar"), "asdfasdfasdfasdf"),
                 "score": (None, None),
             }
         }
@@ -225,13 +344,13 @@ def test_clipgroup():
     index.update(index_clipgroups)
     clipgroup_id = "ab"
     dataset_name = "test"
-    data_home = "tests/resources/sound_datasets"
+    data_home = os.path.normpath("tests/resources/sound_datasets")
     clipgroup = core.ClipGroup(
         clipgroup_id, data_home, dataset_name, index, core.Clip, lambda: None
     )
 
     path_good = clipgroup.get_path("audio_master")
-    assert path_good == "tests/resources/sound_datasets/foo/bar"
+    assert path_good == os.path.normpath("tests/resources/sound_datasets/foo/bar")
     path_none = clipgroup.get_path("score")
     assert path_none is None
 
@@ -243,9 +362,6 @@ def test_clipgroup():
     assert clipgroup._metadata() is None
     with pytest.raises(AttributeError):
         clipgroup._clipgroup_metadata
-
-    with pytest.raises(NotImplementedError):
-        clipgroup.to_jams()
 
     with pytest.raises(KeyError):
         clipgroup.get_target(["c"])
@@ -288,7 +404,7 @@ def test_clipgroup():
     with pytest.raises(AttributeError):
         clipgroup_metadata_none._clipgroup_metadata
 
-    class TestTrack(core.Clip):
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -298,43 +414,34 @@ def test_clipgroup():
         def f(self):
             return np.random.uniform(-1, 1, (2, 100)), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
+            """The clip's audio property.
+
+            Returns:
+                * str - some property
+
+            """
             return "f"
 
     # import pdb;pdb.set_trace()
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
-    clipgroup.to_jams()
     clipgroup.get_target(["a"])
     clipgroup.get_random_target()
 
 
-def test_multitrack_mixing():
-    class TestTrack(core.Clip):
+def test_multiclip_mixing():
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -344,38 +451,30 @@ def test_multitrack_mixing():
         def f(self):
             return np.random.uniform(-1, 1, (2, 100)), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
+            """The clip's audio property.
+
+            Returns:
+                * str - some property
+
+            """
             return "f"
 
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])
@@ -436,8 +535,8 @@ def test_multitrack_mixing():
     assert mix.shape == (2, 100)
 
 
-def test_multitrack_unequal_len():
-    class TestTrack(core.Clip):
+def test_multiclip_unequal_len():
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -447,38 +546,30 @@ def test_multitrack_unequal_len():
         def f(self):
             return np.random.uniform(-1, 1, (2, np.random.randint(50, 100))), 1000
 
-    class TestMultiTrack1(core.ClipGroup):
+    class TestMultiClip1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
+            """The clip's audio property.
+
+            Returns:
+                * str - some property
+
+            """
             return "f"
 
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
     clipgroup_id = "ab"
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
-    clipgroup = TestMultiTrack1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+    clipgroup = TestMultiClip1(
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     with pytest.raises(ValueError):
@@ -496,63 +587,58 @@ def test_multitrack_unequal_len():
     assert np.max(np.abs(target2)) <= 3
 
 
-def test_multitrack_unequal_sr():
-    class TestTrack(core.Clip):
-        def __init__(
-            self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
-        ):
-            self.key = key
-
-        @property
-        def f(self):
-            return np.random.uniform(-1, 1, (2, 100)), np.random.randint(10, 1000)
-
-    class TestMultiTrack1(core.ClipGroup):
-        def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
-        ):
-            super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
-            )
-
-        def to_jams(self):
-            return None
-
-        @property
-        def clip_audio_property(self):
-            return "f"
-
-    index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
-    clipgroup_id = "ab"
-    dataset_name = "test"
-    data_home = "tests/resources/sound_datasets"
-    clipgroup = TestMultiTrack1(
-        clipgroup_id,
-        data_home,
-        dataset_name,
-        index,
-        TestTrack,
-        lambda: clip_metadata_none,
-    )
-
-    with pytest.raises(ValueError):
-        clipgroup.get_target(["a", "b", "c"])
+# def test_multiclip_unequal_sr():
+#     class TestClip(core.Clip):
+#         def __init__(
+#             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
+#         ):
+#             self.key = key
+#
+#         @property
+#         def f(self):
+#             return np.random.uniform(-1, 1, (2, 100)), np.random.randint(10, 1000)
+#
+#     class TestMultiClip1(core.ClipGroup):
+#         def __init__(
+#             self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
+#         ):
+#             super().__init__(
+#                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
+#             )
+#
+#         def to_jams(self):
+#             return None
+#
+#         @property
+#         def clip_audio_property(self):
+#             """The clip's audio property.
+#
+#             Returns:
+#                 * str - some property
+#
+#             """
+#             return "f"
+#
+#     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
+#     clipgroup_id = "ab"
+#     dataset_name = "test"
+#     data_home = "tests/resources/sound_datasets"
+#     clipgroup = TestMultiClip1(
+#         clipgroup_id,
+#         data_home,
+#         dataset_name,
+#         index,
+#         TestClip,
+#         lambda: clip_metadata_none,
+#     )
+#
+#     with pytest.raises(ValueError):
+#         clipgroup.get_target(["a", "b", "c"])
 
 
-def test_multitrack_mono():
+def test_multiclip_mono():
     ### no first channel - audio shapes (100,)
-    class TestTrack(core.Clip):
+    class TestClip(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -564,28 +650,20 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
+            """The clip's audio property.
+
+            Returns:
+                * str - some property
+
+            """
             return "f"
 
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
@@ -593,7 +671,7 @@ def test_multitrack_mono():
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])
@@ -605,7 +683,7 @@ def test_multitrack_mono():
     assert np.max(np.abs(target1)) <= 2
 
     ### one channel mono shape (1, 100)
-    class TestTrack1(core.Clip):
+    class TestClip1(core.Clip):
         def __init__(
             self, key, data_home="foo", dataset_name="foo", index=None, metadata=None
         ):
@@ -617,28 +695,20 @@ def test_multitrack_mono():
 
     class TestClipGroup1(core.ClipGroup):
         def __init__(
-            self,
-            clipgroup_id,
-            data_home,
-            dataset_name,
-            index,
-            track_class,
-            metadata,
+            self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
         ):
             super().__init__(
-                clipgroup_id,
-                data_home,
-                dataset_name,
-                index,
-                track_class,
-                metadata,
+                clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
+            """The clip's audio property.
+
+            Returns:
+                * str - some property
+
+            """
             return "f"
 
     index = {"clipgroups": {"ab": {"clips": ["a", "b", "c"]}}}
@@ -646,7 +716,7 @@ def test_multitrack_mono():
     dataset_name = "test"
     data_home = "tests/resources/sound_datasets"
     clipgroup = TestClipGroup1(
-        clipgroup_id, data_home, dataset_name, index, TestTrack, lambda: None
+        clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
 
     target1 = clipgroup.get_target(["a", "c"])

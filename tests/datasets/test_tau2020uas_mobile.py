@@ -4,19 +4,22 @@ from tests.test_utils import run_clip_tests
 
 from soundata import annotations
 from soundata.datasets import tau2020uas_mobile
+import os
 
-
-TEST_DATA_HOME = "tests/resources/sound_datasets/tau2020uas_mobile"
+TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2020uas_mobile")
 
 
 def test_clip():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
+    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
         "audio_path": (
-            "tests/resources/sound_datasets/tau2020uas_mobile/TAU-urban-acoustic-scenes-2020-mobile-development/audio/airport-barcelona-0-0-a.wav"
+            os.path.join(
+                os.path.normpath("tests/resources/sound_datasets/tau2020uas_mobile/"),
+                "TAU-urban-acoustic-scenes-2020-mobile-development/audio/airport-barcelona-0-0-a.wav",
+            )
         ),
         "clip_id": "airport-barcelona-0-0-a",
     }
@@ -35,7 +38,7 @@ def test_clip():
 
 def test_load_audio():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
+    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     audio_path = clip.audio_path
     audio, sr = tau2020uas_mobile.load_audio(audio_path)
@@ -46,7 +49,7 @@ def test_load_audio():
 
 def test_load_tags():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
+    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     assert len(clip.tags.labels) == 1
     assert clip.tags.labels[0] == "airport"
@@ -60,7 +63,7 @@ def test_load_tags():
 
 def test_load_metadata():
     default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
+    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     assert clip.split == "development.train"
     assert clip.identifier == "barcelona-0"
@@ -74,29 +77,3 @@ def test_load_metadata():
     assert eval_clip.identifier is None
     assert eval_clip.city is None
     assert eval_clip.source_label is None
-
-
-def test_to_jams():
-    default_clipid = "airport-barcelona-0-0-a"
-    dataset = tau2020uas_mobile.Dataset(TEST_DATA_HOME)
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # Validate Tags
-    tags = jam.search(namespace="tag_open")[0]["data"]
-    assert len(tags) == 1
-    assert tags[0].time == 0
-    assert tags[0].duration == 1.0
-    assert tags[0].value == "airport"
-    assert tags[0].confidence == 1
-
-    # validate metadata
-    assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.split == "development.train"
-    assert jam.sandbox.source_label == "a"
-    assert jam.sandbox.identifier == "barcelona-0"
-    assert jam.sandbox.city == "barcelona"
-    assert jam.sandbox.scene_label == "airport"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"

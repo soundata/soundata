@@ -1,0 +1,48 @@
+dataset,class_code,class_name
+BV,AMRE,American Redstart
+BV,BBWA,Bay-breasted Warbler
+BV,BTBW,Black-throated Blue Warbler
+BV,CHSP,Chipping Sparrow
+BV,COYE,Common Yellowthroat
+BV,GCTH,Gray-cheeked Thrush
+BV,OVEN,Ovenbird
+BV,RBGR,Rose-breasted Grosbeak
+BV,SAVS,Savannah Sparrow
+BV,SWTH,Swainson's Thrush
+BV,WTSP,White-throated Sparrow
+HT,GRN,Hyena groan and moo
+HT,GIG,Hyena giggle
+HT,SQT,Hyena squitter
+HT,WHP,Hyena rumble
+HT,RUM,Hyena whoop
+JD,CALL,Jackdaw call
+MT,SNMK,Meerkat short note
+MT,CCMK,Meerkat close call
+MT,AGGM,Meerkat aggression call
+MT,SOCM,Meerkat social call
+WMW,c_1,Acrocephalus scirpaceus-song
+WMW,c_2,Circus aeruginosus-call
+WMW,c_3,Himantopus himantopus-call
+WMW,c_4,Tachybaptus ruficollis-song
+WMW,c_5,Tachybaptus ruficollis-song
+WMW,c_6,Alcedo atthis-call
+WMW,c_7,Alcedo atthis-song
+WMW,c_8,Motacilla flava-song
+WMW,c_9,Ixobrychus minutus-song
+WMW,c_10,Ixobrychus minutus-cal
+WMW,c_11,Anas platyrhynchos-song
+WMW,c_12,Ardea purpurea-call
+WMW,c_13,Fulica atra-call
+WMW,c_14,Acrocephalus melanopogon-song
+WMW,c_15,Acrocephalus arundinaceus-song
+WMW,c_16,Botaurus stellaris-song
+WMW,c_17,Botaurus stellaris-call
+WMW,c_18,Ciconia ciconia-clapping
+WMW,c_19,Gallinula chloropus-call
+WMW,c_20,Coracias garrulus-call
+WMW,c_21,Anas strepera-song
+WMW,c_22,Dendrocopos minor-drumming
+WMW,c_23,Charadrius alexandrinus-call
+WMW,c_24,Charadrius alexandrinus-song
+WMW,c_25,Porphyrio porphyrio-call
+WMW,c_26,Porphyrio porphyrio-song

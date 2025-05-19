@@ -3,35 +3,33 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    **TAU Urban Acoustic Scenes 2019, Development, Leaderboard and Evaluation
-    datasets**
+    **TAU Urban Acoustic Scenes 2019, Development, Leaderboard and Evaluation datasets**
 
     `Audio Research Group,
     Tampere University of Technology <http://arg.cs.tut.fi/>`_
 
-    Authors
+    *Authors*
 
     * `Toni Heittola <http://www.cs.tut.fi/~heittolt/>`_
     * `Annamaria Mesaros <http://www.cs.tut.fi/~mesaros/>`_
     * `Tuomas Virtanen <http://www.cs.tut.fi/~tuomasv/>`_
 
-    Recording and annotation
+    *Recording and annotation*
 
     * Henri Laakso
     * Ronal Bejarano Rodriguez
     * Toni Heittola
 
 
-    Links
+    *Links*
 
     * `Development dataset <https://zenodo.org/record/2589280>`_
     * `Leaderboard dataset <https://zenodo.org/record/2672993>`_
     * `Evaluation dataset <https://zenodo.org/record/3063822>`_
 
-    **Dataset**
+    *Dataset*
 
-    TAU Urban Acoustic Scenes 2019 dataset consists of 10-seconds audio
-    segments from 10 acoustic scenes:
+    TAU Urban Acoustic Scenes 2019 dataset consists of 10-seconds audio segments from 10 acoustic scenes:
 
     - Airport - `airport`
     - Indoor shopping mall - `shopping_mall`
@@ -44,8 +42,7 @@
     - Travelling by an underground metro - `metro`
     - Urban park - `park`
 
-    A detailed description of the data recording and annotation procedure is
-    available in:
+    A detailed description of the data recording and annotation procedure is available in:
 
     .. code-block:: latex
 
@@ -67,14 +64,13 @@
 
     The dataset contains in total 1200 segments (200 minutes of audio).
 
-
     The dataset was collected by Tampere University of Technology between
     05/2018 -11/2018. The data collection has received funding from
     the European Research Council under the `ERC <https://erc.europa.eu/1>`_
     Grant Agreement 637422 EVERYSOUND.
 
 
-    **Preparation of the dataset**
+    *Preparation of the dataset*
 
     The dataset was recorded in 12 large European cities: Amsterdam, Barcelona,
     Helsinki, Lisbon, London, Lyon, Madrid, Milan, Prague, Paris, Stockholm,
@@ -82,7 +78,7 @@
     locations: different streets, different parks, different shopping malls.
     In each location, multiple 2-3 minute long audio recordings were captured
     in a few slightly different positions (2-4) within the selected location.
-    Collected audio material was cut into segments of 10 seconds length. 
+    Collected audio material was cut into segments of 10 seconds length.
 
     The equipment used for recording consists of a binaural `Soundman OKM II
     Klassik/studio A3 <http://www.soundman.de/en/products/>`_ electret in-ear
@@ -103,7 +99,7 @@
     the segments coming from this dataset.
 
 
-    **Dataset statistics**
+    *Dataset statistics*
 
     The **development dataset** contains audio material from 10 cities, whereas
     the evaluation dataset (TAU Urban Acoustic Scenes 2019 evaluation) contains
@@ -114,7 +110,7 @@
     *Audio segments (Development dataset)*
 
     ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
-    Scene class          Segments    Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna    
+    Scene class          Segments    Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna
     ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
     Airport              1440        128         149         144        145        144        144        156        144        158         128
     Bus                  1440        144         144         144        144        144        144        144        144        144         144
@@ -127,27 +123,27 @@
     Street, traffic      1440        144         144         144        144        144        144        144        144        144         144
     Tram                 1440        143         145         144        144        144        144        144        144        144         144
     **Total**            **14400**   **1421**    **1447**    **1440**   **1444**   **1440**   **1440**   **1452**   **1440**   **1456**    **1420**
-    ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========    
+    ===================  ==========  ==========  ==========  =========  ========= ==========  =========  =========  =========  ==========  ==========
 
     *Audio segments (Recording locations)*
 
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
-    Scene class          Locations   Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna    
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
-    Airport              40          4           3           4          3          4          4          4          6          5           3         
-    Bus                  71          4           4           11         7          7          7          11         10         6           4         
-    Metro                67          3           5           11         4          9          8          9          10         4           4         
-    Metro station        57          5           6           4          12         5          4          9          4          4           4         
-    Park                 41          4           4           4          4          4          4          4          4          5           4         
-    Public_square        43          4           4           4          4          5          4          4          6          4           4         
-    Shopping mall        36          4           4           4          2          3          3          4          4          4           4         
-    Street, pedestrian   46          7           4           4          4          4          5          5          5          4           4         
-    Street, traffic      43          4           4           4          5          4          6          4          4          4           4         
-    Tram                 70          4           4           6          9          7          11         9          11         5           4         
-    **Total**            **514**     **43**      **42**      **56**     **54**     **52**     **56**     **63**     **65**     **45**      **39**    
-    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========  
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
+    Scene class          Locations   Barcelona   Helsinki    Lisbon     London     Lyon       Milan      Paris      Prague     Stockholm   Vienna
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
+    Airport              40          4           3           4          3          4          4          4          6          5           3
+    Bus                  71          4           4           11         7          7          7          11         10         6           4
+    Metro                67          3           5           11         4          9          8          9          10         4           4
+    Metro station        57          5           6           4          12         5          4          9          4          4           4
+    Park                 41          4           4           4          4          4          4          4          4          5           4
+    Public_square        43          4           4           4          4          5          4          4          6          4           4
+    Shopping mall        36          4           4           4          2          3          3          4          4          4           4
+    Street, pedestrian   46          7           4           4          4          4          5          5          5          4           4
+    Street, traffic      43          4           4           4          5          4          6          4          4          4           4
+    Tram                 70          4           4           6          9          7          11         9          11         5           4
+    **Total**            **514**     **43**      **42**      **56**     **54**     **52**     **56**     **63**     **65**     **45**      **39**
+    ===================  ==========  ==========  ==========  =========  =========  =========  =========  =========  =========  ==========  ==========
 
-    **Usage**
+    *Usage*
 
     The partitioning of the data was done based on the location of the original
     recordings. All segments recorded at the same location were included into a
@@ -171,28 +167,28 @@
     material can be used when using full dataset to train the system and
     testing it with evaluation dataset.
 
-    The setup is provided with the dataset in the directory `evaluation_setup`. 
+    The setup is provided with the dataset in the directory `evaluation_setup`.
 
     *Statistics*
 
-    ===================  =================  ==================  ================  =================  ==================  =================== 
-    Scene class          Train / Segments   Train / Locations   Test / Segments   Test / Locations   Unused / Segments   Unused / Locations   
-    ===================  =================  ==================  ================  =================  ==================  =================== 
-    Airport              911                25                  421               12                 108                 3                   
-    Bus                  928                46                  415               20                 97                  5                   
-    Metro                902                41                  433               20                 105                 6                   
-    Metro station        897                37                  435               17                 108                 3                   
-    Park                 946                27                  386               11                 108                 3                   
-    Public square        945                28                  387               12                 108                 3                   
-    Shopping mall        896                24                  441               10                 103                 2                   
-    Street, pedestrian   924                29                  429               14                 87                  3                   
-    Street, traffic      942                27                  402               12                 96                  4                   
-    Tram                 894                41                  436               21                 110                 8                   
-    **Total**            **9185**           **325**             **4185**          **149**            **1030**            **40**              
-    ===================  =================  ==================  ================  =================  ==================  =================== 
+    ===================  =================  ==================  ================  =================  ==================  ===================
+    Scene class          Train / Segments   Train / Locations   Test / Segments   Test / Locations   Unused / Segments   Unused / Locations
+    ===================  =================  ==================  ================  =================  ==================  ===================
+    Airport              911                25                  421               12                 108                 3
+    Bus                  928                46                  415               20                 97                  5
+    Metro                902                41                  433               20                 105                 6
+    Metro station        897                37                  435               17                 108                 3
+    Park                 946                27                  386               11                 108                 3
+    Public square        945                28                  387               12                 108                 3
+    Shopping mall        896                24                  441               10                 103                 2
+    Street, pedestrian   924                29                  429               14                 87                  3
+    Street, traffic      942                27                  402               12                 96                  4
+    Tram                 894                41                  436               21                 110                 8
+    **Total**            **9185**           **325**             **4185**          **149**            **1030**            **40**
+    ===================  =================  ==================  ================  =================  ==================  ===================
 
 
-    **License**
+    *License*
 
     License permits free academic usage. Any commercial use is strictly
     prohibited. For commercial use, contact dataset authors.
@@ -230,7 +226,7 @@ import librosa
 import numpy as np
 import csv
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -244,6 +240,18 @@ BIBTEX = """
     Title = {A multi-device dataset for urban acoustic scene classification},
     Year = {2018}}
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="tau2019uas_index_1.0.json",
+        url="https://zenodo.org/records/11176859/files/tau2019uas_index_1.0.json?download=1",
+        checksum="b1d7af813507b4943540397c519c7a0b",
+    ),
+    "sample": core.Index(filename="tau2019uas_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "development.audio.1": download_utils.RemoteFileMetadata(
         filename="TAU-urban-acoustic-scenes-2019-development.audio.1.zip",
@@ -484,31 +492,18 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
-        tags (soundata.annotation.Tags): tag (scene label) of the clip + confidence.
+        audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
+        city (str): city were the audio signal was recorded
+        clip_id (str): clip id
+        identifier (str): identifier present in the metadata
         split (str): subset the clip belongs to (for experiments):
             development (fold1, fold2, fold3, fold4), leaderboard or evaluation
-        clip_id (str): clip id
-        city (str): city were the audio signal was recorded
-        identifier (str): identifier present in the metadata
-
+        tags (soundata.annotations.Tags): tag (scene label) of the clip + confidence.
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -525,10 +520,22 @@ class Clip(core.Clip):
 
     @property
     def split(self):
+        """The clip's split.
+
+        Returns:
+            * str - subset the clip belongs to (for experiments): development (fold1, fold2, fold3, fold4), leaderboard or evaluation
+
+        """
         return self._clip_metadata.get("split")
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (scene label) of the clip + confidence.
+
+        """
         scene_label = self._clip_metadata.get("scene_label")
         if scene_label is None:
             return None
@@ -537,22 +544,23 @@ class Clip(core.Clip):
 
     @property
     def city(self):
+        """The clip's city.
+
+        Returns:
+            * str - city were the audio signal was recorded
+
+        """
         return self._clip_metadata.get("city")
 
     @property
     def identifier(self):
-        return self._clip_metadata.get("identifier")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
+        """The clip's identifier.
 
         Returns:
-            jams.JAMS: the clip's data in jams format
+            * str - identifier present in the metadata
 
         """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
+        return self._clip_metadata.get("identifier")
 
 
 @io.coerce_to_bytes_io
@@ -579,12 +587,14 @@ class Dataset(core.Dataset):
     The  TAU Urban Acoustic Scenes 2019 dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="tau2019uas",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -595,7 +605,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_path = os.path.join(
             self.data_home, "TAU-urban-acoustic-scenes-2019-development", "meta.csv"
         )
@@ -635,9 +644,7 @@ class Dataset(core.Dataset):
             if subset == "development":
                 fold = split.split(".")[1]
                 evaluation_setup_file = os.path.join(
-                    self.data_home,
-                    evaluation_setup_path,
-                    "fold1_{}.csv".format(fold),
+                    self.data_home, evaluation_setup_path, "fold1_{}.csv".format(fold)
                 )
             else:
                 evaluation_setup_file = os.path.join(

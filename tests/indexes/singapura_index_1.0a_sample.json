@@ -1,0 +1,21 @@
+{
+  "version": "sample",
+  "metadata": {
+    "spatiotemporal_metadata": [
+      "labelled_metadata_public.csv",
+      "c5beb6374e55abfe7cd50f4f498c8376"
+    ]
+  },
+  "clips": {
+    "[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135": {
+      "audio": [
+        "labelled/2020-08-19/[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.flac",
+        "9db9f3a4de7a24a1b23c4a4ca635b106"
+      ],
+      "annotation": [
+        "labels_public/[b827ebf3744c][2020-08-19T22-46-04Z][manual][---][4edbade2d41d5f80e324ee4f10d401c0][]-135.csv",
+        "358bf888b04d65159fc9e9314ebf8288"
+      ]
+    }
+  }
+}

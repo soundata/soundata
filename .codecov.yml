@@ -12,12 +12,12 @@ coverage:
       default:
         enabled: yes
         target: auto
-        threshold: 5
+        threshold: 0.05%
     patch:
       default:
         enabled: yes
         target: auto
-        threshold: 5
+        threshold: 0.05%
     changes: no
 
 parsers:

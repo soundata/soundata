@@ -3,9 +3,14 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
+    **FSDnoisy18K**
+
     *Created By:*
-        Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
-        Music Technology Group, Universitat Pompeu Fabra (Barcelona). Version 1.0
+
+        | Eduardo Fonseca, Mercedes Collado, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, Xavier Serra.
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona).
+
+    Version 1.0
 
     *Description:*
         FSDnoisy18k is an audio dataset collected with the aim of fostering the investigation of label noise in sound
@@ -43,7 +48,7 @@
     The noisy portion of the data consists of audio clips that received no human validation. In this case, they are
     categorized on the basis of the user-provided tags in Freesound. Hence, the noisy portion features a certain
     amount of label noise.
-    
+
     *Included files and statistics:*
         * FSDnoisy18k contains 18,532 audio clips (42.5h) unequally distributed in the 20 aforementioned classes drawn from the AudioSet Ontology.
         * The audio clips are provided as uncompressed PCM 16 bit, 44.1 kHz, mono audio files.
@@ -67,7 +72,7 @@
         some type of label noise. Please check the FSDnoisy18k companion site for a detailed characterization of
         the label noise in the dataset, including a taxonomy of label noise for singly-labeled data as well as a
         per-class description of the label noise.
-        
+
     *Relevant links:*
         * Source code for our preprint: https://github.com/edufonseca/icassp19
         * Freesound Annotator: https://annotator.freesound.org/
@@ -78,8 +83,10 @@
     *Please Acknowledge FSDnoisy18K in Academic Research:*
         If you use the FSDnoisy18K Dataset please cite the following paper:
 
-            * Eduardo Fonseca, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, and Xavier Serra, “Learning Sound Event Classifiers from Web Audio with Noisy Labels”, arXiv preprint arXiv:1901.01189, 2019
-            
+        .. code-block:: latex
+
+            Eduardo Fonseca, Manoj Plakal, Daniel P. W. Ellis, Frederic Font, Xavier Favory, and Xavier Serra, “Learning Sound Event Classifiers from Web Audio with Noisy Labels”, arXiv preprint arXiv:1901.01189, 2019
+
         This work is partially supported by the European Union’s Horizon 2020 research and innovation programme
         under grant agreement No 688382 AudioCommons. Eduardo Fonseca is also sponsored by a Google Faculty Research
         Award 2017. We thank everyone who contributed to FSDnoisy18k with annotations.
@@ -97,7 +104,6 @@
         FSDnoisy18k is released under CC-BY. This license is specified in the LICENSE-DATASET file downloaded with
         the dataset.
 
-
     *Feedback:*
         For further questions, please contact eduardo.fonseca@upf.edu, or join the freesound-annotator Google Group.
 
@@ -110,7 +116,7 @@ import librosa
 import csv
 import numpy as np
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -123,6 +129,18 @@ BIBTEX = """
       primaryClass={cs.SD}
 }
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="fsdnoisy18k_index_1.0.json",
+        url="https://zenodo.org/records/11176823/files/fsdnoisy18k_index_1.0.json?download=1",
+        checksum="09b7c6156156b9ccef2200c37c9b2791",
+    ),
+    "sample": core.Index(filename="fsdnoisy18k_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "audio_train": download_utils.RemoteFileMetadata(
         filename="FSDnoisy18k.audio_train.zip",
@@ -163,32 +181,18 @@ class Clip(core.Clip):
         clip_id (str): id of the clip
 
     Attributes:
+        audio (np.ndarray, float): path to the audio file
+        aso_id (str): the id of the corresponding category as per the AudioSet Ontology
         audio_path (str): path to the audio file
         clip_id (str): clip id
-
-    Properties:
-        tag (soundata.annotations.Tags): tag (label) of the clip + confidence
-        aso_id (str): the id of the corresponding category as per the AudioSet Ontology
         manually_verified (int): flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
         noisy_small (int): flag to indicate whether the clip belongs to the noisy_small portion (1) of the train set
         split (str): flag to indicate whether the clip belongs the train or test split
+        tag (soundata.annotations.Tags): tag (label) of the clip + confidence
     """
 
-    def __init__(
-        self,
-        clip_id,
-        data_home,
-        dataset_name,
-        index,
-        metadata,
-    ):
-        super().__init__(
-            clip_id,
-            data_home,
-            dataset_name,
-            index,
-            metadata,
-        )
+    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+        super().__init__(clip_id, data_home, dataset_name, index, metadata)
 
         self.audio_path = self.get_path("audio")
 
@@ -205,36 +209,55 @@ class Clip(core.Clip):
 
     @property
     def tags(self):
+        """The clip's tags.
+
+        Returns:
+            * annotations.Tags - tag (label) of the clip + confidence
+
+        """
         return annotations.Tags(
             [self._clip_metadata.get("tag")], "open", np.array([1.0])
         )
 
     @property
     def aso_id(self):
+        """The clip's Audioset ontology ID.
+
+        Returns:
+            * str - the id of the corresponding category as per the AudioSet Ontology
+
+        """
         return self._clip_metadata.get("aso_id")
 
     @property
     def manually_verified(self):
+        """The clip's manually annotated flag.
+
+        Returns:
+            * int - flag to indicate whether the clip belongs to the clean portion (1), or to the noisy portion (0) of the train set
+
+        """
         return self._clip_metadata.get("manually_verified")
 
     @property
     def noisy_small(self):
+        """The clip's noisy flag.
+
+        Returns:
+            * int - flag to indicate whether the clip belongs to the noisy_small portion (1) of the train set
+
+        """
         return self._clip_metadata.get("noisy_small")
 
     @property
     def split(self):
-        return self._clip_metadata.get("split")
-
-    def to_jams(self):
-        """Get the clip's data in jams format
+        """The clip's split.
 
         Returns:
-            jams.JAMS: the clip's data in jams format
+            * str - flag to indicate whether the clip belongs the train or test split
 
         """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
+        return self._clip_metadata.get("split")
 
 
 @io.coerce_to_bytes_io
@@ -263,12 +286,14 @@ class Dataset(core.Dataset):
     The FSDnoisy18K dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="fsdnoisy18k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -279,7 +304,6 @@ class Dataset(core.Dataset):
 
     @core.cached_property
     def _metadata(self):
-
         metadata_train_path = os.path.join(
             self.data_home, "FSDnoisy18k.meta", "train.csv"
         )

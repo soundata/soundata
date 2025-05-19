@@ -1,0 +1,17 @@
+{
+  "version": "sample",
+  "clips": {
+    "17": {
+      "audio": [
+        "FSDnoisy18k.audio_train/17.wav",
+        "d8d08d26248aed667dda4b15c9028257"
+      ]
+    },
+    "564": {
+      "audio": [
+        "FSDnoisy18k.audio_test/564.wav",
+        "2551686803786356de1d5f2ccaf24d02"
+      ]
+    }
+  }
+}
