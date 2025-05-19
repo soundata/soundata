@@ -2,6 +2,7 @@
 This test takes a long time, but it makes sure that the datset can be locally downloaded,
 validated successfully, and loaded.
 """
+
 import os
 import pytest
 import tqdm
@@ -11,13 +12,13 @@ import soundata
 
 
 @pytest.fixture()
-def dataset(test_dataset):
+def dataset(test_dataset, dataset_version):
     if test_dataset == "":
         return None
     elif test_dataset not in soundata.DATASETS:
         raise ValueError("{} is not a dataset in soundata".format(test_dataset))
     data_home = os.path.join("tests/resources/sound_datasets_full", test_dataset)
-    return soundata.initialize(test_dataset, data_home)
+    return soundata.initialize(test_dataset, data_home, version=dataset_version)
 
 
 # This is magically skipped by the the remote fixture `skip_remote` in conftest.py
@@ -77,9 +78,6 @@ def test_load(skip_remote, dataset):
 
         for cprop in clip_data["cached_properties"]:
             ret = getattr(clip, cprop)
-
-        jam = clip.to_jams()
-        assert jam.validate()
 
 
 def test_index(skip_remote, dataset):

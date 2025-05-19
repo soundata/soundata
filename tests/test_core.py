@@ -1,9 +1,12 @@
 import pytest
+import os
+import sys
 import numpy as np
 
 import soundata
 from soundata import core
-import os
+from tests.test_utils import DEFAULT_DATA_HOME
+from unittest.mock import Mock, patch
 
 
 def test_clip():
@@ -30,9 +33,6 @@ def test_clip():
     assert clip._metadata() is None
     with pytest.raises(AttributeError):
         clip._clip_metadata
-
-    with pytest.raises(NotImplementedError):
-        clip.to_jams()
 
     path_good = clip.get_path("annotation")
     assert path_good == os.path.normpath("tests/resources/sound_datasets/asdf/asdd")
@@ -115,9 +115,6 @@ def test_clip_repr():
     with pytest.raises(NotImplementedError):
         test_clip_bad.__repr__()
 
-    with pytest.raises(NotImplementedError):
-        test_clip.to_jams()
-
 
 # def test_clipgroup_repr():
 #     class TestClip(core.Clip):
@@ -180,23 +177,121 @@ def test_clip_repr():
 
 
 def test_dataset():
-    dataset = soundata.initialize("esc50")
-    assert isinstance(dataset, core.Dataset)
-
     dataset = soundata.initialize("urbansound8k")
     assert isinstance(dataset, core.Dataset)
 
-    dataset = soundata.initialize("urbansed")
-    assert isinstance(dataset, core.Dataset)
-
     print(dataset)  # test that repr doesn't fail
+
+
+def test_list_versions():
+    assert (
+        soundata.list_dataset_versions("urbansound8k")
+        == "Available versions for urbansound8k: ['1.0']. Default version: 1.0"
+    )
+    with pytest.raises(ValueError):
+        soundata.list_dataset_versions("asdf")
+
+
+def test_dataset_versions():
+    class VersionTest(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "1",
+                    "test": "0",
+                    "0": core.Index("blah_0.json"),
+                    "1": core.Index(
+                        "blah_1.json", url="https://google.com", checksum="asdf"
+                    ),
+                    "real": core.Index("dcase_bioacoustic_index_3.0_sample.json"),
+                },
+            )
+
+    class VersionTest2(core.Dataset):
+        def __init__(self, data_home=None, version="default"):
+            super().__init__(
+                data_home,
+                version,
+                indexes={
+                    "default": "2",
+                    "2": core.Index("blah_2.json", url="https://google.com"),
+                },
+            )
+
+    dataset = VersionTest("asdf")
+    assert dataset.version == "1"
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+
+    dataset_default = VersionTest("asdf")
+    assert dataset_default.version == "1"
+    assert os.path.join(
+        *dataset.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+
+    dataset_1 = VersionTest("asdf", version="1")
+    assert dataset_1.version == "1"
+    assert os.path.join(
+        *dataset_1.index_path.split(os.path.sep)[-4:]
+    ) == os.path.normpath("soundata/datasets/indexes/blah_1.json")
+    with pytest.raises(FileNotFoundError):
+        dataset_1._index
+
+    local_index_path = os.path.dirname(os.path.realpath(__file__))[:-5]
+    dataset_test = VersionTest("asdf", version="test")
+    assert dataset_test.version == "0"
+    assert dataset_test.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "blah_0.json"
+    )
+
+    with pytest.raises(IOError):
+        dataset_test._index
+
+    dataset_0 = VersionTest("asdf", version="0")
+    assert dataset_0.version == "0"
+    assert dataset_0.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "blah_0.json"
+    )
+
+    dataset_real = VersionTest("asdf", version="real")
+    assert dataset_real.version == "real"
+    assert dataset_real.index_path == os.path.join(
+        local_index_path, "tests", "indexes", "dcase_bioacoustic_index_3.0_sample.json"
+    )
+    idx_test = dataset_real._index
+    assert isinstance(idx_test, dict)
+
+    with pytest.raises(ValueError):
+        VersionTest("asdf", version="not_a_version")
+
+    with pytest.raises(ValueError):
+        VersionTest2("asdf", version="2")
+
+
+def test_explore_dataset():
+    dataset = soundata.initialize("urbansound8k")
+
+    with patch(
+        "soundata.display_plot_utils.perform_dataset_exploration"
+    ) as mock_function:
+        clip_id = "test_clip_id"
+        dataset.explore_dataset(clip_id)
+        mock_function.assert_called_once_with(dataset, clip_id)
+
+        mock_function.reset_mock()
+
+        dataset.explore_dataset()
+        mock_function.assert_called_with(dataset, None)
 
 
 def test_dataset_errors():
     with pytest.raises(ValueError):
         soundata.initialize("not_a_dataset")
 
-    d = soundata.initialize("esc50")
+    d = soundata.initialize("esc50", version="sample")
     d._clip_class = None
     with pytest.raises(AttributeError):
         d.clip("asdf")
@@ -215,11 +310,6 @@ def test_dataset_errors():
 
     with pytest.raises(AttributeError):
         d.choice_clipgroup()
-
-    # uncomment this to test \in dataset with remote index
-    # d = soundata.initialize("dataset_with_remote_index")
-    # with pytest.raises(FileNotFoundError):
-    #     d._index
 
     # uncomment this to test in dataset with clip_group
     # d = soundata.initialize("dataset_with_clip_group")
@@ -272,9 +362,6 @@ def test_clipgroup():
     assert clipgroup._metadata() is None
     with pytest.raises(AttributeError):
         clipgroup._clipgroup_metadata
-
-    with pytest.raises(NotImplementedError):
-        clipgroup.to_jams()
 
     with pytest.raises(KeyError):
         clipgroup.get_target(["c"])
@@ -335,9 +422,6 @@ def test_clipgroup():
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
-        def to_jams(self):
-            return None
-
         @property
         def clip_audio_property(self):
             """The clip's audio property.
@@ -352,7 +436,6 @@ def test_clipgroup():
     clipgroup = TestMultiClip1(
         clipgroup_id, data_home, dataset_name, index, TestClip, lambda: None
     )
-    clipgroup.to_jams()
     clipgroup.get_target(["a"])
     clipgroup.get_random_target()
 
@@ -375,9 +458,6 @@ def test_multiclip_mixing():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
@@ -473,9 +553,6 @@ def test_multiclip_unequal_len():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):
@@ -579,9 +656,6 @@ def test_multiclip_mono():
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
 
-        def to_jams(self):
-            return None
-
         @property
         def clip_audio_property(self):
             """The clip's audio property.
@@ -626,9 +700,6 @@ def test_multiclip_mono():
             super().__init__(
                 clipgroup_id, data_home, dataset_name, index, clip_class, metadata
             )
-
-        def to_jams(self):
-            return None
 
         @property
         def clip_audio_property(self):

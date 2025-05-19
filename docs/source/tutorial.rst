@@ -13,6 +13,8 @@ To install Soundata simply do:
 
         pip install soundata
 
+We recommend to do this inside a conda or virtual environment for reproducibility.
+
 Soundata is easily imported into your Python code by:
 
 .. code-block:: python
@@ -21,7 +23,7 @@ Soundata is easily imported into your Python code by:
 
 
 Initializing a dataset
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 Print a list of all available dataset loaders by calling:
 
@@ -35,19 +37,32 @@ To use a loader, (for example, ``urbansound8k``) you need to initialize it by ca
 .. code-block:: python
 
     import soundata
-    dataset = soundata.initialize('urbansound8k', data_home='choose_where_data_live')
+    dataset = soundata.initialize('urbansound8k', data_home='/choose/where/data/live')
 
-You can indicate where the data would be stored and access by passing a path to ``data_home``, as explained below. Now ``us8k`` is a ``Dataset``
-object containing common methods, described in the following.
+You can specify the directory where the Soundata data is stored by passing a path to ``data_home``.
+
+Soundata supports working with multiple dataset versions.
+To see all available versions of a specific dataset, run ``soundata.list_dataset_versions('urbansound8k')``.
+Use ``version`` parameter if you wish to use a version other than the default one.
+
+.. code-block:: python
+
+    import soundata
+    dataset = soundata.initialize('urbansound8k', data_home='/choose/where/data/live', version="1.0")
+
 
 Downloading a dataset
 ^^^^^^^^^^^^^^^^^^^^^
 
-All dataset loaders in soundata have a ``download()`` function that allows the user to download the :ref:`canonical <faq>`
-version of the dataset (when available). When initializing a dataset it is important to correctly set up the directory
-where the dataset is going to be stored and retrieved.
+All dataset loaders in soundata have a ``download()`` function that allows the user to download:
 
-Downloading a dataset into the default folder:
+* The :ref:`canonical <faq>` version of the dataset (when available).
+* The dataset index, which indicates the list of clips in the dataset and the paths to audio and annotation files.
+
+The index, which is considered part of the source files of Soundata, is specifically downloaded by running ``download(["index"])``.
+Indexes will be directly stored in Soundata's indexes folder (``soundata/datasets/indexes``) whereas users can indicate where the dataset files will be stored via ``data_home``.
+
+Downloading a dataset into the default folder
     In this first example, ``data_home`` is not specified. Thus, UrbanSound8K will be downloaded and retrieved from 
     the default folder, ``sound_datasets``, created in the user's root folder:
 
@@ -57,14 +72,13 @@ Downloading a dataset into the default folder:
         dataset = soundata.initialize('urbansound8k')
         dataset.download()  # Dataset is downloaded into "sound_datasets" folder inside user's root folder
 
-Downloading a dataset into a specified folder:
+Downloading a dataset into a specified folder
     In the next example ``data_home`` is specified, so UrbanSound8K will be downloaded and retrieved from the specified location:
 
     .. code-block:: python
 
         dataset = soundata.initialize('urbansound8k', data_home='Users/johnsmith/Desktop')
         dataset.download()  # Dataset is downloaded to John Smith's desktop
-
 
 
 Partially downloading a dataset
@@ -151,6 +165,16 @@ Downloading a multipart dataset
                     ),
                 ],
                 ...
+                
+
+Working with non-available datasets to openly download
+    Some datasets are private, and therefore it is not possible to directly retrieve them from an online repository.
+    In those cases, the download function will only download the index file, and if available, the dataset parts that are not private (for some cases, the annotations are available but not the audio).
+    The user will have to gather the private data themselves, store it in the preferred ``data_home`` location, and then initialize the dataset as usual, indicating the data location in the ``data_home`` parameter.
+
+
+    .. note::
+        Private datasets may be available to the public upon request. If you are interested in a dataset that is not openly available, please contact the dataset authors or the dataset maintainers to request access.
 
 
 
@@ -191,7 +215,7 @@ You can choose a random clip from a dataset with the ``choice_clip()`` method.
 
 
 
-You can also access specific clips by id. The available clip ids can be acessed by doing ``dataset.clip_ids``.
+You can also access specific clips by id. The available clip ids can be accessed by doing ``dataset.clip_ids``.
 In the next example we take the first clip id, and then we retrieve its ``tags``
 annotation.
 
@@ -265,10 +289,10 @@ see an example.
 Annotation classes
 ^^^^^^^^^^^^^^^^^^
 
-``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standarize the format for
+``soundata`` defines annotation-specific data classes such as `Tags` or `Events`. These data classes are meant to standardize the format for
 all loaders, so you can use the same code with different datasets. The list and descriptions of available annotation classes can be found in :ref:`annotations`.
 
-.. note:: These classes are standarized to the point that the data allow for it. In some cases where the dataset has
+.. note:: These classes are standardized to the point that the data allow for it. In some cases where the dataset has
         its own idiosyncrasies, the classes may be extended e.g. adding a customize, uncommon attribute.
 
 Iterating over datasets and annotations
@@ -436,3 +460,84 @@ The following is a simple example of a generator that can be used to create a te
         )
 
 In future ``soundata`` versions, generators for Tensorflow and PyTorch will be included out-of-the-box.
+
+
+Using soundata to explore dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``explore_dataset()`` function in ``soundata`` allows you to visualize various aspects of the dataset. This can be particularly useful for understanding the distribution of events and the nature of the audio data before proceeding with analysis or model training.
+
+Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
+-----------------------------------------------------------------
+
+If you want to use the plot functionalities used in ``display_plot_utils.py`` you must install the optional dependencies too:
+
+    .. code-block:: console
+
+        pip install soundata"[plots]"
+
+If you try to load the visualizations without the optional dependencies, you will be thrown an exception indicating that the dependencies are missing.
+Please do install the optional dependencies using the command above in order to use the visualization functionalities.
+
+.. note::
+        If you encounter any error during the installation of ``simpleaudio``, please visit `simpleaudio installation <https://simpleaudio.readthedocs.io/en/latest/installation.html>`__ guide and check the dependencies.
+
+
+To explore the dataset, first initialize it and then call the ``explore_dataset()`` method:
+
+.. code-block:: python
+
+    import soundata
+
+    # Initialize the dataset
+    dataset = soundata.initialize('urbansound8k', data_home='your_data_directory')
+
+    # Explore the dataset
+    dataset.explore_dataset()
+
+When you run this function, an interface will appear with several options, allowing you to choose what to plot.
+
+.. toggle:: dataset explorer
+
+   .. image:: ../img/dataset_exp.png
+       :alt: class dataset explorer
+       :scale: 80%
+
+Class Distribution
+==================
+
+Displays the distribution of different event classes in the dataset.
+
+.. toggle:: class distribution plot example
+
+   .. image:: ../img/class_dist.png
+       :alt: class distribution plot example
+       :scale: 50%
+
+
+Statistics (Computational)
+==========================
+
+Provides computational statistics about the dataset (Time-consuming operation).
+
+.. toggle:: statistics plot example
+
+   .. image:: ../img/class_stat.png
+       :alt: statistics plot example
+       :scale: 50%
+
+
+Audio Visualization
+===================
+
+Offers visualizations related to the audio data, such as waveforms or spectrograms.
+
+.. toggle:: audio visualization plot example
+
+   .. image:: ../img/audio_plot.png
+       :alt: audio visualization plot example
+       :scale: 50%
+
+
+
+By using the ``explore_dataset()`` function, you can gain a comprehensive overview of the dataset's structure and content, which is crucial for effective analysis and model building.

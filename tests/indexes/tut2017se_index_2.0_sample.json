@@ -1,0 +1,19 @@
+{
+  "version": "sample",
+  "clips": {
+    "a001": {
+      "audio": [
+        "TUT-sound-events-2017-development/audio/street/a001.wav",
+        "18fac6fb758f02842e7ef9495fbe8ad9"
+      ],
+      "annotations": [
+        "TUT-sound-events-2017-development/meta/street/a001.ann",
+        "9f6dbf3fae6c6e54b83ab934ed814856"
+      ],
+      "non_verified_annotations": [
+        "TUT-sound-events-2017-development/non_verified/meta/street/a001.ann",
+        "e5821888d6f3f28880f5276ffbcdf62c"
+      ]
+    }
+  }
+}

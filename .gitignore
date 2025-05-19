@@ -2,6 +2,7 @@ tests/resources/sound_datasets_full
 tests/resources/sound_datasets/esc50_download #TODO: remove this after pulling main fix
 tests/data/output.wav
 soundata/datasets/indexes/__MACOSX
+soundata/datasets/indexes/*.json
 *.DS_Store
 
 # Byte-compiled / optimized / DLL files

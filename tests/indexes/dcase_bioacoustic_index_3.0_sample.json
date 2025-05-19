@@ -1,0 +1,15 @@
+{
+    "version": "sample",
+    "clips": {
+        "2015-09-04_08-04-59_unit03": {
+            "audio": [
+                "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.wav",
+                "4a377db6ff54d52c9c54181d598a8865"
+            ],
+            "csv": [
+                "Development_Set/Training_Set/BV/2015-09-04_08-04-59_unit03.csv",
+                "db4445a1efaee468ddb03253cab8ed45"
+            ]
+        }
+    }
+}

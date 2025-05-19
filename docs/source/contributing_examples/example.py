@@ -23,7 +23,7 @@ import numpy as np
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 # -- Add any relevant citations here
 BIBTEX = """
@@ -34,7 +34,26 @@ BIBTEX = """
   year = "1986"
 }
 """
-
+# -- INDEXES specifies different versions of a dataset
+# -- "default" and "test" specify which key should be used by default, and when running tests
+# -- Each index is defined by {"version": core.Index instance}
+# -- | filename: index name
+# -- | url: Zenodo direct download link of the index (will be available afer the index upload is
+# -- accepted to Audio Data Loaders Zenodo community).
+# -- | checksum: Checksum of the index hosted at Zenodo.
+# -- Direct url for download and checksum can be found in the Zenodo entry of the dataset.
+# -- Sample index is a mini-version that makes it easier to test a large datasets.
+# -- There must be a local sample index for testing for each remote index.
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="urbansound8k_index_1.0.json",
+        url="https://zenodo.org/records/11176928/files/urbansound8k_index_1.0.json?download=1",
+        checksum="1c4940e08c1305c49b592f3d9c103e6f",
+    ),
+    "sample": core.Index(filename="urbansound8k_index_1.0_sample.json"),
+}
 # -- REMOTES is a dictionary containing all files that need to be downloaded.
 # -- The keys should be descriptive (e.g. 'annotations', 'audio').
 # -- When having data that can be partially downloaded, remember to set up
@@ -64,6 +83,7 @@ The dataset's license information goes here.
 
 class Clip(core.Clip):
     """Example Clip class
+    
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
     # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)
@@ -113,21 +133,9 @@ class Clip(core.Clip):
         """(np.ndarray, float): DESCRIPTION audio signal, sample rate"""
         return load_audio(self.audio_path)
 
-    # -- we use the to_jams function to convert all the annotations in the JAMS format.
-    # -- The converter takes as input all the annotations in the proper format (e.g. tags)
-    # -- and returns a jams object with the annotations.
-    def to_jams(self):
-        """Jams: the clip's data in jams format"""
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            annotation_data=[(self.annotation, None)],
-            metadata=self._metadata,
-        )
-        # -- see the documentation for `jams_utils.jams_converter for all fields
-
 @io.coerce_to_bytes_io
 def load_audio(fhandle):
-    """Load a Example audio file.
+    """Load a Example audio file
 
     Args:
         fhandle (str or file-like): path or file-like object pointing to an audio file
@@ -135,7 +143,6 @@ def load_audio(fhandle):
     Returns:
         * np.ndarray - the audio signal
         * float - The sample rate of the audio file
-
     """
     # -- for example, the code below. This should be dataset specific!
     # -- By default we load to mono
@@ -167,15 +174,16 @@ def load_annotation(fhandle):
 # -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """The Example dataset
-    """
+    """The Example dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name='dataset_name',
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             download_info=DOWNLOAD_INFO,
             license_info=LICENSE_INFO,

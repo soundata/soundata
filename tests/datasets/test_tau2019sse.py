@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tau2019sse")
 
 def test_clip():
     default_clipid = "foa_dev/split1_ir0_ov1_1"
-    dataset = tau2019sse.Dataset(TEST_DATA_HOME)
+    dataset = tau2019sse.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -32,14 +32,14 @@ def test_clip():
 
     expected_property_types = {
         "audio": tuple,
-        "spatial_events": tau2019sse.SpatialEvents,
+        "spatial_events": tau2019sse.TAU2019_SpatialEvents,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
 
 
 def test_load_audio():
-    dataset = tau2019sse.Dataset(TEST_DATA_HOME)
+    dataset = tau2019sse.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("foa_dev/split1_ir0_ov1_1")
     audio_path = clip.audio_path
     audio, sr = tau2019sse.load_audio(audio_path)
@@ -50,19 +50,8 @@ def test_load_audio():
     assert audio.shape[1] == 48000  # Check audio duration in samples is as expected
 
 
-def test_to_jams():
-    # Note: original file  tsrimmed to 1 sec
-    default_clipid = "foa_dev/split1_ir0_ov1_1"
-    dataset = tau2019sse.Dataset(TEST_DATA_HOME)
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    # Validate jam schema
-    assert jam.validate()
-
-
 def test_load_spatialevents():
-    dataset = tau2019sse.Dataset(TEST_DATA_HOME)
+    dataset = tau2019sse.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("foa_dev/split1_ir0_ov1_1")
     csv_path = clip.csv_path
     events_data = tau2019sse.load_spatialevents(csv_path)

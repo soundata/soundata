@@ -1,0 +1,23 @@
+{
+  "version": "sample",
+  "clips": {
+    "64760": {
+      "audio": [
+        "FSD50K.dev_audio/64760.wav",
+        "6a55f957f52dd280e1bccf0693ef6a90"
+      ]
+    },
+    "21914": {
+      "audio": [
+        "FSD50K.dev_audio/21914.wav",
+        "3763141ee5c269ba71b054051790744c"
+      ]
+    },
+    "99": {
+      "audio": [
+        "FSD50K.eval_audio/99.wav",
+        "8d2b646989967fac8e2d22580df06943"
+      ]
+    }
+  }
+}

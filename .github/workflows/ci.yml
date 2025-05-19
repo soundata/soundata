@@ -1,6 +1,12 @@
 name: CI
 
-on: pull_request
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,16 +22,6 @@ jobs:
             matrix:
                 include:
                     - os: ubuntu-latest
-                      python-version: "3.7"
-                      envfile: ".github/environment-ci.yml"
-                      channel-priority: "strict"
-
-                    - os: ubuntu-latest
-                      python-version: "3.8"
-                      channel-priority: "strict"
-                      envfile: ".github/environment-ci.yml"
-
-                    - os: ubuntu-latest
                       python-version: "3.9"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
@@ -35,8 +31,28 @@ jobs:
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: ubuntu-latest
+                      python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: ubuntu-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
                     - os: macos-latest
                       python-version: "3.10"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: macos-latest
+                      python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: macos-latest
+                      python-version: "3.12"
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
@@ -45,8 +61,18 @@ jobs:
                       channel-priority: "strict"
                       envfile: ".github/environment-ci.yml"
 
+                    - os: windows-latest
+                      python-version: "3.11"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
+                    - os: windows-latest
+                      python-version: "3.12"
+                      channel-priority: "strict"
+                      envfile: ".github/environment-ci.yml"
+
         steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
           with:
             submodules: true
 
@@ -56,10 +82,10 @@ jobs:
             case "${{ runner.os }}" in
             Linux)
               sudo apt-get update -yy
-              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip
+              sudo apt-get install -yy wget libsndfile-dev libsox-fmt-mp3 ffmpeg zip libasound2-dev
               ;; 
             macOS)
-              brew install libsamplerate wget libsndfile sox ffmpeg zip
+              brew install libsamplerate wget libsndfile sox ffmpeg zip 
               ;;
             Windows)
               choco install wget ffmpeg zip
@@ -67,9 +93,10 @@ jobs:
             esac
 
         - name: Cache conda
-          uses: actions/cache@v3
+          id: cache      
+          uses: actions/cache@v4
           env:
-            CACHE_NUMBER: 2      
+            CACHE_NUMBER: 3      
           with:
             path: ~/conda_pkgs_dir
             key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
@@ -79,20 +106,17 @@ jobs:
               ${{ runner.os }}-conda-
               
         - name: Setup conda
-          uses: conda-incubator/setup-miniconda@v2
+          uses: conda-incubator/setup-miniconda@v3
           with:
-            miniforge-variant: Mambaforge
+            miniforge-variant: Miniforge3
             miniforge-version: latest
-            use-mamba: true
             channel-priority: ${{ matrix.channel-priority }}
             activate-environment: test
             auto-update-conda: false
             python-version: ${{ matrix.python-version }}
-            use-only-tar-bz2: false
 
         - name: Install conda dependencies
           run: mamba env update -n test -f ${{ matrix.envfile }}
-          if: steps.cache.outputs.cache-hit != 'true'
 
         - name: Conda info
           shell: bash -l {0}
@@ -105,7 +129,7 @@ jobs:
           run: pytest -n auto -vv --cov-report term-missing --cov-report=xml --cov=soundata tests
 
         - name: Upload coverage to Codecov
-          uses: codecov/codecov-action@v3
+          uses: codecov/codecov-action@v4
           with:
             token: ${{ secrets.CODECOV_TOKEN }}
             files: ./coverage.xml

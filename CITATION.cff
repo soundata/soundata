@@ -1,0 +1,73 @@
+cff-version: "1.2.0"
+authors:
+- family-names: Fuentes
+  given-names: Magdalena
+  orcid: "https://orcid.org/0000-0003-4506-6639"
+- family-names: Plaja-Roglans
+  given-names: Genís
+  orcid: "https://orcid.org/0000-0003-3450-3194"
+- family-names: Cortès-Sebastià
+  given-names: Guillem
+  orcid: "https://orcid.org/0000-0003-2827-8955"
+- family-names: Khandelwal
+  given-names: Tanmay
+  orcid: "https://orcid.org/0009-0004-3770-8317"
+- family-names: Miron
+  given-names: Marius
+  orcid: "https://orcid.org/0000-0002-2563-075X"
+- family-names: Serra
+  given-names: Xavier
+  orcid: "https://orcid.org/0000-0003-1395-2345"
+- family-names: Bello
+  given-names: Juan Pablo
+  orcid: "https://orcid.org/0000-0001-8561-5204"
+- family-names: Salamon
+  given-names: Justin
+  orcid: "https://orcid.org/0000-0001-6345-4593"
+contact:
+- family-names: Fuentes
+  given-names: Magdalena
+  orcid: "https://orcid.org/0000-0003-4506-6639"
+doi: 10.5281/zenodo.11580085
+message: If you use this software, please cite our article in the
+  Journal of Open Source Software.
+preferred-citation:
+  authors:
+  - family-names: Fuentes
+    given-names: Magdalena
+    orcid: "https://orcid.org/0000-0003-4506-6639"
+  - family-names: Plaja-Roglans
+    given-names: Genís
+    orcid: "https://orcid.org/0000-0003-3450-3194"
+  - family-names: Cortès-Sebastià
+    given-names: Guillem
+    orcid: "https://orcid.org/0000-0003-2827-8955"
+  - family-names: Khandelwal
+    given-names: Tanmay
+    orcid: "https://orcid.org/0009-0004-3770-8317"
+  - family-names: Miron
+    given-names: Marius
+    orcid: "https://orcid.org/0000-0002-2563-075X"
+  - family-names: Serra
+    given-names: Xavier
+    orcid: "https://orcid.org/0000-0003-1395-2345"
+  - family-names: Bello
+    given-names: Juan Pablo
+    orcid: "https://orcid.org/0000-0001-8561-5204"
+  - family-names: Salamon
+    given-names: Justin
+    orcid: "https://orcid.org/0000-0001-6345-4593"
+  date-published: 2024-06-18
+  doi: 10.21105/joss.06634
+  issn: 2475-9066
+  issue: 98
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 6634
+  title: "Soundata: Reproducible use of audio datasets"
+  type: article
+  url: "https://joss.theoj.org/papers/10.21105/joss.06634"
+  volume: 9
+title: "Soundata: Reproducible use of audio datasets"
+

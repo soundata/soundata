@@ -1,0 +1,19 @@
+{
+  "version": "sample",
+  "clips": {
+    "soundscape_train_uniform1736": {
+      "audio": [
+        "audio/train/soundscape_train_uniform1736.wav",
+        "e20470ce178eed794d605f2a272d9fe9"
+      ],
+      "jams": [
+        "annotations/train/soundscape_train_uniform1736.jams",
+        "73e976d18e9566d151dfe50d0aa821d2"
+      ],
+      "txt": [
+        "annotations/train/soundscape_train_uniform1736.txt",
+        "4d7deea29509de9d943ad9182dfc8274"
+      ]
+    }
+  }
+}

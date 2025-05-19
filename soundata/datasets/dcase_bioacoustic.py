@@ -3,168 +3,50 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *DCASE-BIOACOUSTIC*
+    **DCASE-BIOACOUSTIC**
 
     *Development set:*
 
-    The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets. 
+    The development set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 192 audio files acquired from different bioacoustic sources. The dataset is split into training and validation sets.
 
-    Multi-class annotations are provided for the training set with positive (POS), negative (NEG) and unkwown (UNK) values for each class. UNK indicates uncertainty about a class. 
+    Multi-class annotations are provided for the training set with positive (POS), negative (NEG) and unkwown (UNK) values for each class. UNK indicates uncertainty about a class.
 
-    Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest. 
+    Single-class (class of interest) annotations are provided for the validation set, with events marked as positive (POS) or unkwown (UNK) provided for the class of interest.
 
-    this version (3):
+    This version (3) fixes issues with annotations from HB set. Development_Set_Annotations.zip has the same structure but contains only the .csv files.
 
-    - fixes issues with annotations from HB set
-
-
-    Folder Structure:
-
-    Development_Set.zip
-
-    |_Development_Set/
-
-        |__Training_Set/
-
-            |___JD/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___HT/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___BV/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___MT/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___WMW/
-
-                |____*.wav
-
-                |____*.csv
-
-    
-
-        |__Validation_Set/
-
-            |___HB/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___PB/
-
-                |____*.wav
-
-                |____*.csv
-
-            |___ME/
-
-                |____*.wav
-
-                |____*.csv
-
-    
-
-    Development_Set_Annotations.zip has the same structure but contains only the *.csv files
-
-    
 
     *Annotation structure*
 
     Each line of the annotation csv represents an event in the audio file. The column descriptions are as follows:
 
-    TRAINING SET
-    ---------------------
-    Audiofilename, Starttime, Endtime, CLASS_1, CLASS_2, ...CLASS_N
+    TRAINING SET: Audiofilename, Starttime, Endtime, CLASS_1, CLASS_2, ...CLASS_N
 
-    VALIDATION SET
-    ---------------------
-    Audiofilename, Starttime, Endtime, Q
+    VALIDATION SET: Audiofilename, Starttime, Endtime, Q
 
-    
+
 
     *Classes*
 
     DCASE2022_task5_training_set_classes.csv and DCASE2022_task5_validation_set_classes.csv provide a table with class code correspondence to class name for all classes in the Development set.
 
-    DCASE2022_task5_training_set_classes.csv
-    ---------------------
-    dataset, class_code, class_name
+    DCASE2022_task5_training_set_classes.csv: dataset, class_code, class_name
 
-    DCASE2022_task5_validation_set_classes.csv
-    ---------------------
-    dataset, recording, class_code, class_name
+    DCASE2022_task5_validation_set_classes.csv: dataset, recording, class_code, class_name
 
-    
+
 
     *Evaluation set*
 
-    The evaluation set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 46 audio files acquired from different bioacoustic sources. 
+    The evaluation set for task 5 of DCASE 2022 "Few-shot Bioacoustic Event Detection" consists of 46 audio files acquired from different bioacoustic sources.
 
-    The first 5 annotations are provided for each file, with events marked as positive (POS) for the class of interest. 
+    The first 5 annotations are provided for each file, with events marked as positive (POS) for the class of interest.
 
     This dataset is to be used for evaluation purposes during the task and the rest of the annotations will be released after the end of the DCASE 2022 challenge (July 1st).
 
-    Folder Structure
+    Evaluation_Set_5shots.zip has the same structure but contains only the .wav files.
 
-    Evaluation_Set.zip
-
-        |___DC/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___CT/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___CHE/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___MGE/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___MS/
-
-            |____*.wav
-
-            |____*.csv
-
-        |___QU/
-
-            |____*.wav
-
-            |____*.csv
-
-    
-
-    Evaluation_Set_5shots.zip has the same structure but contains only the *.wav files.
-
-    Evaluation_Set_5shots_annotations_only.zip has the same structure but contains only the *.csv files
+    Evaluation_Set_5shots_annotations_only.zip has the same structure but contains only the .csv files
 
     The subfolders denote different recording sources and there may or may not be overlap between classes of interest from different wav files.
 
@@ -174,12 +56,12 @@
     [ Audiofilename, Starttime, Endtime, Q ]
 
 
-    Open Access:
+    *Open Access:*
 
     This dataset is available under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
-    
 
-    Contact info:
+
+    *Contact info:*
 
     Please send any feedback or questions to:
 
@@ -192,12 +74,10 @@ from typing import BinaryIO, Optional, TextIO, Tuple
 import librosa
 import numpy as np
 import csv
-import jams
 import glob
 import json
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -228,6 +108,18 @@ BIBTEX = """
   url          = {https://doi.org/10.5281/zenodo.6482837}
 }
 """
+
+INDEXES = {
+    "default": "3.0",
+    "test": "sample",
+    "3.0": core.Index(
+        filename="dcase_bioacoustic_index_3.0.json",
+        url="https://zenodo.org/records/11176645/files/dcase_bioacoustic_index_3.0.json?download=1",
+        checksum="e4c4eca3f1b9224e178f283bd2835f8f",
+    ),
+    "sample": core.Index(filename="dcase_bioacoustic_index_3.0_sample.json"),
+}
+
 REMOTES = {
     "dev": download_utils.RemoteFileMetadata(
         filename="Development_Set.zip",
@@ -345,22 +237,6 @@ class Clip(core.Clip):
         """
         return load_POSevents(self.csv_path)
 
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            events=self.events,
-            metadata={
-                "split": self._clip_metadata.get("split"),
-                "subdataset": self._clip_metadata.get("subdataset"),
-            },
-        )
-
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
@@ -475,16 +351,16 @@ def load_events_classes(fhandle: TextIO) -> list:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The DCASE bioacoustic dataset
-    """
+    """The DCASE bioacoustic dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase_bioacoustic",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
@@ -500,11 +376,16 @@ class Dataset(core.Dataset):
                 "subdataset": os.path.normpath(v["csv"][0])
                 .split(clip_id)[0]
                 .split(os.path.sep)[-2],
-                "split": "train"
-                if "Training" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
-                else "validation"
-                if "Validation" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
-                else "evaluation",
+                "split": (
+                    "train"
+                    if "Training" in os.path.normpath(v["csv"][0]).split(clip_id)[0]
+                    else (
+                        "validation"
+                        if "Validation"
+                        in os.path.normpath(v["csv"][0]).split(clip_id)[0]
+                        else "evaluation"
+                    )
+                ),
             }
             for clip_id, v in self._index["clips"].items()
         }

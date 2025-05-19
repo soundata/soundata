@@ -2,12 +2,12 @@
 
 <img src="docs/img/soundata.png" height="100px">
 
-Python library for downloading, loading & working with sound datasets. Find the API documentation [here](https://soundata.readthedocs.io/). <br/>
-Inspired by and based on [mirdata](https://github.com/mir-dataset-loaders/mirdata). (https://github.com/soundata/soundata)
+Python library for downloading, loading & working with sound datasets. Check the [API documentation](https://soundata.readthedocs.io/) and the [contributing instructions](https://soundata.readthedocs.io/en/latest/source/contributing.html). <br/>
+For Music Information Retrieval (MIR) datasets please check [mirdata](https://github.com/mir-dataset-loaders/mirdata). 
 
-![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg)
-![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg)
-![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg)
+![CI status](https://github.com/soundata/soundata/actions/workflows/ci.yml/badge.svg?branch=main)
+![Formatting status](https://github.com/soundata/soundata/actions/workflows/formatting.yml/badge.svg?branch=main)
+![Linting status](https://github.com/soundata/soundata/actions/workflows/lint-python.yml/badge.svg?branch=main)
 [![Downloads](https://static.pepy.tech/badge/soundata)](https://pepy.tech/project/soundata)
 
 
@@ -49,24 +49,42 @@ print(example_clip)  # see the available data
 See the [documentation](https://soundata.readthedocs.io/) for more examples and the API reference.
 
 
+### Contributing a new dataset loader
+
+We welcome and encourage contributions to this library, especially new dataset loaders. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines. Feel free to [open an issue](https://github.com/soundata/soundata/issues) if you have any doubt or your run into problems when working on the library.
+
+
+### Releases
+
+The Soundata Zenodo repository is the preferred source for downloading the software releases.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11518021.svg)](https://doi.org/10.5281/zenodo.11518021)
+
+
 ### Citing
 
+If you use Soundata in your pipeline, please cite the version used with the corresponding DOI of the version release in Zenodo. For Soundata v1.0.1.:
 
-```
-@misc{fuentes_salamon2021soundata,
-      title={Soundata: A Python library for reproducible use of audio datasets}, 
-      author={Magdalena Fuentes and Justin Salamon and Pablo Zinemanas and Martín Rocamora and 
-      Genís Plaja and Irán R. Román and Marius Miron and Xavier Serra and Juan Pablo Bello},
-      year={2021},
-      eprint={2109.12690},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD}
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11580085.svg)](https://doi.org/10.5281/zenodo.11580085) 
+
+
+If you refer to soundata's design principles, motivation etc., please cite the JOSS article:
+
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.06634/status.svg)](https://doi.org/10.21105/joss.06634)
+
+```bibtex
+@article{Fuentes2024,
+	title        = {{Soundata: Reproducible use of audio datasets}},
+	author       = {Fuentes, Magdalena and Plaja-Roglans, Genís and Cortès-Sebastià, Guillem and Khandelwal, Tanmay and Miron, Marius and Serra, Xavier and Bello, Juan Pablo and Salamon, Justin},
+	year         = 2024,
+	month        = jun,
+	journal      = {Journal of Open Source Software},
+	volume       = 9,
+	number       = 98,
+	pages        = 6634,
+	doi          = {10.21105/joss.06634},
+	url          = {https://joss.theoj.org/papers/10.21105/joss.06634}
 }
 ```
 
-
-When working with datasets, please cite the version of `soundata` that you are using **AND** include the reference of the dataset, which can be found in the respective dataset loader using the `cite()` method. 
-
-### Contributing a new dataset loader
-
-We welcome and encourage contributions to this library, especially new datasets. Please see [contributing](https://soundata.readthedocs.io/en/latest/source/contributing.html) for guidelines.
+When working with datasets, please include the reference of the dataset, which can be found in the respective dataset loader using `cite()`. 

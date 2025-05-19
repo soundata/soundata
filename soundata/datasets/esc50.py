@@ -3,7 +3,7 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    ESC-50: Dataset for Environmental Sound Classification
+    **ESC-50: Dataset for Environmental Sound Classification**
 
     The ESC-50 dataset is a labeled collection of 2000 environmental audio recordings suitable for benchmarking methods of environmental sound classification.
     The total duration of the dataset is 2.8 hours (2000 x 5 seconds).
@@ -21,19 +21,20 @@
     Insects (flying)Pouring water	                        Brushing teeth	            Clock alarm             	Airplane
     Sheep	        Toilet flush                        	Snoring	                    Clock tick              	Fireworks
     Crow	        Thunderstorm	                        Drinking, sipping	        Glass breaking	            Hand saw
-    
-    Clips in this dataset have been manually extracted from public field recordings gathered by the Freesound.org project. 
+
+    Clips in this dataset have been manually extracted from public field recordings gathered by the Freesound.org project.
     The dataset has been prearranged into 5 folds for comparable cross-validation, making sure that fragments from the same original source file are contained in a single fold.
 
-    A more thorough description of the dataset is available in the original paper with some supplementary materials on GitHub: 
-    
+    A more thorough description of the dataset is available in the original paper with some supplementary materials on GitHub:
+
     .. code-block:: latex
+
         K. J. Piczak. ESC: Dataset for Environmental Sound Classification. Proceedings of the 23rd Annual ACM Conference on Multimedia, Brisbane, Australia, 2015.
 
     https://github.com/karolpiczak/ESC-50
 
     Repository content
-    audio/*.wav
+    audio/<audio_name>.wav
 
     2000 audio recordings in WAV format (5 seconds, 44.1 kHz, mono) with the following naming convention:
 
@@ -48,7 +49,7 @@
     CSV file with the following structure:
 
     filename	fold	target	category	esc10	src_file	take
-    
+
     The esc10 column indicates if a given file belongs to the ESC-10 subset (10 selected classes, CC BY license).
 
     https://github.com/karolpiczak/ESC-50/blob/master/meta/esc50-human.xlsx
@@ -64,7 +65,7 @@ import librosa
 import numpy as np
 import csv
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -81,13 +82,25 @@ BIBTEX = """
   pages = {1015--1018}
 }
 """
+
+INDEXES = {
+    "default": "2.0",
+    "test": "sample",
+    "2.0": core.Index(
+        filename="esc50_index_2.0.json",
+        url="https://zenodo.org/records/11176809/files/esc50_index_2.0.json?download=1",
+        checksum="7f1bf89ff69ee6aaa5c7018a75de73cf",
+    ),
+    "sample": core.Index(filename="esc50_index_2.0_sample.json"),
+}
+
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
         filename="ESC-50-master.zip",
         url="https://github.com/karoldvl/ESC-50/archive/master.zip",
         checksum="7771e4b9d86d0945acce719c7a59305a",
         unpack_directories=["ESC-50-master"],
-    )
+    ),
 }
 
 LICENSE_INFO = "Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)"
@@ -211,21 +224,10 @@ class Clip(core.Clip):
             [self._clip_metadata.get("category")], "open", np.array([1.0])
         )
 
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, tags=self.tags, metadata=self._clip_metadata
-        )
-
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load an ESC-50 audio file.
+    """Load an ESC-50 audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -243,16 +245,16 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The ESC-50 dataset
-    """
+    """The ESC-50 dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="esc50",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
