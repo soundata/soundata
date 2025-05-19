@@ -5,7 +5,7 @@ import logging
 import os
 import shutil
 import tarfile
-import urllib
+import urllib.request
 import zipfile
 import subprocess
 import py7zr
