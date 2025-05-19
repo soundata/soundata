@@ -1,0 +1,15 @@
+{
+  "version": "sample",
+  "clips": {
+    "cafe_restaurant_14": {
+      "audio": [
+        "development_audio/cafe_restaurant/cafe_restaurant_14.wav",
+        "fa6e51abd4c845e3d35b5806d1209c1b"
+      ],
+      "annotations": [
+        "development_annotation/soft_labels_cafe_restaurant/cafe_restaurant_14.txt",
+        "47458dd7ecb5db6e521c08f6ece63802"
+      ]
+    }
+  }
+}

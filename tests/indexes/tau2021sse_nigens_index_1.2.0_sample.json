@@ -1,0 +1,16 @@
+{
+  "version": "sample",
+  "clips": {
+    "foa_dev/dev-train/fold1_room1_mix001": {
+      "audio": [
+        "foa_dev/dev-train/fold1_room1_mix001.wav",
+        "bc6492e6370b7e1a961653b15ea122ec"
+      ],
+      "events": [
+        "metadata_dev/dev-train/fold1_room1_mix001.csv",
+        "ef98da337f4fa696647067ed309b9077"
+      ]
+    }
+  },
+  "metadata": {}
+}

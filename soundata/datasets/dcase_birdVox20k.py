@@ -1,14 +1,16 @@
-"""
-BirdVox20k Dataset Loader
+"""BirdVox20k Dataset Loader
 
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *Created By*  
-        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#  
-        | * Cornell Lab of Ornithology (CLO)  
-        | ^ Center for Urban Science and Progress, New York University   
-        | # Music and Audio Research Lab, New York University   
+    **BirdVox20k**
+
+    *Created By*
+
+        | Vincent Lostanlen*^#, Justin Salamon^#, Andrew Farnsworth*, Steve Kelling*, and Juan Pablo Bello^#.
+        | * Cornell Lab of Ornithology (CLO).
+        | ^ Center for Urban Science and Progress, New York University.
+        | # Music and Audio Research Lab, New York University.
 
     Version 1.0
 
@@ -30,8 +32,9 @@ BirdVox20k Dataset Loader
         When BirdVox-70k is used for academic research, we would highly appreciate it if  scientific publications of works partly based on this dataset cite the  following publication:
 
         .. code-block:: latex
+
             V. Lostanlen, J. Salamon, A. Farnsworth, S. Kelling, J. Bello. "BirdVox-full-night: a dataset and benchmark for avian flight call detection", Proc. IEEE ICASSP, 2018.
-        
+
         The creation of this dataset was supported by NSF grants 1125098 (BIRDCAST) and 1633259 (BIRDVOX), a Google Faculty Award, the Leon Levy Foundation, and two anonymous donors.
 
     *Conditions of Use*
@@ -43,10 +46,10 @@ BirdVox20k Dataset Loader
         The dataset and its contents are made available on an "as is" basis and without  warranties of any kind, including without limitation satisfactory quality and  conformity, merchantability, fitness for a particular purpose, accuracy or  completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, Cornell Lab of Ornithology is not liable for, and expressly excludes all liability for, loss or damage however and whenever caused to anyone by any use of the BirdVox-DCASE-20k dataset or any part of it.
 
     *Feedback*
-        Please help us improve BirdVox-DCASE-20k by sending your feedback to:  
-        | * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
-        | * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
-        | * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
+        Please help us improve BirdVox-DCASE-20k by sending your feedback to:
+        * Vincent Lostanlen: vincent.lostanlen@gmail.com for feedback regarding data pre-processing,
+        * Andrew Farnsworth: af27@cornell.edu for feedback regarding data collection and ornithology, or
+        * Dan Stowell: dan.stowell@qmul.ac.uk for feedback regarding the DCASE "Bird Audio Detection" challenge.
 
         In case of a problem, please include as many details as possible.
 
@@ -60,7 +63,6 @@ import numpy as np
 import csv
 
 from soundata import download_utils
-from soundata import jams_utils
 from soundata import core
 from soundata import annotations
 from soundata import io
@@ -77,6 +79,18 @@ BIBTEX = """
   month = {April},
 }
 """
+
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="dcase_birdVox20k_index_1.0.json",
+        url="https://zenodo.org/records/11176775/files/dcase_birdVox20k_index_1.0.json?download=1",
+        checksum="d68016f669df15b67b5af1c4043593b9",
+    ),
+    "sample": core.Index(filename="dcase_birdVox20k_index_1.0_sample.json"),
+}
+
 REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
         filename="BirdVox-DCASE-20k.zip",
@@ -95,7 +109,7 @@ LICENSE_INFO = "Creative Commons Attribution Non Commercial 4.0 International"
 
 
 class Clip(core.Clip):
-    """urbansound8k Clip class
+    """BirdVox20k Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -154,17 +168,6 @@ class Clip(core.Clip):
         """
         return self._clip_metadata.get("hasbird")
 
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path, metadata=self._clip_metadata
-        )
-
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
@@ -192,12 +195,14 @@ class Dataset(core.Dataset):
     The BirdVox20k dataset
     """
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="dcase_birdVox20k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )

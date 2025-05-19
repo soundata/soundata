@@ -1,5 +1,5 @@
-"""soundata annotation data types
-"""
+"""soundata annotation data types"""
+
 import numpy as np
 
 #: Time units
@@ -134,6 +134,245 @@ class Events(Annotation):
         self.cartesian_coord_unit = cartesian_coord_unit
 
 
+#: position units
+ELEVATIONS_UNITS = {
+    "degrees": "degrees",
+}
+AZIMUTHS_UNITS = {
+    "degrees": "degrees",
+}
+DISTANCES_UNITS = {
+    "meters": "meters",
+}
+
+#: Time units
+TIME_UNITS = {
+    "seconds": "seconds",
+    "milliseconds": "milliseconds",
+}
+
+#: Label units
+LABEL_UNITS = {"open": "no strict schema or units"}
+
+
+class SpatialEvents:
+    """SpatialEvents class
+
+    Attributes:
+        intervals (list): list of size n np.ndarrays of shape (m, 2), with intervals
+            (as floats) in TIME_UNITS in the form [start_time, end_time]
+            with positive time stamps and end_time >= start_time.
+            n is the number of sound events.
+            m is the number of sounding instances for each sound event.
+        intervals_unit (str): intervals unit, one of TIME_UNITS
+        time_step (int, float, or None): the time-step between events
+            over time in intervals_unit
+        elevations (list): list of size n with np.ndarrays with dtype int,
+            indicating the elevation of the sound event per time_step if moving
+            or a single value if static. Values between -90 and 90
+        elevations_unit (str): elevations unit, one of ELEVATIONS_UNITS
+        azimuths (list): list of size n with np.ndarrays with dtype int,
+            indicating the azimuth of the sound event per time_step if moving
+            or a single value if static. Values between -180 and 180
+        azimuths_unit (str): azimuths unit, one of AZIMUTHS_UNITS
+        distances (list): list of size n with np.ndarrays with dtype int,
+            indicating the distance of the sound event per time_step if moving
+            or a single value if static. Values must be positive or None
+        distances_unit (str): distances unit, one of DISTANCES_UNITS
+        labels (list): list of event labels (as strings)
+        labels_unit (str): labels unit, one of LABELS_UNITS
+        clip_number_indices (list): list of clip number indices (as strings)
+        confidence (np.ndarray or None): array of confidence values, float in [0, 1]
+    """
+
+    def __init__(
+        self,
+        intervals,
+        intervals_unit,
+        elevations,
+        elevations_unit,
+        azimuths,
+        azimuths_unit,
+        distances,
+        distances_unit,
+        labels,
+        labels_unit,
+        clip_number_index=None,
+        time_step=None,
+        confidence=None,
+    ):
+        validate_array_like(intervals, list, list, none_allowed=True)
+        validate_array_like(labels, list, str, none_allowed=True)
+        validate_array_like(confidence, np.ndarray, float, none_allowed=True)
+        if intervals is not None:
+            [
+                [
+                    validate_intervals(intervals[np.newaxis, :])
+                    for intervals in event_intervals
+                ]
+                for event_intervals in intervals
+            ]
+        validate_confidence(confidence)
+        validate_unit(labels_unit, LABEL_UNITS)
+        validate_unit(intervals_unit, TIME_UNITS)
+
+        self.intervals = intervals
+        self.intervals_unit = intervals_unit
+        self.labels = labels
+        self.labels_unit = labels_unit
+        self.confidence = confidence
+
+        validate_array_like(clip_number_index, list, str, none_allowed=True)
+        validate_array_like(elevations, list, list, none_allowed=True)
+        validate_array_like(azimuths, list, list, none_allowed=True)
+        validate_array_like(distances, list, list, none_allowed=True)
+        validate_lengths_equal(
+            [
+                intervals,
+                elevations,
+                azimuths,
+                distances,
+                labels,
+                clip_number_index,
+                confidence,
+            ]
+        )
+        # validate location information for each event are numpy arrays
+        if elevations is not None:
+            [
+                [
+                    validate_array_like(subitem, np.ndarray, int, none_allowed=True)
+                    for subitem in sitem
+                ]
+                for sitem in elevations
+            ]
+
+        if azimuths is not None:
+            [
+                [
+                    validate_array_like(subitem, np.ndarray, int, none_allowed=True)
+                    for subitem in sitem
+                ]
+                for sitem in azimuths
+            ]
+        if distances is not None:
+            [
+                [
+                    validate_array_like(
+                        subitem, np.ndarray, np.array([None]).dtype, none_allowed=True
+                    )
+                    for subitem in item
+                ]
+                for item in distances
+            ]
+        # validate length of location information is consistent
+        # for each event
+        if elevations is not None and azimuths is not None and distances is not None:
+            [
+                [validate_lengths_equal([e, a, d]) for e, a, d in zip(els, azs, dis)]
+                for els, azs, dis in zip(elevations, azimuths, distances)
+            ]
+        if elevations is not None and azimuths is not None and distances is not None:
+            [
+                [
+                    validate_locations(
+                        np.concatenate(
+                            [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]],
+                            axis=1,
+                        )
+                    )
+                    for e, a, d in zip(els, azs, dis)
+                ]
+                for els, azs, dis in zip(elevations, azimuths, distances)
+            ]
+        if (
+            elevations is not None
+            and azimuths is not None
+            and distances is not None
+            and intervals is not None
+        ):
+            [
+                [
+                    validate_time_steps(
+                        time_step,
+                        np.concatenate(
+                            [e[:, np.newaxis], a[:, np.newaxis], d[:, np.newaxis]],
+                            axis=1,
+                        ),
+                        i,
+                    )
+                    for e, a, d, i in zip(els, azs, dis, ivl)
+                ]
+                for els, azs, dis, ivl in zip(
+                    elevations, azimuths, distances, intervals
+                )
+            ]
+
+        validate_unit(elevations_unit, ELEVATIONS_UNITS)
+        validate_unit(azimuths_unit, AZIMUTHS_UNITS)
+        validate_unit(distances_unit, DISTANCES_UNITS)
+
+        self.time_step = time_step
+        self.elevations = elevations
+        self.azimuths = azimuths
+        self.distances = distances
+        self.clip_number_index = clip_number_index
+        self.elevations_unit = elevations_unit
+        self.azimuths_unit = azimuths_unit
+        self.distances_unit = distances_unit
+
+
+def validate_time_steps(time_step, locations, interval):
+    """Validate if timesteps are well-formed.
+
+    If locations is None, validation passes automatically
+
+    Args:
+        time_step (float): spacing between location steps
+        locations (np.ndarray): (n x 3) array
+        interval (np.ndarray): (n x 2) expected start and end time
+            for the locations
+    Raises:
+        ValueError: if the number of locations does not match
+            the number of time_steps that fit in the interval
+    """
+    if interval[0] > interval[1]:
+        raise ValueError("The interval has a start_time greater than the end_time")
+    elif len(locations) == 1 and interval[1] - interval[0] > 0:
+        pass  # the event is static
+    # if the object is static, validation passes
+    elif not np.isclose(len(locations) - 1, (interval[1] - interval[0]) / time_step):
+        raise ValueError(
+            "The number of locations does not fit in the interval, given the time_step"
+        )
+
+
+def validate_locations(locations):
+    """Validate if locations are well-formed.
+    If locations is None, validation passes automatically
+    Args:
+        locations (np.ndarray): (n x 3) array
+    Raises:
+        ValueError: if locations have an invalid shape or
+                have cartesian coordinate values outside the expected ranges.
+    """
+
+    # validate that locations have the correct shape
+    locations_shape = np.shape(locations)
+    if len(locations_shape) != 2 or locations_shape[1] != 3:
+        raise ValueError(
+            f"Locations should be arrays with three columns, but array has shape {locations_shape}"
+        )
+
+    # validate that values are within expected ranges
+    if (np.abs(locations[:, 0]) > 90).any():
+        raise ValueError(f"Elevation values should have magnitude less than 90")
+    if (np.abs(locations[:, 1]) > 180).any():
+        raise ValueError(f"Azimuth values should have magnitude less than 180")
+    elif (locations[:, 2] != None).any():
+        raise ValueError(f"Distance values should be nonnegative numbers")
+
+
 class MultiAnnotator(Annotation):
     """Multiple annotator class.
     This class should be used for datasets with multiple annotators (e.g. multiple annotators per clip).
@@ -156,7 +395,9 @@ def validate_array_like(
     array_like, expected_type, expected_dtype, check_child=False, none_allowed=False
 ):
     """Validate that array-like object is well formed
+
     If array_like is None, validation passes automatically.
+
     Args:
         array_like (array-like): object to validate
         expected_type (type): expected type, either list or np.ndarray
@@ -321,6 +562,7 @@ def validate_intervals(intervals):
 
 def validate_unit(unit, unit_values, allow_none=False):
     """Validate that the given unit is one of the allowed unit values.
+
     Args:
         unit (str): the unit name
         unit_values (dict): dictionary of possible unit values

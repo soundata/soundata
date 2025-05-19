@@ -22,7 +22,28 @@ def list_datasets():
     return DATASETS
 
 
-def initialize(dataset_name, data_home=None):
+def list_dataset_versions(dataset_name):
+    """List the available versions of a dataset
+
+    Returns:
+        list: a list of available versions
+
+    """
+    if dataset_name not in DATASETS:
+        raise ValueError("Invalid dataset {}".format(dataset_name))
+    module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
+    return "Available versions for {}: {}. Default version: {}".format(
+        dataset_name,
+        [
+            x
+            for x in list(module.INDEXES.keys())
+            if x not in ["default", "sample", "test"]
+        ],
+        module.INDEXES["default"],
+    )
+
+
+def initialize(dataset_name, data_home=None, version="default"):
     """Load a soundata dataset by name
 
     Example:
@@ -40,6 +61,8 @@ def initialize(dataset_name, data_home=None):
             see soundata.DATASETS for a complete list of possibilities
         data_home (str or None): path where the data lives. If None
             uses the default location.
+        version (str or None): which version of the dataset to load.
+            If None, the default version is loaded.
 
     Returns:
         Dataset: a soundata.core.Dataset object
@@ -49,4 +72,4 @@ def initialize(dataset_name, data_home=None):
         raise ValueError("Invalid dataset {}".format(dataset_name))
 
     module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
-    return module.Dataset(data_home=data_home)
+    return module.Dataset(data_home=data_home, version=version)

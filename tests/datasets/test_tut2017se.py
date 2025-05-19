@@ -11,7 +11,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tut2017se")
 
 def test_clip():
     default_clipid = "a001"
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
 
     expected_attributes = {
@@ -47,7 +47,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("a001")
     audio_path = clip.audio_path
     audio, sr = tut2017se.load_audio(audio_path)
@@ -58,7 +58,7 @@ def test_load_audio():
 
 
 def test_load_events():
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
+    dataset = tut2017se.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("a001")
     annotations_path = clip.annotations_path
     annotations = tut2017se.load_events(annotations_path)
@@ -71,36 +71,3 @@ def test_load_events():
 
     for j in range(3):
         assert labels[j] == annotations.labels[j]
-
-
-def test_to_jams():
-    default_clipid = "a001"
-    dataset = tut2017se.Dataset(TEST_DATA_HOME)
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    assert jam.validate()
-
-    # Validate Events
-    events = jam.search(namespace="segment_open")[0]["data"]
-    assert len(events) == 3
-
-    assert np.allclose(events[0].time, 1.58921)
-    assert np.allclose(events[0].duration, 2.38382 - 1.58921)
-    assert events[0].value == "people walking"
-    assert events[0].confidence == 1
-
-    assert np.allclose(events[1].time, 3.500767)
-    assert np.allclose(events[1].duration, 4.156693 - 3.500767)
-    assert events[1].value == "people walking"
-    assert events[1].confidence == 1
-
-    assert np.allclose(events[2].time, 4.156693)
-    assert np.allclose(events[2].duration, 14.00307 - 4.156693)
-    assert events[2].value == "car"
-    assert events[2].confidence == 1
-
-    # Validate metadata
-    assert jam.file_metadata.duration == 1.0
-    assert jam.sandbox.split == "development.fold4"
-    assert jam.annotations[0].annotation_metadata.data_source == "soundata"

@@ -1,0 +1,11 @@
+{
+  "version": "sample",
+  "clips": {
+    "section_00_source_train_normal_0705_m-n_X": {
+      "audio": [
+        "7882613/fan/train/section_00_source_train_normal_0705_m-n_X.wav",
+        "3242765a527e49fc9f4c3e5bb0b7c885"
+      ]
+    }
+  }
+}

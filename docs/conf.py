@@ -13,7 +13,8 @@
 import os
 import sys
 import datetime
-
+from docutils import nodes, utils
+from docutils.parsers.rst import roles
 sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
@@ -37,7 +38,7 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "jams", "pandas"]
+autodoc_mock_imports = ["librosa", "numpy", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -54,19 +55,20 @@ extensions = [
     "sphinx_togglebutton",
     "sphinx.ext.extlinks",
     "sphinx_togglebutton",
+    "sphinx_copybutton",
 ]
 
 # To shorten links of licenses and add to table
 extlinks = {
-    "tau2019sse": ("https://zenodo.org/record/2580091%s", "Custom"),
-    "tau2019": ("https://zenodo.org/record/2589280%s", "Custom"),
-    "tau2020": ("https://zenodo.org/record/3819968%s", "Custom"),
-    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom"),
+    "tau2019sse": ("https://zenodo.org/record/2580091%s", "Custom%s"),
+    "tau2019": ("https://zenodo.org/record/2589280%s", "Custom%s"),
+    "tau2020": ("https://zenodo.org/record/3819968%s", "Custom%s"),
+    "tau2022": ("https://zenodo.org/record/6337421%s", "Custom%s"),
+    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom%s"),
 }
 
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
-    "jams": ("https://jams.readthedocs.io/en/stable/", None),
 }
 
 # Napoleon settings
@@ -123,5 +125,32 @@ html_static_path = ["_static"]
 html_css_files = [
     "css/custom.css",
 ]
-
+togglebutton_hint = "Click here to show example"
 html_logo = "img/soundata.png"
+
+
+def create_reference_role(node_id):
+    def role_fn(name, rawtext, text, lineno, inliner, options={}, content=[]):
+        text = utils.unescape(text)
+        # Use the same class name as defined in the CSS file for the reference node
+        class_name = name.lower()  # This should match the class name used in the CSS
+        ref_node = nodes.reference(rawtext, text, refuri=f'#{node_id}', classes=[class_name])
+        return [ref_node], []
+    return role_fn
+
+def setup(app):
+    role_to_target = {
+        'sed': 'sed',
+        'sec': 'sec',
+        'sel': 'sel',
+        'asc': 'asc',
+        'ac': 'ac',
+        'urban': 'urban-environment',
+        'environment': 'environment-sounds',
+        'machine': 'machine-sounds',
+        'bioacoustic': 'bioacoustic-sounds',
+        'music': 'music-sounds',
+    }
+    
+    for role_name, node_id in role_to_target.items():
+        app.add_role(role_name, create_reference_role(node_id))

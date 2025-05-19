@@ -3,12 +3,13 @@
 .. admonition:: Dataset Info
     :class: dropdown
 
-    *FSD50K: an Open Dataset of Human-Labeled Sound Events*
+    **FSD50K: an Open Dataset of Human-Labeled Sound Events**
 
     *Created By:*
+
         | Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra.
-        | Music Technology Group, Universitat Pompeu Fabra (Barcelona). 
-        
+        | Music Technology Group, Universitat Pompeu Fabra (Barcelona).
+
     Version 1.0
 
     *Description:*
@@ -155,7 +156,9 @@
     *Please Acknowledge FSD50K in Academic Research:*
         If you use the FSD50K Dataset please cite the following paper:
 
-            * Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
+        .. code-block:: latex
+
+            Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra. "FSD50K: an Open Dataset of Human-Labeled Sound Events", arXiv:2010.00475, 2020.
 
         The authors would like to thank everyone who contributed to FSD50K with annotations, and especially Mercedes
         Collado, Ceren Can, Rachit Gupta, Javier Arredondo, Gary Avendano and Sara Fernandez for their commitment and
@@ -195,7 +198,7 @@ import logging
 import subprocess
 import numpy as np
 
-from soundata import download_utils, jams_utils, core, annotations, io
+from soundata import download_utils, core, annotations, io
 
 
 BIBTEX = """
@@ -209,6 +212,16 @@ BIBTEX = """
 }
 """
 
+INDEXES = {
+    "default": "1.0",
+    "test": "sample",
+    "1.0": core.Index(
+        filename="fsd50k_index_1.0.json",
+        url="https://zenodo.org/records/11176815/files/fsd50k_index_1.0.json?download=1",
+        checksum="3317c25426cb3f539eea2b94651c14ba",
+    ),
+    "sample": core.Index(filename="fsd50k_index_1.0_sample.json"),
+}
 # a dictionary key that has a list of RemoteFileMetadata implies a multi-part zip
 # and will be processed as such using the zip subprocess (see soundata.download_utils)
 REMOTES = {
@@ -377,32 +390,10 @@ class Clip(core.Clip):
         """
         return self._clip_metadata.get("pp_pnp_ratings")
 
-    def to_jams(self):
-        """Get the clip's data in jams format
-
-        Returns:
-            jams.JAMS: the clip's data in jams format
-
-        """
-        return jams_utils.jams_converter(
-            audio_path=self.audio_path,
-            tags=self.tags,
-            metadata={
-                "split": self._clip_metadata["ground_truth"].get("split"),
-                "mids": self._clip_metadata["ground_truth"].get("mids"),
-                "pp_pnp_ratings": self._clip_metadata.get("pp_pnp_ratings"),
-                "title": self._clip_metadata["clip_info"].get("title"),
-                "description": self._clip_metadata["clip_info"].get("description"),
-                "freesound_tags": self._clip_metadata["clip_info"].get("tags"),
-                "license": self._clip_metadata["clip_info"].get("license"),
-                "uploader": self._clip_metadata["clip_info"].get("uploader"),
-            },
-        )
-
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
-    """Load a FSD50K audio file.
+    """Load a FSD50K audio file
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -414,7 +405,6 @@ def load_audio(fhandle: BinaryIO, sr=None) -> Tuple[np.ndarray, float]:
     Returns:
         * np.ndarray - the mono audio signal
         * float - The sample rate of the audio file
-
     """
     audio, sr = librosa.load(fhandle, sr=sr, mono=True)
     return audio, sr
@@ -439,32 +429,40 @@ def load_ground_truth(data_path):
             if len(line) == 3:
                 if "collection" not in data_path:
                     ground_truth_dict[line[0]] = {
-                        "tags": list(line[1].split(","))
-                        if "," in line[1]
-                        else list([line[1]]),
-                        "mids": list(line[2].split(","))
-                        if "," in line[2]
-                        else list([line[2]]),
+                        "tags": (
+                            list(line[1].split(","))
+                            if "," in line[1]
+                            else list([line[1]])
+                        ),
+                        "mids": (
+                            list(line[2].split(","))
+                            if "," in line[2]
+                            else list([line[2]])
+                        ),
                         "split": "test",
                     }
                 else:
                     ground_truth_dict[line[0]] = {
-                        "tags": list(line[1].split(","))
-                        if "," in line[1]
-                        else list([line[1]]),
-                        "mids": list(line[2].split(","))
-                        if "," in line[2]
-                        else list([line[2]]),
+                        "tags": (
+                            list(line[1].split(","))
+                            if "," in line[1]
+                            else list([line[1]])
+                        ),
+                        "mids": (
+                            list(line[2].split(","))
+                            if "," in line[2]
+                            else list([line[2]])
+                        ),
                     }
                 clip_ids.append(line[0])
             if len(line) == 4:
                 ground_truth_dict[line[0]] = {
-                    "tags": list(line[1].split(","))
-                    if "," in line[1]
-                    else list([line[1]]),
-                    "mids": list(line[2].split(","))
-                    if "," in line[2]
-                    else list([line[2]]),
+                    "tags": (
+                        list(line[1].split(",")) if "," in line[1] else list([line[1]])
+                    ),
+                    "mids": (
+                        list(line[2].split(",")) if "," in line[2] else list([line[2]])
+                    ),
                     "split": "train" if line[3] == "train" else "validation",
                 }
                 clip_ids.append(line[0])
@@ -495,21 +493,21 @@ def load_fsd50k_vocabulary(data_path):
 
 @core.docstring_inherit(core.Dataset)
 class Dataset(core.Dataset):
-    """
-    The FSD50K dataset
-    """
+    """The FSD50K dataset"""
 
-    def __init__(self, data_home=None):
+    def __init__(self, data_home=None, version="default"):
         super().__init__(
             data_home,
+            version,
             name="fsd50k",
             clip_class=Clip,
             bibtex=BIBTEX,
+            indexes=INDEXES,
             remotes=REMOTES,
             license_info=LICENSE_INFO,
         )
 
-        # --- Ground_truth paths --- #
+        # Ground_truth paths
         self.ground_truth_dev_path = os.path.join(
             self.data_home, "FSD50K.ground_truth", "dev.csv"
         )
@@ -517,7 +515,7 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.ground_truth", "eval.csv"
         )
 
-        # --- Sound collection format labels paths --- #
+        # Sound collection format labels paths
         self.collection_dev_path = os.path.join(
             self.data_home, "FSD50K.metadata", "collection", "collection_dev.csv"
         )
@@ -525,7 +523,7 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "collection", "collection_eval.csv"
         )
 
-        # --- Clip metadata paths --- #
+        # Clip metadata paths
         self.clips_info_dev_path = os.path.join(
             self.data_home, "FSD50K.metadata", "dev_clips_info_FSD50K.json"
         )
@@ -533,17 +531,17 @@ class Dataset(core.Dataset):
             self.data_home, "FSD50K.metadata", "eval_clips_info_FSD50K.json"
         )
 
-        # --- Class info path --- #
+        # Class info path
         self.label_info_path = os.path.join(
             self.data_home, "FSD50K.metadata", "class_info_FSD50K.json"
         )
 
-        # ---  PP/PNP ratings path --- #
+        # PP/PNP ratings path
         self.pp_pnp_ratings_path = os.path.join(
             self.data_home, "FSD50K.metadata", "pp_pnp_ratings_FSD50K.json"
         )
 
-        # --- Vocabulary paths --- #
+        # Vocabulary paths
         self.vocabulary_path = os.path.join(
             self.data_home, "FSD50K.ground_truth", "vocabulary.csv"
         )
