@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath("../"))
 # -- Project information -----------------------------------------------------
 
 project = "soundata"
-year = datetime.datetime.utcnow().year
+year = datetime.datetime.now(datetime.timezone.utc).year
 copyright = '2021-{}, Soundata development team'.format(year)
 author = "The Soundata development team"
 
