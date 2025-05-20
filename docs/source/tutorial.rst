@@ -459,8 +459,68 @@ The following is a simple example of a generator that can be used to create a te
             }
         )
 
-In future ``soundata`` versions, generators for Tensorflow and PyTorch will be included out-of-the-box.
 
+
+.. _Using soundata with pytorch:
+
+Using soundata with pytorch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to create a custom PyTorch Dataset class that loads audio data from Soundata.
+
+.. admonition:: soundata with torch DataLoader
+    :class: dropdown
+
+    .. code-block:: python
+
+        import soundata
+        import torch
+        from torch.utils.data import DataLoader, Dataset
+
+        class SoundataTorchDataset(Dataset):
+            """A PyTorch Dataset for loading audio data from Soundata"""
+            def __init__(self, ds, split:str):
+                self.dataset = ds
+                
+                # Filter clips by split
+                self.clip_ids = [
+                    clip_id for clip_id in self.dataset.clip_ids
+                    if self.dataset.clip(clip_id).split == split
+                ]
+                
+            def __len__(self):
+                return len(self.clip_ids)
+
+            def __getitem__(self, idx):
+                clip = self.dataset.clip(self.clip_ids[idx])
+                audio, sr = clip.audio
+                
+                audio_tensor = torch.tensor(audio.T, dtype=torch.float32)
+                
+                return audio_tensor, clip.captions
+
+        # Initialize, download and validate the dataset
+        dataset = soundata.initialize(dataset_name="dcase23_task6b")
+        dataset.download()
+        dataset.validate()
+
+        # Pass the dataset to the custom dataset class specifying the split
+        dev_dataset = SoundataTorchDataset(dataset, split='dev')
+
+        def custom_collate(batch):
+            """Custom collate function to handle variable-length sequences"""
+            pass
+
+        # Create a Torch DataLoader providing the dataset and a custom collate function
+        dev_loader = DataLoader(
+            dev_dataset,
+            batch_size=32,
+            shuffle=True,
+            num_workers=4,
+            collate_fn=custom_collate 
+        )
+
+        
 
 Using soundata to explore dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
