@@ -5,7 +5,7 @@ import logging
 import os
 import shutil
 import tarfile
-import urllib
+import urllib.request
 import zipfile
 import subprocess
 import py7zr
@@ -201,7 +201,7 @@ def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
         next((part.filename for part in zip_remotes if ".zip" in part.filename), None),
     )
     out_path = zip_path.replace(".zip", "_single.zip")
-    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path], shell=True)
+    subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
     if cleanup:
         for l in range(len(zip_remotes)):
             zip_path = os.path.join(save_dir, zip_remotes[l].filename)
@@ -312,7 +312,7 @@ def extractall_unicode(zfile, out_dir):
         out_dir (str): Output folder
 
     """
-    for m in zfile.infolist():
+    for m in tqdm(zfile.infolist(), desc="Extracting", unit="file"):
         data = zfile.read(m)  # extract zipped data into memory
 
         try:
