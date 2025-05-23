@@ -4,7 +4,7 @@ import json
 import os
 from soundata.validate import md5
 
-INDEX_PATH = "../soundata/datasets/indexes/tfgbirdsongs_index.json"
+INDEX_PATH = "soundata/datasets/indexes/tfgbirdsongs_index.json"
 
 
 def make_index(data_path):
@@ -17,7 +17,7 @@ def make_index(data_path):
         "version": "1.0",
         "clips": {},
         "metadata": {
-            "Warblrb10k" : [
+            "TFGBirdSongs" : [
                 "bird_songs_metadata.csv",
                 md5(os.path.join(data_path, "bird_songs_metadata.csv")),
             ]
