@@ -64,13 +64,11 @@ REMOTES = {
         filename="train_set_audio.zip",
         url="https://drive.google.com/file/d/1Xe3uzHcqF4dsShWGaTgp4wylJzpVQ8fZ/view?usp=drive_link",
         checksum="9710b1b3161320a7092372c9db3eb0cc",
-        unpack_directories=["wav"],
     ),
     "test": download_utils.RemoteFileMetadata(
         filename="test_set_audio.zip",
         url="https://drive.google.com/file/d/1Av1XVCgHamuDr3-U3V_t8EayEA4un8ff/view?usp=drive_link",
         checksum="8f3496dac443305854b0b47f092d6113",
-        unpack_directories=["wav"],
     ),
     "train_metadata": download_utils.RemoteFileMetadata(
         filename="bird_songs_metadata.csv",
