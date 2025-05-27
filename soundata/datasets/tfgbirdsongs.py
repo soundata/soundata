@@ -70,7 +70,7 @@ REMOTES = {
         url="https://drive.google.com/file/d/1Av1XVCgHamuDr3-U3V_t8EayEA4un8ff/view?usp=drive_link",
         checksum="8f3496dac443305854b0b47f092d6113",
     ),
-    "train_metadata": download_utils.RemoteFileMetadata(
+    "metadata": download_utils.RemoteFileMetadata(
         filename="bird_songs_metadata.csv",
         url="https://drive.google.com/file/d/1Jv9xI8NKnBpg1lwxOxP4J4I782jjf8wh/view?usp=drive_link",
         checksum="47101c84dd30aeb0416768261788d107",
