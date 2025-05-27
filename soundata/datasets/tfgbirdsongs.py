@@ -13,33 +13,12 @@ TFGBirdSongs Dataset Loader
     Version 1.0
 
     *Description*
-        The TFGBirdSongs dataset consists of 10,000 ten-second audio files, collected via the Warblr app from users across the UK in 2015-2016.
-        Using a classification method by Stowell and Plumbley (2014a), this app aims to identify bird species from user-submitted recordings.
-        The dataset, inclusive of various human and environmental noises, is broadly distributed over different times and seasons but has biases towards mornings, weekends, and populated areas. Despite having initial automated bird species estimates, the recordings underwent manual annotation due to precision inadequacies for establishing ground-truth data.
-        The dataset proves instrumental for research and development in bird species detection amidst variable noise conditions.
+        The TFGBirdSongs dataset consists of 9107 3-second audio files, used from Vinay Shanbag's dataset Bird Songs in Kaggle.
 
     *Audio Files Included*
-        10,000 ten-second audio recordings in WAV format, amassed through the Warblr app during 2015-2016 from users throughout the UK.
+        9107 3-second audio recordings in WAV format.
 
     *Meta-data Files Included*
-        A table containing a binary label "hasbird" associated to every recording in Warblr is available on the website of the DCASE "Bird Audio Detection" challenge: http://machine-listening.eecs.qmul.ac.uk/bird-audio-detection-challenge/
-
-    *Please Acknowledge Warblr in Academic Research*
-        When the Warblr dataset is employed for academic research, we sincerely request that scientific publications of works partially based on this dataset cite the following publication:
-
-        .. code-block:: latex
-
-            Stowell, Dan and Wood, Michael and Pamuła, Hanna and Stylianou, Yannis and Glotin, Hervé. "Automatic acoustic detection of birds through deep learning: The first Bird Audio Detection challenge", Methods in Ecology and Evolution, 2018.
-
-        The creation and curating of this dataset were possible through the participation and contributions of the general public using the Warblr app, enabling a comprehensive collection of bird sound recordings from various regions within the UK during 2015-2016.
-
-    *Conditions of Use*
-        Dataset created by [Creators/Researchers involved].
-
-        The Warblr dataset is offered free of charge under the terms of the Creative Commons Attribution 4.0 International (CC BY 4.0) license:
-        https://creativecommons.org/licenses/by/4.0/
-
-        The dataset and its contents are made available on an "as is" basis and without warranties of any kind, including without limitation satisfactory quality and conformity, merchantability, fitness for a particular purpose, accuracy or completeness, or absence of errors. Subject to any liability that may not be excluded or limited by law, [Affiliated Institution/Organization] is not liable for, and expressly excludes, all liability for loss or damage however and whenever caused to anyone by any use of the Warblr dataset or any part of it.
 
 """
 
@@ -77,7 +56,7 @@ INDEXES = {
         url="https://drive.google.com/file/d/1_z7AbxBMqMPKah0WqA-sYXnTcrtS-cgz/view?usp=drive_link",
         checksum="1b16e1e45ba0c6db6506241edc7b611c",
     ),
-    "sample": core.Index(filename="tfgbirdsongs_index.json"),
+    "sample": core.Index(filename="tfgbirdsongs_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -104,7 +83,7 @@ LICENSE_INFO = "Sergi García Fornés TFG 1.0"
 
 
 class Clip(core.Clip):
-    """warblrb10k Clip class
+    """tfgbirdsongs Clip class
 
     Args:
         clip_id (str): id of the clip
@@ -133,29 +112,171 @@ class Clip(core.Clip):
         return load_audio(self.audio_path)
 
     @property
-    def item_id(self):
-        """The clip's item ID.
+    def filename(self):
+        """The clip's item ID (filename).
 
         Returns:
-            * str - ID of the clip
+            * str - ID of the clip (filename)
 
         """
-        return self._clip_metadata.get("itemid")
+        return self._clip_metadata.get("filename")
 
     @property
-    def has_bird(self):
-        """The flag to tell whether the clip has bird sound or not.
+    def genus(self):
+        """The clip's genus.
 
         Returns:
-            * str - 1/0 depending on whether the clip contains bird sound
-
+            * str - Genus of the bird
         """
-        return self._clip_metadata.get("hasbird")
+        return self._clip_metadata.get("genus")
+    
+    @property
+    def species(self):
+        """The clip's species.
 
+        Returns:
+            * str - Species of the bird
+        """
+        return self._clip_metadata.get("species")
+    
+    @property
+    def subspecies(self):
+        """The clip's subspecies.
 
+        Returns:
+            * str - Subspecies of the bird (may be empty)
+        """
+        return self._clip_metadata.get("subspecies")
+    
+    @property
+    def name(self):
+        """The clip's common name.
+
+        Returns:
+            * str - Common name of the bird
+        """
+        return self._clip_metadata.get("name")
+    
+    @property
+    def recordist(self):
+        """The clip's recordist.
+
+        Returns:
+            * str - Name of the person who recorded the clip
+        """
+        return self._clip_metadata.get("recordist")
+
+    @property
+    def country(self):
+        """The clip's country.
+
+        Returns:
+            * str - Country where the clip was recorded
+        """
+        return self._clip_metadata.get("country")
+
+    @property
+    def location(self):
+        """The clip's location.
+
+        Returns:
+            * str - Specific location where the clip was recorded
+        """
+        return self._clip_metadata.get("location")
+    
+    @property
+    def latitude(self):
+        """The clip's latitude.
+
+        Returns:
+            * str - Latitude of the recording location
+        """
+        return self._clip_metadata.get("latitude")
+    
+    @property
+    def longitude(self):
+        """The clip's longitude.
+
+        Returns:
+            * str - Longitude of the recording location
+        """
+        return self._clip_metadata.get("longitude")
+    
+    @property
+    def altitude(self):
+        """The clip's altitude.
+
+        Returns:
+            * str - Altitude of the recording location in meters
+        """
+        return self._clip_metadata.get("altitude")
+    
+    @property
+    def sound_type(self):
+        """The clip's sound type.
+
+        Returns:
+            * str - Type of sound (e.g., song, call)
+        """
+        return self._clip_metadata.get("sound_type")
+    
+    @property
+    def source_url(self):
+        """The clip's source URL.
+
+        Returns:
+            * str - URL of the source recording
+        """
+        return self._clip_metadata.get("source_url")
+
+    @property
+    def license(self):
+        """The clip's license.
+
+        Returns:
+            * str - License of the recording
+        """
+        return self._clip_metadata.get("license")
+
+    @property
+    def time(self):
+        """The clip's recording time.
+
+        Returns:
+            * str - Time of day the clip was recorded
+        """
+        return self._clip_metadata.get("time")
+
+    @property
+    def date(self):
+        """The clip's recording date.
+
+        Returns:
+            * str - Date the clip was recorded
+        """
+        return self._clip_metadata.get("date")
+
+    @property
+    def remarks(self):
+        """The clip's remarks.
+
+        Returns:
+            * str - Additional remarks about the clip (may be empty)
+        """
+        return self._clip_metadata.get("remarks")
+
+    @property
+    def id(self):
+        """The clip's id (it does not differentiate as there are X different recordings for each id).
+
+        Returns:
+            * str - Clip's id
+        """
+        return self._clip_metadata.get("id")
+        
 @io.coerce_to_bytes_io
 def load_audio(fhandle: BinaryIO, sr=44100) -> Tuple[np.ndarray, float]:
-    """Load a Warblrb10k audio file.
+    """Load a tfgbirdsongs audio file.
 
     Args:
         fhandle (str or file-like): File-like object or path to audio file
@@ -210,11 +331,27 @@ class Dataset(core.Dataset):
 
         metadata_index = {}
         for line in raw_data:
-            clip_id = line[0].replace(".wav", "")
+            clip_id = line[17].replace(".wav", "")
 
             metadata_index[clip_id] = {
-                "itemid": line[0],
-                "hasbird": line[1],
+                "id": line[0],
+                "genus": line[1],
+                "species": line[2],
+                "subspecies": line[3],
+                "name": line[4],
+                "recordist": line[5],
+                "country": line[6],
+                "location": line[7],
+                "latitude": line[8],
+                "longitude": line[9],
+                "altitude": line[10],
+                "sound_type": line[11],
+                "source_url": line[12],
+                "license": line[13],
+                "time": line[14],
+                "date": line[15],
+                "remarks": line[16],
+                "filename": line[17]
             }
 
         return metadata_index
