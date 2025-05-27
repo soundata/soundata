@@ -89,8 +89,24 @@ class Clip(core.Clip):
     Attributes:
         audio (np.ndarray, float): path to the audio file
         audio_path (str): path to the audio file
-        item_id (str): clip id
-        has_bird (str): indication of whether the clips contains bird sounds (0/1)
+        filename (str): Name of the audio file (e.g., '11713-2.wav').
+        genus (str): Genus of the bird (e.g., 'Cardinalis').
+        species (str): Species name of the bird (e.g., 'cardinalis').
+        subspecies (str): Subspecies of the bird, may be empty (e.g., '').
+        name (str): Common name of the bird (e.g., 'Northern Cardinal').
+        recordist (str): Name of the person who recorded the clip (e.g., 'Chris Parrish').
+        country (str): Country where the clip was recorded (e.g., 'United States').
+        location (str): Specific location of the clip was recorded e.g., 'Sewanee, Franklin County, Tennessee').
+        latitude (str): Latitude of the recording location (e.g., '35.2176').
+        longitude (str): Longitude of the recording location (e.g., '-85.922').
+        altitude (str): Altitude of the recording location in meters (e.g., '580').
+        sound_type (str): Type of sound recorded, may be empty (e.g., 'song' or '').
+        source_url (str): URL of the source recording (e.g., '//www.xeno-canto.org/11713').
+        license (str): License of the clip, may be empty (e.g., '//creativecommons.org/licenses/by-nc-sa/4.0/' or '').
+        time (str): Time of day the clip was recorded, may be empty (e.g., '06:21').
+        date (str): Date the clip was recorded, may be empty (e.g., '2007-03-31').
+        remarks (str): Additional remarks about the clip, may be empty (e.g., 'Normalized to -3dB' or '').
+        id (str): Identifier for the clip, shared across multiple recordings (e.g., '11713')
     """
 
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
