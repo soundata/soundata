@@ -13,7 +13,7 @@ TEST_DATA_HOME = os.path.normpath("tests/resources/sound_datasets/tfgbirdsongs")
 
 def test_clip():
     default_clipid = "11713-2"
-    dataset = tfgbirdsongs.Dataset(TEST_DATA_HOME, version="test")
+    dataset = birdsongs.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip(default_clipid)
     expected_attributes = {
         "audio_path": os.path.join(
@@ -48,7 +48,7 @@ def test_clip():
 
 
 def test_load_audio():
-    dataset = tfgbirdsongs.Dataset(TEST_DATA_HOME, version="test")
+    dataset = birdsongs.Dataset(TEST_DATA_HOME, version="test")
     clip = dataset.clip("11713-2")
     audio_path = clip.audio_path
     audio, sr = tfgbirdsongs.load_audio(audio_path)
