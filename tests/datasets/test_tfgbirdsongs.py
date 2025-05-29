@@ -57,5 +57,3 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
     assert audio.shape[0] == 132300  # Check audio duration in samples is as expected
-
-test_clip()
