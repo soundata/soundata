@@ -21,6 +21,14 @@ Dataset Loaders
    :members:
    :inherited-members:
 
+BirdSongs
+^^^^^^^^
+.. _marco-module:
+
+.. automodule:: soundata.datasets.birdsongs
+   :members:
+   :inherited-members:
+
 DCASE23-Task2
 ^^^^^^^^^^^^^
 .. _dcase23-task2-module:

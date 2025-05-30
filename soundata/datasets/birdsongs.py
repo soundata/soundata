@@ -38,13 +38,13 @@ from soundata import io
 BIBTEX = """
 @article{article,
 author = {Vinay Shanbag},
-year = {2025},
+year = {2020},
 month = {05},
 pages = {},
-title = {Bird Sound Detection},
+title = {bird song data set},
 volume = {10},
-journal = {Methods in Ecology and Evolution},
-doi = {10.1111/2041-210X.13103}
+journal = {Xeno Canto},
+doi = {}
 }
 """
 
@@ -56,7 +56,7 @@ INDEXES = {
         url="https://drive.google.com/file/d/1_z7AbxBMqMPKah0WqA-sYXnTcrtS-cgz/view?usp=drive_link",
         checksum="1b16e1e45ba0c6db6506241edc7b611c",
     ),
-    "sample": core.Index(filename="tfgbirdsongs_index_1.0_sample.json"),
+    "sample": core.Index(filename="birdsongs_index_1.0_sample.json"),
 }
 
 REMOTES = {
@@ -67,7 +67,7 @@ REMOTES = {
     )
 }
 
-LICENSE_INFO = "Sergi García Fornés TFG 1.0"
+LICENSE_INFO = "//creativecommons.org/licenses/by-nc-sa/4.0/"
 
 
 I    """birdsongs Clip class

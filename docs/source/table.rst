@@ -23,6 +23,18 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+     * - | :ref:`BirdSongs <birdsongs-module>`
+       | ID: :code:`birdsongs`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`tags`
+     - 9107
+     - 7.58
+     - | :sec:`SEC` 
+     - | :bioacoustic:`BIOACOUSTIC`
+     - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by-sa/4.0/ 
+
    * - | :ref:`DCASE23-Task2 <dcase23-task2-module>`
        | ID: :code:`dcase23_task2`
      - | audio: ✅
