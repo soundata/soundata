@@ -23,6 +23,7 @@
      - .. image:: https://licensebuttons.net/l/by-nc/3.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/3.0
 
+
      * - | :ref:`BirdSongs <birdsongs-module>`
        | ID: :code:`birdsongs`
      - | audio: ✅
@@ -34,6 +35,18 @@
      - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by-sa/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-sa/4.0/ 
+
+   * - | :ref:`Clotho <clotho-module>`
+       | ID: :code:`clotho`
+     - | audio: ✅
+       | annotations: ✅
+     - :ref:`tags`
+     - 5929
+     - 37.05
+     - | :ac:`AC` 
+     - | :environment:`ENVIRONMENT`
+     - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
+          :target: https://creativecommons.org/licenses/by/4.0
 
    * - | :ref:`DCASE23-Task2 <dcase23-task2-module>`
        | ID: :code:`dcase23_task2`

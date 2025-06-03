@@ -26,6 +26,12 @@ BirdSongs
 .. _marco-module:
 
 .. automodule:: soundata.datasets.birdsongs
+
+Clotho
+^^^^^^
+.. _clotho-module:
+
+.. automodule:: soundata.datasets.clotho
    :members:
    :inherited-members:
 
