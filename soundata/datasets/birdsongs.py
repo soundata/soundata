@@ -52,8 +52,8 @@ INDEXES = {
     "default": "1.0",
     "test": "sample",
     "1.0": core.Index(
-        filename="tfgbirdsongs_index.json",
-        url="https://drive.google.com/file/d/1_z7AbxBMqMPKah0WqA-sYXnTcrtS-cgz/view?usp=drive_link",
+        filename="birdsongs_index.json",
+        url="https://zenodo.org/records/15582445/files/birdsongs_index.json?download=1",
         checksum="1b16e1e45ba0c6db6506241edc7b611c",
     ),
     "sample": core.Index(filename="birdsongs_index_1.0_sample.json"),
