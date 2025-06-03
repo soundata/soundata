@@ -54,7 +54,7 @@ INDEXES = {
     "1.0": core.Index(
         filename="birdsongs_index.json",
         url="https://zenodo.org/records/15582445/files/birdsongs_index.json?download=1",
-        checksum="1b16e1e45ba0c6db6506241edc7b611c",
+        checksum="0a9c1cef153d081794a64e5ee7cad9f1",
     ),
     "sample": core.Index(filename="birdsongs_index_1.0_sample.json"),
 }
@@ -63,7 +63,7 @@ REMOTES = {
     "dataset": download_utils.RemoteFileMetadata(
         filename="archive.zip",
         url="https://www.kaggle.com/api/v1/datasets/download/vinayshanbhag/bird-song-data-set",
-        checksum="",
+        checksum="2544ee4e243c7a11ba2ed76147f9a449",
     )
 }
 
