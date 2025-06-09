@@ -9,9 +9,9 @@ Installation
 
 To install Soundata simply do:
 
-    .. code-block:: console
+.. code-block:: console
 
-        pip install soundata
+    pip install soundata
 
 We recommend to do this inside a conda or virtual environment for reproducibility.
 
