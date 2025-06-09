@@ -24,7 +24,6 @@ dependencies:
     - black>=23.3.0
     - coveralls>=3.3.1
     - future>=0.18.3
-    - jams>=0.3.4
     - testcontainers>=3.7.1
     - simpleaudio
     - seaborn

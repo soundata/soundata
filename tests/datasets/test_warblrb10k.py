@@ -42,17 +42,3 @@ def test_load_audio():
     assert type(audio) is np.ndarray
     assert len(audio.shape) == 1  # check audio is loaded as mono
     assert audio.shape[0] == 444416  # Check audio duration in samples is as expected
-
-
-def test_to_jams():
-    default_clipid = "759808e5-f824-401e-9058"
-    dataset = warblrb10k.Dataset(TEST_DATA_HOME, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-    # Validate warblrb10k jam schema
-    assert jam.validate()
-
-    # validate metadata
-    assert round(jam.file_metadata.duration, 1) == 10.1
-    assert jam.sandbox.itemid == "759808e5-f824-401e-9058"
-    assert jam.sandbox.hasbird == "1"

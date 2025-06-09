@@ -79,9 +79,6 @@ def test_load(skip_remote, dataset):
         for cprop in clip_data["cached_properties"]:
             ret = getattr(clip, cprop)
 
-        jam = clip.to_jams()
-        assert jam.validate()
-
 
 def test_index(skip_remote, dataset):
     if dataset is None:

@@ -35,22 +35,6 @@ def test_load_audio():
     assert audio.shape[0] == 44100  # Check audio duration in samples is as expected
 
 
-def test_to_jams():
-
-    default_clipid = "some_id"
-    data_home = "tests/resources/sound_datasets/dataset"
-    dataset = example.Dataset(data_home, version="test")
-    clip = dataset.clip(default_clipid)
-    jam = clip.to_jams()
-
-    annotations = jam.search(namespace="annotation")[0]["data"]
-    assert [annotation.time for annotation in annotations] == [0.027, 0.232]
-    assert [annotation.duration for annotation in annotations] == [
-        0.20500000000000002,
-        0.736,
-    ]
-    # ... etc
-
 # Test each of the load functions (e.g. Tags, etc)
 def test_load_annotation():
     # load a file which exists
