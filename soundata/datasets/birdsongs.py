@@ -69,8 +69,8 @@ REMOTES = {
 
 LICENSE_INFO = "//creativecommons.org/licenses/by-nc-sa/4.0/"
 
-
-I    """birdsongs Clip class
+class Clip(core.Clip):
+    """birdsongs Clip class
 
     Args:
         clip_id (str): id of the clip
