@@ -248,7 +248,7 @@ class Clip(core.Clip):
             * str - Manufacturer name.
         """
         return self._clip_metadata.get("manufacturer")
-    
+
     @property
     def split(self):
         """Subset of the dataset the clip belongs to: dev, val, eval, test.
@@ -257,7 +257,7 @@ class Clip(core.Clip):
             * str - split
         """
         return self._clip_metadata.get("split")
-    
+
     @property
     def captions(self):
         """Captions Annotations, 8 to 20 words long.
@@ -266,7 +266,7 @@ class Clip(core.Clip):
             * List[str] - captions
         """
         return self._clip_metadata.get("captions")
-    
+
     @property
     def license(self):
         """License of the clip.
