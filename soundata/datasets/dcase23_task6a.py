@@ -242,7 +242,7 @@ class Clip(core.Clip):
             * str - Manufacturer name.
         """
         return self._clip_metadata.get("manufacturer")
-    
+
     @property
     def split(self):
         """Subset of the dataset the clip belongs to: dev, val, eval, test.
@@ -251,7 +251,7 @@ class Clip(core.Clip):
             * str - split
         """
         return self._clip_metadata.get("split")
-    
+
     @property
     def captions(self):
         """Captions Annotations, 8 to 20 words long.
@@ -363,7 +363,7 @@ class Dataset(core.Dataset):
                                 "start_end_samples": row["start_end_samples"],
                                 "manufacturer": row["manufacturer"],
                                 "license": row["license"],
-                                "split" : dataset_type,
+                                "split": dataset_type,
                             }
                         )
                     elif file_type == "test_metadata":
@@ -373,7 +373,7 @@ class Dataset(core.Dataset):
                                 "start_end_samples": row["start_end_samples"],
                                 "manufacturer": row["manufacturer"],
                                 "license": row["license"],
-                                "split" : dataset_type,
+                                "split": dataset_type,
                             }
                         )
                     elif file_type == "captions":
