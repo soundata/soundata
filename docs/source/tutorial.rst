@@ -606,14 +606,14 @@ By using the ``explore_dataset()`` function, you can gain a comprehensive overvi
 
 
 
-Using Soundata in Colab
+Using Soundata in Google Colab
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 This page shows how to use ``soundata`` on `Google Colab <https://colab.research.google.com>`_.
 Colab provides a browser-based Python environment with free GPU support, which is useful for exploring datasets quickly.
 You will have two options that you can use the dataset from ``soundata`` in Colab.
 
-.. _Dataset_download_from_colab:
+.. _Dataset_download_from_Google_colab:
 
 Dataset Download from Colab
 ---------------------------
@@ -713,9 +713,9 @@ To keep the dataset without downloading everytime you start the session, you sho
     dataset = soundata.initialize('urbansound8k', data_home='/content/drive/MyDrive/<Folder_Name>')
     dataset.download()
 
-.. _Dataset_download_out_of_colab:
+.. _Dataset_download_out_of_Google_colab:
 
-Dataset Download out of Colab
+Dataset Download out of Google Colab
 -----------------------------
 
 First, make sure that the dataset is located in **``/content/drive/My Drive/<Dataset_Name>/``** from your Google Drive.
