@@ -603,11 +603,11 @@ Offers visualizations related to the audio data, such as waveforms or spectrogra
 By using the ``explore_dataset()`` function, you can gain a comprehensive overview of the dataset's structure and content, which is crucial for effective analysis and model building.
 
 
-.. _Using Soundata in Colab:
+
 
 
 Using Soundata in Colab
-=======================
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This page shows how to use ``soundata`` on `Google Colab <https://colab.research.google.com>`_.
 Colab provides a browser-based Python environment with free GPU support, which is useful for exploring datasets quickly.
@@ -616,7 +616,7 @@ You will have two options that you can use the dataset from ``soundata`` in Cola
 .. _Dataset_download_from_colab:
 
 Dataset Download from Colab
-===========================
+---------------------------
 
 Installation
 ------------
@@ -693,7 +693,6 @@ Dataset storage
 To keep the dataset without downloading everytime you start the session, you should:
 
 1. Copy it to google drive:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -703,7 +702,7 @@ To keep the dataset without downloading everytime you start the session, you sho
     !cp -r /root/soundata /content/drive/MyDrive/
 
 2. Or set a custom download path when loading the dataset:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 .. code-block:: python
 
@@ -717,7 +716,7 @@ To keep the dataset without downloading everytime you start the session, you sho
 .. _Dataset_download_out_of_colab:
 
 Dataset Download out of Colab
-=============================
+-----------------------------
 
 First, make sure that the dataset is located in **``/content/drive/My Drive/<Dataset_Name>/``** from your Google Drive.
 
