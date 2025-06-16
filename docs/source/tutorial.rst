@@ -603,7 +603,7 @@ Offers visualizations related to the audio data, such as waveforms or spectrogra
 By using the ``explore_dataset()`` function, you can gain a comprehensive overview of the dataset's structure and content, which is crucial for effective analysis and model building.
 
 
-.. _colab_example:
+.. _Using Soundata in Colab:
 
 
 Using Soundata in Colab

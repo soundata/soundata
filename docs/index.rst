@@ -99,6 +99,7 @@ If you use soundata in your research, please cite:
    source/tutorial
    source/contributing
    source/quick_reference
+   source/colab_example
 
 
 
