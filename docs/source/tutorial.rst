@@ -615,7 +615,7 @@ You will have two options that you can use the dataset from ``soundata`` in Cola
 
 .. _Dataset_download_from_Google_colab:
 
-Dataset Download from Colab
+Dataset Download from Google Colab
 ---------------------------
 
 Installation
