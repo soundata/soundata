@@ -286,8 +286,8 @@ def test_download_index_cases(mocker, mock_path):
     )
 
     # Verify that "index" is downloaded
-    mock_download_from_remote.assert_any_call(index_remote, "a", False, False)
-    mock_download_from_remote.assert_any_call(file_remote, "a", False, False)
+    mock_download_from_remote.assert_any_call(index_remote, "a", False)
+    mock_download_from_remote.assert_any_call(file_remote, "a", False)
 
 
 def _clean(fpath):
