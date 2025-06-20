@@ -348,7 +348,7 @@ class Dataset(object):
             display_plot_utils.perform_dataset_exploration(self, clip_id)
         except ModuleNotFoundError:
             sys.exit(
-                """Dependencies for display utils not found. Did you install plotting optional dependencies? Please run pip install soundata"[plots]" """
+                """Dependencies for display utils not found. Did you install plotting optional dependencies? Please run poetry install --with plots """
             )
 
     @cached_property

@@ -56,43 +56,52 @@ py7zr = ">=0.16.0"
 optional = true
 
 [tool.poetry.group.tests.dependencies]
-requests>=2.31.0"
-pytest>=7.2.0"
-pytest-cov>=4.1.0"
-pytest-pep8>=1.0.6"
-pytest-mock>=3.10.0"
-pytest-localserver>=0.7.1"
-pytest-xdist>=2.3.0"
-future>=0.18.3"
-coveralls>=3.3.1"
-
-#    "black>=23.3.0",
-#    "flake8>=5.0.4",
-#    "mypy>=0.982",
+requests = ">=2.31.0"
+pytest = ">=7.2.0"
+pytest-cov> = "=4.1.0"
+pytest-pep8 = ">=1.0.6" 
+pytest-mock = ">=3.10.0"
+pytest-localserver = ">=0.7.1"
+pytest-xdist = ">=2.3.0"
+future = ">=0.18.3"
+coveralls = ">=3.3.1"
 
 [tool.poetry.group.docs]
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-docutils==0.16"
-numpydoc",
-    "recommonmark",
-    "sphinx>=3.4.0",
-    "sphinxcontrib-napoleon",
-    "sphinx_rtd_theme",
-    "sphinx-togglebutton",
-    "ipywidgets>=8.1.1",
-    "sphinx-copybutton",
-]
-plots = [
-    "simpleaudio>=1.0.4",
-    "seaborn>=0.11.2",
-    "ipywidgets>=8.1.1",
-    "pydub>=0.25.1",
-]
+docutils = "==0.16"
+numpydoc = "*"
+recommonmark = "*"
+sphinx = ">=3.4.0",
+sphinxcontrib-napoleon = "*",
+sphinx_rtd_theme = "*"
+sphinx-togglebutton = "*"
+ipywidgets = ">=8.1.1"
+sphinx-copybutton = "*"
+toml = ">=0.10.2"
+
+[tool.poetry.group.plots]
+optional = true
+
+[tool.poetry.group.plots.dependencies]
+
+simpleaudio = ">=1.0.4",
+seaborn = ">=0.11.2"
+ipywidgets = ">=8.1.1"
+pydub = ">=0.25.1"
+
+[tool.poetry.group.linting]
+optional = true
+
+[tool.poetry.group.linting.dependencies]
+black = ">=23.3.0"
+flake8 = ">=5.0.4"
+mypy = ">=0.982"
+types-decorator = ">=5.1.8.3"
 
 [project.urls]
-Homepage = "https://github.com/soundata/soundata"
-Documentation = "https://soundata.readthedocs.io/en/latest/"
-Issues = "https://github.com/soundata/soundata/issues"
-Releases = "http://github.com/soundata/soundata/releases"
+"Homepage" = "https://github.com/soundata/soundata"
+"Documentation" = "https://soundata.readthedocs.io/en/latest/"
+"Issues" = "https://github.com/soundata/soundata/issues"
+"Releases" = "http://github.com/soundata/soundata/releases"
