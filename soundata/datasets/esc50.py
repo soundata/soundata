@@ -96,10 +96,10 @@ INDEXES = {
 
 REMOTES = {
     "all": download_utils.RemoteFileMetadata(
-        filename="ESC-50-master.zip",
-        url="https://github.com/karoldvl/ESC-50/archive/master.zip",
-        checksum="7771e4b9d86d0945acce719c7a59305a",
-        unpack_directories=["ESC-50-master"],
+        filename="ESC-50-33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6.zip",
+        url="https://github.com/karoldvl/ESC-50/archive/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6.zip",
+        checksum="071b44018315e034b2c6e8064543d19c",
+        unpack_directories=["ESC-50-33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6"],
     ),
 }
 
