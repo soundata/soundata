@@ -41,7 +41,16 @@ show_authors = False
 
 
 # -- Mock dependencies -------------------------------------------------------
-autodoc_mock_imports = ["librosa", "numpy", "pandas", "pydub", "simpleaudio", "seaborn", "py7zr", "matplotlib"]
+autodoc_mock_imports = [
+    "librosa",
+    "numpy",
+    "pandas",
+    "pydub",
+    "simpleaudio",
+    "seaborn",
+    "py7zr",
+    "matplotlib",
+]
 
 
 # # -- General configuration ---------------------------------------------------
@@ -72,7 +81,8 @@ extlinks = {
         "https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s",
         "Custom%s",
     ),
-    
+}
+
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
 }
@@ -140,23 +150,27 @@ def create_reference_role(node_id):
         text = utils.unescape(text)
         # Use the same class name as defined in the CSS file for the reference node
         class_name = name.lower()  # This should match the class name used in the CSS
-        ref_node = nodes.reference(rawtext, text, refuri=f'#{node_id}', classes=[class_name])
+        ref_node = nodes.reference(
+            rawtext, text, refuri=f"#{node_id}", classes=[class_name]
+        )
         return [ref_node], []
+
     return role_fn
+
 
 def setup(app):
     role_to_target = {
-        'sed': 'sed',
-        'sec': 'sec',
-        'sel': 'sel',
-        'asc': 'asc',
-        'ac': 'ac',
-        'urban': 'urban-environment',
-        'environment': 'environment-sounds',
-        'machine': 'machine-sounds',
-        'bioacoustic': 'bioacoustic-sounds',
-        'music': 'music-sounds',
+        "sed": "sed",
+        "sec": "sec",
+        "sel": "sel",
+        "asc": "asc",
+        "ac": "ac",
+        "urban": "urban-environment",
+        "environment": "environment-sounds",
+        "machine": "machine-sounds",
+        "bioacoustic": "bioacoustic-sounds",
+        "music": "music-sounds",
     }
-    
+
     for role_name, node_id in role_to_target.items():
         app.add_role(role_name, create_reference_role(node_id))

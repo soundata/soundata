@@ -1,4 +1,5 @@
-import jams_utils    
+import jams_utils
+
 
 def to_jams(clip):
     """

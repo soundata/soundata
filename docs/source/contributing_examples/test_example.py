@@ -6,6 +6,7 @@ from tests.test_utils import run_clip_tests
 
 TEST_DATA_HOME = "tests/resources/sound_datasets/example"
 
+
 def test_clip():
     default_clipid = "some_id"
     dataset = example.Dataset(TEST_DATA_HOME, version="test")
@@ -18,10 +19,13 @@ def test_clip():
     }
 
     # List here all the properties of your loader
-    expected_property_types = {"tags": annotations.Tags,
-                               "some_other_annotation": "some_annotation_type"}
+    expected_property_types = {
+        "tags": annotations.Tags,
+        "some_other_annotation": "some_annotation_type",
+    }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
+
 
 # Test all the load functions, for instance, the load audio one
 def test_load_audio():

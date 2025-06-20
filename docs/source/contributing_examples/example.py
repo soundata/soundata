@@ -13,6 +13,7 @@
     6. Indicate the dataset version
 
 """
+
 import os
 import csv
 import json
@@ -20,6 +21,7 @@ import json
 
 import librosa
 import numpy as np
+
 # -- import whatever you need here and remove
 # -- example imports you won't use
 
@@ -59,11 +61,11 @@ INDEXES = {
 # -- When having data that can be partially downloaded, remember to set up
 # -- correctly destination_dir to download the files following the correct structure.
 REMOTES = {
-    'remote_data': download_utils.RemoteFileMetadata(
-        filename='a_zip_file.zip',
-        url='http://website/hosting/the/zipfile.zip',
-        checksum='00000000000000000000000000000000',  # -- the md5 checksum
-        destination_dir='path/to/unzip' # -- relative path for where to unzip the data, or None
+    "remote_data": download_utils.RemoteFileMetadata(
+        filename="a_zip_file.zip",
+        url="http://website/hosting/the/zipfile.zip",
+        checksum="00000000000000000000000000000000",  # -- the md5 checksum
+        destination_dir="path/to/unzip",  # -- relative path for where to unzip the data, or None
     ),
 }
 
@@ -83,7 +85,7 @@ The dataset's license information goes here.
 
 class Clip(core.Clip):
     """Example Clip class
-    
+
     # -- YOU CAN AUTOMATICALLY GENERATE THIS DOCSTRING BY CALLING THE SCRIPT:
     # -- `scripts/print_track_docstring.py my_dataset`
     # -- note that you'll first need to have a test clip (see "Adding tests to your dataset" below)
@@ -96,8 +98,9 @@ class Clip(core.Clip):
         # -- Add any of the dataset specific attributes here
 
     """
+
     def __init__(self, clip_id, data_home, dataset_name, index, metadata):
-        
+
         # -- this sets the following attributes:
         # -- * clip_id
         # -- * _dataset_name
@@ -111,7 +114,7 @@ class Clip(core.Clip):
             index=index,
             metadata=metadata,
         )
-        
+
         # -- add any dataset specific attributes here
         self.audio_path = self.get_path("audio")
         self.annotation_path = self.get_path("annotation")
@@ -132,6 +135,7 @@ class Clip(core.Clip):
     def audio(self):
         """(np.ndarray, float): DESCRIPTION audio signal, sample rate"""
         return load_audio(self.audio_path)
+
 
 @io.coerce_to_bytes_io
 def load_audio(fhandle):
@@ -159,17 +163,16 @@ def load_annotation(fhandle):
     # if annotation_path is None:
     #     return None
 
-    reader = csv.reader(fhandle, delimiter=' ')
+    reader = csv.reader(fhandle, delimiter=" ")
     intervals = []
     annotation = []
     for line in reader:
         intervals.append([float(line[0]), float(line[1])])
         annotation.append(line[2])
 
-    annotation_data = annotations.EventData(
-        np.array(intervals), np.array(annotation)
-    )
+    annotation_data = annotations.EventData(np.array(intervals), np.array(annotation))
     return annotation_data
+
 
 # -- use this decorator so the docs are complete (i.e. they are inherited from the parent class)
 @core.docstring_inherit(core.Dataset)
@@ -180,7 +183,7 @@ class Dataset(core.Dataset):
         super().__init__(
             data_home,
             version,
-            name='dataset_name',
+            name="dataset_name",
             clip_class=Clip,
             bibtex=BIBTEX,
             indexes=INDEXES,
@@ -201,22 +204,20 @@ class Dataset(core.Dataset):
         return load_annotation(*args, **kwargs)
 
     # -- if your dataset has a top-level metadata file, write a loader for it here
-    # -- you do not have to include this function if there is no metadata 
+    # -- you do not have to include this function if there is no metadata
     @core.cached_property
     def _metadata(self):
 
         # load metadata however makes sense for your dataset
-        metadata_path = os.path.join(self.data_home, 'example_metadata.json')
-        with open(metadata_path, 'r') as fhandle:
+        metadata_path = os.path.join(self.data_home, "example_metadata.json")
+        with open(metadata_path, "r") as fhandle:
             metadata = json.load(fhandle)
 
         return metadata
 
     # -- if your dataset needs to overwrite the default download logic, do it here.
     # -- this function is usually not necessary unless you need very custom download logic
-    def download(
-        self, partial_download=None, force_overwrite=False, cleanup=False
-    ):
+    def download(self, partial_download=None, force_overwrite=False, cleanup=False):
         """Download the dataset
 
         Args:
@@ -224,7 +225,7 @@ class Dataset(core.Dataset):
                 A list of keys of remotes to partially download.
                 If None, all data is downloaded
             force_overwrite (bool):
-                If True, existing files are overwritten by the downloaded files. 
+                If True, existing files are overwritten by the downloaded files.
             cleanup (bool):
                 Whether to delete any zip/tar files after extracting.
 
@@ -236,4 +237,3 @@ class Dataset(core.Dataset):
         # see download_utils.downloader for basic usage - if you only need to call downloader
         # once, you do not need this function at all.
         # only write a custom function if you need it!
-
