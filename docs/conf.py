@@ -11,6 +11,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import toml
 import sys
 import datetime
 from docutils import nodes, utils
@@ -23,18 +24,18 @@ sys.path.insert(0, os.path.abspath("../"))
 
 project = "soundata"
 year = datetime.datetime.utcnow().year
-copyright = '2021-{}, Soundata development team'.format(year)
+copyright = "2021-{}, Soundata development team".format(year)
 author = "The Soundata development team"
 
-
-import importlib
-
-soundata_version = importlib.import_module("soundata.version")
+# Read version from pyproject.toml
+with open(os.path.abspath("../pyproject.toml"), "r") as f:
+    pyproject = toml.load(f)
+    full_version = pyproject["tool"]["poetry"]["version"]
 
 # The short X.Y version.
-version = soundata_version.short_version
+version = ".".join(full_version.split(".")[:2])
 # The full version, including alpha/beta/rc tags.
-release = soundata_version.version
+release = full_version
 # Show only copyright
 show_authors = False
 
@@ -67,9 +68,11 @@ extlinks = {
     "tau2019": ("https://zenodo.org/record/2589280%s", "Custom%s"),
     "tau2020": ("https://zenodo.org/record/3819968%s", "Custom%s"),
     "tau2022": ("https://zenodo.org/record/6337421%s", "Custom%s"),
-    "tut": ("https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s", "Custom%s"),
-}
-
+    "tut": (
+        "https://github.com/TUT-ARG/DCASE2017-baseline-system/blob/master/EULA.pdf%s",
+        "Custom%s",
+    ),
+    
 intersphinx_mapping = {
     "np": ("https://numpy.org/doc/stable/", None),
 }

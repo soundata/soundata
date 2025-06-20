@@ -27,12 +27,15 @@ To install Soundata for development purposes:
 
     - First, run ``git clone https://github.com/soundata/soundata.git``
 
-    - Then, after opening source data library you have to install all the dependencies:
+    - Install Poetry by following the instructions at `https://python-poetry.org/docs/#installation`.
+     - Then, after opening the source data library, you have to install all the dependencies:
 
-      - Install Core dependencies with ``pip install .``
-      - Install Testing dependencies with ``pip install ."[tests]"``
-      - Install Docs dependencies with ``pip install ."[docs]"``
-      - Install Plotting dependencies with ``pip install ."[plots]"``
+      - Install Core dependencies with ``poetry install``
+      - Install Testing dependencies with ``poetry install --with tests``
+      - Install Docs dependencies with ``poetry install --with docs``
+      - Install Plotting dependencies with ``poetry install --with plots``
+      - Install Linting dependencies with ``poetry install --with linting``
+      - Install all optional dependencies with ``poetry install --all-groups``
 
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
@@ -45,22 +48,22 @@ Before running the tests, make sure to have formatted ``soundata/`` and ``tests/
 
 .. code-block:: bash
 
-    black soundata/ tests/
+    poetry run black soundata/ tests/
 
 
 Also, make sure that they pass flake8 and mypy tests specified in lint-python.yml github action workflow.
 
 .. code-block:: bash
 
-    flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
-    python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+    poetry run python -m flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+    poetry run python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
 
 
 Finally, run:
 
 .. code-block:: bash
 
-    pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
+    poetry run pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
 
 
 All tests should pass!

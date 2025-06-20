@@ -7,55 +7,55 @@ on:
   pull_request:
     branches:
     - main
-    
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  lint_python:
+  lint:
     name: "Lint and code analysis"
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
-            python-version: "3.11"
-            channel-priority: "flexible"
-            envfile: ".github/environment-lint.yml"
+            python-version: "3.12"
+
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0
-    - name: Cache conda
-      uses: actions/cache@v4
-      env:
-        CACHE_NUMBER: 0
+        submodules: true
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
       with:
-        path: ~/conda_pkgs_dir
-        key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
-    - name: Install conda environmnent
-      uses: conda-incubator/setup-miniconda@v3
-      with: 
-        auto-update-conda: true
         python-version: ${{ matrix.python-version }}
-        add-pip-as-python-dependency: true
-        auto-activate-base: false
-        activate-environment: lint
-        # mamba-version: "*"
-        channel-priority: ${{ matrix.channel-priority }}
-        environment-file: ${{ matrix.envfile }}
-        use-only-tar-bz2: false
 
-    - name: Conda info
-      shell: bash -l {0}
+    - name: Install Poetry
+      run: pip install poetry
+
+    - name: Cache Poetry virtualenv
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pypoetry/virtualenvs
+          .venv
+        key: ${{ runner.os }}-py${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-py${{ matrix.python-version }}-poetry-
+    - name: Install dependencies
       run: |
-        conda info -a
-        conda list
-
+          poetry config virtualenvs.in-project true
+          poetry install --only=linting
+    
     - name: (flake8) Style check
       shell: bash -l {0}
-      run: flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
+      run: poetry run python -m flake8 soundata --count --select=E9,F63,F7,F82 --show-source --statistics
       # Info about error codes: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
       # and https://flake8.pycqa.org/en/latest/user/error-codes.html
-    
+
     - name: (mypy) Type check package
       shell: bash -l {0}
-      run: python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
+      run: poetry run python -m mypy soundata --ignore-missing-imports --allow-subclassing-any
