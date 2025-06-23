@@ -46,7 +46,7 @@ def initialize(dataset_name, data_home=None, version="default"):
     Example:
         .. code-block:: python
 
-            urbansound8k = soundata.initialize('urbansound8k')  # get the urbansound8k dataset
+            urbansound8k = soundata.initialize("urbansound8k")  # get the urbansound8k dataset
             urbansound8k.download()  # download orchset
             urbansound8k.validate()  # validate orchset
             clip = urbansound8k.choice_clip()  # load a random clip

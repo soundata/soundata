@@ -18,8 +18,6 @@ If you're familiar with Soundata's API already, you can find the template files 
 and the loader checklist for submitting your PR `here <https://github.com/soundata/soundata/blob/master/.github/PULL_REQUEST_TEMPLATE/new_loader.md>`__.
 
 
-
-
 Installing soundata for development purposes
 ############################################
 
@@ -28,6 +26,7 @@ To install Soundata for development purposes:
     - First, run ``git clone https://github.com/soundata/soundata.git``
 
     - Install Poetry by following the instructions at `https://python-poetry.org/docs/#installation`.
+
      - Then, after opening the source data library, you have to install all the dependencies:
 
       - Install Core dependencies with ``poetry install``
@@ -36,7 +35,6 @@ To install Soundata for development purposes:
       - Install Plotting dependencies with ``poetry install --with plots``
       - Install Linting dependencies with ``poetry install --with linting``
       - Install all optional dependencies with ``poetry install --all-groups``
-
 
 We recommend using `miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ or
 `pyenv <https://github.com/pyenv/pyenv#installation>`__ to manage your Python versions
@@ -64,7 +62,6 @@ Finally, run:
 .. code-block:: bash
 
     poetry run pytest -vv --cov-report term-missing --cov-report=xml --cov=soundata tests/ --local
-
 
 All tests should pass!
 
