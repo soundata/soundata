@@ -528,7 +528,7 @@ Using soundata to explore dataset
 The ``explore_dataset()`` function in ``soundata`` allows you to visualize various aspects of the dataset. This can be particularly useful for understanding the distribution of events and the nature of the audio data before proceeding with analysis or model training.
 
 Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
------------------------------------------------------------------
+=================================================================
 
 If you want to use the plot functionalities used in ``display_plot_utils.py`` you must install the optional dependencies too:
 
@@ -619,7 +619,7 @@ Download the Dataset directly in Google Colab
 ---------------------------------------------
 
 Installation
-------------
+============
 
 First, install ``soundata`` inside your Colab notebook:
 
@@ -628,7 +628,7 @@ First, install ``soundata`` inside your Colab notebook:
     !pip install soundata
 
 Initializing a dataset
-----------------------
+======================
 
 Soundata is easily imported into your Python code by:
 
@@ -661,7 +661,7 @@ Use ``version`` parameter if you wish to use a version other than the default on
     dataset = soundata.initialize('urbansound8k', version="1.0")
 
 Download the Dataset
---------------------
+====================
 
 All dataset loaders in soundata have a ``download()`` function that allows the user to download:
 
@@ -679,7 +679,7 @@ For more information about partial download, multipart download, non-available d
 .. _Dataset_Storage:
 
 Dataset storage
----------------
+===============
 
 **By default**, data is downloaded to:
 
