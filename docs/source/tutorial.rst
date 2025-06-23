@@ -611,12 +611,12 @@ Using Soundata in Google Colab
 
 This page shows how to use ``soundata`` on `Google Colab <https://colab.research.google.com>`_.
 Colab provides a browser-based Python environment with free GPU support, which is useful for exploring datasets quickly.
-You will have two options that you can use the dataset from ``soundata`` in Colab - ``Download Dataset from Soundata in Google Colab``, or ``Dataset Downloaded out of Google Colab``
+You will have two options that you can use the dataset from ``soundata`` in Colab - ``Download Dataset directly in Google Colab``, or ``Access the Dataset Downloaded out of Google Colab``
 
-.. _Dataset_download_from_Google_colab:
+.. _Dataset_download_in_Google_colab:
 
-Dataset Download from Google Colab
-----------------------------------
+Download the Dataset directly in Google Colab
+---------------------------------------------
 
 Installation
 ------------
@@ -715,8 +715,8 @@ To keep the dataset without downloading everytime you start the session, you sho
 
 .. _Dataset_download_out_of_Google_colab:
 
-Dataset Downloaded out of Google Colab
---------------------------------------
+Access the Dataset Downloaded out of Google Colab
+-------------------------------------------------
 If you already downloaded out of `Google Colab` and willing to use that dataset with ``Soundata`` in Google Colab:
 
 First, make sure that the dataset is located in **``/content/drive/My Drive/<Dataset_Name>/``** from your Google Drive.
