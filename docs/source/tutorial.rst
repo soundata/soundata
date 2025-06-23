@@ -528,7 +528,7 @@ Using soundata to explore dataset
 The ``explore_dataset()`` function in ``soundata`` allows you to visualize various aspects of the dataset. This can be particularly useful for understanding the distribution of events and the nature of the audio data before proceeding with analysis or model training.
 
 Using ``explore_dataset()`` to Visualize Data in Jupyter Notebook
-=================================================================
+-----------------------------------------------------------------
 
 If you want to use the plot functionalities used in ``display_plot_utils.py`` you must install the optional dependencies too:
 
