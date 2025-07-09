@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = "Python library for loading and working with sound datasets."
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
     {name = "Genís Plaja-Roglans"},
@@ -23,7 +23,8 @@ maintainers = [
     {name = "Magdalena Fuentes", email = "mfuentes@nyu.edu"},
     {name = "Genís Plaja-Roglans"},
     {name = "Guillem Cortès-Sebastià"},
-    {name = "Tanmay Khandelwal"},
+    {name = "Yujin Kim"},
+    {name = "Siddharth Saxena"}
 ]
 keywords = ["sound", "dataset loader", "audio"]
 classifiers=[
