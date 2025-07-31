@@ -23,6 +23,7 @@ CUSTOM_TEST_CLIPS = {
     "freefield1010": "64486",
     "fsd50k": "64760",
     "fsdnoisy18k": "17",
+    "sonyc_ust": "00_026884",
     "tau2019uas": "development/airport-barcelona-0-0-a",
     "tau2022uas_mobile": "airport-lisbon-1000-40000-0-a",
     "tau2020uas_mobile": "airport-barcelona-0-0-a",
