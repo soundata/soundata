@@ -33,6 +33,8 @@ def test_clip():
         "start_end_samples": str,
         "manufacturer": str,
         "license": str,
+        "split": str,
+        "captions": list,
     }
 
     run_clip_tests(clip, expected_attributes, expected_property_types)
