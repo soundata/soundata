@@ -632,7 +632,7 @@ def test_extractall_cp437(mocker, mock_download_from_remote, mock_unzip):
 
 
 def test_download_from_remote_already_exists(tmpdir, mocker):
-   
+
     filename = "a"
     save_dir = str(tmpdir)
     file_path = os.path.join(save_dir, filename)
@@ -642,12 +642,13 @@ def test_download_from_remote_already_exists(tmpdir, mocker):
     remote = download_utils.RemoteFileMetadata(
         filename=filename,
         url="b",
-        checksum="c", 
+        checksum="c",
     )
 
     # Mock md5 to return the expected checksum
     mocker.patch("soundata.download_utils.md5", return_value=remote.checksum)
 
-    
-    result = download_utils.download_from_remote(remote, save_dir, force_overwrite=False)
+    result = download_utils.download_from_remote(
+        remote, save_dir, force_overwrite=False
+    )
     assert result == file_path
