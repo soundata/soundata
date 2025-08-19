@@ -1,0 +1,1789 @@
+{
+  "version": "20220517",
+  "clips": {
+    "R0001": {
+      "audio/binaural": [
+        "audio/binaural/R0001_segment_binaural.wav",
+        "d87b65ce333cea243e15665803e65a70"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0001_segment_ambisonics.wav",
+        "2bf4f0fc43f5273a4e53b6c4bfd2034f"
+      ],
+      "video": [
+        "video/spherical/R0001_segment_ambisonics_headphones_highres.360.mono.mov",
+        "0c5c072e38db5a3b754f7ef49ed98bb6"
+      ]
+    },
+    "R0002": {
+      "audio/binaural": [
+        "audio/binaural/R0002_segment_binaural.wav",
+        "1a322efcbeace32f2373fecbaab5e709"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0002_segment_ambisonics.wav",
+        "51ac9330e597cafafdf2e8ea33d3575d"
+      ],
+      "video": [
+        "video/spherical/R0002_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4733565ce9ac3570464656b8755cc23d"
+      ]
+    },
+    "R0003": {
+      "audio/binaural": [
+        "audio/binaural/R0003_segment_binaural.wav",
+        "b637eb363d5e3078acbaf42a2b7def8c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0003_segment_ambisonics.wav",
+        "4cefd8df90474dd150f8be6424866581"
+      ],
+      "video": [
+        "video/spherical/R0003_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e24845ab8b62b4a4be8ccd628cea4d15"
+      ]
+    },
+    "R0004": {
+      "audio/binaural": [
+        "audio/binaural/R0004_segment_binaural.wav",
+        "8bd14b011520d5c0bf7d147f3ede8c94"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0004_segment_ambisonics.wav",
+        "4ceab13a087d826d58ce6741f0dcbd71"
+      ],
+      "video": [
+        "video/spherical/R0004_segment_ambisonics_headphones_highres.360.mono.mov",
+        "f2da689b0b4515162be53691ecfa1d93"
+      ]
+    },
+    "R0005": {
+      "audio/binaural": [
+        "audio/binaural/R0005_segment_binaural.wav",
+        "ddf48a16c037f6c04cf8b5f1774512db"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0005_segment_ambisonics.wav",
+        "c8d44d2b43390afeb64a90ecc811f488"
+      ],
+      "video": [
+        "video/spherical/R0005_segment_ambisonics_headphones_highres.360.mono.mov",
+        "3346c8f42e235df059c87484eec32d54"
+      ]
+    },
+    "R0006": {
+      "audio/binaural": [
+        "audio/binaural/R0006_segment_binaural.wav",
+        "aaeacf0713e9cac2d024c66b46d730ce"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0006_segment_ambisonics.wav",
+        "1384e6b9e823db68a85c59ba91339685"
+      ],
+      "video": [
+        "video/spherical/R0006_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e72ee6c736fe92fbb0b065fc524013b0"
+      ]
+    },
+    "R0007": {
+      "audio/binaural": [
+        "audio/binaural/R0007_segment_binaural.wav",
+        "07cd220d8532fa0192faa0c76b1d7ef5"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0007_segment_ambisonics.wav",
+        "8ee3e8fa3f752af58e85fa467b5d7662"
+      ],
+      "video": [
+        "video/spherical/R0007_segment_ambisonics_headphones_highres.360.mono.mov",
+        "53390a1c5d8d4a93355c0a4eba98cf41"
+      ]
+    },
+    "R0008": {
+      "audio/binaural": [
+        "audio/binaural/R0008_segment_binaural.wav",
+        "1fc1c8152a56600b3a6dd7b9cb9ce652"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0008_segment_ambisonics.wav",
+        "1e82914da69e9c8d942aa96d70ed7098"
+      ],
+      "video": [
+        "video/spherical/R0008_segment_ambisonics_headphones_highres.360.mono.mov",
+        "407cdc341dfc1f2893ef5abb9f2d8f54"
+      ]
+    },
+    "R0009": {
+      "audio/binaural": [
+        "audio/binaural/R0009_segment_binaural.wav",
+        "228611900eb93a00a098cf01977d119e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0009_segment_ambisonics.wav",
+        "ec0398c68789d56fbf77a9230c091225"
+      ],
+      "video": [
+        "video/spherical/R0009_segment_ambisonics_headphones_highres.360.mono.mov",
+        "669e231e96c16fbe1e689d8eaf3791fc"
+      ]
+    },
+    "R0010": {
+      "audio/binaural": [
+        "audio/binaural/R0010_segment_binaural.wav",
+        "a55b36d4a91f8b01f67309cef09874e2"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0010_segment_ambisonics.wav",
+        "84d785184b7f8cd2c4c6662dd2a09468"
+      ],
+      "video": [
+        "video/spherical/R0010_segment_ambisonics_headphones_highres.360.mono.mov",
+        "3fcf18522442eccb53b05a89a3b408f6"
+      ]
+    },
+    "R0011": {
+      "audio/binaural": [
+        "audio/binaural/R0011_segment_binaural.wav",
+        "a9b2c8c51e5706a21fb6f935eebdf3ed"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0011_segment_ambisonics.wav",
+        "a1589cd1af22a9af969b94da0f3b081d"
+      ],
+      "video": [
+        "video/spherical/R0011_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4b2468637414a1cb6148ca21db40bfee"
+      ]
+    },
+    "R0012": {
+      "audio/binaural": [
+        "audio/binaural/R0012_segment_binaural.wav",
+        "7a47043360df09f1aaf2c605cba9806c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0012_segment_ambisonics.wav",
+        "b2f0d14172d4f46be5afdbf735e4d322"
+      ],
+      "video": [
+        "video/spherical/R0012_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d5e65599f6e21074fc282e4eeba4d99d"
+      ]
+    },
+    "R0013": {
+      "audio/binaural": [
+        "audio/binaural/R0013_segment_binaural.wav",
+        "0013952f09a50a99ecfd7750f2b1f3af"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0013_segment_ambisonics.wav",
+        "ffd3f48590746c288101a2631077deec"
+      ],
+      "video": [
+        "video/spherical/R0013_segment_ambisonics_headphones_highres.360.mono.mov",
+        "879bc3dc7db1b48855f64bf1e6a77607"
+      ]
+    },
+    "R0014": {
+      "audio/binaural": [
+        "audio/binaural/R0014_segment_binaural.wav",
+        "79a0eb80b902a533f0f42129f64931f7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0014_segment_ambisonics.wav",
+        "5aafbae0b2b79260ee22fb3344341652"
+      ],
+      "video": [
+        "video/spherical/R0014_segment_ambisonics_headphones_highres.360.mono.mov",
+        "820184fb4a3fdd93b399104bb211c24b"
+      ]
+    },
+    "R0015": {
+      "audio/binaural": [
+        "audio/binaural/R0015_segment_binaural.wav",
+        "58f871afc7397084799be2ddf12ab29c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0015_segment_ambisonics.wav",
+        "709cccbf8487648e4a818173e972cb0f"
+      ],
+      "video": [
+        "video/spherical/R0015_segment_ambisonics_headphones_highres.360.mono.mov",
+        "70907bbb00bc74b665250012187582e2"
+      ]
+    },
+    "R0016": {
+      "audio/binaural": [
+        "audio/binaural/R0016_segment_binaural.wav",
+        "8e26848f4a462169cbbdb000ca342909"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0016_segment_ambisonics.wav",
+        "33d064deb8341516b23f8fe1965e2506"
+      ],
+      "video": [
+        "video/spherical/R0016_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d051cb8767b27be5c93ca0fa6d5223fe"
+      ]
+    },
+    "R0017": {
+      "audio/binaural": [
+        "audio/binaural/R0017_segment_binaural.wav",
+        "78cfee7d69cfba093ad546e20007cfc7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0017_segment_ambisonics.wav",
+        "83033b605cba467c4113b55c235c1980"
+      ],
+      "video": [
+        "video/spherical/R0017_segment_ambisonics_headphones_highres.360.mono.mov",
+        "81f036c0ea7eba22df6a47ae06ef050e"
+      ]
+    },
+    "R0018": {
+      "audio/binaural": [
+        "audio/binaural/R0018_segment_binaural.wav",
+        "ae57cece297714658fa367a75fe43262"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0018_segment_ambisonics.wav",
+        "efd22a59d78b03b6f37547db85e9aed0"
+      ],
+      "video": [
+        "video/spherical/R0018_segment_ambisonics_headphones_highres.360.mono.mov",
+        "c10fa811ff454f11d0837981273f2230"
+      ]
+    },
+    "R0019": {
+      "audio/binaural": [
+        "audio/binaural/R0019_segment_binaural.wav",
+        "4d76c22ea8e2bfbe6eaa71852d65ad90"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0019_segment_ambisonics.wav",
+        "f3ae48e282c2279acb8dd48bceac6874"
+      ],
+      "video": [
+        "video/spherical/R0019_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4ac28c490024ab9c2579f85f3e394c93"
+      ]
+    },
+    "R0020": {
+      "audio/binaural": [
+        "audio/binaural/R0020_segment_binaural.wav",
+        "1498a3824cceb060a58c8138bbe08813"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0020_segment_ambisonics.wav",
+        "df4d9df644629bdd5a7b17289b26b247"
+      ],
+      "video": [
+        "video/spherical/R0020_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4cad721b1af4e7950ab5423036b44ce5"
+      ]
+    },
+    "R0021": {
+      "audio/binaural": [
+        "audio/binaural/R0021_segment_binaural.wav",
+        "6692ae266e624848aa4f3990b98331d9"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0021_segment_ambisonics.wav",
+        "4b5f81371c731fdda37f4e1f7cf28395"
+      ],
+      "video": [
+        "video/spherical/R0021_segment_ambisonics_headphones_highres.360.mono.mov",
+        "bb64663feb3cef337e93ed460bd2e56c"
+      ]
+    },
+    "R0023": {
+      "audio/binaural": [
+        "audio/binaural/R0023_segment_binaural.wav",
+        "699e30c6ffeca8e8522e501239bcec1c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0023_segment_ambisonics.wav",
+        "7d134d45ac8de3a307cbba474f55073d"
+      ],
+      "video": [
+        "video/spherical/R0023_segment_ambisonics_headphones_highres.360.mono.mov",
+        "7ae79c77bb39a4d4e0e534274cae431d"
+      ]
+    },
+    "R0024": {
+      "audio/binaural": [
+        "audio/binaural/R0024_segment_binaural.wav",
+        "fd08f5dcd3ac0827d5621570bdee2419"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0024_segment_ambisonics.wav",
+        "898d670f469158965d9d9866c3699b8a"
+      ],
+      "video": [
+        "video/spherical/R0024_segment_ambisonics_headphones_highres.360.mono.mov",
+        "717632dd4a8965f448f964c12e0584ba"
+      ]
+    },
+    "R0025": {
+      "audio/binaural": [
+        "audio/binaural/R0025_segment_binaural.wav",
+        "8d2606fae52b4b226850749f30d59e06"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0025_segment_ambisonics.wav",
+        "8008b87f71713e1aaff5e91220e5fced"
+      ],
+      "video": [
+        "video/spherical/R0025_segment_ambisonics_headphones_highres.360.mono.mov",
+        "080fc3bee4646d228a1ea7058b083df8"
+      ]
+    },
+    "R0026": {
+      "audio/binaural": [
+        "audio/binaural/R0026_segment_binaural.wav",
+        "4948cf62dfe37d25bf25564c0adbe2d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0026_segment_ambisonics.wav",
+        "9f483da7e803bc34e2ca32be35f18499"
+      ],
+      "video": [
+        "video/spherical/R0026_segment_ambisonics_headphones_highres.360.mono.mov",
+        "482855dfe8008f462eb955f3ea11cdb3"
+      ]
+    },
+    "R0027": {
+      "audio/binaural": [
+        "audio/binaural/R0027_segment_binaural.wav",
+        "f85ec71f054769f37300d2b85e62db6d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0027_segment_ambisonics.wav",
+        "0ef8fc3c7c15458ab8cd6045557e10a1"
+      ],
+      "video": [
+        "video/spherical/R0027_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4fb29fc1a1525b1d6fc93fbb360329f7"
+      ]
+    },
+    "R0028": {
+      "audio/binaural": [
+        "audio/binaural/R0028_segment_binaural.wav",
+        "c912f205a54b3f68fa2d4e2404af05ee"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0028_segment_ambisonics.wav",
+        "c19247f0b820aac858c7880535a23ebd"
+      ],
+      "video": [
+        "video/spherical/R0028_segment_ambisonics_headphones_highres.360.mono.mov",
+        "eaeefc475a92018a68dacf8a1f12bec2"
+      ]
+    },
+    "R0029": {
+      "audio/binaural": [
+        "audio/binaural/R0029_segment_binaural.wav",
+        "590d592a5b078015a405c37b4f8bd3ec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0029_segment_ambisonics.wav",
+        "8b9cbca8a1303ae824267b463e6fae4b"
+      ],
+      "video": [
+        "video/spherical/R0029_segment_ambisonics_headphones_highres.360.mono.mov",
+        "ee2244199d1ed5a218b344452d63b12a"
+      ]
+    },
+    "R0030": {
+      "audio/binaural": [
+        "audio/binaural/R0030_segment_binaural.wav",
+        "0b87fa23693eb8bf7b4d6519558e28d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0030_segment_ambisonics.wav",
+        "758f72a95508683745b69b60c74a48b7"
+      ],
+      "video": [
+        "video/spherical/R0030_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e408d919653e181bcc7c165727c277cc"
+      ]
+    },
+    "R0031": {
+      "audio/binaural": [
+        "audio/binaural/R0031_segment_binaural.wav",
+        "248496cfd92bb2ff382fcb730c8e981e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0031_segment_ambisonics.wav",
+        "e3b72c1a0380e300832080738641edae"
+      ],
+      "video": [
+        "video/spherical/R0031_segment_ambisonics_headphones_highres.360.mono.mov",
+        "0920983ff0f89af3f2391c3958f1d76c"
+      ]
+    },
+    "R0032": {
+      "audio/binaural": [
+        "audio/binaural/R0032_segment_binaural.wav",
+        "8d5bc1db3b2f8bac87aa117c498c2590"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0032_segment_ambisonics.wav",
+        "27ea2bc5d5c24c8ef1e16dc8fd6fe7ab"
+      ],
+      "video": [
+        "video/spherical/R0032_segment_ambisonics_headphones_highres.360.mono.mov",
+        "cac18d2e7e421ab2e228e97be404f996"
+      ]
+    },
+    "R0033": {
+      "audio/binaural": [
+        "audio/binaural/R0033_segment_binaural.wav",
+        "84e7cce94297bda5919f0b373ae85b7e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0033_segment_ambisonics.wav",
+        "20335b7c169db24bc80a6b13b0ee0e01"
+      ],
+      "video": [
+        "video/spherical/R0033_segment_ambisonics_headphones_highres.360.mono.mov",
+        "182b4f73b56a8cb5305c73082912ae5a"
+      ]
+    },
+    "R0034": {
+      "audio/binaural": [
+        "audio/binaural/R0034_segment_binaural.wav",
+        "602c340b80171e21692c7a63ca3666de"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0034_segment_ambisonics.wav",
+        "ce8026381be9a6639cd83f8bce822113"
+      ],
+      "video": [
+        "video/spherical/R0034_segment_ambisonics_headphones_highres.360.mono.mov",
+        "301eac2bd055d07b4f72448465c3ecb8"
+      ]
+    },
+    "R0035": {
+      "audio/binaural": [
+        "audio/binaural/R0035_segment_binaural.wav",
+        "5236807b1413a0509d54e30563ff2263"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0035_segment_ambisonics.wav",
+        "b3ed64b74f5b14932760116359b415e0"
+      ],
+      "video": [
+        "video/spherical/R0035_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4da2338552c0636a8399b73aa264050f"
+      ]
+    },
+    "R0036": {
+      "audio/binaural": [
+        "audio/binaural/R0036_segment_binaural.wav",
+        "b77b22dee204d1b7f4079a2310e61d96"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0036_segment_ambisonics.wav",
+        "809f36ebc7873842d93e790bbafa3d43"
+      ],
+      "video": [
+        "video/spherical/R0036_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e203720d8fb8135e183ab1f724f3ab57"
+      ]
+    },
+    "R0037": {
+      "audio/binaural": [
+        "audio/binaural/R0037_segment_binaural.wav",
+        "84165ecd44bd3360c6f40a6f1f2c4095"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0037_segment_ambisonics.wav",
+        "c2b1eae1dbca4797687e6d37f50bf85e"
+      ],
+      "video": [
+        "video/spherical/R0037_segment_ambisonics_headphones_highres.360.mono.mov",
+        "9f27042d15c5e146df87a064f525b359"
+      ]
+    },
+    "R0038": {
+      "audio/binaural": [
+        "audio/binaural/R0038_segment_binaural.wav",
+        "ea88288de7fcb37624889f4d1c2b2562"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0038_segment_ambisonics.wav",
+        "3816e3a3c5cf022d69ccb302f30d7d90"
+      ],
+      "video": [
+        "video/spherical/R0038_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e6793e7e9172db6415ee2c522fff94bb"
+      ]
+    },
+    "R0039": {
+      "audio/binaural": [
+        "audio/binaural/R0039_segment_binaural.wav",
+        "52acbb86866e59cd34a0b240ccf1b66e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0039_segment_ambisonics.wav",
+        "22dcd328d7df2cc9e38d0a57d0e0b92a"
+      ],
+      "video": [
+        "video/spherical/R0039_segment_ambisonics_headphones_highres.360.mono.mov",
+        "bf83a2cb5b842aaab78b6e5dfc7aa9d7"
+      ]
+    },
+    "R0040": {
+      "audio/binaural": [
+        "audio/binaural/R0040_segment_binaural.wav",
+        "1b7f90d0aebbf0f9f9e6a9e4e4eff320"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0040_segment_ambisonics.wav",
+        "3ba60a34f4e22ce8f8c2b8fb809fb70e"
+      ],
+      "video": [
+        "video/spherical/R0040_segment_ambisonics_headphones_highres.360.mono.mov",
+        "f6cd84216a27cd3eb3c57e101425babe"
+      ]
+    },
+    "R0041": {
+      "audio/binaural": [
+        "audio/binaural/R0041_segment_binaural.wav",
+        "273aec0eddde89d0edf894f4d194d4cf"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0041_segment_ambisonics.wav",
+        "7d66be4e2e291d3048621123d7400c40"
+      ],
+      "video": [
+        "video/spherical/R0041_segment_ambisonics_headphones_highres.360.mono.mov",
+        "ad6c8437917b6c320f78bdc32d801199"
+      ]
+    },
+    "R0042": {
+      "audio/binaural": [
+        "audio/binaural/R0042_segment_binaural.wav",
+        "652f383ad8128b86d3ccf544aee6a80b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0042_segment_ambisonics.wav",
+        "812b8606094640c0a84accdc9d4fd9dd"
+      ],
+      "video": [
+        "video/spherical/R0042_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a627dbc051ef4d518f9720965e6b6e20"
+      ]
+    },
+    "R0043": {
+      "audio/binaural": [
+        "audio/binaural/R0043_segment_binaural.wav",
+        "8f85111b501b14757d9876e95176f5b1"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0043_segment_ambisonics.wav",
+        "1634310dfb4c27e376a43c8eec2f11f7"
+      ],
+      "video": [
+        "video/spherical/R0043_segment_ambisonics_headphones_highres.360.mono.mov",
+        "2ffbb0d1d054939613ba46932eee34fe"
+      ]
+    },
+    "R0044": {
+      "audio/binaural": [
+        "audio/binaural/R0044_segment_binaural.wav",
+        "738d53ce69b1177aa7ee05671fa15269"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0044_segment_ambisonics.wav",
+        "6e0201cba20e0d83e7463fbfbb1dc8e8"
+      ],
+      "video": [
+        "video/spherical/R0044_segment_ambisonics_headphones_highres.360.mono.mov",
+        "cace861e4fd31ea9e716490e8b6f8a96"
+      ]
+    },
+    "R0045": {
+      "audio/binaural": [
+        "audio/binaural/R0045_segment_binaural.wav",
+        "f05d83aa93a0d6199974791d8a304f65"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0045_segment_ambisonics.wav",
+        "423a279739ca08788b341aeea6c122c9"
+      ],
+      "video": [
+        "video/spherical/R0045_segment_ambisonics_headphones_highres.360.mono.mov",
+        "deeeaacd09064df24c9ae0e64ed408e9"
+      ]
+    },
+    "R0046": {
+      "audio/binaural": [
+        "audio/binaural/R0046_segment_binaural.wav",
+        "c1d74a7e49efbb659cce261605fbdf18"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0046_segment_ambisonics.wav",
+        "df559885efdbec32522828cce017a960"
+      ],
+      "video": [
+        "video/spherical/R0046_segment_ambisonics_headphones_highres.360.mono.mov",
+        "aae3991413a857390dbf16abcb1fe5ec"
+      ]
+    },
+    "R0047": {
+      "audio/binaural": [
+        "audio/binaural/R0047_segment_binaural.wav",
+        "284c494295dd9aaddef6c29563d3047a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0047_segment_ambisonics.wav",
+        "1a07f5ce0c73eb3053d4d0df695627cf"
+      ],
+      "video": [
+        "video/spherical/R0047_segment_ambisonics_headphones_highres.360.mono.mov",
+        "8c239182469a2c0d059f6b8dc5a055c2"
+      ]
+    },
+    "R0048": {
+      "audio/binaural": [
+        "audio/binaural/R0048_segment_binaural.wav",
+        "90da191dbc061d0257bdeeeb292eebfb"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0048_segment_ambisonics.wav",
+        "e6ba04c8e3d8b70ee0fb8f8bfb8b9642"
+      ],
+      "video": [
+        "video/spherical/R0048_segment_ambisonics_headphones_highres.360.mono.mov",
+        "f5f204daaee10f301134e6460362693e"
+      ]
+    },
+    "R0049": {
+      "audio/binaural": [
+        "audio/binaural/R0049_segment_binaural.wav",
+        "4e2d57265ae3ff6b9223b5e41d876d68"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0049_segment_ambisonics.wav",
+        "6b590c14b7d3b0b4a000a4785dded1b8"
+      ],
+      "video": [
+        "video/spherical/R0049_segment_ambisonics_headphones_highres.360.mono.mov",
+        "7cd17955be2949600349eebcd4118a69"
+      ]
+    },
+    "R0050": {
+      "audio/binaural": [
+        "audio/binaural/R0050_segment_binaural.wav",
+        "990dacf04e364305bb20cf45b66c7b53"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0050_segment_ambisonics.wav",
+        "0b461290bf9941188832af4a2ff3fe7f"
+      ],
+      "video": [
+        "video/spherical/R0050_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b69b07e67de18d8d1e6c2405280cf100"
+      ]
+    },
+    "R0051": {
+      "audio/binaural": [
+        "audio/binaural/R0051_segment_binaural.wav",
+        "479a7ea019f5f912aadef263ae58c709"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0051_segment_ambisonics.wav",
+        "268bce7b63fec1d70ab13369797c6042"
+      ],
+      "video": [
+        "video/spherical/R0051_segment_ambisonics_headphones_highres.360.mono.mov",
+        "2cf960c61c31b97766dcf8752c3e2d25"
+      ]
+    },
+    "R0052": {
+      "audio/binaural": [
+        "audio/binaural/R0052_segment_binaural.wav",
+        "47692164f08af3c2954c9fafadb030c7"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0052_segment_ambisonics.wav",
+        "6ba708ad557706dc1fcf3429eaf4d091"
+      ],
+      "video": [
+        "video/spherical/R0052_segment_ambisonics_headphones_highres.360.mono.mov",
+        "6df972104f108547e692d9818de850e2"
+      ]
+    },
+    "R0053": {
+      "audio/binaural": [
+        "audio/binaural/R0053_segment_binaural.wav",
+        "fe8876594d8adacf89cad4283b7fee90"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0053_segment_ambisonics.wav",
+        "74ef1ba1aed3ecb8d85f898271019bb5"
+      ],
+      "video": [
+        "video/spherical/R0053_segment_ambisonics_headphones_highres.360.mono.mov",
+        "7d722e29c3f7736de693883ae9b952be"
+      ]
+    },
+    "R0054": {
+      "audio/binaural": [
+        "audio/binaural/R0054_segment_binaural.wav",
+        "71ed1d2351976ea3f0633e212717e442"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0054_segment_ambisonics.wav",
+        "fe28836b0411af8ad97c5780a7fa4b91"
+      ],
+      "video": [
+        "video/spherical/R0054_segment_ambisonics_headphones_highres.360.mono.mov",
+        "62fd76420895253bbae4d474699ab4d9"
+      ]
+    },
+    "R0055": {
+      "audio/binaural": [
+        "audio/binaural/R0055_segment_binaural.wav",
+        "41debe56163d3a9304bb3007f5aa2e86"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0055_segment_ambisonics.wav",
+        "7a676e70448037dde54d9c3d369536fd"
+      ],
+      "video": [
+        "video/spherical/R0055_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d23b9c85264141a085aae5f2f3636265"
+      ]
+    },
+    "R0056": {
+      "audio/binaural": [
+        "audio/binaural/R0056_segment_binaural.wav",
+        "96a3722bc3d562980f54e575f051b655"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0056_segment_ambisonics.wav",
+        "356e30a14a4b01ac182cd5b584d5144b"
+      ],
+      "video": [
+        "video/spherical/R0056_segment_ambisonics_headphones_highres.360.mono.mov",
+        "43f5a8938600520ec05ecda16cd2bc32"
+      ]
+    },
+    "R0057": {
+      "audio/binaural": [
+        "audio/binaural/R0057_segment_binaural.wav",
+        "51a41075e2a58567f2ce08596de328aa"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0057_segment_ambisonics.wav",
+        "f45e3e8071277a89413c4094a47d3ef4"
+      ],
+      "video": [
+        "video/spherical/R0057_segment_ambisonics_headphones_highres.360.mono.mov",
+        "47dbaaf8dd9c40727095295f9ae49d4e"
+      ]
+    },
+    "R0058": {
+      "audio/binaural": [
+        "audio/binaural/R0058_segment_binaural.wav",
+        "161cf895d38b3af51092b5f37e580eab"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0058_segment_ambisonics.wav",
+        "f72c02aa76f66e98d4eb11d874a33bdb"
+      ],
+      "video": [
+        "video/spherical/R0058_segment_ambisonics_headphones_highres.360.mono.mov",
+        "2eb648ad8a555bf86fcc8424d915dffc"
+      ]
+    },
+    "R0059": {
+      "audio/binaural": [
+        "audio/binaural/R0059_segment_binaural.wav",
+        "4bbfae10dc486fd2d6630a2372f86b0d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0059_segment_ambisonics.wav",
+        "519fb52f9ddc3c6109246768d078f623"
+      ],
+      "video": [
+        "video/spherical/R0059_segment_ambisonics_headphones_highres.360.mono.mov",
+        "510e547dcdec25cfcf2cab5ba45aa878"
+      ]
+    },
+    "R0060": {
+      "audio/binaural": [
+        "audio/binaural/R0060_segment_binaural.wav",
+        "7c30c3d031b70181466dd5ab361da86b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0060_segment_ambisonics.wav",
+        "a7c319c8acb777b3fbfd90fdaa1c7148"
+      ],
+      "video": [
+        "video/spherical/R0060_segment_ambisonics_headphones_highres.360.mono.mov",
+        "de9dd293a8cc7d892b5d3962d28996bb"
+      ]
+    },
+    "R0061": {
+      "audio/binaural": [
+        "audio/binaural/R0061_segment_binaural.wav",
+        "be4c05a6aa961029708768eea1cad599"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0061_segment_ambisonics.wav",
+        "203edbd766baf13d0d8e616b60c5e018"
+      ],
+      "video": [
+        "video/spherical/R0061_segment_ambisonics_headphones_highres.360.mono.mov",
+        "7fcef56d8be238f411e0ad080a139635"
+      ]
+    },
+    "R0062": {
+      "audio/binaural": [
+        "audio/binaural/R0062_segment_binaural.wav",
+        "fce9f769535e600c38e799f23a3f34ac"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0062_segment_ambisonics.wav",
+        "f0871a217380118ac6430c4e42bf556f"
+      ],
+      "video": [
+        "video/spherical/R0062_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b810aaaa4a810620c3f35332623d2ab4"
+      ]
+    },
+    "R0063": {
+      "audio/binaural": [
+        "audio/binaural/R0063_segment_binaural.wav",
+        "6b2b4e360e67014fcd6bc9301f1d7da8"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0063_segment_ambisonics.wav",
+        "91e2574a4f47ee1d7cb1be5fac881809"
+      ],
+      "video": [
+        "video/spherical/R0063_segment_ambisonics_headphones_highres.360.mono.mov",
+        "819497cb9b553e3336d93d8bf2ee8d64"
+      ]
+    },
+    "R0064": {
+      "audio/binaural": [
+        "audio/binaural/R0064_segment_binaural.wav",
+        "85fb635a190a5c7e3e6062ce13147b9f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0064_segment_ambisonics.wav",
+        "e50302cdbf0599614b675898be7009d1"
+      ],
+      "video": [
+        "video/spherical/R0064_segment_ambisonics_headphones_highres.360.mono.mov",
+        "07e9960de7ee8e3684b99f0abda9fe24"
+      ]
+    },
+    "R0065": {
+      "audio/binaural": [
+        "audio/binaural/R0065_segment_binaural.wav",
+        "cb2208520f9c4eeaad0722fc93956137"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0065_segment_ambisonics.wav",
+        "c746b87b1b359b3ce85e63d664c8fa5b"
+      ],
+      "video": [
+        "video/spherical/R0065_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d8410b06e2e2b17cd9d7922b59346f79"
+      ]
+    },
+    "R0066": {
+      "audio/binaural": [
+        "audio/binaural/R0066_segment_binaural.wav",
+        "bbee43d2ea147e5cfd7b4f10041ac292"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0066_segment_ambisonics.wav",
+        "f29155f77f5a243cb986ba08c9382dbd"
+      ],
+      "video": [
+        "video/spherical/R0066_segment_ambisonics_headphones_highres.360.mono.mov",
+        "1fc8467881aefcb5ac8c51bbccec63b3"
+      ]
+    },
+    "R0067": {
+      "audio/binaural": [
+        "audio/binaural/R0067_segment_binaural.wav",
+        "990427fc9c0ef33016a7399de15df56d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0067_segment_ambisonics.wav",
+        "c9332fc45706c80f86cb4babcb9b6ef2"
+      ],
+      "video": [
+        "video/spherical/R0067_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d3faff670f5f03903cfef313affdc3de"
+      ]
+    },
+    "R0068": {
+      "audio/binaural": [
+        "audio/binaural/R0068_segment_binaural.wav",
+        "5a9819d0f387e2d480970aa941b4625b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0068_segment_ambisonics.wav",
+        "465551536e4688a135d312c7b6c7fa36"
+      ],
+      "video": [
+        "video/spherical/R0068_segment_ambisonics_headphones_highres.360.mono.mov",
+        "1dc36dc7064c7f8a506ba0c84b3b5129"
+      ]
+    },
+    "R0069": {
+      "audio/binaural": [
+        "audio/binaural/R0069_segment_binaural.wav",
+        "2285c9c452c694043720a3a5483c9bb4"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0069_segment_ambisonics.wav",
+        "8bd4982d476538cd0d8742a84bb516fd"
+      ],
+      "video": [
+        "video/spherical/R0069_segment_ambisonics_headphones_highres.360.mono.mov",
+        "1994b93bfde06758e4a01ff431e59a1a"
+      ]
+    },
+    "R0070": {
+      "audio/binaural": [
+        "audio/binaural/R0070_segment_binaural.wav",
+        "e0f659dcfd3c5033cef5b7004797903c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0070_segment_ambisonics.wav",
+        "1cc595abc01295fe336b41a2e542316c"
+      ],
+      "video": [
+        "video/spherical/R0070_segment_ambisonics_headphones_highres.360.mono.mov",
+        "ac53bb4eb1dd3f9788e187fa9238aed5"
+      ]
+    },
+    "R0071": {
+      "audio/binaural": [
+        "audio/binaural/R0071_segment_binaural.wav",
+        "54124107b83ccb1d8da86d4aed1d43a9"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0071_segment_ambisonics.wav",
+        "b1019a3506bde88383030de09b05be7b"
+      ],
+      "video": [
+        "video/spherical/R0071_segment_ambisonics_headphones_highres.360.mono.mov",
+        "95ebe53a965a53030f9d5dba64809c5a"
+      ]
+    },
+    "R0072": {
+      "audio/binaural": [
+        "audio/binaural/R0072_segment_binaural.wav",
+        "e25b32b36aa75349b3fa1c4ec67bb720"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0072_segment_ambisonics.wav",
+        "798c52f95ab61e97797abbf27d3441c1"
+      ],
+      "video": [
+        "video/spherical/R0072_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e2157dd4852a6c460f34a86b5abc28ea"
+      ]
+    },
+    "R0073": {
+      "audio/binaural": [
+        "audio/binaural/R0073_segment_binaural.wav",
+        "24b5c4fab416858b7ce11fe3d245b24c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0073_segment_ambisonics.wav",
+        "4a8659fa5bb5efeca2d6be6242c825b3"
+      ],
+      "video": [
+        "video/spherical/R0073_segment_ambisonics_headphones_highres.360.mono.mov",
+        "74972a5faee7f5bf49fa72fdf1910193"
+      ]
+    },
+    "R0074": {
+      "audio/binaural": [
+        "audio/binaural/R0074_segment_binaural.wav",
+        "66982f5ebf261912e8216d14fee28331"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0074_segment_ambisonics.wav",
+        "17de81f83ce4623fe1991053603591dc"
+      ],
+      "video": [
+        "video/spherical/R0074_segment_ambisonics_headphones_highres.360.mono.mov",
+        "bda9f9392c9714eed2491ebcda155b4e"
+      ]
+    },
+    "R0075": {
+      "audio/binaural": [
+        "audio/binaural/R0075_segment_binaural.wav",
+        "8f9eb969994ca58e79b16b0fa5ff119d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0075_segment_ambisonics.wav",
+        "efdd8a6e9309ee58db9f2761a7af7ca3"
+      ],
+      "video": [
+        "video/spherical/R0075_segment_ambisonics_headphones_highres.360.mono.mov",
+        "aa2da44df53f0bfe5509daedab6f9646"
+      ]
+    },
+    "R0076": {
+      "audio/binaural": [
+        "audio/binaural/R0076_segment_binaural.wav",
+        "b8dbef9eb4952fb908acb536932dfd9c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0076_segment_ambisonics.wav",
+        "0827e447d9cb555bbb75a8a0fb0555d3"
+      ],
+      "video": [
+        "video/spherical/R0076_segment_ambisonics_headphones_highres.360.mono.mov",
+        "fcb61be221f790d5ef665abb098d4eda"
+      ]
+    },
+    "R0077": {
+      "audio/binaural": [
+        "audio/binaural/R0077_segment_binaural.wav",
+        "c1bc5323199c9af5a6cce335b3ee3990"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0077_segment_ambisonics.wav",
+        "4b1b0f1cf0fc54707317c20bab037586"
+      ],
+      "video": [
+        "video/spherical/R0077_segment_ambisonics_headphones_highres.360.mono.mov",
+        "80529346f731bf66e116f64a7b2378f0"
+      ]
+    },
+    "R0079": {
+      "audio/binaural": [
+        "audio/binaural/R0079_segment_binaural.wav",
+        "57b967d84d663b8b2b27ebebaa99fca6"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0079_segment_ambisonics.wav",
+        "a5e12640d4a62f931a6799236e95e57c"
+      ],
+      "video": [
+        "video/spherical/R0079_segment_ambisonics_headphones_highres.360.mono.mov",
+        "be3de5f47f7b26709423f50d18055ffc"
+      ]
+    },
+    "R0080": {
+      "audio/binaural": [
+        "audio/binaural/R0080_segment_binaural.wav",
+        "7dbbfd14a582a1e4960dd619ea044ba2"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0080_segment_ambisonics.wav",
+        "738c438648ad93d025ed5584be5ade84"
+      ],
+      "video": [
+        "video/spherical/R0080_segment_ambisonics_headphones_highres.360.mono.mov",
+        "08b7261716f072cfed37886ca2511068"
+      ]
+    },
+    "R0081": {
+      "audio/binaural": [
+        "audio/binaural/R0081_segment_binaural.wav",
+        "e5f1e58f4181f06870ae5cbe2242d38c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0081_segment_ambisonics.wav",
+        "db85f63d3c1539e9d65c1cb5aa1b4a95"
+      ],
+      "video": [
+        "video/spherical/R0081_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d51f798b2e08c8719e0487db83a90c08"
+      ]
+    },
+    "R0082": {
+      "audio/binaural": [
+        "audio/binaural/R0082_segment_binaural.wav",
+        "222b850f00835a09162afa0fd4fd7fc5"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0082_segment_ambisonics.wav",
+        "6af3a2371b4d5b3322681e0d2ca1e822"
+      ],
+      "video": [
+        "video/spherical/R0082_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b4c0101b9926f9c764577c84d618e114"
+      ]
+    },
+    "R0083": {
+      "audio/binaural": [
+        "audio/binaural/R0083_segment_binaural.wav",
+        "b08960ab9689ed44e3523804574ee54e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0083_segment_ambisonics.wav",
+        "3f2d1cda7b19479bad90cc2b9afa88b6"
+      ],
+      "video": [
+        "video/spherical/R0083_segment_ambisonics_headphones_highres.360.mono.mov",
+        "fcb897db3a1366b599384a2446a560b0"
+      ]
+    },
+    "R0084": {
+      "audio/binaural": [
+        "audio/binaural/R0084_segment_binaural.wav",
+        "9c1f6c796a97fd2b1723b951ce0855da"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0084_segment_ambisonics.wav",
+        "7c3b4c0a108bee22d0c57121ae67be91"
+      ],
+      "video": [
+        "video/spherical/R0084_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b685e45895ccbf5cb276697c864b4fe8"
+      ]
+    },
+    "R0085": {
+      "audio/binaural": [
+        "audio/binaural/R0085_segment_binaural.wav",
+        "8d9a5e2c65ba5a997c364f9e5e4109f0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0085_segment_ambisonics.wav",
+        "e1c64b6df52755121872e57fa56b07f9"
+      ],
+      "video": [
+        "video/spherical/R0085_segment_ambisonics_headphones_highres.360.mono.mov",
+        "1df9ce315fe39438ed77ab145f28b311"
+      ]
+    },
+    "R0086": {
+      "audio/binaural": [
+        "audio/binaural/R0086_segment_binaural.wav",
+        "a63818cc76a369680c80bf9a64fc5243"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0086_segment_ambisonics.wav",
+        "28c5d7c58a85051e694dab563f2846b0"
+      ],
+      "video": [
+        "video/spherical/R0086_segment_ambisonics_headphones_highres.360.mono.mov",
+        "6c5043efa699868348886b0e363c0079"
+      ]
+    },
+    "R0088": {
+      "audio/binaural": [
+        "audio/binaural/R0088_segment_binaural.wav",
+        "c505fb90b05f02173aeba61283904c1e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0088_segment_ambisonics.wav",
+        "197c931b9602a0c61ffc8b35b1239c01"
+      ],
+      "video": [
+        "video/spherical/R0088_segment_ambisonics_headphones_highres.360.mono.mov",
+        "f04fba9e32397a1668598b58517a74a7"
+      ]
+    },
+    "R0089": {
+      "audio/binaural": [
+        "audio/binaural/R0089_segment_binaural.wav",
+        "b499d3d077f9df73b73fb6ad91744b6b"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0089_segment_ambisonics.wav",
+        "749d51d76cc9e0bfa0e7e2326f39ecdb"
+      ],
+      "video": [
+        "video/spherical/R0089_segment_ambisonics_headphones_highres.360.mono.mov",
+        "9b0aafde9a556c97b6ace690200febc8"
+      ]
+    },
+    "R0090": {
+      "audio/binaural": [
+        "audio/binaural/R0090_segment_binaural.wav",
+        "7f21d568caed5defc9987af1aab10978"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0090_segment_ambisonics.wav",
+        "33d7db0b46ceb0ca304a8ea2effb58c9"
+      ],
+      "video": [
+        "video/spherical/R0090_segment_ambisonics_headphones_highres.360.mono.mov",
+        "15eb1754bf4615f813124d203239eef3"
+      ]
+    },
+    "R0091": {
+      "audio/binaural": [
+        "audio/binaural/R0091_segment_binaural.wav",
+        "4d392dfd0f0912d7a70cd2f4c017bf8f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0091_segment_ambisonics.wav",
+        "00eb174f6de919f110a732b9427475f7"
+      ],
+      "video": [
+        "video/spherical/R0091_segment_ambisonics_headphones_highres.360.mono.mov",
+        "6d89e053bc5e12bdefaf8909dc868ad1"
+      ]
+    },
+    "R0092": {
+      "audio/binaural": [
+        "audio/binaural/R0092_segment_binaural.wav",
+        "b0e296caf4e3acddd22d7c354c1bbcd0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0092_segment_ambisonics.wav",
+        "b297f075b7f04d8c166aa0ff9ae4448a"
+      ],
+      "video": [
+        "video/spherical/R0092_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b843b66609916320ef878e25e672f7a4"
+      ]
+    },
+    "R0093": {
+      "audio/binaural": [
+        "audio/binaural/R0093_segment_binaural.wav",
+        "e583c94bf31ea86e3768168ee3cafded"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0093_segment_ambisonics.wav",
+        "0268b30cec15932c100fc60da1a65a50"
+      ],
+      "video": [
+        "video/spherical/R0093_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a3f8348d2cbe82fbbb00e27bb7411786"
+      ]
+    },
+    "R0095": {
+      "audio/binaural": [
+        "audio/binaural/R0095_segment_binaural.wav",
+        "18817ae97d0de3759640c50d89c42ae8"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0095_segment_ambisonics.wav",
+        "5c663dfba395ee9ef07267749eab5a70"
+      ],
+      "video": [
+        "video/spherical/R0095_segment_ambisonics_headphones_highres.360.mono.mov",
+        "ecfab29e63fc5a362744212466ca5f16"
+      ]
+    },
+    "R0096": {
+      "audio/binaural": [
+        "audio/binaural/R0096_segment_binaural.wav",
+        "dcc3711d63ead2102aba2907762504a3"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0096_segment_ambisonics.wav",
+        "fa878d69d387f2febeb10a730a71aecf"
+      ],
+      "video": [
+        "video/spherical/R0096_segment_ambisonics_headphones_highres.360.mono.mov",
+        "023f189fc8d3b60b0df03eeaed7884af"
+      ]
+    },
+    "R0097": {
+      "audio/binaural": [
+        "audio/binaural/R0097_segment_binaural.wav",
+        "6126e7b09c6074d4d92cbd0843f6c443"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0097_segment_ambisonics.wav",
+        "19c19fb075dfe27729a10bd99339f6b5"
+      ],
+      "video": [
+        "video/spherical/R0097_segment_ambisonics_headphones_highres.360.mono.mov",
+        "435db4cadf0a6c9fd3ccf45a9aaa206b"
+      ]
+    },
+    "R0098": {
+      "audio/binaural": [
+        "audio/binaural/R0098_segment_binaural.wav",
+        "b97bdd40096cb3805185c403336b561d"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0098_segment_ambisonics.wav",
+        "7c667bacce3faadcc3165729e980db7f"
+      ],
+      "video": [
+        "video/spherical/R0098_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4f13c6ef6bc547940e93b0b86fb09774"
+      ]
+    },
+    "R0099": {
+      "audio/binaural": [
+        "audio/binaural/R0099_segment_binaural.wav",
+        "91d718db869a67bd7946022b99975e20"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0099_segment_ambisonics.wav",
+        "08a0711e558f34e67e7198507b579bb1"
+      ],
+      "video": [
+        "video/spherical/R0099_segment_ambisonics_headphones_highres.360.mono.mov",
+        "4031f3ef30fb3dd073c31f84ca39b3bd"
+      ]
+    },
+    "R0100": {
+      "audio/binaural": [
+        "audio/binaural/R0100_segment_binaural.wav",
+        "128dfe2e759e9cd140435b6f759a14ec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0100_segment_ambisonics.wav",
+        "a46c95f0bc9378ccb38c1f567dcc422e"
+      ],
+      "video": [
+        "video/spherical/R0100_segment_ambisonics_headphones_highres.360.mono.mov",
+        "16dc6bbe1d5cc203ab4407f54ab66abf"
+      ]
+    },
+    "R0102": {
+      "audio/binaural": [
+        "audio/binaural/R0102_segment_binaural.wav",
+        "f7df94a84674334fc5825af550c46f97"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0102_segment_ambisonics.wav",
+        "985aee136a41dbf5ee9a587d631b915d"
+      ],
+      "video": [
+        "video/spherical/R0102_segment_ambisonics_headphones_highres.360.mono.mov",
+        "5ba21e5c726e86fb7ab6d96e3ed23917"
+      ]
+    },
+    "R0104": {
+      "audio/binaural": [
+        "audio/binaural/R0104_segment_binaural.wav",
+        "dadbbe49bc05a269dc4ea07f5195301f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0104_segment_ambisonics.wav",
+        "e065e0cf88d37048ae2b279be37fd7a8"
+      ],
+      "video": [
+        "video/spherical/R0104_segment_ambisonics_headphones_highres.360.mono.mov",
+        "9163351c14b17c045765ec4b633af444"
+      ]
+    },
+    "R0105": {
+      "audio/binaural": [
+        "audio/binaural/R0105_segment_binaural.wav",
+        "c4bdd96a6aed4ddfaf354884b1277e04"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0105_segment_ambisonics.wav",
+        "213002a21014c0bfafe14da569f1fba1"
+      ],
+      "video": [
+        "video/spherical/R0105_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a2774e629c2e7070dbed38a16563adca"
+      ]
+    },
+    "R0106": {
+      "audio/binaural": [
+        "audio/binaural/R0106_segment_binaural.wav",
+        "293195008cde0df8fc3d2a949a01908e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0106_segment_ambisonics.wav",
+        "82126492efc16fc2a4319ae95c97db42"
+      ],
+      "video": [
+        "video/spherical/R0106_segment_ambisonics_headphones_highres.360.mono.mov",
+        "be6ec3cf55ed7b8d4deb465f66062aa2"
+      ]
+    },
+    "R0107": {
+      "audio/binaural": [
+        "audio/binaural/R0107_segment_binaural.wav",
+        "c5272c8004b3beab6fa7179dcb21023c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0107_segment_ambisonics.wav",
+        "6af3ea0131bbe1676e2bfb8e40ae0205"
+      ],
+      "video": [
+        "video/spherical/R0107_segment_ambisonics_headphones_highres.360.mono.mov",
+        "c422362d4a7fe9ca73df535964ff2802"
+      ]
+    },
+    "R0108": {
+      "audio/binaural": [
+        "audio/binaural/R0108_segment_binaural.wav",
+        "d250f81cf28d6b0e246f9c80de495e2a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0108_segment_ambisonics.wav",
+        "29072b471c1efbba6ce7c029a9862fad"
+      ],
+      "video": [
+        "video/spherical/R0108_segment_ambisonics_headphones_highres.360.mono.mov",
+        "38a5682a8ebd516cc018c5bd1314eea2"
+      ]
+    },
+    "R0109": {
+      "audio/binaural": [
+        "audio/binaural/R0109_segment_binaural.wav",
+        "c93d635a28e1aa6082d15d02b3665742"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0109_segment_ambisonics.wav",
+        "546e346d9704120cb8ab3cbd1cb4d4ec"
+      ],
+      "video": [
+        "video/spherical/R0109_segment_ambisonics_headphones_highres.360.mono.mov",
+        "de18a18fbd6651425c26bfa66cbbd69f"
+      ]
+    },
+    "R0110": {
+      "audio/binaural": [
+        "audio/binaural/R0110_segment_binaural.wav",
+        "fb7e5fd3f20da1ebcfb7fe062de27433"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0110_segment_ambisonics.wav",
+        "7279386f48b6de172b75af46074d7090"
+      ],
+      "video": [
+        "video/spherical/R0110_segment_ambisonics_headphones_highres.360.mono.mov",
+        "ff0d9c86b9ef0a2fc18ffd184bf1d704"
+      ]
+    },
+    "R0111": {
+      "audio/binaural": [
+        "audio/binaural/R0111_segment_binaural.wav",
+        "464eec039a5d1eb7b89d680ef4c14a27"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0111_segment_ambisonics.wav",
+        "ec922bca328d63be497a2f0cca3c8a52"
+      ],
+      "video": [
+        "video/spherical/R0111_segment_ambisonics_headphones_highres.360.mono.mov",
+        "366faf3d7842a55c22b5f70067cc47c7"
+      ]
+    },
+    "R0112": {
+      "audio/binaural": [
+        "audio/binaural/R0112_segment_binaural.wav",
+        "600cc9689fb32684fb08a0e194462962"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0112_segment_ambisonics.wav",
+        "1f0d6d989b0887ca0875d79f0ee08bf6"
+      ],
+      "video": [
+        "video/spherical/R0112_segment_ambisonics_headphones_highres.360.mono.mov",
+        "5490c93564f524d2c7da781c0da2b457"
+      ]
+    },
+    "R0113": {
+      "audio/binaural": [
+        "audio/binaural/R0113_segment_binaural.wav",
+        "bc99ed8292c324b9393180ce99bc6b7f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0113_segment_ambisonics.wav",
+        "1031e911da421be6f53adb372e260d25"
+      ],
+      "video": [
+        "video/spherical/R0113_segment_ambisonics_headphones_highres.360.mono.mov",
+        "2beb73e1a8ae92b0294a6d56643b0be0"
+      ]
+    },
+    "R0114": {
+      "audio/binaural": [
+        "audio/binaural/R0114_segment_binaural.wav",
+        "f7a461362c134fda66a5c5688ff499cc"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0114_segment_ambisonics.wav",
+        "a0252e7f36b6845a3878885c960a4c45"
+      ],
+      "video": [
+        "video/spherical/R0114_segment_ambisonics_headphones_highres.360.mono.mov",
+        "3444ce9b9cbe605c701a20451523caa7"
+      ]
+    },
+    "R0115": {
+      "audio/binaural": [
+        "audio/binaural/R0115_segment_binaural.wav",
+        "686cad93e6da6aa34687c5a9d5289307"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0115_segment_ambisonics.wav",
+        "e62aeab1ba96a1bfba7812296ee9a928"
+      ],
+      "video": [
+        "video/spherical/R0115_segment_ambisonics_headphones_highres.360.mono.mov",
+        "0a89c5dc6de95d7adef8ffae63e8c366"
+      ]
+    },
+    "R0116": {
+      "audio/binaural": [
+        "audio/binaural/R0116_segment_binaural.wav",
+        "b246a27c9c4074be8d38a293fa13647a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0116_segment_ambisonics.wav",
+        "c19cac3cf09d12041f45bda5fc008033"
+      ],
+      "video": [
+        "video/spherical/R0116_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d713b041041ca492c71e406d3799ec6d"
+      ]
+    },
+    "R0117": {
+      "audio/binaural": [
+        "audio/binaural/R0117_segment_binaural.wav",
+        "22f45ed2a8c568c8fc94c06fbf189700"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0117_segment_ambisonics.wav",
+        "6db7277fc1fc91e924611200fbfe6d07"
+      ],
+      "video": [
+        "video/spherical/R0117_segment_ambisonics_headphones_highres.360.mono.mov",
+        "dc5cf77d5b2e7b297991616caf646374"
+      ]
+    },
+    "R0118": {
+      "audio/binaural": [
+        "audio/binaural/R0118_segment_binaural.wav",
+        "9397aaa461efe548eb8e540c7a04fba6"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0118_segment_ambisonics.wav",
+        "dba33274ab130ac4be4e2b0ce5abf221"
+      ],
+      "video": [
+        "video/spherical/R0118_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a4fcb565ca46fb13060bc7b803d0515a"
+      ]
+    },
+    "R0119": {
+      "audio/binaural": [
+        "audio/binaural/R0119_segment_binaural.wav",
+        "50ff0ba6f44ee941f7bb40b0a2af3c70"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0119_segment_ambisonics.wav",
+        "671c9c82bbc29ced8df016c6527dd5db"
+      ],
+      "video": [
+        "video/spherical/R0119_segment_ambisonics_headphones_highres.360.mono.mov",
+        "b86dfe06b7eaf0cb698b564c8eee0f4b"
+      ]
+    },
+    "R0120": {
+      "audio/binaural": [
+        "audio/binaural/R0120_segment_binaural.wav",
+        "031c1ce6cfb5b7b11720f6119f31303c"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0120_segment_ambisonics.wav",
+        "2b3c9ff3b4ae35c8e87ddb142c2b07f3"
+      ],
+      "video": [
+        "video/spherical/R0120_segment_ambisonics_headphones_highres.360.mono.mov",
+        "0b18826a8de85d2de7d1bfb4b6c33b1f"
+      ]
+    },
+    "R0121": {
+      "audio/binaural": [
+        "audio/binaural/R0121_segment_binaural.wav",
+        "4b8de65a5cce2275ef9a2e9a2ab60224"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0121_segment_ambisonics.wav",
+        "455ed2853b77e9b86ff4ef6f6075efdb"
+      ],
+      "video": [
+        "video/spherical/R0121_segment_ambisonics_headphones_highres.360.mono.mov",
+        "eb8b091c9b9639a6d5694c976d2e615b"
+      ]
+    },
+    "R0122": {
+      "audio/binaural": [
+        "audio/binaural/R0122_segment_binaural.wav",
+        "eb93ae39faca9a0bf162e74ead512bfe"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0122_segment_ambisonics.wav",
+        "5177aae862fa714965bbb4a5728816c0"
+      ],
+      "video": [
+        "video/spherical/R0122_segment_ambisonics_headphones_highres.360.mono.mov",
+        "96a4bcc27070d1a351d427c8b76a53a2"
+      ]
+    },
+    "R0123": {
+      "audio/binaural": [
+        "audio/binaural/R0123_segment_binaural.wav",
+        "1bb2cd3a1af7dd03e993a99e05e4be33"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0123_segment_ambisonics.wav",
+        "d6618c4becd323a5d524ae0cb4fc3f7d"
+      ],
+      "video": [
+        "video/spherical/R0123_segment_ambisonics_headphones_highres.360.mono.mov",
+        "75ffc9e2c136671627e9be0cc179fb5b"
+      ]
+    },
+    "R0124": {
+      "audio/binaural": [
+        "audio/binaural/R0124_segment_binaural.wav",
+        "e23170353054a062b57c3a7e745e439e"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0124_segment_ambisonics.wav",
+        "8721777f3dcedfb2a5b7f9c70c0637cc"
+      ],
+      "video": [
+        "video/spherical/R0124_segment_ambisonics_headphones_highres.360.mono.mov",
+        "8535a468c426c88736c0fa170f5e9310"
+      ]
+    },
+    "R0125": {
+      "audio/binaural": [
+        "audio/binaural/R0125_segment_binaural.wav",
+        "e0c5073f290cc5403fd5cb0b5c792653"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0125_segment_ambisonics.wav",
+        "1ea18bbd5164a4158b16ea241a1a6cba"
+      ],
+      "video": [
+        "video/spherical/R0125_segment_ambisonics_headphones_highres.360.mono.mov",
+        "e0f1819fcc1c50696f2f6a3822b2042a"
+      ]
+    },
+    "R0126": {
+      "audio/binaural": [
+        "audio/binaural/R0126_segment_binaural.wav",
+        "50ebfd6b67c5c122f6ccdd7e4cb6ceec"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0126_segment_ambisonics.wav",
+        "400c9cf2de346daaf1ea24b886621210"
+      ],
+      "video": [
+        "video/spherical/R0126_segment_ambisonics_headphones_highres.360.mono.mov",
+        "54b35c01b5433482e5452d92ac788870"
+      ]
+    },
+    "R0127": {
+      "audio/binaural": [
+        "audio/binaural/R0127_segment_binaural.wav",
+        "8ca10658a183b08cf075bc965bd74f78"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0127_segment_ambisonics.wav",
+        "58eec6fa453f46f70e564889e49164ad"
+      ],
+      "video": [
+        "video/spherical/R0127_segment_ambisonics_headphones_highres.360.mono.mov",
+        "d588037c33c88c29b5f194713574dbce"
+      ]
+    },
+    "R0128": {
+      "audio/binaural": [
+        "audio/binaural/R0128_segment_binaural.wav",
+        "346f34c4ed796cda21bf20ad7fa28178"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0128_segment_ambisonics.wav",
+        "88efaeb6da7d259bbfbd350df5b8d909"
+      ],
+      "video": [
+        "video/spherical/R0128_segment_ambisonics_headphones_highres.360.mono.mov",
+        "3fadc69cd65db082332f2a30e4a50aad"
+      ]
+    },
+    "R0129": {
+      "audio/binaural": [
+        "audio/binaural/R0129_segment_binaural.wav",
+        "127f0bae3f67642db60f71f20c0857d0"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0129_segment_ambisonics.wav",
+        "315b1f18348e7fcc443a55759e834425"
+      ],
+      "video": [
+        "video/spherical/R0129_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a418e30daf8c026785ea4259276b3e32"
+      ]
+    },
+    "R0130": {
+      "audio/binaural": [
+        "audio/binaural/R0130_segment_binaural.wav",
+        "339caad5ba79c55e2f4fddfe60411b2f"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0130_segment_ambisonics.wav",
+        "bf53e536c0da983e2cafbc682d494875"
+      ],
+      "video": [
+        "video/spherical/R0130_segment_ambisonics_headphones_highres.360.mono.mov",
+        "aa1d4fc9f9c20516f1cdcb410887564b"
+      ]
+    },
+    "R0131": {
+      "audio/binaural": [
+        "audio/binaural/R0131_segment_binaural.wav",
+        "c99b9cc83dd467646dc7832b237fe8bc"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0131_segment_ambisonics.wav",
+        "09674a10cc22a1c1f8fe16d9878420dd"
+      ],
+      "video": [
+        "video/spherical/R0131_segment_ambisonics_headphones_highres.360.mono.mov",
+        "505a47f5c32c9abb0704892edaad54a8"
+      ]
+    },
+    "R0132": {
+      "audio/binaural": [
+        "audio/binaural/R0132_segment_binaural.wav",
+        "97552e686ad6ff2a14174acd2d61962a"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0132_segment_ambisonics.wav",
+        "52e633c3214c4dcd892a8b612a58be79"
+      ],
+      "video": [
+        "video/spherical/R0132_segment_ambisonics_headphones_highres.360.mono.mov",
+        "a8f1e92771e03f2227781760d72d18c1"
+      ]
+    },
+    "R0133": {
+      "audio/binaural": [
+        "audio/binaural/R0133_segment_binaural.wav",
+        "7634724d6a8a338244d808077f234921"
+      ],
+      "audio/ambisonics": [
+        "audio/ambisonics/R0133_segment_ambisonics.wav",
+        "fa1551c51c98fbd80b5e2590b5863862"
+      ],
+      "video": [
+        "video/spherical/R0133_segment_ambisonics_headphones_highres.360.mono.mov",
+        "2c0da0f313a6c3a187b5e64af5aa8a9a"
+      ]
+    }
+  },
+  "metadata": {
+    "spl": [
+      "SotW_LAeq_binaural_average_LR.xlsx",
+      "d001b32ad3ed7c7954f59784690e0875"
+    ]
+  }
+}
