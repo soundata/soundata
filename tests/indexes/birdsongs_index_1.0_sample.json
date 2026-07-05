@@ -1,0 +1,17 @@
+{
+  "version": "sample",
+  "clips": {
+    "11713-2": {
+      "audio": [
+        "wav/11713-2.wav",
+        "0e6bba5ec8cf605efa772de89e14c599"
+      ]
+    }
+  },
+  "metadata": {
+    "BirdSongs": [
+      "bird_songs_metadata.csv",
+      "47101c84dd30aeb0416768261788d107"
+    ]
+  }
+}

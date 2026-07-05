@@ -21,6 +21,12 @@ Dataset Loaders
    :members:
    :inherited-members:
 
+BirdSongs
+^^^^^^^^
+.. _marco-module:
+
+.. automodule:: soundata.datasets.birdsongs
+
 Clotho
 ^^^^^^
 .. _clotho-module:
