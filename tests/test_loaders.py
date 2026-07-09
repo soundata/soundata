@@ -15,8 +15,8 @@ from tests.test_utils import get_attributes_and_properties
 
 DATASETS = soundata.DATASETS
 CUSTOM_TEST_CLIPS = {
-    "dcase23_task6a": "development/1",
-    "dcase23_task6b": "development/1",
+    "dcase23_task6a": "test_0001",
+    "dcase23_task6b": "drainage pipe running",
     "dcase_birdVox20k": "00053d90-e4b9-4045-a2f1-f39efc90cfa9",
     "dcase_bioacoustic": "2015-09-04_08-04-59_unit03",
     "esc50": "1-104089-A-22",

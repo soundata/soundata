@@ -1,7 +1,7 @@
 import pytest
 
 from soundata import core
-from soundata import initialize, list_datasets
+from soundata import initialize, list_datasets, dcase_challenge
 
 
 def test_list_datasets():
@@ -19,3 +19,12 @@ def test_initialize():
 
     with pytest.raises(ValueError):
         initialize("asdfasdfasdfa")
+
+
+def test_dcase_challenge():
+    d = dcase_challenge("dcase2023_task6a")
+    assert isinstance(d, core.DCASEWrapper)
+    assert d.challenge_name == "dcase2023_task6a"
+
+    with pytest.raises(ValueError):
+        dcase_challenge("sdkjlkjfkdjl")

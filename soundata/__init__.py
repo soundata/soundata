@@ -3,7 +3,8 @@ import os
 import pkgutil
 
 from .version import version as __version__
-
+from .dcase_challenges import dcase_challenges as DCASE_CHALLENGES
+from .core import DCASEWrapper
 
 DATASETS = [
     d.name
@@ -73,3 +74,21 @@ def initialize(dataset_name, data_home=None, version="default"):
 
     module = importlib.import_module("soundata.datasets.{}".format(dataset_name))
     return module.Dataset(data_home=data_home, version=version)
+
+
+def dcase_challenge(challenge_name, dictionary=DCASE_CHALLENGES, data_home=None):
+    """
+    Function to create DCASE wrapper
+
+    Args:
+        challenge_name (str): Name of the DCASE challenge
+        dictionary (dict): Dictionary containing challenge configurations.
+
+    Returns:
+        DCASEWrapper: Initialized wrapper instance
+    """
+
+    if challenge_name not in dictionary:
+        raise ValueError(f"Challenge '{challenge_name}' not found in dictionary")
+
+    return DCASEWrapper(challenge_name, dictionary, data_home)

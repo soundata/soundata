@@ -86,58 +86,13 @@ INDEXES = {
     "test": "sample",
     "1.0": core.Index(
         filename="dcase23_task6b_index_1.0.json",
-        url="https://zenodo.org/records/11176793/files/dcase23_task6b_index_1.0.json?download=1",
-        checksum="66def2c298050d30ad9661d3e824c6b0",
+        url="https://zenodo.org/records/17409164/files/dcase23_task6b_index_1.0.json?download=1",
+        checksum="6ab0de1e3fd13014de6747db8a476be0",
     ),
     "sample": core.Index(filename="dcase23_task6b_index_1.0_sample.json"),
 }
 
 REMOTES = {
-    "clotho_audio_development": download_utils.RemoteFileMetadata(
-        filename="clotho_audio_development.7z",
-        url="https://zenodo.org/record/4783391/files/clotho_audio_development.7z?download=1",
-        checksum="c8b05bc7acdb13895bb3c6a29608667e",
-    ),
-    "clotho_audio_evaluation": download_utils.RemoteFileMetadata(
-        filename="clotho_audio_evaluation.7z",
-        url="https://zenodo.org/record/4783391/files/clotho_audio_evaluation.7z?download=1",
-        checksum="4569624ccadf96223f19cb59fe4f849f",
-    ),
-    "clotho_audio_validation": download_utils.RemoteFileMetadata(
-        filename="clotho_audio_validation.7z",
-        url="https://zenodo.org/record/4783391/files/clotho_audio_validation.7z?download=1",
-        checksum="7dba730be08bada48bd15dc4e668df59",
-    ),
-    "clotho_captions_development": download_utils.RemoteFileMetadata(
-        filename="clotho_captions_development.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_captions_development.csv?download=1",
-        checksum="d4090b39ce9f2491908eebf4d5b09bae",
-    ),
-    "clotho_captions_evaluation": download_utils.RemoteFileMetadata(
-        filename="clotho_captions_evaluation.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_captions_evaluation.csv?download=1",
-        checksum="1b16b9e57cf7bdb7f13a13802aeb57e2",
-    ),
-    "clotho_captions_validation": download_utils.RemoteFileMetadata(
-        filename="clotho_captions_validation.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_captions_validation.csv?download=1",
-        checksum="5879e023032b22a2c930aaa0528bead4",
-    ),
-    "clotho_metadata_development": download_utils.RemoteFileMetadata(
-        filename="clotho_metadata_development.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_metadata_development.csv?download=1",
-        checksum="170d20935ecfdf161ce1bb154118cda5",
-    ),
-    "clotho_metadata_evaluation": download_utils.RemoteFileMetadata(
-        filename="clotho_metadata_evaluation.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_metadata_evaluation.csv?download=1",
-        checksum="13946f054d4e1bf48079813aac61bf77",
-    ),
-    "clotho_metadata_validation": download_utils.RemoteFileMetadata(
-        filename="clotho_metadata_validation.csv",
-        url="https://zenodo.org/record/4783391/files/clotho_metadata_validation.csv?download=1",
-        checksum="2e010427c56b1ce6008b0f03f41048ce",
-    ),
     "retrieval_audio": download_utils.RemoteFileMetadata(
         filename="retrieval_audio.7z",
         url="https://zenodo.org/record/6590983/files/retrieval_audio.7z?download=1",
@@ -301,12 +256,6 @@ class Dataset(core.Dataset):
     def _metadata(self):
         # Define all the metadata and caption files for both datasets
         files = {
-            "clotho_metadata_development.csv": "metadata",
-            "clotho_metadata_evaluation.csv": "metadata",
-            "clotho_metadata_validation.csv": "metadata",
-            "clotho_captions_development.csv": "captions",
-            "clotho_captions_evaluation.csv": "captions",
-            "clotho_captions_validation.csv": "captions",
             "retrieval_audio_metadata.csv": "metadata",
         }
         combined_data = {}
@@ -318,14 +267,7 @@ class Dataset(core.Dataset):
                 csv_reader = csv.DictReader(csv_file, delimiter=",")
                 for row in csv_reader:
                     file_key = row["file_name"].replace(".wav", "")
-                    if "development" in file_name:
-                        file_key = "development/" + file_key
-                    elif "validation" in file_name:
-                        file_key = "validation/" + file_key
-                    elif "evaluation" in file_name:
-                        file_key = "evaluation/" + file_key
-                    elif "retrieval" in file_name:
-                        file_key = "test/" + file_key
+
                     if file_key not in combined_data:
                         combined_data[file_key] = {
                             "file_name": "",
@@ -349,8 +291,5 @@ class Dataset(core.Dataset):
                                 "license": row["license"],
                             }
                         )
-                    elif file_type == "captions":
-                        combined_data[file_key]["captions"] = [
-                            row[key] for key in row if key != "file_name"
-                        ]
+
         return combined_data

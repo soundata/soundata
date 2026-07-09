@@ -92,7 +92,7 @@ INDEXES = {
     "test": "sample",
     "2.1": core.Index(
         filename="clotho_index.json",
-        url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1&preview=1",
+        url="https://zenodo.org/records/15208093/files/clotho_index.json?download=1",
         checksum="da0e7fbffcd18a59e2da830e62340343",
     ),
     "sample": core.Index(filename="clotho_index_2.1_sample.json"),

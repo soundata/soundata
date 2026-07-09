@@ -1,10 +1,10 @@
 {
   "version": "sample",
   "clips": {
-    "development/1": {
+    "test_0001": {
       "audio": [
-        "development/1.wav",
-        "b4e5ba99338fa4af0f58454be7147928"
+        "test/test_0001.wav",
+        "896b0e935ec81d1f01b65f04307cb7c6"
       ]
     }
   }
