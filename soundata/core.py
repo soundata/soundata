@@ -5,7 +5,7 @@ import os
 import sys
 import random
 import types
-from typing import Any, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, cast
 
 import numpy as np
 
@@ -36,7 +36,7 @@ class cached_property(object):
 
     """
 
-    def __init__(self, func):
+    def __init__(self, func: Callable[..., Any]) -> None:
         self.__doc__ = getattr(func, "__doc__")
         self.func = func
 
@@ -47,14 +47,14 @@ class cached_property(object):
         return value
 
 
-def docstring_inherit(parent):
+def docstring_inherit(parent: Any) -> Callable[[Any], Any]:
     """Decorator function to inherit docstrings from the parent class.
 
     Adds documented Attributes from the parent to the child docs.
 
     """
 
-    def inherit(obj):
+    def inherit(obj: Any) -> Any:
         spaces = "    "
         if not str(obj.__doc__).__contains__("Attributes:"):
             obj.__doc__ += "\n" + spaces + "Attributes:\n"
@@ -67,12 +67,12 @@ def docstring_inherit(parent):
     return inherit
 
 
-def copy_docs(original):
+def copy_docs(original: Any) -> Callable[[Any], Any]:
     """
     Decorator function to copy docs from one function to another
     """
 
-    def wrapper(target):
+    def wrapper(target: Any) -> Any:
         target.__doc__ = original.__doc__
         return target
 
@@ -100,17 +100,17 @@ class Dataset(object):
 
     def __init__(
         self,
-        data_home=None,
-        version="default",
-        name=None,
-        clip_class=None,
-        clipgroup_class=None,
-        bibtex=None,
-        indexes=None,
-        remotes=None,
-        download_info=None,
-        license_info=None,
-    ):
+        data_home: Optional[str] = None,
+        version: str = "default",
+        name: Optional[str] = None,
+        clip_class: Optional[type] = None,
+        clipgroup_class: Optional[type] = None,
+        bibtex: Optional[str] = None,
+        indexes: Optional[Dict[str, Any]] = None,
+        remotes: Optional[Dict[str, Any]] = None,
+        download_info: Optional[str] = None,
+        license_info: Optional[str] = None,
+    ) -> None:
         """Dataset init method
 
         Args:
@@ -128,6 +128,9 @@ class Dataset(object):
         self.name = name
         self.data_home = self.default_path if data_home is None else data_home
 
+        # indexes is required at runtime; cast keeps mypy aware of that without
+        # changing behavior (passing indexes=None still fails as before).
+        indexes = cast(Dict[str, Any], indexes)
         if version not in indexes:
             raise ValueError(
                 "Invalid version {}. Must be one of {}.".format(version, indexes.keys())
@@ -152,7 +155,7 @@ class Dataset(object):
         self.clipgroup = lambda clipgroup_id: self._clipgroup(clipgroup_id)
         self.clipgroup.__doc__ = self._clipgroup_class.__doc__  # set the docstring
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         repr_string = "The {} dataset\n".format(self.name)
         repr_string += "-" * MAX_STR_LEN
         repr_string += "\n\n\n"
@@ -160,18 +163,18 @@ class Dataset(object):
         repr_string += "-" * MAX_STR_LEN
         repr_string += "\n\n\n"
         if self._clip_class is not None:
-            repr_string += self.clip.__doc__
+            repr_string += cast(str, self.clip.__doc__)
             repr_string += "-" * MAX_STR_LEN
             repr_string += "\n"
         if self._clipgroup_class is not None:
-            repr_string += self.clipgroup.__doc__
+            repr_string += cast(str, self.clipgroup.__doc__)
             repr_string += "-" * MAX_STR_LEN
             repr_string += "\n"
 
         return repr_string
 
     @cached_property
-    def _index(self):
+    def _index(self) -> Dict[str, Any]:
         try:
             with open(self.index_path, encoding="utf-8") as fhandle:
                 index = json.load(fhandle)
@@ -188,11 +191,11 @@ class Dataset(object):
         return index
 
     @cached_property
-    def _metadata(self):
+    def _metadata(self) -> Optional[Dict[str, Any]]:
         return None
 
     @property
-    def default_path(self):
+    def default_path(self) -> str:
         """Get the default path for the dataset
 
         Returns:
@@ -200,9 +203,9 @@ class Dataset(object):
 
         """
         sound_datasets_dir = os.path.join(os.getenv("HOME", "/tmp"), "sound_datasets")
-        return os.path.join(sound_datasets_dir, self.name)
+        return os.path.join(sound_datasets_dir, cast(str, self.name))
 
-    def _clip(self, clip_id):
+    def _clip(self, clip_id: str) -> "Clip":
         """Load a clip by clip_id.
 
         Hidden helper function that gets called as a lambda.
@@ -221,7 +224,7 @@ class Dataset(object):
                 clip_id, self.data_home, self.name, self._index, lambda: self._metadata
             )
 
-    def _clipgroup(self, clipgroup_id):
+    def _clipgroup(self, clipgroup_id: str) -> "ClipGroup":
         """Load a clipgroup by clipgroup_id.
 
         Hidden helper function that gets called as a lambda.
@@ -245,7 +248,7 @@ class Dataset(object):
                 lambda: self._metadata,
             )
 
-    def load_clips(self):
+    def load_clips(self) -> Dict[str, "Clip"]:
         """Load all clips in the dataset
 
         Returns:
@@ -258,7 +261,7 @@ class Dataset(object):
         """
         return {clip_id: self.clip(clip_id) for clip_id in self.clip_ids}
 
-    def load_clipgroups(self):
+    def load_clipgroups(self) -> Dict[str, "ClipGroup"]:
         """Load all clipgroups in the dataset
 
         Returns:
@@ -274,7 +277,7 @@ class Dataset(object):
             for clipgroup_id in self.clipgroup_ids
         }
 
-    def choice_clip(self):
+    def choice_clip(self) -> "Clip":
         """Choose a random clip
 
         Returns:
@@ -283,7 +286,7 @@ class Dataset(object):
         """
         return self.clip(random.choice(self.clip_ids))
 
-    def choice_clipgroup(self):
+    def choice_clipgroup(self) -> "ClipGroup":
         """Choose a random clipgroup
 
         Returns:
@@ -292,14 +295,14 @@ class Dataset(object):
         """
         return self.clipgroup(random.choice(self.clipgroup_ids))
 
-    def cite(self):
+    def cite(self) -> None:
         """
         Print the reference
         """
         print("========== BibTeX ==========")
         print(self.bibtex)
 
-    def license(self):
+    def license(self) -> None:
         """
         Print the license
         """
@@ -307,7 +310,12 @@ class Dataset(object):
         print(self._license_info)
         print(DISCLAIMER)
 
-    def download(self, partial_download=None, force_overwrite=False, cleanup=False):
+    def download(
+        self,
+        partial_download: Optional[List[str]] = None,
+        force_overwrite: bool = False,
+        cleanup: bool = False,
+    ) -> None:
         """Download data to `save_dir` and optionally print a message.
 
         Args:
@@ -334,7 +342,9 @@ class Dataset(object):
             cleanup=cleanup,
         )
 
-    def explore_dataset(self, clip_id=None):  # pragma: no cover
+    def explore_dataset(
+        self, clip_id: Optional[str] = None
+    ) -> None:  # pragma: no cover
         """Explore the dataset for a given clip_id or a random clip if clip_id is None.
 
         Args:
@@ -352,7 +362,7 @@ class Dataset(object):
             )
 
     @cached_property
-    def clip_ids(self):
+    def clip_ids(self) -> List[str]:
         """Return clip ids
 
         Returns:
@@ -364,7 +374,7 @@ class Dataset(object):
         return list(self._index["clips"].keys())
 
     @cached_property
-    def clipgroup_ids(self):
+    def clipgroup_ids(self) -> List[str]:
         """Return clip ids
 
         Returns:
@@ -375,15 +385,15 @@ class Dataset(object):
             raise AttributeError("This dataset does not have clipgroups")
         return list(self._index["clipgroups"].keys())
 
-    def validate(self, verbose=True):
+    def validate(self, verbose: bool = True) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """Validate if the stored dataset is a valid version
 
         Args:
             verbose (bool): If False, don't print output
 
         Returns:
-            * list - files in the index but are missing locally
-            * list - files which have an invalid checksum
+            * dict - files in the index but are missing locally
+            * dict - files which have an invalid checksum
 
         """
         missing_files, invalid_checksums = validate.validator(
@@ -399,7 +409,14 @@ class Clip(object):
 
     """
 
-    def __init__(self, clip_id, data_home, dataset_name, index, metadata):
+    def __init__(
+        self,
+        clip_id: str,
+        data_home: str,
+        dataset_name: str,
+        index: Dict[str, Any],
+        metadata: Callable[[], Any],
+    ) -> None:
         """Clip init method. Sets boilerplate attributes, including:
 
         - ``clip_id``
@@ -429,7 +446,7 @@ class Clip(object):
         self._metadata = metadata
 
     @property
-    def _clip_metadata(self):
+    def _clip_metadata(self) -> Any:
         metadata = self._metadata()
         if metadata and self.clip_id in metadata:
             return metadata[self.clip_id]
@@ -437,7 +454,7 @@ class Clip(object):
             return metadata
         raise AttributeError("This Clip does not have metadata.")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         properties = [v for v in dir(self.__class__) if not v.startswith("_")]
         attributes = [
             v for v in dir(self) if not v.startswith("_") and v not in properties
@@ -474,7 +491,7 @@ class Clip(object):
         repr_str += ")"
         return repr_str
 
-    def get_path(self, key):
+    def get_path(self, key: str) -> Optional[str]:
         """Get absolute path to clip audio and annotations. Returns None if
         the path in the index is None
 
@@ -502,8 +519,14 @@ class ClipGroup(Clip):
     """
 
     def __init__(
-        self, clipgroup_id, data_home, dataset_name, index, clip_class, metadata
-    ):
+        self,
+        clipgroup_id: str,
+        data_home: str,
+        dataset_name: str,
+        index: Dict[str, Any],
+        clip_class: type,
+        metadata: Callable[[], Any],
+    ) -> None:
         """Clipgroup init method. Sets boilerplate attributes, including:
 
         - ``clipgroup_id``
@@ -539,7 +562,7 @@ class ClipGroup(Clip):
         self.clip_ids = self._index["clipgroups"][self.clipgroup_id]["clips"]
 
     @property
-    def clips(self):
+    def clips(self) -> Dict[str, "Clip"]:
         return {
             t: self._clip_class(
                 t, self._data_home, self._dataset_name, self._index, self._metadata
@@ -548,7 +571,7 @@ class ClipGroup(Clip):
         }
 
     @property
-    def clip_audio_property(self):
+    def clip_audio_property(self) -> Any:
         """The clip's audio property.
 
         Returns:
@@ -557,7 +580,7 @@ class ClipGroup(Clip):
         raise NotImplementedError("Mixing is not supported for this dataset")
 
     @property
-    def _clipgroup_metadata(self):
+    def _clipgroup_metadata(self) -> Any:
         metadata = self._metadata()
         if metadata and self.clipgroup_id in metadata:
             return metadata[self.clipgroup_id]
@@ -565,7 +588,7 @@ class ClipGroup(Clip):
             return metadata
         raise AttributeError("This ClipGroup does not have metadata")
 
-    def get_path(self, key):
+    def get_path(self, key: str) -> Optional[str]:
         """Get absolute path to clipgroup audio and annotations. Returns None if
         the path in the index is None
 
@@ -581,7 +604,13 @@ class ClipGroup(Clip):
         else:
             return os.path.join(self._data_home, self._clipgroup_paths[key][0])
 
-    def get_target(self, clip_keys, weights=None, average=True, enforce_length=True):
+    def get_target(
+        self,
+        clip_keys: List[str],
+        weights: Optional[Union[List[float], np.ndarray]] = None,
+        average: bool = True,
+        enforce_length: bool = True,
+    ) -> np.ndarray:
         """Get target which is a linear mixture of clips
 
         Args:
@@ -645,7 +674,12 @@ class ClipGroup(Clip):
 
         return target
 
-    def get_random_target(self, n_clips=None, min_weight=0.3, max_weight=1.0):
+    def get_random_target(
+        self,
+        n_clips: Optional[int] = None,
+        min_weight: float = 0.3,
+        max_weight: float = 1.0,
+    ) -> Tuple[np.ndarray, Any, np.ndarray]:
         """Get a random target by combining a random selection of clips with random weights
 
         Args:
@@ -659,7 +693,7 @@ class ClipGroup(Clip):
             * list - list of weights used to mix clips
 
         """
-        clips = list(self.clips.keys())
+        clips: Any = list(self.clips.keys())
         assert len(clips) > 0
         if n_clips is not None and n_clips < len(clips):
             clips = np.random.choice(clips, n_clips, replace=False)
@@ -668,7 +702,7 @@ class ClipGroup(Clip):
         target = self.get_target(clips, weights=weights)
         return target, clips, weights
 
-    def get_mix(self):
+    def get_mix(self) -> np.ndarray:
         """Create a linear mixture given a subset of clips.
 
         Args:
@@ -707,7 +741,7 @@ class Index(object):
         url: Optional[str] = None,
         checksum: Optional[str] = None,
         partial_download: Optional[List[str]] = None,
-    ):
+    ) -> None:
         self.filename = filename
         self.remote: Optional[download_utils.RemoteFileMetadata]
         self.indexes_dir = os.path.join(
