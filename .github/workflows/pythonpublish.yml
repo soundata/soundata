@@ -6,6 +6,12 @@ name: Upload Python Package
 on:
   release:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: ''
+        required: false
+        default: ''
 
 jobs:
   deploy:
