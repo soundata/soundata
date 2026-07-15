@@ -1,6 +1,5 @@
 .. _api:
 
-
 Initialize a dataset
 --------------------
 
@@ -238,8 +237,35 @@ Core
 Annotations
 -----------
 
-.. automodule:: soundata.annotations
-   :members:
+Units
+^^^^^
+.. autodata:: soundata.annotations.AZIMUTH_UNITS
+.. autodata:: soundata.annotations.DISTANCE_UNITS
+.. autodata:: soundata.annotations.ELEVATIONS_UNITS
+.. autodata:: soundata.annotations.LABEL_UNITS
+.. autodata:: soundata.annotations.TIME_UNITS
+
+
+Annotation Types
+^^^^^^^^^^^^^^^^
+.. autoclass:: soundata.annotations.Annotation
+.. autoclass:: soundata.annotations.Events
+.. autoclass:: soundata.annotations.MultiAnnotator
+.. autoclass:: soundata.annotations.SpatialEvents
+.. autoclass:: soundata.annotations.Tags
+
+
+Functions
+^^^^^^^^^
+.. autofunction:: soundata.annotations.validate_array_like
+.. autofunction:: soundata.annotations.validate_confidence
+.. autofunction:: soundata.annotations.validate_intervals
+.. autofunction:: soundata.annotations.validate_lengths_equal
+.. autofunction:: soundata.annotations.validate_locations
+.. autofunction:: soundata.annotations.validate_time_steps
+.. autofunction:: soundata.annotations.validate_times
+.. autofunction:: soundata.annotations.validate_unit
+
 
 
 Advanced
@@ -259,31 +285,3 @@ soundata.download_utils
    :members:
 
 
-Using soundata with JAMS
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section demonstrates how to use JAMS to load clips's data.
-
-Ensure you have JAMS installed by running:
-
-    .. code-block:: bash
-
-        pip install jams
-
-.. admonition:: jams_utils
-    :class: dropdown
-
-    The following code contains utilities functions for converting soundata Annotation classes to JAMS format.
-
-    .. literalinclude:: tutorial_examples/jams_utils.py
-        :language: python
-
-
-.. admonition:: Using JAMS to read Annotations
-
-    The following example shows how to convert a clip's data into JAMS format using the utilities above.
-
-    .. literalinclude:: tutorial_examples/to_jams.py
-        :language: python
-
-For more information, visit the `JAMS documentation <https://jams.readthedocs.io/en/stable/index.html>`_.
