@@ -328,6 +328,14 @@
      - .. image:: https://licensebuttons.net/l/by-nc/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by-nc/4.0 
 
+   * - Urban Soundscapes of the World
+     - - audio: ✅
+       - video: ✅
+     - N/A
+     - 127
+     - 2.12
+     - Not Stated
+
    * - | :ref:`Warblrb10k <warblrb10k-module>`
        | ID: :code:`warblrb10k`
      - | audio: ✅
@@ -339,3 +347,4 @@
      - | :bioacoustic:`BIOACOUSTIC`
      - .. image:: https://licensebuttons.net/l/by/4.0/80x15.png
           :target: https://creativecommons.org/licenses/by/4.0
+
