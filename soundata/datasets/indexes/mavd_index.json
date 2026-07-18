@@ -1,0 +1,475 @@
+{
+  "version": "0.1.0",
+  "clips": {
+    "rivera0923_02": {
+      "audio": [
+        "audio_train/rivera0923_02.flac",
+        "b0cc47ae156d0b6ed3175540e501108b"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_02.txt",
+        "0cf8956b1d5f8f17b9edc291489f1ddc"
+      ]
+    },
+    "rivera0923_03": {
+      "audio": [
+        "audio_train/rivera0923_03.flac",
+        "de7e6457a5de2802f9bb9df0ec8a55d3"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_03.txt",
+        "cf759351746aa298cc591c6d4237511f"
+      ]
+    },
+    "rivera0923_04": {
+      "audio": [
+        "audio_train/rivera0923_04.flac",
+        "67c2991d0e35431b592b8d04133229b9"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_04.txt",
+        "02b0b83c5eca591dcaf101199d1f8836"
+      ]
+    },
+    "rivera0923_05": {
+      "audio": [
+        "audio_train/rivera0923_05.flac",
+        "243a33a9bde4f91aa9d181a2fd92155f"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_05.txt",
+        "7c158c83e9c43df8cc274ceb4958b808"
+      ]
+    },
+    "rivera0923_06": {
+      "audio": [
+        "audio_train/rivera0923_06.flac",
+        "ee4ede3b48ce023f24b14a58474da28c"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_06.txt",
+        "d8fff9ff7c311262c09d51eaf1ee23c2"
+      ]
+    },
+    "rivera0923_07": {
+      "audio": [
+        "audio_train/rivera0923_07.flac",
+        "6ba05398b92a8d0acdd59d4c75982238"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_07.txt",
+        "925986d8bbac0d002ad63a8329fa943c"
+      ]
+    },
+    "rivera0923_08": {
+      "audio": [
+        "audio_train/rivera0923_08.flac",
+        "dc64c8c7dffe8d5a782baccb6e4f6f6b"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_08.txt",
+        "2048ee396d87483bfe8bf195d2876a50"
+      ]
+    },
+    "rivera0923_09": {
+      "audio": [
+        "audio_train/rivera0923_09.flac",
+        "7586570c06c34a408e1076b3df71ec05"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_09.txt",
+        "1164ee2cfde059dba46be45f1dd9fc0d"
+      ]
+    },
+    "rivera0923_10": {
+      "audio": [
+        "audio_train/rivera0923_10.flac",
+        "a7558cea8b67ed6d93501a3c865dc23c"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_10.txt",
+        "24e2f6d25705e580bd668b6eac5f826a"
+      ]
+    },
+    "rivera0923_11": {
+      "audio": [
+        "audio_train/rivera0923_11.flac",
+        "65f27e5e93a214213ba1dc3d591f1790"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_11.txt",
+        "157981d1dcad4297bb9b50bdfb43f9ff"
+      ]
+    },
+    "rivera0923_12": {
+      "audio": [
+        "audio_train/rivera0923_12.flac",
+        "63e4e1e8e71d37e993ba6bb048f823cd"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_12.txt",
+        "05446b8820ee75342497d1b942227798"
+      ]
+    },
+    "rivera0923_13": {
+      "audio": [
+        "audio_train/rivera0923_13.flac",
+        "0ce1efa5c3919c6772294e08d22f8dec"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_13.txt",
+        "1d38dcf613221c1cf7aa5e7f8cc1224e"
+      ]
+    },
+    "rivera0923_14": {
+      "audio": [
+        "audio_train/rivera0923_14.flac",
+        "af664c88a6e98cd75bc26565d700a7fb"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_14.txt",
+        "c456c84e68c686dbe6132cff23a0bbed"
+      ]
+    },
+    "rivera0923_15": {
+      "audio": [
+        "audio_train/rivera0923_15.flac",
+        "fed0d4e113caad191ad4b0a6b7f7492c"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_15.txt",
+        "e73df2dd643be20081da098b4a2d56fc"
+      ]
+    },
+    "rivera0923_16": {
+      "audio": [
+        "audio_train/rivera0923_16.flac",
+        "8d63c0931aae5ca8fabb59c09b1befac"
+      ],
+      "txt": [
+        "annotations_train/rivera0923_16.txt",
+        "4088cc4697fe67496e2f82a465f6aa85"
+      ]
+    },
+    "rivera1015_02": {
+      "audio": [
+        "audio_train/rivera1015_02.flac",
+        "543dfdd8cb513bde1ed699961d175247"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_02.txt",
+        "63e02a339ecad60e73fad6d189c95d15"
+      ]
+    },
+    "rivera1015_03": {
+      "audio": [
+        "audio_train/rivera1015_03.flac",
+        "55070659aec25881b24e420d702e1143"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_03.txt",
+        "774bd6356e91f8c17d38920739d90346"
+      ]
+    },
+    "rivera1015_04": {
+      "audio": [
+        "audio_train/rivera1015_04.flac",
+        "b4b7c8cd08bb7a37cc97ecd607fac729"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_04.txt",
+        "82b96b5770a3fcfa85a71e0a8e9ed2cc"
+      ]
+    },
+    "rivera1015_05": {
+      "audio": [
+        "audio_train/rivera1015_05.flac",
+        "4b2942daccac60486a98491af8a8f1fe"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_05.txt",
+        "c6a2963b0baf2c7fc0e88638ef4791bd"
+      ]
+    },
+    "rivera1015_06": {
+      "audio": [
+        "audio_train/rivera1015_06.flac",
+        "33c17cb171527e54700d9acf1ed33f42"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_06.txt",
+        "dc9405708da99c77180a0ea6e1fa8903"
+      ]
+    },
+    "rivera1015_07": {
+      "audio": [
+        "audio_train/rivera1015_07.flac",
+        "bff9c46ecc475b916759172e31de0465"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_07.txt",
+        "8f2c3bdc31da23d250e9188ebcd49345"
+      ]
+    },
+    "rivera1015_08": {
+      "audio": [
+        "audio_train/rivera1015_08.flac",
+        "e51723a554d426e3fb0982335559ffad"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_08.txt",
+        "08d7866de9b302444e20dd16ac1bf0bc"
+      ]
+    },
+    "rivera1015_09": {
+      "audio": [
+        "audio_train/rivera1015_09.flac",
+        "a1c99ed004071b895b5d1b1f33d16991"
+      ],
+      "txt": [
+        "annotations_train/rivera1015_09.txt",
+        "0013e7ce19dc26680293c1e4cc73fc26"
+      ]
+    },
+    "rivera1016_02": {
+      "audio": [
+        "audio_train/rivera1016_02.flac",
+        "b12b51981fc88367bffd72972e0ed165"
+      ],
+      "txt": [
+        "annotations_train/rivera1016_02.txt",
+        "0a20e99f25a739f725840a741ea0bc94"
+      ]
+    },
+    "rivera0922_00": {
+      "audio": [
+        "audio_validate/rivera0922_00.flac",
+        "e8ff960dce7046e9ffb6eb072d234b12"
+      ],
+      "txt": [
+        "annotations_validate/rivera0922_00.txt",
+        "ca1c2edb70e0662b87d6132dbff651bf"
+      ]
+    },
+    "rivera0923_00": {
+      "audio": [
+        "audio_validate/rivera0923_00.flac",
+        "1cce0cea56ee02f722d14565b978795e"
+      ],
+      "txt": [
+        "annotations_validate/rivera0923_00.txt",
+        "ad0347cb7173aa9900e6c6cc33c0d109"
+      ]
+    },
+    "rivera0923_01": {
+      "audio": [
+        "audio_validate/rivera0923_01.flac",
+        "d3d25cf5cf27a67d82238e418259ff3c"
+      ],
+      "txt": [
+        "annotations_validate/rivera0923_01.txt",
+        "43d5fc0b883064e49279a71f6d983e5d"
+      ]
+    },
+    "rivera1015_00": {
+      "audio": [
+        "audio_validate/rivera1015_00.flac",
+        "163596ba3f0baf01df710c26b392d1cc"
+      ],
+      "txt": [
+        "annotations_validate/rivera1015_00.txt",
+        "839019a7b138718f79ccd3523cb4ff47"
+      ]
+    },
+    "rivera1015_01": {
+      "audio": [
+        "audio_validate/rivera1015_01.flac",
+        "eb918601d5e844fd9f2410cc51bb8556"
+      ],
+      "txt": [
+        "annotations_validate/rivera1015_01.txt",
+        "41954b41ea2685a19dc0c38d96763926"
+      ]
+    },
+    "rivera1016_00": {
+      "audio": [
+        "audio_validate/rivera1016_00.flac",
+        "e6d63d12264b7909286552a22f0dfec7"
+      ],
+      "txt": [
+        "annotations_validate/rivera1016_00.txt",
+        "c579b30843fc0b44ddfcc18908a10ff9"
+      ]
+    },
+    "rivera1016_01": {
+      "audio": [
+        "audio_validate/rivera1016_01.flac",
+        "0564194c7baa294a8caff2815948d38e"
+      ],
+      "txt": [
+        "annotations_validate/rivera1016_01.txt",
+        "226b8c4d6405eefbc0ea2a20da3414c1"
+      ]
+    },
+    "acevedo0103_00": {
+      "audio": [
+        "audio_test/acevedo0103_00.flac",
+        "6986506547040ee528a6abad3318efb9"
+      ],
+      "txt": [
+        "annotations_test/acevedo0103_00.txt",
+        "afd69d4e51def795719dfd7b2263ff24"
+      ]
+    },
+    "acevedo0103_01": {
+      "audio": [
+        "audio_test/acevedo0103_01.flac",
+        "f963d38e6c5057b6ea561e96b5453d7b"
+      ],
+      "txt": [
+        "annotations_test/acevedo0103_01.txt",
+        "fb37bcf5209269af8ed556d2cd4d5164"
+      ]
+    },
+    "acevedo0103_02": {
+      "audio": [
+        "audio_test/acevedo0103_02.flac",
+        "7b8c9f004c72f009b0f963e956847ff8"
+      ],
+      "txt": [
+        "annotations_test/acevedo0103_02.txt",
+        "d32b8cdafb9e9796d3df9062e7555a48"
+      ]
+    },
+    "magallanes0308_00": {
+      "audio": [
+        "audio_test/magallanes0308_00.flac",
+        "ea97cb58e3a95d45e269d65231b676bd"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_00.txt",
+        "626b80822b98ef3c3861bec33e696939"
+      ]
+    },
+    "magallanes0308_01": {
+      "audio": [
+        "audio_test/magallanes0308_01.flac",
+        "0e1781c8678f3df629a04f73f61351ae"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_01.txt",
+        "38bae19e9b463cdfe7eb0682368e748d"
+      ]
+    },
+    "magallanes0308_02": {
+      "audio": [
+        "audio_test/magallanes0308_02.flac",
+        "ef60cf87ad9bfece5cb8b97faf85bdc4"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_02.txt",
+        "556d6dad28a0387d787bef3be1fd026d"
+      ]
+    },
+    "magallanes0308_03": {
+      "audio": [
+        "audio_test/magallanes0308_03.flac",
+        "f19570d8150e3834159d1d1b7690c14d"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_03.txt",
+        "35e43c6eec53ce63d35eaff70c660425"
+      ]
+    },
+    "magallanes0308_04": {
+      "audio": [
+        "audio_test/magallanes0308_04.flac",
+        "ab0cea8b23b7e0a431275a91dee1c6da"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_04.txt",
+        "ee10486a9fe34d4dbbf9ae06b3fe580d"
+      ]
+    },
+    "magallanes0308_05": {
+      "audio": [
+        "audio_test/magallanes0308_05.flac",
+        "f9ac5288c139261d4e1a2387bace181f"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_05.txt",
+        "100200df45dfa63990de30bff5fd9be6"
+      ]
+    },
+    "magallanes0308_06": {
+      "audio": [
+        "audio_test/magallanes0308_06.flac",
+        "e72a0ea6d76f6f14b6a1cb5a0119125f"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_06.txt",
+        "79b79ae8b4dce6e15dab7012a04a7f32"
+      ]
+    },
+    "magallanes0308_07": {
+      "audio": [
+        "audio_test/magallanes0308_07.flac",
+        "b02d7730e1095eda49513cddfe4e3b8b"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_07.txt",
+        "4d90c9081ff69d96af50277a726b76d5"
+      ]
+    },
+    "magallanes0308_08": {
+      "audio": [
+        "audio_test/magallanes0308_08.flac",
+        "46eaeb28aa6464f7f6836ceccea84793"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_08.txt",
+        "5510526c48437afb470255abe2100f9e"
+      ]
+    },
+    "magallanes0308_09": {
+      "audio": [
+        "audio_test/magallanes0308_09.flac",
+        "9793b4ca79eb5a3e8cc42b8a9277d72e"
+      ],
+      "txt": [
+        "annotations_test/magallanes0308_09.txt",
+        "27c6365336fb968bc5be3a5495503b34"
+      ]
+    },
+    "templete0103_00": {
+      "audio": [
+        "audio_test/templete0103_00.flac",
+        "072d1397cd406503e59b4309cea27529"
+      ],
+      "txt": [
+        "annotations_test/templete0103_00.txt",
+        "affeb1e03dc8fad913c20836b6ef1a9c"
+      ]
+    },
+    "templete0103_01": {
+      "audio": [
+        "audio_test/templete0103_01.flac",
+        "d7b9082dcd080458c2b4558210f66348"
+      ],
+      "txt": [
+        "annotations_test/templete0103_01.txt",
+        "3b16f8f1f3c684eb0a47e13ffe63b858"
+      ]
+    },
+    "templete0103_02": {
+      "audio": [
+        "audio_test/templete0103_02.flac",
+        "f6a017cca1dea1fe37bd537e9f35909c"
+      ],
+      "txt": [
+        "annotations_test/templete0103_02.txt",
+        "7e6bb7ce44b6a41f1b3968b45a6528e9"
+      ]
+    }
+  }
+}
