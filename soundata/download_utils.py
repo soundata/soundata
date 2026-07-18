@@ -8,6 +8,8 @@ import tarfile
 import urllib.request
 import zipfile
 import subprocess
+from typing import Any, List, Optional
+
 import py7zr
 from tqdm import tqdm
 
@@ -30,8 +32,13 @@ class RemoteFileMetadata(object):
     """
 
     def __init__(
-        self, filename, url, checksum, destination_dir=None, unpack_directories=None
-    ):
+        self,
+        filename: str,
+        url: str,
+        checksum: str,
+        destination_dir: Optional[str] = None,
+        unpack_directories: Optional[List[str]] = None,
+    ) -> None:
         self.filename = filename
         self.url = url
         self.checksum = checksum
@@ -40,14 +47,14 @@ class RemoteFileMetadata(object):
 
 
 def downloader(
-    save_dir,
-    remotes=None,
-    index=None,
-    partial_download=None,
-    info_message=None,
-    force_overwrite=False,
-    cleanup=False,
-):
+    save_dir: str,
+    remotes: Optional[dict] = None,
+    index: Optional[Any] = None,
+    partial_download: Optional[List[str]] = None,
+    info_message: Optional[str] = None,
+    force_overwrite: bool = False,
+    cleanup: bool = False,
+) -> None:
     """Download data to `save_dir` and optionally log a message
 
     Args:
@@ -173,13 +180,20 @@ def downloader(
 class DownloadProgressBar(tqdm):
     """Wrap tqdm to show download progress"""
 
-    def update_to(self, b=1, bsize=1, tsize=None):
+    def update_to(
+        self, b: int = 1, bsize: int = 1, tsize: Optional[int] = None
+    ) -> None:
         if tsize is not None:
             self.total = tsize
         self.update(b * bsize - self.n)
 
 
-def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
+def download_multipart_zip(
+    zip_remotes: List[RemoteFileMetadata],
+    save_dir: str,
+    force_overwrite: bool,
+    cleanup: bool,
+) -> None:
     """Download and unzip a multipart zip file.
 
     Args:
@@ -196,10 +210,12 @@ def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
     """
     for l in range(len(zip_remotes)):
         download_from_remote(zip_remotes[l], save_dir, force_overwrite)
-    zip_path = os.path.join(
-        save_dir,
-        next((part.filename for part in zip_remotes if ".zip" in part.filename), None),
+    zip_filename = next(
+        (part.filename for part in zip_remotes if ".zip" in part.filename), None
     )
+    if zip_filename is None:
+        raise ValueError("No .zip part found in the multipart zip remotes.")
+    zip_path = os.path.join(save_dir, zip_filename)
     out_path = zip_path.replace(".zip", "_single.zip")
     subprocess.run(["zip", "-s", "0", zip_path, "--out", out_path])
     if cleanup:
@@ -209,7 +225,9 @@ def download_multipart_zip(zip_remotes, save_dir, force_overwrite, cleanup):
     unzip(out_path, cleanup=cleanup)
 
 
-def download_from_remote(remote, save_dir, force_overwrite):
+def download_from_remote(
+    remote: RemoteFileMetadata, save_dir: str, force_overwrite: bool
+) -> str:
     """Download a remote dataset into path
 
     Fetch a dataset pointed by remote's url, save into path using remote's
@@ -282,7 +300,12 @@ def download_from_remote(remote, save_dir, force_overwrite):
     return download_path
 
 
-def download_zip_file(zip_remote, save_dir, force_overwrite, cleanup):
+def download_zip_file(
+    zip_remote: RemoteFileMetadata,
+    save_dir: str,
+    force_overwrite: bool,
+    cleanup: bool,
+) -> None:
     """Download and unzip a zip file.
 
     Args:
@@ -300,7 +323,7 @@ def download_zip_file(zip_remote, save_dir, force_overwrite, cleanup):
     unzip(zip_download_path, cleanup=cleanup)
 
 
-def extractall_unicode(zfile, out_dir):
+def extractall_unicode(zfile: zipfile.ZipFile, out_dir: str) -> None:
     """Extract all files inside a zip archive to a output directory.
 
     In comparison to the zipfile, it checks for correct file name encoding
@@ -329,7 +352,7 @@ def extractall_unicode(zfile, out_dir):
                 fd.write(data)
 
 
-def unzip(zip_path, cleanup):
+def unzip(zip_path: str, cleanup: bool) -> None:
     """Unzip a zip file inside it's current directory.
 
     Args:
@@ -344,7 +367,12 @@ def unzip(zip_path, cleanup):
         os.remove(zip_path)
 
 
-def download_7z_file(tar_remote, save_dir, force_overwrite, cleanup):
+def download_7z_file(
+    tar_remote: RemoteFileMetadata,
+    save_dir: str,
+    force_overwrite: bool,
+    cleanup: bool,
+) -> None:
     """Download and untar a tar file.
 
     Args:
@@ -358,7 +386,7 @@ def download_7z_file(tar_remote, save_dir, force_overwrite, cleanup):
     un7z(_7z_download_path, cleanup=cleanup)
 
 
-def un7z(sevenz_path, cleanup):
+def un7z(sevenz_path: str, cleanup: bool) -> None:
     """Unzip a 7z file inside its current directory.
 
     Args:
@@ -372,7 +400,12 @@ def un7z(sevenz_path, cleanup):
         os.remove(sevenz_path)
 
 
-def download_tar_file(tar_remote, save_dir, force_overwrite, cleanup):
+def download_tar_file(
+    tar_remote: RemoteFileMetadata,
+    save_dir: str,
+    force_overwrite: bool,
+    cleanup: bool,
+) -> None:
     """Download and untar a tar file.
 
     Args:
@@ -386,7 +419,7 @@ def download_tar_file(tar_remote, save_dir, force_overwrite, cleanup):
     untar(tar_download_path, cleanup=cleanup)
 
 
-def untar(tar_path, cleanup):
+def untar(tar_path: str, cleanup: bool) -> None:
     """Untar a tar file inside it's current directory.
 
     Args:
@@ -401,7 +434,7 @@ def untar(tar_path, cleanup):
         os.remove(tar_path)
 
 
-def move_directory_contents(source_dir, target_dir):
+def move_directory_contents(source_dir: str, target_dir: str) -> None:
     """Move the contents of source_dir into target_dir, and delete source_dir
 
     Args:
